@@ -47,6 +47,7 @@
     "*.{css,less}": "stylelint --fix"
   },
   "devDependencies": {
+    "@rokku/cli": "^1.1.2",
     "@rokku/fabric": "^1.0.5",
     "@types/classnames": "^2.2.11",
     "@types/enzyme": "^3.10.8",
@@ -72,9 +73,5 @@
     "@rokku/icons": "^1.0.5",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.4.1"
-  },
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
   }
 }
