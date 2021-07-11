@@ -8,7 +8,7 @@ export interface Actions<T = boolean, U = State> {
   toggle: (value: T) => void;
 }
 
-export interface State extends Record<string, any> {
+export interface State extends Record<string, unknown> {
   show?: boolean;
 }
 

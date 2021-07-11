@@ -31,7 +31,7 @@ const Popup: React.FC<PopupProps> = (props) => {
 
   useEventListener('popstate', () => {
     if (props.closeOnPopstate) {
-      props.onClose();
+      props.onClose?.();
     }
   });
 
