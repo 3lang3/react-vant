@@ -1,0 +1,46 @@
+{
+  "name": "@rokku/icons",
+  "version": "1.0.5",
+  "description": "rokku icons",
+  "main": "./src/config.js",
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "export": "node ./build/export.js",
+    "build": "npm run export && gulp --gulpfile ./build/build-iconfont.js",
+    "release": "npm run build && release-it"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/Hyattria/rokku/tree/main/packages/rokku-icons",
+  "devDependencies": {
+    "@types/qiniu": "^7.0.1",
+    "fast-glob": "^3.2.2",
+    "fs-extra": "^9.0.1",
+    "gulp": "^4.0.2",
+    "gulp-cheerio": "^1.0.0",
+    "gulp-iconfont": "^10.0.3",
+    "gulp-iconfont-css": "^3.0.0",
+    "gulp-svg-symbols": "^3.2.3",
+    "gulp-svg-symbols2js": "^1.0.1",
+    "gulp-svgmin": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "md5-file": "^5.0.0",
+    "qiniu": "^7.3.2",
+    "release-it": "^13.6.2",
+    "shelljs": "^0.8.4",
+    "svgo": "1.2.2"
+  },
+  "release-it": {
+    "git": {
+      "tag": false,
+      "commitMessage": "chore: release @rokku/icons ${version}",
+      "addUntrackedFiles": true,
+      "requireCleanWorkingDir": false
+    }
+  }
+}

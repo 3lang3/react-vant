@@ -1,0 +1,189 @@
+@import '../../styles/themes/default.less';
+
+.@{rk-prefix}-button {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: @button-default-height;
+  margin: 0;
+  padding: 0;
+  font-size: @button-default-font-size;
+  font-family: @base-font-family;
+  line-height: @button-default-line-height;
+  text-align: center;
+  border-radius: @button-border-radius;
+  transition: opacity @animation-duration-fast;
+  -webkit-appearance: none;
+  -webkit-text-size-adjust: 100%;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: @black;
+    border: inherit;
+    border-color: @black;
+    border-radius: inherit; /* inherit parent's border radius */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    content: ' ';
+  }
+
+  &:active::before {
+    opacity: 0.1;
+  }
+
+  &--loading,
+  &--disabled {
+    &::before {
+      display: none;
+    }
+  }
+
+  &--default {
+    color: @button-default-color;
+    background-color: @button-default-background-color;
+    border: @button-border-width solid @button-default-border-color;
+  }
+
+  &--primary {
+    color: @button-primary-color;
+    background-color: @button-primary-background-color;
+    border: @button-border-width solid @button-primary-border-color;
+  }
+
+  &--info {
+    color: @button-info-color;
+    background-color: @button-info-background-color;
+    border: @button-border-width solid @button-info-border-color;
+  }
+
+  &--danger {
+    color: @button-danger-color;
+    background-color: @button-danger-background-color;
+    border: @button-border-width solid @button-danger-border-color;
+  }
+
+  &--warning {
+    color: @button-warning-color;
+    background-color: @button-warning-background-color;
+    border: @button-border-width solid @button-warning-border-color;
+  }
+
+  &--plain {
+    background-color: @button-plain-background-color;
+
+    &.@{rk-prefix}-button--primary {
+      color: @button-primary-background-color;
+    }
+
+    &.@{rk-prefix}-button--info {
+      color: @button-info-background-color;
+    }
+
+    &.@{rk-prefix}-button--danger {
+      color: @button-danger-background-color;
+    }
+
+    &.@{rk-prefix}-button--warning {
+      color: @button-warning-background-color;
+    }
+  }
+
+  &--large {
+    width: 100%;
+    height: @button-large-height;
+    line-height: @button-large-line-height;
+  }
+
+  &--normal {
+    padding: 0 15px;
+    font-size: @button-normal-font-size;
+  }
+
+  &--small {
+    min-width: @button-small-min-width;
+    height: @button-small-height;
+    padding: 0 @padding-xs;
+    font-size: @button-small-font-size;
+    line-height: @button-small-line-height;
+  }
+
+  &__loading {
+    display: inline-block;
+    color: inherit;
+    vertical-align: top;
+  }
+
+  &--mini {
+    display: inline-block;
+    min-width: @button-mini-min-width;
+    height: @button-mini-height;
+    font-size: @button-mini-font-size;
+    line-height: @button-mini-line-height;
+
+    & + .@{rk-prefix}-button--mini {
+      margin-left: 5px;
+    }
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+    font-size: @button-default-font-size;
+  }
+
+  &--disabled {
+    opacity: @button-disabled-opacity;
+  }
+
+  &--round {
+    border-radius: @button-round-border-radius;
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    // fix icon vertical align
+    &::before {
+      content: ' ';
+    }
+  }
+
+  &__icon {
+    font-size: 1.2em;
+    line-height: inherit;
+  }
+
+  &__icon + &__text,
+  &__loading + &__text {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+  &--hairline {
+    border-width: 0;
+
+    &::after {
+      border-color: inherit;
+      border-radius: @button-border-radius * 2;
+    }
+
+    &.@{rk-prefix}-button--round::after {
+      border-radius: @button-round-border-radius;
+    }
+
+    &.@{rk-prefix}-button--square::after {
+      border-radius: 0;
+    }
+  }
+}

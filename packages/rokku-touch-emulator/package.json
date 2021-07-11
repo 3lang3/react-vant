@@ -1,0 +1,10 @@
+{
+  "name": "@rokku/touch-emulator",
+  "version": "1.0.0",
+  "description": "Rokku touch emulator",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

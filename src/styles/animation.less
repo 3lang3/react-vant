@@ -1,0 +1,128 @@
+@import './themes/index.less';
+
+@keyframes rk-slide-up-enter {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes rk-slide-up-leave {
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes rk-slide-down-enter {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes rk-slide-down-leave {
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes rk-slide-left-enter {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes rk-slide-left-leave {
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes rk-slide-right-enter {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes rk-slide-right-leave {
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes rk-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rk-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes rk-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rk-fade {
+  &-enter-active {
+    animation: @animation-duration-base rk-fade-in both @animation-timing-function-enter;
+  }
+  &-exit-active {
+    animation: @animation-duration-base rk-fade-out both @animation-timing-function-leave;
+  }
+}
+
+.rk-slide-up {
+  &-enter-active {
+    animation: @animation-duration-base rk-slide-up-enter both @animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: @animation-duration-base rk-slide-up-leave both @animation-timing-function-leave;
+  }
+}
+
+.rk-slide-down {
+  &-enter-active {
+    animation: rk-slide-down-enter @animation-duration-base both @animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: rk-slide-down-leave @animation-duration-base both @animation-timing-function-leave;
+  }
+}
+
+.rk-slide-left {
+  &-enter-active {
+    animation: rk-slide-left-enter @animation-duration-base both @animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: rk-slide-left-leave @animation-duration-base both @animation-timing-function-leave;
+  }
+}
+
+.rk-slide-right {
+  &-enter-active {
+    animation: rk-slide-right-enter @animation-duration-base both @animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: rk-slide-right-leave @animation-duration-base both @animation-timing-function-leave;
+  }
+}

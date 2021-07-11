@@ -1,0 +1,80 @@
+{
+  "name": "@rokku/design",
+  "version": "0.0.21",
+  "description": "Mobile UI Components built on React",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "style": "lib/index.css",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "bootstrap": "yarn || npm i",
+    "start": "rokku-cli dev",
+    "build": "rokku-cli build",
+    "release": "rokku-cli release --tag dev",
+    "docs:build": "rokku-cli build-site",
+    "docs:deploy": "gh-pages -r https://github.com/Hyattria/rokku -d docs-dist",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "test": "rokku-cli test --coverage",
+    "test:coverage": "open tests/coverage/index.html"
+  },
+  "author": "xtmike008@gmail.com",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "ui",
+    "react",
+    "react hook",
+    "mobile",
+    "frontend",
+    "component",
+    "components"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "rokku-cli commit-lint"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,less}": "prettier --write",
+    "*.{ts,tsx,js}": "eslint --fix",
+    "*.{css,less}": "stylelint --fix"
+  },
+  "devDependencies": {
+    "@rokku/fabric": "^1.0.5",
+    "@types/classnames": "^2.2.11",
+    "@types/enzyme": "^3.10.8",
+    "@types/jest": "^26.0.15",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
+    "@types/react-transition-group": "^4.4.0",
+    "gh-pages": "^3.1.0",
+    "glob": "^7.1.6",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.1.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-router-dom": "^5.2.0",
+    "typescript": "^4.0.5"
+  },
+  "browserslist": [
+    "Android >= 4.0",
+    "iOS >= 8"
+  ],
+  "dependencies": {
+    "@rokku/icons": "^1.0.5",
+    "classnames": "^2.2.6",
+    "react-transition-group": "^4.4.1"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  }
+}

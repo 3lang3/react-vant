@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ./src/button/demo/index.tsx correctly 1`] = `
+Array [
+  <div
+    class="demo-button-row"
+  >
+    <button
+      class="rk-button rk-button--primary rk-button--normal"
+    >
+      <span
+        class="rk-button__text"
+      >
+        主要按钮
+      </span>
+    </button>
+    <button
+      class="rk-button rk-button--info rk-button--normal"
+    >
+      <span
+        class="rk-button__text"
+      >
+        信息按钮
+      </span>
+    </button>
+    <button
+      class="rk-button rk-button--default rk-button--normal"
+    >
+      <span
+        class="rk-button__text"
+      >
+        默认按钮
+      </span>
+    </button>
+  </div>,
+  <button
+    class="rk-button rk-button--warning rk-button--normal"
+  >
+    <span
+      class="rk-button__text"
+    >
+      警告按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--danger rk-button--normal"
+  >
+    <span
+      class="rk-button__text"
+    >
+      危险按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal rk-button--plain"
+  >
+    <span
+      class="rk-button__text"
+    >
+      朴素按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--info rk-button--normal rk-button--plain"
+  >
+    <span
+      class="rk-button__text"
+    >
+      朴素按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal rk-button--plain rk-button--hairline rk-hairline--surround"
+  >
+    <span
+      class="rk-button__text"
+    >
+      细边框按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--info rk-button--normal rk-button--plain rk-button--hairline rk-hairline--surround"
+  >
+    <span
+      class="rk-button__text"
+    >
+      细边框按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal rk-button--disabled"
+    disabled=""
+  >
+    <span
+      class="rk-button__text"
+    >
+      禁用状态
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--info rk-button--normal rk-button--disabled"
+    disabled=""
+  >
+    <span
+      class="rk-button__text"
+    >
+      禁用状态
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal rk-button--square"
+  >
+    <span
+      class="rk-button__text"
+    >
+      方形按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--info rk-button--normal rk-button--round"
+  >
+    <span
+      class="rk-button__text"
+    >
+      圆形按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal"
+  >
+    <i
+      class="rk-button__icon rk-icon rk-icon-plus"
+    />
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal"
+  >
+    <i
+      class="rk-button__icon rk-icon rk-icon-plus"
+    />
+    <span
+      class="rk-button__text"
+    >
+      按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal rk-button--plain"
+  >
+    <i
+      class="rk-button__icon rk-icon"
+    >
+      <img
+        alt="https://img.yzcdn.cn/vant/user-active.png"
+        class="rk-icon__image"
+        src="https://img.yzcdn.cn/vant/user-active.png"
+      />
+    </i>
+    <span
+      class="rk-button__text"
+    >
+      按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--large"
+  >
+    <span
+      class="rk-button__text"
+    >
+      大号按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal"
+  >
+    <span
+      class="rk-button__text"
+    >
+      普通按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--small"
+  >
+    <span
+      class="rk-button__text"
+    >
+      小型按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--mini"
+  >
+    <span
+      class="rk-button__text"
+    >
+      迷你按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal rk-button--block"
+  >
+    <span
+      class="rk-button__text"
+    >
+      块级元素
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal"
+  >
+    <span
+      class="rk-button__text"
+    >
+      URL 跳转
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--primary rk-button--normal"
+  >
+    <span
+      class="rk-button__text"
+    >
+      路由跳转
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--default rk-button--normal"
+    style="color:#fff;background:#7232dd;border-color:#7232dd"
+  >
+    <span
+      class="rk-button__text"
+    >
+      单色按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--default rk-button--normal rk-button--plain"
+    style="color:#7232dd;border-color:#7232dd"
+  >
+    <span
+      class="rk-button__text"
+    >
+      单色按钮
+    </span>
+  </button>,
+  <button
+    class="rk-button rk-button--default rk-button--normal"
+    style="color:#fff;background:linear-gradient(to right, #ff6034, #ee0a24);border:0"
+  >
+    <span
+      class="rk-button__text"
+    >
+      渐变色按钮
+    </span>
+  </button>,
+]
+`;

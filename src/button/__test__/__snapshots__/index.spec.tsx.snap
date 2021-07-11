@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<button
+  class="rk-button rk-button--default rk-button--normal"
+/>
+`;
+
+exports[`Button should change icon class prefix when using icon-prefix prop 1`] = `"<button class=\\"rk-button rk-button--default rk-button--normal\\"><i class=\\"rk-button__icon my-icon my-icon-success\\"></i></button>"`;
+
+exports[`Button should render empty button without errors 1`] = `
+<button
+  class="rk-button rk-button--default rk-button--normal"
+>
+  <span
+    class="rk-button__text"
+  />
+</button>
+`;

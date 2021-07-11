@@ -1,0 +1,29 @@
+@import '../../styles/themes/default.less';
+
+.demo-flex {
+  .rokku-doc-demo-block {
+    padding: 0 @padding-md;
+  }
+  .rokku-doc-demo-block__title {
+    padding-left: 0;
+  }
+  .rk-flexbox {
+    margin-bottom: 10px;
+    color: @white;
+    font-size: 13px;
+    line-height: 30px;
+    text-align: center;
+    background-clip: content-box;
+
+    .rk-flexitem {
+      background-clip: content-box;
+
+      &:nth-child(odd) {
+        background-color: #39a9ed;
+      }
+      &:nth-child(even) {
+        background-color: #66c6f2;
+      }
+    }
+  }
+}
