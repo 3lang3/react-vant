@@ -7,7 +7,7 @@ export const GRAY = '#c9c9c9';
 export const GRAY_DARK = '#969799';
 
 // border
-export const BORDER = 'rk-hairline';
+export const BORDER = 'zf-hairline';
 export const BORDER_TOP = `${BORDER}--top`;
 export const BORDER_LEFT = `${BORDER}--left`;
 export const BORDER_RIGHT = `${BORDER}--right`;

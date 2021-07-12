@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Search } from 'rokku';
+import { Search } from '@zhpfe/design'
 ```
 
 ## 代码演示

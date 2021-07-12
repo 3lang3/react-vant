@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Cell, IndexBar } from 'rokku';
+import { Tabs, Cell, IndexBar } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

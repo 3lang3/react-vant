@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cell, Stepper, Toast } from 'rokku';
+import { Cell, Stepper, Toast } from '@zhpfe/design';
 import './style.less';
 
 let timer;

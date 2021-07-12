@@ -1,6 +1,6 @@
 {
-  "name": "@rokku/design",
-  "version": "0.0.21",
+  "name": "@zhpfe/design",
+  "version": "0.0.0",
   "description": "Mobile UI Components built on React",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,7 +20,7 @@
     "test": "rokku-cli test --coverage",
     "test:coverage": "open tests/coverage/index.html"
   },
-  "author": "xtmike008@gmail.com",
+  "author": "3lang",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
@@ -42,9 +42,9 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,js,less}": "prettier --write",
-    "*.{ts,tsx,js}": "eslint --fix",
-    "*.{css,less}": "stylelint --fix"
+    "./src/**/*.{ts,tsx,js,less}": "prettier --write",
+    "./src/**/*.{ts,tsx,js}": "eslint --fix",
+    "./src/**/*.{css,less}": "stylelint --fix"
   },
   "devDependencies": {
     "@rokku/cli": "^1.1.2",

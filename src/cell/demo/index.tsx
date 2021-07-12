@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cell } from 'rokku';
+import { Cell } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

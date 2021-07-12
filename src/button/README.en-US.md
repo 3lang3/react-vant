@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Button } from 'rokku';
+import { Button } from '@zhpfe/design'
 ```
 
 ## Usage

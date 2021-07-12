@@ -3,7 +3,7 @@ let lockCount = 0;
 export function lockClick(lock: boolean): void {
   if (lock) {
     if (!lockCount) {
-      document.body.classList.add('rk-toast--unclickable');
+      document.body.classList.add('zf-toast--unclickable');
     }
 
     lockCount += 1;
@@ -11,7 +11,7 @@ export function lockClick(lock: boolean): void {
     lockCount -= 1;
 
     if (!lockCount) {
-      document.body.classList.remove('rk-toast--unclickable');
+      document.body.classList.remove('zf-toast--unclickable');
     }
   }
 }

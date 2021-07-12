@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, Sticky } from 'rokku';
+import { Button, Sticky } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

@@ -1,6 +1,6 @@
 @import '../../styles/themes/default.less';
 
-.@{rk-prefix}-tag {
+.@{zf-prefix}-tag {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -13,7 +13,7 @@
   &--default {
     background-color: @tag-default-color;
 
-    &.rk-tag--plain {
+    &.zf-tag--plain {
       color: @tag-default-color;
     }
   }
@@ -21,7 +21,7 @@
   &--danger {
     background-color: @tag-danger-color;
 
-    &.rk-tag--plain {
+    &.zf-tag--plain {
       color: @tag-danger-color;
     }
   }
@@ -29,7 +29,7 @@
   &--primary {
     background-color: @tag-primary-color;
 
-    &.rk-tag--plain {
+    &.zf-tag--plain {
       color: @tag-primary-color;
     }
   }
@@ -37,7 +37,7 @@
   &--success {
     background-color: @tag-success-color;
 
-    &.rk-tag--plain {
+    &.zf-tag--plain {
       color: @tag-success-color;
     }
   }
@@ -45,7 +45,7 @@
   &--warning {
     background-color: @tag-warning-color;
 
-    &.rk-tag--plain {
+    &.zf-tag--plain {
       color: @tag-warning-color;
     }
   }
@@ -69,7 +69,7 @@
   &--selected {
     color: @tag-primary-color !important;
 
-    &.rk-tag--plain::before {
+    &.zf-tag--plain::before {
       border: 1px solid @tag-primary-color;
     }
   }
@@ -109,11 +109,11 @@
       border-radius: @tag-border-radius;
     }
 
-    &.@{rk-prefix}-tag--plain::before {
+    &.@{zf-prefix}-tag--plain::before {
       border-width: 0;
     }
 
-    &.@{rk-prefix}-tag--round::after {
+    &.@{zf-prefix}-tag--round::after {
       border-radius: @tag-round-border-radius;
     }
   }

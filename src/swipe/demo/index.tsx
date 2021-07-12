@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toast, Swipe } from 'rokku';
+import { Toast, Swipe } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

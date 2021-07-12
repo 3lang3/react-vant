@@ -1,7 +1,7 @@
 {
-  "name": "@rokku/icons",
-  "version": "1.0.5",
-  "description": "rokku icons",
+  "name": "@zhpfe/icons",
+  "version": "0.0.0-dev",
+  "description": "zhpfe icons",
   "main": "./src/config.js",
   "files": [
     "src"
@@ -16,7 +16,6 @@
     "release": "npm run build && release-it"
   },
   "license": "MIT",
-  "repository": "https://github.com/Hyattria/rokku/tree/main/packages/rokku-icons",
   "devDependencies": {
     "@types/qiniu": "^7.0.1",
     "fast-glob": "^3.2.2",
@@ -34,13 +33,5 @@
     "release-it": "^13.6.2",
     "shelljs": "^0.8.4",
     "svgo": "1.2.2"
-  },
-  "release-it": {
-    "git": {
-      "tag": false,
-      "commitMessage": "chore: release @rokku/icons ${version}",
-      "addUntrackedFiles": true,
-      "requireCleanWorkingDir": false
-    }
   }
 }

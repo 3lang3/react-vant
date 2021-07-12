@@ -82,7 +82,7 @@ import { Icon } from '@rokku/design';
 | dot | 是否显示图标右上角小红点 | _boolean_ | `false` |
 | color | 图标颜色 | _string_ | `inherit` |
 | size | 图标大小，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `inherit` |
-| classPrefix | 类名前缀，用于使用自定义图标 | _string_ | `rk-icon` |
+| classPrefix | 类名前缀，用于使用自定义图标 | _string_ | `zf-icon` |
 | tag | HTML 标签 | _string_ | `i` |
 
 ### Events

@@ -1,6 +1,6 @@
 @import '../../styles/themes/default.less';
 
-.rk-checkbox {
+.zf-checkbox {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -33,7 +33,7 @@
     line-height: 1em;
     cursor: pointer;
 
-    .rk-checkbox__icon-success {
+    .zf-checkbox__icon-success {
       position: relative;
       display: block;
       box-sizing: border-box;
@@ -66,19 +66,19 @@
     }
 
     &--round {
-      .rk-checkbox__icon-success {
+      .zf-checkbox__icon-success {
         border-radius: 100%;
       }
     }
 
     &--square {
-      .rk-checkbox__icon-success {
+      .zf-checkbox__icon-success {
         border-radius: 4px;
       }
     }
 
     &--checked {
-      .rk-checkbox__icon-success {
+      .zf-checkbox__icon-success {
         color: @white;
         background-color: @radio-checked-icon-color;
         border-color: @radio-checked-icon-color;
@@ -93,14 +93,14 @@
     &--disabled {
       cursor: not-allowed;
 
-      .rk-checkbox__icon-success {
+      .zf-checkbox__icon-success {
         background-color: @radio-disabled-background-color;
         border-color: @radio-disabled-icon-color;
       }
     }
 
     &--disabled&--checked {
-      .rk-checkbox__icon-success::after {
+      .zf-checkbox__icon-success::after {
         border-color: @radio-disabled-icon-color;
       }
     }

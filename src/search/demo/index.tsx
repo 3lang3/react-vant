@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Toast } from 'rokku';
+import { Search, Toast } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

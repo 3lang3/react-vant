@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Popup, Cell } from 'rokku';
+import { Popup, Cell } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

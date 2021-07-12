@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse } from 'rokku';
+import { Collapse } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

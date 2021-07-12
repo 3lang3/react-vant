@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 module.exports = {
-  name: 'Rokku',
+  name: '@zhpfe/design',
   build: {
     css: {
       preprocessor: 'less',
@@ -13,7 +13,7 @@ module.exports = {
     defaultLang: 'zh-CN',
     locales: {
       'zh-CN': {
-        title: 'Rokku',
+        title: '@zhpfe/design',
         description: '轻量、可靠的移动端 React 组件库',
         logo: 'http://cdn.rokku.icu/logo.png',
         langLabel: '中文',

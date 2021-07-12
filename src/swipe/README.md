@@ -25,7 +25,7 @@ import { Swipe } from '@rokku/design';
 </Swipe>
 
 <style>
-  .my-swipe .rk-swipe-item {
+  .my-swipe .zf-swipe-item {
     color: #fff;
     font-size: 20px;
     line-height: 150px;

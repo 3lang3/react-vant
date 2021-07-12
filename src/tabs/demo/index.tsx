@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Toast } from 'rokku';
+import { Tabs, Toast } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

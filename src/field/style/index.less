@@ -1,7 +1,7 @@
 @import '../../styles/themes/default.less';
 @import '../../styles/mixins/hairline.less';
 
-.@{rk-prefix}-field {
+.@{zf-prefix}-field {
   &__label {
     flex: none;
     box-sizing: border-box;
@@ -21,7 +21,7 @@
   }
 
   &--disabled {
-    .@{rk-prefix}-field__label {
+    .@{zf-prefix}-field__label {
       color: @field-disabled-text-color;
     }
   }
@@ -107,8 +107,8 @@
     cursor: pointer;
   }
 
-  &__left-icon .@{rk-prefix}-icon,
-  &__right-icon .@{rk-prefix}-icon {
+  &__left-icon .@{zf-prefix}-icon,
+  &__right-icon .@{zf-prefix}-icon {
     display: block;
     font-size: @field-icon-size;
     line-height: inherit;
@@ -149,7 +149,7 @@
   }
 
   &--error {
-    .@{rk-prefix}-field__control {
+    .@{zf-prefix}-field__control {
       &,
       &::placeholder {
         color: @field-input-error-text-color;
@@ -159,7 +159,7 @@
   }
 
   &--min-height {
-    .@{rk-prefix}-field__control {
+    .@{zf-prefix}-field__control {
       min-height: @field-text-area-min-height;
     }
   }

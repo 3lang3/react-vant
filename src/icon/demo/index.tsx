@@ -1,6 +1,6 @@
 import React from 'react';
 import icons from '@rokku/icons';
-import { Icon, Tabs, Flex } from 'rokku';
+import { Icon, Tabs, Flex } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 
 import './style.less';

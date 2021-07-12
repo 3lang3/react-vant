@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Tabs, Toast, PullRefresh } from 'rokku';
+import { Tabs, Toast, PullRefresh } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

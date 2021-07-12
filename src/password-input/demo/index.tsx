@@ -1,5 +1,5 @@
 import React from 'react';
-import { PasswordInput, Dialog } from 'rokku';
+import { PasswordInput, Dialog } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

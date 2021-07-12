@@ -65,6 +65,7 @@ export const baseConfig: WebpackConfig = {
     extensions: [...SCRIPT_EXTS, ...STYLE_EXTS],
     alias: {
       rokku: resolve(process.cwd(), 'src'),
+      '@zhpfe/design': resolve(process.cwd(), 'src'),
     },
   },
   module: {

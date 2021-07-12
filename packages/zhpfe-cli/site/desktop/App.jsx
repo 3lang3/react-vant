@@ -20,7 +20,7 @@ const App = () => {
 
   useEffect(() => {
     if (isMobile) {
-      location.replace(`mobile.html${location.hash}`);
+      window.location.replace(`mobile.html${window.location.hash}`);
     }
   }, []);
 
@@ -34,8 +34,8 @@ const App = () => {
     false
   );
 
-  const path = location.pathname.replace(/\/index(\.html)?/, '/');
-  const simulator = `${path}mobile.html${location.hash}`;
+  const path = window.location.pathname.replace(/\/index(\.html)?/, '/');
+  const simulator = `${path}mobile.html${window.location.hash}`;
 
   const lang = useMemo(() => {
     return getLangFromRoute(pathname);

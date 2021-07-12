@@ -1,54 +1,54 @@
 @import './themes/index.less';
 
-@keyframes rk-slide-up-enter {
+@keyframes zf-slide-up-enter {
   from {
     transform: translate3d(0, 100%, 0);
   }
 }
 
-@keyframes rk-slide-up-leave {
+@keyframes zf-slide-up-leave {
   to {
     transform: translate3d(0, 100%, 0);
   }
 }
 
-@keyframes rk-slide-down-enter {
+@keyframes zf-slide-down-enter {
   from {
     transform: translate3d(0, -100%, 0);
   }
 }
 
-@keyframes rk-slide-down-leave {
+@keyframes zf-slide-down-leave {
   to {
     transform: translate3d(0, -100%, 0);
   }
 }
 
-@keyframes rk-slide-left-enter {
+@keyframes zf-slide-left-enter {
   from {
     transform: translate3d(-100%, 0, 0);
   }
 }
 
-@keyframes rk-slide-left-leave {
+@keyframes zf-slide-left-leave {
   to {
     transform: translate3d(-100%, 0, 0);
   }
 }
 
-@keyframes rk-slide-right-enter {
+@keyframes zf-slide-right-enter {
   from {
     transform: translate3d(100%, 0, 0);
   }
 }
 
-@keyframes rk-slide-right-leave {
+@keyframes zf-slide-right-leave {
   to {
     transform: translate3d(100%, 0, 0);
   }
 }
 
-@keyframes rk-fade-in {
+@keyframes zf-fade-in {
   from {
     opacity: 0;
   }
@@ -58,7 +58,7 @@
   }
 }
 
-@keyframes rk-fade-out {
+@keyframes zf-fade-out {
   from {
     opacity: 1;
   }
@@ -68,7 +68,7 @@
   }
 }
 
-@keyframes rk-rotate {
+@keyframes zf-rotate {
   from {
     transform: rotate(0deg);
   }
@@ -78,51 +78,51 @@
   }
 }
 
-.rk-fade {
+.zf-fade {
   &-enter-active {
-    animation: @animation-duration-base rk-fade-in both @animation-timing-function-enter;
+    animation: @animation-duration-base zf-fade-in both @animation-timing-function-enter;
   }
   &-exit-active {
-    animation: @animation-duration-base rk-fade-out both @animation-timing-function-leave;
+    animation: @animation-duration-base zf-fade-out both @animation-timing-function-leave;
   }
 }
 
-.rk-slide-up {
+.zf-slide-up {
   &-enter-active {
-    animation: @animation-duration-base rk-slide-up-enter both @animation-timing-function-enter;
+    animation: @animation-duration-base zf-slide-up-enter both @animation-timing-function-enter;
   }
 
   &-exit-active {
-    animation: @animation-duration-base rk-slide-up-leave both @animation-timing-function-leave;
+    animation: @animation-duration-base zf-slide-up-leave both @animation-timing-function-leave;
   }
 }
 
-.rk-slide-down {
+.zf-slide-down {
   &-enter-active {
-    animation: rk-slide-down-enter @animation-duration-base both @animation-timing-function-enter;
+    animation: zf-slide-down-enter @animation-duration-base both @animation-timing-function-enter;
   }
 
   &-exit-active {
-    animation: rk-slide-down-leave @animation-duration-base both @animation-timing-function-leave;
+    animation: zf-slide-down-leave @animation-duration-base both @animation-timing-function-leave;
   }
 }
 
-.rk-slide-left {
+.zf-slide-left {
   &-enter-active {
-    animation: rk-slide-left-enter @animation-duration-base both @animation-timing-function-enter;
+    animation: zf-slide-left-enter @animation-duration-base both @animation-timing-function-enter;
   }
 
   &-exit-active {
-    animation: rk-slide-left-leave @animation-duration-base both @animation-timing-function-leave;
+    animation: zf-slide-left-leave @animation-duration-base both @animation-timing-function-leave;
   }
 }
 
-.rk-slide-right {
+.zf-slide-right {
   &-enter-active {
-    animation: rk-slide-right-enter @animation-duration-base both @animation-timing-function-enter;
+    animation: zf-slide-right-enter @animation-duration-base both @animation-timing-function-enter;
   }
 
   &-exit-active {
-    animation: rk-slide-right-leave @animation-duration-base both @animation-timing-function-leave;
+    animation: zf-slide-right-leave @animation-duration-base both @animation-timing-function-leave;
   }
 }

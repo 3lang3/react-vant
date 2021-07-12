@@ -114,7 +114,7 @@ const Popup: React.FC<PopupProps> = (props) => {
 
   const renderTransition = () => {
     const { transition, destroyOnClose = false, forceRender = false, safeAreaInsetBottom } = props;
-    const name = position === 'center' ? 'rk-fade' : `rk-popup-slide-${position}`;
+    const name = position === 'center' ? 'zf-fade' : `zf-popup-slide-${position}`;
 
     return (
       <CSSTransition

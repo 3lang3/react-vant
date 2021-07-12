@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cell, Toast } from 'rokku';
+import { Cell, Toast } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 
 export default (): React.ReactNode => {

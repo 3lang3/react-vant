@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'rk-icon',
+  name: 'zf-icon',
   basic: ['arrow', 'arrow-left', 'arrow-up', 'arrow-down', 'success', 'cross', 'plus'],
   single: [
     // has corresponding filled icon

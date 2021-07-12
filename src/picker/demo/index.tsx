@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Picker, Toast, Field, Popup } from 'rokku';
+import { Picker, Toast, Field, Popup } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 
 export default (): React.ReactNode => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cell } from 'rokku';
+import { Cell } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import { CSSTransition } from 'react-transition-group';
 import './style.less';
@@ -22,20 +22,20 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="文字省略">
-        <div className="rk-ellipsis">这是一段最多显示一行的文字，后面的内容会省略</div>
-        <div className="rk-multi-ellipsis--l2">
+        <div className="zf-ellipsis">这是一段最多显示一行的文字，后面的内容会省略</div>
+        <div className="zf-multi-ellipsis--l2">
           这是一段最多显示两行的文字，后面的内容会省略。这是一段最多显示两行的文字，后面的内容会省略
         </div>
       </DemoBlock>
       <DemoBlock card title="1px 边框">
-        <div className="rk-hairline--top" />
+        <div className="zf-hairline--top" />
       </DemoBlock>
       <DemoBlock card title="动画">
-        <Cell isLink title="Fade" onClick={() => animate('rk-fade')} />
-        <Cell isLink title="Slide Up" onClick={() => animate('rk-slide-up')} />
-        <Cell isLink title="Slide Down" onClick={() => animate('rk-slide-down')} />
-        <Cell isLink title="Slide Left" onClick={() => animate('rk-slide-left')} />
-        <Cell isLink title="Slide Right" onClick={() => animate('rk-slide-right')} />
+        <Cell isLink title="Fade" onClick={() => animate('zf-fade')} />
+        <Cell isLink title="Slide Up" onClick={() => animate('zf-slide-up')} />
+        <Cell isLink title="Slide Down" onClick={() => animate('zf-slide-down')} />
+        <Cell isLink title="Slide Left" onClick={() => animate('zf-slide-left')} />
+        <Cell isLink title="Slide Right" onClick={() => animate('zf-slide-right')} />
       </DemoBlock>
 
       <CSSTransition in={show} timeout={300} classNames={transition} unmountOnExit>

@@ -1,6 +1,6 @@
 {
-  "name": "@rokku/cli",
-  "version": "1.1.2",
+  "name": "@zhpfe/cli",
+  "version": "0.0.0-dev",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -13,20 +13,10 @@
     "test": "jest",
     "release": "tsc & release-it"
   },
-  "release-it": {
-    "git": {
-      "tag": false,
-      "commitMessage": "chore: release @rokku/cli@${version}"
-    }
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "keywords": [
-    "rokku"
-  ],
-  "author": "xtmike008@gmail.com",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.12.3",

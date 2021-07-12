@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toast, Icon, NavBar } from 'rokku';
+import { Toast, Icon, NavBar } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
