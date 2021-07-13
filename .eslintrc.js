@@ -3,6 +3,7 @@ module.exports = {
   ignorePatterns: ['/.*'],
   rules: {
     '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/object-curly-spacing': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-param-reassign': 'off',

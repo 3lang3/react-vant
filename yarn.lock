@@ -1479,7 +1479,7 @@
     "@types/node" "*"
     "@types/responselike" "*"
 
-"@types/cheerio@*", "@types/cheerio@^0.22.22":
+"@types/cheerio@^0.22.22":
   version "0.22.30"
   resolved "https://registry.nlark.com/@types/cheerio/download/@types/cheerio-0.22.30.tgz?cache=0&sync_timestamp=1625603995945&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fcheerio%2Fdownload%2F%40types%2Fcheerio-0.22.30.tgz#6c1ded70d20d890337f0f5144be2c5e9ce0936e6"
   integrity sha1-bB3tcNINiQM38PUUS+LF6c4JNuY=
@@ -1492,14 +1492,6 @@
   integrity sha1-PCRnqg8ak/HwIeO5vPk4vV39wN0=
   dependencies:
     classnames "*"
-
-"@types/enzyme@^3.10.8":
-  version "3.10.9"
-  resolved "https://registry.nlark.com/@types/enzyme/download/@types/enzyme-3.10.9.tgz#b2d7c7429a37d994c156b6f361e83f271a60c8aa"
-  integrity sha1-stfHQpo32ZTBVrbzYeg/JxpgyKo=
-  dependencies:
-    "@types/cheerio" "*"
-    "@types/react" "*"
 
 "@types/glob@^7.1.1":
   version "7.1.4"
@@ -1613,22 +1605,6 @@
   integrity sha1-Z0uPEWZF/lJmtAtSV3f8a7jrO80=
   dependencies:
     "@types/react" "^16"
-
-"@types/react-transition-group@^4.4.0":
-  version "4.4.2"
-  resolved "https://registry.nlark.com/@types/react-transition-group/download/@types/react-transition-group-4.4.2.tgz#38890fd9db68bf1f2252b99a942998dc7877c5b3"
-  integrity sha1-OIkP2dtovx8iUrmalCmY3Hh3xbM=
-  dependencies:
-    "@types/react" "*"
-
-"@types/react@*":
-  version "17.0.14"
-  resolved "https://registry.nlark.com/@types/react/download/@types/react-17.0.14.tgz?cache=0&sync_timestamp=1625683258530&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.14.tgz#f0629761ca02945c4e8fea99b8177f4c5c61fb0f"
-  integrity sha1-8GKXYcoClFxOj+qZuBd/TFxh+w8=
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
 
 "@types/react@^16", "@types/react@^16.9.55":
   version "16.14.11"

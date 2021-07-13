@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { inBrowser } from '.';
 
-const root = (inBrowser ? window : global) as Window;
+const root = (inBrowser ? window : global) as unknown as Window;
 
 let prev = Date.now();
 
