@@ -1,24 +1,3 @@
-<p align="center">
-    <img alt="logo" src="http://cdn.rokku.icu/logo.png" width="120" style="margin-bottom: 10px;">
-</p>
-
-<h1 align="center">Rokku</h1>
-
-<p align="center">🍙 轻量、可靠的移动端 React 组件库</p>
-
-<p align="center">
-    <img src="https://img.shields.io/npm/v/@rokku/design.svg?style=flat-square" alt="npm version" />
-    <img src="https://img.shields.io/bundlephobia/minzip/@rokku/design?style=flat-square" >
-    <img src="https://img.shields.io/github/languages/top/Hyattria/rokku?style=flat-square">
-    <img src="https://img.shields.io/librariesio/release/npm/@rokku/design?style=flat-square">
-    <img src="https://img.shields.io/npm/dt/@rokku/design.svg?style=flat-square&color=#4fc08d" alt="downloads" />
-    <img src="https://img.shields.io/jsdelivr/npm/hm/@rokku/design?style=flat-square" alt="Jsdelivr Hits">
-</p>
-
-<p align="center">
-  🔥 <a href="http://www.rokku.icu">文档网站</a>
-</p>
-
 ## 特性
 
 - 30+ 高质量组件，覆盖移动端基本场景

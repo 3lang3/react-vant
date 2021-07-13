@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Stepper } from '@rokku/design';
+import { Stepper } from '@zhpfe/design';
 ```
 
 ## 代码演示

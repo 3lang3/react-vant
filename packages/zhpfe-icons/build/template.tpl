@@ -8,7 +8,7 @@
     url('http://cdn.rokku.icu/<%= cssClass %>.ttf') format('truetype');
 }
 
-.rk-icon {
+.zf-icon {
   position: relative;
   display: inline-block;
   font: normal normal normal 14px/1 '<%= fontName %>';
@@ -21,7 +21,7 @@
   }
 }
 
-<% _.each(glyphs, function(glyph) { %>.rk-icon-<%= glyph.fileName %>::before {
+<% _.each(glyphs, function(glyph) { %>.zf-icon-<%= glyph.fileName %>::before {
   content: '\<%= glyph.codePoint %>';
 }
 

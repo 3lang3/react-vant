@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Tabs } from '@rokku/design';
+import { Tabs } from '@zhpfe/design';
 ```
 
 ## 代码演示

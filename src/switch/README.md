@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Switch } from '@rokku/design';
+import { Switch } from '@zhpfe/design';
 ```
 
 ## 代码演示

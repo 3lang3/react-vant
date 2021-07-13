@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Overlay } from '@rokku/design';
+import { Overlay } from '@zhpfe/design';
 ```
 
 ## 代码演示

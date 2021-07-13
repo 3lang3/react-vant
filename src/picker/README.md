@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Picker } from '@rokku/design';
+import { Picker } from '@zhpfe/design';
 ```
 
 ## 代码演示
@@ -23,7 +23,7 @@ Picker 组件通过 `columns` 属性配置选项数据，`columns` 是一个包�
 设置 `show-toolbar` 属性后会展示顶部操作栏，顶部栏包含标题、确认按钮和取消按钮，点击确认按钮触发 `confirm` 事件，点击取消按钮触发 `cancel` 事件。
 
 ```js
-import { Toast } from '@rokku/design';
+import { Toast } from '@zhpfe/design';
 
 const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '宿迁', '泰州', '无锡'];
 ```

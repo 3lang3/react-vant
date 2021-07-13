@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Field } from '@rokku/design';
+import { Field } from '@zhpfe/design';
 ```
 
 ## 代码演示

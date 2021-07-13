@@ -64,7 +64,6 @@ export const baseConfig: WebpackConfig = {
   resolve: {
     extensions: [...SCRIPT_EXTS, ...STYLE_EXTS],
     alias: {
-      rokku: resolve(process.cwd(), 'src'),
       '@zhpfe/design': resolve(process.cwd(), 'src'),
     },
   },
@@ -72,7 +71,7 @@ export const baseConfig: WebpackConfig = {
     rules: [
       {
         test: /\.(js|ts|jsx|tsx)$/,
-        exclude: /node_modules\/(?!(@rokku\/cli))/,
+        exclude: /node_modules\/(?!(@zhpfe\/cli))/,
         use: [
           CACHE_LOADER,
           {

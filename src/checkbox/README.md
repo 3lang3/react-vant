@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Checkbox } from '@rokku/design';
+import { Checkbox } from '@zhpfe/design';
 ```
 
 ## 代码演示

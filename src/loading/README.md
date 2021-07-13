@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Loading } from '@rokku/design';
+import { Loading } from '@zhpfe/design';
 ```
 
 ## 代码演示

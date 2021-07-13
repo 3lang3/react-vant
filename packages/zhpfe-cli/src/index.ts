@@ -13,7 +13,7 @@ import { release } from './commands/release';
 import { buildSite } from './commands/build-site';
 import { commitLint } from './commands/commit-lint';
 
-version(`@rokku/cli ${packageJson.version}`);
+version(`@zhpfe/cli ${packageJson.version}`);
 
 command('dev').description('Run webpack dev server').action(dev);
 

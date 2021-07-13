@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Collapse } from '@rokku/design';
+import { Collapse } from '@zhpfe/design';
 ```
 
 ## 代码演示

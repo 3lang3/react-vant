@@ -1,3 +1,3 @@
 module.exports = {
-  presets: [require.resolve('@rokku/cli/preset')],
+  presets: [require.resolve('@zhpfe/cli/preset')],
 };

@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Button } from '@rokku/design';
+import { Button } from '@zhpfe/design';
 ```
 
 ## 代码演示

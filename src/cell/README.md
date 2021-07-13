@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Cell } from '@rokku/design';
+import { Cell } from '@zhpfe/design';
 ```
 
 ## 代码演示

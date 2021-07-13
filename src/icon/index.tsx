@@ -4,8 +4,6 @@ import classnames from 'classnames';
 import { addUnit, createNamespace, preventDefault } from '../utils';
 import { IconPropsType } from './PropsType';
 
-import '@rokku/icons/src/svg-symbols.js';
-
 export interface IconProps extends IconPropsType {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;

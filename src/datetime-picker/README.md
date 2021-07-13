@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { DatetimePicker } from '@rokku/design';
+import { DatetimePicker } from '@zhpfe/design';
 ```
 
 ## 代码演示

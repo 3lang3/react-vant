@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Radio } from '@rokku/design';
+import { Radio } from '@zhpfe/design';
 ```
 
 ## 代码演示

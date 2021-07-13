@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Swipe } from '@rokku/design';
+import { Swipe } from '@zhpfe/design';
 ```
 
 ## 代码演示
@@ -70,7 +70,7 @@ const images = [
 ```
 
 ```js
-import { Toast } from '@rokku/design';
+import { Toast } from '@zhpfe/design';
 
 const onChange = (index: number) => Toast(`当前 Swipe 索引：${index}`);
 ```

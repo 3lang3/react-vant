@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { PullRefresh } from '@rokku/design';
+import { PullRefresh } from '@zhpfe/design';
 ```
 
 ## 代码演示

@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Flex } from '@rokku/design';
+import { Flex } from '@zhpfe/design';
 ```
 
 ### 基础用法

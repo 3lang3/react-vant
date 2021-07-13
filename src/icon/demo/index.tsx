@@ -1,8 +1,7 @@
 import React from 'react';
-import icons from '@rokku/icons';
+import icons from '@zhpfe/icons';
 import { Icon, Tabs, Flex } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
-
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -53,9 +52,9 @@ export default (): React.ReactNode => {
             ))}
           </Flex>
         </Tabs.TabPane>
-        <Tabs.TabPane title="单色图标">
+        <Tabs.TabPane title="线框风格">
           <Flex wrap="wrap">
-            {icons.single.map((icon) => (
+            {icons.outline.map((icon) => (
               <Flex.Item key={icon} span={6}>
                 <Icon name={icon} />
                 <span>{icon}</span>
@@ -63,11 +62,11 @@ export default (): React.ReactNode => {
             ))}
           </Flex>
         </Tabs.TabPane>
-        <Tabs.TabPane title="地图图标">
+        <Tabs.TabPane title="实底风格">
           <Flex wrap="wrap">
-            {icons.multi.map((icon) => (
+            {icons.filled.map((icon) => (
               <Flex.Item key={icon} span={6}>
-                <Icon name={icon} theme="multi" />
+                <Icon name={icon} />
                 <span>{icon}</span>
               </Flex.Item>
             ))}

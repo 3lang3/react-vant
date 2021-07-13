@@ -1,11 +1,11 @@
 {
   "name": "@zhpfe/cli",
-  "version": "0.0.0-dev",
+  "version": "0.0.0-beta1",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "bin": {
-    "rokku-cli": "./lib/index.js"
+    "zhpfe-cli": "./lib/index.js"
   },
   "scripts": {
     "dev": "tsc --watch",
@@ -17,7 +17,7 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-decorators": "^7.12.1",

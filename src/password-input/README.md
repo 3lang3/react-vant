@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { PasswordInput } from '@rokku/design';
+import { PasswordInput } from '@zhpfe/design';
 ```
 
 ## 代码演示

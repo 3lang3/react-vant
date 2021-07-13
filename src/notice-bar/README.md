@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { NoticeBar } from '@rokku/design';
+import { NoticeBar } from '@zhpfe/design';
 ```
 
 ## 代码演示

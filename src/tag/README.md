@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Tag } from '@rokku/design';
+import { Tag } from '@zhpfe/design';
 ```
 
 ## 代码演示

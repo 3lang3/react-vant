@@ -1,6 +1,6 @@
 {
   "name": "@zhpfe/icons",
-  "version": "0.0.0-dev",
+  "version": "0.0.0-beta1",
   "description": "zhpfe icons",
   "main": "./src/config.js",
   "files": [

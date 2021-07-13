@@ -13,8 +13,6 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "rokku": ["src/index.tsx"],
-      "rokku/es/*": ["src/*"],
       "@zhpfe/design": ["src/index.tsx"],
       "@zhpfe/design/es/*": ["src/*"]
     }

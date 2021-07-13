@@ -7,13 +7,13 @@
 #### NPM
 
 ```shell
-npm i @rokku/touch-emulator -S
+npm i @zhpfe/touch-emulator -S
 ```
 
 #### YARN
 
 ```shell
-yarn add @rokku/touch-emulator
+yarn add @zhpfe/touch-emulator
 ```
 
 ## 使用指南
@@ -21,5 +21,5 @@ yarn add @rokku/touch-emulator
 直接在代码中引入模块即可，模块会自动完成初始化并生效
 
 ```js
-import '@rokku/touch-emulator';
+import '@zhpfe/touch-emulator';
 ```

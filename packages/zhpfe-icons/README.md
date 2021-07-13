@@ -5,13 +5,13 @@
 #### NPM
 
 ```shell
-npm i @rokku/icons -S
+npm i @zhpfe/icons -S
 ```
 
 #### YARN
 
 ```shell
-yarn add @rokku/icons
+yarn add @zhpfe/icons
 ```
 
 ## Contribution

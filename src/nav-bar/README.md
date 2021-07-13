@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { NavBar } from '@rokku/design';
+import { NavBar } from '@zhpfe/design';
 ```
 
 ## 代码演示

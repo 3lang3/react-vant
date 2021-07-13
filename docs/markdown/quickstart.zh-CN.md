@@ -6,10 +6,10 @@
 
 ```bash
 # 通过 npm 安装
-npm i @rokku/design -S
+npm i @zhpfe/design -S
 
 # 通过 yarn 安装
-yarn add @rokku/design
+yarn add @zhpfe/design
 ```
 
 ## 引入组件
@@ -29,7 +29,7 @@ npm i babel-plugin-import -D
 {
   "plugins": [
     ["import", {
-      "libraryName": "@rokku/design",
+      "libraryName": "@zhpfe/design",
       "libraryDirectory": "es",
       "style": true
     }]
@@ -40,10 +40,10 @@ npm i babel-plugin-import -D
 module.exports = {
   plugins: [
     ['import', {
-      libraryName: '@rokku/design',
+      libraryName: '@zhpfe/design',
       libraryDirectory: 'es',
       style: true
-    }, '@rokku/design']
+    }, '@zhpfe/design']
   ]
 };
 ```
@@ -51,7 +51,7 @@ module.exports = {
 ```js
 // 接着你可以在代码中直接引入 Rokku 组件
 // 插件会自动将代码转化为方式二中的按需引入形式
-import { Button } from '@rokku/design';
+import { Button } from '@zhpfe/design';
 ```
 
 > Tips: 如果你在使用 TypeScript，可以使用 [ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) 实现按需引入。
@@ -61,8 +61,8 @@ import { Button } from '@rokku/design';
 在不使用插件的情况下，可以手动引入需要的组件
 
 ```js
-import Button from '@rokku/design/lib/button';
-import '@rokku/design/lib/button/style';
+import Button from '@zhpfe/design/lib/button';
+import '@zhpfe/design/lib/button/style';
 ```
 
 > Tips: 配置按需引入后，将不允许直接导入所有组件。

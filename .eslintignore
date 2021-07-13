@@ -4,4 +4,4 @@ dist
 node_modules
 typings
 
-packages/rokku-icons/src/*.js
+packages/zhpfe-icons/src/*.js

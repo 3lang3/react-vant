@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { IndexBar } from '@rokku/design';
+import { IndexBar } from '@zhpfe/design';
 ```
 
 ## 代码演示

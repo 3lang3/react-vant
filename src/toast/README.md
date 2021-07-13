@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Toast } from '@rokku/design';
+import { Toast } from '@zhpfe/design';
 ```
 
 ## 代码演示
