@@ -1,6 +1,6 @@
 {
-  "name": "@rokku/fabric",
-  "version": "1.0.5",
+  "name": "@zhpfe/fabric",
+  "version": "1.0.0",
   "description": "A collection of configuration files containing prettier, eslint, stylelint",
   "main": "dist/index.js",
   "files": [
@@ -16,9 +16,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "xtmike008@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "typescript": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "4.4.1",
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.2.1",

@@ -1,7 +1,7 @@
 {
-  "name": "@rokku/touch-emulator",
+  "name": "@zhpfe/touch-emulator",
   "version": "1.0.0",
-  "description": "Rokku touch emulator",
+  "description": "vant touch emulator",
   "main": "index.js",
   "publishConfig": {
     "access": "public"

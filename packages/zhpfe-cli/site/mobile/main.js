@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
-import '@rokku/touch-emulator';
+import '@zhpfe/touch-emulator';
 
 import App from './App';
 

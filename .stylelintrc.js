@@ -1,4 +1,4 @@
-const fabric = require('@rokku/fabric');
+const fabric = require('@zhpfe/fabric');
 
 module.exports = {
   ...fabric.stylelint,

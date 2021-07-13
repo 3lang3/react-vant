@@ -1,6 +1,6 @@
 {
   "name": "@zhpfe/cli",
-  "version": "0.0.0-beta1",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -11,7 +11,15 @@
     "dev": "tsc --watch",
     "build": "tsc --build",
     "test": "jest",
-    "release": "tsc & release-it"
+    "release": "tsc --build & release-it"
+  },
+  "release-it": {
+    "git": {
+      "tag": false,
+      "commitMessage": "release: @zhpfe/icons ${version}",
+      "addUntrackedFiles": true,
+      "requireCleanWorkingDir": false
+    }
   },
   "publishConfig": {
     "access": "public",
@@ -27,8 +35,8 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
-    "@rokku/markdown-loader": "^1.0.2",
-    "@rokku/touch-emulator": "^1.0.0",
+    "@zhpfe/markdown-loader": "^1.0.1",
+    "@zhpfe/touch-emulator": "^1.0.0",
     "address": "^1.1.2",
     "autoprefixer": "9.7.5",
     "babel-loader": "^8.2.1",

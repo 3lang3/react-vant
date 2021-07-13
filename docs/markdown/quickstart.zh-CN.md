@@ -2,7 +2,7 @@
 
 ### 通过 npm 安装
 
-在现有项目中使用 Rokku 时，可以通过`npm`或`yarn`安装
+在现有项目中使用，可以通过`npm`或`yarn`安装
 
 ```bash
 # 通过 npm 安装
@@ -49,7 +49,7 @@ module.exports = {
 ```
 
 ```js
-// 接着你可以在代码中直接引入 Rokku 组件
+// 接着你可以在代码中直接引入 Zhpfe 组件
 // 插件会自动将代码转化为方式二中的按需引入形式
 import { Button } from '@zhpfe/design';
 ```
@@ -72,7 +72,7 @@ import '@zhpfe/design/lib/button/style';
 
 ### Rem 适配
 
-Vant 中的样式默认使用`px`作为单位，如果需要使用`rem`单位，推荐使用以下两个工具：
+样式默认使用`px`作为单位，如果需要使用`rem`单位，推荐使用以下两个工具：
 
 - [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 是一款 postcss 插件，用于将单位转化为 rem
 - [lib-flexible](https://github.com/amfe/lib-flexible) 用于设置 rem 基准值

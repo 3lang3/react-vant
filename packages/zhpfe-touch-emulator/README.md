@@ -1,4 +1,4 @@
-# rokku Touch Emulator
+# Touch Emulator
 
 在桌面端上模拟移动端 touch 事件，实现方式来自于 [hammerjs/touchemulator](https://github.com/hammerjs/touchemulator).
 
@@ -22,4 +22,12 @@ yarn add @zhpfe/touch-emulator
 
 ```js
 import '@zhpfe/touch-emulator';
+```
+
+## 禁用 touch 模拟
+
+在标签上添加 `data-no-touch-simulate` 属性后，可以使这个标签（以及它的子元素）不触发 `touch` 模拟事件。
+
+```html
+<div data-no-touch-simulate />
 ```

@@ -1491,23 +1491,6 @@
     "@octokit/openapi-types" "^2.0.0"
     "@types/node" ">= 8"
 
-"@rokku/markdown-loader@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@rokku/markdown-loader/-/markdown-loader-1.0.2.tgz"
-  integrity sha512-PIlH+SWWpyBZO+eyI0hiusm9uBNx2cY9wmw6dhf70bG0/jJaHd4Ap96EBV/m1YtGvKZ0D6xwt24rxB76cQrBUw==
-  dependencies:
-    front-matter "^4.0.2"
-    loader-utils "^2.0.0"
-    markdown-it "^12.0.0"
-    markdown-it-anchor "^6.0.0"
-    prismjs "^1.23.0"
-    transliteration "^2.1.11"
-
-"@rokku/touch-emulator@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@rokku/touch-emulator/-/touch-emulator-1.0.0.tgz"
-  integrity sha512-FiR66ZA6bZ+HBIYJlzxwR4HmaGv+ltbaLulCFAiHchdi151/cjmOnzz/Tp14IT+C8I0ikjo8knicaLZw34J07g==
-
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-0.14.0.tgz"
@@ -2096,6 +2079,23 @@
   version "4.2.2"
   resolved "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+
+"@zhpfe/markdown-loader@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.nlark.com/@zhpfe/markdown-loader/download/@zhpfe/markdown-loader-1.0.1.tgz?cache=0&sync_timestamp=1626146617086&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40zhpfe%2Fmarkdown-loader%2Fdownload%2F%40zhpfe%2Fmarkdown-loader-1.0.1.tgz#7f385ff69143c333d4d8386a76ee1d3ef653d15d"
+  integrity sha1-fzhf9pFDwzPU2Dhqdu4dPvZT0V0=
+  dependencies:
+    front-matter "^4.0.2"
+    loader-utils "^2.0.0"
+    markdown-it "^12.0.0"
+    markdown-it-anchor "^6.0.0"
+    prismjs "^1.23.0"
+    transliteration "^2.1.11"
+
+"@zhpfe/touch-emulator@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.nlark.com/@zhpfe/touch-emulator/download/@zhpfe/touch-emulator-1.0.0.tgz#12fc60c290615eef69051d6882307f9bc0d64996"
+  integrity sha1-EvxgwpBhXu9pBR1ogjB/m8DWSZY=
 
 abab@^2.0.3:
   version "2.0.5"

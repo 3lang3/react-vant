@@ -1,8 +1,9 @@
 {
   "name": "@zhpfe/icons",
-  "version": "0.0.0-beta1",
-  "description": "zhpfe icons",
+  "version": "1.0.0",
+  "description": "copy from vant icons",
   "main": "./src/config.js",
+  "types": "./src/config.d.ts",
   "files": [
     "src"
   ],
@@ -11,27 +12,18 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "export": "node ./build/export.js",
-    "build": "npm run export && gulp --gulpfile ./build/build-iconfont.js",
-    "release": "npm run build && release-it"
+    "release": "release-it"
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/qiniu": "^7.0.1",
-    "fast-glob": "^3.2.2",
-    "fs-extra": "^9.0.1",
-    "gulp": "^4.0.2",
-    "gulp-cheerio": "^1.0.0",
-    "gulp-iconfont": "^10.0.3",
-    "gulp-iconfont-css": "^3.0.0",
-    "gulp-svg-symbols": "^3.2.3",
-    "gulp-svg-symbols2js": "^1.0.1",
-    "gulp-svgmin": "^3.0.0",
-    "gulp-uglify": "^3.0.2",
-    "md5-file": "^5.0.0",
-    "qiniu": "^7.3.2",
-    "release-it": "^13.6.2",
-    "shelljs": "^0.8.4",
-    "svgo": "1.2.2"
+    "release-it": "^13.6.2"
+  },
+  "release-it": {
+    "git": {
+      "tag": false,
+      "commitMessage": "release: @zhpfe/icons ${version}",
+      "addUntrackedFiles": true,
+      "requireCleanWorkingDir": false
+    }
   }
 }

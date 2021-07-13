@@ -1,6 +1,6 @@
 {
-  "name": "@rokku/markdown-loader",
-  "version": "1.0.2",
+  "name": "@zhpfe/markdown-loader",
+  "version": "1.0.1",
   "description": "Simple and fast React markdown loader",
   "main": "src/index.js",
   "scripts": {

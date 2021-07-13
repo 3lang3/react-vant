@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [require.resolve('@rokku/fabric/dist/eslint')],
+  extends: [require.resolve('@zhpfe/fabric/dist/eslint')],
   ignorePatterns: ['/.*'],
   rules: {
     '@typescript-eslint/ban-types': 'off',
@@ -7,6 +7,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-param-reassign': 'off',
     'no-use-before-define': 'off',
-    'no-explicit-any': 'off',
+    'no-explicit-any': 'off'
   },
 };

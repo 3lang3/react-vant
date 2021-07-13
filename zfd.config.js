@@ -216,7 +216,7 @@ module.exports = {
         ],
       },
       'en-US': {
-        title: 'Rokku',
+        title: 'Zhpfe',
         description: 'Mobile UI Components built on React',
         logo: 'http://cdn.rokku.icu/logo.png',
         langLabel: 'En',

@@ -12,7 +12,7 @@ import {
   SRC_DIR,
   DOCS_DIR,
   getPackageJson,
-  ROKKU_CONFIG_FILE,
+  ZHPFE_CONFIG_FILE,
   SITE_DESKTOP_SHARED_FILE,
 } from '../common/constant';
 
@@ -76,9 +76,9 @@ function resolveDocuments(components: string[]): DocumentItem[] {
   return [...staticDocs, ...docs.filter((item) => existsSync(item.path))];
 }
 
-// rokku.config.js
+// config.js
 function genImportConfig() {
-  return `import config from '${removeExt(normalizePath(ROKKU_CONFIG_FILE))}';`;
+  return `import config from '${removeExt(normalizePath(ZHPFE_CONFIG_FILE))}';`;
 }
 
 function genExportConfig() {

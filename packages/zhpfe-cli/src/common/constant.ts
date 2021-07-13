@@ -2,11 +2,13 @@ import { get } from 'lodash';
 import { existsSync } from 'fs-extra';
 import { join, dirname, isAbsolute } from 'path';
 
+const CONFIG_FILE_NAME = 'zfd.config.js'
+
 function findRootDir(dir: string): string {
   if (dir === '/') {
     return '/';
   }
-  if (existsSync(join(dir, 'rokku.config.js'))) {
+  if (existsSync(join(dir, CONFIG_FILE_NAME))) {
     return dir;
   }
   return findRootDir(dirname(dir));
@@ -22,7 +24,7 @@ export const ES_DIR = join(ROOT, 'es');
 export const LIB_DIR = join(ROOT, 'lib');
 export const DOCS_DIR = join(ROOT, 'docs');
 export const DOC_DIST_DIR = join(ROOT, 'docs-dist');
-export const ROKKU_CONFIG_FILE = join(ROOT, 'rokku.config.js');
+export const ZHPFE_CONFIG_FILE = join(ROOT, CONFIG_FILE_NAME);
 export const PACKAGE_JSON_FILE = join(ROOT, 'package.json');
 export const ROOT_WEBPACK_CONFIG_FILE = join(ROOT, 'webpack.config.js');
 export const ROOT_POSTCSS_CONFIG_FILE = join(ROOT, 'postcss.config.js');
@@ -66,10 +68,10 @@ export function getPackageJson() {
 }
 
 export function getRokkuConfig() {
-  delete require.cache[ROKKU_CONFIG_FILE];
+  delete require.cache[ZHPFE_CONFIG_FILE];
 
   try {
-    return require(ROKKU_CONFIG_FILE);
+    return require(ZHPFE_CONFIG_FILE);
   } catch (err) {
     return {};
   }

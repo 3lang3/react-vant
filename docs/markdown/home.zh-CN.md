@@ -1,14 +1,6 @@
-<div class="card">
-  <div class="rokku-doc-intro">
-    <img class="rokku-doc-intro__logo" style="width: 120px; height: 120px;" src="http://cdn.rokku.icu/logo.png">
-    <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Rokku</h2>
-    <p>轻量、可靠的移动端 React 组件库</p>
-  </div>
-</div>
-
 ### 介绍
 
-**Rokku** 是 **巴士管家前端团队** 共同参与研发的 **React** 移动端组件库。[Rokku]() 将承载移动端工作的核心业务。旨于参照 [Vant](https://vant-contrib.gitee.io/vant) 打造 React 框架下移动端的优秀组件库。
+旨于参照 [Vant](https://vant-contrib.gitee.io/vant) 打造 React 框架下移动端的优秀组件库。
 
 ### 特性
 
@@ -35,11 +27,11 @@
 
 | 项目 | 描述 |
 | --- | --- |
-| [rokku-cli](https://github.com/Hyattria/rokku/tree/main/packages/rokku-cli) | 开箱即用的组件库搭建工具 |
-| [rokku-icons](https://github.com/Hyattria/rokku/tree/main/packages/rokku-icons) | Rokku 图标库 |
-| [rokku-fabric](https://github.com/Hyattria/rokku/tree/main/packages/rokku-fabric) | Rokku 代码规范工具包 |
-| [rokku-markdown-loader](https://github.com/Hyattria/rokku/tree/main/packages/rokku-markdown-loader) | Rokku 解析 markdown loader |
-| [rokku-touch-emulator](https://github.com/Hyattria/rokku/tree/main/packages/rokku-touch-emulator) | 在 PC 端模拟触摸事件的辅助库 |
+| [zhpfe-cli](https://github.com/Hyattria/rokku/tree/main/packages/rokku-cli) | 开箱即用的组件库搭建工具 |
+| [zhpfe-icons](https://github.com/Hyattria/rokku/tree/main/packages/rokku-icons) | Zhpfe 图标库 |
+| [zhpfe-fabric](https://github.com/Hyattria/rokku/tree/main/packages/rokku-fabric) | Zhpfe 代码规范工具包 |
+| [zhpfe-markdown-loader](https://github.com/Hyattria/rokku/tree/main/packages/rokku-markdown-loader) | Zhpfe 解析 markdown loader |
+| [zhpfe-touch-emulator](https://github.com/Hyattria/rokku/tree/main/packages/rokku-touch-emulator) | 在 PC 端模拟触摸事件的辅助库 |
 
 ### 开源协议
 

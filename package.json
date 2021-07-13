@@ -43,14 +43,14 @@
     "./src/**/*.{css,less}": "stylelint --fix"
   },
   "devDependencies": {
-    "@rokku/fabric": "^1.0.5",
     "@types/classnames": "^2.2.11",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.15",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "@types/react-transition-group": "^4.4.0",
-    "@zhpfe/cli": "^0.0.0-dev",
+    "@zhpfe/cli": "^1.0.5",
+    "@zhpfe/fabric": "^1.0.0",
     "gh-pages": "^3.1.0",
     "glob": "^7.1.6",
     "husky": "^4.3.0",
@@ -66,7 +66,7 @@
     "iOS >= 8"
   ],
   "dependencies": {
-    "@zhpfe/icons": "^0.0.0-beta1",
+    "@zhpfe/icons": "^1.0.0",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.4.1"
   }

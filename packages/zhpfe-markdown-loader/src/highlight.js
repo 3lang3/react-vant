@@ -8,7 +8,6 @@ module.exports = function highlight(str, lang) {
     try {
       return prism.highlight(str, prism.languages[lang], lang);
     } catch (err) {
-      console.log(err);
     }
   }
 

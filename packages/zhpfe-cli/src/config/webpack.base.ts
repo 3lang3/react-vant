@@ -111,7 +111,7 @@ export const baseConfig: WebpackConfig = {
           CACHE_LOADER,
           'babel-loader',
           {
-            loader: require.resolve('@rokku/markdown-loader'),
+            loader: require.resolve('@zhpfe/markdown-loader'),
           },
         ],
       },
