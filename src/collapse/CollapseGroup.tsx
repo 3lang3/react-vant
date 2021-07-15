@@ -33,7 +33,7 @@ const CollapseGroup: React.FC<CollapseGroupProps> = (props) => {
   const isExpanded = (name: string | number): boolean => {
     const { accordion } = props;
     if (!accordion && !Array.isArray(expanded) && process.env.NODE_ENV !== 'production') {
-      console.error('[Rokku] Collapse: type of prop "initExpanded" should be Array');
+      console.error('[@zhpfe/design] Collapse: type of prop "initExpanded" should be Array');
       return false;
     }
 

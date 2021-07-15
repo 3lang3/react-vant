@@ -2,7 +2,7 @@
 import { Compiler } from 'webpack';
 import { replaceExt } from '../common';
 import { CSS_LANG } from '../common/css';
-import { genPacakgeStyle } from './gen-package-style';
+import { genPackageStyle } from './gen-package-style';
 import { genDemoMobileShared } from './gen-demo-mobile-shared'
 import { genSiteMobileShared } from './gen-site-mobile-shared';
 import { genSiteDesktopShared } from './gen-site-desktop-shared';
@@ -13,7 +13,7 @@ const PLUGIN_NAME = 'RokkuCliSitePlugin';
 
 async function genSiteEntry() {
   genStyleDepsMap().then(() => {
-    genPacakgeStyle({
+    genPackageStyle({
       outputPath: replaceExt(PACKAGE_STYLE_FILE, `.${CSS_LANG}`),
     });
     genDemoMobileShared();

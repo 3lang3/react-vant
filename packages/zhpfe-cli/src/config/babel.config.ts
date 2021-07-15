@@ -33,11 +33,11 @@ module.exports = (api?: ConfigAPI) => {
       isProd && [
         'import',
         {
-          libraryName: 'rokku',
+          libraryName: '@zhpfe/design',
           libraryDirectory: useESModules ? 'es' : 'lib',
           style: true,
         },
-        'rokku',
+        '@zhpfe/design',
       ],
     ].filter(Boolean),
   };

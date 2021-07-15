@@ -1,4 +1,3 @@
-import sass from 'sass';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
@@ -91,19 +90,6 @@ export const baseConfig: WebpackConfig = {
         test: /\.less$/,
         sideEffects: true,
         use: [...CSS_LOADERS, 'less-loader'],
-      },
-      {
-        test: /\.scss$/,
-        sideEffects: true,
-        use: [
-          ...CSS_LOADERS,
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: sass,
-            },
-          },
-        ],
       },
       {
         test: /\.md$/,

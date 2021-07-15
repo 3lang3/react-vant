@@ -1807,6 +1807,11 @@
     "@typescript-eslint/types" "4.4.1"
     eslint-visitor-keys "^2.0.0"
 
+"@vant/icons@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.nlark.com/@vant/icons/download/@vant/icons-1.6.0.tgz?cache=0&sync_timestamp=1621321922501&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vant%2Ficons%2Fdownload%2F%40vant%2Ficons-1.6.0.tgz#3db7eb7f963f51a2a08676720d5af9c4c3512feb"
+  integrity sha1-Pbfrf5Y/UaKghnZyDVr5xMNRL+s=
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.nlark.com/@webassemblyjs/ast/download/@webassemblyjs/ast-1.9.0.tgz?cache=0&sync_timestamp=1625473420080&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40webassemblyjs%2Fast%2Fdownload%2F%40webassemblyjs%2Fast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -2052,11 +2057,6 @@
     stylelint-declaration-block-no-ignored-properties "^2.1.0"
     stylelint-order "^4.0.0"
     typescript "^4.0.3"
-
-"@zhpfe/icons@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.nlark.com/@zhpfe/icons/download/@zhpfe/icons-1.0.0.tgz#56080c1745c4c724f9c169107c4e5c11d3cb58dd"
-  integrity sha1-VggMF0XExyT5wWkQfE5cEdPLWN0=
 
 "@zhpfe/markdown-loader@^1.0.1":
   version "1.0.1"

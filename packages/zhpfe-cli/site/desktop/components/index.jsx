@@ -5,7 +5,7 @@ import Container from './Container';
 import Content from './Content';
 import Simulator from './Simulator';
 
-const RokkuDoc = (props) => {
+const Doc = (props) => {
   const { lang, versions, simulator, langConfigs, config } = props;
 
   return (
@@ -26,4 +26,4 @@ const RokkuDoc = (props) => {
   );
 };
 
-export default RokkuDoc;
+export default Doc;

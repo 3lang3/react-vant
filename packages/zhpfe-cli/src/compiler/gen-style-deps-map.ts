@@ -3,7 +3,7 @@ import { existsSync } from 'fs-extra';
 import { CSS_LANG } from '../common/css';
 import { getDeps, clearDepsCache, fillExt } from './get-deps';
 import { getComponents, smartOutputFile } from '../common';
-import { SRC_DIR, STYPE_DEPS_JSON_FILE } from '../common/constant';
+import { SRC_DIR, STYLE_DEPS_JSON_FILE } from '../common/constant';
 
 function matchPath(path: string, component: string): boolean {
   const p = relative(SRC_DIR, path);
@@ -108,7 +108,7 @@ export async function genStyleDepsMap() {
     });
 
     smartOutputFile(
-      STYPE_DEPS_JSON_FILE,
+      STYLE_DEPS_JSON_FILE,
       JSON.stringify({ map, sequence }, null, 2)
     );
 

@@ -2,16 +2,16 @@ import { join } from 'path';
 import { existsSync } from 'fs-extra';
 import { smartOutputFile, normalizePath } from '../common';
 import { CSS_LANG, getCssBaseFile } from '../common/css';
-import { SRC_DIR, STYPE_DEPS_JSON_FILE } from '../common/constant';
+import { SRC_DIR, STYLE_DEPS_JSON_FILE } from '../common/constant';
 
 type Options = {
   outputPath: string;
   pathResolver?: (path: string) => string;
 };
 
-export function genPacakgeStyle(options: Options) {
-  const styleDepsJson = require(STYPE_DEPS_JSON_FILE);
-  const ext = `.${  CSS_LANG}`;
+export function genPackageStyle(options: Options) {
+  const styleDepsJson = require(STYLE_DEPS_JSON_FILE);
+  const ext = `.${CSS_LANG}`;
 
   let content = '';
 

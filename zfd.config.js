@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 module.exports = {
-  name: '@zhpfe/design',
+  name: 'zfd',
   build: {
     css: {
       preprocessor: 'less',

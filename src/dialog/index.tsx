@@ -6,7 +6,7 @@ import { inBrowser } from '../utils';
 import { mountComponent } from '../utils/mount-component';
 import { DialogProps } from './PropsType';
 
-import RokkuDialog from './Dialog';
+import BaseDialog from './Dialog';
 
 let instance = null;
 
@@ -18,7 +18,7 @@ const Component = forwardRef((_, ref) => {
     toggle,
   }));
 
-  return <RokkuDialog {...state} onClose={close} />;
+  return <BaseDialog {...state} onClose={close} />;
 });
 
 const Dialog = (options: Partial<DialogProps>): Promise<void> => {
@@ -77,18 +77,18 @@ const Dialog = (options: Partial<DialogProps>): Promise<void> => {
   });
 };
 
-RokkuDialog.alert = Dialog;
+BaseDialog.alert = Dialog;
 
-RokkuDialog.confirm = (options: Partial<DialogProps>) =>
+BaseDialog.confirm = (options: Partial<DialogProps>) =>
   Dialog({
     showCancelButton: true,
     ...options,
   });
 
-RokkuDialog.close = () => {
+BaseDialog.close = () => {
   if (instance) {
     instance.unmount();
   }
 };
 
-export default RokkuDialog;
+export default BaseDialog;

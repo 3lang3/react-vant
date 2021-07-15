@@ -47,7 +47,7 @@ export const SITE_DESKTOP_SHARED_FILE = join(
   'site-desktop-shared.js'
 );
 export const SITE_MODILE_DEMO_FILE = join(DIST_DIR, 'site-mobile-demo.js');
-export const STYPE_DEPS_JSON_FILE = join(DIST_DIR, 'style-deps.json');
+export const STYLE_DEPS_JSON_FILE = join(DIST_DIR, 'style-deps.json');
 
 // Config files
 export const BABEL_CONFIG_FILE = join(CONFIG_DIR, 'babel.config.js');

@@ -6,10 +6,10 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
-import { config as rokkuConfig, packageVersion } from 'site-desktop-shared';
+import { config as zfpConfig, packageVersion } from 'site-desktop-shared';
 
 import { isMobile } from '../common';
-import RokkuDoc from './components/index';
+import Doc from './components/index';
 import routes, { getLangFromRoute } from './routes';
 
 import './index.less';
@@ -42,32 +42,32 @@ const App = () => {
   }, [pathname]);
 
   const config = useMemo(() => {
-    const { locales } = rokkuConfig.site;
+    const { locales } = zfpConfig.site;
     if (locales) {
       return locales[lang];
     }
-    return rokkuConfig.site;
+    return zfpConfig.site;
   }, [lang]);
 
   // 文档语言数据
   const langConfigs = React.useMemo(() => {
-    const { locales = {} } = rokkuConfig.site;
+    const { locales = {} } = zfpConfig.site;
     return Object.keys(locales).map((key) => ({
       lang: key,
       label: locales[key].langLabel || '',
     }));
-  }, [rokkuConfig]);
+  }, [zfpConfig]);
 
   // 文档版本数据
   const versions = React.useMemo(() => {
-    if (rokkuConfig.site.versions) {
+    if (zfpConfig.site.versions) {
       return [{ label: packageVersion }, ...config.site.versions];
     }
     return [{ label: packageVersion }];
   }, []);
 
   return (
-    <RokkuDoc
+    <Doc
       lang={lang}
       config={config}
       langConfigs={langConfigs}
@@ -90,7 +90,7 @@ const App = () => {
           )
         )}
       </Switch>
-    </RokkuDoc>
+    </Doc>
   );
 };
 

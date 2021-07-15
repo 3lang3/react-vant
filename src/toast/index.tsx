@@ -5,7 +5,7 @@ import usePopupState from '../hooks/use-popup-state';
 import { inBrowser, isObject } from '../utils';
 import { mountComponent } from '../utils/mount-component';
 
-import RokkuToast from './Toast';
+import BaseToast from './Toast';
 
 let instance = null;
 
@@ -20,7 +20,7 @@ const Component = forwardRef((_, ref) => {
     },
   }));
 
-  return <RokkuToast {...state} close={close} />;
+  return <BaseToast {...state} close={close} />;
 });
 
 function parseOptions(message) {

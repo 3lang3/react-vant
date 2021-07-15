@@ -65,7 +65,7 @@
     "iOS >= 8"
   ],
   "dependencies": {
-    "@zhpfe/icons": "^1.0.0",
+    "@vant/icons": "^1.6.0",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.4.1"
   }

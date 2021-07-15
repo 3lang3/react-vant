@@ -15,7 +15,7 @@
 git clone git@github.com:Hyattria/rokku.git
 
 # 安装依赖
-cd rokku && npm run bootstrap
+cd my-app && npm run bootstrap
 
 # 进入开发模式，浏览器访问 http://localhost:8080
 npm run start

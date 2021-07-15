@@ -1,5 +1,5 @@
 import React from 'react';
-import icons from '@zhpfe/icons';
+import icons from '@vant/icons';
 import { Icon, Tabs, Flex } from '@zhpfe/design';
 import { components } from 'site-mobile-demo';
 import './style.less';
