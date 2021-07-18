@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Overlay } from '@zhpfe/design';
+import { Overlay } from 'react-vant';
 ```
 
 ## 代码演示

@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { NavBar } from '@zhpfe/design';
+import { NavBar } from 'react-vant';
 ```
 
 ## 代码演示

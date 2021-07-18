@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, Sticky } from '@zhpfe/design';
+import { Button, Sticky } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

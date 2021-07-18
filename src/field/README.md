@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Field } from '@zhpfe/design';
+import { Field } from 'react-vant';
 ```
 
 ## 代码演示

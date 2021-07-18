@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { PasswordInput } from '@zhpfe/design';
+import { PasswordInput } from 'react-vant';
 ```
 
 ## 代码演示

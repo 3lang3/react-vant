@@ -2,7 +2,7 @@ import { merge } from 'webpack-merge';
 import { join } from 'path';
 import { baseConfig } from './webpack.base';
 import { WebpackConfig } from '../common/types';
-import { getRokkuConfig as getVantConfig, getWebpackConfig, setBuildTarget } from '../common';
+import { getVantConfig, getWebpackConfig, setBuildTarget } from '../common';
 import { LIB_DIR, ES_DIR } from '../common/constant';
 
 export function getPackageConfig(isMinify: boolean): WebpackConfig {

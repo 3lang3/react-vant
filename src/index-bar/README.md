@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { IndexBar } from '@zhpfe/design';
+import { IndexBar } from 'react-vant';
 ```
 
 ## 代码演示

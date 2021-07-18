@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Dialog, Cell } from '@zhpfe/design';
+import { Switch, Dialog, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

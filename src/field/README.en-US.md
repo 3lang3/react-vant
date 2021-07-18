@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Button } from '@zhpfe/design'
+import { Button } from 'react-vant'
 ```
 
 ## Usage

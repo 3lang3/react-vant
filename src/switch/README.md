@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Switch } from '@zhpfe/design';
+import { Switch } from 'react-vant';
 ```
 
 ## 代码演示

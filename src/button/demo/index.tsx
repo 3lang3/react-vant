@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@zhpfe/design';
+import { Button } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

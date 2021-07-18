@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, List, Cell, PullRefresh } from '@zhpfe/design';
+import { Tabs, List, Cell, PullRefresh } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
 import './style.less';

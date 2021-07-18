@@ -9,7 +9,7 @@ import {
 import {
   SRC_DIR,
   getPackageJson,
-  getRokkuConfig as getVantConfig,
+  getVantConfig,
 } from '../common/constant';
 
 type PathResolver = (path: string) => string;

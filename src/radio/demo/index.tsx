@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cell, Radio, Toast } from '@zhpfe/design';
+import { Cell, Radio, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

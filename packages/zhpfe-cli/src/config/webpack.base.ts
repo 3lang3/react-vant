@@ -63,7 +63,7 @@ export const baseConfig: WebpackConfig = {
   resolve: {
     extensions: [...SCRIPT_EXTS, ...STYLE_EXTS],
     alias: {
-      '@zhpfe/design': resolve(process.cwd(), 'src'),
+      'react-vant': resolve(process.cwd(), 'src'),
     },
   },
   module: {

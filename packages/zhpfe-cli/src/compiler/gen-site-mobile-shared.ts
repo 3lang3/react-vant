@@ -5,7 +5,7 @@ import {
   pascalize,
   removeExt,
   decamelize,
-  getRokkuConfig,
+  getVantConfig,
   smartOutputFile,
   normalizePath,
 } from '../common';
@@ -36,7 +36,7 @@ function genExports(demos: DemoItem[]) {
 }
 
 function genConfig(demos: DemoItem[]) {
-  const vantConfig = getRokkuConfig();
+  const vantConfig = getVantConfig();
   const demoNames = demos.map((item) => decamelize(item.name));
 
   function demoFilter(nav: any[]) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cell, Checkbox, Toast } from '@zhpfe/design';
+import { Cell, Checkbox, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

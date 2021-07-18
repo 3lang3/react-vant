@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cell, Toast } from '@zhpfe/design';
+import { Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
 export default (): React.ReactNode => {

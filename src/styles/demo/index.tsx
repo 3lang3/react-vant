@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cell } from '@zhpfe/design';
+import { Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { CSSTransition } from 'react-transition-group';
 import './style.less';

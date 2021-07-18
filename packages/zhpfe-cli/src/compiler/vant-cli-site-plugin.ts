@@ -9,7 +9,7 @@ import { genSiteDesktopShared } from './gen-site-desktop-shared';
 import { genStyleDepsMap } from './gen-style-deps-map';
 import { PACKAGE_STYLE_FILE } from '../common/constant';
 
-const PLUGIN_NAME = 'RokkuCliSitePlugin';
+const PLUGIN_NAME = 'VantCliSitePlugin';
 
 async function genSiteEntry() {
   genStyleDepsMap().then(() => {
@@ -22,7 +22,7 @@ async function genSiteEntry() {
   });
 }
 
-export class RokkuCliSitePlugin {
+export class VantCliSitePlugin {
   apply(compiler: Compiler) {
     if (process.env.NODE_ENV === 'production') {
       compiler.hooks.beforeCompile.tapPromise(PLUGIN_NAME, genSiteEntry);

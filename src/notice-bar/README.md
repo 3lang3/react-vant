@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { NoticeBar } from '@zhpfe/design';
+import { NoticeBar } from 'react-vant';
 ```
 
 ## 代码演示

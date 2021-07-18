@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Picker, Toast, Field, Popup } from '@zhpfe/design';
+import { Picker, Toast, Field, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
 export default (): React.ReactNode => {

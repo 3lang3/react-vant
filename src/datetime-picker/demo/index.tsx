@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatetimePicker, Toast, Field, Popup } from '@zhpfe/design';
+import { DatetimePicker, Toast, Field, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
 export default (): React.ReactNode => {

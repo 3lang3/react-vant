@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Tabs, Toast, PullRefresh } from '@zhpfe/design';
+import { Tabs, Toast, PullRefresh } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

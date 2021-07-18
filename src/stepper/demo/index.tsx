@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cell, Stepper, Toast } from '@zhpfe/design';
+import { Cell, Stepper, Toast } from 'react-vant';
 import './style.less';
 
 let timer;

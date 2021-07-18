@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Radio } from '@zhpfe/design';
+import { Radio } from 'react-vant';
 ```
 
 ## 代码演示

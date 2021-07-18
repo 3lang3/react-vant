@@ -1,13 +1,13 @@
 import { get } from 'lodash';
 import { existsSync } from 'fs';
 import { join, isAbsolute } from 'path';
-import { getRokkuConfig } from '.';
+import { getVantConfig } from '.';
 import { STYLE_DIR, SRC_DIR } from './constant';
 
 type CSSLANG = 'css' | 'less' | 'scss';
 
 function getCssLang(): CSSLANG {
-  const vantConfig = getRokkuConfig();
+  const vantConfig = getVantConfig();
   const preprocessor = get(vantConfig, 'build.css.preprocessor', 'less');
 
   if (preprocessor === 'sass') {
@@ -20,10 +20,10 @@ function getCssLang(): CSSLANG {
 export const CSS_LANG = getCssLang();
 
 export function getCssBaseFile() {
-  const rokkuConfig = getRokkuConfig();
+  const vantConfig = getVantConfig();
   let path = join(STYLE_DIR, `base.${CSS_LANG}`);
 
-  const baseFile = get(rokkuConfig, 'build.css.base', '');
+  const baseFile = get(vantConfig, 'build.css.base', '');
   if (baseFile) {
     path = isAbsolute(baseFile) ? baseFile : join(SRC_DIR, baseFile);
   }

@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Toast } from '@zhpfe/design';
+import { Toast } from 'react-vant';
 ```
 
 ## 代码演示

@@ -4,7 +4,7 @@ import { existsSync, readdirSync } from 'fs-extra';
 import {
   pascalize,
   removeExt,
-  getRokkuConfig,
+  getVantConfig,
   smartOutputFile,
   normalizePath,
 } from '../common';
@@ -38,8 +38,8 @@ function formatName(component: string, lang?: string) {
  *   - action-sheet/README.md => ActionSheet
  */
 function resolveDocuments(components: string[]): DocumentItem[] {
-  const rokkuConfig = getRokkuConfig();
-  const { locales, defaultLang } = rokkuConfig.site;
+  const vantConfig = getVantConfig();
+  const { locales, defaultLang } = vantConfig.site;
 
   const docs: DocumentItem[] = [];
 

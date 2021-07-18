@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Tag } from '@zhpfe/design';
+import { Tag } from 'react-vant';
 ```
 
 ## 代码演示

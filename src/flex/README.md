@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Flex } from '@zhpfe/design';
+import { Flex } from 'react-vant';
 ```
 
 ### 基础用法

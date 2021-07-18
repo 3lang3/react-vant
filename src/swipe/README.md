@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Swipe } from '@zhpfe/design';
+import { Swipe } from 'react-vant';
 ```
 
 ## 代码演示
@@ -70,7 +70,7 @@ const images = [
 ```
 
 ```js
-import { Toast } from '@zhpfe/design';
+import { Toast } from 'react-vant';
 
 const onChange = (index: number) => Toast(`当前 Swipe 索引：${index}`);
 ```

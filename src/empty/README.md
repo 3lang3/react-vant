@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Empty } from '@zhpfe/design'
+import { Empty } from 'react-vant'
 ```
 
 ## 代码演示

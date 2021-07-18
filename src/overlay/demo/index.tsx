@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, OverLay } from '@zhpfe/design';
+import { Button, OverLay } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

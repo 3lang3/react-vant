@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Search } from '@zhpfe/design'
+import { Search } from 'react-vant'
 ```
 
 ## 代码演示

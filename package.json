@@ -1,6 +1,6 @@
 {
-  "name": "@zhpfe/design",
-  "version": "0.0.0-beta3",
+  "name": "react-vant",
+  "version": "0.0.0-beta1",
   "description": "React Mobile UI Components base on Vant UI",
   "main": "lib/index.js",
   "module": "es/index.js",

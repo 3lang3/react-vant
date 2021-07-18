@@ -1,2 +1,2 @@
 declare module 'site-mobile-demo';
-declare module '@zhpfe/design';
+declare module 'react-vant';

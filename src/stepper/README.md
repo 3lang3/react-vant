@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Stepper } from '@zhpfe/design';
+import { Stepper } from 'react-vant';
 ```
 
 ## 代码演示

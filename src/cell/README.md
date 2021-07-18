@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Cell } from '@zhpfe/design';
+import { Cell } from 'react-vant';
 ```
 
 ## 代码演示

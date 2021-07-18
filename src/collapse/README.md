@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Collapse } from '@zhpfe/design';
+import { Collapse } from 'react-vant';
 ```
 
 ## 代码演示

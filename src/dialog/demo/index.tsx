@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Cell, Dialog } from '@zhpfe/design';
+import { Cell, Dialog } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
 import './style.less';

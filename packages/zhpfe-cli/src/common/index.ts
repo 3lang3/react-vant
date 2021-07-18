@@ -9,7 +9,7 @@ import {
 import merge from 'webpack-merge';
 import {
   SRC_DIR,
-  getRokkuConfig,
+  getVantConfig,
   ROOT_WEBPACK_CONFIG_FILE,
   ROOT_POSTCSS_CONFIG_FILE,
 } from './constant';
@@ -165,4 +165,4 @@ export function smartOutputFile(filePath: string, content: string) {
   outputFileSync(filePath, content);
 }
 
-export { getRokkuConfig };
+export { getVantConfig };

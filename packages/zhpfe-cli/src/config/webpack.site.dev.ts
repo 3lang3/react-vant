@@ -5,8 +5,8 @@ import { get } from 'lodash';
 import { join } from 'path';
 import { baseConfig } from './webpack.base';
 import { WebpackConfig } from '../common/types';
-import { getRokkuConfig, getWebpackConfig } from '../common';
-import { RokkuCliSitePlugin } from '../compiler/rokku-cli-site-plugin';
+import { getVantConfig, getWebpackConfig } from '../common';
+import { VantCliSitePlugin } from '../compiler/vant-cli-site-plugin';
 import {
   GREEN,
   SITE_MODILE_DEMO_FILE,
@@ -15,11 +15,11 @@ import {
 } from '../common/constant';
 
 export function getSiteDevBaseConfig(): WebpackConfig {
-  const rokkuConfig = getRokkuConfig();
-  const baiduAnalytics = get(rokkuConfig, 'site.baiduAnalytics');
+  const vantConfig = getVantConfig();
+  const baiduAnalytics = get(vantConfig, 'site.baiduAnalytics');
 
   function getSiteConfig() {
-    const siteConfig = rokkuConfig.site;
+    const siteConfig = vantConfig.site;
     if (siteConfig.locales) {
       return siteConfig.locales[siteConfig.defaultLang || 'en-US'];
     }
@@ -76,10 +76,10 @@ export function getSiteDevBaseConfig(): WebpackConfig {
     },
     plugins: [
       new WebpackBar({
-        name: 'Rokku Cli',
+        name: 'React Vant Cli',
         color: GREEN,
       }),
-      new RokkuCliSitePlugin(),
+      new VantCliSitePlugin(),
       new HtmlWebpackPlugin({
         title,
         logo: siteConfig.logo,

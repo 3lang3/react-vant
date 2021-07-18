@@ -11,7 +11,7 @@
 Dialog 是一个函数，调用后会直接在页面中弹出相应的模态框。
 
 ```js
-import { Dialog } from '@zhpfe/design';
+import { Dialog } from 'react-vant';
 ```
 
 ## 代码演示

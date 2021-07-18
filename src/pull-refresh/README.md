@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { PullRefresh } from '@zhpfe/design';
+import { PullRefresh } from 'react-vant';
 ```
 
 ## 代码演示

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Cell, IndexBar } from '@zhpfe/design';
+import { Tabs, Cell, IndexBar } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

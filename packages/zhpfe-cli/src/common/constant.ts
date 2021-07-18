@@ -2,7 +2,7 @@ import { get } from 'lodash';
 import { existsSync } from 'fs-extra';
 import { join, dirname, isAbsolute } from 'path';
 
-const CONFIG_FILE_NAME = 'zfd.config.js'
+const CONFIG_FILE_NAME = 'vant.config.js'
 
 function findRootDir(dir: string): string {
   if (dir === '/') {
@@ -67,7 +67,7 @@ export function getPackageJson() {
   return require(PACKAGE_JSON_FILE);
 }
 
-export function getRokkuConfig() {
+export function getVantConfig() {
   delete require.cache[ZHPFE_CONFIG_FILE];
 
   try {
@@ -78,8 +78,8 @@ export function getRokkuConfig() {
 }
 
 function getSrcDir() {
-  const rokkuConfig = getRokkuConfig();
-  const srcDir = get(rokkuConfig, 'build.srcDir');
+  const vantConfig = getVantConfig();
+  const srcDir = get(vantConfig, 'build.srcDir');
 
   if (srcDir) {
     if (isAbsolute(srcDir)) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tag, Cell } from '@zhpfe/design';
+import { Tag, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

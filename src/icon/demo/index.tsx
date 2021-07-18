@@ -1,6 +1,6 @@
 import React from 'react';
 import icons from '@vant/icons';
-import { Icon, Tabs, Flex } from '@zhpfe/design';
+import { Icon, Tabs, Flex } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

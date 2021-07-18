@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Popup } from '@zhpfe/design';
+import { Popup } from 'react-vant';
 ```
 
 ## 代码演示

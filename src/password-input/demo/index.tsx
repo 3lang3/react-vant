@@ -1,5 +1,5 @@
 import React from 'react';
-import { PasswordInput, Dialog } from '@zhpfe/design';
+import { PasswordInput, Dialog } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

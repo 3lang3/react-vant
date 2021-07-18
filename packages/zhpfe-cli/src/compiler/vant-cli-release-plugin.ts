@@ -2,7 +2,7 @@
 import releaseIt from 'release-it';
 import { build } from '../commands/build';
 
-class RokkuCliReleasePlugin extends releaseIt.Plugin {
+class VantCliReleasePlugin extends releaseIt.Plugin {
   async beforeRelease() {
     // log an empty line
     console.log('');
@@ -11,4 +11,4 @@ class RokkuCliReleasePlugin extends releaseIt.Plugin {
   }
 }
 
-module.exports = RokkuCliReleasePlugin;
+module.exports = VantCliReleasePlugin;

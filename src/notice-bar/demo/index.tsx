@@ -1,5 +1,5 @@
 import React from 'react';
-import { NoticeBar, Swipe } from '@zhpfe/design';
+import { NoticeBar, Swipe } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 

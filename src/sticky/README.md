@@ -7,7 +7,7 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 ### 引入
 
 ```js
-import { Sticky } from '@zhpfe/design';
+import { Sticky } from 'react-vant';
 ```
 
 ## 代码演示

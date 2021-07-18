@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Button } from '@zhpfe/design';
+import { Button } from 'react-vant';
 ```
 
 ## 代码演示

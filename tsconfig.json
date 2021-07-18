@@ -13,8 +13,8 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@zhpfe/design": ["src/index.tsx"],
-      "@zhpfe/design/es/*": ["src/*"]
+      "react-vant": ["src/index.tsx"],
+      "react-vant/es/*": ["src/*"]
     }
   },
   "exclude": ["node_modules", "lib", "es"]

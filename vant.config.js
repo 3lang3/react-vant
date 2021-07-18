@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 module.exports = {
-  name: 'zfd',
+  name: 'react-vant',
   build: {
     css: {
       preprocessor: 'less',
@@ -13,7 +13,7 @@ module.exports = {
     defaultLang: 'zh-CN',
     locales: {
       'zh-CN': {
-        title: '@zhpfe/design',
+        title: 'react-vant',
         description: '轻量、可靠的移动端 React 组件库',
         logo: 'http://cdn.rokku.icu/logo.png',
         langLabel: '中文',

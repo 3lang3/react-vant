@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Checkbox } from '@zhpfe/design';
+import { Checkbox } from 'react-vant';
 ```
 
 ## 代码演示

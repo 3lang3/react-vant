@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Tabs } from '@zhpfe/design';
+import { Tabs } from 'react-vant';
 ```
 
 ## 代码演示

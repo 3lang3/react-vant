@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { DatetimePicker } from '@zhpfe/design';
+import { DatetimePicker } from 'react-vant';
 ```
 
 ## 代码演示

@@ -35,12 +35,12 @@ module.exports = {
     [
       'import',
       {
-        libraryName: '@zhpfe/design',
+        libraryName: 'react-vant',
         libraryDirectory: 'es',
         // 指定样式路径
         style: (name) => `${name}/style/less`,
       },
-      '@zhpfe/design',
+      'react-vant',
     ],
   ],
 };

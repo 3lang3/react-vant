@@ -33,11 +33,11 @@ module.exports = (api?: ConfigAPI) => {
       isProd && [
         'import',
         {
-          libraryName: '@zhpfe/design',
+          libraryName: 'react-vant',
           libraryDirectory: useESModules ? 'es' : 'lib',
           style: true,
         },
-        '@zhpfe/design',
+        'react-vant',
       ],
     ].filter(Boolean),
   };
