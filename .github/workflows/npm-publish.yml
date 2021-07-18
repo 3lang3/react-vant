@@ -3,30 +3,32 @@ name: Public NPM
 on:
   push:
     branches: [main]
-
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-
-    name: 'publish npm'
-
-    environment: npm
-
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install yarn
-        run: sudo npm i -g yarn
-
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+          registry-url: 'https://registry.npmjs.org'
       - name: Install and Build
-        run: |
+      - run: |
           yarn
           yarn build
-
-      - name: 'Publish to the npm registry'
-        uses: primer/publish@3.0.0
+      # Publish to npm
+      - run: npm publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Setup .npmrc file to publish to GitHub Packages
+      - uses: actions/setup-node@v1
         with:
-          default_branch: 'main'
+          registry-url: 'https://npm.pkg.github.com'
+      # Publish to GitHub Packages
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

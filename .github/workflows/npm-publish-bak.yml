@@ -1,0 +1,32 @@
+name: Public NPM
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    name: 'publish npm'
+
+    environment: npm
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install yarn
+        run: sudo npm i -g yarn
+
+      - name: Install and Build
+        run: |
+          yarn
+          yarn build
+
+      - name: 'Publish to the npm registry'
+        uses: primer/publish@3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        with:
+          default_branch: 'bak'

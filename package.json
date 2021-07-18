@@ -1,7 +1,8 @@
 {
   "name": "react-vant",
-  "version": "0.0.0-beta1",
+  "version": "0.0.0-beta2",
   "description": "React Mobile UI Components base on Vant UI",
+  "repository": "https://github.com/3lang3/react-vant.git",
   "main": "lib/index.js",
   "module": "es/index.js",
   "style": "lib/index.css",
