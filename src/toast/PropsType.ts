@@ -1,5 +1,5 @@
 import { BaseTypeProps } from '../utils';
-import { Position } from '../popup/propsType';
+import { Position } from '../popup/PropsType';
 import { LoadingType } from '../loading/PropsType';
 
 export interface ToastProps extends BaseTypeProps {
