@@ -1,5 +1,5 @@
 export interface EmptyPropsType {
-  image?: string;
+  image?: 'default' | 'error' | 'network' | 'search' | string;
   className?: string;
   description?: string;
 }

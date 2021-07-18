@@ -18,6 +18,14 @@ import { Empty } from 'react-vant'
 <Empty description="描述文字" />
 ```
 
+### 图片类型
+
+```jsx
+<Empty image="error" description="描述文字" />
+<Empty image="network" description="描述文字" />
+<Empty image="search" description="描述文字" />
+```
+
 ### 自定义图片
 
 需要自定义图片时，可以在 image 属性中传入任意图片 URL。
@@ -46,6 +54,6 @@ import { Empty } from 'react-vant'
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| image | 图片 URL | _string_ | `default` |
+| image | 图片类型，可选值为 `error` `network` `search`，支持传入图片 URL | _string_ | `default` |
 | description | 图片下方的描述文字 | _string_ | - |
 | className | 定义图片或文字样式 | _string_ | - |

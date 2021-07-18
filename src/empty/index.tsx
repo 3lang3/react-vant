@@ -11,12 +11,19 @@ export interface EmptyProps extends EmptyPropsType {
 
 const [bem] = createNamespace('empty');
 
+const emptyImageStaticValue = {
+  default: 'https://img01.yzcdn.cn/vant/empty-image-default.png',
+  error: 'https://img01.yzcdn.cn/vant/empty-image-error.png',
+  network: 'https://img01.yzcdn.cn/vant/empty-image-default.png',
+  search: 'https://img01.yzcdn.cn/vant/empty-image-search.png',
+}
+
 const Empty: React.FC<EmptyProps> = (props) => {
-  const { image, description, className } = props;
+  const { image = 'default', description, className } = props;
 
   return (
     <div className={classnames(bem(), className)}>
-      <img src={image} className={classnames(bem('image'))} alt="empty" />
+      <img src={emptyImageStaticValue[image] || image} className={classnames(bem('image'))} alt="empty" />
       <p className={classnames(bem('description'))}>{description}</p>
     </div>
   );

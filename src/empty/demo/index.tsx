@@ -9,7 +9,7 @@ export default (): React.ReactNode => {
     <DemoSection>
       <DemoBlock title="基本用法">
         <Empty
-          image="http://cdn.rokku.icu/image/empty.png"
+          image="default"
           description="描述文字"
           className="custom-empty"
         />
