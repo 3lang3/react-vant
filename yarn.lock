@@ -1967,10 +1967,10 @@
   resolved "https://registry.npm.taobao.org/@xtuc/long/download/@xtuc/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha1-0pHGpOl5ibXGHZrPOWrk/hM6cY0=
 
-"@zhpfe/cli@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.nlark.com/@zhpfe/cli/download/@zhpfe/cli-1.0.5.tgz?cache=0&sync_timestamp=1626146709995&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40zhpfe%2Fcli%2Fdownload%2F%40zhpfe%2Fcli-1.0.5.tgz#30aea0603ba93602b18d84e21aa0fd469986e699"
-  integrity sha1-MK6gYDupNgKxjYTiGqD9RpmG5pk=
+"@zhpfe/cli@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.nlark.com/@zhpfe/cli/download/@zhpfe/cli-1.0.7.tgz#977bd2790af364f08950c527a171ab1cef44b658"
+  integrity sha1-l3vSeQrzZPCJUMUnoXGrHO9Etlg=
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-decorators" "^7.12.1"
@@ -2019,8 +2019,6 @@
     postcss-loader "^4.0.4"
     react-router-dom "^5.2.0"
     release-it "^14.2.2"
-    sass "^1.27.0"
-    sass-loader "^10.0.3"
     signale "^1.4.0"
     slash2 "^2.0.0"
     style-loader "^2.0.0"
@@ -3256,21 +3254,6 @@ cheerio@^1.0.0-rc.3:
     parse5-htmlparser2-tree-adapter "^6.0.1"
     tslib "^2.2.0"
 
-"chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.1, chokidar@^3.4.3:
-  version "3.5.2"
-  resolved "https://registry.nlark.com/chokidar/download/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
-  integrity sha1-26OXb8rbAW9m/TZQIdkWANAcHnU=
-  dependencies:
-    anymatch "~3.1.2"
-    braces "~3.0.2"
-    glob-parent "~5.1.2"
-    is-binary-path "~2.1.0"
-    is-glob "~4.0.1"
-    normalize-path "~3.0.0"
-    readdirp "~3.6.0"
-  optionalDependencies:
-    fsevents "~2.3.2"
-
 chokidar@^2.1.8:
   version "2.1.8"
   resolved "https://registry.nlark.com/chokidar/download/chokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
@@ -3289,6 +3272,21 @@ chokidar@^2.1.8:
     upath "^1.1.1"
   optionalDependencies:
     fsevents "^1.2.7"
+
+chokidar@^3.4.1, chokidar@^3.4.3:
+  version "3.5.2"
+  resolved "https://registry.nlark.com/chokidar/download/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
+  integrity sha1-26OXb8rbAW9m/TZQIdkWANAcHnU=
+  dependencies:
+    anymatch "~3.1.2"
+    braces "~3.0.2"
+    glob-parent "~5.1.2"
+    is-binary-path "~2.1.0"
+    is-glob "~4.0.1"
+    normalize-path "~3.0.0"
+    readdirp "~3.6.0"
+  optionalDependencies:
+    fsevents "~2.3.2"
 
 chownr@^1.1.1:
   version "1.1.4"
@@ -8293,7 +8291,7 @@ negotiator@0.6.2:
   resolved "https://registry.nlark.com/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
 
-neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
+neo-async@^2.5.0, neo-async@^2.6.1:
   version "2.6.2"
   resolved "https://registry.nlark.com/neo-async/download/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha1-tKr7k+OustgXTKU88WOrfXMIMF8=
@@ -10288,24 +10286,6 @@ sane@^4.0.3:
     micromatch "^3.1.4"
     minimist "^1.1.1"
     walker "~1.0.5"
-
-sass-loader@^10.0.3:
-  version "10.2.0"
-  resolved "https://registry.nlark.com/sass-loader/download/sass-loader-10.2.0.tgz#3d64c1590f911013b3fa48a0b22a83d5e1494716"
-  integrity sha1-PWTBWQ+REBOz+kigsiqD1eFJRxY=
-  dependencies:
-    klona "^2.0.4"
-    loader-utils "^2.0.0"
-    neo-async "^2.6.2"
-    schema-utils "^3.0.0"
-    semver "^7.3.2"
-
-sass@^1.27.0:
-  version "1.35.2"
-  resolved "https://registry.nlark.com/sass/download/sass-1.35.2.tgz#b732314fcdaf7ef8d0f1698698adc378043cb821"
-  integrity sha1-tzIxT82vfvjQ8WmGmK3DeAQ8uCE=
-  dependencies:
-    chokidar ">=3.0.0 <4.0.0"
 
 saxes@^5.0.1:
   version "5.0.1"

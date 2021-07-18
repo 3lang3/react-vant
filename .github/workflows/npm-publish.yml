@@ -2,7 +2,7 @@ name: Public NPM
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   publish:
@@ -13,7 +13,7 @@ jobs:
     environment: npm
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
       - name: Install yarn
         run: sudo npm i -g yarn
