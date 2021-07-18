@@ -14,14 +14,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      
-      - name: Install yarn
-        run: npm i -g yarn
 
-      - name: Install and Build 
+      - name: Install yarn
+        run: sudo npm i -g yarn
+
+      - name: Install and Build
         run: |
           yarn
-          yarn build 
+          yarn build
 
       - name: 'Publish to the npm registry'
         uses: primer/publish@3.0.0
