@@ -7,7 +7,9 @@ module.exports = function highlight(str, lang) {
   if (lang) {
     try {
       return prism.highlight(str, prism.languages[lang], lang);
+      // eslint-disable-next-line no-empty
     } catch (err) {
+
     }
   }
 

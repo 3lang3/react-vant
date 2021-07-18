@@ -6,8 +6,8 @@ export default (props) => {
   const { hasSimulator } = props;
   return (
     <div
-      className={classnames('rokku-doc-container', 'rokku-doc-row', {
-        'rokku-doc-container--with-simulator': hasSimulator,
+      className={classnames('vant-doc-container', 'vant-doc-row', {
+        'vant-doc-container--with-simulator': hasSimulator,
       })}
     >
       {props.children}

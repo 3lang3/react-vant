@@ -18,10 +18,11 @@ const DemoSection = (props) => {
     if (name) {
       return `demo-${decamelize(name)}`;
     }
+    return ''
   }, [pathname]);
 
   return (
-    <section className={classnames('rokku-doc-demo-section', demoName)}>
+    <section className={classnames('vant-doc-demo-section', demoName)}>
       {children}
     </section>
   );

@@ -53,12 +53,12 @@ import { Button } from 'react-vant';
 
 ### 加载状态
 
-通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loading-text` 设置加载状态下的文字。
+通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loadingText` 设置加载状态下的文字。
 
 ```jsx
 <Button loading type="primary" />
-<Button loading type="primary" loading-type="spinner" />
-<Button loading type="primary" loading-text="加载中..." />
+<Button loading type="primary" loadingType="spinner" />
+<Button loading type="primary" loadingText="加载中..." />
 ```
 
 ### 按钮形状
@@ -96,7 +96,9 @@ import { Button } from 'react-vant';
 按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
 
 ```jsx
-<Button type="primary" block>块级元素</Button>
+<Button type="primary" block>
+  块级元素
+</Button>
 ```
 
 ### 页面导航
@@ -146,6 +148,6 @@ import { Button } from 'react-vant';
 
 ### Events
 
-| 事件名     | 说明                                     | 回调参数            |
-| ---------- | ---------------------------------------- | ------------------- |
-| click      | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_      |
+| 事件名 | 说明                                     | 回调参数       |
+| ------ | ---------------------------------------- | -------------- |
+| click  | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |

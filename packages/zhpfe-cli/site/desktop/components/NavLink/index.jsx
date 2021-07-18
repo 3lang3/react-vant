@@ -31,8 +31,8 @@ const NavLink = (props) => {
     <>
       {item.path ? (
         <Link
-          className={classnames('rokku-doc-navlink', {
-            'rokku-doc-navlink--active': active,
+          className={classnames('vant-doc-navlink', {
+            'vant-doc-navlink--active': active,
           })}
           to={path}
           dangerouslySetInnerHTML={{ __html: itemName }}

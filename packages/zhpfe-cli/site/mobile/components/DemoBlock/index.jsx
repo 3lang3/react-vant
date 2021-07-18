@@ -4,10 +4,10 @@ import './index.less';
 const DemoBlock = (props) => {
   const { title, card } = props;
   return (
-    <div className="rokku-doc-demo-block">
-      {title && <h2 className="rokku-doc-demo-block__title">{title}</h2>}
+    <div className="vant-doc-demo-block">
+      {title && <h2 className="vant-doc-demo-block__title">{title}</h2>}
       {card ? (
-        <div className="rokku-doc-demo-block__card">{props.children}</div>
+        <div className="vant-doc-demo-block__card">{props.children}</div>
       ) : (
         <>{props.children}</>
       )}

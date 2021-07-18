@@ -27,7 +27,7 @@ const SearchInput = (props) => {
             searchConfig.transformData(hits);
           }
         },
-        inputSelector: '.rokku-doc-search',
+        inputSelector: '.vant-doc-search',
         algoliaOptions: {
           facetFilters: [`lang:${lang}`],
         },
@@ -36,7 +36,7 @@ const SearchInput = (props) => {
   }, []);
 
   const placeholder = searchConfig.placeholder || 'Search...';
-  return <input className="rokku-doc-search" placeholder={placeholder} />;
+  return <input className="vant-doc-search" placeholder={placeholder} />;
 };
 
 export default SearchInput;

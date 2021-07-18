@@ -9,7 +9,7 @@ const Doc = (props) => {
   const { lang, versions, simulator, langConfigs, config } = props;
 
   return (
-    <div className="rokku-doc">
+    <div className="vant-doc">
       <Header
         lang={lang}
         config={config}

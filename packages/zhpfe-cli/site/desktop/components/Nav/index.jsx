@@ -23,18 +23,18 @@ const Nav = (props) => {
 
   return (
     <div
-      className="rokku-doc-nav"
+      className="vant-doc-nav"
       style={{
         top: top + 'px',
         bottom: bottom + 'px',
       }}
     >
       {navConfig.map((group) => (
-        <div key={group.title} className="rokku-doc-nav__group">
-          <div className="rokku-doc-nav__title">{group.title}</div>
+        <div key={group.title} className="vant-doc-nav__group">
+          <div className="vant-doc-nav__title">{group.title}</div>
           {group.items &&
             group.items.map((item) => (
-              <div key={item.title} className="rokku-doc-nav__item">
+              <div key={item.title} className="vant-doc-nav__item">
                 <NavLink item={item} base={base} />
               </div>
             ))}

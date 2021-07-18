@@ -48,23 +48,23 @@ const Header = (props) => {
   };
 
   return (
-    <div className="rokku-doc-header">
-      <div className="rokku-doc-row">
-        <div className="rokku-doc-header__top">
-          <a className="rokku-doc-header__logo">
+    <div className="vant-doc-header">
+      <div className="vant-doc-row">
+        <div className="vant-doc-header__top">
+          <a className="vant-doc-header__logo">
             <img src={config.logo} />
             <span>{config.title}</span>
           </a>
           {config.searchConfig && (
             <SearchInput lang={lang} searchConfig={config.searchConfig} />
           )}
-          <ul className="rokku-doc-header__top-nav">
+          <ul className="vant-doc-header__top-nav">
             {config.links &&
               config.links.length &&
               config.links.map((item) => (
-                <li key={item.url} className="rokku-doc-header__top-nav-item">
+                <li key={item.url} className="vant-doc-header__top-nav-item">
                   <a
-                    className="rokku-doc-header__logo-link"
+                    className="vant-doc-header__logo-link"
                     target="_blank"
                     href={item.url}
                   >
@@ -73,24 +73,24 @@ const Header = (props) => {
                 </li>
               ))}
             {versions && (
-              <li ref={versionRef} className="rokku-doc-header__top-nav-item">
+              <li ref={versionRef} className="vant-doc-header__top-nav-item">
                 <span
                   className={classnames(
-                    'rokku-doc-header__cube rokku-doc-header__version',
+                    'vant-doc-header__cube vant-doc-header__version',
                     {
-                      'rokku-doc-header__version-multiple': versions.length > 1,
+                      'vant-doc-header__version-multiple': versions.length > 1,
                     }
                   )}
                   onClick={toggleVersionPop}
                 >
                   v{versions[0].label}
-                  {/* <transition name="rokku-doc-dropdown">
+                  {/* <transition name="vant-doc-dropdown">
                     {showVersionPop && (
-                      <div className="rokku-doc-header__version-pop">
+                      <div className="vant-doc-header__version-pop">
                         {versions.map((item) => (
                           <div
                             key={item}
-                            className="rokku-doc-header__version-pop-item"
+                            className="vant-doc-header__version-pop-item"
                             onClick={() => onSwitchVersion(item)}
                           >
                             {item.label}
@@ -103,8 +103,8 @@ const Header = (props) => {
               </li>
             )}
             {langLabel && langLink && (
-              <li className="rokku-doc-header__top-nav-item">
-                <a className="rokku-doc-header__cube" href={langLink}>
+              <li className="vant-doc-header__top-nav-item">
+                <a className="vant-doc-header__cube" href={langLink}>
                   {langLabel}
                 </a>
               </li>

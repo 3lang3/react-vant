@@ -11,7 +11,7 @@ const Simulator = (props) => {
   const simulatorStyle = useMemo(() => {
     const height = Math.min(640, window.innerHeight - 90);
     return {
-      height: height + 'px',
+      height: `${height}px`,
     };
   }, [windowHeight]);
 
@@ -26,11 +26,16 @@ const Simulator = (props) => {
 
   return (
     <div
-      className={classnames('rokku-doc-simulator', {
-        'rokku-doc-simulator-fixed': scrollTop > 60,
+      className={classnames('vant-doc-simulator', {
+        'vant-doc-simulator-fixed': scrollTop > 60,
       })}
     >
-      <iframe src={src} style={simulatorStyle} frameBorder="0" />
+      <iframe
+        title="vant-ui-iframe"
+        src={src}
+        style={simulatorStyle}
+        frameBorder="0"
+      />
     </div>
   );
 };

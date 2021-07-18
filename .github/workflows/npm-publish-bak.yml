@@ -2,7 +2,7 @@ name: Public NPM
 
 on:
   push:
-    branches: [main]
+    branches: [bak]
 
 jobs:
   publish:
