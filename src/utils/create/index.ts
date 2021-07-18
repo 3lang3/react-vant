@@ -4,6 +4,6 @@ import { BEM, createBEM } from './bem';
 type CreateNamespaceReturn = [BEM];
 
 export function createNamespace(name: string): CreateNamespaceReturn {
-  name = `zf-${name}`;
+  name = `rv-${name}`;
   return [createBEM(name)];
 }

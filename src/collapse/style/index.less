@@ -1,7 +1,7 @@
 @import '../../styles/themes/default.less';
 @import '../../styles/mixins/hairline.less';
 
-.zf-collapse-item {
+.rv-collapse-item {
   position: relative;
 
   &--border {
@@ -11,7 +11,7 @@
   }
 
   &__title {
-    .zf-cell__right-icon::before {
+    .rv-cell__right-icon::before {
       transform: rotate(90deg);
       transition: transform @collapse-item-transition-duration;
     }
@@ -22,7 +22,7 @@
     }
 
     &--expanded {
-      .zf-cell__right-icon::before {
+      .rv-cell__right-icon::before {
         transform: rotate(-90deg);
       }
 
@@ -41,7 +41,7 @@
       cursor: not-allowed;
 
       &,
-      & .zf-cell__right-icon {
+      & .rv-cell__right-icon {
         color: @collapse-item-title-disabled-color;
       }
 

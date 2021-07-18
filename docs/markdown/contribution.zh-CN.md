@@ -12,7 +12,7 @@
 
 ```bash
 # 克隆仓库
-git clone git@github.com:Hyattria/rokku.git
+https://github.com/3lang3/react-vant.git
 
 # 安装依赖
 cd my-app && npm run bootstrap

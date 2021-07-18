@@ -1,6 +1,6 @@
 @import '../../styles/themes/default.less';
 
-.zf-loading {
+.rv-loading {
   position: relative;
   color: @loading-spinner-color;
   font-size: 0;
@@ -74,7 +74,7 @@
     flex-direction: column;
     align-items: center;
 
-    .zf-loading__text {
+    .rv-loading__text {
       margin: @padding-xs 0 0;
     }
   }
@@ -164,7 +164,7 @@
 }
 
 .generate-spinner(@n, @i: 1) when (@i =< @n) {
-  .zf-loading__spinner--spinner i:nth-of-type(@{i}) {
+  .rv-loading__spinner--spinner i:nth-of-type(@{i}) {
     transform: rotate(@i * 30deg);
     opacity: 1 - (0.75 / 12) * (@i - 1);
   }

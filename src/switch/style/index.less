@@ -1,6 +1,6 @@
 @import '../../styles/themes/default.less';
 
-.zf-switch {
+.rv-switch {
   position: relative;
   display: inline-block;
   box-sizing: content-box;
@@ -38,11 +38,11 @@
   &--on {
     background-color: @switch-on-background-color;
 
-    .zf-switch__node {
+    .rv-switch__node {
       transform: translateX(calc(@switch-width - @switch-node-size));
     }
 
-    .zf-switch__loading {
+    .rv-switch__loading {
       color: @switch-on-background-color;
     }
   }

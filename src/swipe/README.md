@@ -25,7 +25,7 @@ import { Swipe } from 'react-vant';
 </Swipe>
 
 <style>
-  .my-swipe .zf-swipe-item {
+  .my-swipe .rv-swipe-item {
     color: #fff;
     font-size: 20px;
     line-height: 150px;

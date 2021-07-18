@@ -1,6 +1,6 @@
 @import '../../styles/themes/default.less';
 
-.zf-radio {
+.rv-radio {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -33,7 +33,7 @@
     line-height: 1em;
     cursor: pointer;
 
-    .zf-radio__icon-success {
+    .rv-radio__icon-success {
       position: relative;
       display: block;
       box-sizing: border-box;
@@ -66,19 +66,19 @@
     }
 
     &--round {
-      .zf-radio__icon-success {
+      .rv-radio__icon-success {
         border-radius: 100%;
       }
     }
 
     &--square {
-      .zf-radio__icon-success {
+      .rv-radio__icon-success {
         border-radius: 4px;
       }
     }
 
     &--checked {
-      .zf-radio__icon-success {
+      .rv-radio__icon-success {
         color: @white;
         background-color: @radio-checked-icon-color;
         border-color: @radio-checked-icon-color;
@@ -93,14 +93,14 @@
     &--disabled {
       cursor: not-allowed;
 
-      .zf-radio__icon-success {
+      .rv-radio__icon-success {
         background-color: @radio-disabled-background-color;
         border-color: @radio-disabled-icon-color;
       }
     }
 
     &--disabled&--checked {
-      .zf-radio__icon-success::after {
+      .rv-radio__icon-success::after {
         border-color: @radio-disabled-icon-color;
       }
     }

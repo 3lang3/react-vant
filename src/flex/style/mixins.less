@@ -1,7 +1,7 @@
 @import '../../styles/themes/index';
 
 .loop-grid-columns(@index, @class) when (@index > 0) {
-  .@{zf-prefix}-flexitem@{class}--@{index} {
+  .@{rv-prefix}-flexitem@{class}--@{index} {
     display: block;
     flex: 0 0 percentage((@index / @grid-columns));
     max-width: percentage((@index / @grid-columns));
@@ -10,7 +10,7 @@
 }
 
 .loop-grid-columns(@index, @class) when (@index = 0) {
-  .@{zf-prefix}-flexitem@{class}--@{index} {
+  .@{rv-prefix}-flexitem@{class}--@{index} {
     display: none;
   }
 }

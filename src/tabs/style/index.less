@@ -1,6 +1,6 @@
 @import '../../styles/themes/default.less';
 
-.zf-tab {
+.rv-tab {
   position: relative;
   display: flex;
   flex: 1;
@@ -47,7 +47,7 @@
   }
 }
 
-.zf-tabs {
+.rv-tabs {
   position: relative;
 
   &__wrap {
@@ -63,12 +63,12 @@
     }
 
     &--scrollable {
-      .zf-tab {
+      .rv-tab {
         flex: 1 0 auto;
         padding: 0 @padding-sm;
       }
 
-      .zf-tabs__nav {
+      .rv-tabs__nav {
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
@@ -104,7 +104,7 @@
       border: @border-width-base solid @tabs-default-color;
       border-radius: @border-radius-sm;
 
-      .zf-tab {
+      .rv-tab {
         color: @tabs-default-color;
         border-right: @border-width-base solid @tabs-default-color;
 
@@ -112,7 +112,7 @@
           border-right: none;
         }
 
-        &.zf-tab--active {
+        &.rv-tab--active {
           color: @white;
           background-color: @tabs-default-color;
         }
@@ -150,13 +150,13 @@
   }
 
   &--line {
-    .zf-tabs__wrap {
+    .rv-tabs__wrap {
       height: @tabs-line-height;
     }
   }
 
   &--card {
-    > .zf-tabs__wrap {
+    > .rv-tabs__wrap {
       height: @tabs-card-height;
     }
   }

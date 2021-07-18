@@ -1,4 +1,4 @@
-# Rokku Icons
+# Icons
 
 ## Install
 
