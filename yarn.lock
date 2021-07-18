@@ -1967,10 +1967,10 @@
   resolved "https://registry.npm.taobao.org/@xtuc/long/download/@xtuc/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha1-0pHGpOl5ibXGHZrPOWrk/hM6cY0=
 
-"@zhpfe/cli@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.nlark.com/@zhpfe/cli/download/@zhpfe/cli-1.0.7.tgz#977bd2790af364f08950c527a171ab1cef44b658"
-  integrity sha1-l3vSeQrzZPCJUMUnoXGrHO9Etlg=
+"@zhpfe/cli@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.nlark.com/@zhpfe/cli/download/@zhpfe/cli-1.0.8.tgz?cache=0&sync_timestamp=1626582854629&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40zhpfe%2Fcli%2Fdownload%2F%40zhpfe%2Fcli-1.0.8.tgz#1184677b7655c75bc1b8d263839b2f2e352c0b4b"
+  integrity sha1-EYRne3ZVx1vBuNJjg5svLjUsC0s=
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-decorators" "^7.12.1"
@@ -3156,9 +3156,8 @@ camelcase@^6.0.0, camelcase@^6.2.0:
   integrity sha1-kkr4gcnVJaydh/QNlk5c6pgqGAk=
 
 caniuse-lite@^1.0.30001036, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001219:
-  version "1.0.30001243"
-  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001243.tgz#d9250155c91e872186671c523f3ae50cfc94a3aa"
-  integrity sha1-2SUBVckehyGGZxxSPzrlDPyUo6o=
+  version "1.0.30001245"
+  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001245.tgz"
 
 capture-exit@^2.0.0:
   version "2.0.0"

@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "0.0.0-beta3",
+  "version": "0.0.0-beta4",
   "description": "React Mobile UI Components base on Vant UI",
   "repository": "https://github.com/3lang3/react-vant.git",
   "main": "lib/index.js",
@@ -48,7 +48,7 @@
     "@types/jest": "^26.0.15",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
-    "@zhpfe/cli": "^1.0.7",
+    "@zhpfe/cli": "^1.0.8",
     "@zhpfe/fabric": "^1.0.0",
     "eslint": "^7.30.0",
     "gh-pages": "^3.1.0",

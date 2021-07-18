@@ -2,7 +2,7 @@ name: Public NPM
 
 on:
   push:
-    branches: [bak]
+    branches: [main]
 
 jobs:
   publish:
@@ -29,4 +29,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         with:
-          default_branch: 'bak'
+          default_branch: 'main'
