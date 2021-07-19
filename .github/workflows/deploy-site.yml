@@ -2,9 +2,7 @@ name: Deploy Site
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'docs/**'
+    branches: [gh-pages]
 
 jobs:
   build-and-deploy:
@@ -12,8 +10,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-        with:
-          ref: 'dev'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
