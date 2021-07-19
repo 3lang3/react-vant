@@ -3,6 +3,8 @@ name: Public NPM
 on:
   push:
     branches: [main]
+    paths:
+      - 'src/**'
 
 jobs:
   publish:
