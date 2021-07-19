@@ -10,15 +10,15 @@
 
 ```jsx
 <!-- 最多显示一行 -->
-<div className="zf-ellipsis">这是一段最多显示一行的文字，多余的内容会被省略</div>
+<div className="rv-ellipsis">这是一段最多显示一行的文字，多余的内容会被省略</div>
 
 <!-- 最多显示两行 -->
-<div className="zf-multi-ellipsis--l2">
+<div className="rv-multi-ellipsis--l2">
   这是一段最多显示两行的文字，多余的内容会被省略
 </div>
 
 <!-- 最多显示三行 -->
-<div className="zf-multi-ellipsis--l3">
+<div className="rv-multi-ellipsis--l3">
   这是一段最多显示三行的文字，多余的内容会被省略
 </div>
 ```
@@ -29,22 +29,22 @@
 
 ```jsx
 <!-- 上边框 -->
-<div className="zf-hairline--top"></div>
+<div className="rv-hairline--top"></div>
 
 <!-- 下边框 -->
-<div className="zf-hairline--bottom"></div>
+<div className="rv-hairline--bottom"></div>
 
 <!-- 左边框 -->
-<div className="zf-hairline--left"></div>
+<div className="rv-hairline--left"></div>
 
 <!-- 右边框 -->
-<div className="zf-hairline--right"></div>
+<div className="rv-hairline--right"></div>
 
 <!-- 上下边框 -->
-<div className="zf-hairline--top-bottom"></div>
+<div className="rv-hairline--top-bottom"></div>
 
 <!-- 全边框 -->
-<div className="zf-hairline--surround"></div>
+<div className="rv-hairline--surround"></div>
 ```
 
 ### 动画
@@ -58,27 +58,27 @@ import { CSSTransition } from 'react-transition-group';
 
 ```jsx
 <!-- 淡入 -->
-<CSSTransition in={visible} timeout={500} classNames="zf-fade" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-fade" unmountOnExit>
   <div>Fade</div>
 </CSSTransition>
 
 <!-- 上滑进入 -->
-<CSSTransition in={visible} timeout={500} classNames="zf-slide-up" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-up" unmountOnExit>
   <div>Slide Up</div>
 </CSSTransition>
 
 <!-- 下滑进入 -->
-<CSSTransition in={visible} timeout={500} classNames="zf-slide-down" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-down" unmountOnExit>
   <div>Slide Down</div>
 </CSSTransition>
 
 <!-- 左滑进入 -->
-<CSSTransition in={visible} timeout={500} classNames="zf-slide-left" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-left" unmountOnExit>
   <div>Slide Left</div>
 </CSSTransition>
 
 <!-- 右滑进入 -->
-<CSSTransition in={visible} timeout={500} classNames="zf-slide-right" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-right" unmountOnExit>
   <div>Slide Right</div>
 </CSSTransition>
 ```

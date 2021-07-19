@@ -42,7 +42,7 @@ const Dialog = (options: Partial<DialogProps>): Promise<void> => {
       beforeClose: null,
       overlayClass: '',
       overlayStyle: null,
-      transition: 'zf-dialog-bounce',
+      transition: 'rv-dialog-bounce',
       messageAlign: '',
       cancelButtonText: '',
       cancelButtonColor: null,

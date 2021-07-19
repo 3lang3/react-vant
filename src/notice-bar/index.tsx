@@ -117,7 +117,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     return (
       <div className={classnames(bem('wrap'))} ref={wrapRef}>
         <div
-          className={classnames(bem('content'), { 'zf-ellipsis': ellipsis })}
+          className={classnames(bem('content'), { 'rv-ellipsis': ellipsis })}
           ref={contentRef}
           style={style}
           onTransitionEnd={onTransitionEnd}

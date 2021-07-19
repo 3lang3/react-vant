@@ -73,7 +73,7 @@ const Icon: React.FC<IconProps> = (props) => {
 
 Icon.defaultProps = {
   // @ts-ignore
-  classPrefix: bem(),
+  classPrefix: 'van-icon',
   theme: 'single',
 };
 
