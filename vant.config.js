@@ -20,7 +20,7 @@ module.exports = {
         links: [
           {
             logo: 'http://cdn.rokku.icu/github.png',
-            url: 'https://github.com/Hyattria/rokku',
+            url: 'https://github.com/3lang3/react-vant',
           },
         ],
         searchConfig: {
@@ -216,14 +216,14 @@ module.exports = {
         ],
       },
       'en-US': {
-        title: 'Zhpfe',
+        title: 'react-vant',
         description: 'Mobile UI Components built on React',
         logo: 'http://cdn.rokku.icu/logo.png',
         langLabel: 'En',
         links: [
           {
             logo: 'http://cdn.rokku.icu/github.png',
-            url: 'https://github.com/Hyattria/rokku',
+            url: 'https://github.com/3lang3/react-vant',
           },
         ],
         searchConfig: {

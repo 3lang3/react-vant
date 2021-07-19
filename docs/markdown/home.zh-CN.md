@@ -1,6 +1,6 @@
 ### 介绍
 
-旨于参照 [Vant](https://vant-contrib.gitee.io/vant) 打造 React 框架下移动端的优秀组件库。
+参照 [Vant](https://vant-contrib.gitee.io/vant) 打造的 React 框架移动端组件库。
 
 ### 特性
 

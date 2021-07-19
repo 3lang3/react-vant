@@ -11,7 +11,7 @@ package-lock.json
 # dist file
 es
 lib
-docs-dist
+site
 
 # tests
 tests/coverage

@@ -1967,10 +1967,10 @@
   resolved "https://registry.npm.taobao.org/@xtuc/long/download/@xtuc/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha1-0pHGpOl5ibXGHZrPOWrk/hM6cY0=
 
-"@zhpfe/cli@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.nlark.com/@zhpfe/cli/download/@zhpfe/cli-1.0.8.tgz?cache=0&sync_timestamp=1626582854629&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40zhpfe%2Fcli%2Fdownload%2F%40zhpfe%2Fcli-1.0.8.tgz#1184677b7655c75bc1b8d263839b2f2e352c0b4b"
-  integrity sha1-EYRne3ZVx1vBuNJjg5svLjUsC0s=
+"@zhpfe/cli@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.nlark.com/@zhpfe/cli/download/@zhpfe/cli-1.0.9.tgz?cache=0&sync_timestamp=1626664096367&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40zhpfe%2Fcli%2Fdownload%2F%40zhpfe%2Fcli-1.0.9.tgz#2c8f1e9331b9aeb66b0335891abb2bb67580e85d"
+  integrity sha1-LI8ekzG5rrZrAzWJGrsrtnWA6F0=
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-decorators" "^7.12.1"
