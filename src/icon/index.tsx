@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useEffect, useRef } from 'react';
 import classnames from 'classnames';
-import { addUnit, createNamespace, preventDefault } from '../utils';
+import { addUnit, preventDefault } from '../utils';
 import { IconPropsType } from './PropsType';
 
 export interface IconProps extends IconPropsType {
@@ -15,8 +14,6 @@ export interface IconProps extends IconPropsType {
 function isImage(name?: string): boolean {
   return name ? name.indexOf('/') !== -1 : false;
 }
-
-const [bem] = createNamespace('icon');
 
 const Icon: React.FC<IconProps> = (props) => {
   const {
@@ -67,12 +64,11 @@ const Icon: React.FC<IconProps> = (props) => {
     },
     props.theme === 'multi' && <use xlinkHref={`#${name}`} />,
     props.children,
-    imageIcon && <img className={classnames(bem('image'))} src={name} alt={name} />,
+    imageIcon && <img className={classnames('van-icon__image')} src={name} alt={name} />,
   );
 };
 
 Icon.defaultProps = {
-  // @ts-ignore
   classPrefix: 'van-icon',
   theme: 'single',
 };
