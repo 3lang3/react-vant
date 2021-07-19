@@ -15,11 +15,11 @@ module.exports = {
       'zh-CN': {
         title: 'react-vant',
         description: '轻量、可靠的移动端 React 组件库',
-        logo: 'http://cdn.rokku.icu/logo.png',
+        logo: 'https://img01.yzcdn.cn/vant/logo.png',
         langLabel: '中文',
         links: [
           {
-            logo: 'http://cdn.rokku.icu/github.png',
+            logo: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
             url: 'https://github.com/3lang3/react-vant',
           },
         ],
@@ -222,11 +222,11 @@ module.exports = {
       'en-US': {
         title: 'react-vant',
         description: 'Mobile UI Components built on React',
-        logo: 'http://cdn.rokku.icu/logo.png',
+        logo: 'https://img01.yzcdn.cn/vant/logo.png',
         langLabel: 'En',
         links: [
           {
-            logo: 'http://cdn.rokku.icu/github.png',
+            logo: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
             url: 'https://github.com/3lang3/react-vant',
           },
         ],

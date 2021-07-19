@@ -61,11 +61,24 @@ import { Button } from 'react-vant';
 在不使用插件的情况下，可以手动引入需要的组件
 
 ```js
-import Button from 'react-vant/lib/button';
+import { Button } from 'react-vant';
 import 'react-vant/lib/button/style';
 ```
 
 > Tips: 配置按需引入后，将不允许直接导入所有组件。
+
+
+### 方式三. 导入所有组件样式
+
+react-vant 支持一次性导入所有组件样式。
+
+
+```js
+import { Button } from 'react-vant';
+import 'react-vant/lib/index.css';
+```
+
+> Tips: 引入所有组件样式会增加代码包体积，因此不推荐这种做法。
 
 
 ### 通过 CDN 安装

@@ -1,6 +1,6 @@
 {
   "name": "@zhpfe/cli",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
