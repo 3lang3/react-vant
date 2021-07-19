@@ -5,11 +5,10 @@ import ReactDOM from 'react-dom';
 export function mountComponent(RootComponent, callback) {
   const root = document.createElement('div');
 
-  const Root = () => {
+  const Container = () => {
     const ref = useRef(null);
-
     useEffect(() => {
-      const { open, toggle, clear } = ref.current;
+      const { open, toggle, clear, ...rest } = ref.current;
       callback({
         open,
         toggle,
@@ -20,13 +19,14 @@ export function mountComponent(RootComponent, callback) {
             root.parentNode.removeChild(root);
           }
         },
+        ...rest,
       });
-    }, [ref]);
+    }, [ref.current]);
 
     return createElement(RootComponent, { ref });
   };
 
-  const app = createElement(Root);
+  const app = createElement(Container);
   document.body.appendChild(root);
 
   ReactDOM.render(app, root);

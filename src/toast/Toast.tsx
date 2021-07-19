@@ -31,6 +31,10 @@ const Toast: React.FC<ToastProps> = (props) => {
   };
 
   useEffect(() => {
+    return clearTimer;
+  });
+
+  useEffect(() => {
     toggleClickable();
   }, [props.show, props.forbidClick]);
 

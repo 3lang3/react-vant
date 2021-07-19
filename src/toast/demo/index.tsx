@@ -80,31 +80,6 @@ export default (): React.ReactNode => {
           }
         />
       </DemoBlock>
-      <DemoBlock card title="动态更新提示">
-        <Cell
-          title="动态更新提示"
-          isLink
-          onClick={() => {
-            const toast = Toast.loading({
-              duration: 0, // 持续展示 toast
-              forbidClick: true,
-              message: '倒计时 3 秒',
-            });
-
-            let second = 3;
-            const timer = setInterval(() => {
-              second -= 1;
-              if (second) {
-                toast.setMessage(`倒计时 ${second} 秒`);
-              } else {
-                clearInterval(timer);
-                // 手动清除 Toast
-                Toast.clear();
-              }
-            }, 1000);
-          }}
-        />
-      </DemoBlock>
     </DemoSection>
   );
 };

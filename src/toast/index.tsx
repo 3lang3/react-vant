@@ -11,7 +11,6 @@ let instance = null;
 
 const Component = forwardRef((_, ref) => {
   const [state, { setState, open, close }] = usePopupState();
-
   useImperativeHandle(ref, () => ({
     open,
     clear: close,
@@ -46,7 +45,6 @@ const Toast = (options = {}) => {
     duration: 2000,
     ...options,
   };
-
   mountComponent(Component, (toast) => {
     if (!toast) {
       return;
@@ -58,9 +56,11 @@ const Toast = (options = {}) => {
     }
 
     instance = toast;
-
     toast.open(options);
   });
+
+  // eslint-disable-next-line consistent-return
+  return instance;
 };
 
 const createMethod = (type) => (options) =>

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-nested-ternary */
 import React, {
   useEffect,
@@ -12,7 +11,6 @@ import React, {
 import classnames from 'classnames';
 
 import useRefs from '../hooks/use-refs';
-import useRect from '../hooks/use-rect';
 import useTouch from '../hooks/use-touch';
 import useWindowSize from '../hooks/use-window-size';
 import usePageVisibility from '../hooks/use-page-visibility';
@@ -176,7 +174,10 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
 
     stopAutoplay();
 
-    const rect = useRect(root.current);
+    const rect = {
+      width: root.current.offsetWidth,
+      height: root.current.offsetHeight,
+    };
 
     setSwiping(true);
     Object.assign(state, {
