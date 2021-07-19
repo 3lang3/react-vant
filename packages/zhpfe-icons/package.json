@@ -1,0 +1,29 @@
+{
+  "name": "@zhpfe/icons",
+  "version": "1.0.0",
+  "description": "copy from vant icons",
+  "main": "./src/config.js",
+  "types": "./src/config.d.ts",
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "release": "release-it"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "release-it": "^13.6.2"
+  },
+  "release-it": {
+    "git": {
+      "tag": false,
+      "commitMessage": "release: @zhpfe/icons ${version}",
+      "addUntrackedFiles": true,
+      "requireCleanWorkingDir": false
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import '../../styles/themes/default.less';
+
+.rv-pull-refresh {
+  overflow: hidden;
+  user-select: none;
+
+  &__track {
+    position: relative;
+    height: 100%;
+    transition-property: transform;
+  }
+
+  &__head {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: @pull-refresh-head-height;
+    overflow: hidden;
+    color: @pull-refresh-head-text-color;
+    font-size: @pull-refresh-head-font-size;
+    line-height: @pull-refresh-head-height;
+    text-align: center;
+    transform: translateY(-100%);
+  }
+}

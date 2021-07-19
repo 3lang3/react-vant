@@ -1,0 +1,7 @@
+es
+lib
+dist
+node_modules
+typings
+
+packages/zhpfe-icons/src/*.js

@@ -1,0 +1,47 @@
+@import '../../styles/themes/default.less';
+
+.rv-index-bar {
+  &__sidebar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    z-index: @index-bar-sidebar-z-index;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__index {
+    padding: 0 @padding-xs 0 @padding-md;
+    font-weight: @font-weight-bold;
+    font-size: @index-bar-index-font-size;
+    line-height: @index-bar-index-line-height;
+
+    &--active {
+      color: @index-bar-index-active-color;
+    }
+  }
+}
+
+.rv-index-anchor {
+  z-index: @index-anchor-z-index;
+  box-sizing: border-box;
+  padding: @index-anchor-padding;
+  color: @index-anchor-text-color;
+  font-weight: @index-anchor-font-weight;
+  font-size: @index-anchor-font-size;
+  line-height: @index-anchor-line-height;
+  background-color: @index-anchor-background-color;
+
+  &--sticky {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    color: @index-anchor-sticky-text-color;
+    background-color: @index-anchor-sticky-background-color;
+  }
+}

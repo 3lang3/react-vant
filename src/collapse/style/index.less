@@ -1,0 +1,67 @@
+@import '../../styles/themes/default.less';
+@import '../../styles/mixins/hairline.less';
+
+.rv-collapse-item {
+  position: relative;
+
+  &--border {
+    &::after {
+      .hairline-top(@cell-border-color, @padding-md, @padding-md);
+    }
+  }
+
+  &__title {
+    .rv-cell__right-icon::before {
+      transform: rotate(90deg);
+      transition: transform @collapse-item-transition-duration;
+    }
+
+    &::after {
+      right: @padding-md;
+      display: none;
+    }
+
+    &--expanded {
+      .rv-cell__right-icon::before {
+        transform: rotate(-90deg);
+      }
+
+      &::after {
+        display: block;
+      }
+    }
+
+    &--borderless {
+      &::after {
+        display: none;
+      }
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+
+      &,
+      & .rv-cell__right-icon {
+        color: @collapse-item-title-disabled-color;
+      }
+
+      &:active {
+        background-color: @white;
+      }
+    }
+  }
+
+  &__wrapper {
+    overflow: hidden;
+    transition: height @collapse-item-transition-duration ease-in-out;
+    will-change: height;
+  }
+
+  &__content {
+    padding: @collapse-item-content-padding;
+    color: @collapse-item-content-text-color;
+    font-size: @collapse-item-content-font-size;
+    line-height: @collapse-item-content-line-height;
+    background-color: @collapse-item-content-background-color;
+  }
+}

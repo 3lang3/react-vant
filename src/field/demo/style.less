@@ -1,0 +1,26 @@
+@import '../../styles/themes/default.less';
+
+.field {
+  padding: 16px 16px;
+
+  &::after {
+    right: 0;
+    left: 0;
+  }
+
+  &:last-child::after {
+    display: block;
+  }
+}
+
+.field_label {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin-right: 14px;
+  color: #333;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  line-height: 16px;
+}

@@ -1,0 +1,135 @@
+@import '../../styles/themes/default.less';
+
+.rv-dialog {
+  top: 45%;
+  left: 50%;
+  width: @dialog-width;
+  overflow: hidden;
+  font-size: @dialog-font-size;
+  background-color: @dialog-background-color;
+  border-radius: @dialog-border-radius;
+  backface-visibility: hidden; // avoid blurry text after scale animation
+  transition: @dialog-transition;
+  transition-property: transform, opacity;
+
+  @media (max-width: 321px) {
+    width: @dialog-small-screen-width;
+  }
+
+  &__header {
+    padding-top: @dialog-header-padding-top;
+    font-weight: @dialog-header-font-weight;
+    line-height: @dialog-header-line-height;
+    text-align: center;
+
+    &--isolated {
+      padding: @dialog-header-isolated-padding;
+    }
+  }
+
+  &__content {
+    &--isolated {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__message {
+    flex: 1;
+    max-height: @dialog-message-max-height;
+    padding: 20px @dialog-message-padding;
+    overflow-y: auto;
+    font-size: @dialog-message-font-size;
+    line-height: @dialog-message-line-height;
+
+    // allow newline charactor
+    white-space: pre-wrap;
+    text-align: center;
+    word-wrap: break-word;
+    -webkit-overflow-scrolling: touch;
+
+    &--has-title {
+      color: @dialog-has-title-message-text-color;
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  &__confirm,
+  &__cancel {
+    flex: 1;
+    height: @dialog-button-height;
+    margin: 0;
+    border: 0;
+  }
+
+  &__confirm {
+    &,
+    &:active {
+      color: @dialog-confirm-button-text-color;
+    }
+  }
+
+  &__close-icon {
+    position: absolute;
+    top: @dialog-close-icon-margin;
+    right: @dialog-close-icon-margin;
+    z-index: @popup-close-icon-z-index;
+    color: @popup-close-icon-color;
+    font-size: @dialog-close-icon-size;
+    cursor: pointer;
+
+    &:active {
+      color: @popup-close-icon-active-color;
+    }
+  }
+
+  &--round-button {
+    .rv-dialog__footer {
+      position: relative;
+      height: auto;
+      padding: @padding-xs @padding-lg @padding-md;
+    }
+
+    .rv-dialog__message {
+      padding-bottom: @padding-md;
+      color: @text-color;
+    }
+
+    .rv-dialog__confirm,
+    .rv-dialog__cancel {
+      height: @dialog-round-button-height;
+    }
+
+    .rv-dialog__confirm {
+      color: @white;
+    }
+  }
+
+  &-bounce-enter {
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+    opacity: 0;
+  }
+
+  &-bounce-exit-active {
+    transform: translate3d(-50%, -50%, 0) scale(0.9);
+    opacity: 0;
+  }
+  &-bounce-enter-active,
+  &-bounce-leave-exit {
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 1;
+  }
+}
