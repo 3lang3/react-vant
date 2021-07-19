@@ -244,7 +244,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
       };
 
       const childData = {
-        className: 'zf-ellipsis',
+        className: 'rv-ellipsis',
         children: text,
       };
 

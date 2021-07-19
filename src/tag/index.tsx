@@ -43,7 +43,7 @@ const Tag: React.FC<TagProps> = (props) => {
   );
 
   return (
-    <CSSTransition classNames="zf-fade" in={show} timeout={50} unmountOnExit>
+    <CSSTransition classNames="rv-fade" in={show} timeout={50} unmountOnExit>
       <span
         style={{ ...getStyle, ...props.style }}
         className={classnames(

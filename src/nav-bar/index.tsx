@@ -73,7 +73,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
               {renderLeft()}
             </div>
           )}
-          <div className={classnames(bem('title'), 'zf-ellipsis')}>
+          <div className={classnames(bem('title'), 'rv-ellipsis')}>
             {props.titleSlot ? props.titleSlot() : title}
           </div>
           {hasRight && (

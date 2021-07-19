@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 let count = 0;
 
-const CLASSNAME = 'zf-overflow-hidden';
+const CLASSNAME = 'rv-overflow-hidden';
 
 export interface Action {
   lock: () => void;
