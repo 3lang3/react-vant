@@ -50,6 +50,10 @@ module.exports = {
                 title: '快速上手',
               },
               {
+                path: 'advanced-usage',
+                title: '进阶用法',
+              },
+              {
                 path: 'theme',
                 title: '定制主题',
               },

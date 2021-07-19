@@ -29,7 +29,7 @@ npm run start
 项目主要目录如下：
 
 ```
-zhpfe-design
+react-vant
 ├─ build     # 构建
 ├─ docs      # 文档
 ├─ src       # 组件

@@ -49,7 +49,7 @@ module.exports = {
 ```
 
 ```js
-// 接着你可以在代码中直接引入 Zhpfe 组件
+// 接着你可以在代码中直接引入 react-vant 组件
 // 插件会自动将代码转化为方式二中的按需引入形式
 import { Button } from 'react-vant';
 ```
@@ -83,32 +83,3 @@ import 'react-vant/lib/button/style';
 <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
 <script src="https://cdn.jsdelivr.net/npm/vant@next/lib/vant.min.js"></script>
 ```
-
-## 进阶用法
-
-### Rem 适配
-
-样式默认使用`px`作为单位，如果需要使用`rem`单位，推荐使用以下两个工具：
-
-- [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 是一款 postcss 插件，用于将单位转化为 rem
-- [lib-flexible](https://github.com/amfe/lib-flexible) 用于设置 rem 基准值
-
-#### PostCSS 配置
-
-下面提供了一份基本的 postcss 配置，可以在此配置的基础上根据项目需求进行修改
-
-```js
-module.exports = {
-  plugins: {
-    autoprefixer: {
-      browsers: ['Android >= 4.0', 'iOS >= 8'],
-    },
-    'postcss-pxtorem': {
-      rootValue: 37.5,
-      propList: ['*'],
-    },
-  },
-};
-```
-
-> Tips: 在配置 postcss-loader 时，应避免 ignore node_modules 目录，否则将导致 react-vant 样式无法被编译。

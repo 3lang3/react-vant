@@ -31,7 +31,7 @@ module.exports = {
 };
 ```
 
-> Tips: 在配置 postcss-loader 时，应避免 ignore node_modules 目录，否则将导致 Zhpfe 样式无法被编译。
+> Tips: 在配置 postcss-loader 时，应避免 ignore node_modules 目录，否则将导致 react-vant 样式无法被编译。
 
 ### 触摸事件模拟
 
@@ -41,7 +41,7 @@ module.exports = {
 
 ```bash
 # 安装模块
-npm i @zhpfe/touch-emulator -S
+npm i react-vant/touch-emulator -S
 ```
 
 ```js
