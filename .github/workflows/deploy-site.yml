@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'docs/**'
+      - 'src/**'
 
 jobs:
   build-and-deploy:
@@ -17,11 +18,4 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Build Site
-        run: npx --no-install zhpfe-cli build-site
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages
-          folder: site
-          target-folder: dev
+        run: npm run release:site
