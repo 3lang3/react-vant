@@ -34,13 +34,13 @@ yarn start
 ### 打包文档
 
 ```bash
-yarn docs:build
+yarn build:site
 ```
 
 ### 发布文档
 
 ```bash
-yarn docs:deploy
+yarn release:site
 ```
 
 ### 打包组件

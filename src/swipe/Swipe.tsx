@@ -26,16 +26,8 @@ import { createNamespace, preventDefault, isHidden, range } from '../utils';
 const [bem] = createNamespace('swipe');
 
 const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
-  const {
-    loop,
-    lazyRender,
-    children,
-    vertical,
-    duration,
-    showIndicators,
-    initialSwipe,
-    onChange,
-  } = props;
+  const { loop, lazyRender, children, vertical, duration, showIndicators, initialSwipe, onChange } =
+    props;
 
   const [refs, setRefs] = useRefs();
   const autoplayTimer = useRef<NodeJS.Timeout>(null);
@@ -59,10 +51,10 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
   const count = useMemo(() => React.Children.count(children), [children]);
   const size = useMemo(() => state[vertical ? 'height' : 'width'], [state]);
   const trackSize = useMemo(() => count * size, [count, size]);
-  const delta = useMemo(() => (props.vertical ? touch.deltaY : touch.deltaX), [
-    touch.deltaX,
-    touch.deltaY,
-  ]);
+  const delta = useMemo(
+    () => (props.vertical ? touch.deltaY : touch.deltaX),
+    [touch.deltaX, touch.deltaY],
+  );
 
   const activeIndicator = useMemo(() => (state.active + count) % count, [count, state.active]);
   const isCorrectDirection = useMemo(() => {
@@ -143,8 +135,7 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
 
     if (state.active <= -1) {
       move({ pace: count });
-    }
-    if (state.active >= count) {
+    } else if (state.active >= count) {
       move({ pace: -count });
     }
   };
@@ -259,7 +250,7 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
 
     const moveDurations = Date.now() - touchStartTime;
     const speed = delta / moveDurations;
-    const shouldSwipe = Math.abs(speed) > 0.25 || Math.abs(delta) > size / 2;
+    const shouldSwipe = Math.abs(speed) > 0.25 || Math.abs(delta) > size / 3;
 
     if (shouldSwipe && isCorrectDirection) {
       const offset = props.vertical ? touch.offsetY : touch.offsetX;
