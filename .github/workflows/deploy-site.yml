@@ -2,7 +2,9 @@ name: Deploy Site
 
 on:
   push:
-    branches: [gh-pages]
+    branches: [main]
+    paths:
+      - 'docs/**'
 
 jobs:
   build-and-deploy:
