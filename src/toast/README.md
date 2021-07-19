@@ -76,6 +76,30 @@ Toast({
 });
 ```
 
+### 动态更新提示
+
+执行 Toast 方法时会返回对应的 Toast 实例，通过修改实例上的 `message` 属性可以实现动态更新提示的效果。
+
+```js
+const toast = Toast.loading({
+  duration: 0, // 持续展示 toast
+  forbidClick: true,
+  message: '倒计时 3 秒',
+});
+
+let second = 3;
+const timer = setInterval(() => {
+  second -= 1;
+  if (second) {
+    toast.setMessage(`倒计时 ${second} 秒`);
+  } else {
+    clearInterval(timer);
+    // 手动清除 Toast
+    Toast.clear();
+  }
+}, 1000);
+```
+
 ## API
 
 ### 方法
