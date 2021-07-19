@@ -15,12 +15,12 @@
     "start": "zhpfe-cli dev",
     "build": "zhpfe-cli build",
     "release": "zhpfe-cli release --tag dev",
-    "site:build": "zhpfe-cli build-site",
-    "release:site": "npm run site:build && gh-pages -d site",
+    "build:site": "zhpfe-cli build-site",
+    "release:site": "npm run build:site && gh-pages -d site",
     "test": "zhpfe-cli test --coverage",
     "test:coverage": "open tests/coverage/index.html"
   },
-  "author": "3lang",
+  "author": "3lang3",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
