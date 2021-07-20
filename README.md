@@ -109,6 +109,7 @@ yarn release
 
 ### Display Components
 
+- [x] Badge 徽标
 - [x] Collapse 折叠面板
 - [x] NoticeBar 通知栏
 - [x] Sticky 粘性布局
