@@ -17,6 +17,7 @@ export default (): React.ReactNode => {
               message: '加载中...',
               forbidClick: true,
               onClose: () => {
+                // eslint-disable-next-line no-console
                 console.log('close');
               },
             })
@@ -32,7 +33,7 @@ export default (): React.ReactNode => {
           onClick={() =>
             Toast({
               message: '自定义图标',
-              icon: 'time',
+              icon: 'fire-o',
             })
           }
         />
@@ -43,6 +44,7 @@ export default (): React.ReactNode => {
             Toast({
               message: '自定义图片',
               icon: 'https://img01.yzcdn.cn/vant/logo.png',
+              iconSize: 100,
             })
           }
         />

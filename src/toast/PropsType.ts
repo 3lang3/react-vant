@@ -8,6 +8,7 @@ export interface ToastProps extends BaseTypeProps {
   message?: number | string;
   duration?: number;
   className?: null;
+  iconSize?: number | string;
   iconPrefix?: string;
   lockScroll?: boolean;
   loadingType?: LoadingType;

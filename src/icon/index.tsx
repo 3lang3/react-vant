@@ -34,7 +34,7 @@ const Icon: React.FC<IconProps> = (props) => {
       'touchstart',
       (e) => {
         preventDefault(e, true);
-        onTouchStart(e);
+        onTouchStart?.(e);
       },
       { passive: false },
     );
