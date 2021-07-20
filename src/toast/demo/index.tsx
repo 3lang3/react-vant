@@ -8,7 +8,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock card title="基础用法">
-        <Cell title="文字提示" isLink onClick={() => Toast('提示内容')} />
+        <Cell title="文字提示" isLink onClick={() => Toast.info('提示内容')} />
         <Cell
           title="加载提示"
           isLink

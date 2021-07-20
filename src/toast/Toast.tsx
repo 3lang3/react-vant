@@ -73,7 +73,7 @@ const Toast: React.FC<ToastProps> = (props) => {
     const { message } = props;
 
     if (isDef(message) && message !== '') {
-      return <div className={classnames(bem('text'))}>{message}</div>;
+      return <div className={classnames(bem('info'))}>{message}</div>;
     }
     return null;
   };

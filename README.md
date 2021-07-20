@@ -1,4 +1,4 @@
-👼这仍然是一个开发中的库, 不适用生产
+👼**这仍然是一个开发中的库, 不适用生产**
 
 <hr />
 
@@ -9,7 +9,29 @@
 - 支持主题定制
 - 支持 TypeScript
 
-## 📦 Init App
+## Install
+
+```bash
+npm i react-vant
+```
+
+## Quickstart
+
+```jsx
+import ReactDOM from 'react-dom';
+import { Button } from 'react-vant';
+import 'react-vant/lib/index.css';
+
+function App() {
+  return <Button>Default Button</Button>;
+}
+
+ReactDOM.render(<App />, mountNode);
+```
+
+请参阅[Quickstart](https://3lang3.github.io/react-vant/#/zh-CN/)中的更多内容。
+
+## 📦 Dev App
 
 npm
 
@@ -22,8 +44,6 @@ yarn
 ```bash
 yarn
 ```
-
-## 🔨 使用
 
 ### 启动文档
 

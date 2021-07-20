@@ -4,6 +4,7 @@ import usePopupState from '../hooks/use-popup-state';
 
 import { inBrowser, isObject } from '../utils';
 import { mountComponent } from '../utils/mount-component';
+import { ToastInstance } from './PropsType';
 
 import BaseToast from './Toast';
 
@@ -39,7 +40,7 @@ const Toast = (options = {}) => {
     icon: '',
     message: '',
     className: '',
-    type: 'text',
+    type: 'info',
     position: 'middle',
     forbidClick: false,
     duration: 2000,
@@ -69,7 +70,7 @@ const createMethod = (type) => (options) =>
     ...parseOptions(options),
   });
 
-['loading', 'success', 'fail'].forEach((method) => {
+['info', 'loading', 'success', 'fail'].forEach((method) => {
   Toast[method] = createMethod(method);
 });
 
@@ -79,4 +80,4 @@ Toast.clear = () => {
   }
 };
 
-export default Toast;
+export default Toast as ToastInstance;

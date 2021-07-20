@@ -16,6 +16,7 @@ import { Toast } from 'react-vant';
 
 ```js
 Toast('提示内容');
+Toast.info({ message: '提示内容' });
 ```
 
 ### 加载提示
@@ -107,6 +108,7 @@ const timer = setInterval(() => {
 | 方法名        | 说明         | 参数                 | 返回值     |
 | ------------- | ------------ | -------------------- | ---------- |
 | Toast         | 展示提示     | `options \| message` | toast 实例 |
+| Toast.info    | 展示文字提示 | `options \| message` | toast 实例 |
 | Toast.loading | 展示加载提示 | `options \| message` | toast 实例 |
 | Toast.success | 展示成功提示 | `options \| message` | toast 实例 |
 | Toast.fail    | 展示失败提示 | `options \| message` | toast 实例 |
@@ -115,7 +117,7 @@ const timer = setInterval(() => {
 ### Options
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | type | 提示类型，可选值为 `loading` `success`<br>`fail` `html` | _string_ | `text` |
 | position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
@@ -147,7 +149,7 @@ const timer = setInterval(() => {
 | @toast-icon-size                | `36px`                    | -    |
 | @toast-text-min-width           | `96px`                    | -    |
 | @toast-text-padding             | `@padding-xs @padding-sm` | -    |
-| @toast-default-padding          | `@padding-sm 10px`             | -    |
+| @toast-default-padding          | `@padding-sm 10px`        | -    |
 | @toast-default-width            | `88px`                    | -    |
 | @toast-default-min-height       | `88px`                    | -    |
 | @toast-position-top-distance    | `20%`                     | -    |

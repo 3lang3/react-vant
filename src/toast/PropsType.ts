@@ -18,3 +18,13 @@ export interface ToastProps extends BaseTypeProps {
   close?: () => void;
   onClose?: () => void;
 }
+
+type ToastInstanceOpts = Omit<ToastProps, 'type'> | string;
+export interface ToastInstance {
+  (opts: ToastProps | string): void;
+  info(opts: ToastInstanceOpts): void;
+  loading(opts: ToastInstanceOpts): void;
+  success(opts: ToastInstanceOpts): void;
+  fail(opts: ToastInstanceOpts): void;
+  clear(): void;
+}
