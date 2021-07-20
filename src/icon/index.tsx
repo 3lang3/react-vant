@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { addUnit, preventDefault } from '../utils';
 import { IconPropsType } from './PropsType';
+import Badge from '../badge';
 
 export interface IconProps extends IconPropsType {
   className?: string;
@@ -16,13 +17,7 @@ function isImage(name?: string): boolean {
 }
 
 const Icon: React.FC<IconProps> = (props) => {
-  const {
-    tag = props.theme === 'multi' ? 'svg' : 'i',
-    name,
-    className,
-    onClick,
-    onTouchStart,
-  } = props;
+  const { tag = 'i', name, className, onClick, onTouchStart } = props;
 
   const imageIcon = isImage(name);
   const ref = useRef(null);
@@ -40,37 +35,35 @@ const Icon: React.FC<IconProps> = (props) => {
     );
   }, []);
 
-  const rectStyle = props.theme === 'multi' && {
-    width: addUnit(props.size) || 40,
-    height: addUnit(props.size) || 40,
+  const renderContent = () => {
+    return React.createElement(
+      tag,
+      {
+        ref,
+        className: classnames(
+          className,
+          props.classPrefix,
+          imageIcon ? '' : `${props.classPrefix}-${name}`,
+        ),
+        style: {
+          color: props.color,
+          fontSize: addUnit(props.size),
+        },
+        onClick,
+      },
+      imageIcon && <img className={classnames('van-icon__image')} src={name} alt={name} />,
+    );
   };
 
-  return React.createElement(
-    tag,
-    {
-      ref,
-      className: classnames(
-        className,
-        props.classPrefix,
-        props.theme === 'multi' && name,
-        imageIcon ? '' : `${props.classPrefix}-${name}`,
-      ),
-      style: {
-        ...rectStyle,
-        color: props.color,
-        fontSize: addUnit(props.size),
-      },
-      onClick,
-    },
-    props.theme === 'multi' && <use xlinkHref={`#${name}`} />,
-    props.children,
-    imageIcon && <img className={classnames('van-icon__image')} src={name} alt={name} />,
+  return (
+    <Badge dot={props.dot} content={props.badge} color={props.badgeColor}>
+      {renderContent()}
+    </Badge>
   );
 };
 
 Icon.defaultProps = {
   classPrefix: 'van-icon',
-  theme: 'single',
 };
 
 export default Icon;

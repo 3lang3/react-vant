@@ -20,6 +20,15 @@ import { Icon } from 'react-vant';
 <Icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
 ```
 
+### 徽标提示
+
+`Icon` 的 `dot` `badge` 属性用来设置徽标内容。
+
+```jsx
+<Icon name="chat-o" dot />
+<Icon name="chat-o" badge="99+" />
+```
+
 ### 图标颜色
 
 `Icon` 的 `color` 属性用来设置图标的颜色。
@@ -27,14 +36,6 @@ import { Icon } from 'react-vant';
 ```jsx
 <Icon name="cart-o" color="#1989fa" />
 <Icon name="fire-o" color="#ee0a24" />
-```
-
-### 多色图标
-
-`Icon` 的 `theme` 属性用来设置图标的主题。目前只是特指地图相关的图标
-
-```jsx
-<Icon theme="multi" name="map-user" />
 ```
 
 

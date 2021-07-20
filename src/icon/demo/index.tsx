@@ -72,13 +72,26 @@ export default (): React.ReactNode => {
               </Flex.Item>
             </Flex>
           </DemoBlock>
-          <DemoBlock title="图标颜色">
+          <DemoBlock title="徽标提示">
             <Flex>
               <Flex.Item span={6}>
                 <Icon name="chat-o" dot />
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="fire-o" color="red" />
+                <Icon name="chat-o" badge={9} />
+              </Flex.Item>
+              <Flex.Item span={6}>
+                <Icon name="chat-o" badge="99+" />
+              </Flex.Item>
+            </Flex>
+          </DemoBlock>
+          <DemoBlock title="图标颜色">
+            <Flex>
+              <Flex.Item span={6}>
+                <Icon name="cart-o" color="#f44336" />
+              </Flex.Item>
+              <Flex.Item span={6}>
+                <Icon name="fire-o" color="#999" />
               </Flex.Item>
             </Flex>
           </DemoBlock>
