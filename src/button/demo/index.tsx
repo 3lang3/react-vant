@@ -77,7 +77,7 @@ export default (): React.ReactNode => {
         </Button>
       </DemoBlock>
       <DemoBlock title="块级元素">
-        <Button type="primary" block>
+        <Button type="primary" shadow color="linear-gradient(to right, #ff6034, #ee0a24)"  block round>
           块级元素
         </Button>
       </DemoBlock>

@@ -15,6 +15,7 @@ export interface ButtonProps extends BaseTypeProps {
   plain?: boolean;
   round?: boolean;
   square?: boolean;
+  shadow?: boolean | 1 | 2 | 3;
   loading?: boolean;
   hairline?: boolean;
   disabled?: boolean;

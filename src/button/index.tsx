@@ -37,6 +37,8 @@ const Button: React.FC<ButtonProps> = (props) => {
         block: props.block,
         round: props.round,
         square: props.square,
+        shadow: props.shadow,
+        [`shadow-${+props.shadow}`]: props.shadow
       },
     ]),
     { [BORDER_SURROUND]: hairline },
