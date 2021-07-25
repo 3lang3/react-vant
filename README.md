@@ -101,6 +101,7 @@ yarn release
 - [x] Field 输入框
 - [x] CheckBox 复选框
 - [x] Radio 单选框
+- [x] Rate 评分
 - [x] Picker 选择器
 - [x] Stepper 步进器
 - [x] Search 搜索
