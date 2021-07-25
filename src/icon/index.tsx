@@ -35,29 +35,26 @@ const Icon: React.FC<IconProps> = (props) => {
     );
   }, []);
 
-  const renderContent = () => {
-    return React.createElement(
-      tag,
-      {
-        ref,
-        className: classnames(
-          className,
-          props.classPrefix,
-          imageIcon ? '' : `${props.classPrefix}-${name}`,
-        ),
-        style: {
-          color: props.color,
-          fontSize: addUnit(props.size),
-        },
-        onClick,
-      },
-      imageIcon && <img className={classnames('van-icon__image')} src={name} alt={name} />,
-    );
-  };
-
   return (
-    <Badge dot={props.dot} content={props.badge} color={props.badgeColor}>
-      {renderContent()}
+    <Badge
+      tag={tag}
+      dot={props.dot}
+      content={props.badge}
+      color={props.badgeColor}
+      className={classnames(
+        className,
+        props.classPrefix,
+        imageIcon ? '' : `${props.classPrefix}-${name}`,
+      )}
+      style={{
+        color: props.color,
+        fontSize: addUnit(props.size),
+      }}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onClick={onClick as any}
+    >
+      {props?.children}
+      {imageIcon && <img className={classnames('van-icon__image')} src={name} alt={name} />}
     </Badge>
   );
 };

@@ -1,5 +1,5 @@
 export interface IconPropsType {
-  tag?: keyof HTMLElementTagNameMap | string;
+  tag?: keyof HTMLElementTagNameMap;
   name: string;
   color?: string;
   dot?: boolean;
