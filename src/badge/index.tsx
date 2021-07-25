@@ -60,6 +60,7 @@ const Badge: React.FC<BadgeProps> = (props) => {
     tag,
     {
       className: classnames(props.className, bem('wrapper')),
+      style: props.style,
     },
     props.children,
     renderBadge(),

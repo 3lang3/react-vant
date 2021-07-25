@@ -49,9 +49,10 @@ const Icon: React.FC<IconProps> = (props) => {
       style={{
         color: props.color,
         fontSize: addUnit(props.size),
+        ...props.style,
       }}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      onClick={onClick as any}
+      onClick={onClick}
     >
       {props?.children}
       {imageIcon && <img className={classnames('van-icon__image')} src={name} alt={name} />}

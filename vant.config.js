@@ -129,6 +129,10 @@ module.exports = {
                 title: 'Radio 单选框',
               },
               {
+                path: 'rate',
+                title: 'Rate 评分',
+              },
+              {
                 path: 'stepper',
                 title: 'Stepper 步进器',
               },

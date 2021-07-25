@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface BadgeProps extends BaseTypeProps {
@@ -8,5 +9,5 @@ export interface BadgeProps extends BaseTypeProps {
   offset?: [x: string | number, y: string | number];
   showZero?: boolean;
   tag?: keyof HTMLElementTagNameMap;
-  onClick?: (e: Event) => void;
+  onClick?: (e: React.MouseEvent) => void;
 }

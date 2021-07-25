@@ -22,6 +22,7 @@ export { default as Tag } from './tag';
 export { default as IndexBar } from './index-bar';
 export { default as Collapse } from './collapse';
 export { default as Radio } from './radio';
+export { default as Rate } from './rate';
 export { default as Checkbox } from './checkbox';
 export { default as Picker } from './picker';
 export { default as DatetimePicker } from './datetime-picker';

@@ -65,7 +65,7 @@ export default (): React.ReactNode => {
           <DemoBlock title="基础用法">
             <Flex>
               <Flex.Item span={6}>
-                <Icon name="chat-o" />
+                <Icon color="red" name="chat-o" />
               </Flex.Item>
               <Flex.Item span={6}>
                 <Icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />

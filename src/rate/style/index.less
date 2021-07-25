@@ -1,0 +1,51 @@
+@import '../../styles/themes/default.less';
+
+@rate-icon-size: 20px;
+@rate-icon-gutter: @padding-base;;
+@rate-icon-void-color: @gray-5;
+@rate-icon-full-color: @red;
+@rate-icon-disabled-color: @gray-5;
+
+.rv-rate {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+
+  &__item {
+    position: relative;
+
+    &:not(:last-child) {
+      padding-right: @rate-icon-gutter;
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 1em;
+    color: @rate-icon-void-color;
+    font-size: @rate-icon-size;
+
+    &--half {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    &--full {
+      color: @rate-icon-full-color;
+    }
+
+    &--disabled {
+      color: @rate-icon-disabled-color;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &--readonly {
+    cursor: default;
+  }
+}
