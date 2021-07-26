@@ -17,7 +17,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection className="demo-action-sheet">
       <DemoBlock card title="基础用法">
-        <Cell title="弹窗提示" isLink onClick={() => setVisible(true)} />
+        <Cell title="基础用法" isLink onClick={() => setVisible(true)} />
         <Cell title="展示取消按钮" isLink onClick={() => setVisible1(true)} />
         <Cell title="展示描述信息" isLink onClick={() => setVisible2(true)} />
       </DemoBlock>

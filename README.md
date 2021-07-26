@@ -122,6 +122,7 @@ yarn release
 
 ### Action Components
 
+- [x] ActionSheet 动作面板
 - [x] Loading 加载
 - [x] Overlay 遮罩层
 - [x] Dialog 弹出层
