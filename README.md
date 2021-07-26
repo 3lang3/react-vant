@@ -91,6 +91,7 @@ yarn release
 
 - [x] Button 按钮
 - [x] Icon 图标
+- [x] Image 图片
 - [x] Popup 弹出框
 - [x] Cell 单元格
 - [x] Toast 轻提示

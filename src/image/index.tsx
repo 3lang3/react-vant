@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState, useMemo, useEffect } from 'react';
+import React, { CSSProperties, useState, useRef, useMemo, useEffect } from 'react';
 import classnames from 'classnames';
 import { ImageProps } from './PropsType';
 import { isDef, addUnit, createNamespace } from '../utils';
@@ -7,8 +7,15 @@ import Icon from '../icon';
 const [bem] = createNamespace('image');
 
 const Image: React.FC<ImageProps> = (props) => {
-  const { fit="fill", errorIcon = 'photo-fail', loadingIcon = 'photo', showError = true, showLoading = true } = props
+  const {
+    fit = 'fill',
+    errorIcon = 'photo-fail',
+    loadingIcon = 'photo',
+    showError = true,
+    showLoading = true,
+  } = props;
   const [status, setStatus] = useState({ loading: true, error: false });
+  const mountedRef = useRef(false)
 
   const style = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -31,15 +38,19 @@ const Image: React.FC<ImageProps> = (props) => {
   }, []);
 
   useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true
+      return
+    }
     setStatus({ error: false, loading: false });
   }, [props.src]);
 
   const onLoad = () => {
-    setStatus(v => ({ ...v,  loading: false}))
+    setStatus((v) => ({ ...v, loading: false }));
   };
 
   const onError = () => {
-    setStatus({ error: true, loading: false })
+    setStatus({ error: true, loading: false });
   };
 
   const renderLoadingIcon = () => {
@@ -85,7 +96,6 @@ const Image: React.FC<ImageProps> = (props) => {
         objectFit: fit,
       },
     };
-
     return (
       <img alt={props.alt || 'img'} src={props.src} onLoad={onLoad} onError={onError} {...attrs} />
     );
