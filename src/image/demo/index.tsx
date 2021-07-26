@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Image } from 'react-vant';
+import { Flex, Image, Loading } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
@@ -39,7 +39,7 @@ export default (): React.ReactNode => {
             <div className="text">默认提示</div>
           </Flex.Item>
           <Flex.Item span={8}>
-            <Image loadingIcon="circle" width="100%" height="27vw" />
+            <Image loadingIcon={<Loading type="spinner" />} width="100%" height="27vw" />
             <div className="text">自定义提示</div>
           </Flex.Item>
         </Flex>
@@ -51,7 +51,7 @@ export default (): React.ReactNode => {
             <div className="text">默认提示</div>
           </Flex.Item>
           <Flex.Item span={8}>
-            <Image width="100%" height="27vw" src="x" />
+            <Image width="100%" height="27vw" src="x" errorIcon={<div>加载失败</div>} />
             <div className="text">自定义提示</div>
           </Flex.Item>
         </Flex>

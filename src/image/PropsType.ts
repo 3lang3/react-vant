@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
@@ -17,7 +18,10 @@ export interface ImageProps extends BaseTypeProps {
   /** @default true */
   showLoading?: boolean;
   /** @default photo-fail */
-  errorIcon?: string;
+  errorIcon?: string | React.ReactNode;
   /** @default photo */
-  loadingIcon?: string;
+  loadingIcon?: string | React.ReactNode;
+  onLoad?: (e: React.MouseEvent<HTMLImageElement>) => void;
+  onError?: (e: React.MouseEvent<HTMLImageElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLImageElement>) => void;
 }

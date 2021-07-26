@@ -45,15 +45,18 @@ const Image: React.FC<ImageProps> = (props) => {
     setStatus({ error: false, loading: false });
   }, [props.src]);
 
-  const onLoad = () => {
+  const onLoad = (e) => {
     setStatus((v) => ({ ...v, loading: false }));
+    props.onLoad?.(e)
   };
 
-  const onError = () => {
+  const onError = (e) => {
     setStatus({ error: true, loading: false });
+    props.onLoad?.(e)
   };
 
   const renderLoadingIcon = () => {
+    if (typeof loadingIcon !== 'string') return loadingIcon
     return (
       <Icon
         size={props.iconSize}
@@ -65,6 +68,7 @@ const Image: React.FC<ImageProps> = (props) => {
   };
 
   const renderErrorIcon = () => {
+    if (typeof errorIcon !== 'string') return errorIcon
     return (
       <Icon
         size={props.iconSize}
@@ -95,6 +99,7 @@ const Image: React.FC<ImageProps> = (props) => {
       style: {
         objectFit: fit,
       },
+      onClick: props.onClick,
     };
     return (
       <img alt={props.alt || 'img'} src={props.src} onLoad={onLoad} onError={onError} {...attrs} />
