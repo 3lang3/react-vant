@@ -13,6 +13,7 @@ export { default as PullRefresh } from './pull-refresh';
 export { default as NoticeBar } from './notice-bar';
 export { default as List } from './list';
 export { default as Toast } from './toast';
+export { default as ActionSheet } from './action-sheet';
 export { default as Dialog } from './dialog';
 export { default as Search } from './search';
 export { default as Swipe } from './swipe';
