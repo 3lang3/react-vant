@@ -88,6 +88,10 @@ module.exports = {
                 title: 'Icon 图标',
               },
               {
+                path: 'image',
+                title: 'Image 图片',
+              },
+              {
                 path: 'popup',
                 title: 'Popup 弹出层',
               },
