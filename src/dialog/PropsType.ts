@@ -2,7 +2,7 @@
 import { BaseTypeProps } from '../utils';
 
 export interface DialogProps extends BaseTypeProps {
-  show?: boolean;
+  visible?: boolean;
   closeable?: boolean;
   closeIcon?: string;
   title?: string | React.ReactNode;
@@ -11,7 +11,7 @@ export interface DialogProps extends BaseTypeProps {
   message?: string | React.ReactNode;
   transition?: string;
   className?: null;
-  beforeClose?: Function;
+  beforeClose?: (action: 'cancel' | 'confirm') => Promise<boolean>;
   messageAlign?: string;
   showCancelButton?: boolean;
   cancelButtonText?: string;
@@ -26,7 +26,7 @@ export interface DialogProps extends BaseTypeProps {
 }
 
 export type DialogStatic = {
-  confirm: (props: Omit<DialogProps, 'showCancelButton'>) => void;
-  alert: (props: DialogProps) => void;
+  confirm: (options: Partial<Omit<DialogProps, 'showCancelButton'>>) => void;
+  alert: (options: Partial<DialogProps>) => void;
   close: () => void;
 };

@@ -17,7 +17,7 @@ const Dialog: React.FC<DialogProps> & Partial<DialogStatic> = (props) => {
     width,
     title,
     theme,
-    show,
+    visible,
     message,
     className,
     messageAlign,
@@ -79,7 +79,7 @@ const Dialog: React.FC<DialogProps> & Partial<DialogStatic> = (props) => {
 
   const handleAction = (action) => {
     // should not trigger close event when hidden
-    if (!props.show) {
+    if (!props.visible) {
       return;
     }
 
@@ -158,11 +158,10 @@ const Dialog: React.FC<DialogProps> & Partial<DialogStatic> = (props) => {
     }
     return null;
   };
-
   return (
     <Popup
       {...others}
-      visible={show}
+      visible={visible}
       className={classnames(bem([theme]), className)}
       style={{ width: addUnit(width) }}
       aria-labelledby={title || message}
@@ -178,6 +177,7 @@ const Dialog: React.FC<DialogProps> & Partial<DialogStatic> = (props) => {
 
 Dialog.defaultProps = {
   closeIcon: 'cross',
+  transition: 'rv-dialog-bounce',
   showConfirmButton: true,
 };
 

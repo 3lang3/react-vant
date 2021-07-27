@@ -4,7 +4,7 @@ import { LoadingType } from '../loading/PropsType';
 
 export interface ToastProps extends BaseTypeProps {
   icon?: string;
-  show?: boolean;
+  visible?: boolean;
   message?: number | string;
   duration?: number;
   className?: null;

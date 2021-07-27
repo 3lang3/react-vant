@@ -11,7 +11,7 @@ const OverLay: React.FC<OverlayProps> = (props) => {
     preventDefault(event, true);
   };
 
-  const { show, duration = 300 } = props;
+  const { visible, duration = 300 } = props;
 
   const renderOverlay = () => {
     const style: CSSProperties = {
@@ -36,7 +36,7 @@ const OverLay: React.FC<OverlayProps> = (props) => {
   };
 
   return (
-    <CSSTransition in={show} timeout={duration} classNames="rv-fade" mountOnEnter unmountOnExit>
+    <CSSTransition in={visible} timeout={duration} classNames="rv-fade" mountOnEnter unmountOnExit>
       {renderOverlay()}
     </CSSTransition>
   );

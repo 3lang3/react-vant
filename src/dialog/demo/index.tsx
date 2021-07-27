@@ -17,7 +17,7 @@ export default (): React.ReactNode => {
           onClick={() =>
             Dialog.alert({
               title: '标题',
-              message: 'PHP 是世上最好的语言，不服来辩',
+              message: '代码是写出来给人看的，附带能在机器上运行',
             })
           }
         />
@@ -26,7 +26,7 @@ export default (): React.ReactNode => {
           isLink
           onClick={() =>
             Dialog.alert({
-              message: 'PHP 是世上最好的语言，不服来辩',
+              message: '代码是写出来给人看的，附带能在机器上运行',
             })
           }
         />
@@ -36,7 +36,7 @@ export default (): React.ReactNode => {
           onClick={() =>
             Dialog.confirm({
               title: '标题',
-              message: 'PHP 是世上最好的语言，不服来辩',
+              message: '代码是写出来给人看的，附带能在机器上运行',
             })
               .then(() => {
                 // on confirm
@@ -55,7 +55,7 @@ export default (): React.ReactNode => {
             Dialog.alert({
               title: '标题',
               theme: 'round-button',
-              message: 'PHP 是世上最好的语言，不服来辩',
+              message: '代码是写出来给人看的，附带能在机器上运行',
             })
               .then(() => {
                 // on confirm
@@ -70,7 +70,7 @@ export default (): React.ReactNode => {
           isLink
           onClick={() =>
             Dialog.alert({
-              message: 'PHP 是世上最好的语言，不服来辩',
+              message: '代码是写出来给人看的，附带能在机器上运行',
               theme: 'round-button',
             })
           }
@@ -85,7 +85,7 @@ export default (): React.ReactNode => {
               title: '标题',
               closeable: true,
               theme: 'round-button',
-              message: 'PHP 是世上最好的语言，不服来辩',
+              message: '代码是写出来给人看的，附带能在机器上运行',
             })
               .then(() => {
                 // on confirm
@@ -104,7 +104,7 @@ export default (): React.ReactNode => {
               closeable: true,
               closeIcon: 'close',
               theme: 'round-button',
-              message: 'PHP 是世上最好的语言，不服来辩',
+              message: '代码是写出来给人看的，附带能在机器上运行',
             })
               .then(() => {
                 // on confirm
@@ -124,9 +124,9 @@ export default (): React.ReactNode => {
               title: '标题',
               closeable: true,
               theme: 'round-button',
-              children: (
+              message: (
                 <div style={{ textAlign: 'center', margin: '16px' }}>
-                  自定义内容：PHP 是世上最好的语言，不服来辩
+                  自定义内容：代码是写出来给人看的，附带能在机器上运行
                 </div>
               ),
             })
@@ -147,7 +147,7 @@ export default (): React.ReactNode => {
             Dialog.confirm({
               title: '标题',
               message: '弹窗内容',
-              beforeClose: (action, done) => {
+              beforeClose: (action) => {
                 return new Promise((resolve) => {
                   setTimeout(() => {
                     if (action === 'confirm') {
@@ -169,7 +169,7 @@ export default (): React.ReactNode => {
       </DemoBlock>
 
       <Dialog
-        show={show}
+        visible={show}
         title="标题"
         showCancelButton
         onClose={() => setShow(false)}

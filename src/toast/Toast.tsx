@@ -16,12 +16,12 @@ const Toast: React.FC<ToastProps> = (props) => {
   let clickable = false;
 
   const toggleClickable = () => {
-    const newValue = props.show && props.forbidClick;
+    const newValue = props.visible && props.forbidClick;
     if (clickable !== newValue) {
       clickable = newValue;
       lockClick(clickable);
     }
-    if (!props.show) {
+    if (!props.visible) {
       lockClick(false);
     }
   };
@@ -36,17 +36,17 @@ const Toast: React.FC<ToastProps> = (props) => {
 
   useEffect(() => {
     toggleClickable();
-  }, [props.show, props.forbidClick]);
+  }, [props.visible, props.forbidClick]);
 
   useEffect(() => {
     clearTimer();
-    if (props.show && props.duration > 0) {
+    if (props.visible && props.duration > 0) {
       timer = setTimeout(() => {
         props.close();
         props.onClose?.();
       }, props.duration);
     }
-  }, [props.show, props.duration]);
+  }, [props.visible, props.duration]);
 
   const renderIcon = () => {
     const { icon, type, iconPrefix, iconSize, loadingType } = props;
@@ -80,7 +80,7 @@ const Toast: React.FC<ToastProps> = (props) => {
 
   return (
     <Popup
-      visible={props.show}
+      visible={props.visible}
       className={classnames([
         bem([props.position, { [props.type]: !props.icon }]),
         props.className,

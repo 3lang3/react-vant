@@ -130,7 +130,7 @@ const [show, setShow] = useState(false);
 
 ```jsx
 <Dialog
-    show={show}
+    visible={show}
     title="标题"
     showCancelButton
     onClose={() => setShow(false)}
@@ -186,7 +186,7 @@ const [show, setShow] = useState(false);
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| show | 是否显示弹窗 | _boolean_ | - |
+| visible | 是否显示弹窗 | _boolean_ | - |
 | title | 标题 | _string_ | - |
 | width | 弹窗宽度，默认单位为 `px` | _number \| string_ | `320px` |
 | message | 文本内容，支持通过 `\n` 换行 | _string_ | - |

@@ -63,9 +63,7 @@ const Dialog = (options: Partial<DialogProps>): Promise<void> => {
         instance.unmount();
         instance = null;
       }
-
       instance = dialog;
-
       dialog.open({
         ...defaultOptions,
         ...options,

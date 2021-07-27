@@ -18,7 +18,7 @@ import { Overlay } from 'react-vant';
 const [show, setShow] = useState(false);
 
 <Button type="primary" onClick={() => setShow(true)}>显示遮罩层</Button>
-<OverLay show={show} onClick={() => setShow(false)} />
+<OverLay visible={show} onClick={() => setShow(false)} />
 ```
 
 ### 嵌入内容
@@ -29,7 +29,7 @@ const [show, setShow] = useState(false);
 const [showEmbedded, setShowEmbedded] = useState(false);
 
 <Button type="primary" onClick={() => setShowEmbedded(true)}>嵌入内容</Button>
-<OverLay show={showEmbedded} onClick={() => setShowEmbedded(false)}>
+<OverLay visible={showEmbedded} onClick={() => setShowEmbedded(false)}>
   <div className="wrapper">
     <div className="block" />
   </div>
@@ -42,7 +42,7 @@ const [showEmbedded, setShowEmbedded] = useState(false);
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| show | 是否展示遮罩层 | _boolean_ | `false` |
+| visible | 是否展示遮罩层 | _boolean_ | `false` |
 | z-index | z-index 层级 | _number \| string_ | `1` |
 | duration | 动画时长，单位秒 | _number \| string_ | `0.3` |
 | class-name | 自定义类名 | _string_ | - |

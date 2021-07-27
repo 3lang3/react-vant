@@ -14,13 +14,13 @@ export default (): React.ReactNode => {
         <Button type="primary" onClick={() => setShow(true)}>
           显示遮罩层
         </Button>
-        <OverLay show={show} onClick={() => setShow(false)} />
+        <OverLay visible={show} onClick={() => setShow(false)} />
       </DemoBlock>
       <DemoBlock title="嵌入内容">
         <Button type="primary" onClick={() => setShowEmbedded(true)}>
           嵌入内容
         </Button>
-        <OverLay show={showEmbedded} onClick={() => setShowEmbedded(false)}>
+        <OverLay visible={showEmbedded} onClick={() => setShowEmbedded(false)}>
           <div className="wrapper">
             <div className="block" />
           </div>

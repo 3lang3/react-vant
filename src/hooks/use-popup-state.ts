@@ -9,11 +9,11 @@ export interface Actions<T = boolean, U = State> {
 }
 
 export interface State extends Record<string, unknown> {
-  show?: boolean;
+  visible?: boolean;
 }
 
 function usePopupState<T extends State = State>(defaultValue?: T): [T, Actions<boolean, T>] {
-  const [state, _setState] = useState<T>({ show: false, ...defaultValue });
+  const [state, _setState] = useState<T>({ visible: false, ...defaultValue });
 
   const actions = useMemo(() => {
     const setState = (props: T) => {
@@ -22,8 +22,8 @@ function usePopupState<T extends State = State>(defaultValue?: T): [T, Actions<b
     };
 
     // 切换是否显示
-    const toggle = (show: boolean) => {
-      state.show = show;
+    const toggle = (visible: boolean) => {
+      state.visible = visible;
       setState(state);
     };
 
