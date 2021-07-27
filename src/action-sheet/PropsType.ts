@@ -7,6 +7,7 @@ export type ActionSheetAction = {
   subname?: string;
   loading?: boolean;
   disabled?: boolean;
+  className?: string;
   callback?: (action: ActionSheetAction) => void;
 };
 
