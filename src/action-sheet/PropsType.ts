@@ -8,7 +8,6 @@ export type ActionSheetAction = {
   loading?: boolean;
   disabled?: boolean;
   callback?: (action: ActionSheetAction) => void;
-  className?: unknown;
 };
 
 export interface ActionSheetProps extends BaseTypeProps {

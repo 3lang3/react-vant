@@ -5,14 +5,14 @@ import Icon from '../icon';
 import Popup from '../popup';
 import Button from '../button';
 
-import { DialogProps, DialogStatic } from './PropsType';
+import { DialogProps } from './PropsType';
 import { createNamespace, addUnit } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
 
 const [bem] = createNamespace('dialog');
 
-const Dialog: React.FC<DialogProps> & Partial<DialogStatic> = (props) => {
+const Dialog: React.FC<DialogProps> = (props) => {
   const {
     width,
     title,

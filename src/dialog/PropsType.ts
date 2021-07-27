@@ -10,7 +10,6 @@ export interface DialogProps extends BaseTypeProps {
   width?: string | number;
   message?: string | React.ReactNode;
   transition?: string;
-  className?: null;
   beforeClose?: (action: 'cancel' | 'confirm') => Promise<boolean>;
   messageAlign?: string;
   showCancelButton?: boolean;
@@ -26,6 +25,7 @@ export interface DialogProps extends BaseTypeProps {
 }
 
 export type DialogStatic = {
+  (): (options: Partial<DialogProps>) => void;
   confirm: (options: Partial<Omit<DialogProps, 'showCancelButton'>>) => void;
   alert: (options: Partial<DialogProps>) => void;
   close: () => void;
