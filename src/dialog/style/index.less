@@ -31,13 +31,14 @@
     &--isolated {
       display: flex;
       align-items: center;
+      min-height: 104px;
     }
   }
 
   &__message {
     flex: 1;
     max-height: @dialog-message-max-height;
-    padding: 20 * @hd @dialog-message-padding;
+    padding: 26 * @hd @dialog-message-padding;
     overflow-y: auto;
     font-size: @dialog-message-font-size;
     line-height: @dialog-message-line-height;
@@ -49,6 +50,7 @@
     -webkit-overflow-scrolling: touch;
 
     &--has-title {
+      padding-top: @dialog-has-title-message-padding-top;
       color: @dialog-has-title-message-text-color;
     }
 
