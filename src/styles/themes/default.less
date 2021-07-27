@@ -79,22 +79,28 @@
 @border-radius-max: 999px;
 
 // ActionSheet
-@action-sheet-max-height: 90%;
-@action-sheet-header-height: 44px;
+@action-sheet-max-height: 80%;
+@action-sheet-header-height: 48px;
 @action-sheet-header-font-size: @font-size-lg;
-@action-sheet-item-height: 50px;
+@action-sheet-description-color: @gray-6;
+@action-sheet-description-font-size: @font-size-md;
+@action-sheet-description-line-height: @line-height-md;
 @action-sheet-item-background: @white;
 @action-sheet-item-font-size: @font-size-lg;
+@action-sheet-item-line-height: @line-height-lg;
 @action-sheet-item-text-color: @text-color;
-@action-sheet-item-disabled-text-color: @gray;
-@action-sheet-subname-color: @gray-darker;
+@action-sheet-item-disabled-text-color: @gray-5;
+@action-sheet-subname-color: @gray-6;
 @action-sheet-subname-font-size: @font-size-sm;
-@action-sheet-close-icon-size: 18px;
-@action-sheet-close-icon-color: @gray-dark;
-@action-sheet-close-icon-padding: 0 @padding-sm;
+@action-sheet-subname-line-height: @line-height-sm;
+@action-sheet-close-icon-size: 22px;
+@action-sheet-close-icon-color: @gray-5;
+@action-sheet-close-icon-active-color: @gray-6;
+@action-sheet-close-icon-padding: 0 @padding-md;
+@action-sheet-cancel-text-color: @gray-7;
 @action-sheet-cancel-padding-top: @padding-xs;
 @action-sheet-cancel-padding-color: @background-color;
-
+@action-sheet-loading-icon-size: 22px;
 // AddressEdit
 @address-edit-buttons-padding: @padding-xl @padding-md;
 @address-edit-button-margin-bottom: @padding-sm;
@@ -283,11 +289,11 @@
 @coupon-list-empty-tip-line-height: 20px;
 
 // Dialog
-@dialog-width: 270px;
+@dialog-width: 320px;
 @dialog-small-screen-width: 90%;
 @dialog-font-size: 20px;
 @dialog-transition: @animation-duration-base;
-@dialog-border-radius: 20px;
+@dialog-border-radius: 16px;
 @dialog-background-color: @white;
 @dialog-header-font-weight: 600;
 @dialog-header-line-height: 20px;
@@ -406,9 +412,13 @@
 @info-font-family: PingFang SC, Helvetica Neue, Arial, sans-serif;
 
 // Image
-@image-placeholder-text-color: @gray-dark;
+@image-placeholder-text-color: @gray-6;
 @image-placeholder-font-size: @font-size-md;
 @image-placeholder-background-color: @background-color;
+@image-loading-icon-size: 32px;
+@image-loading-icon-color: @gray-4;
+@image-error-icon-size: 32px;
+@image-error-icon-color: @gray-4;
 
 // ImagePreview
 @image-preview-index-text-color: @white;
@@ -563,7 +573,10 @@
 
 // Rate
 @rate-icon-size: 20px;
-@rate-icon-gutter: 4px;
+@rate-icon-gutter: @padding-base;;
+@rate-icon-void-color: @gray-5;
+@rate-icon-full-color: @red;
+@rate-icon-disabled-color: @gray-5;
 
 // Search
 @search-padding: 10px @padding-sm;

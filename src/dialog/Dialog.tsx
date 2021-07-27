@@ -130,6 +130,7 @@ const Dialog: React.FC<DialogProps> & DialogStatic = (props) => {
             bem('confirm'),
             theme === 'round-button' ? '' : { [BORDER_LEFT]: props.showCancelButton },
           )}
+          round={theme === 'round-button'}
           style={{ color: props.confirmButtonColor }}
           loading={loading.confirm}
           onClick={() => {

@@ -88,6 +88,10 @@ module.exports = {
                 title: 'Icon 图标',
               },
               {
+                path: 'image',
+                title: 'Image 图片',
+              },
+              {
                 path: 'popup',
                 title: 'Popup 弹出层',
               },
@@ -149,6 +153,10 @@ module.exports = {
           {
             title: '反馈组件',
             items: [
+              {
+                path: 'action-sheet',
+                title: 'ActionSheet 动作面板',
+              },
               {
                 path: 'dialog',
                 title: 'Dialog 弹出框',
