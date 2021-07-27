@@ -30,21 +30,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 46px;
+    width: 46 * @hd;
+    height: 46 * @hd;
     color: @password-border-color;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 24 * @hd;
     text-align: center;
-    border: 1px solid @password-border-color;
-    border-radius: 6px;
+    border: 1 * @hd solid @password-border-color;
+    border-radius: 6 * @hd;
 
     &.animated::before {
       position: absolute;
       top: 25%;
       left: 50%;
       display: block;
-      width: 2px;
+      width: 2 * @hd;
       height: 50%;
       background-color: @password-border-color;
       animation-name: coruscate;
@@ -63,8 +63,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 10px;
-      height: 10px;
+      width: 10 * @hd;
+      height: 10 * @hd;
       background-color: #000;
       border-radius: 100%;
       transform: translate(-50%, -50%);

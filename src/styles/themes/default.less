@@ -1,3 +1,8 @@
+@hd: 1px; // 基本单位
+
+// 全局/品牌色
+@brand-primary: #3f45ff;
+
 @theme: default;
 
 // The prefix to use on all css classes from react-vant.
@@ -10,7 +15,7 @@
 @black: #000;
 @white: #fff;
 @red: #ff603f;
-@blue: #3f45ff;
+@blue: @brand-primary;
 @brown: #cb9139;
 @orange: #ffa524;
 @orange-dark: #ff590d;
@@ -42,7 +47,7 @@
 @background-color-light: #fafafa;
 
 // Padding
-@padding-base: 4px;
+@padding-base: 4 * @hd;
 @padding-xs: @padding-base * 2;
 @padding-sm: @padding-base * 3;
 @padding-md: @padding-base * 4;
@@ -50,17 +55,17 @@
 @padding-xl: @padding-base * 8;
 
 // Font
-@font-size-xs: 10px;
-@font-size-sm: 12px;
-@font-size-md: 14px;
-@font-size-lg: 16px;
-@font-size-xl: 18px;
-@font-size-xxl: 20px;
+@font-size-xs: 10 * @hd;
+@font-size-sm: 12 * @hd;
+@font-size-md: 14 * @hd;
+@font-size-lg: 16 * @hd;
+@font-size-xl: 18 * @hd;
+@font-size-xxl: 20 * @hd;
 @font-weight-bold: 500;
-@line-height-xs: 14px;
-@line-height-sm: 18px;
-@line-height-md: 20px;
-@line-height-lg: 22px;
+@line-height-xs: 14 * @hd;
+@line-height-sm: 18 * @hd;
+@line-height-md: 20 * @hd;
+@line-height-lg: 22 * @hd;
 @base-font-family: PingFangSC-Semibold, PingFang SC;
 @price-integer-font-family: Avenir-Heavy, PingFang SC, Helvetica Neue, Arial, sans-serif;
 
@@ -72,15 +77,15 @@
 
 // Border
 @border-color: @gray-darv-1;
-@border-width-base: 1px;
-@border-radius-sm: 2px;
-@border-radius-md: 4px;
-@border-radius-lg: 8px;
-@border-radius-max: 999px;
+@border-width-base: 1 * @hd;
+@border-radius-sm: 2 * @hd;
+@border-radius-md: 4 * @hd;
+@border-radius-lg: 8 * @hd;
+@border-radius-max: 999 * @hd;
 
 // ActionSheet
 @action-sheet-max-height: 80%;
-@action-sheet-header-height: 48px;
+@action-sheet-header-height: 48 * @hd;
 @action-sheet-header-font-size: @font-size-lg;
 @action-sheet-description-color: @gray-6;
 @action-sheet-description-font-size: @font-size-md;
@@ -93,14 +98,14 @@
 @action-sheet-subname-color: @gray-6;
 @action-sheet-subname-font-size: @font-size-sm;
 @action-sheet-subname-line-height: @line-height-sm;
-@action-sheet-close-icon-size: 22px;
+@action-sheet-close-icon-size: 22 * @hd;
 @action-sheet-close-icon-color: @gray-5;
 @action-sheet-close-icon-active-color: @gray-6;
 @action-sheet-close-icon-padding: 0 @padding-md;
 @action-sheet-cancel-text-color: @gray-7;
 @action-sheet-cancel-padding-top: @padding-xs;
 @action-sheet-cancel-padding-color: @background-color;
-@action-sheet-loading-icon-size: 22px;
+@action-sheet-loading-icon-size: 22 * @hd;
 // AddressEdit
 @address-edit-buttons-padding: @padding-xl @padding-md;
 @address-edit-button-margin-bottom: @padding-sm;
@@ -110,42 +115,42 @@
 // AddressList
 @address-list-disabled-text-color: @gray-dark;
 @address-list-disabled-text-font-size: @font-size-sm;
-@address-list-disabled-text-line-height: 30px;
+@address-list-disabled-text-line-height: 30 * @hd;
 @address-list-add-button-z-index: 999;
 @address-list-item-padding: @padding-md;
 @address-list-item-text-color: @gray-darker;
 @address-list-item-disabled-text-color: @gray-dark;
 @address-list-item-font-size: @font-size-sm;
-@address-list-item-line-height: 16px;
+@address-list-item-line-height: 16 * @hd;
 @address-list-item-radio-icon-color: @red;
-@address-list-edit-icon-size: 16px;
+@address-list-edit-icon-size: 16 * @hd;
 
 // Badge
-@badge-size: 16px;
+@badge-size: 16 * @hd;
 @badge-color: @white;
-@badge-padding: 0 3px;
+@badge-padding: 0 3 * @hd;
 @badge-font-size: @font-size-sm;
 @badge-font-weight: @font-weight-bold;
 @badge-border-width: @border-width-base;
 @badge-background-color: @red;
 @badge-dot-color: @red;
-@badge-dot-size: 8px;
+@badge-dot-size: 8 * @hd;
 @badge-font-family: -apple-system-font, Helvetica Neue, Arial, sans-serif;
 
 // Button
-@button-mini-height: 22px;
-@button-mini-min-width: 50px;
+@button-mini-height: 22 * @hd;
+@button-mini-min-width: 50 * @hd;
 @button-mini-font-size: @font-size-xs;
-@button-mini-line-height: 20px;
-@button-small-height: 30px;
+@button-mini-line-height: 20 * @hd;
+@button-small-height: 30 * @hd;
 @button-small-font-size: @font-size-sm;
-@button-small-min-width: 60px;
-@button-small-line-height: 28px;
+@button-small-min-width: 60 * @hd;
+@button-small-line-height: 28 * @hd;
 @button-normal-font-size: @font-size-md;
-@button-large-height: 50px;
-@button-large-line-height: 48px;
-@button-default-height: 44px;
-@button-default-line-height: 42px;
+@button-large-height: 50 * @hd;
+@button-large-line-height: 48 * @hd;
+@button-default-height: 44 * @hd;
+@button-default-line-height: 42 * @hd;
 @button-default-font-size: @font-size-lg;
 @button-default-color: @text-color;
 @button-default-background-color: @white;
@@ -173,10 +178,10 @@
 @card-font-size: @font-size-sm;
 @card-text-color: @text-color;
 @card-background-color: @background-color-light;
-@card-thumb-size: 90px;
-@card-title-line-height: 16px;
+@card-thumb-size: 90 * @hd;
+@card-title-line-height: 16 * @hd;
 @card-desc-color: @gray-darker;
-@card-desc-line-height: 20px;
+@card-desc-line-height: 20 * @hd;
 @card-price-color: @red;
 @card-origin-price-color: @gray-darker;
 @card-origin-price-font-size: @font-size-xs;
@@ -184,8 +189,8 @@
 // Cell
 @cell-font-family: 'PingFangSC-Semibold, PingFang SC';
 @cell-font-size: @font-size-md;
-@cell-line-height: 24px;
-@cell-vertical-padding: 10px;
+@cell-line-height: 24 * @hd;
+@cell-vertical-padding: 10 * @hd;
 @cell-horizontal-padding: @padding-md;
 @cell-text-color: @text-color;
 @cell-background-color: @white;
@@ -194,10 +199,10 @@
 @cell-required-color: @red;
 @cell-label-color: @text-color;
 @cell-label-font-size: @font-size-md;
-@cell-label-line-height: 18px;
-@cell-label-margin-top: 3px;
+@cell-label-line-height: 18 * @hd;
+@cell-label-margin-top: 3 * @hd;
 @cell-value-color: @value-color;
-@cell-icon-size: 16px;
+@cell-icon-size: 16 * @hd;
 @cell-border-radius: @border-radius-sm;
 @cell-right-icon-color: @gray-dark;
 @cell-large-vertical-padding: @padding-sm;
@@ -209,10 +214,10 @@
 @cell-group-title-color: @gray-dark;
 @cell-group-title-padding: @padding-md @padding-md @padding-xs;
 @cell-group-title-font-size: @font-size-md;
-@cell-group-title-line-height: 16px;
+@cell-group-title-line-height: 16 * @hd;
 
 // Checkbox
-@checkbox-size: 21px;
+@checkbox-size: 21 * @hd;
 @checkbox-border-color: @gray-light;
 @checkbox-transition-duration: @animation-duration-fast;
 @checkbox-label-margin: @padding-xs;
@@ -226,12 +231,12 @@
 @circle-text-color: @text-color;
 @circle-text-font-weight: @font-weight-bold;
 @circle-text-font-size: @font-size-md;
-@circle-text-line-height: 18px;
+@circle-text-line-height: 18 * @hd;
 
 // Collapse
 @collapse-item-transition-duration: @animation-duration-base;
 @collapse-item-content-padding: @padding-md;
-@collapse-item-content-font-size: 13px;
+@collapse-item-content-font-size: 13 * @hd;
 @collapse-item-content-line-height: 1.5;
 @collapse-item-content-text-color: @gray-dark;
 @collapse-item-content-background-color: @white;
@@ -239,36 +244,36 @@
 
 // ContactCard
 @contact-card-padding: @padding-md;
-@contact-card-add-icon-size: 40px;
+@contact-card-add-icon-size: 40 * @hd;
 @contact-card-add-icon-color: @blue;
-@contact-card-value-line-height: 20px;
+@contact-card-value-line-height: 20 * @hd;
 
 // ContactEdit
 @contact-edit-buttons-padding: @padding-xl @padding-md;
 @contact-edit-button-margin-bottom: @padding-sm;
-@contact-edit-field-label-width: 65px;
+@contact-edit-field-label-width: 65 * @hd;
 
 // ContactList
-@contact-list-edit-icon-size: 16px;
+@contact-list-edit-icon-size: 16 * @hd;
 @contact-list-add-button-z-index: 999;
 @contact-list-item-padding: @padding-md;
 
 // CountDown
 @count-down-text-color: @text-color;
 @count-down-font-size: @font-size-md;
-@count-down-line-height: 20px;
+@count-down-line-height: 20 * @hd;
 
 // Coupon
 @coupon-margin: 0 @padding-md @padding-md;
-@coupon-content-height: 100px;
+@coupon-content-height: 100 * @hd;
 @coupon-content-padding: @padding-lg 0 0 @padding-md;
 @coupon-background-color: @white;
 @coupon-active-background-color: @active-color;
 @coupon-border-radius: @border-radius-md;
-@coupon-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-@coupon-head-width: 85px;
+@coupon-box-shadow: 0 0 4 * @hd rgba(0, 0, 0, 0.1);
+@coupon-head-width: 85 * @hd;
 @coupon-amount-color: @red;
-@coupon-amount-font-size: 24px;
+@coupon-amount-font-size: 24 * @hd;
 @coupon-currency-font-size: 50%;
 @coupon-name-font-size: @font-size-lg;
 @coupon-disabled-text-color: @gray-dark;
@@ -282,22 +287,22 @@
 // CouponList
 @coupon-list-background-color: @background-color;
 @coupon-list-field-padding: @padding-xs @padding-md;
-@coupon-list-exchange-button-height: 32px;
-@coupon-list-empty-image-size: 200px;
+@coupon-list-exchange-button-height: 32 * @hd;
+@coupon-list-empty-image-size: 200 * @hd;
 @coupon-list-empty-tip-color: @gray-dark;
 @coupon-list-empty-tip-font-size: @font-size-md;
-@coupon-list-empty-tip-line-height: 20px;
+@coupon-list-empty-tip-line-height: 20 * @hd;
 
 // Dialog
-@dialog-width: 320px;
+@dialog-width: 320 * @hd;
 @dialog-small-screen-width: 90%;
-@dialog-font-size: 20px;
+@dialog-font-size: 20 * @hd;
 @dialog-transition: @animation-duration-base;
-@dialog-border-radius: 16px;
+@dialog-border-radius: 16 * @hd;
 @dialog-background-color: @white;
 @dialog-header-font-weight: 600;
-@dialog-header-line-height: 20px;
-@dialog-header-padding-top: 24px;
+@dialog-header-line-height: 20 * @hd;
+@dialog-header-padding-top: 24 * @hd;
 @dialog-header-isolated-padding: @padding-lg 0;
 @dialog-message-padding: @padding-lg;
 @dialog-message-font-size: @font-size-md;
@@ -305,43 +310,43 @@
 @dialog-message-max-height: 60vh;
 @dialog-has-title-message-text-color: @gray-8;
 @dialog-has-title-message-padding-top: @padding-xs;
-@dialog-button-height: 44px;
-@dialog-round-button-height: 36px;
-@dialog-close-icon-margin: 16px;
-@dialog-close-icon-size: 18px;
+@dialog-button-height: 44 * @hd;
+@dialog-round-button-height: 36 * @hd;
+@dialog-close-icon-margin: 16 * @hd;
+@dialog-close-icon-size: 18 * @hd;
 @dialog-confirm-button-text-color: @blue;
 
 // Divider
 @divider-margin: @padding-md 0;
 @divider-text-color: @gray-dark;
 @divider-font-size: @font-size-md;
-@divider-line-height: 24px;
+@divider-line-height: 24 * @hd;
 @divider-border-color: @border-color;
 @divider-content-padding: @padding-md;
 @divider-content-left-width: 10%;
 @divider-content-right-width: 10%;
 
 // DropdownMenu
-@dropdown-menu-height: 50px;
+@dropdown-menu-height: 50 * @hd;
 @dropdown-menu-background-color: @white;
-@dropdown-menu-title-font-size: 15px;
+@dropdown-menu-title-font-size: 15 * @hd;
 @dropdown-menu-title-text-color: @text-color;
 @dropdown-menu-title-active-text-color: @blue;
 @dropdown-menu-title-disabled-text-color: @gray-dark;
 @dropdown-menu-title-padding: 0 @padding-xs;
-@dropdown-menu-title-line-height: 18px;
+@dropdown-menu-title-line-height: 18 * @hd;
 @dropdown-menu-option-active-color: @blue;
 @dropdown-menu-content-max-height: 80%;
 
 // Empty
 @empty-padding: @padding-xl 0;
-@empty-image-size: 160px;
+@empty-image-size: 160 * @hd;
 @empty-description-margin-top: @padding-md;
-@empty-description-padding: 0 60px;
+@empty-description-padding: 0 60 * @hd;
 @empty-description-color: @gray-6;
 @empty-description-font-size: @font-size-md;
 @empty-description-line-height: @line-height-md;
-@empty-bottom-margin-top: 24px;
+@empty-bottom-margin-top: 24 * @hd;
 
 // Field
 @field-label-width: 5.2em;
@@ -351,36 +356,36 @@
 @field-input-error-text-color: @red;
 @field-input-disabled-text-color: @gray-5;
 @field-placeholder-text-color: #cccccc;
-@field-icon-size: 16px;
-@field-clear-icon-size: 16px;
+@field-icon-size: 16 * @hd;
+@field-clear-icon-size: 16 * @hd;
 @field-clear-icon-color: @gray-5;
 @field-right-icon-color: @gray-6;
 @field-error-message-color: @red;
-@field-error-message-text-color: 12px;
-@field-text-area-min-height: 60px;
+@field-error-message-text-color: 12 * @hd;
+@field-text-area-min-height: 60 * @hd;
 @field-word-limit-color: @value-color;
 @field-word-limit-font-size: @font-size-sm;
-@field-word-limit-line-height: 16px;
+@field-word-limit-line-height: 16 * @hd;
 @field-disabled-text-color: @gray-5;
 
 // GridItem
 @grid-item-content-padding: @padding-md @padding-xs;
 @grid-item-content-background-color: @white;
 @grid-item-content-active-color: @active-color;
-@grid-item-icon-size: 28px;
+@grid-item-icon-size: 28 * @hd;
 @grid-item-text-color: @gray-darker;
 @grid-item-text-font-size: @font-size-sm;
 
 // GoodsAction
 @goods-action-background-color: @white;
-@goods-action-icon-width: 48px;
-@goods-action-icon-height: 50px;
+@goods-action-icon-width: 48 * @hd;
+@goods-action-icon-height: 50 * @hd;
 @goods-action-icon-color: @text-color;
-@goods-action-icon-size: 18px;
+@goods-action-icon-size: 18 * @hd;
 @goods-action-icon-font-size: @font-size-xs;
 @goods-action-icon-active-color: @active-color;
 @goods-action-icon-text-color: @gray-darker;
-@goods-action-button-height: 40px;
+@goods-action-button-height: 40 * @hd;
 
 // IndexAnchor
 @index-anchor-z-index: 1;
@@ -388,7 +393,7 @@
 @index-anchor-text-color: @text-color;
 @index-anchor-font-weight: @font-weight-bold;
 @index-anchor-font-size: @font-size-md;
-@index-anchor-line-height: 32px;
+@index-anchor-line-height: 32 * @hd;
 @index-anchor-background-color: transparent;
 @index-anchor-sticky-text-color: @blue;
 @index-anchor-sticky-background-color: @white;
@@ -400,24 +405,24 @@
 @index-bar-index-active-color: @blue;
 
 // Info
-@info-size: 16px;
+@info-size: 16 * @hd;
 @info-color: @white;
-@info-padding: 0 3px;
+@info-padding: 0 3 * @hd;
 @info-font-size: @font-size-sm;
 @info-font-weight: @font-weight-bold;
 @info-border-width: @border-width-base;
 @info-background-color: @red;
 @info-dot-color: @red;
-@info-dot-size: 8px;
+@info-dot-size: 8 * @hd;
 @info-font-family: PingFang SC, Helvetica Neue, Arial, sans-serif;
 
 // Image
 @image-placeholder-text-color: @gray-6;
 @image-placeholder-font-size: @font-size-md;
 @image-placeholder-background-color: @background-color;
-@image-loading-icon-size: 32px;
+@image-loading-icon-size: 32 * @hd;
 @image-loading-icon-color: @gray-4;
-@image-error-icon-size: 32px;
+@image-error-icon-size: 32 * @hd;
 @image-error-icon-color: @gray-4;
 
 // ImagePreview
@@ -426,44 +431,44 @@
 @image-preview-overlay-background-color: rgba(0, 0, 0, 0.9);
 
 // List
-@list-icon-margin-right: 5px;
+@list-icon-margin-right: 5 * @hd;
 @list-text-color: @gray-dark;
 @list-text-font-size: @font-size-md;
-@list-text-line-height: 50px;
+@list-text-line-height: 50 * @hd;
 
 // Loading
 @loading-text-color: @gray-6;
 @loading-text-font-size: @font-size-md;
 @loading-spinner-color: @gray-5;
-@loading-spinner-size: 30px;
+@loading-spinner-size: 30 * @hd;
 @loading-spinner-animation-duration: 0.8s;
 
 // NavBar
-@nav-bar-height: 46px;
+@nav-bar-height: 46 * @hd;
 @nav-bar-background-color: @white;
-@nav-bar-arrow-size: 16px;
+@nav-bar-arrow-size: 16 * @hd;
 @nav-bar-icon-color: @gray-8;
 @nav-bar-text-color: @gray-8;
-@nav-bar-text-font-size: 15px;
-@nav-bar-title-font-size: 17px;
+@nav-bar-text-font-size: 15 * @hd;
+@nav-bar-title-font-size: 17 * @hd;
 @nav-bar-title-text-color: @text-color;
 @nav-bar-z-index: 1;
 
 // NoticeBar
-@notice-bar-height: 40px;
+@notice-bar-height: 40 * @hd;
 @notice-bar-padding: 0 @padding-md;
 @notice-bar-wrapable-padding: @padding-xs @padding-md;
 @notice-bar-text-color: @brown;
 @notice-bar-font-size: @font-size-md;
-@notice-bar-line-height: 24px;
+@notice-bar-line-height: 24 * @hd;
 @notice-bar-background-color: @yellow;
-@notice-bar-icon-size: 14px;
-@notice-bar-icon-min-width: 24px;
+@notice-bar-icon-size: 14 * @hd;
+@notice-bar-icon-min-width: 24 * @hd;
 
 // Notify
 @notify-padding: @padding-xs @padding-md;
 @notify-font-size: @font-size-md;
-@notify-line-height: 20px;
+@notify-line-height: 20 * @hd;
 @notify-primary-background-color: @blue;
 @notify-success-background-color: @green;
 @notify-danger-background-color: @red;
@@ -471,13 +476,13 @@
 
 // NumberKeyboard
 @number-keyboard-background-color: @white;
-@number-keyboard-key-height: 54px;
+@number-keyboard-key-height: 54 * @hd;
 @number-keyboard-key-background: #ebedf0;
-@number-keyboard-key-font-size: 24px;
+@number-keyboard-key-font-size: 24 * @hd;
 @number-keyboard-key-active-color: @active-color;
 @number-keyboard-delete-font-size: @font-size-lg;
 @number-keyboard-title-color: @gray-darker;
-@number-keyboard-title-height: 30px;
+@number-keyboard-title-height: 30 * @hd;
 @number-keyboard-title-font-size: @font-size-md;
 @number-keyboard-close-padding: 0 @padding-md;
 @number-keyboard-close-color: @blue;
@@ -485,7 +490,7 @@
 @number-keyboard-button-text-color: @white;
 @number-keyboard-button-background-color: @blue;
 @number-keyboard-cursor-color: @text-color;
-@number-keyboard-cursor-width: 1px;
+@number-keyboard-cursor-width: 1 * @hd;
 @number-keyboard-cursor-height: 40%;
 @number-keyboard-cursor-animation-duration: 1s;
 
@@ -494,9 +499,9 @@
 @overlay-background-color: rgba(0, 0, 0, 0.7);
 
 // Pagination
-@pagination-height: 40px;
+@pagination-height: 40 * @hd;
 @pagination-font-size: @font-size-md;
-@pagination-item-width: 36px;
+@pagination-item-width: 36 * @hd;
 @pagination-item-default-color: @blue;
 @pagination-item-disabled-color: @gray-darker;
 @pagination-item-disabled-background-color: @background-color;
@@ -510,20 +515,20 @@
 @panel-footer-padding: @padding-xs @padding-md;
 
 // PasswordInput
-@password-input-height: 50px;
+@password-input-height: 50 * @hd;
 @password-input-margin: 0 @padding-md;
-@password-input-font-size: 20px;
-@password-input-border-radius: 6px;
+@password-input-font-size: 20 * @hd;
+@password-input-border-radius: 6 * @hd;
 @password-input-background-color: @white;
 @password-input-info-color: @gray-dark;
 @password-input-info-font-size: @font-size-md;
 @password-input-error-info-color: @red;
-@password-input-dot-size: 10px;
+@password-input-dot-size: 10 * @hd;
 @password-input-dot-color: @black;
 
 // Picker
 @picker-background-color: @white;
-@picker-toolbar-height: 44px;
+@picker-toolbar-height: 44 * @hd;
 @picker-title-line-height: @line-height-md;
 @picker-action-padding: 0 @padding-md;
 @picker-action-font-size: @font-size-md;
@@ -536,32 +541,32 @@
 @picker-loading-mask-color: rgba(255, 255, 255, 0.9);
 
 // Popup
-@popup-title-font-size: 20px;
-@popup-descrition-font-size: 14px;
+@popup-title-font-size: 20 * @hd;
+@popup-descrition-font-size: 14 * @hd;
 @popup-background-color: @white;
 @popup-transition: transform @animation-duration-base;
-@popup-round-border-radius: 16px;
-@popup-close-icon-size: 22px;
+@popup-round-border-radius: 16 * @hd;
+@popup-close-icon-size: 22 * @hd;
 @popup-close-icon-color: @gray-5;
 @popup-close-icon-active-color: @gray-6;
-@popup-close-icon-margin: 20px;
+@popup-close-icon-margin: 20 * @hd;
 @popup-close-icon-z-index: 1;
 
 // Progress
-@progress-height: 4px;
+@progress-height: 4 * @hd;
 @progress-background-color: @gray-light;
-@progress-pivot-padding: 0 5px;
+@progress-pivot-padding: 0 5 * @hd;
 @progress-pivot-font-size: @font-size-xs;
 @progress-pivot-line-height: 1.6;
 @progress-pivot-background-color: @gray-light;
 
 // PullRefresh
-@pull-refresh-head-height: 50px;
+@pull-refresh-head-height: 50 * @hd;
 @pull-refresh-head-font-size: @font-size-md;
 @pull-refresh-head-text-color: @gray-dark;
 
 // Radio
-@radio-size: 21px;
+@radio-size: 21 * @hd;
 @radio-border-color: @gray-light;
 @radio-transition-duration: @animation-duration-fast;
 @radio-label-margin: @padding-xs;
@@ -572,18 +577,18 @@
 @radio-disabled-background-color: #cccccc;
 
 // Rate
-@rate-icon-size: 20px;
-@rate-icon-gutter: @padding-base;;
+@rate-icon-size: 20 * @hd;
+@rate-icon-gutter: @padding-base;
 @rate-icon-void-color: @gray-5;
 @rate-icon-full-color: @red;
 @rate-icon-disabled-color: @gray-5;
 
 // Search
-@search-padding: 10px @padding-sm;
+@search-padding: 10 * @hd @padding-sm;
 @search-background-color: @white;
 @search-content-background-color: @gray-1;
-@search-input-height: 34px;
-@search-label-padding: 0 5px;
+@search-input-height: 34 * @hd;
+@search-label-padding: 0 5 * @hd;
 @search-label-color: @text-color;
 @search-label-font-size: @font-size-md;
 @search-left-icon-color: @gray-6;
@@ -592,14 +597,14 @@
 @search-action-font-size: @font-size-md;
 
 // Sidebar
-@sidebar-width: 85px;
+@sidebar-width: 85 * @hd;
 
 // SidebarItem
 @sidebar-font-size: @font-size-md;
-@sidebar-line-height: 20px;
+@sidebar-line-height: 20 * @hd;
 @sidebar-text-color: @text-color;
 @sidebar-disabled-text-color: @gray;
-@sidebar-padding: 20px @padding-sm 20px @padding-xs;
+@sidebar-padding: 20 * @hd @padding-sm 20 * @hd @padding-xs;
 @sidebar-active-color: @active-color;
 @sidebar-background-color: @background-color-light;
 @sidebar-selected-font-weight: @font-weight-bold;
@@ -608,7 +613,7 @@
 @sidebar-selected-background-color: @white;
 
 // Skeleton
-@skeleton-row-height: 16px;
+@skeleton-row-height: 16 * @hd;
 @skeleton-row-background-color: @active-color;
 @skeleton-row-margin-top: @padding-sm;
 @skeleton-avatar-background-color: @active-color;
@@ -618,11 +623,11 @@
 @slider-active-background-color: @blue;
 @slider-inactive-background-color: @gray-light;
 @slider-disabled-opacity: @disabled-opacity;
-@slider-button-width: 20px;
-@slider-button-height: 20px;
+@slider-button-width: 20 * @hd;
+@slider-button-height: 20 * @hd;
 @slider-button-border-radius: 50%;
 @slider-button-background-color: @white;
-@slider-button-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+@slider-button-box-shadow: 0 1 * @hd 2 * @hd rgba(0, 0, 0, 0.5);
 
 // Step
 @step-text-color: @gray-dark;
@@ -631,8 +636,8 @@
 @step-line-color: @border-color;
 @step-finish-line-color: @green;
 @step-finish-text-color: @text-color;
-@step-icon-size: 12px;
-@step-circle-size: 5px;
+@step-icon-size: 12 * @hd;
+@step-circle-size: 5 * @hd;
 @step-circle-color: @gray-dark;
 @step-horizontal-title-font-size: @font-size-sm;
 
@@ -649,20 +654,20 @@
 @stepper-button-disabled-color: #cccccc;
 @stepper-button-disabled-icon-color: @gray-5;
 @stepper-button-round-theme-color: @blue;
-@stepper-input-width: 38px;
-@stepper-input-height: 22px;
+@stepper-input-width: 38 * @hd;
+@stepper-input-height: 22 * @hd;
 @stepper-input-font-size: @font-size-xl;
 @stepper-input-text-color: @text-color;
 @stepper-input-disabled-text-color: #cccccc;
 @stepper-border-radius: @border-radius-md;
 
 // SubmitBar
-@submit-bar-height: 50px;
+@submit-bar-height: 50 * @hd;
 @submit-bar-z-index: 100;
 @submit-bar-background-color: @white;
-@submit-bar-button-width: 110px;
+@submit-bar-button-width: 110 * @hd;
 @submit-bar-price-color: @red;
-@submit-bar-price-font-size: 18px;
+@submit-bar-price-font-size: 18 * @hd;
 @submit-bar-currency-font-size: @font-size-md;
 @submit-bar-text-color: @text-color;
 @submit-bar-text-font-size: @font-size-md;
@@ -671,10 +676,10 @@
 @submit-bar-tip-line-height: 1.5;
 @submit-bar-tip-color: #f56723;
 @submit-bar-tip-background-color: #fff7cc;
-@submit-bar-tip-icon-size: 12px;
+@submit-bar-tip-icon-size: 12 * @hd;
 
 // Swipe
-@swipe-indicator-size: 6px;
+@swipe-indicator-size: 6 * @hd;
 @swipe-indicator-margin: @padding-sm;
 @swipe-indicator-active-opacity: 1;
 @swipe-indicator-inactive-opacity: 0.3;
@@ -682,13 +687,14 @@
 @swipe-indicator-inactive-background-color: @border-color;
 
 // Switch
-@switch-size: 28px;
-@switch-width: 51px;
+@switch-size: 28 * @hd;
+@switch-width: 51 * @hd;
 @switch-height: 1em;
 @switch-node-size: 1em;
 @switch-node-background-color: @white;
-@switch-node-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05), 0px 2px 2px 0px rgba(0, 0, 0, 0.1),
-  0px 3px 1px 0px rgba(0, 0, 0, 0.05);
+@switch-node-box-shadow: 0 * @hd 3 * @hd 3 * @hd 0 * @hd rgba(0, 0, 0, 0.05),
+  0 * @hd 2 * @hd 2 * @hd 0 * @hd rgba(0, 0, 0, 0.1),
+  0 * @hd 3 * @hd 1 * @hd 0 * @hd rgba(0, 0, 0, 0.05);
 @switch-background-color: @white;
 @switch-on-background-color: @blue;
 @switch-transition-duration: @animation-duration-base;
@@ -696,13 +702,13 @@
 @switch-border: @border-width-base solid rgba(0, 0, 0, 0.1);
 
 // SwitchCell
-@switch-cell-padding-top: @cell-vertical-padding - 1px;
-@switch-cell-padding-bottom: @cell-vertical-padding - 1px;
-@switch-cell-large-padding-top: @cell-large-vertical-padding - 1px;
-@switch-cell-large-padding-bottom: @cell-large-vertical-padding - 1px;
+@switch-cell-padding-top: @cell-vertical-padding - 1 * @hd;
+@switch-cell-padding-bottom: @cell-vertical-padding - 1 * @hd;
+@switch-cell-large-padding-top: @cell-large-vertical-padding - 1 * @hd;
+@switch-cell-large-padding-bottom: @cell-large-vertical-padding - 1 * @hd;
 
 // Tabbar
-@tabbar-height: 50px;
+@tabbar-height: 50 * @hd;
 @tabbar-background-color: @white;
 
 // TabbarItem
@@ -710,8 +716,8 @@
 @tabbar-item-text-color: @gray-darker;
 @tabbar-item-active-color: @blue;
 @tabbar-item-line-height: 1;
-@tabbar-item-icon-size: 18px;
-@tabbar-item-margin-bottom: 5px;
+@tabbar-item-icon-size: 18 * @hd;
+@tabbar-item-margin-bottom: 5 * @hd;
 
 // Tab
 @tab-text-color: @gray-7;
@@ -722,21 +728,21 @@
 
 // Tabs
 @tabs-default-color: @blue;
-@tabs-line-height: 44px;
-@tabs-card-height: 30px;
+@tabs-line-height: 44 * @hd;
+@tabs-card-height: 30 * @hd;
 @tabs-nav-background-color: @white;
-@tabs-bottom-bar-width: 40px;
-@tabs-bottom-bar-height: 3px;
+@tabs-bottom-bar-width: 40 * @hd;
+@tabs-bottom-bar-height: 3 * @hd;
 @tabs-bottom-bar-color: @tabs-default-color;
 
 // Tag
 @tag-padding: 0 @padding-base;
 @tag-text-color: @white;
 @tag-font-size: @font-size-sm;
-@tag-border-radius: 2px;
-@tag-line-height: 16px;
+@tag-border-radius: 2 * @hd;
+@tag-line-height: 16 * @hd;
 @tag-mini-font-size: @font-size-xs;
-@tag-medium-padding: 2px 6px;
+@tag-medium-padding: 2 * @hd 6 * @hd;
 @tag-large-padding: @padding-base @padding-xs;
 @tag-large-font-size: @font-size-md;
 @tag-round-border-radius: @border-radius-max;
@@ -755,12 +761,12 @@
 @toast-line-height: @line-height-md;
 @toast-border-radius: @border-radius-lg;
 @toast-background-color: fade(@black, 70%);
-@toast-icon-size: 36px;
-@toast-text-min-width: 96px;
+@toast-icon-size: 36 * @hd;
+@toast-text-min-width: 96 * @hd;
 @toast-text-padding: @padding-sm;
-@toast-default-padding: @padding-sm 10px;
-@toast-default-width: 88px;
-@toast-default-min-height: 88px;
+@toast-default-padding: @padding-sm 10 * @hd;
+@toast-default-width: 88 * @hd;
+@toast-default-min-height: 88 * @hd;
 @toast-position-top-distance: 20%;
 @toast-position-bottom-distance: 20%;
 
@@ -769,13 +775,13 @@
 @tree-select-nav-background-color: @background-color-light;
 @tree-select-content-background-color: @white;
 @tree-select-nav-item-padding: @padding-sm @padding-xs @padding-sm @padding-sm;
-@tree-select-item-height: 44px;
+@tree-select-item-height: 44 * @hd;
 @tree-select-item-active-color: @red;
 @tree-select-item-disabled-color: @gray;
 
 // Uploader
-@uploader-size: 80px;
-@uploader-icon-size: 24px;
+@uploader-size: 80 * @hd;
+@uploader-icon-size: 24 * @hd;
 @uploader-icon-color: @gray-dark;
 @uploader-text-color: @gray-dark;
 @uploader-text-font-size: @font-size-sm;
@@ -784,7 +790,7 @@
 @uploader-delete-color: @white;
 @uploader-delete-background-color: rgba(0, 0, 0, 0.45);
 @uploader-file-background-color: @background-color;
-@uploader-file-icon-size: 20px;
+@uploader-file-icon-size: 20 * @hd;
 @uploader-file-icon-color: @gray-darker;
 @uploader-file-name-padding: 0 @padding-base;
 @uploader-file-name-margin-top: @padding-xs;

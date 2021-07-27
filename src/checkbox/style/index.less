@@ -43,7 +43,7 @@
       font-size: 0.8em;
       line-height: 1.25;
       text-align: center;
-      border: 1px solid @radio-border-color;
+      border: 1 * @hd solid @radio-border-color;
       transition-duration: @radio-transition-duration;
       transition-property: color, border-color, background-color;
 
@@ -55,7 +55,7 @@
         box-sizing: border-box;
         width: 0.3em;
         height: 0.48em;
-        border: 2px solid #fff;
+        border: 2 * @hd solid #fff;
         border-top: 0;
         border-left: 0;
         -webkit-transform: rotate(45deg) scale(0);
@@ -73,7 +73,7 @@
 
     &--square {
       .rv-checkbox__icon-success {
-        border-radius: 4px;
+        border-radius: 4 * @hd;
       }
     }
 

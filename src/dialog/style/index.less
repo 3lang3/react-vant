@@ -12,7 +12,7 @@
   transition: @dialog-transition;
   transition-property: transform, opacity;
 
-  @media (max-width: 321px) {
+  @media (max-width: 321* @hd) {
     width: @dialog-small-screen-width;
   }
 
@@ -37,7 +37,7 @@
   &__message {
     flex: 1;
     max-height: @dialog-message-max-height;
-    padding: 20px @dialog-message-padding;
+    padding: 20 * @hd @dialog-message-padding;
     overflow-y: auto;
     font-size: @dialog-message-font-size;
     line-height: @dialog-message-line-height;

@@ -15,16 +15,16 @@
     color: @stepper-border-color;
     vertical-align: middle;
     background: transparent;
-    border: 1px solid @stepper-border-color;
+    border: 1 * @hd solid @stepper-border-color;
     cursor: pointer;
 
     &::before {
       width: 50%;
-      height: 1px;
+      height: 1 * @hd;
     }
 
     &::after {
-      width: 1px;
+      width: 1 * @hd;
       height: 50%;
     }
 
@@ -69,7 +69,7 @@
   &__input {
     box-sizing: border-box;
     width: @stepper-input-width;
-    margin: 0 2px;
+    margin: 0 2 * @hd;
     padding: 0;
     color: @stepper-input-text-color;
     font-weight: 500;
@@ -121,7 +121,7 @@
     .rv-stepper__minus {
       color: @stepper-button-round-theme-color;
       background-color: @white;
-      border: 1px solid @stepper-button-round-theme-color;
+      border: 1 * @hd solid @stepper-button-round-theme-color;
     }
   }
 }

@@ -59,7 +59,7 @@
       right: 0;
       bottom: 0;
       left: 0;
-      border: 1px solid currentColor;
+      border: 1 * @hd solid currentColor;
       border-radius: inherit;
       content: '';
       pointer-events: none;
@@ -70,7 +70,7 @@
     color: @tag-primary-color !important;
 
     &.rv-tag--plain::before {
-      border: 1px solid @tag-primary-color;
+      border: 1 * @hd solid @tag-primary-color;
     }
   }
 
@@ -92,7 +92,7 @@
 
     &::after {
       display: block;
-      width: 2px;
+      width: 2 * @hd;
       content: '';
     }
   }
@@ -119,7 +119,7 @@
   }
 
   &__close {
-    margin-left: 2px;
+    margin-left: 2 * @hd;
     cursor: pointer;
   }
 }
