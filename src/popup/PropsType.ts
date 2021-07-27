@@ -3,8 +3,8 @@ import { BaseTypeProps } from '../utils';
 
 export type Position = 'center' | 'top' | 'bottom' | 'right' | 'left';
 export interface PopupProps extends BaseTypeProps {
-  title?: string;
-  descrition?: string;
+  title?: string | React.ReactNode;
+  descrition?: string | React.ReactNode;
   round?: boolean;
   visible?: boolean;
   overlay?: boolean;

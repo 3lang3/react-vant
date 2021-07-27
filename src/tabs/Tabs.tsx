@@ -32,6 +32,7 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const scroller = useScrollParent(root);
   const windowSize = useWindowSize();
 

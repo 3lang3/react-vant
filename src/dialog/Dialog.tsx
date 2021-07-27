@@ -12,7 +12,7 @@ import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
 
 const [bem] = createNamespace('dialog');
 
-const Dialog: React.FC<DialogProps> & DialogStatic = (props) => {
+const Dialog: React.FC<DialogProps> & Partial<DialogStatic> = (props) => {
   const {
     width,
     title,
