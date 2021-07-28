@@ -8,7 +8,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Flex>
+        <Flex justify="center" align="center">
           <Flex.Item span={12}>span: 12</Flex.Item>
           <Flex.Item span={12}>span: 12</Flex.Item>
         </Flex>
