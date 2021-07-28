@@ -87,7 +87,7 @@ const Toast: React.FC<ToastProps> = (props) => {
       ])}
       overlay={false}
       lockScroll={false}
-      onClosed={clearTimer}
+      afterClose={clearTimer}
     >
       {renderIcon()}
       {renderMessage()}
