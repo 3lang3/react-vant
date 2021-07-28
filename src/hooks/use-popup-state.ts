@@ -23,8 +23,7 @@ function usePopupState<T extends State = State>(defaultValue?: T): [T, Actions<b
 
     // 切换是否显示
     const toggle = (visible: boolean) => {
-      state.visible = visible;
-      setState(state);
+      setState({ ...state, visible });
     };
 
     const open = (props: T) => {
@@ -32,7 +31,9 @@ function usePopupState<T extends State = State>(defaultValue?: T): [T, Actions<b
       toggle(true);
     };
 
-    const close = () => toggle(false);
+    const close = () => {
+      toggle(false);
+    };
 
     return {
       setState,

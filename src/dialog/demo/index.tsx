@@ -47,9 +47,37 @@ export default (): React.ReactNode => {
           }
         />
       </DemoBlock>
+      <DemoBlock card title="Promise调用">
+        <Cell
+          title="Dialog.alert"
+          isLink
+          onClick={async () => {
+            await Dialog.alert({
+              title: '标题',
+              message: '代码是写出来给人看的，附带能在机器上运行',
+            });
+            console.log('confirm');
+          }}
+        />
+        <Cell
+          title="Dialog.confirm"
+          isLink
+          onClick={async () => {
+            try {
+              await Dialog.confirm({
+                title: '标题',
+                message: '代码是写出来给人看的，附带能在机器上运行',
+              });
+              console.log('confirm');
+            } catch (error) {
+              console.log('cancel');
+            }
+          }}
+        />
+      </DemoBlock>
       <DemoBlock card title="圆角按钮样式">
         <Cell
-          title="弹窗提示"
+          title="圆角按钮弹窗"
           isLink
           onClick={() =>
             Dialog.alert({
@@ -57,21 +85,28 @@ export default (): React.ReactNode => {
               theme: 'round-button',
               message: '代码是写出来给人看的，附带能在机器上运行',
             })
-              .then(() => {
-                // on confirm
-              })
-              .catch(() => {
-                // on cancel
-              })
           }
         />
         <Cell
-          title="弹窗提示（无标题）"
+          title="圆角按钮弹窗（无标题）"
           isLink
           onClick={() =>
             Dialog.alert({
               message: '代码是写出来给人看的，附带能在机器上运行',
               theme: 'round-button',
+            })
+          }
+        />
+      </DemoBlock>
+      <DemoBlock card title="完全关闭后的回调">
+        <Cell
+          title="弹窗提示"
+          isLink
+          onClick={() =>
+            Dialog.alert({
+              title: '标题',
+              message: '代码是写出来给人看的，附带能在机器上运行',
+              afterClose: () => console.log('after close'),
             })
           }
         />
@@ -87,12 +122,6 @@ export default (): React.ReactNode => {
               theme: 'round-button',
               message: '代码是写出来给人看的，附带能在机器上运行',
             })
-              .then(() => {
-                // on confirm
-              })
-              .catch(() => {
-                // on cancel
-              })
           }
         />
         <Cell
@@ -106,12 +135,6 @@ export default (): React.ReactNode => {
               theme: 'round-button',
               message: '代码是写出来给人看的，附带能在机器上运行',
             })
-              .then(() => {
-                // on confirm
-              })
-              .catch(() => {
-                // on cancel
-              })
           }
         />
       </DemoBlock>
@@ -130,12 +153,6 @@ export default (): React.ReactNode => {
                 </div>
               ),
             })
-              .then(() => {
-                // on confirm
-              })
-              .catch(() => {
-                // on cancel
-              })
           }
         />
       </DemoBlock>

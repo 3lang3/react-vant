@@ -12,7 +12,6 @@ let instance = null;
 
 const Component = forwardRef((_, ref) => {
   const [state, { open, toggle, close }] = usePopupState();
-
   useImperativeHandle(ref, () => ({
     open,
     toggle,
@@ -37,7 +36,6 @@ const Dialog = (options: Partial<DialogProps>): Promise<void> => {
       closeable: false,
       closeIcon: 'cross',
       className: '',
-      allowHtml: false,
       lockScroll: true,
       beforeClose: null,
       overlayClass: '',

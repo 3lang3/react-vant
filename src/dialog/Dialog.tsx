@@ -12,7 +12,7 @@ import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
 
 const [bem] = createNamespace('dialog');
 
-const Dialog: React.FC<DialogProps> = (props) => {
+const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
   const {
     width,
     title,
@@ -71,7 +71,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
   };
 
   const close = (action: string) => {
-    props.onClose();
+    props.onClose?.();
     if (props.callback) {
       props.callback(action);
     }
@@ -151,7 +151,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
             if (onClickCloseIcon) {
               onClickCloseIcon();
             }
-            props.onClose();
+            props.onClose?.();
           }}
         />
       );

@@ -36,7 +36,14 @@ const OverLay: React.FC<OverlayProps> = (props) => {
   };
 
   return (
-    <CSSTransition in={visible} timeout={duration} classNames="rv-fade" mountOnEnter unmountOnExit>
+    <CSSTransition
+      in={visible}
+      timeout={duration}
+      classNames="rv-fade"
+      mountOnEnter
+      unmountOnExit
+      onExited={props.afterClose}
+    >
       {renderOverlay()}
     </CSSTransition>
   );

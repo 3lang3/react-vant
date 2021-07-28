@@ -125,8 +125,8 @@ const Popup: React.FC<PopupProps> = (props) => {
         unmountOnExit={destroyOnClose}
         onExited={() => {
           setAnimatedVisible(false);
-          if (props.onClosed && typeof props.onClosed === 'function') {
-            props.onClosed();
+          if (props.afterClose && typeof props.afterClose === 'function') {
+            props.afterClose();
           }
         }}
       >

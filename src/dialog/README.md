@@ -27,12 +27,22 @@ Dialog.alert({
 }).then(() => {
   // on close
 });
+```
 
-Dialog.alert({
-  message: '弹窗内容',
-}).then(() => {
-  // on close
-});
+### Promise 调用
+
+Dialog 支持 promise
+
+```js
+try {
+  await Dialog.confirm({
+    title: '标题',
+    message: '弹窗内容',
+  });
+  // confirm
+} catch (erorr) {
+  // cancel
+}
 ```
 
 ### 消息确认
@@ -84,7 +94,7 @@ Dialog.alert({
   theme: 'round-button',
   children: (
     <div style={{ textAlign: 'center', margin: '16px' }}>
-      自定义内容：PHP 是世上最好的语言，不服来辩
+      代码是写出来给人看的，附带能在机器上运行
     </div>
   ),
 })
@@ -130,12 +140,12 @@ const [show, setShow] = useState(false);
 
 ```jsx
 <Dialog
-    visible={show}
-    title="标题"
-    showCancelButton
-    onClose={() => setShow(false)}
-    onConfirm={() => alert('confirm button click')}
-  >
+  visible={show}
+  title="标题"
+  showCancelButton
+  onClose={() => setShow(false)}
+  onConfirm={() => alert('confirm button click')}
+>
   <img src="https://img.yzcdn.cn/vant/apple-3.jpg" alt="2131" />
 </Dialog>
 ```
@@ -151,12 +161,13 @@ const [show, setShow] = useState(false);
 | Dialog.confirm | 展示消息确认弹窗 | `options` | `Promise` |
 | Dialog.close   | 关闭弹窗         | -         | `void`    |
 
-### Options
+### Props
 
 通过函数调用 `Dialog` 时，支持传入以下选项：
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| visible | 是否显示弹窗 | _boolean_ | - |
 | title | 标题 | _string_ | - |
 | width | 弹窗宽度，默认单位为`px` | _number \| string_ | `320px` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | - |
@@ -175,45 +186,17 @@ const [show, setShow] = useState(false);
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭弹窗 | _boolean_ | `false` |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
-| allowHtml `v2.8.7` | 是否允许 message 内容中渲染 HTML | _boolean_ | `false` |
 | beforeClose | 关闭前的回调函数，<br>调用 done() 后关闭弹窗，<br>调用 done(false) 阻止弹窗关闭 | _(action, done) => void_ | - |
-| transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的`name`属性 | _string_ | - |
-| teleport | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| Element_ | `body` |
+| transition | 动画类名 [see](https://reactcommunity.org/react-transition-group/) | _string_ | - |
 
 ### Props
 
 通过组件调用 `Dialog` 时，支持以下 Props：
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| visible | 是否显示弹窗 | _boolean_ | - |
-| title | 标题 | _string_ | - |
-| width | 弹窗宽度，默认单位为 `px` | _number \| string_ | `320px` |
-| message | 文本内容，支持通过 `\n` 换行 | _string_ | - |
-| messageAlign | 内容对齐方式，可选值为 `left` `right` | _string_ | `center` |
-| theme | 样式风格，可选值为 `round-button` | _string_ | `default` |
-| showConfirmButton | 是否展示确认按钮 | _boolean_ | `true` |
-| showCancelButton | 是否展示取消按钮 | _boolean_ | `false` |
-| confirmButtonText | 确认按钮文案 | _string_ | `确认` |
-| confirmButtonColor | 确认按钮颜色 | _string_ | `#ee0a24` |
-| cancelButtonText | 取消按钮文案 | _string_ | `取消` |
-| cancelButtonColor | 取消按钮颜色 | _string_ | `black` |
-| overlay | 是否展示遮罩层 | _boolean_ | `true` |
-| overlayClass | 自定义遮罩层类名 | _string_ | - |
-| overlayStyle | 自定义遮罩层样式 | _object_ | - |
-| closeOnClickOverlay | 是否在点击遮罩层后关闭弹窗 | _boolean_ | `false` |
-| lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
-| beforeClose | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise | _(action) => boolean \| Promise_ | - |
-| transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | - |
-
-### Events
-
-通过组件调用 `Dialog` 时，支持以下事件：
-
-| 事件    | 说明               | 回调参数 |
-| ------- | ------------------ | -------- |
-| confirm | 点击确认按钮时触发 | -        |
-| cancel  | 点击取消按钮时触发 | -        |
+| 事件      | 说明               | 回调参数 |
+| --------- | ------------------ | -------- |
+| onConfirm | 点击确认按钮时触发 | -        |
+| onCancel  | 点击取消按钮时触发 | -        |
 
 ### 样式变量
 
