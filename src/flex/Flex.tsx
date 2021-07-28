@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import FlexContext from './FlexContext';
 import { FlexPropsType as BasePropsType } from './PropsType';
 import { createNamespace } from '../utils';
+import FlexItem from './FlexItem';
 
 export interface FlexProps extends BasePropsType {
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -12,7 +13,7 @@ export interface FlexProps extends BasePropsType {
 
 const [bem] = createNamespace('flexbox');
 
-const Flex: React.FC<FlexProps> & { Item?: React.FC } = (props) => {
+const Flex: React.FC<FlexProps> & { Item: React.FC } = (props) => {
   const {
     direction,
     wrap,
@@ -46,7 +47,15 @@ const Flex: React.FC<FlexProps> & { Item?: React.FC } = (props) => {
     ...style,
   };
 
-  const wrapCls = classnames(className, bem([direction, wrap, justify, align]));
+  const wrapCls = classnames(
+    className,
+    bem([
+      direction,
+      wrap,
+      justify ? `justify-${justify}` : false,
+      align ? `align-${align}` : false,
+    ]),
+  );
 
   return (
     <FlexContext.Provider value={{ gutter: getGutter }}>
@@ -56,5 +65,7 @@ const Flex: React.FC<FlexProps> & { Item?: React.FC } = (props) => {
     </FlexContext.Provider>
   );
 };
+
+Flex.Item = FlexItem;
 
 export default Flex;

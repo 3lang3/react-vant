@@ -27,7 +27,8 @@ import { Flex } from 'react-vant';
 ```
 
 ### 区域间隔
-通过```gutter```属性可以设置列元素之间的间距，默认间距为 `0`; 如果需要垂直间距，可以写成数组形式 `[水平间距, 垂直间距]`
+
+通过`gutter`属性可以设置列元素之间的间距，默认间距为 `0`; 如果需要垂直间距，可以写成数组形式 `[水平间距, 垂直间距]`
 
 ```jsx
 <Flex gutter={16}>
@@ -36,8 +37,10 @@ import { Flex } from 'react-vant';
   <Flex.Item span={8}>span: 8</Flex.Item>
 </Flex>
 ```
+
 ### 方向
-通过```direction```属性设置弹性布局方向。默认是 `row`
+
+通过`direction`属性设置弹性布局方向。默认是 `row`
 
 ```jsx
 <Flex direction="row">
@@ -51,6 +54,7 @@ import { Flex } from 'react-vant';
   <Flex.Item span={8}>span: 8-3</Flex.Item>
 </Flex>
 ```
+
 ### 排版
 
 ### 对齐
@@ -65,13 +69,13 @@ import { Flex } from 'react-vant';
 | --- | --- | --- | --- |
 | direction | 项目定位方向，可选值为 `row` `row-reverse` `column` `column-reverse` | _string_ | `row` |
 | wrap | 子元素的换行方式，可选值为 `nowrap` `wrap` `wrap-reverse` | _string_ | `nowrap` |
-| gutter | 列元素之间的间距。可以使用数组形式同时设置 `[水平间距, 垂直间距]` | _number \| array_ |`0` |
-| align | 垂直对齐方式，可选值为 `top` `middle` `bottom` | _string_ | `top` |
+| gutter | 列元素之间的间距。可以使用数组形式同时设置 `[水平间距, 垂直间距]` | _number \| array_ | `0` |
+| align | 垂直对齐方式，可选值为 `start` `center` `end` `baseline` `stretch` | _string_ | `top` |
 | justify | 水平排列方式，可选值为 `start` `end` `center` `space-around` `space-between` | _string_ | `start` |
 
 ### Flex.Item
 
-| 成员 | 说明                                        | 类型                 | 默认值 |
-| ---- | ------------------------------------------- | -------------------- | ------ |
+| 成员 | 说明                                        | 类型               | 默认值 |
+| ---- | ------------------------------------------- | ------------------ | ------ |
 | flex | flex 布局属性                               | _string \| number_ | `-`    |
-| span | 栅格占位格数，为 0 时相当于 `display: none` | _number_             | `-`    |
+| span | 栅格占位格数，为 0 时相当于 `display: none` | _number_           | `-`    |
