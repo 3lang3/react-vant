@@ -20,6 +20,7 @@ import SwipeContext from './SwipeContext';
 import { SwipeProps, SwipeStatic } from './PropsType';
 import { doubleRaf } from '../utils/raf';
 import { createNamespace, preventDefault, isHidden, range } from '../utils';
+import SwipeItem from './SwipeItem';
 
 const [bem] = createNamespace('swipe');
 
@@ -349,5 +350,7 @@ Swipe.defaultProps = {
   showIndicators: true,
   stopPropagation: true,
 };
+
+Swipe.Item = SwipeItem;
 
 export default Swipe;

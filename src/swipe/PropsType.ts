@@ -1,4 +1,4 @@
-import { ForwardRefExoticComponent, RefAttributes } from 'react';
+import { ForwardRefExoticComponent } from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface SwipeProps extends BaseTypeProps {
@@ -18,5 +18,5 @@ export interface SwipeProps extends BaseTypeProps {
 }
 
 export type SwipeStatic = {
-  Item?: ForwardRefExoticComponent<{ index: number }>;
+  Item: ForwardRefExoticComponent<{ index: number }>;
 };
