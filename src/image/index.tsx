@@ -13,9 +13,10 @@ const Image: React.FC<ImageProps> = (props) => {
     loadingIcon = 'photo',
     showError = true,
     showLoading = true,
+    block = true,
   } = props;
   const [status, setStatus] = useState({ loading: true, error: false });
-  const mountedRef = useRef(false)
+  const mountedRef = useRef(false);
 
   const style = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -39,24 +40,24 @@ const Image: React.FC<ImageProps> = (props) => {
 
   useEffect(() => {
     if (!mountedRef.current) {
-      mountedRef.current = true
-      return
+      mountedRef.current = true;
+      return;
     }
     setStatus({ error: false, loading: false });
   }, [props.src]);
 
   const onLoad = (e) => {
     setStatus((v) => ({ ...v, loading: false }));
-    props.onLoad?.(e)
+    props.onLoad?.(e);
   };
 
   const onError = (e) => {
     setStatus({ error: true, loading: false });
-    props.onLoad?.(e)
+    props.onLoad?.(e);
   };
 
   const renderLoadingIcon = () => {
-    if (typeof loadingIcon !== 'string') return loadingIcon
+    if (typeof loadingIcon !== 'string') return loadingIcon;
     return (
       <Icon
         size={props.iconSize}
@@ -68,7 +69,7 @@ const Image: React.FC<ImageProps> = (props) => {
   };
 
   const renderErrorIcon = () => {
-    if (typeof errorIcon !== 'string') return errorIcon
+    if (typeof errorIcon !== 'string') return errorIcon;
     return (
       <Icon
         size={props.iconSize}
@@ -107,7 +108,7 @@ const Image: React.FC<ImageProps> = (props) => {
   };
 
   return (
-    <div className={classnames(bem({ round: props.round }))} style={style}>
+    <div className={classnames(bem({ block, round: props.round }))} style={style}>
       {renderImage()}
       {renderPlaceholder()}
       {props.children}

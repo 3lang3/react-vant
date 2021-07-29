@@ -8,6 +8,7 @@ export interface ImageProps extends BaseTypeProps {
   alt?: string;
   fit?: ImageFit;
   round?: boolean;
+  block?: boolean;
   width?: number | string;
   height?: number | string;
   radius?: number | string;
