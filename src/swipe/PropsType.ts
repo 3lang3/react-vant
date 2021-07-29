@@ -18,5 +18,5 @@ export interface SwipeProps extends BaseTypeProps {
 }
 
 export type SwipeStatic = {
-  Item: ForwardRefExoticComponent<{ index: number }>;
+  Item: ForwardRefExoticComponent<{ index?: number; children: React.ReactNode }>;
 };

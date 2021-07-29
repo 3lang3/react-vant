@@ -80,6 +80,10 @@ module.exports = {
                 title: 'Button 按钮',
               },
               {
+                path: 'typography',
+                title: 'Typography 文本',
+              },
+              {
                 path: 'cell',
                 title: 'Cell 单元格',
               },
