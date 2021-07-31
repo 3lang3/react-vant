@@ -2,26 +2,26 @@ import { CSSProperties } from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface TabsProps extends BaseTypeProps {
-  color: string;
-  border: boolean;
-  sticky: boolean;
-  animated: boolean;
-  swipeable: boolean;
-  scrollspy: boolean;
-  background: string;
-  lineWidth: number | string;
-  lineHeight: number | string;
-  beforeChange: Function;
-  titleActiveColor: string;
-  titleInactiveColor: string;
-  type: string;
-  active: number | string;
-  ellipsis: boolean;
-  duration: number | string;
-  offsetTop: number | string;
-  lazyRender: boolean;
-  swipeThreshold: number | string;
-  onClick: (name: string | number, title: string) => void;
+  color?: string;
+  border?: boolean;
+  sticky?: boolean;
+  animated?: boolean;
+  swipeable?: boolean;
+  scrollspy?: boolean;
+  background?: string;
+  lineWidth?: number | string;
+  lineHeight?: number | string;
+  beforeChange?: Function;
+  titleActiveColor?: string;
+  titleInactiveColor?: string;
+  type?: string;
+  active?: number | string;
+  ellipsis?: boolean;
+  duration?: number | string;
+  offsetTop?: number | string;
+  lazyRender?: boolean;
+  swipeThreshold?: number | string;
+  onClick?: (name: string | number, title: string) => void;
 }
 
 export interface TabsTitleProps extends BaseTypeProps {
@@ -64,5 +64,5 @@ export interface TabPaneProps {
 }
 
 export type TabStatic = {
-  TabPane?: React.FC;
+  TabPane: React.FC;
 };

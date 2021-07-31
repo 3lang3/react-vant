@@ -22,6 +22,7 @@ import {
 } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
+import TabPane from './TabPane';
 
 const [bem] = createNamespace('tabs');
 
@@ -70,6 +71,7 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     [],
   );
 
+  console.log(scrollable);
   const navStyle = useMemo(
     () => ({
       borderColor: color,
@@ -305,7 +307,7 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
           style={navStyle}
         >
           {renderNav()}
-          <div className={classnames(bem('line'))} style={state.lineStyle} />
+          {type === 'line' && <div className={classnames(bem('line'))} style={state.lineStyle} />}
         </div>
       </div>
     );
@@ -349,7 +351,11 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
 Tabs.defaultProps = {
   type: 'line',
   duration: 300,
+  swipeThreshold: 5,
   offsetTop: 0,
+  ellipsis: true,
 };
+
+Tabs.TabPane = TabPane;
 
 export default Tabs;

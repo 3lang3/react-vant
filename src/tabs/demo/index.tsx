@@ -44,6 +44,15 @@ export default (): React.ReactNode => {
           <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
         </Tabs>
       </DemoBlock>
+      <DemoBlock title="样式风格">
+        <Tabs type="card">
+          {[1, 2, 3].map((item) => (
+            <Tabs.TabPane key={item} title={`标签${item}`}>
+              内容 {item}
+            </Tabs.TabPane>
+          ))}
+        </Tabs>
+      </DemoBlock>
       <DemoBlock title="点击事件">
         <Tabs onClick={(name, title) => Toast(title)}>
           <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
@@ -54,7 +63,7 @@ export default (): React.ReactNode => {
         <Tabs active={2} sticky>
           {[1, 2, 3, 4].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
-              内容 {item}
+              <div style={{ height: '50vh' }}>内容 {item}</div>
             </Tabs.TabPane>
           ))}
         </Tabs>
