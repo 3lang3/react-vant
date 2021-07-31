@@ -71,7 +71,6 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     [],
   );
 
-  console.log(scrollable);
   const navStyle = useMemo(
     () => ({
       borderColor: color,

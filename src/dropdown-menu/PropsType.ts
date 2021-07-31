@@ -28,10 +28,16 @@ export interface DropdownMenuItemProps extends BaseTypeProps {
   titleClass?: string;
   options?: DropdownMenuItemOption[];
   name: string;
-  offset?: number;
-  parentProps?: DropdownMenuProps;
-  parentValue?: DropdownMenuProps['value'];
-  onChange?: (v: DropdownMenuProps['value']) => void;
   children?: React.ReactNode;
   placeholder?: string;
 }
+
+export type ItemActionType = {
+  toggle: (show: boolean, options?: { immediate?: boolean }) => void;
+};
+
+export type ItemStaticProps = {
+  offset: number;
+  onChange: (v: DropdownMenuProps['value']) => void;
+  setOpened: (v) => void;
+};

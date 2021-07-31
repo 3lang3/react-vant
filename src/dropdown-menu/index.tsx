@@ -7,6 +7,7 @@ import useScrollParent from '../hooks/use-scroll-parent';
 import { getRect } from '../hooks/use-rect';
 import useRefs from '../hooks/use-refs';
 import DropdownMenuItem from './DropdownMenuItem';
+import DropdownMenuContext from './DropdownMenuContext';
 
 export type DropdownMenuDirection = 'up' | 'down';
 
@@ -18,7 +19,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> & {
   Item: React.FC<Omit<DropdownMenuItemProps, 'onChange' | 'parentProps' | 'parentValue'>>;
 } = (props) => {
   const [innerValue = {}, setInnerValue] = useState(() => props.value);
-  const [opened, setOpened] = useState<boolean | number>(false);
+  const [openedMap, setOpened] = useState<Record<string, boolean>>({});
   const [refs, setRefs] = useRefs();
   const root = useRef<HTMLDivElement>();
   const barRef = useRef<HTMLDivElement>();
@@ -26,6 +27,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> & {
   const rect = useRef<{ bottom: number; top: number }>({ bottom: 0, top: 0 });
   const innerEffect = useRef(false);
   const mounted = useRef(false);
+
+  const opened = Object.values(openedMap).filter(Boolean).length > 0;
 
   const { children } = props;
 
@@ -50,7 +53,6 @@ const DropdownMenu: React.FC<DropdownMenuProps> & {
     innerEffect.current = true;
     const newValue = { ...innerValue, ...v };
     setInnerValue(newValue);
-    setImmediate(() => setOpened(false));
     if (props.onChange) props.onChange(newValue);
   };
 
@@ -98,7 +100,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> & {
   };
 
   const renderTitle = (item, index: number) => {
-    const showPopup = opened === index;
+    const showPopup = openedMap[index];
     const { disabled, titleClass, name: itemName } = item.props;
     return (
       <div
@@ -108,7 +110,6 @@ const DropdownMenu: React.FC<DropdownMenuProps> & {
         className={classnames(bem('item', { disabled }))}
         onClick={() => {
           if (!disabled) {
-            setOpened(opened === false ? index : false);
             toggleItem(index);
           }
         }}
@@ -133,20 +134,21 @@ const DropdownMenu: React.FC<DropdownMenuProps> & {
   useEventListener('scroll', onScroll, { target: scrollParent });
 
   return (
-    <div ref={root} className={classnames(bem())}>
-      <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
-        {refs.map(renderTitle)}
+    <DropdownMenuContext.Provider value={{ props, currentValue: innerValue, openedMap }}>
+      <div ref={root} className={classnames(bem())}>
+        <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
+          {refs.map(renderTitle)}
+        </div>
+        {Children.map(children, (child: ReactElement, index: number) =>
+          cloneElement(child, {
+            setOpened: (v) => setOpened((f) => ({ ...f, [index]: v })),
+            ref: setRefs(index),
+            offset: offset.current,
+            onChange: onInnerChange,
+          }),
+        )}
       </div>
-      {Children.map(children, (child: ReactElement, index: number) =>
-        cloneElement(child, {
-          ref: setRefs(index),
-          offset: offset.current,
-          parentProps: props,
-          parentValue: innerValue,
-          onChange: onInnerChange,
-        }),
-      )}
-    </div>
+    </DropdownMenuContext.Provider>
   );
 };
 
