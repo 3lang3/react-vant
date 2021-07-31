@@ -1,0 +1,30 @@
+import React, { useState } from 'react';
+import { DropdownMenu } from 'react-vant';
+import { components } from 'site-mobile-demo';
+import './style.less';
+
+const option1 = [
+  { text: '全部商品', value: 0 },
+  { text: '新款商品', value: 1 },
+  { text: '活动商品', value: 2 },
+];
+const option2 = [
+  { text: '默认排序', value: 'a' },
+  { text: '好评排序', value: 'b' },
+  { text: '销量排序', value: 'c' },
+];
+
+export default (): React.ReactNode => {
+  const [value, setValue] = useState();
+  const { DemoBlock, DemoSection } = components;
+  return (
+    <DemoSection className="demo-badge">
+      <DemoBlock title="基础用法">
+        <DropdownMenu value={value} onChange={(v) => setValue(v)}>
+          <DropdownMenu.Item name="value1" options={option1} />
+          <DropdownMenu.Item name="value2" options={option2} />
+        </DropdownMenu>
+      </DemoBlock>
+    </DemoSection>
+  );
+};

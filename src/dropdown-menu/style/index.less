@@ -1,0 +1,115 @@
+@import '../../styles/themes/default.less';
+
+.rv-dropdown-menu {
+  user-select: none;
+
+  &__bar {
+    position: relative;
+    display: flex;
+    height: @dropdown-menu-height;
+    background-color: @dropdown-menu-background-color;
+    box-shadow: @dropdown-menu-box-shadow;
+
+    &--opened {
+      z-index: @dropdown-item-z-index + 1;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-width: 0; // hack for flex ellipsis
+    cursor: pointer;
+
+    &:active {
+      opacity: @active-opacity;
+    }
+
+    &--disabled {
+      &:active {
+        opacity: 1;
+      }
+
+      .van-dropdown-menu__title {
+        color: @dropdown-menu-title-disabled-text-color;
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: @dropdown-menu-title-padding;
+    color: @dropdown-menu-title-text-color;
+    font-size: @dropdown-menu-title-font-size;
+    line-height: @dropdown-menu-title-line-height;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: -4px;
+      margin-top: -5px;
+      border: 3px solid;
+      border-color: transparent transparent @gray-4 @gray-4;
+      transform: rotate(-45deg);
+      opacity: 0.8;
+      content: '';
+    }
+
+    &--active {
+      color: @dropdown-menu-title-active-text-color;
+
+      &::after {
+        border-color: transparent transparent currentColor currentColor;
+      }
+    }
+
+    &--down {
+      &::after {
+        margin-top: -1px;
+        transform: rotate(135deg);
+      }
+    }
+  }
+}
+
+.rv-dropdown-item {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: @dropdown-item-z-index;
+  overflow: hidden;
+
+  &__icon {
+    display: block;
+    line-height: inherit;
+  }
+
+  &__option {
+    text-align: left;
+
+    &--active {
+      color: @dropdown-menu-option-active-color;
+
+      .van-dropdown-item__icon {
+        color: @dropdown-menu-option-active-color;
+      }
+    }
+  }
+
+  &--up {
+    top: 0;
+  }
+
+  &--down {
+    bottom: 0;
+  }
+
+  &__content {
+    position: absolute;
+    max-height: @dropdown-menu-content-max-height;
+  }
+}

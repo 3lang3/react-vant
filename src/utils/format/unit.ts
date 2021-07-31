@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { CSSProperties } from 'react';
 import { isDef, inBrowser } from '..';
 import { isNumeric } from '../validate/number';
 
@@ -21,6 +22,14 @@ export function getSizeStyle(originSize?: string | number) {
     };
   }
   return {};
+}
+
+export function getZIndexStyle(zIndex?: string | number) {
+  const style: CSSProperties = {};
+  if (zIndex !== undefined) {
+    style.zIndex = +zIndex;
+  }
+  return style;
 }
 
 // cache

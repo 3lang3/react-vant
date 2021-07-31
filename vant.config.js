@@ -166,6 +166,10 @@ module.exports = {
                 title: 'Dialog 弹出框',
               },
               {
+                path: 'dropdown-menu',
+                title: 'DropdownMenu 下拉菜单',
+              },
+              {
                 path: 'loading',
                 title: 'Loading 加载',
               },

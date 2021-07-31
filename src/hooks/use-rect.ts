@@ -41,4 +41,6 @@ const useRect = (elementRef: Element | Window): Rect => {
   };
 };
 
+export { useRect as getRect };
+
 export default useRect;

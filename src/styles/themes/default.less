@@ -39,6 +39,7 @@
 // Component Colors
 @text-color: #333333;
 @text-link-color: #576b95;
+@danger-color: @red;
 @value-color: #666666;
 @active-color: #f2f3f5;
 @active-opacity: 0.7;
@@ -333,16 +334,18 @@
 @divider-content-right-width: 10%;
 
 // DropdownMenu
-@dropdown-menu-height: 50 * @hd;
+@dropdown-menu-height: 48 * @hd;
 @dropdown-menu-background-color: @white;
+@dropdown-menu-box-shadow: 0 2 * @hd 12 * @hd rgba(100, 101, 102, 0.12);
 @dropdown-menu-title-font-size: 15 * @hd;
 @dropdown-menu-title-text-color: @text-color;
-@dropdown-menu-title-active-text-color: @blue;
-@dropdown-menu-title-disabled-text-color: @gray-dark;
+@dropdown-menu-title-active-text-color: @danger-color;
+@dropdown-menu-title-disabled-text-color: @gray-6;
 @dropdown-menu-title-padding: 0 @padding-xs;
-@dropdown-menu-title-line-height: 18 * @hd;
-@dropdown-menu-option-active-color: @blue;
+@dropdown-menu-title-line-height: @line-height-lg;
+@dropdown-menu-option-active-color: @danger-color;
 @dropdown-menu-content-max-height: 80%;
+@dropdown-item-z-index: 10;
 
 // Empty
 @empty-padding: @padding-xl 0;
