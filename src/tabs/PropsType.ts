@@ -61,8 +61,9 @@ export interface TabPaneProps {
   titleClass?: string;
   disabled?: boolean;
   renderTitle?: Function;
+  children?: React.ReactNode;
 }
 
 export type TabStatic = {
-  TabPane: React.FC;
+  TabPane: React.FC<TabPaneProps>;
 };

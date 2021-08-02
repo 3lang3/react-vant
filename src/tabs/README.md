@@ -14,10 +14,10 @@ import { Tabs } from 'react-vant';
 
 ```jsx
 <Tabs active="active">
-  <Tabs.Pane title="标签 1">内容 1</Tabs.Pane>
-  <Tabs.Pane title="标签 2">内容 2</Tabs.Pane>
-  <Tabs.Pane title="标签 3">内容 3</Tabs.Pane>
-  <Tabs.Pane title="标签 4">内容 4</Tabs.Pane>
+  <Tabs.TabPane title="标签 1">内容 1</Tabs.TabPane>
+  <Tabs.TabPane title="标签 2">内容 2</Tabs.TabPane>
+  <Tabs.TabPane title="标签 3">内容 3</Tabs.TabPane>
+  <Tabs.TabPane title="标签 4">内容 4</Tabs.TabPane>
 </Tabs>
 ```
 
@@ -27,15 +27,15 @@ import { Tabs } from 'react-vant';
 
 ```jsx
 <Tabs active="b">
-  <Tabs.Pane title="标签 1" name="a">
+  <Tabs.TabPane title="标签 1" name="a">
     内容 1
-  </Tabs.Pane>
-  <Tabs.Pane title="标签 2" name="b">
+  </Tabs.TabPane>
+  <Tabs.TabPane title="标签 2" name="b">
     内容 2
-  </Tabs.Pane>
-  <Tabs.Pane title="标签 3" name="c">
+  </Tabs.TabPane>
+  <Tabs.TabPane title="标签 3" name="c">
     内容 3
-  </Tabs.Pane>
+  </Tabs.TabPane>
 </Tabs>
 ```
 
@@ -73,9 +73,9 @@ import { Tabs } from 'react-vant';
 
 ```jsx
 <Tabs type="card">
-  <Tabs.Pane title="标签 1">内容 1</Tabs.Pane>
-  <Tabs.Pane title="标签 2">内容 2</Tabs.Pane>
-  <Tabs.Pane title="标签 3">内容 3</Tabs.Pane>
+  <Tabs.TabPane title="标签 1">内容 1</Tabs.TabPane>
+  <Tabs.TabPane title="标签 2">内容 2</Tabs.TabPane>
+  <Tabs.TabPane title="标签 3">内容 3</Tabs.TabPane>
 </Tabs>
 ```
 
