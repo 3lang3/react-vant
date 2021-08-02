@@ -4,14 +4,14 @@ import { BaseTypeProps } from '../utils';
 type DropdownMenuDirection = 'up' | 'down';
 
 export interface DropdownMenuProps extends BaseTypeProps {
-  value?: Record<string, DropdownMenuItemOption['value']>;
-  onChange?: (v: DropdownMenuProps['value']) => void;
+  value?: Record<string, string | number>;
+  onChange?: (v: Record<string, string | number>) => void;
   overlay?: boolean;
   closeOnClickOutside?: boolean;
   closeOnClickOverlay?: boolean;
   activeColor?: string;
-  zIndex: number | string;
-  duration: number | string;
+  zIndex?: number | string;
+  duration?: number | string;
   direction?: DropdownMenuDirection;
   placeholder?: string;
 }
