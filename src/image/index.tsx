@@ -108,7 +108,7 @@ const Image: React.FC<ImageProps> = (props) => {
   };
 
   return (
-    <div className={classnames(bem({ block, round: props.round }))} style={style}>
+    <div className={classnames(props.className, bem({ block, round: props.round }))} style={style}>
       {renderImage()}
       {renderPlaceholder()}
       {props.children}
