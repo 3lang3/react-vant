@@ -22,6 +22,21 @@ export default (): React.ReactNode => {
           <Swipe.Item>4</Swipe.Item>
         </Swipe>
       </DemoBlock>
+      <DemoBlock title="自定义指示器">
+        <Swipe
+          autoplay="3000"
+          indicatorRender={({ current, count }) => (
+            <div className="custom-indicator">
+              {current}/{count}
+            </div>
+          )}
+        >
+          <Swipe.Item>1</Swipe.Item>
+          <Swipe.Item>2</Swipe.Item>
+          <Swipe.Item>3</Swipe.Item>
+          <Swipe.Item>4</Swipe.Item>
+        </Swipe>
+      </DemoBlock>
       <DemoBlock title="图片懒加载">
         <Swipe autoplay="3000" lazyRender>
           {images.map((item) => (

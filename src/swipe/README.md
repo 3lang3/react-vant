@@ -35,6 +35,39 @@ import { Swipe } from 'react-vant';
 </style>
 ```
 
+### 自定义指示器
+
+通过 `indicatorRender` 可以自定义指示器的渲染。
+
+```jsx
+<Swipe
+  autoplay="3000"
+  indicatorRender={({ current, count }) => (
+    <div className="custom-indicator">
+      {current}/{count}
+    </div>
+  )}
+>
+  <Swipe.Item>1</Swipe.Item>
+  <Swipe.Item>2</Swipe.Item>
+  <Swipe.Item>3</Swipe.Item>
+  <Swipe.Item>4</Swipe.Item>
+</Swipe>
+
+<style>
+  .custom-indicator {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    padding: 2px 8px;
+    color: @white;
+    font-size: 12px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+</style>
+```
+
 ### 懒加载
 
 当 Swipe 中含有图片时，可以通过 `lazyRender` 属性来开启懒加载模式。在懒加载模式下，只会渲染当前页和下一页。
@@ -42,9 +75,9 @@ import { Swipe } from 'react-vant';
 ```jsx
 <Swipe autoplay="3000" lazyRender>
   {images.map((item) => (
-  <Swipe.Item key="{item}">
-    <img src="{item}" alt="" />
-  </Swipe.Item>
+    <Swipe.Item key="{item}">
+      <img src="{item}" alt="" />
+    </Swipe.Item>
   ))}
 </Swipe>
 ```
@@ -80,12 +113,7 @@ const onChange = (index: number) => Toast(`当前 Swipe 索引：${index}`);
 设置 `vertical` 属性后滑块会纵向排列，此时需要指定滑块容器的高度。
 
 ```jsx
- <Swipe
-  autoplay="3000"
-  vertical
-  style={{ height: '200px' }}
-  className="demo-swipe--vertical"
->
+<Swipe autoplay="3000" vertical style={{ height: '200px' }} className="demo-swipe--vertical">
   <Swipe.Item>1</Swipe.Item>
   <Swipe.Item>2</Swipe.Item>
   <Swipe.Item>3</Swipe.Item>
@@ -185,6 +213,7 @@ Swipe 组件在挂载时，会获取自身的宽度，并计算出轮播图的�
 <Swipe v-show="show" ref="swipe" />
 ```
 
-```js
+````js
 this.$refs.swipe.resize();
 ``` -->
+````

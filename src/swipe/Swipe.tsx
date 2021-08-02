@@ -309,6 +309,9 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
 
   const renderIndicator = () => {
     if (showIndicators && count > 1) {
+      if (props.indicatorRender) {
+        return props.indicatorRender({ current: activeIndicator + 1, count });
+      }
       return (
         <div className={classnames(bem('indicators', { vertical }))}>
           {Array(...Array(count)).map(renderDot)}
