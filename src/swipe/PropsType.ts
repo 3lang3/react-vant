@@ -8,6 +8,7 @@ export interface SwipeProps extends BaseTypeProps {
   vertical?: boolean;
   lazyRender?: boolean;
   indicatorColor?: string;
+  indicatorWrapperClass?: string;
   indicatorRender?: ({ current, count }: Record<string, number>) => React.ReactNode;
   loop?: boolean;
   duration?: number | string;

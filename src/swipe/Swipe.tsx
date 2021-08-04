@@ -313,7 +313,7 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
         return props.indicatorRender({ current: activeIndicator + 1, count });
       }
       return (
-        <div className={classnames(bem('indicators', { vertical }))}>
+        <div className={classnames(bem('indicators', { vertical }), props.indicatorWrapperClass)}>
           {Array(...Array(count)).map(renderDot)}
         </div>
       );
