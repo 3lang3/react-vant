@@ -118,44 +118,27 @@ import { Cell } from 'react-vant';
 | label | 标题下方的描述信息 | _string_ | - |
 | size | 单元格大小，可选值为 `large` | _string_ | - |
 | icon | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
-| icon-prefix `v2.5.3` | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
+| rightIcon | 自定义右侧按钮，默认为`arrow` | _string_ | - |
+| iconPrefix `v2.5.3` | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | url | 点击后跳转的链接地址 | _string_ | - |
 | to | 点击后跳转的目标路由对象，同 vue-router 的 [to 属性](https://router.vuejs.org/zh/api/#to) | _string \| object_ | - |
 | border | 是否显示内边框 | _boolean_ | `true` |
 | replace | 是否在跳转时替换当前页面历史 | _boolean_ | `false` |
 | clickable | 是否开启点击反馈 | _boolean_ | `false` |
-| is-link | 是否展示右侧箭头并开启点击反馈 | _boolean_ | `false` |
+| isLink | 是否展示右侧箭头并开启点击反馈 | _boolean_ | `false` |
 | required | 是否显示表单必填星号 | _boolean_ | `false` |
 | center | 是否使内容垂直居中 | _boolean_ | `false` |
-| arrow-direction | 箭头方向，可选值为 `left` `up` `down` | _string_ | `right` |
-| title-style | 左侧标题额外样式 | _any_ | - |
-| title-class | 左侧标题额外类名 | _any_ | - |
-| value-class | 右侧内容额外类名 | _any_ | - |
-| label-class | 描述信息额外类名 | _any_ | - |
+| arrowDirection | 箭头方向，可选值为 `left` `up` `down` | _string_ | `right` |
+| titleStyle | 左侧标题额外样式 | _any_ | - |
+| titleClass | 左侧标题额外类名 | _any_ | - |
+| valueClass | 右侧内容额外类名 | _any_ | - |
+| labelClass | 描述信息额外类名 | _any_ | - |
 
 ### Cell Events
 
-| 事件名 | 说明             | 回调参数       |
-| ------ | ---------------- | -------------- |
-| click  | 点击单元格时触发 | _event: Event_ |
-
-### CellGroup Slots
-
-| 名称    | 说明           |
-| ------- | -------------- |
-| default | 默认插槽       |
-| title   | 自定义分组标题 |
-
-### Cell Slots
-
-| 名称       | 说明                          |
-| ---------- | ----------------------------- |
-| default    | 自定义右侧 value 的内容       |
-| title      | 自定义左侧 title 的内容       |
-| label      | 自定义标题下方 label 的内容   |
-| icon       | 自定义左侧图标                |
-| right-icon | 自定义右侧按钮，默认为`arrow` |
-| extra      | 自定义单元格最右侧的额外内容  |
+| 事件名  | 说明             | 回调参数       |
+| ------- | ---------------- | -------------- |
+| onClick | 点击单元格时触发 | _event: Event_ |
 
 ### 样式变量
 
