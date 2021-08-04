@@ -22,7 +22,7 @@ export interface CellProps extends BaseTypeProps {
   labelClass?: string;
   arrowDirection?: CellArrowDirection;
   border?: boolean;
-  rightIcon?: () => React.ReactElement;
+  rightIcon?: string | React.ReactNode;
   onClick?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
