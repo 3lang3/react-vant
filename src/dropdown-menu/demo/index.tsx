@@ -34,6 +34,24 @@ export default (): React.ReactNode => {
           </DropdownMenu.Item>
         </DropdownMenu>
       </DemoBlock>
+      <DemoBlock title="自定义选中颜色">
+        <DropdownMenu activeColor="#f44336" value={value} onChange={(v) => setValue(v)}>
+          <DropdownMenu.Item name="value1" options={option1} />
+          <DropdownMenu.Item name="value2" options={option2} />
+        </DropdownMenu>
+      </DemoBlock>
+      <DemoBlock title="向上展开">
+        <DropdownMenu direction="up" value={value} onChange={(v) => setValue(v)}>
+          <DropdownMenu.Item name="value1" options={option1} />
+          <DropdownMenu.Item name="value2" options={option2} />
+        </DropdownMenu>
+      </DemoBlock>
+      <DemoBlock title="禁用菜单">
+        <DropdownMenu value={value} onChange={(v) => setValue(v)}>
+          <DropdownMenu.Item disabled name="value1" options={option1} />
+          <DropdownMenu.Item disabled name="value2" options={option2} />
+        </DropdownMenu>
+      </DemoBlock>
     </DemoSection>
   );
 };

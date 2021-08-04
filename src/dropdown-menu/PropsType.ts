@@ -14,6 +14,7 @@ export interface DropdownMenuProps extends BaseTypeProps {
   duration?: number | string;
   direction?: DropdownMenuDirection;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 export type DropdownMenuItemOption = {

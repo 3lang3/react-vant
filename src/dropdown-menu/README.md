@@ -29,14 +29,107 @@ const option2 = [
 export default () => {
   const [value, setValue] = useState();
   return (
-    <DemoSection className="demo-badge">
-      <DemoBlock title="基础用法">
-        <DropdownMenu value={value} onChange={setValue}>
-          <DropdownMenu.Item name="value1" options={option1} />
-          <DropdownMenu.Item name="value2" options={option2} />
-        </DropdownMenu>
-      </DemoBlock>
-    </DemoSection>
+    <DropdownMenu value={value} onChange={setValue}>
+      <DropdownMenu.Item name="value1" options={option1} />
+      <DropdownMenu.Item name="value2" options={option2} />
+    </DropdownMenu>
+  );
+};
+```
+
+### 自定义菜单内容
+
+```jsx
+const option1 = [
+  { text: '全部商品', value: 0 },
+  { text: '新款商品', value: 1 },
+  { text: '活动商品', value: 2 },
+];
+export default () => {
+  const [value, setValue] = useState();
+  return (
+    <DropdownMenu value={value} onChange={(v) => setValue(v)}>
+      <DropdownMenu.Item name="value1" options={option1} />
+      <DropdownMenu.Item title="筛选" name="value2">
+        <Cell center title="包邮" rightIcon={<Switch size={24} />} />
+        <Cell center title="团购" rightIcon={<Switch size={24} />} />
+      </DropdownMenu.Item>
+    </DropdownMenu>
+  );
+};
+```
+
+### 自定义高亮颜色
+
+```jsx
+const option1 = [
+  { text: '全部商品', value: 0 },
+  { text: '新款商品', value: 1 },
+  { text: '活动商品', value: 2 },
+];
+const option2 = [
+  { text: '默认排序', value: 'a' },
+  { text: '好评排序', value: 'b' },
+  { text: '销量排序', value: 'c' },
+];
+
+export default () => {
+  const [value, setValue] = useState();
+  return (
+    <DropdownMenu activeColor="#f44336" value={value} onChange={(v) => setValue(v)}>
+      <DropdownMenu.Item name="value1" options={option1} />
+      <DropdownMenu.Item name="value2" options={option2} />
+    </DropdownMenu>
+  );
+};
+```
+
+### 向上展开
+
+```jsx
+const option1 = [
+  { text: '全部商品', value: 0 },
+  { text: '新款商品', value: 1 },
+  { text: '活动商品', value: 2 },
+];
+const option2 = [
+  { text: '默认排序', value: 'a' },
+  { text: '好评排序', value: 'b' },
+  { text: '销量排序', value: 'c' },
+];
+
+export default () => {
+  const [value, setValue] = useState();
+  return (
+    <DropdownMenu direction="up" value={value} onChange={(v) => setValue(v)}>
+      <DropdownMenu.Item name="value1" options={option1} />
+      <DropdownMenu.Item name="value2" options={option2} />
+    </DropdownMenu>
+  );
+};
+```
+
+### 禁用菜单
+
+```jsx
+const option1 = [
+  { text: '全部商品', value: 0 },
+  { text: '新款商品', value: 1 },
+  { text: '活动商品', value: 2 },
+];
+const option2 = [
+  { text: '默认排序', value: 'a' },
+  { text: '好评排序', value: 'b' },
+  { text: '销量排序', value: 'c' },
+];
+
+export default () => {
+  const [value, setValue] = useState();
+  return (
+    <DropdownMenu disabled value={value} onChange={(v) => setValue(v)}>
+      <DropdownMenu.Item name="value1" options={option1} />
+      <DropdownMenu.Item name="value2" options={option2} />
+    </DropdownMenu>
   );
 };
 ```
@@ -47,6 +140,8 @@ export default () => {
 
 | 参数                | 说明                         | 类型               | 默认值    |
 | ------------------- | ---------------------------- | ------------------ | --------- |
+| disabled            | 是否禁用菜单                 | _boolean_          | false     |
+| placeholder         | 占位文本                     | _string_           | `请选择`  |
 | activeColor         | 菜单标题和选项的选中态颜色   | _string_           | `#ee0a24` |
 | direction           | 菜单展开方向，可选值为`up`   | _string_           | `down`    |
 | zIndex              | 菜单栏 z-index 层级          | _number \| string_ | `10`      |

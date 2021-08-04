@@ -100,8 +100,9 @@ const DropdownMenu: React.FC<DropdownMenuProps> & {
   };
 
   const renderTitle = (item, index: number) => {
-    const showPopup = openedMap[index];
-    const { disabled, titleClass, name: itemName } = item.props;
+    const showPopup = openedMap[index] || false;
+    const { titleClass, name: itemName } = item.props;
+    const disabled = item.props.disabled || props.disabled;
     return (
       <div
         key={index}

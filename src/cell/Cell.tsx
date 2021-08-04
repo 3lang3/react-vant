@@ -71,7 +71,7 @@ const Cell: React.FC<CellProps> & { Group?: React.FC } = (props) => {
     return null;
   };
 
-  const { className, size, center, border = true, isLink, required, onClick } = props;
+  const { className, style, size, center, border = true, isLink, required, onClick } = props;
   const clickable = isLink || props.clickable;
 
   const classes: Record<string, boolean | undefined> = {
@@ -85,6 +85,7 @@ const Cell: React.FC<CellProps> & { Group?: React.FC } = (props) => {
   }
   return (
     <div
+      style={style}
       className={classnames(bem(classes), className)}
       role={clickable ? 'button' : undefined}
       onClick={onClick}
