@@ -127,7 +127,7 @@ const DropdownMenuItem = forwardRef<ItemActionType, DropdownMenuItemProps & Item
             onClose={onClose}
             afterClose={onClosed}
           >
-            {props.options.map(renderOption)}
+            {props.options?.map(renderOption)}
             {props.children}
           </Popup>
         </div>

@@ -1,14 +1,15 @@
 import type { CSSProperties, MouseEvent } from 'react';
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 type CellArrowDirection = 'up' | 'down' | 'left' | 'right';
 
 export interface CellProps extends BaseTypeProps {
-  icon?: string;
+  icon?: string | React.ReactNode;
   size?: string;
-  title?: number | string;
+  title?: number | string | React.ReactNode;
   value?: number | string;
-  label?: number | string;
+  label?: number | string | React.ReactNode;
   center?: boolean;
   round?: boolean;
   isLink?: boolean;
@@ -21,10 +22,7 @@ export interface CellProps extends BaseTypeProps {
   labelClass?: string;
   arrowDirection?: CellArrowDirection;
   border?: boolean;
-  rightIconSlot?: () => React.ReactElement;
-  iconSlot?: () => React.ReactElement;
-  labelSlot?: () => React.ReactElement;
-  titleSlot?: () => React.ReactElement;
+  rightIcon?: () => React.ReactElement;
   onClick?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 

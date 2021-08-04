@@ -8,23 +8,19 @@ const [bem] = createNamespace('cell');
 
 const Cell: React.FC<CellProps> & { Group?: React.FC } = (props) => {
   const renderLabel = () => {
-    const showLabel = props.labelSlot || isDef(props.label);
+    const showLabel = isDef(props.label);
 
     if (showLabel) {
-      return (
-        <div className={classnames(bem('label'), props.labelClass)}>
-          {props.labelSlot ? props.labelSlot() : props.label}
-        </div>
-      );
+      return <div className={classnames(bem('label'), props.labelClass)}>{props.label}</div>;
     }
     return null;
   };
 
   const renderTitle = () => {
-    if (props.titleSlot || isDef(props.title)) {
+    if (isDef(props.title)) {
       return (
         <div className={classnames(bem('title'), props.titleClass)} style={props.titleStyle}>
-          {props.titleSlot ? props.titleSlot() : <span>{props.title}</span>}
+          {props.title}
           {renderLabel()}
         </div>
       );
@@ -47,8 +43,8 @@ const Cell: React.FC<CellProps> & { Group?: React.FC } = (props) => {
   };
 
   const renderLeftIcon = () => {
-    if (props.iconSlot) {
-      return props.iconSlot();
+    if (typeof props.icon !== 'string') {
+      return props.icon;
     }
 
     if (props.icon) {
@@ -64,8 +60,8 @@ const Cell: React.FC<CellProps> & { Group?: React.FC } = (props) => {
   };
 
   const renderRightIcon = () => {
-    if (props.rightIconSlot) {
-      return props.rightIconSlot();
+    if (props.rightIcon) {
+      return props.rightIcon;
     }
 
     if (props.isLink) {

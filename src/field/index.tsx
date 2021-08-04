@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, {
@@ -230,7 +231,15 @@ const Field = (props: FieldProps, ref) => {
 
     return rightIcon ? (
       <div className={classnames(bem('right-icon'))} onClick={onClickRightIcon}>
-        {isString ? <Icon name={props.icon} classPrefix={iconPrefix} /> : icon}
+        {isString ? (
+          typeof props.icon === 'string' ? (
+            <Icon name={props.icon} classPrefix={iconPrefix} />
+          ) : (
+            props.icon
+          )
+        ) : (
+          icon
+        )}
       </div>
     ) : null;
   };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DropdownMenu } from 'react-vant';
+import { DropdownMenu, Cell, Switch } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
@@ -23,6 +23,15 @@ export default (): React.ReactNode => {
         <DropdownMenu value={value} onChange={(v) => setValue(v)}>
           <DropdownMenu.Item name="value1" options={option1} />
           <DropdownMenu.Item name="value2" options={option2} />
+        </DropdownMenu>
+      </DemoBlock>
+      <DemoBlock title="自定义菜单内容">
+        <DropdownMenu value={value} onChange={(v) => setValue(v)}>
+          <DropdownMenu.Item name="value1" options={option1} />
+          <DropdownMenu.Item title="筛选" name="value2">
+            <Cell center title="包邮" rightIcon={<Switch />} />
+            <Cell center title="团购" rightIcon={<Switch />} />
+          </DropdownMenu.Item>
         </DropdownMenu>
       </DemoBlock>
     </DemoSection>
