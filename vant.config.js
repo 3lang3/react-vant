@@ -145,13 +145,18 @@ module.exports = {
                 title: 'Stepper 步进器',
               },
               {
+                path: 'search',
+                title: 'Search 搜索',
+              },
+              {
                 path: 'switch',
                 title: 'Switch 开关',
               },
               {
-                path: 'search',
-                title: 'Search 搜索',
+                path: 'uploader',
+                title: 'Uploader 文件上传',
               },
+
             ],
           },
           {

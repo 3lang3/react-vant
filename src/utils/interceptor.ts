@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { isPromise, noop } from '.';
 
+export type Interceptor = (...args: any[]) => Promise<boolean> | boolean;
+
 export function callInterceptor(options: {
   interceptor?: Function;
   args: any[];

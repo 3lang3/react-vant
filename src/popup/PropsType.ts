@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type Position = 'center' | 'top' | 'bottom' | 'right' | 'left';
+
 export interface PopupProps extends BaseTypeProps {
   /** 自定义标题 */
   title?: string | React.ReactNode;
