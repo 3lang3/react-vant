@@ -4,7 +4,7 @@ import usePopupState from '../hooks/use-popup-state';
 
 import { inBrowser } from '../utils';
 import { mountComponent } from '../utils/mount-component';
-import { DialogProps, DialogStatic } from './PropsType';
+import { DialogProps } from './PropsType';
 
 import BaseDialog from './Dialog';
 
@@ -74,21 +74,18 @@ const Dialog = (options: Partial<DialogProps>): Promise<void> => {
   });
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const DialogFunc = BaseDialog as any as DialogStatic;
+BaseDialog.alert = Dialog;
 
-DialogFunc.alert = Dialog;
-
-DialogFunc.confirm = (options: Partial<DialogProps>) =>
+BaseDialog.confirm = (options: Partial<DialogProps>) =>
   Dialog({
     showCancelButton: true,
     ...options,
   });
 
-DialogFunc.close = () => {
+BaseDialog.close = () => {
   if (instance) {
     instance.unmount();
   }
 };
 
-export default DialogFunc;
+export default BaseDialog;

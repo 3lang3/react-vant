@@ -5,7 +5,7 @@ import Icon from '../icon';
 import Popup from '../popup';
 import Button from '../button';
 
-import { DialogProps } from './PropsType';
+import { DialogProps, DialogStatic } from './PropsType';
 import { createNamespace, addUnit } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
@@ -181,4 +181,4 @@ Dialog.defaultProps = {
   showConfirmButton: true,
 };
 
-export default Dialog;
+export default Dialog as React.FC<DialogProps & { onClose: () => void }> & DialogStatic;

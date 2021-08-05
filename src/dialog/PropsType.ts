@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface DialogProps extends BaseTypeProps {
@@ -43,10 +44,10 @@ export interface DialogProps extends BaseTypeProps {
   callback?: (value: string) => void;
   /** 点击关闭icon按钮时调用方法 */
   onClickCloseIcon?: () => void;
+  children?: React.ReactNode;
 }
 
 export type DialogStatic = {
-  (): (options: Partial<DialogProps>) => Promise<void>;
   confirm: (options: Partial<Omit<DialogProps, 'showCancelButton'>>) => Promise<void>;
   alert: (options: Partial<DialogProps>) => Promise<void>;
   close: () => void;
