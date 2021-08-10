@@ -60,7 +60,7 @@ const Popup: React.FC<PopupProps> = (props) => {
               onClickOverlay();
             }
             if (overlayClosable) {
-              onClose();
+              onClose?.();
             }
           }}
         />
@@ -123,6 +123,7 @@ const Popup: React.FC<PopupProps> = (props) => {
         classNames={transition || name}
         mountOnEnter={!forceRender}
         unmountOnExit={destroyOnClose}
+        onEntered={props.onEntered}
         onExited={() => {
           setAnimatedVisible(false);
           if (props.afterClose && typeof props.afterClose === 'function') {

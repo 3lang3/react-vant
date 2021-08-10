@@ -6,7 +6,7 @@ import { createNamespace } from '../utils';
 
 const [bem] = createNamespace('swipe-item');
 
-const SwipeItem = forwardRef<{}, { index?: number }>((props, ref) => {
+const SwipeItem = forwardRef<unknown, { index?: number; className?: string }>((props, ref) => {
   const context = useContext(SwipeContext);
 
   const [state, setState] = useState({

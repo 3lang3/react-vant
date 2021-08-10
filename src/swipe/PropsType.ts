@@ -1,7 +1,8 @@
-import { ForwardRefExoticComponent } from 'react';
+import React, { ForwardRefExoticComponent } from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface SwipeProps extends BaseTypeProps {
+  ref?: React.MutableRefObject<SwipeActionType>;
   width?: number | string;
   height?: number | string;
   autoplay?: number | string;
@@ -17,8 +18,18 @@ export interface SwipeProps extends BaseTypeProps {
   showIndicators?: boolean;
   stopPropagation?: boolean;
   onChange?: (index: number) => void;
+  children?: React.ReactNode;
 }
 
 export type SwipeStatic = {
-  Item: ForwardRefExoticComponent<{ index?: number; children: React.ReactNode }>;
+  Item: ForwardRefExoticComponent<{
+    index?: number;
+    className?: string;
+    children: React.ReactNode;
+  }>;
+};
+
+export type SwipeActionType = {
+  rect: () => any;
+  resize: () => void;
 };

@@ -52,4 +52,5 @@ export interface PopupProps extends BaseTypeProps {
   onClose?: () => void;
   /** 关闭弹出层且动画结束后触发	 */
   afterClose?: () => void;
+  onEntered?: () => void;
 }

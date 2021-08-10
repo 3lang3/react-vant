@@ -7,6 +7,8 @@ import React, {
   Children,
   cloneElement,
   ReactElement,
+  forwardRef,
+  useImperativeHandle,
 } from 'react';
 import classnames from 'classnames';
 
@@ -17,14 +19,13 @@ import usePageVisibility from '../hooks/use-page-visibility';
 import useEventListener from '../hooks/use-event-listener';
 
 import SwipeContext from './SwipeContext';
-import { SwipeProps, SwipeStatic } from './PropsType';
+import { SwipeActionType, SwipeProps, SwipeStatic } from './PropsType';
 import { doubleRaf } from '../utils/raf';
 import { createNamespace, preventDefault, isHidden, range } from '../utils';
-import SwipeItem from './SwipeItem';
 
 const [bem] = createNamespace('swipe');
 
-const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
+const Swipe = forwardRef<SwipeActionType, SwipeProps>((props, compRef) => {
   const { loop, lazyRender, children, vertical, duration, showIndicators, initialSwipe, onChange } =
     props;
 
@@ -169,27 +170,27 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
 
   // initialize swipe position
   const initialize = (active = +props.initialSwipe) => {
-    if (!root.current || isHidden(root.current)) {
+    if (!root.current) {
       return;
     }
 
     stopAutoplay();
+    const newState = { ...state };
+    if (!isHidden(root.current)) {
+      const rect = {
+        width: root.current.offsetWidth,
+        height: root.current.offsetHeight,
+      };
+      newState.rect = rect;
+      newState.width = +(props.width ?? rect.width);
+      newState.height = +(props.height ?? rect.height);
+    }
 
-    const rect = {
-      width: root.current.offsetWidth,
-      height: root.current.offsetHeight,
-    };
+    newState.active = active;
+    newState.offset = getTargetOffset(active);
 
     setSwiping(true);
-    Object.assign(state, {
-      rect,
-      active,
-      width: +props.width || rect.width,
-      height: +props.height || rect.height,
-      offset: getTargetOffset(active),
-    });
-
-    setState({ ...state });
+    setState(newState);
     refs.forEach((ref) => {
       ref.setOffset(0);
     });
@@ -286,6 +287,11 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
     initialize(activeIndicator);
   };
 
+  useImperativeHandle(compRef, () => ({
+    resize,
+    rect: () => root.current.getBoundingClientRect(),
+  }));
+
   useEffect(() => {
     resize();
   }, [windowSize.width, windowSize.height]);
@@ -343,7 +349,7 @@ const Swipe: React.FC<SwipeProps> & SwipeStatic = (props) => {
       </div>
     </SwipeContext.Provider>
   );
-};
+});
 
 Swipe.defaultProps = {
   initialSwipe: 0,
@@ -354,6 +360,4 @@ Swipe.defaultProps = {
   stopPropagation: true,
 };
 
-Swipe.Item = SwipeItem;
-
-export default Swipe;
+export default Swipe as React.ForwardRefExoticComponent<SwipeProps> & SwipeStatic;

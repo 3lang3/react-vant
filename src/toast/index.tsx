@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { forwardRef, useImperativeHandle } from 'react';
 import usePopupState from '../hooks/use-popup-state';
 

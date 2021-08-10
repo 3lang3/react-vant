@@ -2,6 +2,10 @@
 
 <hr />
 
+## TODO
+
+- [ ] swipe采用swiperjs实现
+- [ ] 基础Portal和render重构
 ## 特性
 
 - 30+ 高质量组件，覆盖移动端基本场景
