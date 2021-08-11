@@ -37,16 +37,16 @@ import { Swipe } from 'react-vant';
 
 ### 自定义指示器
 
-通过 `indicatorRender` 可以自定义指示器的渲染。
+通过 `pagination` 可以自定义指示器的渲染，详见[pagination api](https://swiperjs.com/swiper-api#pagination)。
 
 ```jsx
 <Swipe
   autoplay={3000}
-  indicatorRender={({ current, count }) => (
-    <div className="custom-indicator">
-      {current}/{count}
-    </div>
-  )}
+  pagination={{
+    renderBullet: (index, className) => {
+      return `<span class="custom-pagination--bullet ${className}"></span>`;
+    },
+  }}
 >
   <Swipe.Item>1</Swipe.Item>
   <Swipe.Item>2</Swipe.Item>
@@ -55,15 +55,11 @@ import { Swipe } from 'react-vant';
 </Swipe>
 
 <style>
-  .custom-indicator {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    padding: 2px 8px;
-    color: @white;
-    font-size: 12px;
-    border-radius: 15px;
-    background: rgba(0, 0, 0, 0.1);
+  .custom-pagination--bullet {
+    width: 10px !important;
+    height: 4px !important;
+    margin: 0 2px !important;
+    border-radius: 2px !important;
   }
 </style>
 ```
