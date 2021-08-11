@@ -204,10 +204,6 @@ module.exports = {
                 title: 'Empty 空状态',
               },
               {
-                path: 'image-preview',
-                title: 'ImagePreview 图片预览',
-              },
-              {
                 path: 'list',
                 title: 'List 列表',
               },

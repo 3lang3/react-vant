@@ -1,5 +1,7 @@
+import { SwiperSlide } from 'swiper/react';
 import Swipe from './Swipe';
-import SwipeItem from './SwipeItem';
+
+const SwipeItem = SwiperSlide;
 
 Swipe.Item = SwipeItem;
 

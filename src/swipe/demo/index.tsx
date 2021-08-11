@@ -15,7 +15,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Swipe autoplay="3000">
+        <Swipe autoplay={3000}>
           <Swipe.Item>1</Swipe.Item>
           <Swipe.Item>2</Swipe.Item>
           <Swipe.Item>3</Swipe.Item>
@@ -24,12 +24,12 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="自定义指示器">
         <Swipe
-          autoplay="3000"
-          indicatorRender={({ current, count }) => (
-            <div className="custom-indicator">
-              {current}/{count}
-            </div>
-          )}
+          autoplay={3000}
+          // indicatorRender={({ current, count }) => (
+          //   <div className="custom-indicator">
+          //     {current}/{count}
+          //   </div>
+          // )}
         >
           <Swipe.Item>1</Swipe.Item>
           <Swipe.Item>2</Swipe.Item>
@@ -38,10 +38,10 @@ export default (): React.ReactNode => {
         </Swipe>
       </DemoBlock>
       <DemoBlock title="图片懒加载">
-        <Swipe autoplay="3000" lazyRender>
+        <Swipe lazy>
           {images.map((item) => (
             <Swipe.Item key={item}>
-              <img src={item} alt="" />
+              <img className="swiper-lazy" data-src={item} alt="" />
             </Swipe.Item>
           ))}
         </Swipe>
@@ -56,7 +56,7 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="纵向滚动">
         <Swipe
-          autoplay="3000"
+          autoplay={3000}
           vertical
           style={{ height: '200px' }}
           className="demo-swipe--vertical"

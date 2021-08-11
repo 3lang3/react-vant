@@ -33,7 +33,7 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="垂直滚动">
         <NoticeBar leftIcon="info">
-          <Swipe autoplay="3000" showIndicators={false} vertical className="notice-swipe">
+          <Swipe autoplay={1000} pagination={false} vertical className="notice-swipe">
             <Swipe.Item>内容 1</Swipe.Item>
             <Swipe.Item>内容 2</Swipe.Item>
             <Swipe.Item>内容 3</Swipe.Item>
