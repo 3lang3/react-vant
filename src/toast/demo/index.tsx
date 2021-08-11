@@ -10,21 +10,6 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock card title="基础用法">
-        <Cell
-          title="动态更新"
-          isLink
-          onClick={() => {
-            let remain = 4;
-            const updateConfig = Toast.info({
-              message: `还剩 ${remain + 1} 秒`,
-              duration: 5000,
-              onClose: () => clearInterval(timer),
-            });
-            const timer = setInterval(() => {
-              updateConfig({ message: `还剩 ${remain--} 秒` });
-            }, 1000);
-          }}
-        />
         <Cell title="文字提示" isLink onClick={() => Toast.info('提示内容')} />
         <Cell
           title="加载提示"
