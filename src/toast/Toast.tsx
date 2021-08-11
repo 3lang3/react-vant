@@ -12,7 +12,6 @@ import { ToastProps } from './PropsType';
 const [bem] = createNamespace('toast');
 
 const Toast: React.FC<ToastProps> = (props) => {
-  let timer: NodeJS.Timeout;
   let clickable = false;
 
   const toggleClickable = () => {
@@ -27,26 +26,12 @@ const Toast: React.FC<ToastProps> = (props) => {
   };
 
   const clearTimer = () => {
-    clearTimeout(timer);
+    props.onClose();
   };
-
-  useEffect(() => {
-    return clearTimer;
-  });
 
   useEffect(() => {
     toggleClickable();
   }, [props.visible, props.forbidClick]);
-
-  useEffect(() => {
-    clearTimer();
-    if (props.visible && props.duration > 0) {
-      timer = setTimeout(() => {
-        props.close();
-        props.onClose?.();
-      }, props.duration);
-    }
-  }, [props.visible, props.duration]);
 
   const renderIcon = () => {
     const { icon, type, iconPrefix, iconSize, loadingType } = props;
@@ -71,7 +56,6 @@ const Toast: React.FC<ToastProps> = (props) => {
 
   const renderMessage = () => {
     const { message } = props;
-
     if (isDef(message) && message !== '') {
       return <div className={classnames(bem('info'))}>{message}</div>;
     }

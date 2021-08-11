@@ -15,7 +15,9 @@ export interface ToastProps extends BaseTypeProps {
   closeOnClick?: boolean;
   type?: string;
   position?: Position;
-  close?: () => void;
+  /** 轻提示弹出时的的父容器 */
+  getContainer?: HTMLElement | (() => HTMLElement);
+  /** Toast 完全关闭后的回调 */
   onClose?: () => void;
 }
 
