@@ -39,6 +39,22 @@ Toast.success('成功文案');
 Toast.fail('失败文案');
 ```
 
+### 动态更新提示
+
+执行 Toast 方法时会返回对应的 Toast 实例，通过修改实例上的 message 属性可以实现动态更新提示的效果。
+
+```jsx
+let remain = 4;
+const updateConfig = Toast.info({
+  message: `还剩 ${remain + 1} 秒`,
+  duration: 5000,
+  onClose: () => clearInterval(timer),
+});
+const timer = setInterval(() => {
+  updateConfig({ message: `还剩 ${remain--} 秒` });
+}, 1000);
+```
+
 ### 自定义图标
 
 通过 `icon` 选项可以自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接，通过`loadingType` 属性可以自定义加载图标类型。
@@ -59,22 +75,6 @@ Toast.loading({
   forbidClick: true,
   loadingType: 'spinner',
 });
-```
-
-### 动态更新提示
-
-执行 Toast 方法时会返回对应的 Toast 实例，通过修改实例上的 message 属性可以实现动态更新提示的效果。
-
-```jsx
-let remain = 4;
-const updateConfig = Toast.info({
-  message: `还剩 ${remain + 1} 秒`,
-  duration: 5000,
-  onClose: () => clearInterval(timer),
-});
-const timer = setInterval(() => {
-  updateConfig({ message: `还剩 ${remain--} 秒` });
-}, 1000);
 ```
 
 ### 自定义位置
@@ -133,8 +133,8 @@ const timer = setInterval(() => {
 ### Options
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- | --- |
-| type | 提示类型，可选值为 `loading` `success`<br>`fail` `html` | _string_ | `text` |
+| --- | --- | --- | --- |
+| type | 提示类型，可选值为 `loading` `success`<br>`fail` `info` | _string_ | `text` |
 | position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
 | icon | 自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
@@ -142,12 +142,11 @@ const timer = setInterval(() => {
 | overlay | 是否显示背景遮罩层 | _boolean_ | `false` |
 | forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
 | closeOnClick | 是否在点击后关闭 | _boolean_ | `false` |
-| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
 | loadingType | [加载图标类型](#/zh-CN/loading), 可选值为 `spinner` | _string_ | `circular` |
 | duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
 | className | 自定义类名 | _any_ | - |
-| onOpened | 完全展示后的回调函数 | _Function_ | - |
 | onClose | 关闭时的回调函数 | _Function_ | - |
+| getContainer | 自定义轻提示的父容器 | _HTMLElement_ _(() => HTMLElement))_ | `document.body` |
 
 ### 样式变量
 
