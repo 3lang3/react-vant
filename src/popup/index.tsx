@@ -132,7 +132,7 @@ const Popup: React.FC<PopupProps> = (props) => {
         }}
       >
         <div
-          style={{ ...style, display: !animatedVisible && 'none' }}
+          style={{ ...style, display: !visible && !animatedVisible ? 'none' : undefined }}
           className={classnames(
             bem({
               round,
