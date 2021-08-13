@@ -43,11 +43,11 @@ export interface PopupProps extends BaseTypeProps {
   /** 是否在页面回退时自动关闭	 */
   closeOnPopstate?: boolean;
   /** 点击弹出层时触发 */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   /** 点击关闭图标时触发	 */
-  onClickCloseIcon?: () => void;
+  onClickCloseIcon?: (e: React.MouseEvent) => void;
   /** 点击遮罩层时触发 */
-  onClickOverlay?: () => void;
+  onClickOverlay?: (e: React.MouseEvent) => void;
   /** 关闭弹出层时触发	*/
   onClose?: () => void;
   /** 关闭弹出层且动画结束后触发	 */

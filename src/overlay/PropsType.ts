@@ -13,7 +13,7 @@ export interface OverlayProps extends BaseTypeProps {
   /** 是否锁定背景滚动，锁定时蒙层里的内容也将无法滚动 */
   lockScroll?: boolean;
   /** 点击时触发 */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   /** 完全关闭后的回调 */
   afterClose?: () => void;
 }

@@ -1,91 +1,153 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+/* eslint-disable @typescript-eslint/naming-convention */
+import React, { useEffect, useState } from 'react';
 
-import usePopupState from '../hooks/use-popup-state';
+import ReactDOM from 'react-dom';
 
-import { inBrowser } from '../utils';
-import { mountComponent } from '../utils/mount-component';
-import { DialogProps } from './PropsType';
+import { noop } from '../utils';
+import { AlertDialogProps, DialogProps, DialogStatic } from './PropsType';
 
 import BaseDialog from './Dialog';
+import { resolveContainer } from '../utils/dom/getContainer';
 
-let instance = null;
+const Dialog = BaseDialog as DialogStatic;
 
-const Component = forwardRef((_, ref) => {
-  const [state, { open, toggle, close }] = usePopupState();
-  useImperativeHandle(ref, () => ({
-    open,
-    toggle,
-  }));
+// 可返回用于销毁此弹窗的方法
+Dialog.show = (props: DialogProps) => {
+  const defaultOptions = {
+    overlay: true,
+    closeable: false,
+    closeIcon: 'cross',
+    lockScroll: true,
+    transition: 'rv-dialog-bounce',
+    showConfirmButton: true,
+    showCancelButton: false,
+    overlayClosable: true,
+    closeOnClickOverlay: false,
+  };
+  const {
+    afterClose,
+    onCancel = noop,
+    onConfirm = noop,
+    onClose = noop,
+    cancelProps,
+    confirmProps,
+    ...restProps
+  } = props;
 
-  return <BaseDialog {...state} onClose={close} />;
-});
+  const userContainer = resolveContainer(props.getContainer);
+  const container = document.createElement('div');
+  userContainer.appendChild(container);
+  let destroy = noop;
 
-const Dialog = (options: Partial<DialogProps>): Promise<void> => {
-  if (!inBrowser) {
-    return Promise.resolve();
-  }
+  const TempDialog = () => {
+    const [visible, setVisible] = useState(false);
+    const [cancelLoading, setCancelLoading] = useState(false);
+    const [okLoading, setOkLoading] = useState(false);
 
-  return new Promise((resolve, reject) => {
-    const defaultOptions = {
-      title: '',
-      width: '',
-      theme: null,
-      message: '',
-      overlay: true,
-      callback: null,
-      closeable: false,
-      closeIcon: 'cross',
-      className: '',
-      lockScroll: true,
-      beforeClose: null,
-      overlayClass: '',
-      overlayStyle: null,
-      transition: 'rv-dialog-bounce',
-      messageAlign: '',
-      cancelButtonText: '',
-      cancelButtonColor: null,
-      confirmButtonText: '',
-      children: '',
-      confirmButtonColor: null,
-      showConfirmButton: true,
-      showCancelButton: false,
-      overlayClosable: false,
+    useEffect(() => {
+      setVisible(true);
+    }, []);
+
+    destroy = () => {
+      setVisible(false);
+      if (onClose) onClose();
+    };
+    const _afterClose = () => {
+      if (afterClose) {
+        afterClose();
+      }
+      const unmountResult = ReactDOM.unmountComponentAtNode(container);
+      if (unmountResult && container.parentNode) {
+        container.parentNode.removeChild(container);
+      }
     };
 
-    mountComponent(Component, (dialog) => {
-      if (!dialog) {
+    const _onConfirm = async (e) => {
+      const i = setTimeout(() => setOkLoading(true));
+      if ((await onConfirm(e)) !== false) {
+        clearTimeout(i);
+        destroy();
+      } else {
+        clearTimeout(i);
+        setOkLoading(false);
+      }
+    };
+    const _onCancel = async (e, clickOverlay?) => {
+      if (clickOverlay) {
+        destroy();
         return;
       }
-
-      if (instance) {
-        instance.unmount();
-        instance = null;
+      const i = setTimeout(() => setCancelLoading(true));
+      if ((await onCancel(e)) !== false) {
+        clearTimeout(i);
+        destroy();
+      } else {
+        clearTimeout(i);
+        setCancelLoading(false);
       }
-      instance = dialog;
+    };
 
-      dialog.open({
-        ...defaultOptions,
-        ...options,
-        callback: (action) => {
-          (action === 'confirm' ? resolve : reject)(action);
-        },
-      });
+    return (
+      <BaseDialog
+        {...defaultOptions}
+        {...restProps}
+        visible={visible}
+        getContainer={() => container}
+        cancelProps={{ loading: cancelLoading, ...cancelProps }}
+        confirmProps={{ loading: okLoading, ...confirmProps }}
+        onCancel={_onCancel}
+        onConfirm={_onConfirm}
+        afterClose={_afterClose}
+      />
+    );
+  };
+  if (props.headerImage && props.waitImageLoad !== false) {
+    const preloadImage = new Image();
+    preloadImage.src = props.headerImage;
+    preloadImage.onload = () => {
+      ReactDOM.render(<TempDialog />, container);
+    };
+  } else {
+    ReactDOM.render(<TempDialog />, container);
+  }
+
+  return destroy;
+};
+
+// 可使用 async/await 的方式
+Dialog.alert = (props: AlertDialogProps) => {
+  const { onConfirm = noop } = props;
+  return new Promise((resolve) => {
+    Dialog.show({
+      ...props,
+      // 强制不现实 OK Btn
+      showCancelButton: false,
+      onConfirm: (e) => {
+        onConfirm(e);
+        resolve(e);
+      },
     });
   });
 };
 
-BaseDialog.alert = Dialog;
-
-BaseDialog.confirm = (options: Partial<DialogProps>) =>
-  Dialog({
-    showCancelButton: true,
-    ...options,
+Dialog.confirm = (props: DialogProps): Promise<boolean> => {
+  const { onCancel = noop, onConfirm = noop } = props;
+  return new Promise((resolve, reject) => {
+    Dialog.show({
+      // 强制显示 OK Btn
+      confirmButtonText: '确认',
+      showCancelButton: true,
+      ...props,
+      onCancel: (e) => {
+        onCancel(e);
+        reject();
+      },
+      onConfirm: (e) => {
+        onConfirm(e);
+        resolve(true);
+      },
+    });
   });
-
-BaseDialog.close = () => {
-  if (instance) {
-    instance.unmount();
-  }
 };
 
-export default BaseDialog;
+export default Dialog;

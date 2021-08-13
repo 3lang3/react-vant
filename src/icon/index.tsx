@@ -6,8 +6,8 @@ import Badge from '../badge';
 
 export interface IconProps extends IconPropsType {
   className?: string;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onTouchStart?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (e: React.MouseEvent) => void;
+  onTouchStart?: (e: React.MouseEvent) => void;
   classPrefix?: string;
   style?: React.CSSProperties;
 }
