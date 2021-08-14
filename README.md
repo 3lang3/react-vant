@@ -2,10 +2,10 @@
 
 <hr />
 
-## TODO
+## todo list
 
-- [ ] swipe采用swiperjs实现
-- [ ] 基础Portal和render重构
+- []重构form单元
+
 ## 特性
 
 - 30+ 高质量组件，覆盖移动端基本场景
@@ -94,6 +94,7 @@ yarn release
 ### Basic Components
 
 - [x] Button 按钮
+- [x] Typography 文本
 - [x] Icon 图标
 - [x] Image 图片
 - [x] Popup 弹出框
@@ -117,11 +118,12 @@ yarn release
 
 - [x] Badge 徽标
 - [x] Collapse 折叠面板
+- [x] Empty 空状态
+- [x] ImagePreview 图片预览
+- [x] List 列表
 - [x] NoticeBar 通知栏
 - [x] Sticky 粘性布局
 - [x] Swipe 轮播
-- [x] Empty 空状态
-- [x] List 列表
 - [x] Tag 标签
 
 ### Action Components
