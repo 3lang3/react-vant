@@ -1,92 +1,53 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import cls from 'classnames';
-// Utils
-import { pick, createNamespace } from '../utils';
-
-// Components
+import { ImagePreviewProps } from './PropsType';
+import { createNamespace, pick } from '../utils';
 import Icon from '../icon';
 import Swipe from '../swipe';
+import Image from '../image';
+import Loading from '../loading';
 import Popup from '../popup';
-import ImagePreviewItem from './ImagePreviewItem';
-import { ImagePreviewProps, ImagePreviewStatic } from './PropsType';
-import useWindowSize from '../hooks/use-window-size';
-import { SwipeActionType } from '../swipe/PropsType';
 
 const [bem] = createNamespace('image-preview');
 
 const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
-  const [state, setState] = useState({ active: 0, rootWidth: 0, rootHeight: 0 });
+  const [active, setActive] = useState(() => props.startPosition);
+  const mountedRef = useRef(false);
 
-  const swipeRef = useRef<SwipeActionType>();
-  const windowSize = useWindowSize();
-
-  const resize = () => {
-    if (swipeRef.current) {
-      const rect = swipeRef.current.rect();
-      const newState = { ...state };
-      newState.rootWidth = rect.width;
-      newState.rootHeight = rect.height;
-      setState(newState);
-      swipeRef.current.resize();
+  const onSwipeChange = (idx: number) => {
+    if (active !== idx && mountedRef.current) {
+      setActive(idx);
+      props.onChange?.(idx);
     }
-  };
-
-  useEffect(() => {
-    resize();
-  }, [windowSize.width, windowSize.height]);
-
-  const setActive = (active: number) => {
-    if (active !== state.active) {
-      setState((v) => ({ ...v, active }));
-      // emit('change', active);
-    }
-  };
-
-  useEffect(() => {
-    const { startPosition } = props;
-    if (props.visible) {
-      setActive(+startPosition);
-      setImmediate(() => {
-        resize();
-      });
-    }
-  }, [props.visible]);
-
-  const renderIndex = () => {
-    if (props.showIndex) {
-      return (
-        <div className={cls(bem('index'))}>
-          {props.indexRender
-            ? props.indexRender({ index: state.active, len: props.images.length })
-            : `${state.active + 1} / ${props.images.length}`}
-        </div>
-      );
-    }
-    return null;
   };
 
   const renderImages = () => (
     <Swipe
-      ref={swipeRef}
+      onAfterInit={() => {
+        mountedRef.current = true;
+      }}
+      observer
+      observeParents
       loop={props.loop}
       className={cls(bem('swipe'))}
       duration={props.swipeDuration}
-      initialSwipe={props.startPosition}
-      showIndicators={props.showIndicators}
-      indicatorColor="white"
-      onChange={setActive}
+      initialSwipe={active}
+      onChange={onSwipeChange}
+      pagination={props.showIndicators}
     >
       {props.images.map((image, i) => (
-        <ImagePreviewItem
-          // eslint-disable-next-line react/no-array-index-key
-          key={i}
-          src={image}
-          visible={props.visible}
-          active={state.active}
-          rootWidth={state.rootWidth}
-          rootHeight={state.rootHeight}
-          onClose={props.onClose}
-        />
+        // eslint-disable-next-line react/no-array-index-key
+        <Swipe.Item key={i}>
+          <Image
+            onClick={() => {
+              props.onClose?.({ url: image, index: i });
+            }}
+            loadingIcon={<Loading type="spinner" />}
+            src={image}
+            fit="contain"
+            className={cls(bem('image'))}
+          />
+        </Swipe.Item>
       ))}
     </Swipe>
   );
@@ -97,18 +58,32 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
         <Icon
           name={props.closeIcon}
           className={cls(bem('close-icon', props.closeIconPosition))}
-          onClick={props?.onClose}
+          onClick={() => props.onClose?.()}
         />
       );
     }
     return null;
   };
+
+  const renderIndex = () => {
+    if (props.showIndex) {
+      return (
+        <div className={cls(bem('index'))}>
+          {props.indexRender
+            ? props.indexRender({ index: active, len: props.images.length })
+            : `${active + 1} / ${props.images.length}`}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <Popup
       className={cls(bem(), props.className)}
       overlayClass={cls(bem('overlay'))}
       afterClose={props.afterClose}
-      {...pick(props, ['visible', 'transition', 'overlayStyle', 'closeOnPopstate'])}
+      {...pick(props, ['visible', 'overlayStyle', 'closeOnPopstate'])}
     >
       {renderClose()}
       {renderImages()}
@@ -125,7 +100,8 @@ ImagePreview.defaultProps = {
   swipeDuration: 300,
   startPosition: 0,
   closeIcon: 'clear',
-  closeIconPosition: 'right',
+  closeIconPosition: 'top-right',
+  showIndicators: false,
 };
 
-export default ImagePreview as React.FC<ImagePreviewProps> & ImagePreviewStatic;
+export default ImagePreview;

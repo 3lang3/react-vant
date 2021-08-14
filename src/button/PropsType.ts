@@ -57,5 +57,5 @@ export interface ButtonProps extends BaseTypeProps {
   /**
    * 点击事件
    */
-  onClick?: (e: Event) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }

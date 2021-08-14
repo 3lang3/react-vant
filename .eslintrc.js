@@ -8,6 +8,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-param-reassign': 'off',
     'no-use-before-define': 'off',
-    'no-explicit-any': 'off'
+    'no-explicit-any': 'off',
+    'no-underscore-dangle': 'off'
   },
 };

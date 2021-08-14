@@ -39,9 +39,10 @@ try {
     title: '标题',
     message: '弹窗内容',
   });
-  // confirm
+  // after confirm do something
+  console.log('confirm');
 } catch (erorr) {
-  // cancel
+  // after cancel do something
 }
 ```
 
@@ -66,20 +67,16 @@ Dialog.confirm({
 
 将 theme 选项设置为 `round-button` 可以展示圆角按钮风格的弹窗，该选项从 2.10.0 版本开始支持。
 
-```js
+```jsx
 Dialog.alert({
   title: '标题',
   message: '弹窗内容',
   theme: 'round-button',
-}).then(() => {
-  // on close
 });
 
 Dialog.alert({
   message: '弹窗内容',
   theme: 'round-button',
-}).then(() => {
-  // on close
 });
 ```
 
@@ -87,7 +84,7 @@ Dialog.alert({
 
 通过 `children` 属性可以传入 `JSX`, 来自定义显示的内容。
 
-```js
+```jsx
 Dialog.alert({
   title: '标题',
   closeable: true,
@@ -97,36 +94,27 @@ Dialog.alert({
       代码是写出来给人看的，附带能在机器上运行
     </div>
   ),
-})
-  .then(() => {
-    // on confirm
-  })
-  .catch(() => {
-    // on cancel
-  });
+});
 ```
 
 ### 异步关闭
 
-通过 `beforeClose` 属性可以传入一个回调函数，在弹窗关闭前进行特定操作。
+通过 `onConfirm` 和 `onCancel` 属性返回`Promise`函数，在弹窗关闭前进行特定操作。
 
-```js
-const beforeClose = (action, done) =>
-  new Promsie((resolve) => {
+```jsx
+const onConfirm = (action, done) => {
+  return new Promise((res) => {
     setTimeout(() => {
-      if (action === 'confirm') {
-        resolve(true);
-      } else {
-        // 拦截取消操作
-        resolve(false);
-      }
-    }, 1000);
+      res(true);
+      Toast.success({ message: '确认按钮异步' });
+    }, 3000);
   });
+};
 
 Dialog.confirm({
   title: '标题',
   message: '弹窗内容',
-  beforeClose,
+  onConfirm,
 });
 ```
 
@@ -143,7 +131,7 @@ const [show, setShow] = useState(false);
   visible={show}
   title="标题"
   showCancelButton
-  onClose={() => setShow(false)}
+  onCancel={() => setShow(false)}
   onConfirm={() => alert('confirm button click')}
 >
   <img src="https://img.yzcdn.cn/vant/apple-3.jpg" alt="2131" />
@@ -154,12 +142,12 @@ const [show, setShow] = useState(false);
 
 ### 方法
 
-| 方法名         | 说明             | 参数      | 返回值    |
-| -------------- | ---------------- | --------- | --------- |
-| Dialog         | 展示弹窗         | `options` | `Promise` |
-| Dialog.alert   | 展示消息提示弹窗 | `options` | `Promise` |
-| Dialog.confirm | 展示消息确认弹窗 | `options` | `Promise` |
-| Dialog.close   | 关闭弹窗         | -         | `void`    |
+| 方法名         | 说明             | 参数      | 返回值            |
+| -------------- | ---------------- | --------- | ----------------- |
+| Dialog         | 弹窗组件         | `options` | `React.ReactNode` |
+| Dialog.show    | 展示提示弹窗     | `options` | `Promise`         |
+| Dialog.alert   | 展示消息提示弹窗 | `options` | `Promise`         |
+| Dialog.confirm | 展示消息确认弹窗 | `options` | `Promise`         |
 
 ### Props
 
@@ -186,17 +174,11 @@ const [show, setShow] = useState(false);
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭弹窗 | _boolean_ | `false` |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
-| beforeClose | 关闭前的回调函数，<br>调用 done() 后关闭弹窗，<br>调用 done(false) 阻止弹窗关闭 | _(action, done) => void_ | - |
 | transition | 动画类名 [see](https://reactcommunity.org/react-transition-group/) | _string_ | - |
-
-### Props
-
-通过组件调用 `Dialog` 时，支持以下 Props：
-
-| 事件      | 说明               | 回调参数 |
-| --------- | ------------------ | -------- |
-| onConfirm | 点击确认按钮时触发 | -        |
-| onCancel  | 点击取消按钮时触发 | -        |
+| onCancel | 点击取消按钮时触发 | _Function_ | - |
+| onConfirm | 点击确认按钮时触发 | _Function_ | - |
+| onClose | Dialog 关闭时的回调 | _Function_ | - |
+| afterClose | Dialog 完全关闭时的回调 | _Function_ | - |
 
 ### 样式变量
 

@@ -1,35 +1,19 @@
-import React, { ForwardRefExoticComponent } from 'react';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/swiper-react';
+import SwiperClass from 'swiper/types/swiper-class';
 import { BaseTypeProps } from '../utils';
 
-export interface SwipeProps extends BaseTypeProps {
-  ref?: React.MutableRefObject<SwipeActionType>;
-  width?: number | string;
-  height?: number | string;
-  autoplay?: number | string;
+export interface SwipeProps extends Omit<Swiper, 'onChange'>, BaseTypeProps {
   vertical?: boolean;
-  lazyRender?: boolean;
-  indicatorColor?: string;
-  indicatorWrapperClass?: string;
-  indicatorRender?: ({ current, count }: Record<string, number>) => React.ReactNode;
-  loop?: boolean;
-  duration?: number | string;
-  touchable?: boolean;
-  initialSwipe?: number | string;
+  duration?: number;
+  initialSwipe?: number;
   showIndicators?: boolean;
-  stopPropagation?: boolean;
   onChange?: (index: number) => void;
   children?: React.ReactNode;
 }
 
 export type SwipeStatic = {
-  Item: ForwardRefExoticComponent<{
-    index?: number;
-    className?: string;
-    children: React.ReactNode;
-  }>;
+  Item: React.FC<SwiperSlide>;
 };
 
-export type SwipeActionType = {
-  rect: () => any;
-  resize: () => void;
-};
+export type SwipeActionType = SwiperClass;

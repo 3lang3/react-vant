@@ -1,10 +1,11 @@
-import React from 'react';
-import { Toast, Swipe } from 'react-vant';
+import React, { useState } from 'react';
+import { Toast, Swipe, Button, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
+  const [visible, set] = useState(false);
   const images = [
     'https://img.yzcdn.cn/vant/apple-1.jpg',
     'https://img.yzcdn.cn/vant/apple-2.jpg',
@@ -15,7 +16,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Swipe autoplay="3000">
+        <Swipe autoplay={3000}>
           <Swipe.Item>1</Swipe.Item>
           <Swipe.Item>2</Swipe.Item>
           <Swipe.Item>3</Swipe.Item>
@@ -24,12 +25,27 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="自定义指示器">
         <Swipe
-          autoplay="3000"
-          indicatorRender={({ current, count }) => (
-            <div className="custom-indicator">
-              {current}/{count}
-            </div>
-          )}
+          autoplay={3000}
+          pagination={{
+            renderBullet: (index, className) => {
+              return `<span class="custom-pagination--bullet ${className}"></span>`;
+            },
+          }}
+        >
+          <Swipe.Item>1</Swipe.Item>
+          <Swipe.Item>2</Swipe.Item>
+          <Swipe.Item>3</Swipe.Item>
+          <Swipe.Item>4</Swipe.Item>
+        </Swipe>
+        <br />
+        <Swipe
+          autoplay={3000}
+          pagination={{
+            type: 'fraction',
+            renderFraction: (currentClass, totalClass) => {
+              return `<div class="custom-pagination--fraction"><span class="${currentClass}"></span>/<span class="${totalClass}"></span></div>`;
+            },
+          }}
         >
           <Swipe.Item>1</Swipe.Item>
           <Swipe.Item>2</Swipe.Item>
@@ -38,16 +54,20 @@ export default (): React.ReactNode => {
         </Swipe>
       </DemoBlock>
       <DemoBlock title="图片懒加载">
-        <Swipe autoplay="3000" lazyRender>
+        <Swipe lazy>
           {images.map((item) => (
             <Swipe.Item key={item}>
-              <img src={item} alt="" />
+              <img className="swiper-lazy" data-src={item} alt="" />
             </Swipe.Item>
           ))}
         </Swipe>
       </DemoBlock>
       <DemoBlock title="监听 change 事件">
-        <Swipe onChange={(index: number) => Toast(`当前 Swipe 索引：${index}`)}>
+        <Swipe
+          onChange={(index: number) => {
+            Toast(`当前 Swipe 索引：${index}`);
+          }}
+        >
           <Swipe.Item>1</Swipe.Item>
           <Swipe.Item>2</Swipe.Item>
           <Swipe.Item>3</Swipe.Item>
@@ -56,7 +76,7 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="纵向滚动">
         <Swipe
-          autoplay="3000"
+          autoplay={3000}
           vertical
           style={{ height: '200px' }}
           className="demo-swipe--vertical"
@@ -66,6 +86,19 @@ export default (): React.ReactNode => {
           <Swipe.Item>3</Swipe.Item>
           <Swipe.Item>4</Swipe.Item>
         </Swipe>
+      </DemoBlock>
+      <DemoBlock title="Popup中展示">
+        <Button block round type="primary" onClick={() => set(true)}>
+          Popup中展示轮播图
+        </Button>
+        <Popup visible={visible} onClose={() => set(false)} style={{ width: '100%' }}>
+          <Swipe resizeObserver autoplay={1000}>
+            <Swipe.Item>1</Swipe.Item>
+            <Swipe.Item>2</Swipe.Item>
+            <Swipe.Item>3</Swipe.Item>
+            <Swipe.Item>4</Swipe.Item>
+          </Swipe>
+        </Popup>
       </DemoBlock>
     </DemoSection>
   );

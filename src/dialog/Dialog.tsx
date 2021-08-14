@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 
 import Icon from '../icon';
@@ -6,13 +6,12 @@ import Popup from '../popup';
 import Button from '../button';
 
 import { DialogProps, DialogStatic } from './PropsType';
-import { createNamespace, addUnit } from '../utils';
-import { callInterceptor } from '../utils/interceptor';
+import { createNamespace, addUnit, noop } from '../utils';
 import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
 
 const [bem] = createNamespace('dialog');
 
-const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
+const Dialog: React.FC<DialogProps> = (props) => {
   const {
     width,
     title,
@@ -23,11 +22,10 @@ const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
     messageAlign,
     closeIcon,
     closeable,
+    closeOnClickOverlay,
     onClickCloseIcon,
     ...others
   } = props;
-
-  const [loading, setLoading] = useState({ confirm: false, cancel: false });
 
   const renderTitle = () => {
     if (props.title) {
@@ -70,43 +68,6 @@ const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
     return null;
   };
 
-  const close = (action: string) => {
-    props.onClose?.();
-    if (props.callback) {
-      props.callback(action);
-    }
-  };
-
-  const handleAction = (action) => {
-    // should not trigger close event when hidden
-    if (!props.visible) {
-      return;
-    }
-
-    const event = `on${action.slice(0, 1).toUpperCase()}${action.slice(1)}`;
-
-    if (props[event]) {
-      props[event]();
-    }
-
-    if (props.beforeClose) {
-      setLoading({ ...loading, [`${action}`]: true });
-      callInterceptor({
-        interceptor: props.beforeClose,
-        args: [action],
-        done() {
-          close(action);
-          setLoading({ ...loading, [`${action}`]: false });
-        },
-        canceled() {
-          setLoading({ ...loading, [`${action}`]: false });
-        },
-      });
-    } else {
-      close(action);
-    }
-  };
-
   const renderButtons = () => (
     <div className={classnames(theme === 'round-button' ? '' : BORDER_TOP, bem('footer'))}>
       {props.showCancelButton && (
@@ -115,10 +76,9 @@ const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
           text={props.cancelButtonText || '取消'}
           className={classnames(bem('cancel'))}
           style={{ color: props.cancelButtonColor }}
-          loading={loading.cancel}
-          onClick={() => {
-            handleAction('cancel');
-          }}
+          loading={props.cancelProps?.loading}
+          disabled={props.cancelProps?.disabled}
+          onClick={props.cancelProps?.loading ? noop : props.onCancel}
         />
       )}
       {props.showConfirmButton && (
@@ -132,10 +92,9 @@ const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
           )}
           round={theme === 'round-button'}
           style={{ color: props.confirmButtonColor }}
-          loading={loading.confirm}
-          onClick={() => {
-            handleAction('confirm');
-          }}
+          loading={props.confirmProps?.loading}
+          disabled={props.confirmProps?.disabled}
+          onClick={props.confirmProps?.loading ? noop : props.onConfirm}
         />
       )}
     </div>
@@ -158,6 +117,7 @@ const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
     }
     return null;
   };
+
   return (
     <Popup
       {...others}
@@ -165,7 +125,11 @@ const Dialog: React.FC<DialogProps & { onClose: () => void }> = (props) => {
       className={classnames(bem([theme]), className)}
       style={{ width: addUnit(width) }}
       aria-labelledby={title || message}
-      overlayClosable={false}
+      overlayClosable={closeOnClickOverlay}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      onClose={(e) => props.onCancel(e, true)}
+      afterClose={props.afterClose}
     >
       {renderCloseIcon()}
       {renderTitle()}
@@ -181,4 +145,4 @@ Dialog.defaultProps = {
   showConfirmButton: true,
 };
 
-export default Dialog as React.FC<DialogProps & { onClose: () => void }> & DialogStatic;
+export default Dialog as React.FC<DialogProps> & DialogStatic;

@@ -1,65 +1,80 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
-import { inBrowser } from '../utils';
-import { mountComponent } from '../utils/mount-component';
-import ImagePreview from './ImagePreview';
-import { ImagePreviewProps } from './PropsType';
-import usePopupState from '../hooks/use-popup-state';
+/* eslint-disable @typescript-eslint/naming-convention */
+import React, { useEffect, useState } from 'react';
 
-let instance;
+import ReactDOM from 'react-dom';
+
+import { noop } from '../utils';
+import { CloseParams, ImagePreviewProps, ImagePreviewStatic } from './PropsType';
+
+import BaseImagePreview from './ImagePreview';
+import { resolveContainer } from '../utils/dom/getContainer';
+
+const ImagePreview = BaseImagePreview as ImagePreviewStatic;
 
 const defaultConfig: ImagePreviewProps = {
   loop: true,
   images: [],
-  onClose: undefined,
   className: '',
   showIndex: true,
   closeable: false,
   closeIcon: 'clear',
-  transition: undefined,
-  beforeClose: undefined,
-  overlayStyle: undefined,
   startPosition: 0,
   swipeDuration: 300,
-  showIndicators: false,
   closeOnPopstate: true,
-  closeIconPosition: 'right',
+  closeIconPosition: 'top-right',
 };
 
-const Component = forwardRef((_, ref) => {
-  const [state, { setState, open, close }] = usePopupState();
-  useImperativeHandle(ref, () => ({
-    open,
-    clear: close,
-    setMessage(message: string) {
-      setState({ message });
-    },
-  }));
-  return <ImagePreview {...state} onClose={close} />;
-});
+// 可返回用于销毁此弹窗的方法
+ImagePreview.open = (props: ImagePreviewProps) => {
+  const { afterClose = noop, onClose = noop, beforeClose, ...restProps } = props;
 
-function initInstance(images: string[] | ImagePreviewProps, startPosition = 0) {
-  if (!inBrowser) {
-    return undefined;
-  }
+  const userContainer = resolveContainer(props.getContainer);
+  const container = document.createElement('div');
+  userContainer.appendChild(container);
+  let destroy = noop as (p?: CloseParams) => void;
 
-  const options = Array.isArray(images) ? { images, startPosition } : images;
+  const TempDialog = () => {
+    const [visible, setVisible] = useState(false);
 
-  mountComponent(Component, (componentInstance) => {
-    if (!componentInstance) {
-      return;
-    }
+    useEffect(() => {
+      setVisible(true);
+    }, []);
 
-    if (instance) {
-      instance.unmount();
-      instance = null;
-    }
+    destroy = (p: CloseParams) => {
+      setVisible(false);
+      if (onClose) onClose(p);
+    };
 
-    instance = componentInstance;
-    componentInstance.open({ ...defaultConfig, ...options });
-  });
-  return instance;
-}
+    const _afterClose = () => {
+      if (afterClose) {
+        afterClose();
+      }
+      const unmountResult = ReactDOM.unmountComponentAtNode(container);
+      if (unmountResult && container.parentNode) {
+        container.parentNode.removeChild(container);
+      }
+    };
 
-ImagePreview.open = initInstance;
+    const _onClose = async (p: CloseParams) => {
+      if ((await beforeClose?.()) !== false) {
+        destroy(p);
+      }
+    };
+
+    return (
+      <BaseImagePreview
+        {...defaultConfig}
+        {...restProps}
+        visible={visible}
+        getContainer={() => container}
+        afterClose={_afterClose}
+        onClose={_onClose}
+      />
+    );
+  };
+  ReactDOM.render(<TempDialog />, container);
+
+  return destroy;
+};
 
 export default ImagePreview;

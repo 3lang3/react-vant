@@ -55,9 +55,9 @@ const Popup: React.FC<PopupProps> = (props) => {
           customStyle={props.overlayStyle}
           zIndex={zIndex}
           duration={props.duration}
-          onClick={() => {
+          onClick={(e) => {
             if (onClickOverlay && typeof onClickOverlay === 'function') {
-              onClickOverlay();
+              onClickOverlay(e);
             }
             if (overlayClosable) {
               onClose?.();
@@ -77,9 +77,9 @@ const Popup: React.FC<PopupProps> = (props) => {
     return initStyle;
   }, [zIndex]);
 
-  const onClickCloseIcon = () => {
+  const onClickCloseIcon = (e) => {
     if (props.onClickCloseIcon) {
-      props.onClickCloseIcon();
+      props.onClickCloseIcon(e);
     }
     props.onClose();
   };

@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         round: props.round,
         square: props.square,
         shadow: props.shadow,
-        [`shadow-${+props.shadow}`]: props.shadow
+        [`shadow-${+props.shadow}`]: props.shadow,
       },
     ]),
     { [BORDER_SURROUND]: hairline },
@@ -62,7 +62,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     }
   }
 
-  function onClick(event: Event) {
+  function onClick(event) {
     if (!loading && !disabled && props.onClick) {
       props.onClick(event);
     }

@@ -2,6 +2,10 @@
 import React from 'react';
 import { BaseTypeProps } from '../utils';
 
+export interface DialogBtnProps {
+  loading?: boolean;
+  disabled?: boolean;
+}
 export interface DialogProps extends BaseTypeProps {
   visible?: boolean;
   /** 是否显示右上角关闭按钮 */
@@ -21,10 +25,6 @@ export interface DialogProps extends BaseTypeProps {
   message?: string | React.ReactNode;
   /** 动画类名 @see https://reactcommunity.org/react-transition-group/ */
   transition?: string;
-  /** 异步关闭 */
-  beforeClose?: (action: 'cancel' | 'confirm') => Promise<boolean>;
-  /** Dialog完全关闭后的回调 */
-  afterClose?: () => void;
   /** message内容对齐 */
   messageAlign?: string;
   /** 是否显示取消按钮 */
@@ -41,14 +41,34 @@ export interface DialogProps extends BaseTypeProps {
   confirmButtonColor?: string;
   /** 点击背景关闭 */
   closeOnClickOverlay?: boolean;
-  callback?: (value: string) => void;
   /** 点击关闭icon按钮时调用方法 */
   onClickCloseIcon?: () => void;
   children?: React.ReactNode;
+  /** 取消按钮的状态 */
+  cancelProps?: DialogBtnProps;
+  /** 确认按钮的状态 */
+  confirmProps?: DialogBtnProps;
+  /** Dialog弹出时的的父容器 */
+  getContainer?: HTMLElement | (() => HTMLElement);
+  /** Dialog关闭时的回调 */
+  onClose?: () => void;
+  /** Dialog完全关闭后的回调 */
+  afterClose?: () => void;
+  /** 点击确认的回调 */
+  onConfirm?: (
+    e: React.MouseEvent,
+  ) => void | boolean | Promise<boolean> | Promise<void> | Promise<void | boolean>;
+  /** 是否支持点击遮罩关闭对话框 */
+  onCancel?: (
+    e: React.MouseEvent,
+  ) => void | boolean | Promise<boolean> | Promise<void> | Promise<void | boolean>;
 }
 
+export type AlertDialogProps = Omit<DialogProps, 'confirmButtonText' | 'onCancel'>;
+
 export type DialogStatic = {
-  confirm: (options: Partial<Omit<DialogProps, 'showCancelButton'>>) => Promise<void>;
-  alert: (options: Partial<DialogProps>) => Promise<void>;
-  close: () => void;
+  (props: DialogProps): React.ReactNode;
+  show: (props: DialogProps) => void;
+  confirm: (props: DialogProps) => Promise<boolean>;
+  alert: (props: DialogProps) => Promise<React.MouseEvent>;
 };

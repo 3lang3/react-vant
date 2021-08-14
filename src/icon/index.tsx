@@ -6,8 +6,8 @@ import Badge from '../badge';
 
 export interface IconProps extends IconPropsType {
   className?: string;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onTouchStart?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (e: React.MouseEvent) => void;
+  onTouchStart?: (e: React.MouseEvent) => void;
   classPrefix?: string;
   style?: React.CSSProperties;
 }
@@ -51,7 +51,6 @@ const Icon: React.FC<IconProps> = (props) => {
         fontSize: addUnit(props.size),
         ...props.style,
       }}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onClick={onClick}
     >
       {props?.children}

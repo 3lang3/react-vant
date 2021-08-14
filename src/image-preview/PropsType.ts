@@ -1,38 +1,33 @@
 import React from 'react';
-import { Position } from '../popup/PropsType';
+import { PopupCloseIconPosition } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
-import { Interceptor } from '../utils/interceptor';
+
+export type CloseParams = { url: string; index: number };
 
 export interface ImagePreviewProps extends BaseTypeProps {
   visible?: boolean;
   loop?: boolean;
   overlay?: boolean;
   closeable?: boolean;
-  showIndex?: boolean;
-  transition?: string;
-  beforeClose?: Interceptor;
-  onClose?: () => void;
-  afterClose?: () => void;
-  overlayStyle?: React.CSSProperties;
   showIndicators?: boolean;
-  closeOnPopstate?: boolean;
-  images?: string[];
-  swipeDuration?: number | string;
-  startPosition?: number | string;
-  closeIcon?: string;
-  closeIconPosition?: Position;
+  showIndex?: boolean;
   indexRender?: ({ index, len }: { index: number; len: number }) => React.ReactNode;
+  closeOnPopstate?: boolean;
+  overlayStyle?: React.CSSProperties;
+  beforeClose?: () => void | boolean | Promise<boolean> | Promise<void> | Promise<void | boolean>;
+  onClose?: ({ url, index }?: CloseParams) => void;
+  onChange?: (index: number) => void;
+  images?: string[];
+  swipeDuration?: number;
+  startPosition?: number;
+  closeIcon?: string;
+  closeIconPosition?: PopupCloseIconPosition;
+  afterClose?: () => void;
+  /** 弹出时的的父容器 */
+  getContainer?: HTMLElement | (() => HTMLElement);
 }
 
-export interface ImagePreviewItemProps extends BaseTypeProps {
-  src: string;
-  visible: boolean;
-  active: number;
-  rootWidth: number;
-  rootHeight: number;
-  onClose?: () => void;
-}
-
-export interface ImagePreviewStatic {
-  open: (images: string[] | ImagePreviewProps, startPosition: number) => void;
-}
+export type ImagePreviewStatic = {
+  (ImagePreviewProps): React.ReactNode;
+  open: (OpenProps: Omit<ImagePreviewProps, 'visible'>) => void;
+};

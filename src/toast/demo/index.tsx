@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import React from 'react';
 import { Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -16,15 +18,28 @@ export default (): React.ReactNode => {
             Toast.loading({
               message: '加载中...',
               forbidClick: true,
-              onClose: () => {
-                // eslint-disable-next-line no-console
-                console.log('close');
-              },
             })
           }
         />
         <Cell title="成功提示" isLink onClick={() => Toast.success('成功文案')} />
         <Cell title="失败提示" isLink onClick={() => Toast.fail('失败文案')} />
+      </DemoBlock>
+      <DemoBlock card title="动态更新提示">
+        <Cell
+          title="动态更新提示"
+          isLink
+          onClick={() => {
+            let remain = 4;
+            const updateConfig = Toast.info({
+              message: `还剩 ${remain + 1} 秒`,
+              duration: 5000,
+              onClose: () => clearInterval(timer),
+            });
+            const timer = setInterval(() => {
+              updateConfig({ message: `还剩 ${remain--} 秒` });
+            }, 1000);
+          }}
+        />
       </DemoBlock>
       <DemoBlock card title="自定义图标">
         <Cell

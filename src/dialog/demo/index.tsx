@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Cell, Dialog } from 'react-vant';
+import { Cell, Dialog, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
 import './style.less';
@@ -15,9 +16,12 @@ export default (): React.ReactNode => {
           title="弹窗提示"
           isLink
           onClick={() =>
-            Dialog.alert({
+            Dialog.confirm({
               title: '标题',
               message: '代码是写出来给人看的，附带能在机器上运行',
+              onConfirm: () => console.log('onConfirm'),
+              onCancel: () => console.log('onCancel'),
+              afterClose: () => console.log('afterClose'),
             })
           }
         />
@@ -38,12 +42,6 @@ export default (): React.ReactNode => {
               title: '标题',
               message: '代码是写出来给人看的，附带能在机器上运行',
             })
-              .then(() => {
-                // on confirm
-              })
-              .catch(() => {
-                // on cancel
-              })
           }
         />
       </DemoBlock>
@@ -161,19 +159,24 @@ export default (): React.ReactNode => {
           title="异步关闭"
           isLink
           onClick={() =>
-            Dialog.confirm({
+            Dialog.show({
               title: '标题',
               message: '弹窗内容',
-              beforeClose: (action) => {
-                return new Promise((resolve) => {
+              showCancelButton: true,
+              onCancel: () => {
+                return new Promise((res) => {
                   setTimeout(() => {
-                    if (action === 'confirm') {
-                      resolve(true);
-                    } else {
-                      // 拦截取消操作
-                      resolve(false);
-                    }
-                  }, 1000);
+                    res(true);
+                    Toast.success({ message: '取消按钮异步' });
+                  }, 3000);
+                });
+              },
+              onConfirm: () => {
+                return new Promise((res) => {
+                  setTimeout(() => {
+                    res(true);
+                    Toast.success({ message: '确认按钮异步' });
+                  }, 3000);
                 });
               },
             })
@@ -185,13 +188,7 @@ export default (): React.ReactNode => {
         <Cell title="组件调用" isLink onClick={() => setShow(true)} />
       </DemoBlock>
 
-      <Dialog
-        visible={show}
-        title="标题"
-        showCancelButton
-        onClose={() => setShow(false)}
-        onConfirm={() => alert('confirm button click')}
-      >
+      <Dialog visible={show} title="标题" showCancelButton onCancel={() => setShow(false)}>
         <img src="https://img.yzcdn.cn/vant/apple-3.jpg" alt="2131" />
       </Dialog>
     </DemoSection>
