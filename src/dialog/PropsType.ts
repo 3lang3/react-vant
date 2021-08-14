@@ -8,10 +8,6 @@ export interface DialogBtnProps {
 }
 export interface DialogProps extends BaseTypeProps {
   visible?: boolean;
-  /** 顶部图片 url */
-  headerImage?: string;
-  /** 是否等待图片加载完毕后再弹出对话框，默认为 true */
-  waitImageLoad?: boolean;
   /** 是否显示右上角关闭按钮 */
   closeable?: boolean;
   /**

@@ -101,15 +101,7 @@ Dialog.show = (props: DialogProps) => {
       />
     );
   };
-  if (props.headerImage && props.waitImageLoad !== false) {
-    const preloadImage = new Image();
-    preloadImage.src = props.headerImage;
-    preloadImage.onload = () => {
-      ReactDOM.render(<TempDialog />, container);
-    };
-  } else {
-    ReactDOM.render(<TempDialog />, container);
-  }
+  ReactDOM.render(<TempDialog />, container);
 
   return destroy;
 };
