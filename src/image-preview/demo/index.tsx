@@ -32,7 +32,13 @@ export default (): React.ReactNode => {
           title="监听关闭事件"
           isLink
           onClick={() =>
-            ImagePreview.open({ images, startPosition: 2, onClose: () => Toast.info('关闭预览') })
+            ImagePreview.open({
+              images,
+              startPosition: 2,
+              onClose: () => {
+                Toast.info('关闭预览');
+              },
+            })
           }
         />
         <Cell

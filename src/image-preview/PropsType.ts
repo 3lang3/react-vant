@@ -2,6 +2,8 @@ import React from 'react';
 import { PopupCloseIconPosition } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
 
+export type CloseParams = { url: string; index: number };
+
 export interface ImagePreviewProps extends BaseTypeProps {
   visible?: boolean;
   loop?: boolean;
@@ -12,7 +14,9 @@ export interface ImagePreviewProps extends BaseTypeProps {
   indexRender?: ({ index, len }: { index: number; len: number }) => React.ReactNode;
   closeOnPopstate?: boolean;
   overlayStyle?: React.CSSProperties;
-  onClose?: () => void;
+  beforeClose?: () => void | boolean | Promise<boolean> | Promise<void> | Promise<void | boolean>;
+  onClose?: ({ url, index }?: CloseParams) => void;
+  onChange?: (index: number) => void;
   images?: string[];
   swipeDuration?: number;
   startPosition?: number;

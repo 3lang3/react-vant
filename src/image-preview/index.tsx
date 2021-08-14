@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { noop } from '../utils';
-import { ImagePreviewProps, ImagePreviewStatic } from './PropsType';
+import { CloseParams, ImagePreviewProps, ImagePreviewStatic } from './PropsType';
 
 import BaseImagePreview from './ImagePreview';
 import { resolveContainer } from '../utils/dom/getContainer';
@@ -26,12 +26,12 @@ const defaultConfig: ImagePreviewProps = {
 
 // 可返回用于销毁此弹窗的方法
 ImagePreview.open = (props: ImagePreviewProps) => {
-  const { afterClose, onClose, ...restProps } = props;
+  const { afterClose = noop, onClose = noop, beforeClose, ...restProps } = props;
 
   const userContainer = resolveContainer(props.getContainer);
   const container = document.createElement('div');
   userContainer.appendChild(container);
-  let destroy = noop;
+  let destroy = noop as (p?: CloseParams) => void;
 
   const TempDialog = () => {
     const [visible, setVisible] = useState(false);
@@ -40,10 +40,11 @@ ImagePreview.open = (props: ImagePreviewProps) => {
       setVisible(true);
     }, []);
 
-    destroy = () => {
+    destroy = (p: CloseParams) => {
       setVisible(false);
-      if (onClose) onClose();
+      if (onClose) onClose(p);
     };
+
     const _afterClose = () => {
       if (afterClose) {
         afterClose();
@@ -54,6 +55,12 @@ ImagePreview.open = (props: ImagePreviewProps) => {
       }
     };
 
+    const _onClose = async (p: CloseParams) => {
+      if ((await beforeClose?.()) !== false) {
+        destroy(p);
+      }
+    };
+
     return (
       <BaseImagePreview
         {...defaultConfig}
@@ -61,7 +68,7 @@ ImagePreview.open = (props: ImagePreviewProps) => {
         visible={visible}
         getContainer={() => container}
         afterClose={_afterClose}
-        onClose={destroy}
+        onClose={_onClose}
       />
     );
   };

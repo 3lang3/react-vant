@@ -17,6 +17,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
   const onSwipeChange = (idx: number) => {
     if (active !== idx && mountedRef.current) {
       setActive(idx);
+      props.onChange?.(idx);
     }
   };
 
@@ -38,7 +39,9 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
         // eslint-disable-next-line react/no-array-index-key
         <Swipe.Item key={i}>
           <Image
-            onClick={props.onClose}
+            onClick={() => {
+              props.onClose?.({ url: image, index: i });
+            }}
             loadingIcon={<Loading type="spinner" />}
             src={image}
             fit="contain"
@@ -55,7 +58,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
         <Icon
           name={props.closeIcon}
           className={cls(bem('close-icon', props.closeIconPosition))}
-          onClick={props.onClose}
+          onClick={() => props.onClose?.()}
         />
       );
     }
