@@ -51,7 +51,6 @@ const Icon: React.FC<IconProps> = (props) => {
         fontSize: addUnit(props.size),
         ...props.style,
       }}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onClick={onClick}
     >
       {props?.children}

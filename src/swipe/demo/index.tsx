@@ -63,7 +63,11 @@ export default (): React.ReactNode => {
         </Swipe>
       </DemoBlock>
       <DemoBlock title="监听 change 事件">
-        <Swipe onChange={(index: number) => Toast(`当前 Swipe 索引：${index}`)}>
+        <Swipe
+          onChange={(index: number) => {
+            Toast(`当前 Swipe 索引：${index}`);
+          }}
+        >
           <Swipe.Item>1</Swipe.Item>
           <Swipe.Item>2</Swipe.Item>
           <Swipe.Item>3</Swipe.Item>

@@ -24,7 +24,8 @@ function nextTickClear() {
 }
 
 // 可返回用于销毁此弹窗的方法
-const Toast = (props: ToastProps): unknown => {
+const Toast = (p: ToastProps): unknown => {
+  const props = parseOptions(p);
   let updateConfig: React.Dispatch<React.SetStateAction<ToastProps>> = () => {};
   let timer = 0;
   const { onClose, getContainer = () => document.body } = props;

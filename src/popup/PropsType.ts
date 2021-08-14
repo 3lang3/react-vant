@@ -1,6 +1,10 @@
 import { CSSProperties } from 'react';
 import { BaseTypeProps } from '../utils';
 
+export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | '';
+
+export type PopupCloseIconPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
 export type Position = 'center' | 'top' | 'bottom' | 'right' | 'left';
 
 export interface PopupProps extends BaseTypeProps {
