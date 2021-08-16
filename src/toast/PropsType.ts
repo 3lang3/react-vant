@@ -24,9 +24,9 @@ export interface ToastProps extends BaseTypeProps {
 type ToastInstanceOpts = Omit<ToastProps, 'type'> | string;
 export interface ToastInstance {
   (opts: ToastProps | string): void;
-  info(opts: ToastInstanceOpts): void;
-  loading(opts: ToastInstanceOpts): void;
-  success(opts: ToastInstanceOpts): void;
-  fail(opts: ToastInstanceOpts): void;
+  info(opts: ToastInstanceOpts | string): void;
+  loading(opts: ToastInstanceOpts | string): void;
+  success(opts: ToastInstanceOpts | string): void;
+  fail(opts: ToastInstanceOpts | string): void;
   clear(): void;
 }
