@@ -125,7 +125,7 @@ const onChange = (index: number) => Toast(`当前 Swipe 索引：${index}`);
 
 | 参数         | 说明                     | 类型      | 默认值  |
 | ------------ | ------------------------ | --------- | ------- |
-| autoplay     | 自动轮播间隔，单位为 ms  | _number_  | -       |
+| autoplay     | 自动轮播间隔，单位为 ms  | _number_  | `3000`       |
 | duration     | 动画时长，单位为 ms      | _number_  | `500`   |
 | initialSwipe | 初始位置索引值           | _number_  | `0`     |
 | width        | 滑块宽度，单位为`px`     | _number_  | -       |

@@ -20,7 +20,7 @@ const [bem] = createNamespace('swipe');
 SwiperCore.use([Autoplay, Pagination, Lazy]);
 
 const Swipe = forwardRef<SwipeActionType, SwipeProps>((props, ref) => {
-  const { children, className, ...parseProsp } = parseOptions(props);
+  const { children, className, autoplay, ...parseProsp } = parseOptions(props);
   const internalSwipeRef = useRef<SwipeActionType>(null);
   useImperativeHandle(ref, () => internalSwipeRef.current, [internalSwipeRef.current]);
 
@@ -30,6 +30,7 @@ const Swipe = forwardRef<SwipeActionType, SwipeProps>((props, ref) => {
       onSwiper={(swiper) => {
         internalSwipeRef.current = swiper;
       }}
+      autoplay={autoplay as Swiper['autoplay']}
       {...parseProsp}
     >
       {Children.map(children, (child: ReactElement) =>
