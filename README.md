@@ -7,9 +7,7 @@
 [npm-image]: http://img.shields.io/npm/v/react-vant.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/react-vant
 
-> 👼缺失的组件会持续同步，个人精力有限，有特别需要的可以提issuze
-
-<hr />
+> 👼 缺失的组件会持续同步，个人精力有限，有特别需要的可以提issuze
 
 ## todo list
 
