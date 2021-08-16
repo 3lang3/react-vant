@@ -1,10 +1,19 @@
-👼缺失的组件会持续同步，个人精力有限，有特别需要的可以提issuze
+# react-vant
+
+参照 Vant 打造的 React 框架移动端组件库。
+
+[![NPM version][npm-image]][npm-url] 
+
+[npm-image]: http://img.shields.io/npm/v/react-vant.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/react-vant
+
+> 👼缺失的组件会持续同步，个人精力有限，有特别需要的可以提issuze
 
 <hr />
 
 ## todo list
 
-- [ ] 重构form单元
+- [ ] 重构form单元(基于[rc-field-form](https://github.com/react-component/field-form))
 
 ## 特性
 
@@ -15,9 +24,7 @@
 
 ## Install
 
-```bash
-npm i react-vant
-```
+[![react-vant](https://nodei.co/npm/react-vant.png)](https://npmjs.org/package/react-vant)
 
 ## Quickstart
 
