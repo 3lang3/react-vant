@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { isObject } from '../utils';
 import { resolveContainer } from '../utils/dom/getContainer';
-import { ToastProps } from './PropsType';
+import { ToastProps, ToastInstance } from './PropsType';
 
 import BaseToast from './Toast';
 
@@ -120,4 +120,4 @@ const createMethod = (type) => (options) =>
 
 Toast.clear = nextTickClear;
 
-export default Toast;
+export default Toast as ToastInstance;
