@@ -74,11 +74,10 @@ const Stepper: React.FC<StepperProps> = (props) => {
     [props.disabled, props.disableMinus, current],
   );
 
-  const plusDisabled = useMemo(() => props.disabled || props.disablePlus || current >= +props.max, [
-    props.disabled,
-    props.disablePlus,
-    current,
-  ]);
+  const plusDisabled = useMemo(
+    () => props.disabled || props.disablePlus || current >= +props.max,
+    [props.disabled, props.disablePlus, current],
+  );
 
   const inputStyle = useMemo(
     () => ({
@@ -142,10 +141,6 @@ const Stepper: React.FC<StepperProps> = (props) => {
     } else if (!equal(value, formatted)) {
       input.value = formatted;
     }
-
-    // perfer number type
-    const isNumeric = formatted === String(+formatted);
-    setValue(isNumeric ? +formatted : formatted);
   };
 
   const onFocus = (event: FormEvent) => {
@@ -161,6 +156,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
     const input = event.target as HTMLInputElement;
     const value = format(input.value);
     input.value = String(value);
+    preValue.current = value;
     emit('change', value);
     emit('blur', event);
     resetScroll();
