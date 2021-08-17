@@ -200,6 +200,10 @@ module.exports = {
                 title: 'Collapse 折叠面板',
               },
               {
+                path: 'count-down',
+                title: 'CountDown 倒计时',
+              },
+              {
                 path: 'empty',
                 title: 'Empty 空状态',
               },

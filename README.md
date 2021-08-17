@@ -117,6 +117,7 @@ yarn test
 
 - [x] Badge 徽标
 - [x] Collapse 折叠面板
+- [x] CountDown 倒计时
 - [x] Empty 空状态
 - [x] ImagePreview 图片预览
 - [x] List 列表
