@@ -1,3 +1,3 @@
 module.exports = {
-  presets: [require.resolve('@zhpfe/cli/preset')],
+  presets: [require.resolve('@react-vant/cli/preset')],
 };

@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [require.resolve('@zhpfe/fabric/dist/eslint')],
+  extends: [require.resolve('@react-vant/fabric/dist/eslint')],
   ignorePatterns: ['/.*'],
   rules: {
     '@typescript-eslint/ban-types': 'off',

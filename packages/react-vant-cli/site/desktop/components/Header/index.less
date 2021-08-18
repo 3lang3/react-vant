@@ -1,0 +1,123 @@
+@import '../../../common/style/var';
+
+.vant-doc-header {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.05);
+  user-select: none;
+  position: relative;
+  z-index: 10;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    height: @zf-doc-header-top-height;
+    padding: 0 @zf-doc-padding;
+    line-height: @zf-doc-header-top-height;
+
+    &-nav {
+      flex: 1;
+      font-size: 0;
+      text-align: right;
+      > li {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      &-item {
+        margin-left: 14px;
+      }
+      &-title {
+        display: block;
+        font-size: 15px;
+      }
+    }
+  }
+  &__cube {
+    position: relative;
+    display: block;
+    padding: 0 12px;
+    color: #7b7f8d;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    border: 1px solid #dadadf;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  &__version {
+    &-multiple::after {
+      padding-right: 20px;
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 5px;
+      height: 5px;
+      color: rgba(255, 255, 255, 0.9);
+      border: 1px solid;
+      border-color: transparent transparent currentColor currentColor;
+      transform: rotate(-45deg);
+      content: '';
+    }
+    &-pop {
+      position: absolute;
+      top: 30px;
+      right: 0;
+      left: 0;
+      z-index: 99;
+      color: #333;
+      line-height: 36px;
+      text-align: left;
+      background-color: #fff;
+      border-radius: @zf-doc-border-radius;
+      box-shadow: 0 4px 12px #ebedf0;
+      transform-origin: top;
+      transition: 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+      &-item {
+        padding-left: 12px;
+        transition: 0.2s;
+        &:hover {
+          color: @zf-doc-blue;
+        }
+      }
+    }
+  }
+  &__logo {
+    display: block;
+    img,
+    span {
+      vertical-align: middle;
+    }
+    img {
+      width: 24px;
+      margin-right: 10px;
+    }
+    span {
+      display: inline-block;
+      color: #080e29;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 22px;
+      line-height: 100%;
+    }
+  }
+  &__logo-link {
+    img {
+      display: block;
+      width: 26px;
+      height: 26px;
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+.vant-doc-dropdown {
+  &-enter,
+  &-leave-active {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}

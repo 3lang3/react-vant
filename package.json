@@ -12,12 +12,12 @@
   ],
   "scripts": {
     "bootstrap": "yarn || npm i",
-    "start": "zhpfe-cli dev",
-    "build": "zhpfe-cli build",
-    "release": "zhpfe-cli release --tag dev",
-    "build:site": "zhpfe-cli build-site",
+    "start": "react-vant-cli dev",
+    "build": "react-vant-cli build",
+    "release": "react-vant-cli release --tag dev",
+    "build:site": "react-vant-cli build-site",
     "release:site": "npm run build:site && gh-pages -d site",
-    "test": "zhpfe-cli test --coverage",
+    "test": "react-vant-cli test --coverage",
     "test:coverage": "open tests/coverage/index.html"
   },
   "author": "3lang3",
@@ -35,7 +35,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "commit-msg": "zhpfe-cli commit-lint"
+      "commit-msg": "react-vant-cli commit-lint"
     }
   },
   "lint-staged": {
@@ -44,12 +44,12 @@
     "./src/**/*.{css,less}": "stylelint --fix"
   },
   "devDependencies": {
+    "@react-vant/cli": "^1.0.3",
+    "@react-vant/fabric": "^1.0.0",
     "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.15",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
-    "@zhpfe/cli": "^1.0.10",
-    "@zhpfe/fabric": "^1.0.0",
     "eslint": "^7.30.0",
     "gh-pages": "^3.2.3",
     "glob": "^7.1.6",

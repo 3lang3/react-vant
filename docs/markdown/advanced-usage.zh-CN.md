@@ -37,16 +37,16 @@ module.exports = {
 
 这是一个面向移动端的组件库，因此默认只适配了移动端设备，这意味着组件只监听了移动端的 `touch` 事件，没有监听桌面端的 `mouse` 事件。
 
-如果你需要在桌面端使用，可以引入我们提供的 [@zhpfe/touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator)，这个库会在桌面端自动将 `mouse` 事件转换成对应的 `touch` 事件，使得组件能够在桌面端使用。
+如果你需要在桌面端使用，可以引入我们提供的 [@vant/touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator)，这个库会在桌面端自动将 `mouse` 事件转换成对应的 `touch` 事件，使得组件能够在桌面端使用。
 
 ```bash
 # 安装模块
-npm i react-vant/touch-emulator -S
+npm i vant/touch-emulator -S
 ```
 
 ```js
 // 引入模块后自动生效
-import '@zhpfe/touch-emulator';
+import '@vant/touch-emulator';
 ```
 
 ### 底部安全区适配
