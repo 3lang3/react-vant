@@ -104,6 +104,20 @@ import { Tabs } from 'react-vant';
 </Tabs>
 ```
 
+### 滚动导航
+
+通过 `scrollspy` 和 `sticky` 属性可以开启滚动导航模式，该模式下，内容将会平铺展示。
+
+```jsx
+<Tabs sticky scrollspy>
+  {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+    <Tabs.TabPane key={item} title={`标签${item}`}>
+      内容 {item}
+    </Tabs.TabPane>
+  ))}
+</Tabs>
+```
+
 ## API
 
 ### Tabs Props
@@ -128,7 +142,7 @@ import { Tabs } from 'react-vant';
 | swipeThreshold | 滚动阈值，标签数量超过阈值且总宽度超过标签栏宽度时开始横向滚动 | _number \| string_ | `5` |
 | titleActiveColor | 标题选中态颜色 | _string_ | - |
 | titleInactiveColor | 标题默认态颜色 | _string_ | - |
-| beforeChange  | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise | _(name) => boolean \| Promise_ | - |
+| beforeChange | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise | _(name) => boolean \| Promise_ | - |
 
 ### Tab Props
 

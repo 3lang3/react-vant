@@ -68,6 +68,15 @@ export default (): React.ReactNode => {
           ))}
         </Tabs>
       </DemoBlock>
+      <DemoBlock title="滚动导航">
+        <Tabs sticky scrollspy>
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+            <Tabs.TabPane key={item} title={`标签${item}`}>
+              内容 {item}
+            </Tabs.TabPane>
+          ))}
+        </Tabs>
+      </DemoBlock>
     </DemoSection>
   );
 };

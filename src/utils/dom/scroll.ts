@@ -34,6 +34,20 @@ export function getElementTop(el: ScrollElement, scroller?: HTMLElement): number
   return el.getBoundingClientRect().top + scrollTop;
 }
 
+export function getVisibleHeight(el: ScrollElement) {
+  if (isWindow(el)) {
+    return el.innerHeight;
+  }
+  return el.getBoundingClientRect().height;
+}
+
+export function getVisibleTop(el: ScrollElement) {
+  if (isWindow(el)) {
+    return 0;
+  }
+  return el.getBoundingClientRect().top;
+}
+
 export function setScrollTop(el: ScrollElement, value: number): void {
   if ('scrollTop' in el) {
     el.scrollTop = value;
@@ -68,14 +82,12 @@ export function scrollTopTo(
   callback: () => void,
 ): void {
   let current = getScrollTop(scroller);
-
   const isDown = current < to;
-  const frames = duration === 0 ? 1 : Math.round((duration * 1000) / 16);
+  const frames = duration === 0 ? 1 : Math.round(duration / 16);
   const step = (to - current) / frames;
 
   function animate() {
     current += step;
-
     if ((isDown && current > to) || (!isDown && current < to)) {
       current = to;
     }

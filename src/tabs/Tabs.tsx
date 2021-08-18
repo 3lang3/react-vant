@@ -19,6 +19,10 @@ import {
   isDef,
   unitToPx,
   scrollLeftTo,
+  getElementTop,
+  getVisibleHeight,
+  scrollTopTo,
+  getVisibleTop,
 } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
@@ -31,10 +35,13 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
 
   const root = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const tabHeight = useRef<number>(0);
+  const lockScroll = useRef<boolean>(false);
+  const stickyFixed = useRef<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
-
+  const childrenRef = useRef<HTMLDivElement[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const scroller = useScrollParent(root);
+  const scroller = useScrollParent(root) as HTMLElement;
   const windowSize = useWindowSize();
 
   const [titleRefs, setTitleRefs] = useRefs();
@@ -58,13 +65,6 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
   }, [state.currentIndex]);
 
   const offsetTopPx = useMemo(() => unitToPx(props.offsetTop), [props.offsetTop]);
-  // const scrollOffset = useMemo(() => {
-  //   if (props.sticky) {
-  //     return offsetTopPx + tabHeight;
-  //   }
-  //   return 0;
-  // }, []);
-
   // whether the nav is scrollable
   const scrollable = useMemo(
     () => React.Children.count(props.children) > props.swipeThreshold || !props.ellipsis,
@@ -146,6 +146,12 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     });
     setState({ ...state });
     scrollIntoView(true);
+    setImmediate(() => {
+      tabHeight.current = getVisibleHeight(wrapRef.current);
+      childrenRef.current = Array.prototype.slice.call(
+        root.current.querySelectorAll('.rv-tab__pane'),
+      );
+    });
     // setCurrentIndexByName(props.active || currentName.value);
     // nextTick(() => {
     //   state.inited = true;
@@ -214,30 +220,19 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     }
   }, [React.Children.count(children)]);
 
-  // useEffect(() => {
-  //   if (state.inited) {
-  //     setCurrentIndexByName(props.active || currentName.value);
-  //     setLine();
-  //     nextTick(() => {
-  //       scrollIntoView(true);
-  //     });
-  //   }
-  // }, [])
+  const scrollToCurrentContent = (immediate = false) => {
+    if (props.scrollspy) {
+      const target = childrenRef.current[state.currentIndex];
+      if (target && scroller) {
+        const to = getElementTop(target, scroller) - tabHeight.current;
 
-  // const scrollToCurrentContent = (immediate = false) => {
-  //   if (props.scrollspy) {
-  //     const target = titleRefs[state.currentIndex];
-
-  //     if (target) {
-  //       const to = getElementTop(target, scroller) - scrollOffset.value;
-
-  //       lockScroll = true;
-  //       scrollTopTo(scroller.value, to, immediate ? 0 : +props.duration, () => {
-  //         lockScroll = false;
-  //       });
-  //     }
-  //   }
-  // };
+        lockScroll.current = true;
+        scrollTopTo(scroller, to, immediate ? 0 : +props.duration, () => {
+          lockScroll.current = false;
+        });
+      }
+    }
+  };
 
   // emit event when clicked
   const onClick = (item: TabPaneProps, index: number) => {
@@ -252,13 +247,41 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
         args: [name],
         done: () => {
           setCurrentIndex(index);
-          // scrollToCurrentContent();
+          scrollToCurrentContent();
         },
       });
       if (props.onClick) {
         props.onClick(name, title);
       }
     }
+  };
+
+  const getCurrentIndexOnScroll = () => {
+    // eslint-disable-next-line no-plusplus
+    for (let index = 0; index < titleRefs.length; index++) {
+      const $el = childrenRef.current[index];
+      const top = getVisibleTop($el);
+      if (top > offsetTopPx + tabHeight.current) {
+        return index === 0 ? 0 : index - 1;
+      }
+    }
+
+    return titleRefs.length - 1;
+  };
+
+  const onScroll = () => {
+    if (props.scrollspy && !lockScroll.current) {
+      const index = getCurrentIndexOnScroll();
+      if (index !== state.currentIndex) {
+        setCurrentIndex(index);
+        setLine();
+      }
+    }
+  };
+
+  const onStickyScroll = (params: { isFixed: boolean; scrollTop: number }) => {
+    stickyFixed.current = params.isFixed;
+    onScroll();
   };
 
   const onStickyChange = () => {
@@ -321,7 +344,12 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     <TabsContext.Provider value={{ props, currentName }}>
       <div ref={root} className={classnames(bem([props.type]))}>
         {props.sticky ? (
-          <Sticky container={root} offsetTop={offsetTopPx} onChange={onStickyChange}>
+          <Sticky
+            container={root}
+            offsetTop={offsetTopPx}
+            onChange={onStickyChange}
+            onScroll={onStickyScroll}
+          >
             {renderHeader()}
           </Sticky>
         ) : (
