@@ -67,6 +67,7 @@ const Header = (props) => {
                     className="vant-doc-header__logo-link"
                     target="_blank"
                     href={item.url}
+                    rel="noreferrer"
                   >
                     <img src={item.logo} />
                   </a>
