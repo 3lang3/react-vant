@@ -39,7 +39,11 @@ const CountDown = forwardRef<CountDownActionType, CountDownProps>((props, ref) =
     reset: resetTime,
   }));
 
-  return <div className={cls(bem())}>{props.children ? props.children(current) : timeText}</div>;
+  return (
+    <div className={cls(props.className, bem())} style={props.style}>
+      {props.children ? props.children(current) : timeText}
+    </div>
+  );
 });
 
 CountDown.defaultProps = {
