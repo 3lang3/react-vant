@@ -158,8 +158,9 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     init();
   }, []);
 
-  const setLine = () => {
-    const shouldAnimate = state.inited;
+  const setLine = (immediate?: boolean) => {
+    let shouldAnimate = state.inited;
+    if (immediate) shouldAnimate = false;
     const titles = titleRefs;
 
     if (!titles || !titles[state.currentIndex] || props.type !== 'line' || isHidden(root.current)) {
@@ -260,6 +261,10 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     }
   };
 
+  const onStickyChange = () => {
+    setLine(true);
+  };
+
   const renderNav = () => {
     const tabs = parseChildList(props.children);
 
@@ -316,11 +321,7 @@ const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
     <TabsContext.Provider value={{ props, currentName }}>
       <div ref={root} className={classnames(bem([props.type]))}>
         {props.sticky ? (
-          <Sticky
-            container={root}
-            offsetTop={offsetTopPx}
-            // onScroll={onStickyScroll}
-          >
+          <Sticky container={root} offsetTop={offsetTopPx} onChange={onStickyChange}>
             {renderHeader()}
           </Sticky>
         ) : (
