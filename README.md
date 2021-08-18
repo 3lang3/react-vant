@@ -9,10 +9,6 @@
 
 > 👼 缺失的组件会持续同步，个人精力有限，有特别需要的可以提issuze
 
-## todo list
-
-- [ ] 重构form单元(基于[rc-field-form](https://github.com/react-component/field-form))
-
 ## 特性
 
 - 30+ 高质量组件，覆盖移动端基本场景
