@@ -13,7 +13,7 @@ module.exports = {
     defaultLang: 'zh-CN',
     locales: {
       'zh-CN': {
-        title: 'react-vant',
+        title: 'React Vant',
         description: '轻量、可靠的移动端 React 组件库',
         logo: 'https://img01.yzcdn.cn/vant/logo.png',
         langLabel: '中文',

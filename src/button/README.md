@@ -131,10 +131,10 @@ import { Button } from 'react-vant';
 | text | 按钮文字 | _string_ | - |
 | color | 按钮颜色，支持传入 `linear-gradient` 渐变色 | _string_ | - |
 | icon | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
-| icon-prefix `v2.6.0` | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
-| icon-position `v2.10.7` | 图标展示位置，可选值为 `right` | _string_ | `left` |
+| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
+| iconPosition | 图标展示位置，可选值为 `right` | _string_ | `left` |
 | tag | 按钮根节点的 HTML 标签 | _string_ | `Button` |
-| native-type | 原生 Button 标签的 type 属性 | _string_ | `Button` |
+| nativeType | 原生 Button 标签的 type 属性 | _string_ | `Button` |
 | block | 是否为块级元素 | _boolean_ | `false` |
 | plain | 是否为朴素按钮 | _boolean_ | `false` |
 | square | 是否为方形按钮 | _boolean_ | `false` |
@@ -149,6 +149,6 @@ import { Button } from 'react-vant';
 
 ### Events
 
-| 事件名 | 说明                                     | 回调参数       |
-| ------ | ---------------------------------------- | -------------- |
-| click  | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+| 事件名  | 说明                                     | 回调参数       |
+| ------- | ---------------------------------------- | -------------- |
+| onClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
