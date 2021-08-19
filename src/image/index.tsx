@@ -39,21 +39,30 @@ const Image: React.FC<ImageProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (!mountedRef.current) {
-      mountedRef.current = true;
-      return;
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (mountedRef.current) {
+      setStatus({ error: false, loading: false });
     }
-    setStatus({ error: false, loading: false });
   }, [props.src]);
 
   const onLoad = (e) => {
-    setStatus((v) => ({ ...v, loading: false }));
-    props.onLoad?.(e);
+    if (mountedRef.current) {
+      setStatus((v) => ({ ...v, loading: false }));
+      props.onLoad?.(e);
+    }
   };
 
   const onError = (e) => {
-    setStatus({ error: true, loading: false });
-    props.onLoad?.(e);
+    if (mountedRef.current) {
+      setStatus({ error: true, loading: false });
+      props.onLoad?.(e);
+    }
   };
 
   const renderLoadingIcon = () => {
