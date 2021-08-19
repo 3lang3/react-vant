@@ -17,6 +17,7 @@ export function raf(fn: FrameRequestCallback): number {
   return requestAnimationFrame.call(root, fn);
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function cancelRaf(id: number) {
   const cancelAnimationFrame = root.cancelAnimationFrame || root.clearTimeout;
   cancelAnimationFrame.call(root, id);

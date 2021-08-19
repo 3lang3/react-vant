@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { isObject } from '../utils';
 import { resolveContainer } from '../utils/dom/getContainer';
+import { lockClick } from './lock-click';
 import { ToastProps, ToastInstance } from './PropsType';
 
 import BaseToast from './Toast';
@@ -14,6 +15,7 @@ function syncClear() {
   let fn = toastArray.pop();
   while (fn) {
     fn();
+    lockClick(false);
     fn = toastArray.pop();
   }
 }

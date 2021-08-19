@@ -65,19 +65,10 @@ export default (): React.ReactNode => {
       <Cell title="圆角风格" center>
         <Stepper
           value={value8}
+          onChange={(val) => setValue8(val)}
           theme="round"
           buttonSize="22"
           disableInput
-          onChange={(val) => {
-            Toast.loading({ forbidClick: true });
-
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-              Toast.clear();
-              // 注意此时修改 value 后会再次触发 change 事件
-              setValue8(val);
-            }, 500);
-          }}
         />
       </Cell>
     </>

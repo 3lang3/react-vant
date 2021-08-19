@@ -1,28 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { inBrowser } from '../utils';
+import { cancelRaf, raf } from '../utils/raf';
 import { CurrentTime, UseCountDownOptions } from './PropsType';
-
-const root = (inBrowser ? window : global) as unknown as Window;
-
-let prev = Date.now();
-
-function rafPolyfill(fn: FrameRequestCallback): number {
-  const curr = Date.now();
-  const ms = Math.max(0, 16 - (curr - prev));
-  const id = setTimeout(fn, ms);
-  prev = curr + ms;
-  return id;
-}
-
-function raf(fn: FrameRequestCallback): number {
-  const requestAnimationFrame = root.requestAnimationFrame || rafPolyfill;
-  return requestAnimationFrame.call(root, fn);
-}
-
-function cancelRaf(id: number) {
-  const cancelAnimationFrame = root.cancelAnimationFrame || root.clearTimeout;
-  cancelAnimationFrame.call(root, id);
-}
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -50,6 +29,7 @@ function isSameSecond(time1: number, time2: number): boolean {
   return Math.floor(time1 / 1000) === Math.floor(time2 / 1000);
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function useCountDown(options: UseCountDownOptions) {
   const rafId = useRef(0);
   const endTime = useRef(0);
