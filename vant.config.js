@@ -19,7 +19,7 @@ module.exports = {
         langLabel: '中文',
         links: [
           {
-            logo: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+            logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
             url: 'https://github.com/3lang3/react-vant',
           },
         ],

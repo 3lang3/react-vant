@@ -2,7 +2,7 @@
 
 .vant-doc-nav {
   position: fixed;
-  top: 60px;
+  top: 64px;
   bottom: 0;
   left: 0;
   z-index: 1;
@@ -31,6 +31,7 @@
   }
   &__group {
     margin-bottom: 16px;
+    padding-left: 6px;
   }
   &__title {
     padding: 8px 0 8px @zf-doc-padding;
@@ -42,19 +43,24 @@
   &__item {
     a {
       display: block;
-      margin: 0;
+      margin: 8px 0;
       padding: 8px 0 8px @zf-doc-padding;
       color: #455a64;
       font-size: 14px;
-      line-height: 28px;
+      line-height: 20px;
       transition: color 0.2s;
+
       &:hover,
       &.active {
-        color: @zf-doc-blue;
+        color: @zf-doc-green;
       }
+
       &.active {
-        -webkit-font-smoothing: auto;
+        font-weight: 600;
+        background-color: #ebfff0;
+        border-radius: 999px;
       }
+
       span {
         font-size: 13px;
       }

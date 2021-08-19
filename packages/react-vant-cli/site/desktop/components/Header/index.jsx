@@ -43,7 +43,7 @@ const Header = (props) => {
 
   const onSwitchVersion = (version) => {
     if (version.link) {
-      location.href = version.link;
+      window.location.href = version.link;
     }
   };
 
@@ -52,7 +52,7 @@ const Header = (props) => {
       <div className="vant-doc-row">
         <div className="vant-doc-header__top">
           <a className="vant-doc-header__logo">
-            <img src={config.logo} />
+            <img alt="vant" src={config.logo} />
             <span>{config.title}</span>
           </a>
           {config.searchConfig && (

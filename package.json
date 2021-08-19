@@ -44,7 +44,7 @@
     "./src/**/*.{css,less}": "stylelint --fix"
   },
   "devDependencies": {
-    "@react-vant/cli": "^1.0.3",
+    "@react-vant/cli": "^1.0.4",
     "@react-vant/fabric": "^1.0.0",
     "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.15",

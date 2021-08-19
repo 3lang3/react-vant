@@ -13,7 +13,7 @@ const Nav = (props) => {
 
   const onScroll = () => {
     const { pageYOffset: offset } = window;
-    setTop(Math.max(0, 60 - offset));
+    setTop(Math.max(0, 64 - offset));
   };
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const Nav = (props) => {
     <div
       className="vant-doc-nav"
       style={{
-        top: top + 'px',
-        bottom: bottom + 'px',
+        top: `${top}px`,
+        bottom: `${bottom}px`,
       }}
     >
       {navConfig.map((group) => (
