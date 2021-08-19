@@ -6,7 +6,7 @@
 
 ```bash
 # 通过 npm 安装
-npm i react-vant -S
+npm i react-vant
 
 # 通过 yarn 安装
 yarn add react-vant
@@ -79,20 +79,3 @@ import 'react-vant/lib/index.css';
 ```
 
 > Tips: 引入所有组件样式会增加代码包体积，因此不推荐这种做法。
-
-
-### 通过 CDN 安装
-
-使用 react-vant 最简单的方法是直接在 html 文件中引入 CDN 链接，之后你可以通过全局变量 `react-vant` 访问到所有组件。
-
-```html
-<!-- 引入样式文件 -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/vant@next/lib/index.css"
-/>
-
-<!-- 引入 Vue 和 Vant 的 JS 文件 -->
-<script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-<script src="https://cdn.jsdelivr.net/npm/vant@next/lib/vant.min.js"></script>
-```
