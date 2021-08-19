@@ -101,15 +101,6 @@ import { Button } from 'react-vant';
 </Button>
 ```
 
-### 页面导航
-
-可以通过 `url` 属性进行 URL 跳转，或通过 `to` 属性进行路由跳转。
-
-```jsx
-<Button type="primary" url="/vant/mobile.html">URL 跳转</Button>
-<Button type="primary" to="index">路由跳转</Button>
-```
-
 ### 自定义颜色
 
 通过 `color` 属性可以自定义按钮的颜色。

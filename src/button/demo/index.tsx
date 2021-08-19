@@ -86,14 +86,6 @@ export default (): React.ReactNode => {
           阴影按钮
         </Button>
       </DemoBlock>
-      <DemoBlock title="页面导航">
-        <Button type="primary" url="/vant/mobile.html">
-          URL 跳转
-        </Button>
-        <Button type="primary" to="index">
-          路由跳转
-        </Button>
-      </DemoBlock>
       <DemoBlock title="自定义颜色">
         <Button color="#7232dd">单色按钮</Button>
         <Button color="#7232dd" plain>
