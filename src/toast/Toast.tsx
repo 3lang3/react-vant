@@ -80,7 +80,7 @@ const Toast: React.FC<ToastProps> = (props) => {
 };
 
 Toast.defaultProps = {
-  loadingType: 'spinner',
+  loadingType: 'circular',
 };
 
 export default Toast;
