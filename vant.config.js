@@ -186,6 +186,10 @@ module.exports = {
                 path: 'pull-refresh',
                 title: 'PullRefresh 下拉刷新',
               },
+              {
+                path: 'swipe-cell',
+                title: 'SwipeCell 滑动单元格',
+              },
             ],
           },
           {
