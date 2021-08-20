@@ -80,6 +80,12 @@ yarn build
 yarn test
 ```
 
+### Contributor group
+
+欢迎加入我们的微信讨论组
+
+<img src="https://user-images.githubusercontent.com/7098719/130221473-851855c7-1429-4a36-838d-4f7f95a48418.jpg" width="200">
+
 ## Components completion status
 
 ### Layout Components
