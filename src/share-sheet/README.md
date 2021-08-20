@@ -95,15 +95,6 @@ const options = [
 
 通过 `description` 属性可以设置标题下方的描述文字, 在 `options` 内设置 `description` 属性可以添加分享选项描述。
 
-```html
-<van-share-sheet
-  v-model:show="showShare"
-  :options="options"
-  title="立即分享给好友"
-  description="描述信息"
-/>
-```
-
 ```js
 const options = [
   { name: '微信', icon: 'wechat' },
@@ -112,6 +103,12 @@ const options = [
   { name: '分享海报', icon: 'poster' },
   { name: '二维码', icon: 'qrcode' },
 ];
+
+<ShareSheet
+  title="立即分享给好友"
+  description="描述信息"
+  options={options}
+/>;
 ```
 
 ## API
@@ -147,11 +144,10 @@ const options = [
 
 ### Events
 
-| 事件名        | 说明                     | 回调参数                        |
-| ------------- | ------------------------ | ------------------------------- |
-| onSelect        | 点击分享选项时触发       | _option: Option, index: number_ |
-| onCancel        | 点击取消按钮时触发       | -                               |
-
+| 事件名   | 说明               | 回调参数                        |
+| -------- | ------------------ | ------------------------------- |
+| onSelect | 点击分享选项时触发 | _option: Option, index: number_ |
+| onCancel | 点击取消按钮时触发 | -                               |
 
 ## 常见问题
 
