@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import { isObject } from '../utils';
+import { isObject, once } from '../utils';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from './lock-click';
 import { ToastProps, ToastInstance } from './PropsType';
@@ -49,13 +49,16 @@ const Toast = (p: ToastProps): unknown => {
     const [visible, setVisible] = useState(true);
     const [state, setState] = useState<ToastProps>({ ...options });
     // clearDOM after animation
-    const internalAfterClose = () => {
-      onClose?.();
-      const unmountResult = ReactDOM.unmountComponentAtNode(container);
-      if (unmountResult && container.parentNode) {
-        container.parentNode.removeChild(container);
-      }
-    };
+    const internalAfterClose = useCallback(
+      once(() => {
+        onClose?.();
+        const unmountResult = ReactDOM.unmountComponentAtNode(container);
+        if (unmountResult && container.parentNode) {
+          container.parentNode.removeChild(container);
+        }
+      }),
+      [onClose, container],
+    );
 
     // close with animation
     const destroy = useCallback(() => {

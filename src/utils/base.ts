@@ -47,3 +47,11 @@ export function pick<T, U extends keyof T>(
     return ret;
   }, {} as Writeable<Pick<T, U>>);
 }
+
+export function once(fn: (...args: any) => void): (...args: any) => void {
+  return (...args: any) => {
+    if (!fn) return;
+    fn(...args);
+    fn = null;
+  };
+}
