@@ -1,6 +1,6 @@
-import { BaseTypeProps } from '../utils';
-import { Position } from '../popup/PropsType';
 import { LoadingType } from '../loading/PropsType';
+import { Position } from '../popup/PropsType';
+import { BaseTypeProps } from '../utils';
 
 export interface ToastProps extends BaseTypeProps {
   icon?: string;
@@ -23,10 +23,10 @@ export interface ToastProps extends BaseTypeProps {
 
 type ToastInstanceOpts = Omit<ToastProps, 'type'> | string;
 export interface ToastInstance {
-  (opts: ToastProps | string): void;
-  info(opts: ToastInstanceOpts | string): void;
-  loading(opts: ToastInstanceOpts | string): void;
-  success(opts: ToastInstanceOpts | string): void;
-  fail(opts: ToastInstanceOpts | string): void;
+  (opts: ToastProps | string): React.Dispatch<React.SetStateAction<ToastProps>>;
+  info(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
+  loading(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
+  success(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
+  fail(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
   clear(): void;
 }
