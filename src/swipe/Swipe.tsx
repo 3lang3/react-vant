@@ -54,7 +54,7 @@ function parseOptions(opts: SwipeProps) {
   rest.initialSlide = initialSwipe;
   rest.speed = duration;
   if (rest.autoplay && typeof rest.autoplay === 'number') {
-    rest.autoplay = { delay: rest.autoplay };
+    rest.autoplay = { delay: rest.autoplay, disableOnInteraction: false };
   }
   if (onChange) {
     const back = rest.onActiveIndexChange;
