@@ -34,7 +34,7 @@ const [showPopup, setShowPopup] = useState(false);
 通过 `position` 属性设置弹出位置，默认居中弹出，可以设置为 `top`、`bottom`、`left`、`right`。
 
 ```jsx
-<Popup visible={show} position="top" style={{ height: "30%" }} />
+<Popup visible={show} position="top" style={{ height: '30%' }} />
 ```
 
 ### 关闭图标
@@ -60,7 +60,7 @@ const [showPopup, setShowPopup] = useState(false);
 设置 `round` 属性后，弹窗会根据弹出位置添加不同的圆角样式。
 
 ```jsx
-<Popup visible={show} round position="bottom" style={{ height: "30%" }} />
+<Popup visible={show} round position="bottom" style={{ height: '30%' }} />
 ```
 
 ### 标题弹窗
@@ -86,6 +86,7 @@ const [showPopup, setShowPopup] = useState(false);
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | visible | 是否显示弹出层 | _boolean_ | `false` |
+| className | popup 类名 | _boolean_ | - |
 | overlay | 是否显示遮罩层 | _boolean_ | `true` |
 | position | 弹出位置，可选值为 `top` `bottom` `right` `left` | _string_ | `center` |
 | overlayClass | 自定义遮罩层类名 | _string_ | - |
@@ -95,28 +96,26 @@ const [showPopup, setShowPopup] = useState(false);
 | title | 弹出层标题 | _string_ | - |
 | descrition | 弹出层描述 | _string_ | - |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
-| lazy-render | 是否在显示弹层时才渲染节点 | _boolean_ | `true` |
-| close-on-popstate | 是否在页面回退时自动关闭 | _boolean_ | `false` |
+| closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `false` |
 | overlayClosable | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |
 | closeIcon | 关闭图标名称或图片链接 | _string_ | `cross` |
 | closeIconPosition | 关闭图标位置，可选值为`top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
 | transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的`name`属性 | _string_ | - |
 | transitionAppear | 是否在初始渲染时启用过渡动画 | _boolean_ | `false` |
-| teleport | 指定挂载的节点 | _string \| Element_ | - |
-| safe-area-inset-bottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `false` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `false` |
 
 ### Events
 
-| 事件名                     | 说明                       | 回调参数       |
-| -------------------------- | -------------------------- | -------------- |
-| click                      | 点击弹出层时触发           | _event: Event_ |
-| click-overlay              | 点击遮罩层时触发           | -              |
-| clickCloseIcon           | 点击关闭图标时触发         | _event: Event_ |
-| open                       | 打开弹出层时触发           | -              |
-| close                      | 关闭弹出层时触发           | -              |
-| opened                     | 打开弹出层且动画结束后触发 | -              |
-| closed                     | 关闭弹出层且动画结束后触发 | -              |
+| 事件名           | 说明                       | 回调参数       |
+| ---------------- | -------------------------- | -------------- |
+| onClick          | 点击弹出层时触发           | _event: Event_ |
+| onClickOverlay   | 点击遮罩层时触发           | -              |
+| onClickCloseIcon | 点击关闭图标时触发         | _event: Event_ |
+| onOpen           | 打开弹出层时触发           | -              |
+| onClose          | 关闭弹出层时触发           | -              |
+| onOpened         | 打开弹出层且动画结束后触发 | -              |
+| onClosed         | 关闭弹出层且动画结束后触发 | -              |
 
 ### 样式变量
 

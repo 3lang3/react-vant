@@ -113,9 +113,9 @@ export default () => {
 | disabled | 是否禁用滑块 | _boolean_ | `false` |
 | readonly | 是否为只读状态，只读状态下无法修改滑块的值 | _boolean_ | `false` |
 | vertical | 是否垂直展示 | _boolean_ | `false` |
-| button | 自定义滑块按钮 | _ReactNode_ | -- |
-| leftButton | 自定义左侧滑块按钮（双滑块模式下） | _ReactNode_ | -- |
-| rightButton | 自定义右侧滑块按钮 （双滑块模式下） | _ReactNode_ | -- |
+| button | 自定义滑块按钮 | _ReactNode_ | - |
+| leftButton | 自定义左侧滑块按钮（双滑块模式下） | _ReactNode_ | - |
+| rightButton | 自定义右侧滑块按钮 （双滑块模式下） | _ReactNode_ | - |
 
 ### Events
 
