@@ -249,6 +249,10 @@ module.exports = {
             title: '导航组件',
             items: [
               {
+                path: 'grid',
+                title: 'Grid 宫格',
+              },
+              {
                 path: 'index-bar',
                 title: 'IndexBar 索引栏',
               },

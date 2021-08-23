@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { CountDown, Toast, Flex, Button } from 'react-vant';
+import { Grid, CountDown, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { CountDownActionType } from '../PropsType';
 import './style.less';
@@ -43,17 +43,11 @@ export default (): React.ReactNode => {
           onFinish={() => Toast.info('倒计时结束')}
         />
         <br />
-        <Flex>
-          <Flex.Item onClick={() => ref.current.start()} span={8}>
-            <Button icon="play-circle-o">开始</Button>
-          </Flex.Item>
-          <Flex.Item onClick={() => ref.current.pause()} span={8}>
-            <Button icon="pause-circle-o">暂停</Button>
-          </Flex.Item>
-          <Flex.Item onClick={() => ref.current.reset()} span={8}>
-            <Button icon="replay">重置</Button>
-          </Flex.Item>
-        </Flex>
+        <Grid columnNum={3}>
+          <Grid.Item icon="play-circle-o" text="开始" onClick={() => ref.current.start()} />
+          <Grid.Item icon="pause-circle-o" text="暂停" onClick={() => ref.current.pause()} />
+          <Grid.Item icon="replay" text="重置" onClick={() => ref.current.reset()} />
+        </Grid>
       </DemoBlock>
     </DemoSection>
   );

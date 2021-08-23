@@ -27,6 +27,7 @@ export { default as Tabs } from './tabs';
 export { default as Sticky } from './sticky';
 export { default as NavBar } from './nav-bar';
 export { default as Tag } from './tag';
+export { default as Grid } from './grid';
 export { default as IndexBar } from './index-bar';
 export { default as Collapse } from './collapse';
 export { default as Radio } from './radio';
