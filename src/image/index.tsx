@@ -47,7 +47,7 @@ const Image: React.FC<ImageProps> = (props) => {
 
   useEffect(() => {
     if (mountedRef.current) {
-      setStatus({ error: false, loading: false });
+      setStatus({ error: false, loading: !!props.src });
     }
   }, [props.src]);
 
