@@ -141,12 +141,16 @@ module.exports = {
                 title: 'Rate 评分',
               },
               {
-                path: 'stepper',
-                title: 'Stepper 步进器',
-              },
-              {
                 path: 'search',
                 title: 'Search 搜索',
+              },
+              {
+                path: 'slider',
+                title: 'Slider 滑块',
+              },
+              {
+                path: 'stepper',
+                title: 'Stepper 步进器',
               },
               {
                 path: 'switch',

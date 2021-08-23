@@ -1,6 +1,6 @@
 import { TouchEvent } from 'react';
 
-export function stopPropagation(event: Event): void {
+export function stopPropagation(event): void {
   event.stopPropagation();
 }
 
