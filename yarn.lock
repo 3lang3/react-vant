@@ -1378,10 +1378,10 @@
   dependencies:
     "@octokit/openapi-types" "^9.5.0"
 
-"@react-vant/cli@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@react-vant/cli/-/cli-1.0.5.tgz#b43a6567d41ccc59aa87f8ae0766446911e4c8e6"
-  integrity sha512-LW1pUxOKQxdusOQGfVx9fLZq98vMBMX44sz18I3f1N1c+KSfTuInys1ZQuieuGLFzf7J5uj99xmdt7jb13z7Sw==
+"@react-vant/cli@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@react-vant/cli/-/cli-1.0.6.tgz#83c6fb53897c4ebe52b1501f5c9bff274eae9feb"
+  integrity sha512-21ih0aoYOP5G2zYPIWLr31lioWctp3XMarlJJEr62PvN0RjgEXGLnRXJtH7SfHS/7WeLu+/8g5PH4moPCj/Otg==
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-decorators" "^7.12.1"
