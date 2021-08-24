@@ -115,6 +115,18 @@ const Popover = forwardRef<PopoverInstance, PopoverProps>(
       updateLocation();
     }, [visible, props.placement]);
 
+    useEffect(() => {
+      let popupTarget;
+      const prevent = (e) => e.stopPropagation();
+      if (popoverRef.current && popoverRef.current.popupRef.current) {
+        popupTarget = popoverRef.current.popupRef.current;
+        popupTarget.addEventListener('touchstart', prevent);
+      }
+      return () => {
+        if (popupTarget) popupTarget.removeEventListener('touchstart', prevent);
+      };
+    }, [popoverRef.current]);
+
     useImperativeHandle(ref, () => ({
       show: () => {
         if (visible) {

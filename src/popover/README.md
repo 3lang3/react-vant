@@ -114,10 +114,10 @@ const actions = [
 通过 children，可以在 Popover 内部放置任意内容。
 
 ```jsx
-<Popover placement="top-start" reference={<Button type="primary">自定义内容</Button>}>
+<Popover ref={popover} placement="top-start" reference={<Button type="primary">自定义内容</Button>}>
   <Grid square border={false} columnNum={3} style={{ width: 240 }}>
     {Array.from({ length: 6 }, (_, i) => (
-      <Grid.Item key={i} icon="photo-o" text="文字" />
+      <Grid.Item onClick={() => popover.current?.hide()} key={i} icon="photo-o" text="文字" />
     ))}
   </Grid>
 </Popover>

@@ -38,6 +38,7 @@ const placements = [
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const popover = useRef<PopoverInstance>(null);
+  const popover1 = useRef<PopoverInstance>(null);
   const [visible, setVisible] = useState(false);
   const [placement, updatePlacement] = useState(placements[0]);
 
@@ -93,10 +94,19 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
       <DemoBlock title="自定义内容">
-        <Popover placement="top-start" reference={<Button type="primary">自定义内容</Button>}>
+        <Popover
+          ref={popover1}
+          placement="top-start"
+          reference={<Button type="primary">自定义内容</Button>}
+        >
           <Grid square border={false} columnNum={3} style={{ width: 240 }}>
             {Array.from({ length: 6 }, (_, i) => (
-              <Grid.Item key={i} icon="photo-o" text="文字" />
+              <Grid.Item
+                onClick={() => popover1.current?.hide()}
+                key={i}
+                icon="photo-o"
+                text="文字"
+              />
             ))}
           </Grid>
         </Popover>
