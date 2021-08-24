@@ -2,6 +2,7 @@ import { TouchEvent } from 'react';
 
 export function stopPropagation(event): void {
   event.stopPropagation();
+  event?.nativeEvent?.stopImmediatePropagation();
 }
 
 export function preventDefault(event: TouchEvent | Event, isStopPropagation?: boolean): void {

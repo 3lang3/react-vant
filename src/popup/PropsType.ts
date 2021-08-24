@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | '';
@@ -35,7 +35,7 @@ export interface PopupProps extends BaseTypeProps {
   /** 关闭图标名称或图片链接	 */
   closeIcon?: string;
   /** 弹出位置，可选值为 `top` `bottom` `right` `left` */
-  position?: Position;
+  position?: PopupPosition;
   /** 动画类名 @see https://reactcommunity.org/react-transition-group/ */
   transition?: string;
   /** 是否开启底部安全区适配 */
@@ -58,4 +58,9 @@ export interface PopupProps extends BaseTypeProps {
   afterClose?: () => void;
   /** 完全显示后的回调 */
   onEntered?: () => void;
+  children?: React.ReactNode;
 }
+
+export type PopupInstanceType = {
+  popupRef: React.MutableRefObject<HTMLDivElement>;
+};

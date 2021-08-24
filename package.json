@@ -67,6 +67,7 @@
   ],
   "dependencies": {
     "@vant/icons": "^1.6.0",
+    "@vant/popperjs": "^1.1.0",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.4.1",
     "swiper": "^6.8.1"

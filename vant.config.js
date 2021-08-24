@@ -244,6 +244,10 @@ module.exports = {
                 title: 'NoticeBar 通知栏',
               },
               {
+                path: 'popover',
+                title: 'Popover 气泡弹出框',
+              },
+              {
                 path: 'sticky',
                 title: 'Sticky 粘性布局',
               },

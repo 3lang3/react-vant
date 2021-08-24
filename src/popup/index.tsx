@@ -1,4 +1,11 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, {
+  useMemo,
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
@@ -7,12 +14,12 @@ import Overlay from '../overlay';
 import useLockScroll from '../hooks/use-lock-scroll';
 import useEventListener from '../hooks/use-event-listener';
 
-import { createNamespace } from '../utils';
-import { PopupProps } from './PropsType';
+import { createNamespace, isDef } from '../utils';
+import { PopupInstanceType, PopupProps } from './PropsType';
 
 const [bem] = createNamespace('popup');
 
-const Popup: React.FC<PopupProps> = (props) => {
+const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const {
     round,
     visible,
@@ -25,6 +32,7 @@ const Popup: React.FC<PopupProps> = (props) => {
     position = 'center',
   } = props;
 
+  const popupRef = useRef<HTMLDivElement>();
   const [zIndex] = useState<number>(2000);
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
@@ -43,6 +51,10 @@ const Popup: React.FC<PopupProps> = (props) => {
       unlockScroll();
     }
   }, [visible]);
+
+  useImperativeHandle(ref, () => ({
+    popupRef,
+  }));
 
   const renderOverlay = () => {
     const { overlay = true, overlayClosable = true, onClickOverlay, onClose } = props;
@@ -74,6 +86,11 @@ const Popup: React.FC<PopupProps> = (props) => {
       zIndex,
       ...props.style,
     };
+
+    if (isDef(props.duration)) {
+      const key = props.position === 'center' ? 'animationDuration' : 'transitionDuration';
+      initStyle[key] = `${props.duration}s`;
+    }
     return initStyle;
   }, [zIndex]);
 
@@ -132,6 +149,7 @@ const Popup: React.FC<PopupProps> = (props) => {
         }}
       >
         <div
+          ref={popupRef}
           style={{ ...style, display: !visible && !animatedVisible ? 'none' : undefined }}
           className={classnames(
             bem({
@@ -152,12 +170,12 @@ const Popup: React.FC<PopupProps> = (props) => {
   };
 
   return (
-    <div>
+    <>
       {renderOverlay()}
       {renderTransition()}
-    </div>
+    </>
   );
-};
+});
 
 Popup.defaultProps = {
   position: 'center',
