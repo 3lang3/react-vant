@@ -45,7 +45,7 @@
 @active-color: #f2f3f5;
 @active-opacity: 0.7;
 @disabled-opacity: 0.5;
-@background-color: #f8f8f8;
+@background-color: #f7f8fa;
 @background-color-light: #fafafa;
 
 // Padding
@@ -634,19 +634,21 @@
 @search-action-font-size: @font-size-md;
 
 // Sidebar
-@sidebar-width: 85 * @hd;
+@sidebar-width: 80 * @hd;
 
 // SidebarItem
 @sidebar-font-size: @font-size-md;
-@sidebar-line-height: 20 * @hd;
+@sidebar-line-height: @line-height-md;
 @sidebar-text-color: @text-color;
-@sidebar-disabled-text-color: @gray;
-@sidebar-padding: 20 * @hd @padding-sm 20 * @hd @padding-xs;
+@sidebar-disabled-text-color: @gray-5;
+@sidebar-padding: 20 * @hd @padding-sm;
 @sidebar-active-color: @active-color;
-@sidebar-background-color: @background-color-light;
+@sidebar-background-color: @background-color;
 @sidebar-selected-font-weight: @font-weight-bold;
 @sidebar-selected-text-color: @text-color;
-@sidebar-selected-border-color: @red;
+@sidebar-selected-border-width: 4 * @hd;
+@sidebar-selected-border-height: 16 * @hd;
+@sidebar-selected-border-color: @danger-color;
 @sidebar-selected-background-color: @white;
 
 // Skeleton

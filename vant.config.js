@@ -273,6 +273,10 @@ module.exports = {
                 title: 'NavBar 导航栏',
               },
               {
+                path: 'sidebar',
+                title: 'Sidebar 侧边导航',
+              },
+              {
                 path: 'tabs',
                 title: 'Tabs 标签页',
               },

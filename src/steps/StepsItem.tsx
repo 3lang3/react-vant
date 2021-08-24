@@ -17,7 +17,7 @@ const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
   if (!parentProps) {
     if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
-      console.error('[Vant] <Step> must be a child component of <Steps>.');
+      console.error('[React Vant] <Step> must be a child component of <Steps>.');
     }
   }
 

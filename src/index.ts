@@ -26,6 +26,7 @@ export { default as Dialog } from './dialog';
 export { default as DropdownMenu } from './dropdown-menu';
 export { default as Search } from './search';
 export { default as Swipe } from './swipe';
+export { default as Sidebar } from './sidebar';
 export { default as Tabs } from './tabs';
 export { default as Sticky } from './sticky';
 export { default as NavBar } from './nav-bar';
