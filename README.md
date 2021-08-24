@@ -9,6 +9,11 @@
 
 > 👼 缺失的组件会持续同步，有特别需要的可以在[此处留言](https://github.com/3lang3/react-vant/issues/5)
 
+## Roadmap
+
+[Roadmap](https://github.com/3lang3/react-vant/discussions/16)概览
+
+
 ## 特性
 
 - 40+ 高质量组件，覆盖移动端基本场景
@@ -81,8 +86,6 @@ yarn test
 ```
 
 ### Contributor group
-
-> [Roadmap](https://github.com/3lang3/react-vant/discussions/16)概览
 
 欢迎加入我们的微信讨论组
 
