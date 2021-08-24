@@ -5,13 +5,13 @@ export type StepsDirection = 'horizontal' | 'vertical';
 
 export interface StepsProps extends BaseTypeProps {
   iconPrefix?: string;
-  finishIcon?: string;
+  finishIcon?: string | React.ReactNode;
   activeColor?: string;
-  inactiveIcon?: string;
+  inactiveIcon?: string | React.ReactNode;
   inactiveColor?: string;
   active?: number;
   direction?: StepsDirection;
-  activeIcon?: string;
+  activeIcon?: string | React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
   onClickStep?: (index: number) => void;

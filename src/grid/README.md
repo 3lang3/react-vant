@@ -126,7 +126,7 @@ import { Grid } from 'react-vant';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | text | 文字 | _string_ | - |
-| icon | [图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
+| icon | [图标名称](#/zh-CN/icon)或图片链接 | _string \| React.ReactNode_ | - |
 | iconPrefix | 图标类名前缀，等同于 Icon 组件的 [classPrefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | iconColor | 图标颜色，等同于 Icon 组件的 [color 属性](#/zh-CN/icon#props) | _string_ | - |
 | dot | 是否显示图标右上角小红点 | _boolean_ | `false` |

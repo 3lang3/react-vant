@@ -77,7 +77,7 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
       return (
         <Icon
           dot={props.dot}
-          name={props.icon}
+          name={props.icon as string}
           size={parent.iconSize}
           badge={props.badge}
           className={cls(bem('icon'))}

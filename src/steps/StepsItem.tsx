@@ -54,14 +54,14 @@ const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
     const { iconPrefix, finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;
 
     if (isActive()) {
-      if (React.isValidElement[parentProps.activeIcon]) {
+      if (React.isValidElement(parentProps.activeIcon)) {
         return parentProps.activeIcon;
       }
 
       return (
         <Icon
           className={cls(bem('icon', 'active'))}
-          name={activeIcon}
+          name={activeIcon as string}
           color={activeColor}
           classPrefix={iconPrefix}
         />
@@ -76,7 +76,7 @@ const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
       return (
         <Icon
           className={cls(bem('icon', 'finish'))}
-          name={finishIcon}
+          name={finishIcon as string}
           color={activeColor}
           classPrefix={iconPrefix}
         />
@@ -88,7 +88,9 @@ const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
     }
 
     if (inactiveIcon) {
-      return <Icon className={cls(bem('icon'))} name={inactiveIcon} classPrefix={iconPrefix} />;
+      return (
+        <Icon className={cls(bem('icon'))} name={inactiveIcon as string} classPrefix={iconPrefix} />
+      );
     }
 
     return <i className={cls(bem('circle'))} style={lineStyle} />;

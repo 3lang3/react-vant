@@ -30,9 +30,9 @@ export interface GridItemProps extends GridProps, BaseTypeProps {
   /**  图标右上角徽标的内容	 */
   badge?: number | string;
   /** 文字 */
-  text?: string;
+  text?: string | React.ReactNode;
   /** 图标名称或图片链接	 */
-  icon?: string;
+  icon?: string | React.ReactNode;
   /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
   iconPrefix?: string;
   /** 图标颜色，等同于 Icon 组件的 color 属性	 */
