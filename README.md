@@ -7,11 +7,11 @@
 [npm-image]: http://img.shields.io/npm/v/react-vant.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/react-vant
 
-> 👼 缺失的组件会持续同步，个人精力有限，有特别需要的可以在[此处留言](https://github.com/3lang3/react-vant/issues/5)
+> 👼 缺失的组件会持续同步，有特别需要的可以在[此处留言](https://github.com/3lang3/react-vant/issues/5)
 
 ## 特性
 
-- 30+ 高质量组件，覆盖移动端基本场景
+- 40+ 高质量组件，覆盖移动端基本场景
 - 支持按需引入
 - 支持主题定制
 - 支持 TypeScript
@@ -81,6 +81,8 @@ yarn test
 ```
 
 ### Contributor group
+
+> [Roadmap](https://github.com/3lang3/react-vant/discussions/16)概览
 
 欢迎加入我们的微信讨论组
 
