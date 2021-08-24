@@ -150,11 +150,12 @@ const Slider: React.FC<SliderProps> = (props) => {
       return;
     }
 
+    preventDefault(event, true);
+
     if (dragStatus.current === 'start') {
       props.onDragStart?.(event, startValue.current);
     }
 
-    preventDefault(event, true);
     touch.move(event);
     dragStatus.current = 'dragging';
 

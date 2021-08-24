@@ -12,8 +12,8 @@ export default (): React.ReactNode => {
   const [value4, setValue4] = useState(10);
   const [value5, setValue5] = useState(10);
   const [value6, setValue6] = useState(10);
-  const [value7, setValue7] = useState(10);
-  const [value8, setValue8] = useState([10, 50]);
+  const [value7, setValue7] = useState(50);
+  const [value8, setValue8] = useState([20, 50]);
 
   const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
   return (
@@ -32,6 +32,9 @@ export default (): React.ReactNode => {
           min={-50}
           max={50}
         />
+      </DemoBlock>
+      <DemoBlock title="禁用">
+        <Slider value={10} disabled />
       </DemoBlock>
       <DemoBlock title="指定步长">
         <Slider value={value4} onChange={setValue4} onChangeAfter={onChangeAfter} step={10} />
@@ -55,7 +58,7 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
       <DemoBlock title="垂直方向">
-        <div style={{ height: 150 }}>
+        <div style={{ height: 150, paddingLeft: 30 }}>
           <Slider
             vertical
             style={{ marginRight: 100 }}

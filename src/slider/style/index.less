@@ -34,6 +34,9 @@
     border-radius: @slider-button-border-radius;
     box-shadow: @slider-button-box-shadow;
 
+    &-wrapper {
+      touch-action: none;
+    }
     &-wrapper,
     &-wrapper-right {
       position: absolute;
@@ -41,6 +44,7 @@
       right: 0;
       transform: translate3d(50%, -50%, 0);
       cursor: grab;
+      touch-action: none;
     }
 
     &-wrapper-left {
@@ -49,6 +53,7 @@
       left: 0;
       transform: translate3d(-50%, -50%, 0);
       cursor: grab;
+      touch-action: none;
     }
   }
 
