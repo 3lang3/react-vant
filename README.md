@@ -82,7 +82,7 @@ yarn test
 
 ### Contributor group
 
-> [Roadmap](https://github.com/3lang3/react-vant/discussions/16)概览
+> [Roadmap](https://github.com/3lang3/react-vant/discussions/16)概览
 
 欢迎加入我们的微信讨论组
 
