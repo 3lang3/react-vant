@@ -46,7 +46,7 @@ const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
       return { color: parentProps.inactiveColor };
     }
     return {};
-  }, []);
+  }, [index, parentProps.active, parentProps.activeColor, parentProps.inactiveColor]);
 
   const onClickStep = () => parentProps.onClickStep(index);
 
