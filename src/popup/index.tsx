@@ -151,6 +151,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         <div
           ref={popupRef}
           style={{ ...style, display: !visible && !animatedVisible ? 'none' : undefined }}
+          onClick={props.onClick}
           className={classnames(
             bem({
               round,

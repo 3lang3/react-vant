@@ -46,8 +46,9 @@ const Toast = (p: ToastProps): unknown => {
       duration: 2000,
       ...props,
     } as ToastProps;
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const [state, setState] = useState<ToastProps>({ ...options });
+
     // clearDOM after animation
     const internalAfterClose = useCallback(
       once(() => {
@@ -65,11 +66,6 @@ const Toast = (p: ToastProps): unknown => {
       setVisible(false);
     }, []);
 
-    useEffect(() => {
-      syncClear();
-      toastArray.push(internalAfterClose);
-    }, []);
-
     updateConfig = useCallback(
       (nextState) => {
         setState((prev) =>
@@ -82,6 +78,10 @@ const Toast = (p: ToastProps): unknown => {
     );
 
     useEffect(() => {
+      setVisible(true);
+      syncClear();
+      toastArray.push(internalAfterClose);
+
       if (state.duration !== 0 && 'duration' in state) {
         timer = window.setTimeout(destroy, state.duration);
       }

@@ -13,6 +13,7 @@ export { default as Popup } from './popup';
 export { default as OverLay } from './overlay';
 export { default as Empty } from './empty';
 export { default as Loading } from './loading';
+export { default as Notify } from './notify';
 export { default as PullRefresh } from './pull-refresh';
 export { default as SwipeCell } from './swipe-cell';
 export { default as ShareSheet } from './share-sheet';

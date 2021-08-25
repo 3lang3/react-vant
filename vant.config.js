@@ -183,6 +183,10 @@ module.exports = {
                 title: 'Loading 加载',
               },
               {
+                path: 'notify',
+                title: 'Notify 消息通知',
+              },
+              {
                 path: 'overlay',
                 title: 'Overlay 遮罩层',
               },
