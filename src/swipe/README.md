@@ -125,7 +125,7 @@ const onChange = (index: number) => Toast(`当前 Swipe 索引：${index}`);
 
 | 参数         | 说明                     | 类型      | 默认值  |
 | ------------ | ------------------------ | --------- | ------- |
-| autoplay     | 自动轮播间隔，单位为 ms  | _number_  | `3000`       |
+| autoplay     | 自动轮播间隔，单位为 ms  | _number_  | `3000`  |
 | duration     | 动画时长，单位为 ms      | _number_  | `500`   |
 | initialSwipe | 初始位置索引值           | _number_  | `0`     |
 | width        | 滑块宽度，单位为`px`     | _number_  | -       |
@@ -149,13 +149,13 @@ const onChange = (index: number) => Toast(`当前 Swipe 索引：${index}`);
 通过 ref 可以获取到 Swipe 实例并调用实例方法，详见[swiper-api](https://swiperjs.com/swiper-api)。
 
 ```jsx
-import { Swipe, SwipeActionType } from 'react-vant'
+import { Swipe, SwipeInstance } from 'react-vant'
 
 export default () => {
-  const ref = useRef<SwipeActionType>()
+  const ref = useRef<SwipeInstance>()
   const next = () => {
     // 调用Swipe实例方法
-    ref.current.slideNext()
+    ref.current?.slideNext()
   }
   return (
     <Swipe ref={ref} autoplay={3000}>

@@ -1,6 +1,6 @@
 import CellGroup from './CellGroup';
 import Cell from './Cell';
 
-Cell.Group = CellGroup;
+const CellNamespace = Object.assign(Cell, { Group: CellGroup });
 
-export default Cell;
+export default CellNamespace;

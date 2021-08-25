@@ -63,7 +63,3 @@ export interface TabPaneProps {
   renderTitle?: Function;
   children?: React.ReactNode;
 }
-
-export type TabStatic = {
-  TabPane: React.FC<TabPaneProps>;
-};

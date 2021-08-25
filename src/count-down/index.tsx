@@ -1,13 +1,13 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react';
 import cls from 'classnames';
-import { CountDownProps, CountDownActionType } from './PropsType';
+import { CountDownProps, CountDownInstance } from './PropsType';
 import { createNamespace, noop } from '../utils';
 import { useCountDown } from './useCountDown';
 import { parseFormat } from './utils';
 
 const [bem] = createNamespace('count-down');
 
-const CountDown = forwardRef<CountDownActionType, CountDownProps>((props, ref) => {
+const CountDown = forwardRef<CountDownInstance, CountDownProps>((props, ref) => {
   const { start, pause, reset, current } = useCountDown({
     time: +props.time,
     millisecond: props.millisecond,

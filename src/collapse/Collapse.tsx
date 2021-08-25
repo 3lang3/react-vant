@@ -11,7 +11,7 @@ import { raf, doubleRaf } from '../utils/raf';
 
 const [bem] = createNamespace('collapse-item');
 
-const Collapse: React.FC<CollapseProps> & { Group?: React.FC } = (props) => {
+const Collapse: React.FC<CollapseProps> = (props) => {
   const { index } = props;
   const context = useContext(CollapseContext);
 

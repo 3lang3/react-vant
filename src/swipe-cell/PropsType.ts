@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface SwipeCellProps extends BaseTypeProps {
@@ -18,11 +19,12 @@ export interface SwipeCellProps extends BaseTypeProps {
   /** 是否禁用 */
   disabled?: boolean;
   /** 打开时触发 */
-  onOpen: ({ name, position }: { name: string | number; position: SwipeCellSide }) => void;
+  onOpen?: ({ name, position }: { name: string | number; position: SwipeCellSide }) => void;
   /** 关闭时触发 */
-  onClose: ({ name, position }: { name: string | number; position: SwipeCellPosition }) => void;
+  onClose?: ({ name, position }: { name: string | number; position: SwipeCellPosition }) => void;
   /** 点击时触发 */
-  onClick: (position: SwipeCellPosition) => void;
+  onClick?: (position: SwipeCellPosition) => void;
+  children?: React.ReactNode;
 }
 
 export type SwipeCellSide = 'left' | 'right';

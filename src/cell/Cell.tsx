@@ -6,7 +6,7 @@ import { CellProps } from './PropsType';
 
 const [bem] = createNamespace('cell');
 
-const Cell: React.FC<CellProps> & { Group?: React.FC } = (props) => {
+const Cell: React.FC<CellProps> = (props) => {
   const renderLabel = () => {
     const showLabel = isDef(props.label);
 

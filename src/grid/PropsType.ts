@@ -44,8 +44,3 @@ export interface GridItemProps extends GridProps, BaseTypeProps {
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent) => void;
 }
-
-export type GridStatic = {
-  (props: GridProps): React.ReactNode;
-  Item: React.FC<GridItemProps>;
-};

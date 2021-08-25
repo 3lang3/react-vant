@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import { Grid, CountDown, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
-import { CountDownActionType } from '../PropsType';
+import { CountDownInstance } from '../PropsType';
 import './style.less';
 
 const demoTime = 30 * 60 * 60 * 1000;
 
 export default (): React.ReactNode => {
-  const ref = useRef<CountDownActionType>();
+  const ref = useRef<CountDownInstance>();
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection className="demo-count-down">

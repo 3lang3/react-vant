@@ -13,8 +13,4 @@ export interface SwipeProps extends Omit<Swiper, 'onChange' | 'autoplay'>, BaseT
   autoplay?: number | Swiper['autoplay'];
 }
 
-export type SwipeStatic = {
-  Item: React.FC<SwiperSlide>;
-};
-
-export type SwipeActionType = SwiperClass;
+export type SwipeInstance = SwiperClass;

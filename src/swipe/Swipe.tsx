@@ -12,16 +12,16 @@ import SwiperCore, { Pagination, Autoplay, Lazy } from 'swiper';
 
 import { Swiper } from 'swiper/react';
 
-import { SwipeProps, SwipeActionType, SwipeStatic } from './PropsType';
+import { SwipeProps, SwipeInstance } from './PropsType';
 import { createNamespace } from '../utils';
 
 const [bem] = createNamespace('swipe');
 
 SwiperCore.use([Autoplay, Pagination, Lazy]);
 
-const Swipe = forwardRef<SwipeActionType, SwipeProps>((props, ref) => {
+const Swipe = forwardRef<SwipeInstance, SwipeProps>((props, ref) => {
   const { children, className, autoplay, ...parseProsp } = parseOptions(props);
-  const internalSwipeRef = useRef<SwipeActionType>(null);
+  const internalSwipeRef = useRef<SwipeInstance>(null);
   useImperativeHandle(ref, () => internalSwipeRef.current, [internalSwipeRef.current]);
 
   return (
@@ -67,4 +67,4 @@ function parseOptions(opts: SwipeProps) {
   return rest;
 }
 
-export default Swipe as React.ForwardRefExoticComponent<SwipeProps> & SwipeStatic;
+export default Swipe;

@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import FlexContext from './FlexContext';
 import { FlexPropsType as BasePropsType } from './PropsType';
 import { createNamespace } from '../utils';
-import FlexItem from './FlexItem';
 
 export interface FlexProps extends BasePropsType {
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -13,7 +12,7 @@ export interface FlexProps extends BasePropsType {
 
 const [bem] = createNamespace('flexbox');
 
-const Flex: React.FC<FlexProps> & { Item: React.FC } = (props) => {
+const Flex: React.FC<FlexProps> = (props) => {
   const {
     direction,
     wrap,
@@ -65,7 +64,5 @@ const Flex: React.FC<FlexProps> & { Item: React.FC } = (props) => {
     </FlexContext.Provider>
   );
 };
-
-Flex.Item = FlexItem;
 
 export default Flex;

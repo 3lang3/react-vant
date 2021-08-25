@@ -16,7 +16,7 @@ export type UseCountDownOptions = {
   onFinish?: () => void;
 };
 
-export type CountDownActionType = {
+export type CountDownInstance = {
   start: () => void;
   pause: () => void;
   reset: () => void;

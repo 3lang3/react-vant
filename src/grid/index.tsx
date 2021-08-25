@@ -1,9 +1,6 @@
-import BaseGrid from './Grid';
+import Grid from './Grid';
 import GridItem from './GridItem';
-import { GridStatic } from './PropsType';
 
-const Grid = BaseGrid as GridStatic;
+const GridNamespace = Object.assign(Grid, { Item: GridItem });
 
-Grid.Item = GridItem;
-
-export default Grid;
+export default GridNamespace;

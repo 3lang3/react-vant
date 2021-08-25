@@ -1,3 +1,6 @@
 import Flex from './Flex';
+import FlexItem from './FlexItem';
 
-export default Flex;
+const FlexNamespace = Object.assign(Flex, { Item: FlexItem });
+
+export default FlexNamespace;

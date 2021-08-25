@@ -10,7 +10,7 @@ import TabsTitle from './TabsTitle';
 import TabsContent from './TabsContent';
 import TabsContext from './TabsContext';
 
-import { TabPaneProps, TabsProps, TabStatic } from './PropsType';
+import { TabPaneProps, TabsProps } from './PropsType';
 import {
   addUnit,
   createNamespace,
@@ -26,11 +26,10 @@ import {
 } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
-import TabPane from './TabPane';
 
 const [bem] = createNamespace('tabs');
 
-const Tabs: React.FC<TabsProps> & TabStatic = (props) => {
+const Tabs: React.FC<TabsProps> = (props) => {
   const { children, color, background } = props;
 
   const root = useRef<HTMLDivElement>(null);
@@ -383,7 +382,5 @@ Tabs.defaultProps = {
   offsetTop: 0,
   ellipsis: true,
 };
-
-Tabs.TabPane = TabPane;
 
 export default Tabs;

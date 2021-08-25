@@ -1,3 +1,6 @@
 import Tabs from './Tabs';
+import TabPane from './TabPane';
 
-export default Tabs;
+const TabsNamespace = Object.assign(Tabs, { TabPane });
+
+export default TabsNamespace;
