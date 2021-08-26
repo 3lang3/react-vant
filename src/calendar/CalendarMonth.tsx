@@ -43,7 +43,7 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
     [props.date],
   );
 
-  const shouldRender = useMemo(() => visible, [visible]);
+  const shouldRender = useMemo(() => visible || !props.lazyRender, [visible]);
 
   const getTitle = () => title;
 
@@ -139,11 +139,14 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
 
   const getBottomInfo = (dayType: CalendarDayType) => {
     if (props.type === 'range') {
-      if (dayType === 'start' || dayType === 'end') {
-        return dayType;
+      if (dayType === 'start') {
+        return '开始';
+      }
+      if (dayType === 'end') {
+        return '结束';
       }
       if (dayType === 'start-end') {
-        return 'startEnd';
+        return '开始/结束';
       }
     }
     return null;
@@ -203,6 +206,8 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
       offset={offset}
       rowHeight={rowHeight}
       onClick={props.onClick}
+      topInfoRender={props.topInfoRender}
+      bottomInfoRender={props.bottomInfoRender}
     />
   );
 

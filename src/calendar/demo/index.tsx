@@ -1,11 +1,10 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Toast, Cell, Calendar } from 'react-vant';
+import { Toast, Cell, Calendar, useSetState } from 'react-vant';
 import { components } from 'site-mobile-demo';
-import useSetState from '../../hooks/use-set-state';
 import './style.less';
 
-const formatDate = (date) => `${date.getFullYear()}年/${date.getMonth() + 1}月/${date.getDate()}日`;
+const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
 
 const formatter = (day) => {
   const month = day.date.getMonth() + 1;
@@ -34,165 +33,168 @@ export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const [state, set] = useSetState({
     v1: false,
+    t1: '',
     v2: false,
+    t2: '',
     v3: false,
+    t3: '',
     v4: false,
+    t4: '',
     v5: false,
+    t5: '',
     v6: false,
+    t6: '',
     v7: false,
+    t7: '',
     v8: false,
+    t8: '',
     v9: false,
+    t9: '',
     v10: false,
+    t10: '',
     v11: false,
+    t11: '',
     v12: false,
+    t12: '',
   });
-  const confirm = (v) => {
-    const info = Array.isArray(v) ? v.map(formatDate) : formatDate(v);
-    Toast.info(info.toString());
-  };
+
   return (
     <DemoSection className="demo-calendar">
       <DemoBlock card title="基础用法">
-        <Cell title="选择单个日期" isLink onClick={() => set({ v1: true })} />
+        <Cell title="选择单个日期" value={state.t1} isLink onClick={() => set({ v1: true })} />
         <Calendar
-          show={state.v1}
+          visible={state.v1}
           onClose={() => set({ v1: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v1: false });
+            set({ v1: false, t1: formatDate(v) });
           }}
         />
 
-        <Cell title="选择多个日期" isLink onClick={() => set({ v2: true })} />
+        <Cell title="选择多个日期" value={state.t2} isLink onClick={() => set({ v2: true })} />
         <Calendar
-          show={state.v2}
+          visible={state.v2}
           type="multiple"
           onClose={() => set({ v2: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v2: false });
+            set({ v2: false, t2: `选择了 ${v.length} 个日期` });
           }}
         />
 
-        <Cell title="选择日期区间" isLink onClick={() => set({ v3: true })} />
+        <Cell title="选择日期区间" value={state.t3} isLink onClick={() => set({ v3: true })} />
         <Calendar
-          show={state.v3}
+          visible={state.v3}
           type="range"
           onClose={() => set({ v3: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v3: false });
+            set({ v3: false, t3: `${formatDate(v[0])} - ${formatDate(v[1])}` });
           }}
         />
       </DemoBlock>
-      <DemoBlock card title="基础用法">
-        <Cell title="选择单个日期" isLink onClick={() => set({ v4: true })} />
+      <DemoBlock card title="快捷选择">
+        <Cell title="选择单个日期" value={state.t4} isLink onClick={() => set({ v4: true })} />
         <Calendar
-          show={state.v4}
+          visible={state.v4}
           onClose={() => set({ v4: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v4: false });
+            set({ v4: false, t4: formatDate(v) });
           }}
           showConfirm={false}
         />
 
-        <Cell title="选择日期区间" isLink onClick={() => set({ v5: true })} />
+        <Cell title="选择日期区间" value={state.t5} isLink onClick={() => set({ v5: true })} />
         <Calendar
-          show={state.v5}
+          visible={state.v5}
           type="range"
           onClose={() => set({ v5: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v5: false });
+            set({ v5: false, t5: `${formatDate(v[0])} - ${formatDate(v[1])}` });
           }}
           showConfirm={false}
         />
       </DemoBlock>
 
       <DemoBlock card title="自定义日历">
-        <Cell title="自定义颜色" isLink onClick={() => set({ v6: true })} />
+        <Cell title="自定义颜色" value={state.t6} isLink onClick={() => set({ v6: true })} />
         <Calendar
           color="#1989fa"
           type="range"
-          show={state.v6}
+          visible={state.v6}
           onClose={() => set({ v6: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v6: false });
+            set({ v6: false, t6: `${formatDate(v[0])} - ${formatDate(v[1])}` });
           }}
         />
 
-        <Cell title="自定义日期范围" isLink onClick={() => set({ v7: true })} />
+        <Cell title="自定义日期范围" value={state.t7} isLink onClick={() => set({ v7: true })} />
         <Calendar
           minDate={new Date(2010, 0, 1)}
           maxDate={new Date(2010, 0, 31)}
-          show={state.v7}
+          visible={state.v7}
           onClose={() => set({ v7: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v7: false });
+            set({ v7: false, t7: formatDate(v) });
           }}
         />
 
-        <Cell title="自定义按钮文字" isLink onClick={() => set({ v8: true })} />
+        <Cell title="自定义按钮文字" value={state.t8} isLink onClick={() => set({ v8: true })} />
         <Calendar
           type="range"
           confirmText="完成咯"
-          show={state.v8}
+          confirmDisabledText="请选择结束时间啊"
+          visible={state.v8}
           onClose={() => set({ v8: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v8: false });
+            set({ v8: false, t8: `${formatDate(v[0])} - ${formatDate(v[1])}` });
           }}
         />
 
-        <Cell title="自定义日期文案" isLink onClick={() => set({ v9: true })} />
+        <Cell title="自定义日期文案" value={state.t9} isLink onClick={() => set({ v9: true })} />
         <Calendar
           type="range"
           minDate={new Date(2010, 4, 1)}
           maxDate={new Date(2010, 4, 31)}
           formatter={formatter}
-          show={state.v9}
+          visible={state.v9}
           onClose={() => set({ v9: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v9: false });
+            set({ v9: false, t9: `${formatDate(v[0])} - ${formatDate(v[1])}` });
           }}
         />
 
-        <Cell title="自定义弹出位置" isLink onClick={() => set({ v10: true })} />
+        <Cell title="自定义弹出位置" value={state.t10} isLink onClick={() => set({ v10: true })} />
         <Calendar
           round={false}
           position="right"
-          show={state.v10}
+          visible={state.v10}
           onClose={() => set({ v10: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v10: false });
+            set({ v10: false, t10: formatDate(v) });
           }}
         />
 
-        <Cell title="日期区间最大范围" isLink onClick={() => set({ v11: true })} />
+        <Cell
+          title="日期区间最大范围"
+          value={state.t11}
+          isLink
+          onClick={() => set({ v11: true })}
+        />
         <Calendar
           type="range"
           maxRange={3}
-          show={state.v11}
+          visible={state.v11}
           onClose={() => set({ v11: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v11: false });
+            set({ v11: false, t11: `${formatDate(v[0])} - ${formatDate(v[1])}` });
           }}
         />
 
-        <Cell title="自定义周起始日" isLink onClick={() => set({ v12: true })} />
+        <Cell title="自定义周起始日" value={state.t12} isLink onClick={() => set({ v12: true })} />
         <Calendar
           firstDayOfWeek={1}
-          show={state.v12}
+          visible={state.v12}
           onClose={() => set({ v12: false })}
           onConfirm={(v) => {
-            confirm(v);
-            set({ v12: false });
+            set({ v12: false, t12: formatDate(v) });
           }}
         />
       </DemoBlock>
@@ -203,7 +205,7 @@ export default (): React.ReactNode => {
           showConfirm={false}
           poppable={false}
           onConfirm={(v) => {
-            confirm(v);
+            Toast.info(formatDate(v));
           }}
         />
       </DemoBlock>

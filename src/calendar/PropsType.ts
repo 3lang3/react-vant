@@ -36,15 +36,15 @@ export type CalendarInstance = CalendarExpose;
 
 export type CalendarMonthInstance = {
   showed?: boolean;
-  getTitle: () => any;
+  getTitle: () => string | React.ReactNode;
   getHeight: () => number;
   setVisible: (value?: boolean | undefined) => void;
   scrollIntoView: (body: Element) => void;
 };
 
 export interface CalendarHeaderProps extends BaseTypeProps {
-  title?: string;
-  subtitle?: string;
+  title?: string | React.ReactNode;
+  subtitle?: string | React.ReactNode;
   showTitle?: boolean;
   showSubtitle?: boolean;
   firstDayOfWeek?: number;
@@ -58,6 +58,8 @@ export interface CalendarDayProps extends BaseTypeProps {
   offset?: number;
   item: CalendarDayItem;
   onClick?: (item: CalendarDayItem) => void;
+  topInfoRender?: (day: CalendarDayItem) => React.ReactNode;
+  bottomInfoRender?: (day: CalendarDayItem) => React.ReactNode;
 }
 
 export interface CalendarMonthProps extends BaseTypeProps {
@@ -74,12 +76,16 @@ export interface CalendarMonthProps extends BaseTypeProps {
   date: Date;
   minDate: Date;
   maxDate: Date;
+  lazyRender?: boolean;
+  topInfoRender?: (day: CalendarDayItem) => React.ReactNode;
+  bottomInfoRender?: (day: CalendarDayItem) => React.ReactNode;
   onClick?: (item: CalendarDayItem) => void;
 }
 
 export interface CalendarProps extends BaseTypeProps {
-  show?: boolean;
-  title?: string;
+  visible?: boolean;
+  title?: string | React.ReactNode;
+  subtitle?: string | React.ReactNode;
   color?: string;
   round?: boolean;
   readonly?: boolean;
@@ -91,6 +97,7 @@ export interface CalendarProps extends BaseTypeProps {
   confirmText?: string;
   rangePrompt?: string;
   showConfirm?: boolean;
+  lazyRender?: boolean;
   defaultDate?: any;
   allowSameDay?: boolean;
   showSubtitle?: boolean;
@@ -106,10 +113,12 @@ export interface CalendarProps extends BaseTypeProps {
   firstDayOfWeek?: number | string;
   showRangePrompt?: boolean;
   footer?: React.ReactNode;
+  topInfoRender?: (day: CalendarDayItem) => React.ReactNode;
+  bottomInfoRender?: (day: CalendarDayItem) => React.ReactNode;
   onSelect?: (value: CalendarValue) => void;
   onConfirm?: (value: CalendarValue) => void;
-  onOpen?: () => void;
   onClose?: () => void;
+  onClosed?: () => void;
   onUnselect?: (value: Date) => void;
   onMonthShow?: (value: { date: Date; title: string }) => void;
   onOverRange?: () => void;

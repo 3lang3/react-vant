@@ -48,8 +48,12 @@ const CalenderDay: React.FC<CalendarDayProps> = (props) => {
   const renderTopInfo = () => {
     const { topInfo } = props.item;
 
-    if (topInfo) {
-      return <div className={cls(bem('top-info'))}>{topInfo}</div>;
+    if (topInfo || props.topInfoRender) {
+      return (
+        <div className={cls(bem('top-info'))}>
+          {props.topInfoRender ? props.topInfoRender(props.item) : topInfo}
+        </div>
+      );
     }
     return null;
   };
@@ -57,8 +61,12 @@ const CalenderDay: React.FC<CalendarDayProps> = (props) => {
   const renderBottomInfo = () => {
     const { bottomInfo } = props.item;
 
-    if (bottomInfo) {
-      return <div className={cls(bem('bottom-info'))}>{bottomInfo}</div>;
+    if (bottomInfo || props.bottomInfoRender) {
+      return (
+        <div className={cls(bem('bottom-info'))}>
+          {props.bottomInfoRender ? props.bottomInfoRender(props.item) : bottomInfo}
+        </div>
+      );
     }
     return null;
   };

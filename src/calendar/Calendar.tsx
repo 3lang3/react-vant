@@ -184,7 +184,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
 
     // scroll to current month
     const scrollIntoView = () => {
-      if (props.poppable && !props.show) {
+      if (props.poppable && !props.visible) {
         return;
       }
 
@@ -198,7 +198,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     };
 
     const init = () => {
-      if (props.poppable && !props.show) {
+      if (props.poppable && !props.visible) {
         return;
       }
       raf(() => {
@@ -340,7 +340,10 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
             'formatter',
             'rowHeight',
             'showSubtitle',
+            'lazyRender',
             'allowSameDay',
+            'topInfoRender',
+            'bottomInfoRender',
           ])}
           onClick={onClickDay}
         />
@@ -383,7 +386,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
       <div className={cls(className, bem())} style={style}>
         <CalendarHeader
           title={props.title}
-          subtitle={state.subtitle}
+          subtitle={props.subtitle || state.subtitle}
           showTitle={props.showTitle}
           showSubtitle={props.showSubtitle}
           firstDayOfWeek={dayOffset}
@@ -400,7 +403,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
 
     useEffect(() => {
       init();
-    }, [props.show]);
+    }, [props.visible]);
 
     useUpdateEffect(() => {
       reset(getInitialDate(state.currentDate));
@@ -419,7 +422,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     if (props.poppable) {
       return (
         <Popup
-          visible={props.show}
+          visible={props.visible}
           className={cls(bem('popup'))}
           round={props.round}
           position={props.position}
@@ -427,6 +430,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
           closeOnPopstate={props.closeOnPopstate}
           overlayClosable={props.overlayClosable}
           onClose={props.onClose}
+          afterClose={props.onClosed}
         >
           {renderCalendar()}
         </Popup>
@@ -444,6 +448,7 @@ Calendar.defaultProps = {
   showTitle: true,
   showConfirm: true,
   showSubtitle: true,
+  lazyRender: true,
   closeOnPopstate: true,
   overlayClosable: true,
   safeAreaInsetBottom: true,
