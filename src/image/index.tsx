@@ -91,10 +91,18 @@ const Image: React.FC<ImageProps> = (props) => {
 
   const renderPlaceholder = () => {
     if (status.loading && showLoading) {
-      return <div className={classnames(bem('loading'))}>{renderLoadingIcon()}</div>;
+      return (
+        <div className={classnames(bem('loading'))} onClick={props.onClick}>
+          {renderLoadingIcon()}
+        </div>
+      );
     }
     if (status.error && showError) {
-      return <div className={classnames(bem('error'))}>{renderErrorIcon()}</div>;
+      return (
+        <div className={classnames(bem('error'))} onClick={props.onClick}>
+          {renderErrorIcon()}
+        </div>
+      );
     }
     return null;
   };
