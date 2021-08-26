@@ -113,6 +113,10 @@ module.exports = {
             title: '表单组件',
             items: [
               {
+                path: 'calendar',
+                title: 'Calendar 日历',
+              },
+              {
                 path: 'checkbox',
                 title: 'Checkbox 复选框',
               },
