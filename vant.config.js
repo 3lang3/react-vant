@@ -133,6 +133,10 @@ module.exports = {
                 title: 'DatetimePicker 时间选择',
               },
               {
+                path: 'number-keyboard',
+                title: 'NumberKeyboard 数字键盘',
+              },
+              {
                 path: 'password-input',
                 title: 'PasswordInput 密码输入框',
               },

@@ -44,6 +44,7 @@ export { default as Checkbox } from './checkbox';
 export { default as Picker } from './picker';
 export { default as DatetimePicker } from './datetime-picker';
 export { default as PasswordInput } from './password-input';
+export { default as NumberKeyboard } from './number-keyboard';
 export { default as Slider } from './slider';
 export { default as Stepper } from './stepper';
 export { default as Switch } from './switch';
