@@ -63,3 +63,10 @@ export interface TabPaneProps {
   renderTitle?: Function;
   children?: React.ReactNode;
 }
+
+export type TabsClickTabEventParams = {
+  name: string | number;
+  title: string;
+  event: MouseEvent;
+  disabled: boolean;
+};

@@ -12,6 +12,7 @@ export interface FieldProps extends BaseTypeProps, Partial<CellProps> {
   rows?: number;
   placeholder?: string;
   autosize?: boolean;
+  isLink?: boolean;
   errorMessage?: string;
   className?: string;
   labelClass?: string;

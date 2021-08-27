@@ -39,6 +39,7 @@ export { default as Collapse } from './collapse';
 export { default as Radio } from './radio';
 export { default as Rate } from './rate';
 export { default as Calendar } from './calendar';
+export { default as Cascader } from './cascader';
 export { default as Checkbox } from './checkbox';
 export { default as Picker } from './picker';
 export { default as DatetimePicker } from './datetime-picker';

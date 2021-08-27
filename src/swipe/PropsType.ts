@@ -1,5 +1,5 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/swiper-react';
+import { Swiper } from 'swiper/swiper-react';
 import SwiperClass from 'swiper/types/swiper-class';
 import { BaseTypeProps } from '../utils';
 
@@ -7,6 +7,7 @@ export interface SwipeProps extends Omit<Swiper, 'onChange' | 'autoplay'>, BaseT
   vertical?: boolean;
   duration?: number;
   initialSwipe?: number;
+  /** 是否显示指示器	 */
   showIndicators?: boolean;
   onChange?: (index: number) => void;
   children?: React.ReactNode;

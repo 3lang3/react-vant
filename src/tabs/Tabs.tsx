@@ -254,7 +254,6 @@ const Tabs: React.FC<TabsProps> = (props) => {
       }
     }
   };
-
   const getCurrentIndexOnScroll = () => {
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < titleRefs.length; index++) {
@@ -341,7 +340,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
 
   return (
     <TabsContext.Provider value={{ props, currentName }}>
-      <div ref={root} className={classnames(bem([props.type]))}>
+      <div ref={root} className={classnames(props.className, bem([props.type]))}>
         {props.sticky ? (
           <Sticky
             container={root}

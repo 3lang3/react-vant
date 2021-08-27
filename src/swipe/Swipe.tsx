@@ -47,10 +47,12 @@ Swipe.defaultProps = {
 };
 
 function parseOptions(opts: SwipeProps) {
-  const { initialSwipe, duration, onChange, vertical, ...rest } = opts;
+  const { initialSwipe, duration, onChange, vertical, showIndicators, ...rest } = opts;
   if (vertical) {
     rest.direction = 'vertical';
   }
+  if (!showIndicators) rest.pagination = false;
+
   rest.initialSlide = initialSwipe;
   rest.speed = duration;
   if (rest.autoplay && typeof rest.autoplay === 'number') {
