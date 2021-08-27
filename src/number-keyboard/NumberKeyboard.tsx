@@ -119,6 +119,11 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
   const renderKeys = () =>
     keys.map((key, i) => {
       let keySlots = null;
+
+      if (!key.type) {
+        keySlots = props.numberKeyRender?.(key);
+      }
+
       if (key.type === 'delete') {
         keySlots = props.deleteRender?.();
       }

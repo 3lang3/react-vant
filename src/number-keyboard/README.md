@@ -122,6 +122,7 @@ export default () => {
 | show | 是否显示键盘 | _boolean_ | - |
 | title | 键盘标题 | _ReactNode_ | - |
 | delete | 键盘标题 | _ReactNode_ | - |
+| numberKeyRender | 自定义数字按键内容 | _(item: KeyConfig) => ReactNode_ | - |
 | deleteRender | 自定义删除按键内容 | _() => ReactNode_ | - |
 | extraKeyRender | 自定义左下角按键内容 | _() => ReactNode_ | - |
 | theme | 样式风格，可选值为 `custom` | _string_ | `default` |
