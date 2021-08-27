@@ -13,7 +13,7 @@ export type KeyConfig = {
 };
 
 export interface NumberKeyboardProps extends BaseTypeProps {
-  visible?: boolean;
+  visible: boolean;
   title?: React.ReactNode;
   numberKeyRender?: (item: KeyConfig) => React.ReactNode;
   deleteRender?: () => React.ReactNode;
