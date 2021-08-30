@@ -75,13 +75,13 @@ export default (): React.ReactNode => {
           <DemoBlock title="徽标提示">
             <Flex>
               <Flex.Item span={6}>
-                <Icon name="chat-o" dot />
+                <Icon name="chat-o" badge={{ dot: true }} />
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="chat-o" badge={9} />
+                <Icon name="chat-o" badge={{ content: 9 }} />
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="chat-o" badge="99+" />
+                <Icon name="chat-o" badge={{ content: '99+' }} />
               </Flex.Item>
             </Flex>
           </DemoBlock>

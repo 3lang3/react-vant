@@ -1,6 +1,9 @@
 import React from 'react';
 import { BaseTypeProps } from '../utils';
 
+/** HTML 标签	 */
+export type HtmlTagType = keyof HTMLElementTagNameMap;
+
 export interface BadgeProps extends BaseTypeProps {
   /** 徽标内容 */
   content?: React.ReactNode;
@@ -20,6 +23,6 @@ export interface BadgeProps extends BaseTypeProps {
   /** badge指定渲染为html元素
    * @default div
    */
-  tag?: keyof HTMLElementTagNameMap;
+  tag?: HtmlTagType;
   onClick?: (e: React.MouseEvent) => void;
 }

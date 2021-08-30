@@ -1,14 +1,15 @@
 # Icon 图标
+
 ### 介绍
 
 基于字体的图标集，可以通过 `Icon` 组件使用，也可以在其他组件中通过`icon`属性引用
-
 
 ### 引入
 
 ```js
 import { Icon } from 'react-vant';
 ```
+
 ## 代码演示
 
 ### 基础用法
@@ -22,11 +23,11 @@ import { Icon } from 'react-vant';
 
 ### 徽标提示
 
-`Icon` 的 `dot` `badge` 属性用来设置徽标内容。
+`Icon` 的 `badge` 属性用来设置徽标内容。
 
 ```jsx
-<Icon name="chat-o" dot />
-<Icon name="chat-o" badge="99+" />
+<Icon name="chat-o" badge={{ dot: true }} />
+<Icon name="chat-o" badge={{ content: "99+" }} />
 ```
 
 ### 图标颜色
@@ -37,7 +38,6 @@ import { Icon } from 'react-vant';
 <Icon name="cart-o" color="#1989fa" />
 <Icon name="fire-o" color="#ee0a24" />
 ```
-
 
 ### 图标大小
 
@@ -80,14 +80,14 @@ import { Icon } from 'react-vant';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | name | 图标名称或图片链接 | _string_ | - |
-| dot | 是否显示图标右上角小红点 | _boolean_ | `false` |
+| badge | 图标右上角徽标 | [_BadgeProps_](#/zh-CN/badge) | - |
 | color | 图标颜色 | _string_ | `inherit` |
 | size | 图标大小，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `inherit` |
-| classPrefix | 类名前缀，用于使用自定义图标 | _string_ | `rv-icon` |
+| classPrefix | 类名前缀，用于使用自定义图标 | _string_ | `van-icon` |
 | tag | HTML 标签 | _string_ | `i` |
 
 ### Events
 
-| 事件名 | 说明           | 回调参数       |
-| ------ | -------------- | -------------- |
-| click  | 点击图标时触发 | _event: Event_ |
+| 事件名  | 说明           | 回调参数       |
+| ------- | -------------- | -------------- |
+| onClick | 点击图标时触发 | _event: Event_ |

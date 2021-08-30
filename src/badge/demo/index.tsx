@@ -8,7 +8,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection className="demo-badge">
       <DemoBlock title="基础用法">
-        <Badge tag="section" content={5}>
+        <Badge content={5}>
           <div className="child" />
         </Badge>
         <Badge content={10}>
