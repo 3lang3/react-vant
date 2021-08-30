@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useReducer, useRef } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { SearchProps } from './PropsType';
 import { createNamespace, preventDefault } from '../utils';
@@ -6,46 +6,15 @@ import { createNamespace, preventDefault } from '../utils';
 // Components
 import Field from '../field';
 
-const initialState = { count: 0 };
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'add':
-      return { count: state.count + 1 };
-    default:
-      throw new Error();
-  }
-}
-
 const [bem] = createNamespace('search');
 
 const Search: React.FC<SearchProps> = (props) => {
   const { label, shape = 'square', showAction, actionText, value, background } = props;
   const { onCancel, onClear, onSearch, onChange, onFocus, onBlur } = props;
 
-  // const [showIcon, showIconFn] = useState<boolean>(false);
-
-  // const [state, dispatch] = useReducer(reducer, initialState);
-
-  // const inputRef = useRef(null);
-
-  useEffect(() => {
-    // console.log(showIcon)
-  });
-
   const handleCancel = (e) => {
     onCancel(e);
   };
-
-  // const handleFocus = () => {
-  //   console.log("Search Field Focus")
-
-  // };
-
-  // const handleBlur = () => {
-  //   console.log("Search Field Blur")
-
-  // };
 
   const handleKeypress = (event) => {
     const ENTER_CODE = 13;

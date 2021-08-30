@@ -1,3 +1,4 @@
+import { FieldClearTrigger } from '../field/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export interface SearchProps extends BaseTypeProps {
@@ -9,7 +10,7 @@ export interface SearchProps extends BaseTypeProps {
   actionText?: string;
   background?: string;
   showAction?: Boolean;
-  clearTrigger?: string;
+  clearTrigger?: FieldClearTrigger;
   shape?: string;
   clearable?: boolean;
   placeholder?: string;

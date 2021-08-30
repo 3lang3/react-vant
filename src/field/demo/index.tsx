@@ -1,11 +1,11 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect, useRef } from 'react';
-import { Field, Cell, Button } from 'react-vant';
+import { Field, Cell, Button, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
-  const [value, setValue] = useState('');
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');
   const [tel, setTel] = useState();
@@ -33,21 +33,11 @@ export default (): React.ReactNode => {
 
   return (
     <DemoSection>
-      <DemoBlock title="基础用法">
-        <Cell.Group>
-          <Field value={value} onChange={setValue} placeholder="请输入文本" maxlength="11" />
-          <Field
-            className="field"
-            labelClass="field_label"
-            value={value1}
-            label="文本"
-            onChange={setValue1}
-            placeholder="请输入文本"
-          />
-        </Cell.Group>
+      <DemoBlock card title="基础用法">
+        <Field value={value1} label="文本" onChange={setValue1} placeholder="请输入文本" />
       </DemoBlock>
 
-      <DemoBlock title="自定义类型">
+      <DemoBlock card title="自定义类型">
         <Field value={value2} label="文本" onChange={setValue2} placeholder="请输入文本" />
         <Field value={tel} type="tel" label="手机号" onChange={setTel} placeholder="请输入手机号" />
         <Field
@@ -73,21 +63,23 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
-      <DemoBlock title="禁用输入框">
+      <DemoBlock card title="禁用输入框">
         <Cell.Group>
           <Field label="文本" value="输入框只读" readonly />
           <Field label="文本" value="输入框已禁用" disabled />
         </Cell.Group>
       </DemoBlock>
 
-      <DemoBlock title="显示图标">
+      <DemoBlock card title="显示图标">
         <Cell.Group>
           <Field
             value={value3}
             label="文本"
             leftIcon="shop-o"
-            rightIcon="shop-o"
+            rightIcon="warning-o"
             placeholder="显示图标"
+            onClickLeftIcon={() => Toast.info('左侧图标点击')}
+            onClickRightIcon={() => Toast.info('右侧图标点击')}
             onChange={setValue3}
           />
           <Field
@@ -107,7 +99,7 @@ export default (): React.ReactNode => {
         </Cell.Group>
       </DemoBlock>
 
-      <DemoBlock title="错误提示">
+      <DemoBlock card title="错误提示">
         <Cell.Group>
           <Field
             value={username}
@@ -128,7 +120,7 @@ export default (): React.ReactNode => {
         </Cell.Group>
       </DemoBlock>
 
-      <DemoBlock title="插入按钮">
+      <DemoBlock card title="插入按钮">
         <Field
           value={sms}
           center
@@ -144,7 +136,7 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
-      <DemoBlock title="格式化输入内容">
+      <DemoBlock card title="格式化输入内容">
         <Field
           value={value5}
           label="文本"
@@ -162,7 +154,7 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
-      <DemoBlock title="高度自适应">
+      <DemoBlock card title="高度自适应">
         <Field
           value={message}
           rows="1"
@@ -174,7 +166,7 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
-      <DemoBlock title="显示字数统计">
+      <DemoBlock card title="显示字数统计">
         <Field
           value={message2}
           rows="2"
@@ -188,7 +180,7 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
-      <DemoBlock title="输入框内容对齐">
+      <DemoBlock card title="输入框内容对齐">
         <Field
           value={value7}
           label="文本"
@@ -198,12 +190,11 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
-      <DemoBlock title="调用方法">
+      <DemoBlock card title="调用方法">
         <Cell.Group>
           <Field
+            center
             ref={fieldRef}
-            className="field"
-            labelClass="field_label"
             value={value8}
             label="文本"
             onChange={setValue8}

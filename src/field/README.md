@@ -215,74 +215,68 @@ const formatter = (value) => value.replace(/\d/g, '');
 
 ### Props
 
-| 参数                    | 说明                                                                                                        | 类型                | 默认值     |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------- | ---------- |
-| value                   | 当前输入的值                                                                                                | _number \| string_  | -          |
-| label                   | 输入框左侧文本                                                                                              | _string_            | -          |
-| name                    | 名称，提交表单的标识符                                                                                      | _string_            | -          |
-| type                    | 输入框类型, 可选值为 `tel` `digit`<br>`number` `textarea` `password` 等                                     | _string_            | `text`     |
-| size                    | 大小，可选值为 `large`                                                                                      | _string_            | -          |
-| maxlength               | 输入的最大字符数                                                                                            | _number \| string_  | -          |
-| placeholder             | 输入框占位提示文字                                                                                          | _string_            | -          |
-| border                  | 是否显示内边框                                                                                              | _boolean_           | `true`     |
-| disabled                | 是否禁用输入框                                                                                              | _boolean_           | `false`    |
-| readonly                | 是否只读                                                                                                    | _boolean_           | `false`    |
-| colon                   | 是否在 label 后面添加冒号                                                                                   | _boolean_           | `false`    |
-| required                | 是否显示表单必填星号                                                                                        | _boolean_           | `false`    |
-| center                  | 是否使内容垂直居中                                                                                          | _boolean_           | `false`    |
-| clearable               | 是否启用清除图标，点击清除图标后会清空输入框                                                                | _boolean_           | `false`    |
-| clickable               | 是否开启点击反馈                                                                                            | _boolean_           | `false`    |
-| isLink                 | 是否展示右侧箭头并开启点击反馈                                                                              | _boolean_           | `false`    |
-| autofocus               | 是否自动聚焦，iOS 系统不支持该属性                                                                          | _boolean_           | `false`    |
-| showWordLimit           | 是否显示字数统计，需要设置`maxlength`属性                                                                   | _boolean_           | `false`    |
-| error                   | 是否将输入内容标红                                                                                          | _boolean_           | `false`    |
-| errorMessage            | 底部错误提示文案，为空时不展示                                                                              | _string_            | -          |
-| formatter               | 输入内容格式化函数                                                                                          | _Function_          | -          |
-| formatTrigger           | 格式化函数触发的时机，可选值为 `onBlur`                                                                     | _string_            | `onChange` |
-| arrowDirection          | 箭头方向，可选值为 `left` `up` `down`                                                                       | _string_            | `right`    |
-| labelClass              | 左侧文本额外类名                                                                                            | _any_               | -          |
-| labelWidth              | 左侧文本宽度，默认单位为`px`                                                                                | _number \| string_  | `6.2em`    |
-| labelAlign              | 左侧文本对齐方式，可选值为 `center` `right`                                                                 | _string_            | `left`     |
-| inputAlign              | 输入框对齐方式，可选值为 `center` `right`                                                                   | _string_            | `left`     |
-| errorMessageAlign       | 错误提示文案对齐方式，可选值为 `center` `right`                                                             | _string_            | `left`     |
-| autosize                | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 { maxHeight: 100, minHeight: 50 }，<br>单位为`px` | _boolean \| object_ | `false`    |
-| left-icon               | 左侧[图标名称](#/zh-CN/icon)或图片链接                                                                      | _string_            | -          |
-| right-icon              | 右侧[图标名称](#/zh-CN/icon)或图片链接                                                                      | _string_            | -          |
-| iconPrefix              | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props)                                        | _string_            | `van-icon` |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 当前输入的值 | _number \| string_ | - |
+| label | 输入框左侧文本 | _string_ | - |
+| name | 名称，提交表单的标识符 | _string_ | - |
+| type | 输入框类型, 可选值为 `tel` `digit`<br>`number` `textarea` `password` 等 | _string_ | `text` |
+| size | 大小，可选值为 `large` | _string_ | - |
+| maxlength | 输入的最大字符数 | _number \| string_ | - |
+| placeholder | 输入框占位提示文字 | _string_ | - |
+| border | 是否显示内边框 | _boolean_ | `true` |
+| disabled | 是否禁用输入框 | _boolean_ | `false` |
+| readonly | 是否只读 | _boolean_ | `false` |
+| colon | 是否在 label 后面添加冒号 | _boolean_ | `false` |
+| required | 是否显示表单必填星号 | _boolean_ | `false` |
+| center | 是否使内容垂直居中 | _boolean_ | `false` |
+| clearable | 是否启用清除图标，点击清除图标后会清空输入框 | _boolean_ | `false` |
+| clickable | 是否开启点击反馈 | _boolean_ | `false` |
+| isLink | 是否展示右侧箭头并开启点击反馈 | _boolean_ | `false` |
+| autofocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
+| showWordLimit | 是否显示字数统计，需要设置`maxlength`属性 | _boolean_ | `false` |
+| error | 是否将输入内容标红 | _boolean_ | `false` |
+| errorMessage | 底部错误提示文案，为空时不展示 | _string_ | - |
+| formatter | 输入内容格式化函数 | _Function_ | - |
+| formatTrigger | 格式化函数触发的时机，可选值为 `onBlur` | _string_ | `onChange` |
+| arrowDirection | 箭头方向，可选值为 `left` `up` `down` | _string_ | `right` |
+| labelClass | 左侧文本额外类名 | _any_ | - |
+| labelWidth | 左侧文本宽度，默认单位为`px` | _number \| string_ | `6.2em` |
+| labelAlign | 左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| inputAlign | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| errorMessageAlign | 错误提示文案对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| autosize | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 { maxHeight: 100, minHeight: 50 }，<br>单位为`px` | _boolean \| object_ | `false` |
+| leftIcon | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string\|ReactNode_ | - |
+| rightIcon | 右侧[图标名称](#/zh-CN/icon)或图片链接 | _string\|ReactNode_ | - |
+| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
 #### TODO
 
-| 参数                    | 说明                                                                                                        | 类型                | 默认值     |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------- | ---------- |
-| clearTrigger            | 显示清除图标的时机，`always` 表示输入框不为空时展示，<br>`focus` 表示输入框聚焦且不为空时展示                   | _string_            | `focus`    |
-| isLink                  | 是否展示右侧箭头并开启点击反馈                                                                              | _boolean_           | `false`    |
-| rules                   | 表单校验规则，详见 [Form 组件](#/zh-CN/form#rule-shu-ju-jie-gou)                                            | _Rule[]_            | -          |
+| 参数  | 说明                                                             | 类型     | 默认值 |
+| ----- | ---------------------------------------------------------------- | -------- | ------ |
+| rules | 表单校验规则，详见 [Form 组件](#/zh-CN/form#rule-shu-ju-jie-gou) | _Rule[]_ | -      |
 
 ### Events
 
-| 事件                 | 说明                 | 回调参数                       |
-| -------------------- | -------------------- | ------------------------------ |
-| onFocus                | 输入框获得焦点时触发 | _val: string \| number_          |
-| onFocus                | 输入框获得焦点时触发 | _val: string \| number_                 |
-| onBlur                 | 输入框失去焦点时触发 | _val: string \| number_                 |
-| onClear                | 点击清除按钮时触发   | _event: Event_                 |
-| onClick                | 点击 Field 时触发    | _event: Event_                 |
-| onClickInput           | 点击输入区域时触发   | _event: Event_                 |
-
-#### TODO
-
-| 事件                 | 说明                 | 回调参数                       |
-| -------------------- | -------------------- | ------------------------------ |
-| onClickLeftIcon      | 点击左侧图标时触发   | _event: Event_                 |
-| onClickRightIcon     | 点击右侧图标时触发   | _event: Event_                 |
+| 事件             | 说明                 | 回调参数                |
+| ---------------- | -------------------- | ----------------------- |
+| onFocus          | 输入框获得焦点时触发 | _val: string \| number_ |
+| onFocus          | 输入框获得焦点时触发 | _val: string \| number_ |
+| onBlur           | 输入框失去焦点时触发 | _val: string \| number_ |
+| onClear          | 点击清除按钮时触发   | _event: Event_          |
+| onClick          | 点击 Field 时触发    | _event: Event_          |
+| onClickInput     | 点击输入区域时触发   | _event: Event_          |
+| onClickLeftIcon  | 点击左侧图标时触发   | _event: Event_          |
+| onClickRightIcon | 点击右侧图标时触发   | _event: Event_          |
 
 ### 方法
 
 通过 ref 可以获取到 Field 实例并调用实例方法
 
 ```js
-const fieldRef = useRef(null);
+const fieldRef = useRef < FieldInstance > null;
 ```
+
 ```jsx
 <Field
   ref={fieldRef}
@@ -292,29 +286,19 @@ const fieldRef = useRef(null);
   maxlength="11"
 />
 
-<input type="button" value="click" onClick={() => {
-  fieldRef && fieldRef?.current?.focus()
-}}/>
+<input
+  type="button"
+  value="click"
+  onClick={() => {
+    fieldRef.current?.focus()
+  }}
+/>
 ```
+
 | 方法名 | 说明           | 参数 | 返回值 |
 | ------ | -------------- | ---- | ------ |
 | focus  | 获取输入框焦点 | -    | -      |
 | blur   | 取消输入框焦点 | -    | -      |
-
-### Slots
-
-| 名称           | 说明                                                       |
-| -------------- | ---------------------------------------------------------- |
-| button         | 自定义输入框尾部按钮                                       |
-
-#### TODO
-| 名称           | 说明                                                       |
-| -------------- | ---------------------------------------------------------- |
-| input          | 自定义输入框，使用此插槽后，与输入框相关的属性和事件将失效   |
-| label          | 自定义输入框 label 标签                                  |
-| leftIcon      | 自定义输入框头部图标                                      |
-| rightIcon     | 自定义输入框尾部图标                                       |
-| extra         | 自定义输入框最右侧的额外内容                                |
 
 ### 样式变量
 
