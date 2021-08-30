@@ -1,16 +1,22 @@
 import React from 'react';
 import { BaseTypeProps } from '../utils';
 
-export interface TypographyProps extends BaseTypeProps {
-  type?: 'danger' | 'secondary' | 'light' | 'primary' | 'success' | 'warning';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-  level?: 1 | 2 | 3 | 4 | 5;
+export type TypographyType = 'danger' | 'secondary' | 'light' | 'primary' | 'success' | 'warning';
+export type TypographySize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type TypographyTitleLevel = 1 | 2 | 3 | 4 | 5;
+export interface TypographyBaseProps extends BaseTypeProps {
+  type?: TypographyType;
+  size?: TypographySize;
+  level?: TypographyTitleLevel;
   disabled?: boolean;
   delete?: boolean;
   underline?: boolean;
   center?: boolean;
   strong?: boolean;
   ellipsis?: boolean | number;
-  onClick?: () => void;
-  children?: string | number | React.ReactNode;
+  onClick?: (event: React.MouseEvent) => void;
 }
+
+export type TypographyTextProps = Omit<TypographyBaseProps, 'level'>;
+export type TypographyTitleProps = TypographyBaseProps;
+export type TypographyLinkProps = Omit<TypographyBaseProps, 'level'>;

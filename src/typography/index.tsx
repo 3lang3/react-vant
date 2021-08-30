@@ -1,65 +1,18 @@
 import React from 'react';
-import classnames from 'classnames';
-import { TypographyProps } from './PropsType';
-import { createNamespace } from '../utils';
+import { TypographyTextProps, TypographyTitleProps, TypographyLinkProps } from './PropsType';
+import Typography from './Typography';
 
-const [bem] = createNamespace('typography');
+const Text = (props: TypographyTextProps) => <Typography renderType="text" {...props} />;
+const Title = (props: TypographyTitleProps) => <Typography renderType="title" {...props} />;
+const Link = (props: TypographyLinkProps) => <Typography renderType="link" {...props} />;
 
-const TypographyContent: React.FC<TypographyProps & { renderType: string }> = ({
-  type,
-  size = 'md',
-  level,
-  center,
-  ellipsis,
-  className,
-  children,
-  strong,
-  underline,
-  disabled,
-  renderType,
-  delete: del,
-  ...props
-}) => {
-  const elli = ellipsis === true ? 1 : ellipsis;
-  return (
-    <div
-      className={classnames(
-        className,
-        bem([
-          type,
-          size,
-          renderType,
-          {
-            center,
-            strong,
-            underline,
-            disabled,
-            delete: del,
-            [`l${level}`]: renderType === 'title' && level,
-          },
-        ]),
-        {
-          'rv-ellipsis': elli === 1,
-          [`rv-multi-ellipsis--l${elli}`]: elli && elli > 1,
-        },
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-};
+const TypographyNamespace = Object.assign(Typography, { Text, Title, Link });
 
-const Typography = {
-  Text: (props) => <TypographyContent renderType="text" {...props} />,
-  Title: (props) => <TypographyContent renderType="title" level={4} {...props} />,
-  Link: (props: Omit<TypographyProps, 'title'>) => (
-    <TypographyContent renderType="link" {...props} />
-  ),
-} as {
-  Text: React.FC<Omit<TypographyProps, 'level'>>;
-  Title: React.FC<TypographyProps>;
-  Link: React.FC<Omit<TypographyProps, 'level'>>;
-};
-
-export default Typography;
+export default TypographyNamespace;
+export { TypographyNamespace as Typography };
+export type {
+  TypographyBaseProps as TypographyProps,
+  TypographySize,
+  TypographyType,
+  TypographyTitleLevel,
+} from './PropsType';
