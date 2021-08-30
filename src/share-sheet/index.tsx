@@ -105,7 +105,7 @@ const ShareSheet: React.FC<ShareSheetProps> = (props) => {
         'lockScroll',
         'overlayStyle',
         'overlayClass',
-        'overlayClosable',
+        'closeOnClickOverlay',
       ])}
     >
       {renderHeader()}
@@ -120,7 +120,7 @@ ShareSheet.defaultProps = {
   options: [],
   closeOnPopstate: true,
   safeAreaInsetBottom: true,
-  overlayClosable: true,
+  closeOnClickOverlay: true,
 };
 
 export default ShareSheet;

@@ -128,7 +128,7 @@ const options = [
 | overlayStyle | 自定义遮罩层样式 | _object_ | - |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
-| overlayClosable | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
 | safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `true` |
 
 ### Option 数据结构

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { BaseTypeProps } from '../utils';
+import { BaseTypeProps, TeleportType } from '../utils';
 
 export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | '';
 
@@ -16,6 +16,7 @@ export interface PopupProps extends BaseTypeProps {
   round?: boolean;
   /** 是否显示弹出层	 */
   visible?: boolean;
+  zIndex?: number;
   /**  是否显示遮罩层	 */
   overlay?: boolean;
   /** 是否显示关闭图标	 */
@@ -34,16 +35,18 @@ export interface PopupProps extends BaseTypeProps {
   duration?: number;
   /** 关闭图标名称或图片链接	 */
   closeIcon?: string;
-  /** 弹出位置，可选值为 `top` `bottom` `right` `left` */
+  /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
+  iconPrefix?: string;
+  /** 弹出位置 */
   position?: PopupPosition;
   /** 动画类名 @see https://reactcommunity.org/react-transition-group/ */
   transition?: string;
   /** 是否开启底部安全区适配 */
   safeAreaInsetBottom?: boolean;
-  /** 关闭图标位置，可选值为`top-left` `bottom-left` `bottom-right` */
+  /** 关闭图标位置 */
   closeIconPosition?: string;
   /** 是否在点击遮罩层后关闭	 */
-  overlayClosable?: boolean;
+  closeOnClickOverlay?: boolean;
   /** 是否在页面回退时自动关闭	 */
   closeOnPopstate?: boolean;
   /** 点击弹出层时触发 */
@@ -52,12 +55,17 @@ export interface PopupProps extends BaseTypeProps {
   onClickCloseIcon?: (e: React.MouseEvent) => void;
   /** 点击遮罩层时触发 */
   onClickOverlay?: (e: React.MouseEvent) => void;
+  /** 打开弹出层时触发	 */
+  onOpen?: () => void;
   /** 关闭弹出层时触发	*/
   onClose?: () => void;
-  /** 关闭弹出层且动画结束后触发	 */
-  afterClose?: () => void;
-  /** 完全显示后的回调 */
-  onEntered?: () => void;
+  /** 打开弹出层且动画结束后触发 */
+  onOpened?: () => void;
+  /** 关闭弹出层且动画结束后触发 */
+  onClosed?: () => void;
+  /** 关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise	 */
+  beforeClose?: (action: any) => boolean | Promise<boolean>;
+  teleport?: TeleportType;
   children?: React.ReactNode;
 }
 

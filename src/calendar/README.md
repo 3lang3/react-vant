@@ -237,7 +237,7 @@ const formatter = (day) => {
 | position | 弹出位置，可选值为 `top` `right` `left` | _string_ | `bottom` |
 | round | 是否显示圆角弹窗 | _boolean_ | `true` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
-| overlayClosable | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
 | safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `true` |
 
 ### Calendar Range Props

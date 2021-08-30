@@ -26,7 +26,7 @@ const defaultConfig: ImagePreviewProps = {
 
 // 可返回用于销毁此弹窗的方法
 ImagePreview.open = (props: ImagePreviewProps) => {
-  const { afterClose = noop, onClose = noop, beforeClose, ...restProps } = props;
+  const { onClose = noop, beforeClose, ...restProps } = props;
 
   const userContainer = resolveContainer(props.getContainer);
   const container = document.createElement('div');
@@ -45,20 +45,17 @@ ImagePreview.open = (props: ImagePreviewProps) => {
       if (onClose) onClose(p);
     };
 
-    const _afterClose = () => {
-      if (afterClose) {
-        afterClose();
-      }
-      const unmountResult = ReactDOM.unmountComponentAtNode(container);
-      if (unmountResult && container.parentNode) {
-        container.parentNode.removeChild(container);
-      }
-    };
-
-    const _onClose = async (p: CloseParams) => {
-      if ((await beforeClose?.()) !== false) {
+    const _afterClose = async (p) => {
+      if ((await beforeClose?.(0)) !== false) {
         destroy(p);
+
+        const unmountResult = ReactDOM.unmountComponentAtNode(container);
+        if (unmountResult && container.parentNode) {
+          container.parentNode.removeChild(container);
+        }
+        return true;
       }
+      return false;
     };
 
     return (
@@ -67,8 +64,8 @@ ImagePreview.open = (props: ImagePreviewProps) => {
         {...restProps}
         visible={visible}
         getContainer={() => container}
-        afterClose={_afterClose}
-        onClose={_onClose}
+        onClose={destroy}
+        beforeClose={_afterClose}
       />
     );
   };

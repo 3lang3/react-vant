@@ -428,9 +428,9 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
           position={props.position}
           closeable={props.showTitle || props.showSubtitle}
           closeOnPopstate={props.closeOnPopstate}
-          overlayClosable={props.overlayClosable}
+          closeOnClickOverlay={props.closeOnClickOverlay}
           onClose={props.onClose}
-          afterClose={props.onClosed}
+          onClosed={props.onClosed}
         >
           {renderCalendar()}
         </Popup>
@@ -450,7 +450,7 @@ Calendar.defaultProps = {
   showSubtitle: true,
   lazyRender: true,
   closeOnPopstate: true,
-  overlayClosable: true,
+  closeOnClickOverlay: true,
   safeAreaInsetBottom: true,
   type: 'single',
   position: 'bottom',

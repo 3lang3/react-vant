@@ -21,8 +21,7 @@ Dialog.show = (props: DialogProps) => {
     transition: 'rv-dialog-bounce',
     showConfirmButton: true,
     showCancelButton: false,
-    overlayClosable: true,
-    closeOnClickOverlay: false,
+    closeOnClickOverlay: true,
   };
   const {
     afterClose,

@@ -103,7 +103,7 @@ export interface CalendarProps extends BaseTypeProps {
   showSubtitle?: boolean;
   closeOnPopstate?: boolean;
   confirmDisabledText?: string;
-  overlayClosable?: boolean;
+  closeOnClickOverlay?: boolean;
   safeAreaInsetBottom?: boolean;
   type?: CalendarType;
   position?: PopupPosition;

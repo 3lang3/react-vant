@@ -123,9 +123,9 @@ const DropdownMenuItem = forwardRef<ItemActionType, DropdownMenuItemProps & Item
             position={direction === 'down' ? 'top' : 'bottom'}
             duration={state.transition ? +duration : 0}
             overlayStyle={{ position: 'absolute' }}
-            overlayClosable={closeOnClickOverlay}
+            closeOnClickOverlay={closeOnClickOverlay}
             onClose={onClose}
-            afterClose={onClosed}
+            onClosed={onClosed}
           >
             {props.options?.map(renderOption)}
             {props.children}

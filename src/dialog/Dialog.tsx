@@ -125,7 +125,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       className={classnames(bem([theme]), className)}
       style={{ width: addUnit(width) }}
       aria-labelledby={title || message}
-      overlayClosable={closeOnClickOverlay}
+      closeOnClickOverlay={closeOnClickOverlay}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       onClose={(e) => props.onCancel(e, true)}

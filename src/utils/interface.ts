@@ -4,3 +4,6 @@ export interface BaseTypeProps {
   style?: CSSProperties;
   className?: string;
 }
+
+/** 指定挂载的节点 */
+export type TeleportType = HTMLElement | (() => HTMLElement) | null;

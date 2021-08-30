@@ -14,7 +14,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   indexRender?: ({ index, len }: { index: number; len: number }) => React.ReactNode;
   closeOnPopstate?: boolean;
   overlayStyle?: React.CSSProperties;
-  beforeClose?: () => void | boolean | Promise<boolean> | Promise<void> | Promise<void | boolean>;
+  beforeClose?: (active: number) => boolean | Promise<boolean>;
   onClose?: ({ url, index }?: CloseParams) => void;
   onChange?: (index: number) => void;
   images?: string[];
@@ -22,7 +22,6 @@ export interface ImagePreviewProps extends BaseTypeProps {
   startPosition?: number;
   closeIcon?: string;
   closeIconPosition?: PopupCloseIconPosition;
-  afterClose?: () => void;
   /** 弹出时的的父容器 */
   getContainer?: HTMLElement | (() => HTMLElement);
 }

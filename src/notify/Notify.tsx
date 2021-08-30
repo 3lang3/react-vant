@@ -21,7 +21,7 @@ const Notify: React.FC<NotifyProps> = ({ children, ...props }) => {
       position="top"
       lockScroll={props.lockScroll}
       onClick={props.onClick}
-      afterClose={props.onClose}
+      onClose={props.onClose}
     >
       {children || props.message}
     </Popup>
