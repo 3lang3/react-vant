@@ -75,7 +75,7 @@ import { Image } from 'react-vant';
 | showLoading | 是否展示图片加载中提示 | _boolean_ | `true` |
 | errorIcon | 失败时提示的[图标名称](#/zh-CN/icon)或图片链接 | _string_ _ReactNode_| `photo-fail` |
 | loadingIcon | 加载时提示的[图标名称](#/zh-CN/icon)或图片链接 | _string_ _ReactNode_ | `photo` |
-| iconSize `v3.0.11` | 加载图标和失败图标的大小 | _number \| string_ | `32px` |
+| iconSize  | 加载图标和失败图标的大小 | _number \| string_ | `32px` |
 | iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
 ### 图片填充模式 
