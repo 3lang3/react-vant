@@ -3,6 +3,7 @@ import { BaseTypeProps } from '../utils';
 
 export type ButtonType = 'default' | 'primary' | 'info' | 'warning' | 'danger';
 export type ButtonSize = 'large' | 'normal' | 'small' | 'mini';
+export type ButtonIconPosition = 'right' | 'left';
 
 export interface ButtonProps extends BaseTypeProps {
   /**
@@ -41,8 +42,10 @@ export interface ButtonProps extends BaseTypeProps {
   disabled?: boolean;
   /** 原生 button 标签的 type 属性	 */
   nativeType?: string;
-  /** 图标类名前缀，同 Icon 组件的 class-prefix 属性	 */
+  /** 图标类名前缀，同 Icon 组件的 classPrefix 属性	 */
   iconPrefix?: string;
+  /** 图标展示位置，可选值为 `right` */
+  iconPosition?: ButtonIconPosition;
   /** 加载图标大小	 */
   loadingSize?: string;
   /**
