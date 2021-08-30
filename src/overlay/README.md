@@ -40,26 +40,17 @@ const [showEmbedded, setShowEmbedded] = useState(false);
 
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| visible | 是否展示遮罩层 | _boolean_ | `false` |
-| z-index | z-index 层级 | _number \| string_ | `1` |
-| duration | 动画时长，单位秒 | _number \| string_ | `0.3` |
-| class-name | 自定义类名 | _string_ | - |
-| custom-style | 自定义样式 | _object_ | - |
-| lock-scroll `v2.6.2` | 是否锁定背景滚动，锁定时蒙层里的内容也将无法滚动 | _boolean_ | `true` |
+| 参数        | 说明                                             | 类型               | 默认值  |
+| ----------- | ------------------------------------------------ | ------------------ | ------- |
+| visible     | 是否展示遮罩层                                   | _boolean_          | `false` |
+| zIndex      | z-index 层级                                     | _number \| string_ | `1`     |
+| duration    | 动画时长，单位毫秒                               | _number \| string_ | `0.3`   |
+| className   | 自定义类名                                       | _string_           | -       |
+| customStyle | 自定义样式                                       | _object_           | -       |
+| lockScroll  | 是否锁定背景滚动，锁定时蒙层里的内容也将无法滚动 | _boolean_          | `true`  |
 
 ### Events
 
-| 事件名 | 说明       | 回调参数       |
-| ------ | ---------- | -------------- |
-| click  | 点击时触发 | _event: Event_ |
-
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
-
-| 名称                      | 默认值               | 描述 |
-| ------------------------- | -------------------- | ---- |
-| @overlay-z-index          | `1`                  | -    |
-| @overlay-background-color | `rgba(0, 0, 0, 0.7)` | -    |
+| 事件名  | 说明       | 回调参数       |
+| ------- | ---------- | -------------- |
+| onClick | 点击时触发 | _event: Event_ |
