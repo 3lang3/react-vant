@@ -7,27 +7,29 @@ import { BORDER_TOP_BOTTOM } from '../utils/constant';
 const [bem] = createNamespace('cell-group');
 
 const CellGroup: React.FC<CellGroupProps> = (props) => {
-  const { title, border = true, card } = props;
+  const { title, border, inset } = props;
 
-  const Group = (
-    <div className={classnames(bem(), { [BORDER_TOP_BOTTOM]: !card && border })}>
-      {card ? (
-        <div className={classnames(bem('card'))}>{props.children}</div>
-      ) : (
-        <>{props.children}</>
-      )}
+  const renderGroup = () => (
+    <div className={classnames(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border })}>
+      {props.children}
     </div>
   );
 
-  if (title) {
+  const renderTitle = () => <div className={classnames(bem('title'))}>{title}</div>;
+
+  if (title)
     return (
       <>
-        <div className={classnames(bem('title'))}>{title}</div>
-        {Group}
+        {renderTitle()}
+        {renderGroup()}
       </>
     );
-  }
-  return Group;
+
+  return renderGroup();
+};
+
+CellGroup.defaultProps = {
+  border: true,
 };
 
 export default CellGroup;

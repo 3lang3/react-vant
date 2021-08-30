@@ -73,10 +73,10 @@ import { Cell } from 'react-vant';
 
 ### 卡片类型
 
-通过 `Cell.Group` 的 `card` 属性可以可以展示卡片类型。
+通过 `Cell.Group` 的 `inset` 属性可以可以展示卡片类型。
 
 ```jsx
-<Cell.Group card>
+<Cell.Group inset>
   <Cell title="单元格" value="内容" />
   <Cell title="单元格" value="内容" />
 </Cell.Group>
@@ -104,24 +104,23 @@ import { Cell } from 'react-vant';
 
 ### CellGroup Props
 
-| 参数   | 说明           | 类型      | 默认值 |
-| ------ | -------------- | --------- | ------ |
-| title  | 分组标题       | _string_  | `-`    |
-| border | 是否显示外边框 | _boolean_ | `true` |
+| 参数   | 说明                   | 类型      | 默认值 |
+| ------ | ---------------------- | --------- | ------ |
+| title  | 分组标题               | _string_  | -      |
+| border | 是否显示外边框         | _boolean_ | `true` |
+| inset  | 是否展示为圆角卡片风格 | _boolean_ | -      |
 
 ### Cell Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 左侧标题 | _number \| string_ | - |
+| title | 左侧标题 | _ReactNode_ | - |
 | value | 右侧内容 | _number \| string_ | - |
-| label | 标题下方的描述信息 | _string_ | - |
+| label | 标题下方的描述信息 | _ReactNode_ | - |
 | size | 单元格大小，可选值为 `large` | _string_ | - |
 | icon | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
 | rightIcon | 自定义右侧按钮，默认为`arrow` | _string_ | - |
-| iconPrefix `v2.5.3` | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
-| url | 点击后跳转的链接地址 | _string_ | - |
-| to | 点击后跳转的目标路由对象，同 vue-router 的 [to 属性](https://router.vuejs.org/zh/api/#to) | _string \| object_ | - |
+| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon) | _string_ | `van-icon` |
 | border | 是否显示内边框 | _boolean_ | `true` |
 | replace | 是否在跳转时替换当前页面历史 | _boolean_ | `false` |
 | clickable | 是否开启点击反馈 | _boolean_ | `false` |
@@ -129,44 +128,13 @@ import { Cell } from 'react-vant';
 | required | 是否显示表单必填星号 | _boolean_ | `false` |
 | center | 是否使内容垂直居中 | _boolean_ | `false` |
 | arrowDirection | 箭头方向，可选值为 `left` `up` `down` | _string_ | `right` |
-| titleStyle | 左侧标题额外样式 | _any_ | - |
-| titleClass | 左侧标题额外类名 | _any_ | - |
-| valueClass | 右侧内容额外类名 | _any_ | - |
-| labelClass | 描述信息额外类名 | _any_ | - |
+| titleStyle | 左侧标题额外样式 | _string_ | - |
+| titleClass | 左侧标题额外类名 | _string_ | - |
+| valueClass | 右侧内容额外类名 | _string_ | - |
+| labelClass | 描述信息额外类名 | _string_ | - |
 
 ### Cell Events
 
 | 事件名  | 说明             | 回调参数       |
 | ------- | ---------------- | -------------- |
 | onClick | 点击单元格时触发 | _event: Event_ |
-
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
-
-| 名称                          | 默认值                                | 描述 |
-| ----------------------------- | ------------------------------------- | ---- |
-| @cell-font-size               | `@font-size-md`                       | -    |
-| @cell-line-height             | `24px`                                | -    |
-| @cell-vertical-padding        | `10px`                                | -    |
-| @cell-horizontal-padding      | `@padding-md`                         | -    |
-| @cell-text-color              | `@text-color`                         | -    |
-| @cell-background-color        | `@white`                              | -    |
-| @cell-border-color            | `@border-color`                       | -    |
-| @cell-active-color            | `@active-color`                       | -    |
-| @cell-required-color          | `@red`                                | -    |
-| @cell-label-color             | `@gray-6`                             | -    |
-| @cell-label-font-size         | `@font-size-sm`                       | -    |
-| @cell-label-line-height       | `@line-height-sm`                     | -    |
-| @cell-label-margin-top        | `@padding-base`                       | -    |
-| @cell-value-color             | `@gray-6`                             | -    |
-| @cell-icon-size               | `16px`                                | -    |
-| @cell-right-icon-color        | `@gray-6`                             | -    |
-| @cell-large-vertical-padding  | `@padding-sm`                         | -    |
-| @cell-large-title-font-size   | `@font-size-lg`                       | -    |
-| @cell-large-label-font-size   | `@font-size-md`                       | -    |
-| @cell-group-background-color  | `@white`                              | -    |
-| @cell-group-title-color       | `@gray-6`                             | -    |
-| @cell-group-title-padding     | `@padding-md @padding-md @padding-xs` | -    |
-| @cell-group-title-font-size   | `@font-size-md`                       | -    |
-| @cell-group-title-line-height | `16px`                                | -    |

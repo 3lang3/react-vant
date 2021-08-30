@@ -37,7 +37,7 @@ export default (): React.ReactNode => {
         </Cell.Group>
       </DemoBlock>
       <DemoBlock title="卡片类型">
-        <Cell.Group card>
+        <Cell.Group inset>
           <Cell title="单元格" value="内容" />
           <Cell title="单元格" value="内容" />
         </Cell.Group>

@@ -13,23 +13,6 @@
   line-height: @cell-line-height;
   background-color: @cell-background-color;
 
-  &-group {
-    // background-color: @cell-group-background-color;
-
-    &__title {
-      padding: @cell-group-title-padding;
-      color: @cell-group-title-color;
-      font-size: @cell-group-title-font-size;
-      line-height: @cell-group-title-line-height;
-    }
-
-    &__card {
-      margin: 12 * @hd 12 * @hd 0;
-      overflow: hidden;
-      border-radius: 8 * @hd;
-    }
-  }
-
   &::after {
     .hairline-bottom(@cell-border-color, @padding-md, @padding-md);
   }
@@ -119,6 +102,26 @@
 
     .rv-cell__label {
       font-size: @cell-large-label-font-size;
+    }
+  }
+}
+
+.rv-cell-group {
+  background-color: @cell-group-background-color;
+
+  &--inset {
+    margin: @cell-group-inset-padding;
+    overflow: hidden;
+    border-radius: @cell-group-inset-border-radius;
+  }
+
+  &__title {
+    padding: @cell-group-title-padding;
+    color: @cell-group-title-color;
+    font-size: @cell-group-title-font-size;
+    line-height: @cell-group-title-line-height;
+    &--inset {
+      padding: @cell-group-inset-title-padding;
     }
   }
 }

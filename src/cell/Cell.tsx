@@ -94,6 +94,7 @@ const Cell: React.FC<CellProps> = (props) => {
       {renderTitle()}
       {renderValue()}
       {renderRightIcon()}
+      {props.extra}
     </div>
   );
 };
