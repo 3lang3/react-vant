@@ -1,5 +1,5 @@
 import React from 'react';
-import { BadgeProps, HtmlTagType } from '../badge/PropsType';
+import { BadgeSettingProps, HtmlTagType } from '../badge/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export interface IconProps extends BaseTypeProps {
@@ -17,7 +17,7 @@ export interface IconProps extends BaseTypeProps {
    */
   size?: number | string;
   /** 徽标内容 */
-  badge?: Omit<BadgeProps, 'children' | 'tag' | 'onClick' | 'style' | 'className'>;
+  badge?: BadgeSettingProps;
   /**
    * 类名前缀，用于使用自定义图标
    * @default 'van-icon'

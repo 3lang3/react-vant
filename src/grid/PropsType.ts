@@ -1,4 +1,5 @@
 import React from 'react';
+import { BadgeSettingProps } from '../badge/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export type GridDirection = 'horizontal' | 'vertical';
@@ -25,10 +26,8 @@ export interface GridProps extends BaseTypeProps {
 }
 
 export interface GridItemProps extends GridProps, BaseTypeProps {
-  /** 是否显示图标右上角小红点	 */
-  dot?: boolean;
-  /**  图标右上角徽标的内容	 */
-  badge?: number | string;
+  /**  图标右上角徽标	 */
+  badge?: BadgeSettingProps;
   /** 文字 */
   text?: string | React.ReactNode;
   /** 图标名称或图片链接	 */

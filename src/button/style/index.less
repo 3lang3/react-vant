@@ -186,9 +186,10 @@
   }
 
   &__icon + &__text,
-  &__loading + &__text {
-    display: inline-block;
-    margin-left: 5 * @hd;
+  &__loading + &__text,
+  &__text + &__icon,
+  &__text + &__loading {
+    margin-left: @padding-base;
   }
 
   &--hairline {

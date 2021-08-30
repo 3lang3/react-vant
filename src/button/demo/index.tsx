@@ -55,7 +55,7 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="图标按钮">
         <Button icon="plus" type="primary" />
-        <Button icon="plus" type="primary">
+        <Button icon="plus" iconPosition="left" type="primary">
           按钮
         </Button>
         <Button icon="https://img.yzcdn.cn/vant/user-active.png" plain type="primary">

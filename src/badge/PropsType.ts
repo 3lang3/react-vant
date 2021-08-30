@@ -26,3 +26,8 @@ export interface BadgeProps extends BaseTypeProps {
   tag?: HtmlTagType;
   onClick?: (e: React.MouseEvent) => void;
 }
+
+export type BadgeSettingProps = Omit<
+  BadgeProps,
+  'children' | 'tag' | 'onClick' | 'style' | 'className'
+>;

@@ -66,20 +66,15 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
 
   const renderIcon = () => {
     if (React.isValidElement(props.icon)) {
-      return (
-        <Badge dot={props.dot} content={props.badge}>
-          {props.icon}
-        </Badge>
-      );
+      return <Badge {...props.badge}>{props.icon}</Badge>;
     }
 
     if (props.icon) {
       return (
         <Icon
-          dot={props.dot}
+          badge={props.badge}
           name={props.icon as string}
           size={parent.iconSize}
-          badge={props.badge}
           className={cls(bem('icon'))}
           classPrefix={props.iconPrefix}
           color={props.iconColor}
