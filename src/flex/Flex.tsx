@@ -1,29 +1,13 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import FlexContext from './FlexContext';
-import { FlexPropsType as BasePropsType } from './PropsType';
+import { FlexProps } from './PropsType';
 import { createNamespace } from '../utils';
-
-export interface FlexProps extends BasePropsType {
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  className?: string;
-  style?: React.CSSProperties;
-}
 
 const [bem] = createNamespace('flexbox');
 
 const Flex: React.FC<FlexProps> = (props) => {
-  const {
-    direction,
-    wrap,
-    justify,
-    align,
-    gutter = 0,
-    style,
-    className,
-    children,
-    ...rest
-  } = props;
+  const { direction, wrap, justify, align, gutter, style, className, children, ...rest } = props;
 
   const getGutter: [number, number] = useMemo(
     () => (Array.isArray(gutter) ? gutter : [gutter, 0]),
@@ -63,6 +47,10 @@ const Flex: React.FC<FlexProps> = (props) => {
       </div>
     </FlexContext.Provider>
   );
+};
+
+Flex.defaultProps = {
+  gutter: 0,
 };
 
 export default Flex;

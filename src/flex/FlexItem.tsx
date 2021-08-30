@@ -2,18 +2,12 @@ import React from 'react';
 import classnames from 'classnames';
 import FlexContext from './FlexContext';
 import { createNamespace } from '../utils';
-import { FlexItemPropsType, FlexType } from './PropsType';
+import { FlexItemProps, FlexType } from './PropsType';
 
 const [bem] = createNamespace('flexitem');
 
-export interface FlexItemProps extends FlexItemPropsType {
-  prefixCls?: string;
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-const FlexItem: React.FC<FlexItemProps> = props => {
-  const { style, prefixCls, className, span, children, flex, ...others } = props;
+const FlexItem: React.FC<FlexItemProps> = (props) => {
+  const { style, className, span, children, flex, ...others } = props;
 
   const classes = classnames(bem([span?.toString()]), className);
 

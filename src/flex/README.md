@@ -55,12 +55,6 @@ import { Flex } from 'react-vant';
 </Flex>
 ```
 
-### 排版
-
-### 对齐
-
-### Flex 填充
-
 ## API
 
 ### Flex
@@ -70,8 +64,8 @@ import { Flex } from 'react-vant';
 | direction | 项目定位方向，可选值为 `row` `row-reverse` `column` `column-reverse` | _string_ | `row` |
 | wrap | 子元素的换行方式，可选值为 `nowrap` `wrap` `wrap-reverse` | _string_ | `nowrap` |
 | gutter | 列元素之间的间距。可以使用数组形式同时设置 `[水平间距, 垂直间距]` | _number \| array_ | `0` |
-| align | 垂直对齐方式，可选值为 `start` `center` `end` `baseline` `stretch` | _string_ | `top` |
-| justify | 水平排列方式，可选值为 `start` `end` `center` `space-around` `space-between` | _string_ | `start` |
+| align | 垂直对齐方式，可选值为 `start` `center` `end` `baseline` `stretch` | _string_ | `start` |
+| justify | 水平排列方式，可选值为 `start` `end` `center` `around` `between` | _string_ | `start` |
 
 ### Flex.Item
 
