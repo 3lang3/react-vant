@@ -7,8 +7,9 @@ export interface CheckBoxGroupProps extends BaseTypeProps {
   max?: number | string;
   value?: any[];
   defaultValue?: any[];
-  disabledv?: boolean;
+  disabled?: boolean;
   iconSize?: number | string;
+  iconRender?: ({ checked, disabled }: { checked: boolean; disabled: boolean }) => React.ReactNode;
   direction?: string;
   checkedColor?: string;
   asyncChange?: string;
@@ -20,6 +21,7 @@ export interface CheckerProps<T> extends BaseTypeProps {
   name?: number | string;
   disabled?: boolean;
   iconSize?: number | string;
+  iconRender?: ({ checked, disabled }: { checked: boolean; disabled: boolean }) => React.ReactNode;
   checkedColor?: string;
   labelPosition?: string;
   labelDisabled?: boolean;

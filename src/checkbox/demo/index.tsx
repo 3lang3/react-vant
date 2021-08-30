@@ -81,8 +81,8 @@ export default (): React.ReactNode => {
       <DemoBlock title="搭配单元格组件使用">
         <Checkbox.Group defaultValue={[]} max={2}>
           <Cell.Group>
-            <Cell title="单选框1" icon="shop-o" rightIconSlot={() => <Checkbox name="a" />} />
-            <Cell title="单选框2" icon="shop-o" rightIconSlot={() => <Checkbox name="b" />} />
+            <Cell title="单选框1" icon="shop-o" rightIcon={<Checkbox name="a" />} />
+            <Cell title="单选框2" icon="shop-o" rightIcon={<Checkbox name="b" />} />
           </Cell.Group>
         </Checkbox.Group>
       </DemoBlock>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 
 import Checker from './Checker';
 import CheckBoxContext from './CheckboxContext';

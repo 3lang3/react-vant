@@ -2,6 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import type { MouseEvent } from 'react';
 import classnames from 'classnames';
 
+import Icon from '../icon';
 import { CheckerProps } from './PropsType';
 import { addUnit } from '../utils';
 
@@ -15,10 +16,10 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
     return null;
   };
 
-  const disabled = useMemo(() => getParentProp('disabled') || props.disabled, [
-    props.parent,
-    props.disabled,
-  ]);
+  const disabled = useMemo(
+    () => getParentProp('disabled') || props.disabled,
+    [props.parent, props.disabled],
+  );
   const direction = useMemo(() => getParentProp('direction') || null, [props.parent]);
 
   const iconStyle = useMemo(() => {
@@ -30,7 +31,7 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
       };
     }
     return {};
-  }, [props.checkedColor, props.checked]);
+  }, [props.checkedColor, props.checked, disabled]);
 
   const onClick = (event: MouseEvent<HTMLDivElement>) => {
     const { target } = event;
@@ -57,7 +58,11 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
         className={classnames(bem('icon', [shape, { disabled, checked }]))}
         style={{ fontSize: addUnit(iconSize) }}
       >
-        <span className={classnames(bem('icon-success'))} style={iconStyle} />
+        {props.iconRender ? (
+          props.iconRender({ checked, disabled })
+        ) : (
+          <Icon name="success" style={iconStyle} />
+        )}
       </div>
     );
   };

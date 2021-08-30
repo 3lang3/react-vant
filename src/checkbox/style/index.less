@@ -33,8 +33,7 @@
     line-height: 1em;
     cursor: pointer;
 
-    .rv-checkbox__icon-success {
-      position: relative;
+    .van-icon {
       display: block;
       box-sizing: border-box;
       width: 1.25em;
@@ -43,65 +42,37 @@
       font-size: 0.8em;
       line-height: 1.25;
       text-align: center;
-      border: 1 * @hd solid @radio-border-color;
-      transition-duration: @radio-transition-duration;
+      border: 1px solid @checkbox-border-color;
+      transition-duration: @checkbox-transition-duration;
       transition-property: color, border-color, background-color;
-
-      &::after {
-        position: absolute;
-        top: 0.3em;
-        left: 0.42em;
-        display: table;
-        box-sizing: border-box;
-        width: 0.3em;
-        height: 0.48em;
-        border: 2 * @hd solid #fff;
-        border-top: 0;
-        border-left: 0;
-        -webkit-transform: rotate(45deg) scale(0);
-        transform: rotate(45deg) scale(0);
-        transition: all 0.2s ease-in-out;
-        content: '';
-      }
     }
 
     &--round {
-      .rv-checkbox__icon-success {
+      .van-icon {
         border-radius: 100%;
       }
     }
 
-    &--square {
-      .rv-checkbox__icon-success {
-        border-radius: 4 * @hd;
-      }
-    }
-
     &--checked {
-      .rv-checkbox__icon-success {
+      .van-icon {
         color: @white;
-        background-color: @radio-checked-icon-color;
-        border-color: @radio-checked-icon-color;
-
-        &::after {
-          transform: rotate(45deg) scale(1);
-          transition: all 0.2s ease-in-out;
-        }
+        background-color: @checkbox-checked-icon-color;
+        border-color: @checkbox-checked-icon-color;
       }
     }
 
     &--disabled {
       cursor: not-allowed;
 
-      .rv-checkbox__icon-success {
-        background-color: @radio-disabled-background-color;
-        border-color: @radio-disabled-icon-color;
+      .van-icon {
+        background-color: @checkbox-disabled-background-color;
+        border-color: @checkbox-disabled-icon-color;
       }
     }
 
     &--disabled&--checked {
-      .rv-checkbox__icon-success::after {
-        border-color: @radio-disabled-icon-color;
+      .van-icon {
+        color: @checkbox-disabled-icon-color;
       }
     }
   }
