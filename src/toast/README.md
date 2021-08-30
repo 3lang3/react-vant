@@ -146,26 +146,4 @@ const timer = setInterval(() => {
 | duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
 | className | 自定义类名 | _any_ | - |
 | onClose | 关闭时的回调函数 | _Function_ | - |
-| getContainer | 自定义轻提示的父容器 | _HTMLElement_ _(() => HTMLElement))_ | `document.body` |
-
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
-
-| 名称                            | 默认值                    | 描述 |
-| ------------------------------- | ------------------------- | ---- |
-| @toast-max-width                | `70%`                     | -    |
-| @toast-font-size                | `@font-size-md`           | -    |
-| @toast-text-color               | `@white`                  | -    |
-| @toast-loading-icon-color       | `@white`                  | -    |
-| @toast-line-height              | `@line-height-md`         | -    |
-| @toast-border-radius            | `@border-radius-lg`       | -    |
-| @toast-background-color         | `fade(@black, 70%)`       | -    |
-| @toast-icon-size                | `36px`                    | -    |
-| @toast-text-min-width           | `96px`                    | -    |
-| @toast-text-padding             | `@padding-xs @padding-sm` | -    |
-| @toast-default-padding          | `@padding-sm 10px`        | -    |
-| @toast-default-width            | `88px`                    | -    |
-| @toast-default-min-height       | `88px`                    | -    |
-| @toast-position-top-distance    | `20%`                     | -    |
-| @toast-position-bottom-distance | `20%`                     | -    |
+| teleport | 指定挂载的节点 | _HTMLElement_ _(() => HTMLElement))_ | `document.body` |

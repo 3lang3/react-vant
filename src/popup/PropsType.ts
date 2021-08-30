@@ -65,6 +65,7 @@ export interface PopupProps extends BaseTypeProps {
   onClosed?: () => void;
   /** 关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise	 */
   beforeClose?: (action: any) => boolean | Promise<boolean>;
+  /** 指定挂载的节点 */
   teleport?: TeleportType;
   children?: React.ReactNode;
 }

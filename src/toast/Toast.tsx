@@ -80,6 +80,10 @@ const Toast: React.FC<ToastProps> = (props) => {
 };
 
 Toast.defaultProps = {
+  type: 'text',
+  duration: 2000,
+  position: 'middle',
+  transition: 'rv-fade',
   loadingType: 'circular',
 };
 

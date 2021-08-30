@@ -30,9 +30,9 @@ const Toast = (p: ToastProps): unknown => {
   const props = parseOptions(p);
   let updateConfig: React.Dispatch<React.SetStateAction<ToastProps>> = () => {};
   let timer = 0;
-  const { onClose, getContainer = () => document.body } = props;
+  const { onClose, teleport = () => document.body } = props;
   const container = document.createElement('div');
-  const bodyContainer = resolveContainer(getContainer);
+  const bodyContainer = resolveContainer(teleport);
   bodyContainer.appendChild(container);
 
   const TempToast = () => {
@@ -41,7 +41,7 @@ const Toast = (p: ToastProps): unknown => {
       message: '',
       className: '',
       type: 'info',
-      position: 'center',
+      position: 'middle',
       forbidClick: false,
       duration: 2000,
       ...props,
@@ -96,7 +96,7 @@ const Toast = (p: ToastProps): unknown => {
       <BaseToast
         {...state}
         visible={visible}
-        getContainer={() => container}
+        teleport={() => container}
         onClose={internalAfterClose}
       />
     );

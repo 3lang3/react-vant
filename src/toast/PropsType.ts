@@ -1,6 +1,7 @@
 import { LoadingType } from '../loading/PropsType';
-import { Position } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
+
+export type ToastPosition = 'top' | 'middle' | 'bottom';
 
 export interface ToastProps extends BaseTypeProps {
   icon?: string;
@@ -14,9 +15,10 @@ export interface ToastProps extends BaseTypeProps {
   forbidClick?: boolean;
   closeOnClick?: boolean;
   type?: string;
-  position?: Position;
+  position?: ToastPosition;
+  transition?: string;
   /** 轻提示弹出时的的父容器 */
-  getContainer?: HTMLElement | (() => HTMLElement);
+  teleport?: HTMLElement | (() => HTMLElement);
   /** Toast 完全关闭后的回调 */
   onClose?: () => void;
 }

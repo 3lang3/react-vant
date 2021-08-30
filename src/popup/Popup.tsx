@@ -120,6 +120,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         ref={popupRef}
         style={{ ...style, display: !visible && !animatedVisible ? 'none' : undefined }}
         className={classnames(
+          props.className,
           bem({
             round,
             [position]: position,
