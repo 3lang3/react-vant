@@ -50,7 +50,9 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   const originColumns = useMemo(
     () =>
       ranges.map(({ type, range: rangeArr }) => {
-        let values = times(rangeArr[1] - rangeArr[0] + 1, (index) => padZero(rangeArr[0] + index));
+        let values = times(rangeArr[1] - rangeArr[0] + 1, (index) =>
+          padZero(rangeArr[0] + index),
+        ) as string[];
 
         if (props.filter) {
           values = props.filter(type, values);
@@ -147,7 +149,7 @@ TimePicker.defaultProps = {
   maxHour: 23,
   minMinute: 0,
   maxMinute: 59,
-  formatter: (type: string, value: unknown) => value,
+  formatter: (type: string, value: string) => value,
 };
 
 export default TimePicker;

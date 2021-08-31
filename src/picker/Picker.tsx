@@ -33,7 +33,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   } = extend(
     {
       // compatible with valueKey prop
-      text: props.valueKey || 'text',
+      text: 'text',
       values: 'values',
       children: 'children',
     },

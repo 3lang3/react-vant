@@ -120,7 +120,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     return result;
   }, [currentDate]);
 
-  const originColumns = useMemo<any>(
+  const originColumns = useMemo(
     () =>
       ranges.map(({ type, range: rangeArr }) => {
         if (type === 'week') {
@@ -133,7 +133,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
         // 根据范围获取每列的值
         let values = times(rangeArr[1] - rangeArr[0] + 1, (index: number) => {
           return padZero(rangeArr[0] + index);
-        });
+        }) as string[];
 
         if (props.filter) {
           values = props.filter(type, values);
@@ -285,7 +285,7 @@ DatePicker.defaultProps = {
   type: 'datetime',
   minDate: new Date(currentYear - 10, 0, 1),
   maxDate: new Date(currentYear + 10, 11, 31),
-  formatter: (type: string, value: unknown) => value,
+  formatter: (type: string, value: string) => value,
 } as const;
 
 export default DatePicker;
