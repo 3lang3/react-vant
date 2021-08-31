@@ -6,6 +6,7 @@ import { createNamespace, extend } from '../utils';
 import { useSetState, useUpdateEffect } from '../hooks';
 import Icon from '../icon';
 import Tabs from '../tabs';
+import { TabsClickTabEventParams } from '../tabs/PropsType';
 
 const [bem] = createNamespace('cascader');
 
@@ -140,8 +141,8 @@ const Cascader: React.FC<CascaderProps> = (props) => {
 
   const onClose = () => props.onClose?.();
 
-  const onClickTab = (name: number, title: string) => {
-    updateState({ activeTab: name });
+  const onClickTab = ({ name, title }: TabsClickTabEventParams) => {
+    updateState({ activeTab: +name });
     props.onClickTab?.(+name, title);
   };
 
@@ -221,7 +222,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       color={props.activeColor}
       swipeThreshold={0}
       swipeable={props.swipeable}
-      onClick={onClickTab}
+      onClickTab={onClickTab}
     >
       {state.tabs.map(renderTab)}
     </Tabs>

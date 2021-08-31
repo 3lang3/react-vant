@@ -82,7 +82,7 @@ export interface TabPaneProps {
 export type TabsClickTabEventParams = {
   name: string | number;
   title: string;
-  event: MouseEvent;
+  event: React.MouseEvent;
   disabled: boolean;
 };
 
