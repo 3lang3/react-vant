@@ -51,7 +51,9 @@ function parseOptions(opts: SwipeProps) {
   if (vertical) {
     rest.direction = 'vertical';
   }
-  if (!showIndicators) rest.pagination = false;
+  if (typeof showIndicators === 'boolean') {
+    if (!showIndicators) rest.pagination = false;
+  }
 
   rest.initialSlide = initialSwipe;
   rest.speed = duration;
