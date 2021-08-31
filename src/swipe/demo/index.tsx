@@ -88,9 +88,11 @@ export default (): React.ReactNode => {
         </Swipe>
       </DemoBlock>
       <DemoBlock title="Popup中展示">
-        <Button block round type="primary" onClick={() => set(true)}>
-          Popup中展示轮播图
-        </Button>
+        <div className="p-default">
+          <Button block round type="primary" onClick={() => set(true)}>
+            Popup中展示轮播图
+          </Button>
+        </div>
         <Popup visible={visible} onClose={() => set(false)} style={{ width: '100%' }}>
           <Swipe resizeObserver autoplay={1000}>
             <Swipe.Item>1</Swipe.Item>
