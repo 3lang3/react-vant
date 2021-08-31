@@ -14,11 +14,11 @@ import { DatetimePicker } from 'react-vant';
 
 ### 选择年月日
 
-DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为 `date` 表示选择年月日。通过 minDate 和 maxDate 属性可以确定可选的时间范围。
+DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为 `date` 表示选择年月日。通过 minDate 和 maxDate 属性可以确定可选的时间范围。
 
 ```jsx
 <DatetimePicker
-  mode="date"
+  type="date"
   minDate={new Date(2020, 0, 1)}
   maxDate={new Date(2025, 10, 1)}
   value={new Date()}
@@ -27,11 +27,11 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ### 选择年月
 
-将 mode 设置为 `year-month` 即可选择年份和月份。通过传入 `formatter` 函数，可以对选项文字进行格式化处理。
+将 type 设置为 `year-month` 即可选择年份和月份。通过传入 `formatter` 函数，可以对选项文字进行格式化处理。
 
 ```jsx
 <DatetimePicker
-  mode="year-month"
+  type="year-month"
   minDate={new Date(2020, 0, 1)}
   maxDate={new Date(2025, 10, 1)}
   value={new Date()}
@@ -49,11 +49,11 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ### 选择月日
 
-将 mode 设置为 `month-day` 即可选择月份和日期。
+将 type 设置为 `month-day` 即可选择月份和日期。
 
 ```jsx
 <DatetimePicker
-  mode="month-day"
+  type="month-day"
   minDate={new Date(2020, 0, 1)}
   maxDate={new Date(2025, 10, 1)}
   value={new Date()}
@@ -71,19 +71,19 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ### 选择时间
 
-将 mode 设置为 `time` 即可选择时间（小时和分钟）。
+将 type 设置为 `time` 即可选择时间（小时和分钟）。
 
 ```jsx
-<DatetimePicker mode="time" minHour="10" maxHour="20" value="12:00" />
+<DatetimePicker type="time" minHour="10" maxHour="20" value="12:00" />
 ```
 
 ### 选择日期时间（包含星期）
 
-将 mode 设置为 `weektime` 即可选择时间日期和时间（包含日期）
+将 type 设置为 `weektime` 即可选择时间日期和时间（包含日期）
 
 ```jsx
 <DatetimePicker
-  mode="weektime"
+  type="weektime"
   minDate={new Date(2021, 0, 1)}
   maxDate={new Date(2021, 2, 1)}
   value={new Date()}
@@ -92,11 +92,11 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ### 选择完整时间
 
-将 mode 设置为 `datetime` 即可选择完整时间，包括年月日和小时、分钟。
+将 type 设置为 `datetime` 即可选择完整时间，包括年月日和小时、分钟。
 
 ```jsx
 <DatetimePicker
-  mode="datetime"
+  type="datetime"
   minDate={new Date(2020, 0, 1)}
   maxDate={new Date(2025, 10, 1)}
   value={new Date()}
@@ -105,11 +105,11 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ### 选择年月日小时
 
-将 mode 设置为 `datehour` 即可选择日期和小时，包括年月日和小时。
+将 type 设置为 `datehour` 即可选择日期和小时，包括年月日和小时。
 
 ```jsx
 <DatetimePicker
-  mode="datehour"
+  type="datehour"
   minDate={new Date(2020, 0, 1)}
   maxDate={new Date(2025, 10, 1)}
   value={new Date()}
@@ -122,7 +122,7 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ```jsx
 <DatetimePicker
-  mode="time"
+  type="time"
   minHour="10"
   maxHour="20"
   value="12:00"
@@ -139,7 +139,7 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ```jsx
 <DatetimePicker
-  mode="date"
+  type="date"
   columnsOrder={['month', 'day', 'year']}
   minDate={new Date(2020, 0, 1)}
   maxDate={new Date(2025, 10, 1)}
@@ -147,14 +147,13 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 />
 ```
 
-
 ### 确认按钮
 
 ```jsx
 <DatetimePicker
   showSubmitBtn
   onConfirm={(value: Date) => Toast(`确认的日期：${value}`)}
-  mode="weektime"
+  type="weektime"
   minDate={new Date(2021, 0, 1)}
   maxDate={new Date(2021, 2, 1)}
   value={new Date()}
@@ -186,7 +185,7 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
       setFieldValue(value);
       setShowPicker(false);
     }}
-    mode="weektime"
+    type="weektime"
     filter={(type: string, options) => {
       if (type === 'minute') {
         return options.filter((option) => option % 5 === 0);
@@ -206,24 +205,29 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| mode | 时间类型，可选值为 `date` `time` <br> `year-month` `month-day` `datehour` `week` | _string_ | `datetime` |
+| type | 时间类型，可选值为 `date` `time` <br> `year-month` `month-day` `datehour` | _string_ | `datetime` |
 | title | 顶部栏标题 | _ReactNode_ | `''` |
-| showSubmitBtn | 是否显示确认按钮 | _boolean_ | `true` |
+| confirmButtonText | 确认按钮文字 | _ReactNode_ | `确认` |
+| cancelButtonText | 取消按钮文字 | _string_ | `取消` |
+| showSoolbar | 是否显示顶部栏 | _boolean_ | `true` |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
 | readonly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
-| filter | 选项过滤函数 | _(type, vals) => vals_ | - |
-| formatter | 选项格式化函数 | _(type, val) => val_ | - |
+| filter | 选项过滤函数 | _(type: string, values: string[]) => string[]_ | - |
+| formatter | 选项格式化函数 | _(type: string, value: string) => string_ | - |
 | columnsOrder | 自定义列排序数组, 子项可选值为<br> `year`、`month`、`day`、`hour`、`minute` | _string[]_ | - |
 | itemHeight | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44` |
 | visibleItemCount | 可见的选项个数 | _number \| string_ | `6` |
 | swipeDuration | 快速滑动时惯性滚动的时长，单位`ms` | _number \| string_ | `1000` |
+| columnsTop | 自定义选项上方内容 | _ReactNode_ | - |
+| columnsBottom | 自定义选项下方内容 | _ReactNode_ | - |
+| optionRender | 自定义选项内容 | _(option: string \| object) => ReactNode_ | - |
 
 ### DatePicker Props
 
 当时间选择器类型为 date 或 datetime 时，支持以下 props:
 
-| 参数     | 说明                       | 类型   | 默认值 |
-| -------- | -------------------------- | ------ | ------ |
+| 参数    | 说明                       | 类型   | 默认值 |
+| ------- | -------------------------- | ------ | ------ |
 | minDate | 可选的最小时间，精确到分钟 | _Date_ | 十年前 |
 | maxDate | 可选的最大时间，精确到分钟 | _Date_ | 十年后 |
 
@@ -231,8 +235,8 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 当时间选择器类型为 time 时，支持以下 props:
 
-| 参数       | 说明           | 类型               | 默认值 |
-| ---------- | -------------- | ------------------ | ------ |
+| 参数      | 说明           | 类型               | 默认值 |
+| --------- | -------------- | ------------------ | ------ |
 | minHour   | 可选的最小小时 | _number \| string_ | `0`    |
 | maxHour   | 可选的最大小时 | _number \| string_ | `23`   |
 | minMinute | 可选的最小分钟 | _number \| string_ | `0`    |
@@ -240,14 +244,37 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 ### Events
 
-| 事件名  | 说明                     | 回调参数              |
-| ------- | ------------------------ | --------------------- |
+| 事件名    | 说明                     | 回调参数              |
+| --------- | ------------------------ | --------------------- |
 | onChange  | 当值变化时触发的事件     | value: 当前选中的时间 |
 | onConfirm | 点击完成按钮时触发的事件 | value: 当前选中的时间 |
+| onCancel  | 点击取消按钮时触发的事件 | -                     |
+|           |
+
+### 方法
+
+通过 ref 可以获取到 DatetimePicker 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| getPicker | 获取 Picker 实例，用于调用 Picker 的[实例方法](#/zh-CN/picker#fang-fa) | - | - |
+
+### 类型定义
+
+通过 `DatetimePickerInstance` 获取 DatetimePicker 实例的类型定义（从 3.2.0 版本开始支持）。
+
+```jsx
+import { useRef } from 'react';
+import type { DatetimePickerInstance } from 'react-vant';
+
+const datetimePickerRef = useRef<DatetimePickerInstance>();
+
+datetimePickerRef.current?.getPicker();
+```
 
 ## 常见问题
 
-### 设置 minDate 或 maxDate 后出现页面卡死的情况？
+### 设置 min-date 或 max-date 后出现页面卡死的情况？
 
 请注意不要在模板中直接使用类似`min-date="new Date()"`的写法，这样会导致每次渲染组件时传入一个新的 Date 对象，而传入新的数据会触发下一次渲染，从而陷入死循环。
 
@@ -258,6 +285,10 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 如果你遇到了在 iOS 上无法渲染组件的问题，请确认在创建 Date 对象时没有使用`new Date('2020-01-01')`这样的写法，iOS 不支持以中划线分隔的日期格式，正确写法是`new Date('2020/01/01')`。
 
 对此问题的详细解释：[stackoverflow](https://stackoverflow.com/questions/13363673/javascript-date-is-invalid-on-ios)。
+
+### 在桌面端无法操作组件？
+
+参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
 
 ### 是否有年份或月份选择器？
 

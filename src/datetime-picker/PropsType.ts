@@ -1,8 +1,20 @@
-import { PickerProps } from '../picker/PropsType';
+import { PickerInstance, PickerProps } from '../picker/PropsType';
 
-type Mode = 'date' | 'year-month' | 'month-day' | 'datehour' | 'datetime' | 'time' | 'weektime';
+export type DatetimePickerColumnType = 'year' | 'month' | 'day' | 'hour' | 'minute';
 
-export interface SharedProps extends Omit<PickerProps, 'onConfirm' | 'onChange'> {
+export type DatetimePickerType =
+  | 'date'
+  | 'time'
+  | 'datetime'
+  | 'datehour'
+  | 'month-day'
+  | 'year-month';
+
+export type DatetimePickerExpose = {
+  getPicker: () => PickerInstance;
+};
+
+export interface SharedProps extends Omit<PickerProps, 'onConfirm' | 'onChange' | 'columns'> {
   filter?: Function;
   value?: Date;
   columnsOrder?: string[];
@@ -12,7 +24,7 @@ export interface SharedProps extends Omit<PickerProps, 'onConfirm' | 'onChange'>
 }
 
 export interface DatePickerProps extends SharedProps {
-  mode?: Mode;
+  type?: DatetimePickerType;
   minDate?: Date;
   maxDate?: Date;
 }
@@ -25,3 +37,7 @@ export interface TimePickerProps extends SharedProps {
 }
 
 export type DateTimePickerProps = DatePickerProps & TimePickerProps;
+
+export type DateTimePickerInstance = {
+  getPicker: () => PickerInstance;
+};

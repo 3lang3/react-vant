@@ -250,6 +250,7 @@ const columnsFieldNames = {
 | toolbarPosition | 顶部栏位置，可选值为 `bottom` | _string_ | `top` |
 | columnsTop | 自定义选项上方内容 | _ReactNode_ | - |
 | columnsBottom | 自定义选项下方内容 | _ReactNode_ | - |
+| optionRender | 自定义选项内容	 | _(option: string \| object) => ReactNode_ | - |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
 | showToolbar | 是否显示顶部栏 | _boolean_ | `true` |
 | defaultIndex | 单列选择时，默认选中项的索引 | _number \| string_ | `0` |
@@ -300,11 +301,11 @@ const columnsFieldNames = {
 
 通过 `PickerInstance` 获取 Picker 实例的类型定义（从 3.2.0 版本开始支持）。
 
-```ts
-import { ref } from 'vue';
-import type { PickerInstance } from 'vant';
+```jsx
+import { useRef } from 'react';
+import type { PickerInstance } from 'react-vant';
 
-const pickerRef = ref<PickerInstance>();
+const pickerRef = useRef<PickerInstance>();
 
 pickerRef.current?.confirm();
 ```
