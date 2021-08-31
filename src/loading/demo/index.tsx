@@ -29,6 +29,14 @@ export default (): React.ReactNode => {
           加载中...
         </Loading>
       </DemoBlock>
+      <DemoBlock title="自定义文本颜色">
+        <Loading size="24px" vertical color="#f44336">
+          加载中...
+        </Loading>
+        <Loading size="24px" vertical textColor="#f44336">
+          加载中...
+        </Loading>
+      </DemoBlock>
     </DemoSection>
   );
 };

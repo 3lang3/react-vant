@@ -57,20 +57,23 @@ import { Loading } from 'react-vant';
 设置 `vertical` 属性后，图标和文案会垂直排列。
 
 ```jsx
-<Loading size="24px" vertical>加载中...</Loading>
+<Loading size="24px" vertical>
+  加载中...
+</Loading>
 ```
 
 ## API
 
 ### Props
 
-| 参数     | 说明                         | 类型               | 默认值     |
-| -------- | ---------------------------- | ------------------ | ---------- |
-| color    | 颜色                         | _string_           | `#c9c9c9`  |
-| type     | 类型，可选值为 `spinner`     | _string_           | `circular` |
-| size     | 加载图标大小，默认单位为`px` | _number \| string_ | `30px`     |
-| textSize | 文字大小，默认单位为`px`     | _number \| string_ | `14px`     |
-| vertical | 是否垂直排列图标和文字内容   | _boolean_          | `false`    |
+| 参数      | 说明                         | 类型               | 默认值     |
+| --------- | ---------------------------- | ------------------ | ---------- |
+| color     | 颜色                         | _string_           | `#c9c9c9`  |
+| type      | 类型，可选值为 `spinner`     | _string_           | `circular` |
+| size      | 加载图标大小，默认单位为`px` | _number \| string_ | `30px`     |
+| textSize  | 文字大小，默认单位为`px`     | _number \| string_ | `14px`     |
+| textColor | 文字颜色                     | _string_           | `#c9c9c9`  |
+| vertical  | 是否垂直排列图标和文字内容   | _boolean_          | `false`    |
 
 ### 样式变量
 
