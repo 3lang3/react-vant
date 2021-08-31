@@ -21,10 +21,10 @@ Dialog.show = (props: DialogProps) => {
     transition: 'rv-dialog-bounce',
     showConfirmButton: true,
     showCancelButton: false,
-    closeOnClickOverlay: true,
+    closeOnClickOverlay: false,
   };
   const {
-    afterClose,
+    onClosed,
     onCancel = noop,
     onConfirm = noop,
     onClose = noop,
@@ -52,8 +52,8 @@ Dialog.show = (props: DialogProps) => {
       if (onClose) onClose();
     };
     const _afterClose = () => {
-      if (afterClose) {
-        afterClose();
+      if (onClosed) {
+        onClosed();
       }
       const unmountResult = ReactDOM.unmountComponentAtNode(container);
       if (unmountResult && container.parentNode) {
@@ -94,9 +94,10 @@ Dialog.show = (props: DialogProps) => {
         getContainer={() => container}
         cancelProps={{ loading: cancelLoading, ...cancelProps }}
         confirmProps={{ loading: okLoading, ...confirmProps }}
+        onClose={destroy}
         onCancel={_onCancel}
         onConfirm={_onConfirm}
-        afterClose={_afterClose}
+        onClosed={_afterClose}
       />
     );
   };

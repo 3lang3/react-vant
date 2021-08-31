@@ -39,6 +39,12 @@ export interface DialogProps extends BaseTypeProps {
   confirmButtonText?: string;
   /** 确认按钮文本颜色 */
   confirmButtonColor?: string;
+  /** 是否显示背景遮罩层	 */
+  overlay?: boolean;
+  overlayClass?: string;
+  overlayStyle?: React.CSSProperties;
+  /** 是否在页面回退时自动关闭	 */
+  closeOnPopstate?: boolean;
   /** 点击背景关闭 */
   closeOnClickOverlay?: boolean;
   /** 点击关闭icon按钮时调用方法 */
@@ -53,7 +59,7 @@ export interface DialogProps extends BaseTypeProps {
   /** Dialog关闭时的回调 */
   onClose?: () => void;
   /** Dialog完全关闭后的回调 */
-  afterClose?: () => void;
+  onClosed?: () => void;
   /** 点击确认的回调 */
   onConfirm?: (
     e: React.MouseEvent,

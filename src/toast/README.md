@@ -140,13 +140,13 @@ const timer = setInterval(() => {
 | icon | 自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
 | iconSize | 图标大小，如 `20px` `2em`，默认单位为 `px` | _number \| string_ | `36px` |
 | iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
-| overlay | 是否显示背景遮罩层 | _boolean_ | `false` |
 | forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
 | closeOnClick | 是否在点击后关闭 | _boolean_ | `false` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
 | loadingType | [加载图标类型](#/zh-CN/loading), 可选值为 `spinner` | _string_ | `circular` |
 | duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
 | className | 自定义类名 | _string_ | - |
+| overlay | 是否显示背景遮罩层 | _boolean_ | `false` |
 | overlayClass  | 自定义遮罩层类名 | _string_ | - |
 | overlayStyle  | 自定义遮罩层样式 | _object_ | - |
 | onOpened | 完全展示后的回调函数 | _Function_ | - |

@@ -21,7 +21,7 @@ export default (): React.ReactNode => {
               message: '代码是写出来给人看的，附带能在机器上运行',
               onConfirm: () => console.log('onConfirm'),
               onCancel: () => console.log('onCancel'),
-              afterClose: () => console.log('afterClose'),
+              onClosed: () => console.log('onClosed'),
             })
           }
         />
@@ -104,7 +104,7 @@ export default (): React.ReactNode => {
             Dialog.alert({
               title: '标题',
               message: '代码是写出来给人看的，附带能在机器上运行',
-              afterClose: () => console.log('after close'),
+              onClosed: () => console.log('onClosed'),
             })
           }
         />
@@ -188,7 +188,16 @@ export default (): React.ReactNode => {
         <Cell title="组件调用" isLink onClick={() => setShow(true)} />
       </DemoBlock>
 
-      <Dialog visible={show} title="标题" showCancelButton onCancel={() => setShow(false)}>
+      <Dialog
+        visible={show}
+        title="标题"
+        showCancelButton
+        onConfirm={() => {
+          Toast.info('点击确认按钮');
+          setShow(false);
+        }}
+        onCancel={() => setShow(false)}
+      >
         <img src="https://img.yzcdn.cn/vant/apple-3.jpg" alt="2131" />
       </Dialog>
     </DemoSection>

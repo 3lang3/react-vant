@@ -126,10 +126,8 @@ const Dialog: React.FC<DialogProps> = (props) => {
       style={{ width: addUnit(width) }}
       aria-labelledby={title || message}
       closeOnClickOverlay={closeOnClickOverlay}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      onClose={(e) => props.onCancel(e, true)}
-      afterClose={props.afterClose}
+      onClose={props.onClose}
+      onClosed={props.onClosed}
     >
       {renderCloseIcon()}
       {renderTitle()}
@@ -143,6 +141,7 @@ Dialog.defaultProps = {
   closeIcon: 'cross',
   transition: 'rv-dialog-bounce',
   showConfirmButton: true,
+  closeOnPopstate: true,
 };
 
 export default Dialog as React.FC<DialogProps> & DialogStatic;
