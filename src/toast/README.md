@@ -133,17 +133,23 @@ const timer = setInterval(() => {
 ### Options
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| type | 提示类型，可选值为 `loading` `success`<br>`fail` `info` | _string_ | `text` |
+| --- | --- | --- | --- | --- |
+| type | 提示类型，可选值为 `loading` `success`<br>`fail` `info` | _string_ | `info` |
 | position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
 | icon | 自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
-| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
+| iconSize | 图标大小，如 `20px` `2em`，默认单位为 `px` | _number \| string_ | `36px` |
+| iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | overlay | 是否显示背景遮罩层 | _boolean_ | `false` |
 | forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
 | closeOnClick | 是否在点击后关闭 | _boolean_ | `false` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
 | loadingType | [加载图标类型](#/zh-CN/loading), 可选值为 `spinner` | _string_ | `circular` |
 | duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
-| className | 自定义类名 | _any_ | - |
+| className | 自定义类名 | _string \| Array \| object_ | - |
+| overlayClass  | 自定义遮罩层类名 | _string \| Array \| object_ | - |
+| overlayStyle  | 自定义遮罩层样式 | _object_ | - |
+| onOpened | 完全展示后的回调函数 | _Function_ | - |
 | onClose | 关闭时的回调函数 | _Function_ | - |
+| transition | 动画类名 | _string_ | `rv-fade` |
 | teleport | 指定挂载的节点 | _HTMLElement_ _(() => HTMLElement))_ | `document.body` |
