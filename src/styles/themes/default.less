@@ -462,9 +462,9 @@
 @image-preview-index-text-color: @white;
 @image-preview-index-font-size: @font-size-md;
 @image-preview-index-line-height: @line-height-md;
-@image-preview-index-text-shadow: 0 1px 1px @gray-8;
+@image-preview-index-text-shadow: 0 1 * @hd 1 * @hd @gray-8;
 @image-preview-overlay-background-color: rgba(0, 0, 0, 0.9);
-@image-preview-close-icon-size: 22px;
+@image-preview-close-icon-size: 22 * @hd;
 @image-preview-close-icon-color: @gray-5;
 @image-preview-close-icon-active-color: @gray-6;
 @image-preview-close-icon-margin: @padding-md;
@@ -566,15 +566,17 @@
 // Picker
 @picker-background-color: @white;
 @picker-toolbar-height: 44 * @hd;
+@picker-title-font-size: @font-size-lg;
 @picker-title-line-height: @line-height-md;
 @picker-action-padding: 0 @padding-md;
 @picker-action-font-size: @font-size-md;
 @picker-confirm-action-color: @text-link-color;
 @picker-cancel-action-color: @gray-6;
+@picker-option-padding: 0 @padding-base;
 @picker-option-font-size: @font-size-lg;
-@picker-option-text-color: @gray-8;
+@picker-option-text-color: @black;
 @picker-option-disabled-opacity: 0.3;
-@picker-loading-icon-color: @blue;
+@picker-loading-icon-color: @brand-color;
 @picker-loading-mask-color: rgba(255, 255, 255, 0.9);
 
 // Popup
@@ -688,7 +690,7 @@
 @skeleton-row-background-color: @active-color;
 @skeleton-row-margin-top: @padding-sm;
 @skeleton-title-width: 40%;
-@skeleton-avatar-size: 32px;
+@skeleton-avatar-size: 32 * @hd;
 @skeleton-avatar-background-color: @active-color;
 @skeleton-animation-duration: 1.2s;
 
@@ -696,12 +698,12 @@
 @slider-active-background-color: @brand-color;
 @slider-inactive-background-color: @gray-3;
 @slider-disabled-opacity: @disabled-opacity;
-@slider-bar-height: 2px;
-@slider-button-width: 24px;
-@slider-button-height: 24px;
+@slider-bar-height: 2 * @hd;
+@slider-button-width: 24 * @hd;
+@slider-button-height: 24 * @hd;
 @slider-button-border-radius: 50%;
 @slider-button-background-color: @white;
-@slider-button-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+@slider-button-box-shadow: 0 1 * @hd 2 * @hd rgba(0, 0, 0, 0.5);
 
 // Step
 @step-text-color: @gray-6;
@@ -767,8 +769,8 @@
 @switch-height: 1em;
 @switch-node-size: 1em;
 @switch-node-background-color: @white;
-@switch-node-box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 2px 0 rgba(0, 0, 0, 0.1),
-  0 3px 3px 0 rgba(0, 0, 0, 0.05);
+@switch-node-box-shadow: 0 3 * @hd 1 * @hd 0 rgba(0, 0, 0, 0.05),
+  0 2 * @hd 2 * @hd 0 rgba(0, 0, 0, 0.1), 0 3 * @hd 3 * @hd 0 rgba(0, 0, 0, 0.05);
 @switch-background-color: @white;
 @switch-on-background-color: @blue;
 @switch-transition-duration: @animation-duration-base;

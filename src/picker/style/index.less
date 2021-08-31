@@ -5,11 +5,41 @@
   background-color: @picker-background-color;
   user-select: none;
 
-  &__confirm {
+  &__toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10 * @hd 20 * @hd;
+    height: @picker-toolbar-height;
+  }
+
+  &__cancel,
+  &__confirm {
+    height: 100%;
+    padding: @picker-action-padding;
+    font-size: @picker-action-font-size;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      opacity: @active-opacity;
+    }
+  }
+
+  &__confirm {
+    color: @picker-confirm-action-color;
+  }
+
+  &__cancel {
+    color: @picker-cancel-action-color;
+  }
+
+  &__title {
+    max-width: 50%;
+    font-weight: @font-weight-bold;
+    font-size: @picker-title-font-size;
+    line-height: @picker-title-line-height;
+    text-align: center;
   }
 
   &__columns {
@@ -71,7 +101,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 @padding-base;
+      padding: @picker-option-padding;
       color: @picker-option-text-color;
 
       &--disabled {

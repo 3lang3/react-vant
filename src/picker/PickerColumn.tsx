@@ -1,10 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, {
   useEffect,
   useMemo,
   useRef,
-  useState,
   useImperativeHandle,
   useCallback,
   forwardRef,
@@ -13,9 +11,10 @@ import classnames from 'classnames';
 
 import useTouch from '../hooks/use-touch';
 
-import { PickerColumnProps, Column } from './PropsType';
+import { PickerColumnProps, Column, PickerOption } from './PropsType';
 import { createNamespace, isObject, range } from '../utils';
 import { deepClone } from '../utils/deep-clone';
+import { useSetState, useUpdateEffect } from '../hooks';
 
 const DEFAULT_DURATION = 200;
 
@@ -46,77 +45,79 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   const wrapper = useRef(null);
 
   const moving = useRef(false);
-  const startOffset = useRef(null);
+  const startOffset = useRef(0);
   const transitionEndTrigger = useRef(null);
   const touchStartTime = useRef(0);
   const momentumOffset = useRef(0);
 
-  const index = useRef(defaultIndex);
-
-  const [offset, setOffset] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
-  const [options, _setOptions] = useState(deepClone(initialOptions));
+  const [state, updateState] = useSetState({
+    index: defaultIndex,
+    offset: 0,
+    duration: 0,
+    options: deepClone(initialOptions),
+  });
 
   const touch = useTouch();
 
-  const count = useMemo(() => options.length, [options]);
+  const count = useMemo(() => state.options.length, [state.options.length]);
 
   const baseOffset = useMemo(() => {
     // 默认转入第一个选项的位置
-    return (itemHeight * ((visibleItemCount as number) - 1)) / 2;
+    return (itemHeight * (+visibleItemCount - 1)) / 2;
   }, [itemHeight, visibleItemCount]);
 
-  const adjustIndex = (_index: number): number => {
-    _index = range(_index, 0, count);
+  const adjustIndex = (index: number) => {
+    index = range(index, 0, count);
 
-    for (let i = _index; i < count; i += 1) {
-      if (!isOptionDisabled(options[i])) return i;
+    for (let i = index; i < count; i += 1) {
+      if (!isOptionDisabled(state.options[i])) return i;
     }
-    for (let i = _index - 1; i >= 0; i -= 1) {
-      if (!isOptionDisabled(options[i])) return i;
+    for (let i = index - 1; i >= 0; i -= 1) {
+      if (!isOptionDisabled(state.options[i])) return i;
     }
 
     return null;
   };
 
-  const setIndex = (_index: number, emitChange?: boolean) => {
-    _index = adjustIndex(_index) || 0;
+  const setIndex = (index: number, emitChange?: boolean) => {
+    index = adjustIndex(index) || 0;
 
-    const _offset = -_index * props.itemHeight;
+    const offset = -index * props.itemHeight;
     const trigger = () => {
-      if (_index !== index.current) {
-        index.current = _index;
+      if (index !== state.index) {
+        updateState({ index });
 
         if (emitChange && props.onChange) {
-          props.onChange(index.current);
+          setImmediate(() => {
+            props.onChange(index);
+          });
         }
       }
     };
 
     // trigger the change event after transitionend when moving
-    if (moving.current && _offset !== offset) {
+    if (moving.current && offset !== state.offset) {
       transitionEndTrigger.current = trigger;
     } else {
       trigger();
     }
-    setOffset(_offset);
+    updateState({ offset });
   };
 
-  const setOptions = (_options: Column) => {
-    if (JSON.stringify(_options) !== JSON.stringify(options)) {
-      _setOptions(deepClone(_options));
+  const setOptions = (options: Column) => {
+    if (JSON.stringify(options) !== JSON.stringify(state.options)) {
+      updateState({ options });
       setIndex(props.defaultIndex);
     }
   };
 
-  const onClickItem = (_index: number) => {
+  const onClickItem = (index: number) => {
     if (moving.current || props.readonly) {
       return;
     }
-
     transitionEndTrigger.current = null;
-    setDuration(DEFAULT_DURATION);
-    setIndex(_index, true);
+    updateState({ duration: DEFAULT_DURATION });
+    setIndex(index, true);
   };
 
   const getOptionText = (option: []) => {
@@ -126,22 +127,22 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     return option;
   };
 
-  const getIndexByOffset = (_offset: number) =>
-    range(Math.round(-_offset / props.itemHeight), 0, count - 1);
+  const getIndexByOffset = (offset: number) =>
+    range(Math.round(-offset / props.itemHeight), 0, count - 1);
 
   const momentum = (distance: number, _duration: number) => {
     const speed = Math.abs(distance / _duration);
 
-    distance = offset + (speed / 0.003) * (distance < 0 ? -1 : 1);
+    distance = state.offset + (speed / 0.003) * (distance < 0 ? -1 : 1);
 
-    const _index = getIndexByOffset(distance);
-    setDuration(+props.swipeDuration);
-    setIndex(_index, true);
+    const index = getIndexByOffset(distance);
+    updateState({ duration: +props.swipeDuration });
+    setIndex(index, true);
   };
 
   const stopMomentum = () => {
     moving.current = false;
-    setDuration(0);
+    updateState({ duration: 0 });
 
     if (transitionEndTrigger.current) {
       transitionEndTrigger.current();
@@ -155,16 +156,17 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     }
 
     touch.start(event);
+    let { offset } = state;
 
     if (moving.current) {
       const translateY = getElementTranslateY(wrapper.current);
-      setOffset(Math.min(0, translateY - baseOffset));
+      offset = Math.min(0, translateY - baseOffset);
       startOffset.current = offset;
     } else {
       startOffset.current = offset;
     }
 
-    setDuration(0);
+    updateState({ duration: 0, offset });
     touchStartTime.current = Date.now();
     momentumOffset.current = startOffset.current;
     transitionEndTrigger.current = null;
@@ -181,9 +183,15 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
       moving.current = true;
     }
 
-    setOffset(
-      range(startOffset.current + touch.deltaY, -(count * props.itemHeight), props.itemHeight),
+    const offset = range(
+      startOffset.current + touch.deltaY,
+      -(count * props.itemHeight),
+      props.itemHeight,
     );
+
+    updateState({
+      offset,
+    });
 
     const now = Date.now();
     if (now - touchStartTime.current > MOMENTUM_LIMIT_TIME) {
@@ -196,20 +204,20 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     if (props.readonly) {
       return;
     }
-    const distance = offset - momentumOffset.current;
-    const _duration = Date.now() - touchStartTime.current;
+    const distance = state.offset - momentumOffset.current;
+    const duration = Date.now() - touchStartTime.current;
 
     const allowMomentum =
-      _duration < MOMENTUM_LIMIT_TIME && Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
+      duration < MOMENTUM_LIMIT_TIME && Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE;
 
     if (allowMomentum) {
-      momentum(distance, _duration);
+      momentum(distance, duration);
       return;
     }
 
-    const _index = getIndexByOffset(offset);
-    setDuration(DEFAULT_DURATION);
-    setIndex(_index, true);
+    const index = getIndexByOffset(state.offset);
+    updateState({ duration: DEFAULT_DURATION });
+    setIndex(index, true);
 
     // compatible with desktop scenario
     // use setTimeout to skip the click event triggered after touchstart
@@ -223,23 +231,23 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
       height: `${props.itemHeight}px`,
     };
 
-    return options.map((option, _index: number) => {
+    return state.options.map((option, index: number) => {
       const text = getOptionText(option);
       const disabled = isOptionDisabled(option);
 
       const data = {
         role: 'button',
-        key: _index,
+        key: index,
         style: optionStyle,
         tabIndex: disabled ? -1 : 0,
         className: classnames(
           bem('item', {
             disabled,
-            selected: _index === index.current,
+            selected: index === state.index,
           }),
         ),
         onClick: () => {
-          onClickItem(index.current);
+          onClickItem(index);
         },
       };
 
@@ -250,13 +258,14 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
       return (
         <li {...data}>
-          <div {...childData} />
+          {props.optionRender ? props.optionRender(option) : <div {...childData} />}
         </li>
       );
     });
   };
 
   const setValue = (value: string) => {
+    const { options } = state;
     for (let i = 0; i < options.length; i += 1) {
       if (getOptionText(options[i]) === value) {
         return setIndex(i);
@@ -265,18 +274,21 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     return null;
   };
 
-  const getValue = useCallback(() => options[index.current], [index.current, options]);
+  const getValue = useCallback<() => PickerOption>(
+    () => state.options[state.index],
+    [state.index, state.options],
+  );
 
   useEffect(() => {
     setIndex(defaultIndex);
   }, [defaultIndex]);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     setOptions(deepClone(initialOptions));
   }, [initialOptions]);
 
   useImperativeHandle(ref, () => ({
-    index,
+    state,
     setIndex,
     getValue,
     setValue,
@@ -285,9 +297,9 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   }));
 
   const wrapperStyle = {
-    transform: `translate3d(0, ${offset + baseOffset}px, 0)`,
-    transitionDuration: `${duration}ms`,
-    transitionProperty: duration ? 'all' : 'none',
+    transform: `translate3d(0, ${state.offset + baseOffset}px, 0)`,
+    transitionDuration: `${state.duration}ms`,
+    transitionProperty: state.duration ? 'all' : 'none',
   };
 
   return (
@@ -310,5 +322,10 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     </div>
   );
 });
+
+PickerColumn.defaultProps = {
+  initialOptions: [],
+  defaultIndex: 0,
+};
 
 export default PickerColumn;

@@ -23,3 +23,5 @@ export interface TimePickerProps extends SharedProps {
   minMinute?: number | string;
   maxMinute?: number | string;
 }
+
+export type DateTimePickerProps = DatePickerProps & TimePickerProps;

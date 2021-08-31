@@ -207,7 +207,7 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | mode | 时间类型，可选值为 `date` `time` <br> `year-month` `month-day` `datehour` `week` | _string_ | `datetime` |
-| title | 顶部栏标题 | _string_ | `''` |
+| title | 顶部栏标题 | _ReactNode_ | `''` |
 | showSubmitBtn | 是否显示确认按钮 | _boolean_ | `true` |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
 | readonly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
@@ -242,8 +242,8 @@ DatetimePicker 通过 mode 属性来定义需要选择的时间类型，mode 为
 
 | 事件名  | 说明                     | 回调参数              |
 | ------- | ------------------------ | --------------------- |
-| change  | 当值变化时触发的事件     | value: 当前选中的时间 |
-| confirm | 点击完成按钮时触发的事件 | value: 当前选中的时间 |
+| onChange  | 当值变化时触发的事件     | value: 当前选中的时间 |
+| onConfirm | 点击完成按钮时触发的事件 | value: 当前选中的时间 |
 
 ## 常见问题
 

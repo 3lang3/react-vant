@@ -4,12 +4,12 @@ import classnames from 'classnames';
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
 
-import { DatePickerProps, TimePickerProps } from './PropsType';
+import { DateTimePickerProps } from './PropsType';
 import { createNamespace } from '../utils';
 
 const [bem] = createNamespace('datetime-picker');
 
-const DateTimePicker: React.FC<DatePickerProps & TimePickerProps> = (props) => {
+const DateTimePicker: React.FC<DateTimePickerProps> = (props) => {
   const isTimePicker = props.mode === 'time';
   const Component = isTimePicker ? TimePicker : DatePicker;
 
@@ -17,3 +17,5 @@ const DateTimePicker: React.FC<DatePickerProps & TimePickerProps> = (props) => {
 };
 
 export default DateTimePicker;
+export { DateTimePicker };
+export type { DateTimePickerProps } from './PropsType';

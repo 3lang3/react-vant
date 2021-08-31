@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useRef, useState } from 'react';
 import { Picker, Toast, Field, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -12,27 +13,33 @@ export default (): React.ReactNode => {
 
   const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '宿迁', '泰州', '无锡'];
   const cities = {
-    江苏: ['南京', '苏州', '常州', '淮安', '扬州'],
     浙江: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
+    福建: ['福州', '厦门', '莆田', '三明', '泉州'],
   };
 
   return (
     <DemoSection>
       <DemoBlock card title="基础用法">
         <Picker
+          title="标题"
           columns={columns}
           onChange={(value: string, index: number) => Toast(`当前值：${value}, 当前索引：${index}`)}
+          onCancel={() => Toast.info('点击取消按钮')}
+          onConfirm={() => Toast.info('点击确认按钮')}
         />
       </DemoBlock>
       <DemoBlock card title="默认选中">
         <Picker
           columns={columns}
-          defaultIndex="2"
+          defaultIndex={2}
           onChange={(value: string, index: number) => Toast(`当前值：${value}, 当前索引：${index}`)}
         />
       </DemoBlock>
       <DemoBlock card title="多列选择">
         <Picker
+          onChange={(value: string, index: number) => {
+            console.log(value, index);
+          }}
           columns={[
             {
               values: ['周一', '周二', '周三', '周四', '周五'],
@@ -48,6 +55,9 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock card title="级联选择">
         <Picker
+          onChange={(value: string, index: number) => {
+            console.log(value, index);
+          }}
           columns={[
             {
               text: '江苏',
@@ -106,25 +116,6 @@ export default (): React.ReactNode => {
           ]}
         />
       </DemoBlock>
-      <DemoBlock card title="确认按钮">
-        <Picker
-          showSubmitBtn
-          onConfirm={(value: string, index: number) =>
-            Toast(`提交值：${value}, 提交索引：${index}`)
-          }
-          columns={[
-            {
-              values: ['周一', '周二', '周三', '周四', '周五'],
-              defaultIndex: 2,
-            },
-            // 第二列
-            {
-              values: ['上午', '下午', '晚上'],
-              defaultIndex: 1,
-            },
-          ]}
-        />
-      </DemoBlock>
       <DemoBlock card title="搭配弹出层使用">
         <Field
           readonly
@@ -135,16 +126,9 @@ export default (): React.ReactNode => {
           onClick={() => setShowPicker(true)}
         />
       </DemoBlock>
-      <Popup
-        title="请选择城市"
-        closeable
-        visible={showPicker}
-        round
-        position="bottom"
-        onClose={() => setShowPicker(false)}
-      >
+      <Popup round visible={showPicker} position="bottom" onClose={() => setShowPicker(false)}>
         <Picker
-          showSubmitBtn
+          title="标题"
           onConfirm={(value: string) => {
             setFieldValue(value);
             setShowPicker(false);
@@ -152,6 +136,43 @@ export default (): React.ReactNode => {
           columns={columns}
         />
       </Popup>
+      <DemoBlock card title="自定义Columns结构">
+        <Picker
+          title="标题"
+          columnsFieldNames={{
+            text: 'cityName',
+            children: 'cities',
+          }}
+          columns={[
+            {
+              cityName: '浙江',
+              cities: [
+                {
+                  cityName: '杭州',
+                  cities: [{ cityName: '西湖区' }, { cityName: '余杭区' }],
+                },
+                {
+                  cityName: '温州',
+                  cities: [{ cityName: '鹿城区' }, { cityName: '瓯海区' }],
+                },
+              ],
+            },
+            {
+              cityName: '福建',
+              cities: [
+                {
+                  cityName: '福州',
+                  cities: [{ cityName: '鼓楼区' }, { cityName: '台江区' }],
+                },
+                {
+                  cityName: '厦门',
+                  cities: [{ cityName: '思明区' }, { cityName: '海沧区' }],
+                },
+              ],
+            },
+          ]}
+        />
+      </DemoBlock>
     </DemoSection>
   );
 };
