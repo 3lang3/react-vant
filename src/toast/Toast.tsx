@@ -11,7 +11,7 @@ import { ToastProps } from './PropsType';
 
 const [bem] = createNamespace('toast');
 
-const Toast: React.FC<ToastProps> = (props) => {
+const Toast: React.FC<ToastProps & { visible?: boolean }> = (props) => {
   let clickable = false;
 
   const toggleClickable = () => {
@@ -22,6 +22,12 @@ const Toast: React.FC<ToastProps> = (props) => {
     }
     if (!props.visible) {
       lockClick(false);
+    }
+  };
+
+  const onClick = () => {
+    if (props.closeOnClick) {
+      props.onClose();
     }
   };
 
@@ -64,14 +70,20 @@ const Toast: React.FC<ToastProps> = (props) => {
 
   return (
     <Popup
-      visible={props.visible}
       className={classnames([
         bem([props.position, { [props.type]: !props.icon }]),
         props.className,
       ])}
-      overlay={false}
+      visible={props.visible}
+      overlay={props.overlay}
+      transition={props.transition}
+      overlayClass={props.overlayClass}
+      overlayStyle={props.overlayStyle}
+      closeOnClickOverlay={props.closeOnClickOverlay}
       lockScroll={false}
+      onClick={onClick}
       onClosed={clearTimer}
+      onOpened={props.onOpened}
     >
       {renderIcon()}
       {renderMessage()}
@@ -80,11 +92,12 @@ const Toast: React.FC<ToastProps> = (props) => {
 };
 
 Toast.defaultProps = {
-  type: 'text',
+  type: 'info',
   duration: 2000,
   position: 'middle',
   transition: 'rv-fade',
   loadingType: 'circular',
+  overlay: false,
 };
 
 export default Toast;

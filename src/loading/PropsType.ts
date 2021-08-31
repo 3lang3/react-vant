@@ -1,6 +1,6 @@
 import { BaseTypeProps } from '../utils';
 
-export type LoadingType = 'circular' | 'spinner' | 'ball';
+export type LoadingType = 'circular' | 'spinner';
 
 export interface LoadingProps extends BaseTypeProps {
   size?: string | number;
