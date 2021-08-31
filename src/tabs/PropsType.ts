@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface TabsProps extends BaseTypeProps {
@@ -21,7 +21,19 @@ export interface TabsProps extends BaseTypeProps {
   offsetTop?: number | string;
   lazyRender?: boolean;
   swipeThreshold?: number | string;
+  navLeft?: React.ReactNode;
+  navRight?: React.ReactNode;
+  navBottom?: React.ReactNode;
   onClick?: (name: string | number, title: string) => void;
+  onClickTab?: (tab: {
+    name: string | number;
+    title: string;
+    event: React.MouseEvent;
+    disabled: boolean;
+  }) => void;
+  onChange?: (name: string | number, title: string) => void;
+  onScroll?: (params: { scrollTop: number; isFixed: boolean }) => void;
+  children?: React.ReactNode;
 }
 
 export interface TabsTitleProps extends BaseTypeProps {
@@ -29,15 +41,16 @@ export interface TabsTitleProps extends BaseTypeProps {
   dot: boolean;
   type: string;
   color: string;
-  title: string;
+  title: React.ReactNode;
   badge: number | string;
   isActive: boolean;
   disabled: boolean;
   scrollable: boolean;
   activeColor: string;
   renderTitle: Function;
+  showZeroBadge?: boolean;
   inactiveColor: string;
-  onClick: () => void;
+  onClick: (event) => void;
 }
 
 export interface TabsContentProps {
@@ -48,6 +61,7 @@ export interface TabsContentProps {
   count: number;
   duration: number | string;
   currentIndex: number;
+  onChange?: (index) => void;
 }
 
 export interface TabPaneProps {
@@ -56,6 +70,7 @@ export interface TabPaneProps {
   index?: number;
   name?: number | string;
   badge?: number | string;
+  showZeroBadge?: boolean;
   title?: string;
   titleStyle?: CSSProperties;
   titleClass?: string;
@@ -69,4 +84,9 @@ export type TabsClickTabEventParams = {
   title: string;
   event: MouseEvent;
   disabled: boolean;
+};
+
+export type TabsInstance = {
+  resize: () => void;
+  scrollTo: (name: number | string) => void;
 };

@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import { TabsTitleProps } from './PropsType';
 import { isDef, createNamespace } from '../utils';
+import Badge from '../badge';
 
 const [bem] = createNamespace('tab');
 
@@ -32,7 +33,7 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
     }
 
     return style;
-  }, []);
+  }, [type, color, disabled, isActive, activeColor, inactiveColor]);
 
   const renderText = () => {
     const Text = (
@@ -43,10 +44,9 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
 
     if (props.dot || (isDef(props.badge) && props.badge !== '')) {
       return (
-        <div>312</div>
-        // <Badge dot={props.dot} content={props.badge}>
-        //   {Text}
-        // </Badge>
+        <Badge dot={props.dot} content={props.badge} showZero={props.showZeroBadge}>
+          {Text}
+        </Badge>
       );
     }
 
@@ -63,13 +63,17 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
         }),
         className,
       ])}
-      onClick={props.onClick}
       style={customStyle}
       aria-selected={props.isActive}
+      onClick={props.onClick}
     >
       {renderText()}
     </div>
   );
 });
+
+TabsTitle.defaultProps = {
+  showZeroBadge: true,
+};
 
 export default TabsTitle;

@@ -88,9 +88,9 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
         updateState({ index });
 
         if (emitChange && props.onChange) {
-          setImmediate(() => {
+          setTimeout(() => {
             props.onChange(index);
-          });
+          }, 0);
         }
       }
     };

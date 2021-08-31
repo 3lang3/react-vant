@@ -9,7 +9,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Tabs active={2}>
+        <Tabs swipeable active={2}>
           {[1, 2, 3, 4].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
               内容 {item}

@@ -149,16 +149,33 @@ import { Tabs } from 'react-vant';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | title | 标题 | _string_ | - |
+| renderTitle | 自定义标题 | _() => ReactNode_ | - |
 | disabled | 是否禁用标签 | _boolean_ | `false` |
-| dot `v2.3.0` | 是否在标题右上角显示小红点 | _boolean_ | `false` |
-| badge `v2.5.6` | 图标右上角徽标的内容 | _number \| string_ | - |
+| dot | 是否在标题右上角显示小红点 | _boolean_ | `false` |
+| badge | 图标右上角徽标的内容 | _number \| string_ | - |
 | name | 标签名称，作为匹配的标识符 | _number \| string_ | 标签的索引值 |
-| url | 点击后跳转的链接地址 | _string_ | - |
-| to | 点击后跳转的目标路由对象，同 vue-router 的 [to 属性](https://router.vuejs.org/zh/api/#to) | _string \| object_ | - |
-| replace | 是否在跳转时替换当前页面历史 | _boolean_ | `false` |
-| titleStyle | 自定义标题样式 | _any_ | - |
-| titleClass | 自定义标题类名 | _any_ | - |
-| onClick | 点击标签时触发 | name：标识符，title：标题 |
+| titleStyle | 自定义标题样式 | _CSSProperties_ | - |
+| titleSlass | 自定义标题类名 | _string_ | - |
+| showZeroBadge  | 当 badge 为数字 0 时，是否展示徽标 | _boolean_ | `true` |
+
+### Tabs Events
+
+| 事件名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| onClickTab | 点击标签时触发 | _{ name: string \| number, title: string, event: MouseEvent, disabled: boolean }_ |
+| onChange | 当前激活的标签改变时触发 | _name: string \| number, title: string_ |
+| onScroll | 滚动时触发，仅在 sticky 模式下生效 | _{ scrollTop: number, isFixed: boolean }_ |
+
+> 提示：click 和 disabled 事件已废弃，请使用 click-tab 事件代替。
+
+### Tabs 方法
+
+通过 ref 可以获取到 Tabs 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| resize | 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘 | - | - |
+| scrollTo | 滚动到指定的标签页，在滚动导航模式下可用 | _name: string \| number_ | - |
 
 ### 样式变量
 

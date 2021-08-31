@@ -79,9 +79,9 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         }
 
         updateState({ tabs });
-        setImmediate(() => {
+        setTimeout(() => {
           updateState({ activeTab: tabs.length - 1 });
-        });
+        }, 0);
 
         return;
       }

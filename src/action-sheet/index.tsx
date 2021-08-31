@@ -9,7 +9,6 @@ import Popup from '../popup';
 const [bem] = createNamespace('action-sheet');
 
 const ActionSheet: React.FC<ActionSheetProps> = (props) => {
-
   const onCancel = () => {
     props.onCancel();
   };
@@ -33,8 +32,13 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     if (!props.renderCancel) return null;
     return [
       <div key="cancel-gap" className={classnames(bem('gap'))} />,
-      <button key="cancel-btn" type="button" className={classnames(bem('cancel'))} onClick={onCancel}>
-        {typeof props.renderCancel === 'boolean' ? '取消' :  props.renderCancel}
+      <button
+        key="cancel-btn"
+        type="button"
+        className={classnames(bem('cancel'))}
+        onClick={onCancel}
+      >
+        {typeof props.renderCancel === 'boolean' ? '取消' : props.renderCancel}
       </button>,
     ];
   };
@@ -46,8 +50,14 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       <Loading className={classnames(bem('loading-icon'))} />
     ) : (
       [
-        <span key={`${index}-1`} className={classnames(bem('name'))}>{name}</span>,
-        subname && <div key={`${index}-2`} className={classnames(bem('subname'))}>{subname}</div>,
+        <span key={`${index}-1`} className={classnames(bem('name'))}>
+          {name}
+        </span>,
+        subname && (
+          <div key={`${index}-2`} className={classnames(bem('subname'))}>
+            {subname}
+          </div>
+        ),
       ]
     );
 
@@ -63,10 +73,9 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       if (props.closeOnClickAction) {
         onCancel();
       }
-
-      setImmediate(() => {
+      setTimeout(() => {
         props.onSelect?.(item, index);
-      });
+      }, 0);
     };
 
     return (
@@ -116,13 +125,11 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   );
 };
 
-
 ActionSheet.defaultProps = {
   closeIcon: 'cross',
   closeable: true,
   safeAreaInsetBottom: true,
   round: true,
 };
-
 
 export default ActionSheet;

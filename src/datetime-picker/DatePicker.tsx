@@ -252,7 +252,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   }, [props.filter, props.maxDate]);
 
   useUpdateEffect(() => {
-    setImmediate(updateInnerValue);
+    setTimeout(updateInnerValue, 0);
   }, [props.minDate]);
 
   useUpdateEffect(() => {

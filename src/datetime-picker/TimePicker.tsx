@@ -78,9 +78,9 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
     const pair = currentDate.split(':');
     const values = [props.formatter('hour', pair[0]), props.formatter('minute', pair[1])];
 
-    setImmediate(() => {
+    setTimeout(() => {
       picker.current.setValues(values);
-    });
+    }, 0);
   };
 
   const updateInnerValue = () => {
@@ -115,7 +115,7 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   }, [props.filter, props.maxHour, props.minMinute, props.maxMinute]);
 
   useUpdateEffect(() => {
-    setImmediate(updateInnerValue);
+    setTimeout(updateInnerValue, 0);
   }, [props.minHour]);
 
   useUpdateEffect(() => {
