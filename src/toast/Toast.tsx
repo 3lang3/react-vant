@@ -84,6 +84,7 @@ const Toast: React.FC<ToastProps & { visible?: boolean }> = (props) => {
       onClick={onClick}
       onClosed={clearTimer}
       onOpened={props.onOpened}
+      teleport={props.teleport}
     >
       {renderIcon()}
       {renderMessage()}
