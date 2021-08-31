@@ -133,8 +133,8 @@ const timer = setInterval(() => {
 ### Options
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- | --- |
-| type | 提示类型，可选值为 `loading` `success`<br>`fail` `info` | _string_ | `info` |
+| --- | --- | --- | --- | 
+| type | 提示类型，可选值为 `loading` `success` `fail` `info` | _string_ | `info` |
 | position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
 | icon | 自定义图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
@@ -146,8 +146,8 @@ const timer = setInterval(() => {
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
 | loadingType | [加载图标类型](#/zh-CN/loading), 可选值为 `spinner` | _string_ | `circular` |
 | duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
-| className | 自定义类名 | _string \| Array \| object_ | - |
-| overlayClass  | 自定义遮罩层类名 | _string \| Array \| object_ | - |
+| className | 自定义类名 | _string_ | - |
+| overlayClass  | 自定义遮罩层类名 | _string_ | - |
 | overlayStyle  | 自定义遮罩层样式 | _object_ | - |
 | onOpened | 完全展示后的回调函数 | _Function_ | - |
 | onClose | 关闭时的回调函数 | _Function_ | - |
