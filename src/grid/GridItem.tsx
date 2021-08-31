@@ -9,8 +9,8 @@ import Icon from '../icon';
 const [bem] = createNamespace('grid-item');
 
 type InternalProps = {
-  parent: GridProps;
-  index: number;
+  parent?: GridProps;
+  index?: number;
 };
 
 const GridItem: React.FC<GridItemProps & InternalProps> = ({

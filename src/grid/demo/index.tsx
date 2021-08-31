@@ -35,7 +35,7 @@ export default (): React.ReactNode => {
           </Grid.Item>
         </Grid>
       </DemoBlock>
-      <DemoBlock title="正方形各自">
+      <DemoBlock title="正方形格子">
         <Grid square>
           {Array.from({ length: 8 }, (_, i) => (
             <Grid.Item key={i} icon="photo-o" text="文字" />
