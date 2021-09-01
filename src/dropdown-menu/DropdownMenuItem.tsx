@@ -1,53 +1,75 @@
 // Components
 import classnames from 'classnames';
-import React, { CSSProperties, useState, forwardRef, useImperativeHandle, useContext } from 'react';
+import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
 import Cell from '../cell';
+import { useSetState } from '../hooks';
 import Icon from '../icon';
 import Popup from '../popup';
-import { createNamespace, getZIndexStyle } from '../utils';
+import { createNamespace, getZIndexStyle, pick } from '../utils';
 import DropdownMenuContext from './DropdownMenuContext';
 import {
   DropdownMenuItemProps,
   DropdownMenuItemOption,
-  ItemActionType,
-  ItemStaticProps,
+  DropdownMenuItemInstance,
 } from './PropsType';
 
 const [bem] = createNamespace('dropdown-item');
 
-const DropdownMenuItem = forwardRef<ItemActionType, DropdownMenuItemProps & ItemStaticProps>(
+const inheritPropsKey = [
+  'overlay',
+  'overlayClass',
+  'overlayStyle',
+  'disabled',
+  'placeholder',
+  'onOpen',
+  'onClosed',
+  'onOpened',
+  'teleport',
+  'closeOnClickOverlay',
+] as const;
+
+function inheritProps(parentProps, props) {
+  return { ...parentProps, ...props };
+}
+
+const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemProps>(
   (props, ref) => {
-    const [state, setState] = useState({
-      showPopup: false,
+    const [state, setState] = useSetState({
       transition: true,
       showWrapper: false,
     });
 
     const parent = useContext(DropdownMenuContext);
-    const itemCurrentValue = parent.currentValue?.[props.name];
-
-    const onClose = () => {
-      setState((v) => ({ ...v, showPopup: false }));
-    };
+    const currentValue = parent.value?.[props.name];
 
     const onClosed = () => {
-      setState((v) => ({ ...v, showWrapper: false }));
-      props.setOpened(false);
+      setState({ showWrapper: false });
+      (props.onClosed ?? parent.props.onClosed)?.();
     };
 
-    const toggle = (show = !state.showPopup, options: { immediate?: boolean } = {}) => {
-      if (show === state.showPopup) {
+    const onClickWrapper = (event) => {
+      // prevent being identified as clicking outside and closed when using teleport
+      if (props.teleport) {
+        event.stopPropagation();
+      }
+    };
+
+    const toggle = (show = !props.showPopup, options: { immediate?: boolean } = {}) => {
+      if (show === props.showPopup) {
         return;
       }
       const newState = {} as typeof state;
-      newState.showPopup = show;
       newState.transition = !options.immediate;
 
       if (show) {
         newState.showWrapper = true;
-        props.setOpened(true);
       }
-      setState((v) => ({ ...v, ...newState }));
+      setState(newState);
+    };
+
+    const onClose = () => {
+      parent.close();
+      (props.onClose ?? parent.props.onClose)?.();
     };
 
     const renderTitle = (itemValue) => {
@@ -58,28 +80,14 @@ const DropdownMenuItem = forwardRef<ItemActionType, DropdownMenuItemProps & Item
       return match ? match.text : props.placeholder;
     };
 
-    useImperativeHandle(ref, () => ({
-      toggle,
-      renderTitle,
-      state: () => state,
-      props: {
-        titleClass: props.titleClass,
-        disabled: props.disabled,
-        name: props.name,
-        options: props.options,
-      },
-    }));
-
     const renderOption = (option: DropdownMenuItemOption) => {
       const { activeColor } = parent.props;
-      const active = option.value === itemCurrentValue;
+      const active = option.value === currentValue;
 
       const onClick = () => {
-        const newState = {} as typeof state;
-        newState.showPopup = false;
-        setState((v) => ({ ...v, ...newState }));
-        if (option.value !== itemCurrentValue) {
-          props.onChange({ [props.name]: option.value });
+        if (option.value !== currentValue) {
+          parent.onChange({ [props.name]: option.value });
+          onClose();
         }
       };
 
@@ -102,7 +110,7 @@ const DropdownMenuItem = forwardRef<ItemActionType, DropdownMenuItemProps & Item
 
     const renderContent = () => {
       const { offset } = props;
-      const { zIndex, overlay, duration, direction, closeOnClickOverlay } = parent.props;
+      const { zIndex, overlayStyle, duration, direction } = parent.props;
 
       const style: CSSProperties = getZIndexStyle(zIndex);
 
@@ -111,19 +119,21 @@ const DropdownMenuItem = forwardRef<ItemActionType, DropdownMenuItemProps & Item
       } else {
         style.bottom = `${offset}px`;
       }
+
+      const attrs = pick(inheritProps(parent.props, props), inheritPropsKey);
       return (
         <div
           style={{ ...style, display: state.showWrapper ? 'block' : 'none' }}
           className={classnames(bem([direction]))}
+          onClick={onClickWrapper}
         >
           <Popup
-            visible={state.showPopup}
+            {...attrs}
+            visible={props.showPopup}
             className={classnames(bem('content'))}
-            overlay={overlay}
             position={direction === 'down' ? 'top' : 'bottom'}
             duration={state.transition ? +duration : 0}
-            overlayStyle={{ position: 'absolute' }}
-            closeOnClickOverlay={closeOnClickOverlay}
+            overlayStyle={{ position: 'absolute', ...overlayStyle }}
             onClose={onClose}
             onClosed={onClosed}
           >
@@ -134,12 +144,23 @@ const DropdownMenuItem = forwardRef<ItemActionType, DropdownMenuItemProps & Item
       );
     };
 
+    useImperativeHandle(ref, () => ({
+      toggle,
+      renderTitle,
+      state,
+      titleClass: props.titleClass,
+      disabled: props.disabled,
+      name: props.name,
+      options: props.options,
+    }));
+
     return renderContent();
   },
 );
 
 DropdownMenuItem.defaultProps = {
   placeholder: '请选择',
+  options: [],
 };
 
 export default DropdownMenuItem;

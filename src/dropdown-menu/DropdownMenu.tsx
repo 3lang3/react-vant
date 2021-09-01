@@ -1,4 +1,12 @@
-import React, { Children, cloneElement, ReactElement, useEffect, useRef, useState } from 'react';
+import React, {
+  Children,
+  cloneElement,
+  ReactElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import classnames from 'classnames';
 import { DropdownMenuProps } from './PropsType';
 import { isDef, createNamespace } from '../utils';
@@ -7,8 +15,8 @@ import useScrollParent from '../hooks/use-scroll-parent';
 import { getRect } from '../hooks/use-rect';
 import useRefs from '../hooks/use-refs';
 import DropdownMenuContext from './DropdownMenuContext';
-
-export type DropdownMenuDirection = 'up' | 'down';
+import { useUpdateEffect } from '../hooks';
+import useClickAway from '../hooks/use-click-away';
 
 const [bem, name] = createNamespace('dropdown-menu');
 
@@ -16,42 +24,17 @@ export const DROPDOWN_KEY = Symbol(name);
 
 const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
   const [innerValue = {}, setInnerValue] = useState(() => props.value);
-  const [openedMap, setOpened] = useState<Record<string, boolean>>({});
-  const [refs, setRefs] = useRefs();
+  const [childrenRefs, setChildrenRefs] = useRefs();
+  const [showPopupIndex, setShowPopupIndex] = useState<number>(null);
+  const showPopupIndexRef = useRef<number>();
   const root = useRef<HTMLDivElement>();
   const barRef = useRef<HTMLDivElement>();
   const offset = useRef(0);
+
   const rect = useRef<{ bottom: number; top: number }>({ bottom: 0, top: 0 });
   const innerEffect = useRef(false);
-  const mounted = useRef(false);
 
-  const opened = Object.values(openedMap).filter(Boolean).length > 0;
-
-  const { children } = props;
-
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-      return;
-    }
-    if (innerEffect.current) {
-      innerEffect.current = false;
-      return;
-    }
-
-    if (!props.value) {
-      setInnerValue(undefined);
-      return;
-    }
-    setInnerValue(props.value);
-  }, [props.value]);
-
-  const onInnerChange = (v) => {
-    innerEffect.current = true;
-    const newValue = { ...innerValue, ...v };
-    setInnerValue(newValue);
-    if (props.onChange) props.onChange(newValue);
-  };
+  const opened = useMemo(() => showPopupIndex !== null, [showPopupIndex]);
 
   const barStyle = () => {
     if (opened && isDef(props.zIndex)) {
@@ -60,6 +43,19 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
       };
     }
     return {};
+  };
+
+  const updateShowPopupIndex = (current: number) => {
+    showPopupIndexRef.current = current;
+    setShowPopupIndex(current);
+  };
+  const onClickAway = () => {
+    if (props.closeOnClickOutside) {
+      childrenRefs.forEach((item) => {
+        item.toggle(false);
+      });
+      updateShowPopupIndex(null);
+    }
   };
 
   const updateOffset = () => {
@@ -73,12 +69,6 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (barRef.current) {
-      updateOffset();
-    }
-  }, [barRef.current]);
-
   const onScroll = () => {
     if (opened) {
       updateOffset();
@@ -86,20 +76,29 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
   };
 
   const toggleItem = (active: number) => {
-    refs.forEach((item, index) => {
+    childrenRefs.forEach((item, index) => {
       if (index === active) {
+        if (active === showPopupIndexRef.current) {
+          updateShowPopupIndex(null);
+          item.toggle();
+          return;
+        }
         updateOffset();
+        updateShowPopupIndex(index);
         item.toggle();
-      } else if (item.state().showPopup) {
-        item.toggle(false, { immediate: true });
       }
     });
   };
 
+  const close = () => {
+    updateShowPopupIndex(null);
+  };
+
   const renderTitle = (item, index: number) => {
-    const showPopup = openedMap[index] || false;
-    const { titleClass, name: itemName } = item.props;
-    const disabled = item.props.disabled || props.disabled;
+    const showPopup = showPopupIndex === index;
+    const { titleClass } = item;
+    const disabled = props.disabled || item.disabled;
+
     return (
       <div
         key={index}
@@ -122,27 +121,55 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
           )}
           style={{ color: showPopup ? props.activeColor : '' }}
         >
-          <div className="rv-ellipsis">{item.renderTitle(innerValue[itemName])}</div>
+          <div className="rv-ellipsis">{item.renderTitle(innerValue[item.name])}</div>
         </span>
       </div>
     );
   };
 
+  useUpdateEffect(() => {
+    if (innerEffect.current) {
+      innerEffect.current = false;
+      return;
+    }
+
+    if (!props.value) {
+      setInnerValue(undefined);
+      return;
+    }
+    setInnerValue(props.value);
+  }, [props.value]);
+
+  useEffect(() => {
+    if (barRef.current) {
+      updateOffset();
+    }
+  }, [barRef.current]);
+
+  const onInnerChange = (v) => {
+    innerEffect.current = true;
+    const newValue = { ...innerValue, ...v };
+    setInnerValue(newValue);
+    if (props.onChange) props.onChange(newValue);
+  };
+
   const scrollParent = useScrollParent(root);
   useEventListener('scroll', onScroll, { target: scrollParent });
+  useClickAway(root, onClickAway);
 
   return (
-    <DropdownMenuContext.Provider value={{ props, currentValue: innerValue, openedMap }}>
+    <DropdownMenuContext.Provider
+      value={{ props, value: innerValue, onChange: onInnerChange, close }}
+    >
       <div ref={root} className={classnames(bem())}>
         <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
-          {refs.map(renderTitle)}
+          {childrenRefs.map(renderTitle)}
         </div>
-        {Children.map(children, (child: ReactElement, index: number) =>
+        {Children.map(props.children, (child: ReactElement, index: number) =>
           cloneElement(child, {
-            setOpened: (v) => setOpened((f) => ({ ...f, [index]: v })),
-            ref: setRefs(index),
+            ref: setChildrenRefs(index),
             offset: offset.current,
-            onChange: onInnerChange,
+            showPopup: showPopupIndex === index,
           }),
         )}
       </div>

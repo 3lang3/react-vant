@@ -3,8 +3,10 @@ import { DropdownMenuProps } from './PropsType';
 
 export interface DropdownMenuState {
   props?: React.PropsWithChildren<DropdownMenuProps>;
-  currentValue?: Record<string, number | string>;
+  value?: Record<string, number | string>;
   openedMap?: Record<string, boolean>;
+  onChange?: (v) => void;
+  close?: () => void;
 }
 
 const DropdownMenu: Context<DropdownMenuState> = createContext({});

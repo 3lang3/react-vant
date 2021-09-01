@@ -155,13 +155,19 @@ export default () => {
 | 参数       | 说明                       | 类型                        | 默认值         |
 | ---------- | -------------------------- | --------------------------- | -------------- |
 | name       | 当前选中项对应的 value key | _number \| string_          | -              |
-| title      | 菜单项标题                 | _string_                    | 当前选中项文字 |
+| title      | 菜单项标题                 | _ReactNode_                    | 当前选中项文字 |
 | options    | 选项数组                   | _Option[]_                  | `[]`           |
 | disabled   | 是否禁用菜单               | _boolean_                   | `false`        |
-| titleClass | 标题额外类名               | _string \| Array \| object_ | -              |
+| titleClass | 标题额外类名               | _string_ | -              |
+| teleport | 指定挂载的节点               | _HTMLElment () => HTMLElement_ | -              |
 
 ### DropdownItem Events
 
 | 事件名   | 说明                  | 回调参数 |
 | -------- | --------------------- | -------- |
 | onChange | 组件 value 变化时触发 | value    |
+| onOpen   | 打开菜单栏时触发              | -        |
+| onClose  | 关闭菜单栏时触发              | -        |
+| onOpened | 打开菜单栏且动画结束后触发    | -        |
+| onClosed | 关闭菜单栏且动画结束后触发    | -        |
+

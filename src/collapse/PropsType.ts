@@ -21,6 +21,6 @@ export interface CollapseItemProps extends CellProps {
   disabled?: boolean;
   /** 是否为只读状态，只读状态下无法操作面板	 */
   readonly?: boolean;
-  /** 内部使用 */
+  /** @private */
   index?: number;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useReducer } from 'react';
 import { Popup, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -149,11 +150,17 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <Popup
         visible={state.showBasic}
-        onClose={() =>
+        onClose={() => {
           dispatch({
             type: 'showBasic',
-          })
-        }
+          });
+          console.log('close');
+        }}
+        onClickOverlay={() => console.log('click overlay')}
+        onClick={() => console.log('click')}
+        onClosed={() => console.log('closed')}
+        onOpen={() => console.log('open')}
+        onOpened={() => console.log('opened')}
       >
         <div style={{ padding: '30px 50px' }}>内容</div>
       </Popup>

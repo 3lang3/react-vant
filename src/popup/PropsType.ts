@@ -40,7 +40,7 @@ export interface SharedPopupProps {
   onClickOverlay?: (e: React.MouseEvent) => void;
   /** 打开弹出层时触发	 */
   onOpen?: () => void;
-  /** 关闭弹出层时触发	*/
+  /** 关闭弹出层触发	*/
   onClose?: () => void;
   /** 打开弹出层且动画结束后触发 */
   onOpened?: () => void;
