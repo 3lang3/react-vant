@@ -1,11 +1,12 @@
 @import '../../styles/themes/default.less';
 
-.@{rv-prefix}-empty {
+.rv-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  padding: @empty-padding;
 
   &__image {
     width: @empty-image-size;
@@ -23,5 +24,9 @@
     color: @empty-description-color;
     font-size: @empty-description-font-size;
     line-height: @empty-description-line-height;
+  }
+
+  &__bottom {
+    margin-top: @empty-bottom-margin-top;
   }
 }

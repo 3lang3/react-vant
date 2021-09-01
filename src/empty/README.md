@@ -2,12 +2,12 @@
 
 ### 介绍
 
-空状态时的占位提示，2.6 版本开始支持此组件。
+空状态时的占位提示。
 
 ### 引入
 
 ```js
-import { Empty } from 'react-vant'
+import { Empty } from 'react-vant';
 ```
 
 ## 代码演示
@@ -32,18 +32,32 @@ import { Empty } from 'react-vant'
 
 ```jsx
 <Empty
-  className="custom-empty"
-  image="https://img.yzcdn.cn/vant/custom-Empty-image.png"
+  className="custom-image"
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
   description="描述文字"
 />
 
 <style>
-  .custom-empty .empty-image {
-    width: 170px;
-    height: 170px;
+  .custom-image .rv-empty__image {
+    width: 90px;
+    height: 90px;
   }
-  .custom-empty .empty-desc{
-    color: red;
+</style>
+```
+
+### 底部内容
+
+通过 children 可以在 Empty 组件的下方插入内容。
+
+```jsx
+<Empty description="描述文字">
+  <Button round type="primary" className="bottom-button">按钮</Button>
+</Empty>
+
+<style>
+  .bottom-button {
+    width: 160px;
+    height: 40px;
   }
 </style>
 ```
@@ -54,6 +68,6 @@ import { Empty } from 'react-vant'
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| image | 图片类型，可选值为 `error` `network` `search`，支持传入图片 URL | _string_ | `default` |
-| description | 图片下方的描述文字 | _string_ | - |
+| image | 图片类型，可选值为 `error` `network` `search`，支持传入图片 URL | _string\|ReactNode_ | `default` |
+| description | 图片下方的描述文字 | _ReactNode_ | - |
 | className | 定义图片或文字样式 | _string_ | - |
