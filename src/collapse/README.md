@@ -14,29 +14,42 @@ import { Collapse } from 'react-vant';
 
 ### 基础用法
 
-通过 `initExpanded` 控制展开的面板列表，`activeNames` 为数组格式。
+通过 `initExpanded` 控制展开的面板列表，`initExpanded` 为数组格式。
 
 ```js
-const activeNames = ["1"]
+const initExpanded = ['1'];
 ```
 
 ```jsx
-<Collapse.Group initExpanded={activeNames}>
-  <Collapse title="标题1" name="1">内容</Collapse>
-  <Collapse title="标题2" name="2">内容</Collapse>
-  <Collapse title="标题3" name="3">内容</Collapse>
-</Collapse.Group>
+<Collapse initExpanded={initExpanded}>
+  <Collapse.Item title="标题1" name="1">
+    内容
+  </Collapse.Item>
+  <Collapse.Item title="标题2" name="2">
+    内容
+  </Collapse.Item>
+  <Collapse.Item title="标题3" name="3">
+    内容
+  </Collapse.Item>
+</Collapse>
 ```
+
 ### 手风琴
 
-通过 `accordion` 可以设置为手风琴模式，最多展开一个面板，此时 `activeName` 为字符串格式。
+通过 `accordion` 可以设置为手风琴模式，最多展开一个面板，此时 `initExpanded` 为字符串格式。
 
 ```jsx
-<Collapse.Group initExpanded="1" accordion>
-  <Collapse title="标题1" name="1">内容</Collapse>
-  <Collapse title="标题2" name="2">内容</Collapse>
-  <Collapse title="标题3" name="3">内容</Collapse>
-</Collapse.Group>
+<Collapse initExpanded="1" accordion>
+  <Collapse.Item title="标题1" name="1">
+    内容
+  </Collapse.Item>
+  <Collapse.Item title="标题2" name="2">
+    内容
+  </Collapse.Item>
+  <Collapse.Item title="标题3" name="3">
+    内容
+  </Collapse.Item>
+</Collapse>
 ```
 
 ### 禁用状态
@@ -44,11 +57,17 @@ const activeNames = ["1"]
 通过 `disabled` 属性来禁用单个面板。
 
 ```jsx
-<Collapse.Group initExpanded="activeNames">
-  <Collapse title="标题1" name="1">内容</Collapse>
-  <Collapse title="标题2" name="2" disabled>内容</Collapse>
-  <Collapse title="标题3" name="3" disabled>内容</Collapse>
-</Collapse.Group>
+<Collapse initExpanded="initExpanded">
+  <Collapse.Item title="标题1" name="1">
+    内容
+  </Collapse.Item>
+  <Collapse.Item title="标题2" name="2" disabled>
+    内容
+  </Collapse.Item>
+  <Collapse.Item title="标题3" name="3" disabled>
+    内容
+  </Collapse.Item>
+</Collapse>
 ```
 
 ### 自定义标题内容
@@ -56,17 +75,21 @@ const activeNames = ["1"]
 通过 `title` 插槽可以自定义标题栏的内容。
 
 ```jsx
-<Collapse.Group initExpanded="activeNames">
-  <Collapse name="1">
-    <template #title>
-      <div>标题1 <van-icon name="question-o" /></div>
-    </template>
+<Collapse initExpanded="initExpanded">
+  <Collapse.Item
+    name="1"
+    title={
+      <div>
+        标题1 <Icon name="question-o" />
+      </div>
+    }
+  >
     内容
-  </Collapse>
-  <Collapse title="标题2" name="2" icon="shop-o">
+  </Collapse.Item>
+  <Collapse.Item title="标题2" name="2" icon="shop-o">
     内容
-  </Collapse>
-</Collapse.Group>
+  </Collapse.Item>
+</Collapse>
 ```
 
 ## API
@@ -81,26 +104,26 @@ const activeNames = ["1"]
 
 ### Collapse Events
 
-| 事件名 | 说明           | 回调参数                                 |
-| ------ | -------------- | ---------------------------------------- |
-| change | 切换面板时触发 | activeNames: 类型与 initExpanded 绑定的值一致 |
+| 事件名   | 说明           | 回调参数                                       |
+| -------- | -------------- | ---------------------------------------------- |
+| onChange | 切换面板时触发 | initExpanded: 类型与 initExpanded 绑定的值一致 |
 
 ### CollapseItem Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| name | 唯一标识符，默认为索引值 | _number \| string_ | `index` |
-| icon | 标题栏左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
-| size | 标题栏大小，可选值为 `large` | _string_ | - |
-| title | 标题栏左侧内容 | _number \| string_ | - |
-| value | 标题栏右侧内容 | _number \| string_ | - |
-| label | 标题栏描述信息 | _number \| string_ | - |
-| border | 是否显示内边框 | _boolean_ | `true` |
-| isLink | 是否展示标题栏右侧箭头并开启点击反馈 | _boolean_ | `true` |
-| disabled | 是否禁用面板 | _boolean_ | `false` |
-| title-class | 左侧标题额外类名 | _string_ | - |
-| value-class | 右侧内容额外类名 | _string_ | - |
-| label-class | 描述信息额外类名 | _string_ | - |
+| 参数        | 说明                                         | 类型               | 默认值  |
+| ----------- | -------------------------------------------- | ------------------ | ------- |
+| name        | 唯一标识符，默认为索引值                     | _number \| string_ | `index` |
+| icon        | 标题栏左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_           | -       |
+| size        | 标题栏大小，可选值为 `large`                 | _string_           | -       |
+| title       | 标题栏左侧内容                               | _number \| string_ | -       |
+| value       | 标题栏右侧内容                               | _number \| string_ | -       |
+| label       | 标题栏描述信息                               | _number \| string_ | -       |
+| border      | 是否显示内边框                               | _boolean_          | `true`  |
+| isLink      | 是否展示标题栏右侧箭头并开启点击反馈         | _boolean_          | `true`  |
+| disabled    | 是否禁用面板                                 | _boolean_          | `false` |
+| title-class | 左侧标题额外类名                             | _string_           | -       |
+| value-class | 右侧内容额外类名                             | _string_           | -       |
+| label-class | 描述信息额外类名                             | _string_           | -       |
 
 ### CollapseItem Slots
 

@@ -2,16 +2,18 @@ import { BaseTypeProps } from '../utils';
 
 import { CellProps } from '../cell/PropsType';
 
-export interface CollapseGroupProps extends BaseTypeProps {
+export interface CollapseProps extends BaseTypeProps {
   accordion: boolean;
-  initExpanded: string | number | [];
+  initExpanded: string | number | Array<number | string>;
   border: boolean;
-  onChange: (name: number | string) => void;
+  value?: number | string | Array<number | string>;
+  onChange: (name: number | string | Array<number | string>) => void;
 }
 
-export interface CollapseProps extends CellProps {
+export interface CollapseItemProps extends CellProps {
   name?: number | string;
   disabled?: boolean;
   isLink?: boolean;
   index?: number;
+  readonly?: boolean;
 }

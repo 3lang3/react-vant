@@ -1,116 +1,88 @@
-import React, { useMemo, useRef, useContext, useState, useEffect } from 'react';
+/* eslint-disable no-console */
+import React, { ReactElement, useRef, useState } from 'react';
 import classnames from 'classnames';
 
-import Cell from '../cell';
 import CollapseContext from './CollapseContext';
-import useLazyRender from '../hooks/use-lazy-render';
 
 import { CollapseProps } from './PropsType';
 import { createNamespace } from '../utils';
-import { raf, doubleRaf } from '../utils/raf';
+import { BORDER_TOP_BOTTOM } from '../utils/constant';
+import { useUpdateEffect } from '../hooks';
 
-const [bem] = createNamespace('collapse-item');
+const [bem] = createNamespace('collapse');
+
+function validateModelValue(
+  modelValue: string | number | Array<string | number>,
+  accordion: boolean,
+) {
+  if (accordion && Array.isArray(modelValue)) {
+    console.error('[ReactVant] Collapse: "value" should not be Array in accordion mode');
+    return false;
+  }
+  if (!accordion && !Array.isArray(modelValue)) {
+    console.error('[React Vant] Collapse: "value" should be Array in non-accordion mode');
+    return false;
+  }
+  return true;
+}
 
 const Collapse: React.FC<CollapseProps> = (props) => {
-  const { index } = props;
-  const context = useContext(CollapseContext);
+  const innerEffect = useRef(false);
+  const [expanded, setExpanded] = useState(() => props.value ?? props.initExpanded);
+  const updateName = (name: number | string | Array<number | string>) => {
+    innerEffect.current = true;
+    setExpanded(name);
+    props.onChange?.(name);
+  };
 
-  const wrapperRef = useRef(null);
-  const contentRef = useRef(null);
-
-  const currentName = useMemo(() => props.name ?? index, [props.name]);
-
-  const expanded = useMemo(() => {
-    if (context) {
-      return context.isExpanded(currentName);
-    }
-    return null;
-  }, [context, currentName]);
-
-  const [show, setShow] = useState(expanded);
-  const lazyRender = useLazyRender(show);
-
-  const onTransitionEnd = () => {
-    if (!expanded) {
-      setShow(false);
+  const toggle = (name, isExpanded: boolean) => {
+    const { accordion } = props;
+    if (accordion) {
+      if (name === expanded) {
+        name = '';
+      }
+    } else if (isExpanded) {
+      name = (expanded as []).concat(name);
     } else {
-      wrapperRef.current.style.height = '';
+      name = (expanded as []).filter((activeName) => activeName !== name);
     }
+    updateName(name);
   };
 
-  const toggle = (value = !expanded) => {
-    context.toggle(currentName, value);
-  };
+  const isExpanded = (name: string | number): boolean => {
+    const { accordion } = props;
 
-  const onClickTitle = () => {
-    if (!props.disabled) {
-      toggle();
-    }
-  };
-
-  const renderTitle = () => {
-    const { border, disabled, children, ...others } = props;
-
-    return (
-      <Cell
-        className={classnames(
-          bem('title', {
-            disabled,
-            expanded,
-            borderless: !border,
-          }),
-        )}
-        aria-expanded={String(expanded)}
-        onClick={onClickTitle}
-        {...others}
-      />
-    );
-  };
-
-  const renderContent = lazyRender(() => (
-    <div ref={wrapperRef} className={classnames(bem('wrapper'))} onTransitionEnd={onTransitionEnd}>
-      <div ref={contentRef} className={classnames(bem('content'))}>
-        {props.children}
-      </div>
-    </div>
-  ));
-
-  useEffect(() => {
-    if (expanded) {
-      setShow(true);
+    if (process.env.NODE_ENV !== 'production' && !validateModelValue(expanded, accordion)) {
+      return false;
     }
 
-    raf(() => {
-      if (!contentRef.current || !wrapperRef.current) {
-        return;
-      }
+    return accordion ? expanded === name : (expanded as Array<number | string>).includes(name);
+  };
 
-      const { offsetHeight } = contentRef.current;
-      if (offsetHeight) {
-        const contentHeight = `${offsetHeight}px`;
-        wrapperRef.current.style.height = expanded ? 0 : contentHeight;
-
-        // use double raf to ensure animation can start
-        doubleRaf(() => {
-          wrapperRef.current.style.height = expanded ? contentHeight : 0;
-        });
-      } else {
-        onTransitionEnd();
-      }
-    });
-  }, [expanded]);
+  useUpdateEffect(() => {
+    if (innerEffect.current) {
+      innerEffect.current = false;
+      return;
+    }
+    setExpanded(props.value);
+  }, [props.value]);
 
   return (
-    <div className={classnames(bem({ border: index && props.border }))}>
-      {renderTitle()}
-      {renderContent()}
-    </div>
+    <CollapseContext.Provider value={{ isExpanded, toggle }}>
+      <div className={classnames(bem(), { [BORDER_TOP_BOTTOM]: props.border })}>
+        {React.Children.map(props.children, (child: ReactElement, index: number) =>
+          React.cloneElement(child, {
+            index,
+          }),
+        )}
+      </div>
+    </CollapseContext.Provider>
   );
 };
 
 Collapse.defaultProps = {
-  isLink: true,
   border: true,
+  initExpanded: [],
 };
 
 export default Collapse;

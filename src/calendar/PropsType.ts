@@ -98,6 +98,10 @@ export interface CalendarProps extends BaseTypeProps {
   rangePrompt?: string;
   showConfirm?: boolean;
   lazyRender?: boolean;
+  /**
+   * @todo
+   * Date | Date[] | null
+   */
   defaultDate?: any;
   allowSameDay?: boolean;
   showSubtitle?: boolean;
