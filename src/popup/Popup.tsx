@@ -20,19 +20,45 @@ import { PopupInstanceType, PopupProps } from './PropsType';
 import { callInterceptor } from '../utils/interceptor';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 
+export const sharedPopupProps = [
+  'round',
+  'zIndex',
+  'closeable',
+  'overlay',
+  'overlayClass',
+  'overlayStyle',
+  'destroyOnClose',
+  'forceRender',
+  'lockScroll',
+  'duration',
+  'transition',
+  'closeOnClickOverlay',
+  'closeOnPopstate',
+  'onClickOverlay',
+  'safeAreaInsetBottom',
+  'onOpen',
+  'onClose',
+  'onOpened',
+  'onClosed',
+  'beforeClose',
+] as const;
+
 const [bem] = createNamespace('popup');
+
+let globalZIndex = 2000;
 
 const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
     props;
+  const opened = useRef(false);
+  const zIndex = useRef(globalZIndex);
   const popupRef = useRef<HTMLDivElement>();
-  const [zIndex] = useState<number>(2000);
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
 
   const style = useMemo(() => {
     const initStyle = {
-      zIndex,
+      zIndex: zIndex.current,
       ...props.style,
     };
 
@@ -41,16 +67,32 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
       initStyle[key] = `${props.duration}ms`;
     }
     return initStyle;
-  }, [zIndex]);
+  }, [zIndex.current, props.style, props.duration]);
+
+  const open = () => {
+    if (!opened.current) {
+      if (props.zIndex !== undefined) {
+        globalZIndex = +props.zIndex;
+      }
+
+      opened.current = true;
+      zIndex.current = ++globalZIndex;
+
+      props.onOpen?.();
+    }
+  };
 
   const close = () => {
-    callInterceptor({
-      interceptor: props.beforeClose,
-      args: ['close'],
-      done: () => {
-        props.onClose?.();
-      },
-    });
+    if (opened.current) {
+      callInterceptor({
+        interceptor: props.beforeClose,
+        args: ['close'],
+        done: () => {
+          opened.current = false;
+          props.onClose?.();
+        },
+      });
+    }
   };
 
   const onClickOverlay = (event) => {
@@ -68,7 +110,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
           visible={visible}
           className={props.overlayClass}
           customStyle={props.overlayStyle}
-          zIndex={zIndex}
+          zIndex={zIndex.current}
           duration={duration}
           onClick={onClickOverlay}
         />
@@ -148,7 +190,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         classNames={transition || name}
         mountOnEnter={!forceRender}
         unmountOnExit={destroyOnClose}
-        onEnter={props.onOpen}
+        onEnter={open}
         onEntered={props.onOpened}
         onExited={() => {
           setAnimatedVisible(false);
@@ -162,7 +204,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 
   useEventListener('popstate', () => {
     if (props.closeOnPopstate) {
-      props.onClose?.();
+      close();
     }
   });
 
@@ -189,6 +231,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 });
 
 Popup.defaultProps = {
+  zIndex: 2000,
   duration: 300,
   overlay: true,
   lockScroll: true,
