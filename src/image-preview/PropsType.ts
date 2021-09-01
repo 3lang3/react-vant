@@ -14,7 +14,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   indexRender?: ({ index, len }: { index: number; len: number }) => React.ReactNode;
   closeOnPopstate?: boolean;
   overlayStyle?: React.CSSProperties;
-  beforeClose?: (active: number) => boolean | Promise<boolean>;
+  beforeClose?: (active: string | number) => boolean | Promise<boolean>;
   onClose?: ({ url, index }?: CloseParams) => void;
   onChange?: (index: number) => void;
   images?: string[];

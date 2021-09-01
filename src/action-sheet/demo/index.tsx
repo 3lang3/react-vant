@@ -5,7 +5,11 @@ import './style.less';
 
 const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
 const actions1 = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三', subname: '描述信息' }];
-const actions2 = [{ name: '选项一', color: '#ee0a24' }, { name: '选项二', disabled: true }, { loading: true }];
+const actions2 = [
+  { name: '选项一', color: '#ee0a24' },
+  { name: '选项二', disabled: true },
+  { loading: true },
+];
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
@@ -35,25 +39,26 @@ export default (): React.ReactNode => {
         visible={visible1}
         onCancel={() => setVisible1(false)}
         actions={actions}
-        renderCancel
+        cancelText="取消"
       />
       <ActionSheet
         visible={visible2}
         onCancel={() => setVisible2(false)}
         description="这是一段描述信息"
         actions={actions1}
-        renderCancel
+        cancelText="取消"
       />
       <ActionSheet
         visible={visible3}
         onCancel={() => setVisible3(false)}
         actions={actions2}
-        renderCancel
+        cancelText="取消"
       />
       <ActionSheet
         title="自定义内容"
         visible={visible4}
         onCancel={() => setVisible4(false)}
+        cancelText={false}
       >
         <div className="content">内容</div>
       </ActionSheet>
