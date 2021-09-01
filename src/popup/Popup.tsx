@@ -237,6 +237,7 @@ Popup.defaultProps = {
   closeIcon: 'cross',
   closeIconPosition: 'top-right',
   closeOnClickOverlay: true,
+  teleport: document.body,
 };
 
 export default Popup;
