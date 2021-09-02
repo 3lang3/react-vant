@@ -6,6 +6,7 @@ import { useSetState } from '../hooks';
 import Icon from '../icon';
 import Popup from '../popup';
 import { createNamespace, getZIndexStyle, pick } from '../utils';
+import { renderToContainer } from '../utils/dom/renderToContainer';
 import DropdownMenuContext from './DropdownMenuContext';
 import {
   DropdownMenuItemProps,
@@ -113,7 +114,6 @@ const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemPr
       const { zIndex, overlayStyle, duration, direction } = parent.props;
 
       const style: CSSProperties = getZIndexStyle(zIndex);
-
       if (direction === 'down') {
         style.top = `${offset}px`;
       } else {
@@ -129,6 +129,7 @@ const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemPr
         >
           <Popup
             {...attrs}
+            teleport={null}
             visible={props.showPopup}
             className={classnames(bem('content'))}
             position={direction === 'down' ? 'top' : 'bottom'}
@@ -154,6 +155,7 @@ const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemPr
       options: props.options,
     }));
 
+    if (props.teleport) return renderToContainer(props.teleport, renderContent());
     return renderContent();
   },
 );

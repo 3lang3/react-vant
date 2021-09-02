@@ -55,7 +55,7 @@ export interface DialogProps extends BaseTypeProps {
   /** 确认按钮的状态 */
   confirmProps?: DialogBtnProps;
   /** Dialog弹出时的的父容器 */
-  getContainer?: HTMLElement | (() => HTMLElement);
+  teleport?: HTMLElement | (() => HTMLElement);
   /** Dialog关闭时的回调 */
   onClose?: () => void;
   /** Dialog完全关闭后的回调 */

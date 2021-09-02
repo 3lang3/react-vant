@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
 
 import Loading from '../loading';
-import useRect from '../hooks/use-rect';
+import { getRect } from '../hooks/use-rect';
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
@@ -32,11 +30,11 @@ const List: React.FC<ListRefreshProps> = (props) => {
       return;
     }
     const { offset } = props;
-    const scrollParentRect = useRect(scrollParent.current);
+    const scrollParentRect = getRect(scrollParent.current);
     if (!scrollParentRect.height || isHidden(root.current)) {
       return;
     }
-    const placeholderRect = useRect(placeholder.current);
+    const placeholderRect = getRect(placeholder.current);
     if (placeholderRect.bottom - scrollParentRect.bottom <= offset) {
       setLoading(true);
       props.onLoad();

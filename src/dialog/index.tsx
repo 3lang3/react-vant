@@ -22,6 +22,7 @@ Dialog.show = (props: DialogProps) => {
     showConfirmButton: true,
     showCancelButton: false,
     closeOnClickOverlay: false,
+    teleport: document.body,
   };
   const {
     onClosed,
@@ -33,7 +34,7 @@ Dialog.show = (props: DialogProps) => {
     ...restProps
   } = props;
 
-  const userContainer = resolveContainer(props.getContainer);
+  const userContainer = resolveContainer(props.teleport);
   const container = document.createElement('div');
   userContainer.appendChild(container);
   let destroy = noop;
@@ -91,7 +92,7 @@ Dialog.show = (props: DialogProps) => {
         {...defaultOptions}
         {...restProps}
         visible={visible}
-        getContainer={() => container}
+        teleport={() => container}
         cancelProps={{ loading: cancelLoading, ...cancelProps }}
         confirmProps={{ loading: okLoading, ...confirmProps }}
         onClose={destroy}

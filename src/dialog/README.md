@@ -178,7 +178,8 @@ const [show, setShow] = useState(false);
 | onCancel | 点击取消按钮时触发 | _Function_ | - |
 | onConfirm | 点击确认按钮时触发 | _Function_ | - |
 | onClose | Dialog 关闭时的回调 | _Function_ | - |
-| afterClose | Dialog 完全关闭时的回调 | _Function_ | - |
+| onClosed | Dialog 完全关闭时的回调 | _Function_ | - |
+| teleport | 指定挂载的节点 | _HTMLElement \| () => HTMLElement_ | `body` |
 
 ### 样式变量
 

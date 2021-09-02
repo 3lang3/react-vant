@@ -33,7 +33,7 @@ export interface NumberKeyboardProps extends BaseTypeProps {
   extraKey?: string | string[];
   maxlength?: number;
   /** Dialog弹出时的的父容器 */
-  getContainer?: HTMLElement | (() => HTMLElement);
+  teleport?: HTMLElement | (() => HTMLElement);
   onShow?: () => void;
   onHide?: () => void;
   onBlur?: () => void;

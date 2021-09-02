@@ -39,7 +39,7 @@ Notify.show = (p: NotifyProps) => {
   const interProps = { ...Notify.currentOptions, ...props };
   const { onClose = noop, duration, ...restProps } = interProps;
   let timer = 0;
-  const userContainer = resolveContainer(props.getContainer);
+  const userContainer = resolveContainer(props.teleport);
   const container = document.createElement('div');
   userContainer.appendChild(container);
 
@@ -91,7 +91,7 @@ Notify.show = (p: NotifyProps) => {
       <BaseNotify
         {...restProps}
         visible={visible}
-        getContainer={() => container}
+        teleport={() => container}
         onClose={afterClose}
       />
     );

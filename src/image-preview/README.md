@@ -142,11 +142,11 @@ export default () => {
 | closeIcon | 关闭图标名称或图片链接 | _string_ | `clear` |
 | closeIconPosition | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
 | overlayStyle | 自定义遮罩层样式 | _object_ | - |
-| getContainer | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| Element_ | - |
 | onClose | 关闭时的回调函数 | _Function_ | - |
+| onClosed | 完全关闭时的回调 | _Function_ | - |
 | onChange | 切换图片时的回调函数，回调参数为当前索引 | _Function_ | - |
 | beforeClose | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise | _(active) => boolean \| Promise_ | - |
-| afterClose | 完全关闭时的回调 | _Function_ | - |
+| teleport | 指定挂载的节点 | _HTMLElement \| () => HTMLElement_ | `body` |
 
 ### onClose 回调参数
 

@@ -83,7 +83,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
       className={cls(bem(), props.className)}
       overlayClass={cls(bem('overlay'))}
       beforeClose={props.beforeClose}
-      {...pick(props, ['visible', 'overlayStyle', 'closeOnPopstate'])}
+      {...pick(props, ['visible', 'overlayStyle', 'closeOnPopstate', 'onClose', 'onClosed'])}
     >
       {renderClose()}
       {renderImages()}
@@ -102,6 +102,7 @@ ImagePreview.defaultProps = {
   closeIcon: 'clear',
   closeIconPosition: 'top-right',
   showIndicators: false,
+  teleport: document.body,
 };
 
 export default ImagePreview;

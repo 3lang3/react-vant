@@ -16,6 +16,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   overlayStyle?: React.CSSProperties;
   beforeClose?: (active: string | number) => boolean | Promise<boolean>;
   onClose?: ({ url, index }?: CloseParams) => void;
+  onClosed?: () => void;
   onChange?: (index: number) => void;
   images?: string[];
   swipeDuration?: number;
@@ -23,7 +24,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   closeIcon?: string;
   closeIconPosition?: PopupCloseIconPosition;
   /** 弹出时的的父容器 */
-  getContainer?: HTMLElement | (() => HTMLElement);
+  teleport?: HTMLElement | (() => HTMLElement);
 }
 
 export type ImagePreviewStatic = {

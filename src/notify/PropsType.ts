@@ -17,7 +17,7 @@ export interface NotifyProps extends BaseTypeProps {
   onClose?: () => void;
   onOpened?: () => void;
   /** Dialog弹出时的的父容器 */
-  getContainer?: HTMLElement | (() => HTMLElement);
+  teleport?: HTMLElement | (() => HTMLElement);
 }
 
 export type NotifyOptions = {

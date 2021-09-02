@@ -22,13 +22,14 @@ const defaultConfig: ImagePreviewProps = {
   swipeDuration: 300,
   closeOnPopstate: true,
   closeIconPosition: 'top-right',
+  teleport: document.body,
 };
 
 // 可返回用于销毁此弹窗的方法
 ImagePreview.open = (props: ImagePreviewProps) => {
   const { onClose = noop, beforeClose, ...restProps } = props;
 
-  const userContainer = resolveContainer(props.getContainer);
+  const userContainer = resolveContainer(props.teleport);
   const container = document.createElement('div');
   userContainer.appendChild(container);
   let destroy = noop as (p?: CloseParams) => void;
@@ -63,7 +64,7 @@ ImagePreview.open = (props: ImagePreviewProps) => {
         {...defaultConfig}
         {...restProps}
         visible={visible}
-        getContainer={() => container}
+        teleport={() => container}
         onClose={destroy}
         beforeClose={_afterClose}
       />

@@ -109,3 +109,4 @@ Notify.show({
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `false` |
 | onClick | 点击时的回调函数 | _(event: MouseEvent): void_ | - |
 | onClose | 关闭时的回调函数 | _() => void_ | - |
+| teleport | 指定挂载的节点 | _HTMLElement \| () => HTMLElement_ | `body` |

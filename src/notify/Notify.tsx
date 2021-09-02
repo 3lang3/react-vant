@@ -22,6 +22,7 @@ const Notify: React.FC<NotifyProps> = ({ children, ...props }) => {
       lockScroll={props.lockScroll}
       onClick={props.onClick}
       onClose={props.onClose}
+      teleport={props.teleport}
     >
       {children || props.message}
     </Popup>
@@ -33,6 +34,7 @@ Notify.defaultProps = {
   duration: 3000,
   color: 'white',
   lockScroll: false,
+  teleport: document.body,
 };
 
 export default Notify;
