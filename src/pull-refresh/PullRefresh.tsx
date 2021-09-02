@@ -165,6 +165,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
       if (state.status === 'loosing') {
         setStatus(+props.headHeight, true);
         onRefresh();
+        touch.reset();
       } else {
         setStatus(0);
       }
@@ -191,6 +192,8 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
     transitionDuration: `${state.duration}ms`,
     transform: state.distance ? `translate3d(0,${state.distance}px, 0)` : '',
   };
+
+  // console.log(state.distance)
 
   return (
     <div ref={root} className={classnames(props.className, bem())} style={props.style}>
