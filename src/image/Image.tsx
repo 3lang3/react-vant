@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { ImageProps } from './PropsType';
 import { isDef, addUnit, createNamespace } from '../utils';
 import Icon from '../icon';
-import { useUpdateEffect } from '../hooks';
 
 const [bem] = createNamespace('image');
 
