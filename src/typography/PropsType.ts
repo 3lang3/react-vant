@@ -15,6 +15,7 @@ export interface TypographyBaseProps extends BaseTypeProps {
   strong?: boolean;
   ellipsis?: boolean | number;
   onClick?: (event: React.MouseEvent) => void;
+  children?: React.ReactNode;
 }
 
 export type TypographyTextProps = Omit<TypographyBaseProps, 'level'>;
