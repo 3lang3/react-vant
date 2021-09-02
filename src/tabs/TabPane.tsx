@@ -45,6 +45,7 @@ const TabPane = forwardRef<HTMLDivElement, TabPaneProps>((props, ref) => {
 
   const shouldRender = inited || scrollspy || !lazyRender;
   const Content = shouldRender ? props.children : null;
+
   return (
     <div
       ref={ref}

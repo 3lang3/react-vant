@@ -56,9 +56,14 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     } as React.CSSProperties,
   });
 
+  const childrenList = useMemo(
+    () => parseChildList<TabPaneProps>(props.children),
+    [props.children],
+  );
+
   // whether the nav is scrollable
   const scrollable = useMemo(
-    () => React.Children.count(props.children) > props.swipeThreshold || !props.ellipsis,
+    () => childrenList.length > props.swipeThreshold || !props.ellipsis,
     [],
   );
   const navStyle = useMemo(
@@ -72,8 +77,8 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const getTabName = (tab: TabPaneProps, index: number): string | number => tab?.name ?? index;
 
   const currentName = useMemo(() => {
-    const activeTab = children[state.currentIndex];
-    return activeTab && getTabName(activeTab.props, state.currentIndex);
+    const activeTab = childrenList[state.currentIndex];
+    return activeTab && getTabName(activeTab, state.currentIndex);
   }, [state.currentIndex]);
 
   const offsetTopPx = useMemo(() => unitToPx(props.offsetTop), [props.offsetTop]);
@@ -125,9 +130,8 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const findAvailableTab = (index: number) => {
     const diff = index < state.currentIndex ? -1 : 1;
-
-    while (index >= 0 && index < React.Children.count(children)) {
-      if (!children[index].disabled) {
+    while (index >= 0 && index < childrenList.length) {
+      if (!childrenList[index].disabled) {
         return index;
       }
       index += diff;
@@ -141,8 +145,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     if (!isDef(newIndex)) {
       return;
     }
-
-    const newTab = children[newIndex];
+    const newTab = childrenList[newIndex];
     const newName = getTabName(newTab, newIndex);
     const shouldEmitChange = state.currentIndex !== null;
 
@@ -159,9 +162,8 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   // correct the index of active tab
   const setCurrentIndexByName = (name: string | number) => {
     const currentIndex = React.Children.toArray(children).findIndex(
-      (tab: { props: TabPaneProps }, index) => getTabName(tab.props, index) === name,
+      (tab: TabPaneProps, index) => getTabName(tab, index) === name,
     );
-
     setCurrentIndex(currentIndex);
   };
 
@@ -235,9 +237,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   };
 
   const renderNav = () => {
-    const tabs = parseChildList(props.children);
-
-    return tabs.map((item: TabPaneProps, index: number) => {
+    return childrenList.map((item: TabPaneProps, index: number) => {
       return (
         <TabsTitle
           ref={setTitleRefs(index)}
@@ -362,7 +362,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
           </>
         )}
         <TabsContent
-          count={React.Children.count(children)}
+          count={childrenList.length}
           inited={state.inited}
           animated={props.animated}
           duration={props.duration}

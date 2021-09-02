@@ -30,6 +30,6 @@ export interface PullRefreshProps extends BaseTypeProps {
    */
   pullDistance?: number | string;
   /** 下拉刷新时触发 */
-  onRefresh: () => Promise<unknown>;
+  onRefresh: () => Promise<unknown> | void;
   children?: React.ReactNode;
 }
