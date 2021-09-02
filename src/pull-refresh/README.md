@@ -14,24 +14,22 @@ import { PullRefresh } from 'react-vant';
 
 ### 基础用法
 
-下拉刷新时会触发 `refresh` 事件，在事件的回调函数中可以进行同步或异步操作，操作完成后将 `v-model` 设置为 `false`，表示加载完成。
+下拉刷新时会触发 `onRefresh` 事件，在事件的回调函数中可以进行同步或异步操作，操作完成后表示加载完成。
 
 ```jsx
-<PullRefresh refreshing={isRefreshing} onRefresh={onRefresh}>
-  <p>下拉刷新</p>
-</PullRefresh>
-```
-
-```js
-import React, { useState } from 'react';
-
-const [refreshing, setRefreshing] = useState(false);
-
-const onRefresh = () => {
-  setRefreshing(true);
-  setTimeout(() => {
-    setRefreshing(false);
-  }, 1000);
+export default () => {
+  const onRefresh = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 1000);
+    });
+  };
+  return (
+    <PullRefresh onRefresh={onRefresh}>
+      <p>下拉刷新</p>
+    </PullRefresh>
+  );
 };
 ```
 
@@ -40,7 +38,7 @@ const onRefresh = () => {
 通过 `successText` 可以设置刷新成功后的顶部提示文案。
 
 ```jsx
-<PullRefresh refreshing={isLoading} successText="刷新成功" onRefresh={onRefresh}>
+<PullRefresh successText="刷新成功" onRefresh={onRefresh}>
   <p>下拉刷新</p>
 </PullRefresh>
 ```
@@ -51,14 +49,12 @@ const onRefresh = () => {
 
 ```jsx
 <PullRefresh
-  headHeight="80"
+  headHeight={80}
   refreshing={refreshing}
-  pullingSlot={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />}
-  loosingSlot={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />}
-  loadingSlot={
-    <img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />
-  }
-  onRefresh={() => onRefresh(false)}
+  pullingText={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />}
+  loosingText={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />}
+  loadingText={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />}
+  onRefresh={onRefresh}
 >
   <p>{tips}</p>
 </PullRefresh>
@@ -77,40 +73,23 @@ const onRefresh = () => {
 
 ### Props
 
-| 参数              | 说明                     | 类型               | 默认值            |
-| ----------------- | ------------------------ | ------------------ | ----------------- |
-| refreshing        | 是否处于加载中状态       | _boolean_          | -                 |
-| pullingText       | 下拉过程提示文案         | _string_           | `下拉即可刷新...` |
-| loosingText       | 释放过程提示文案         | _string_           | `释放即可刷新...` |
-| loadingText       | 加载过程提示文案         | _string_           | `加载中...`       |
-| successText       | 刷新成功提示文案         | _string_           | -                 |
-| pullingSlot       | 下拉过程自定义内容       | _Element_          | -                 |
-| loosingSlot       | 释放过程自定义内容       | _Element_          | -                 |
-| loadingSlot       | 加载过程自定义内容       | _Element_          | -                 |
-| successSlot       | 刷新成功自定义内容       | _Element_          | -                 |
-| successDuration   | 刷新成功提示展示时长(ms) | _number \| string_ | `500`             |
-| animationDuration | 动画时长                 | _number \| string_ | `300`             |
-| head-height       | 顶部内容高度             | _number \| string_ | `50`              |
-| disabled          | 是否禁用下拉刷新         | _boolean_          | `false`           |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| pullingText | 下拉过程提示文案 | _ReactNode\|({ distance }) => ReactNode_ | `下拉即可刷新...` |
+| loosingText | 释放过程提示文案 | _ReactNode\|({ distance }) => ReactNode_ | `释放即可刷新...` |
+| loadingText | 加载过程提示文案 | _ReactNode\|({ distance }) => ReactNode_ | `加载中...` |
+| successText | 刷新成功提示文案 | _ReactNode\|({ distance }) => ReactNode_ | - |
+| successDuration | 刷新成功提示展示时长(ms) | _number \| string_ | `500` |
+| animationDuration | 动画时长 | _number \| string_ | `300` |
+| headHeight | 顶部内容高度 | _number \| string_ | `50` |
+| pullDistance | 触发下拉刷新的距离 | _number \| string_ | 与 `headHeight` 一致 |
+| disabled | 是否禁用下拉刷新 | _boolean_ | `false` |
 
 ### Events
 
-| 事件名  | 说明           | 回调参数 |
-| ------- | -------------- | -------- |
-| refresh | 下拉刷新时触发 | -        |
-| scrollstart | 滚动开始，组件内容过多需要滚动时触发（需设置 overflow: 'auto'） | -        |
-| scrollend | 滚动结束（需设置 overflow: 'auto'） | -        |
-
-<!-- ### Slots
-
-| 名称    | 说明                 | 参数                       |
-| ------- | -------------------- | -------------------------- |
-| default | 自定义内容           | -                          |
-| normal  | 非下拉状态时顶部内容 | -                          |
-| pulling | 下拉过程中顶部内容   | { distance: 当前下拉距离 } |
-| loosing | 释放过程中顶部内容   | { distance: 当前下拉距离 } |
-| loading | 加载过程中顶部内容   | { distance: 当前下拉距离 } |
-| success | 刷新成功提示内容     | -                          | -->
+| 事件名    | 说明           | 类型 | 回调参数 |
+| --------- | -------------- | ---- | -------- |
+| onRefresh | 下拉刷新时触发 | _() => Promise<unknown>_       |  - |
 
 ### 样式变量
 

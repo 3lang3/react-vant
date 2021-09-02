@@ -1,13 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { Tabs, Toast, PullRefresh } from 'react-vant';
+import { Tabs, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
+import PullRefresh from '../index';
 
 export default (): React.ReactNode => {
   const { DemoSection } = components;
   const [count, setCount] = useState<number>(0);
-  const [refreshing, setRefreshing] = useState<boolean>(false);
-
   const tips = useMemo(() => {
     if (count) {
       return `刷新次数: ${count}`;
@@ -16,45 +15,40 @@ export default (): React.ReactNode => {
   }, [count]);
 
   const onRefresh = (showToast) => {
-    setRefreshing(true);
-    setTimeout(() => {
-      if (showToast) {
-        Toast('刷新成功');
-      }
-
-      setRefreshing(false);
-      setCount(count + 1);
-    }, 1000);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (showToast) {
+          Toast('刷新成功');
+        }
+        setCount(count + 1);
+        resolve(true);
+      }, 1000);
+    });
   };
 
   return (
     <DemoSection>
       <Tabs>
         <Tabs.TabPane title="基础用法">
-          <PullRefresh refreshing={refreshing} onRefresh={() => onRefresh(true)}>
+          <PullRefresh onRefresh={() => onRefresh(true)}>
             <p>{tips}</p>
           </PullRefresh>
         </Tabs.TabPane>
         <Tabs.TabPane title="成功提示">
-          <PullRefresh
-            refreshing={refreshing}
-            successText="刷新成功"
-            onRefresh={() => onRefresh(false)}
-          >
+          <PullRefresh successText="刷新成功" onRefresh={() => onRefresh(false)}>
             <p>{tips}</p>
           </PullRefresh>
         </Tabs.TabPane>
         <Tabs.TabPane title="自定义内容">
           <PullRefresh
             headHeight="80"
-            refreshing={refreshing}
-            pullingSlot={() => (
+            pullingText={() => (
               <img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />
             )}
-            loosingSlot={() => (
+            loosingText={() => (
               <img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />
             )}
-            loadingSlot={() => (
+            loadingText={() => (
               <img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />
             )}
             onRefresh={() => onRefresh(false)}
