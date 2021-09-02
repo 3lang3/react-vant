@@ -35,6 +35,7 @@ export interface CheckerProps<T> extends BaseTypeProps {
   asyncChange?: boolean;
   onToggle?: () => void;
   onClick?: (event: MouseEvent) => void;
+  onChange?: (value: boolean) => void;
 }
 
 export type CheckboxProps = CheckerProps<CheckBoxGroupProps>;
