@@ -1,5 +1,6 @@
-import { BaseTypeProps } from '../utils';
+import { ReactNode } from 'react';
 import { CellProps } from '../cell/PropsType';
+import { BaseTypeProps } from '../utils';
 
 export interface CollapseProps extends BaseTypeProps {
   /** 是否开启手风琴模式	 */
@@ -11,7 +12,7 @@ export interface CollapseProps extends BaseTypeProps {
   /** 当前展开面板的 name	 */
   value?: number | string | Array<number | string>;
   /** 切换面板时触发	*/
-  onChange: (activeNames: number | string | Array<number | string>) => void;
+  onChange?: (activeNames: number | string | Array<number | string>) => void;
 }
 
 export interface CollapseItemProps extends CellProps {
@@ -23,4 +24,5 @@ export interface CollapseItemProps extends CellProps {
   readonly?: boolean;
   /** @private */
   index?: number;
+  children: ReactNode;
 }
