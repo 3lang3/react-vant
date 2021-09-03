@@ -19,6 +19,7 @@ import { createNamespace, isDef } from '../utils';
 import { PopupInstanceType, PopupProps } from './PropsType';
 import { callInterceptor } from '../utils/interceptor';
 import { renderToContainer } from '../utils/dom/renderToContainer';
+import useSsrCompat from '../hooks/use-ssr-compat';
 
 export const sharedPopupProps = [
   'round',
@@ -55,6 +56,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const popupRef = useRef<HTMLDivElement>();
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
+  const ssrCompatRender = useSsrCompat();
 
   const style = useMemo(() => {
     const initStyle = {
@@ -219,12 +221,14 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     popupRef,
   }));
 
-  return renderToContainer(
-    props.teleport,
-    <>
-      {renderOverlay()}
-      {renderTransition()}
-    </>,
+  return ssrCompatRender(() =>
+    renderToContainer(
+      props.teleport,
+      <>
+        {renderOverlay()}
+        {renderTransition()}
+      </>,
+    ),
   );
 });
 
