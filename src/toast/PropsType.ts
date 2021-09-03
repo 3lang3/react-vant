@@ -41,6 +41,10 @@ export interface ToastProps extends BaseTypeProps {
   onOpened?: () => void;
 }
 
+export type ToastPrivateProps = {
+  onClosed?: () => void;
+};
+
 type ToastInstanceOpts = Omit<ToastProps, 'type'> | string;
 export interface ToastInstance {
   (opts: ToastProps | string): React.Dispatch<React.SetStateAction<ToastProps>>;

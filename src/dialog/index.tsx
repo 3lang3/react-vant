@@ -22,7 +22,6 @@ Dialog.show = (props: DialogProps) => {
     showConfirmButton: true,
     showCancelButton: false,
     closeOnClickOverlay: false,
-    teleport: document.body,
   };
   const {
     onClosed,

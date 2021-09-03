@@ -142,7 +142,6 @@ Dialog.defaultProps = {
   transition: 'rv-dialog-bounce',
   showConfirmButton: true,
   closeOnPopstate: true,
-  teleport: document.body,
 };
 
 export default Dialog as React.FC<DialogProps> & DialogStatic;

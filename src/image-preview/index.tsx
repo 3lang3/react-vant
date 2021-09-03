@@ -22,7 +22,6 @@ const defaultConfig: ImagePreviewProps = {
   swipeDuration: 300,
   closeOnPopstate: true,
   closeIconPosition: 'top-right',
-  teleport: document.body,
 };
 
 // 可返回用于销毁此弹窗的方法

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import { isObject, once } from '../utils';
+import { isObject } from '../utils';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from './lock-click';
 import { ToastProps, ToastInstance } from './PropsType';
@@ -50,20 +50,17 @@ const Toast = (p: ToastProps): unknown => {
     const [state, setState] = useState<ToastProps>({ ...options });
 
     // clearDOM after animation
-    const internalAfterClose = useCallback(
-      once(() => {
-        onClose?.();
-        const unmountResult = ReactDOM.unmountComponentAtNode(container);
-        if (unmountResult && container.parentNode) {
-          container.parentNode.removeChild(container);
-        }
-      }),
-      [onClose, container],
-    );
+    const internalOnClosed = useCallback(() => {
+      const unmountResult = ReactDOM.unmountComponentAtNode(container);
+      if (unmountResult && container.parentNode) {
+        container.parentNode.removeChild(container);
+      }
+    }, [onClose, container]);
 
     // close with animation
     const destroy = useCallback(() => {
       setVisible(false);
+      if (onClose) onClose();
     }, []);
 
     updateConfig = useCallback(
@@ -80,7 +77,7 @@ const Toast = (p: ToastProps): unknown => {
     useEffect(() => {
       setVisible(true);
       syncClear();
-      toastArray.push(internalAfterClose);
+      toastArray.push(internalOnClosed);
 
       if (state.duration !== 0 && 'duration' in state) {
         timer = window.setTimeout(destroy, state.duration);
@@ -97,7 +94,8 @@ const Toast = (p: ToastProps): unknown => {
         {...state}
         visible={visible}
         teleport={() => container}
-        onClose={internalAfterClose}
+        onClose={destroy}
+        onClosed={internalOnClosed}
       />
     );
   };

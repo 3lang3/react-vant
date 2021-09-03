@@ -7,11 +7,11 @@ import Loading from '../loading';
 
 import { lockClick } from './lock-click';
 import { createNamespace, isDef } from '../utils';
-import { ToastProps } from './PropsType';
+import { ToastPrivateProps, ToastProps } from './PropsType';
 
 const [bem] = createNamespace('toast');
 
-const Toast: React.FC<ToastProps & { visible?: boolean }> = (props) => {
+const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = (props) => {
   let clickable = false;
 
   const toggleClickable = () => {
@@ -29,10 +29,6 @@ const Toast: React.FC<ToastProps & { visible?: boolean }> = (props) => {
     if (props.closeOnClick) {
       props.onClose();
     }
-  };
-
-  const clearTimer = () => {
-    props.onClose();
   };
 
   useEffect(() => {
@@ -82,7 +78,8 @@ const Toast: React.FC<ToastProps & { visible?: boolean }> = (props) => {
       closeOnClickOverlay={props.closeOnClickOverlay}
       lockScroll={false}
       onClick={onClick}
-      onClosed={clearTimer}
+      onClose={props.onClose}
+      onClosed={props.onClosed}
       onOpened={props.onOpened}
       teleport={props.teleport}
     >

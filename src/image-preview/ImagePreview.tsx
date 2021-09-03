@@ -102,7 +102,6 @@ ImagePreview.defaultProps = {
   closeIcon: 'clear',
   closeIconPosition: 'top-right',
   showIndicators: false,
-  teleport: document.body,
 };
 
 export default ImagePreview;
