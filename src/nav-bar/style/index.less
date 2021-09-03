@@ -20,7 +20,7 @@
     padding-top: env(safe-area-inset-top);
   }
 
-  .rv-icon {
+  .van-icon {
     color: @nav-bar-icon-color;
   }
 
@@ -40,7 +40,7 @@
     max-width: 60%;
     margin: 0 auto;
     color: @nav-bar-title-text-color;
-    font-weight: 600;
+    font-weight: @font-weight-bold;
     font-size: @nav-bar-title-font-size;
   }
 
@@ -51,7 +51,7 @@
     bottom: 0;
     display: flex;
     align-items: center;
-    padding: 0 @padding-sm;
+    padding: 0 @padding-md;
     font-size: @font-size-md;
     cursor: pointer;
 
@@ -66,11 +66,9 @@
 
   &__right {
     right: 0;
-    padding-right: 15 * @hd;
   }
 
   &__text {
     color: @nav-bar-text-color;
-    font-size: @nav-bar-text-font-size;
   }
 }

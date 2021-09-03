@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toast, Icon, NavBar } from 'react-vant';
+import { Toast, NavBar, Icon } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
@@ -23,9 +23,8 @@ export default (): React.ReactNode => {
           title="标题"
           leftArrow
           leftText="返回"
-          rightText="按钮"
           onClickLeft={() => Toast('返回')}
-          rightSlot={() => <Icon name="search" size={20} />}
+          rightText={<Icon name="search" size={20} />}
           onClickRight={() => Toast('按钮')}
         />
       </DemoBlock>

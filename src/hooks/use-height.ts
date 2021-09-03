@@ -1,15 +1,16 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useRef, useEffect } from 'react';
-import useRect from './use-rect';
+import { useEffect, useState } from 'react';
+import { getRect } from './use-rect';
 
 export const useHeight = (element: { current: Element | undefined }): number => {
-  const height = useRef<number>(0);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    height.current = useRect(element.current).height;
+    if (element.current) {
+      setHeight(getRect(element.current).height);
+    }
   }, [element.current]);
 
-  return height.current;
+  return height;
 };
 
 export default useHeight;
