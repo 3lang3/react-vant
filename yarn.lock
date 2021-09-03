@@ -1913,10 +1913,10 @@
     "@typescript-eslint/types" "4.4.1"
     eslint-visitor-keys "^2.0.0"
 
-"@vant/icons@^1.6.0":
+"@vant/icons@^1.7.0":
   version "1.7.0"
-  resolved "https://registry.nlark.com/@vant/icons/download/@vant/icons-1.7.0.tgz#02d427532a8142c35db159da9c364fe6890c3ac9"
-  integrity sha1-AtQnUyqBQsNdsVnanDZP5okMOsk=
+  resolved "https://registry.yarnpkg.com/@vant/icons/-/icons-1.7.0.tgz#02d427532a8142c35db159da9c364fe6890c3ac9"
+  integrity sha512-sqKvtYcSgSd6+AU1nBPaZARn2Nzf8hi0ErLhfXVR6f+Y7R0gojGZVoxuB83yUI6+0LwbitW5IfN3E6qzEsu21Q==
 
 "@vant/popperjs@^1.1.0":
   version "1.1.0"

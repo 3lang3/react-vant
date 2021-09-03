@@ -1,7 +1,8 @@
 import React from 'react';
-import { NoticeBar, Swipe } from 'react-vant';
+import { Swipe } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
+import NoticeBar from '../index';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
@@ -9,7 +10,7 @@ export default (): React.ReactNode => {
     <DemoSection>
       <DemoBlock title="基础用法">
         <NoticeBar
-          leftIcon="speaker-s"
+          leftIcon="volume-o"
           text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
         />
       </DemoBlock>
@@ -25,14 +26,14 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="自定义样式">
         <NoticeBar
-          leftIcon="info"
+          leftIcon="info-o"
           background="rgb(236, 249, 255)"
           color="rgb(25, 137, 250)"
           text="技术是开发它的人的共同灵魂。"
         />
       </DemoBlock>
       <DemoBlock title="垂直滚动">
-        <NoticeBar leftIcon="info">
+        <NoticeBar leftIcon="volume-o">
           <Swipe autoplay={1000} pagination={false} vertical className="notice-swipe">
             <Swipe.Item>内容 1</Swipe.Item>
             <Swipe.Item>内容 2</Swipe.Item>
