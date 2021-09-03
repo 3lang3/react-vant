@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, {
   CSSProperties,
   forwardRef,
@@ -11,7 +10,7 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 
-import useRect from '../hooks/use-rect';
+import { getRect as getElementRect } from '../hooks/use-rect';
 import useHeight from '../hooks/use-height';
 
 import IndexBarContext from './IndexBarContext';
@@ -19,6 +18,7 @@ import IndexBarContext from './IndexBarContext';
 import { IndexAnchorProps } from './PropsType';
 import { createNamespace, getScrollTop, getRootScrollTop } from '../utils';
 import { BORDER_BOTTOM } from '../utils/constant';
+import { useSetState } from '../hooks';
 
 const [bem] = createNamespace('index-anchor');
 
@@ -28,42 +28,49 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
 
   const context = useContext(IndexBarContext);
 
-  const [left, setLeft] = useState<number>(0);
-  const [top, setTop] = useState<number>(0);
-  const [width, setWidth] = useState<number>(0);
-  const [active, setActive] = useState<boolean>(false);
+  if (!context) {
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.error('[React Vant] <IndexAnchor> must be a child component of <IndexBar>.');
+    }
+  }
+  const [state, updateState] = useSetState({
+    top: 0,
+    left: 0,
+    rect: { top: 0, height: 0 },
+    width: 0,
+    active: false,
+  });
   const [rect, setRect] = useState({ top: 0, height: 0 });
 
-  const sticky = useMemo(() => active && context.sticky, [active]);
+  const isSticky = useMemo(() => state.active && context.sticky, [state.active, context.sticky]);
 
   const anchorStyle = useMemo(() => {
     const { zIndex, highlightColor } = context;
 
-    if (sticky) {
+    if (isSticky) {
       return {
         zIndex: `${zIndex}`,
-        left: left ? `${left}px` : null,
-        width: width ? `${width}px` : null,
-        transform: top ? `translate3d(0, ${top}px, 0)` : null,
+        left: state.left ? `${state.left}px` : null,
+        width: state.width ? `${state.width}px` : null,
+        transform: state.top ? `translate3d(0, ${state.top}px, 0)` : null,
         color: highlightColor,
       };
     }
     return null;
-  }, [sticky, width, left, top]);
+  }, [isSticky, state.width, state.left, state.top]);
 
   const getRect = (scrollParent: Element | Window, scrollParentRect) => {
-    const rootRect = useRect(root.current);
-
-    rect.height = rootRect.height;
-
+    const rootRect = getElementRect(root.current);
+    const newState = { ...state } as typeof state;
+    newState.rect.height = rootRect.height;
     if (scrollParent === window || scrollParent === document.body) {
-      rect.top = rootRect.top + getRootScrollTop();
+      newState.rect.top = rootRect.top + getRootScrollTop();
     } else {
-      rect.top = rootRect.top + getScrollTop(scrollParent) - scrollParentRect.top;
+      newState.rect.top = rootRect.top + getScrollTop(scrollParent) - scrollParentRect.top;
     }
-    setRect({ ...rect });
-
-    return rect;
+    updateState(newState);
+    return newState.rect;
   };
 
   useEffect(() => {
@@ -72,15 +79,18 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     getRect,
-    setLeft,
-    setTop,
-    setWidth,
-    setActive,
+    state,
+    updateState,
     root,
   }));
 
+  const sticky = isSticky;
   return (
-    <div ref={root} style={{ height: sticky ? `${rect.height}px` : null }}>
+    <div
+      className={props.className}
+      ref={root}
+      style={{ ...props.style, height: sticky ? `${state.rect.height}px` : null }}
+    >
       <div
         style={anchorStyle as CSSProperties}
         className={classnames(bem({ sticky }), { [BORDER_BOTTOM]: sticky })}

@@ -1,18 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import type { MouseEvent } from 'react';
 import classnames from 'classnames';
 
 import useRefs from '../hooks/use-refs';
-import useRect from '../hooks/use-rect';
+import { getRect } from '../hooks/use-rect';
 import useTouch from '../hooks/use-touch';
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
 import IndexBarContext from './IndexBarContext';
 
-import { IndexBarProps, IndexAnchorProps } from './PropsType';
+import { IndexBarInstance, IndexBarProps } from './PropsType';
 import {
   isDef,
   isHidden,
@@ -22,10 +31,12 @@ import {
   setRootScrollTop,
   getRootScrollTop,
 } from '../utils';
+import { useMount } from '../hooks';
+import { renderToContainer } from '../utils/dom/renderToContainer';
 
 const [bem] = createNamespace('index-bar');
 
-const IndexBar: React.FC<IndexBarProps> & { Anchor?: React.FC<IndexAnchorProps> } = (props) => {
+const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   const { children, sticky, zIndex, highlightColor } = props;
 
   const [activeAnchor, setActiveAnchor] = useState<string | number>(null);
@@ -41,7 +52,7 @@ const IndexBar: React.FC<IndexBarProps> & { Anchor?: React.FC<IndexAnchorProps> 
   const sidebarStyle = useMemo(() => {
     if (isDef(zIndex)) {
       return {
-        zIndex: (zIndex as number) + 1,
+        zIndex: +zIndex + 1,
       };
     }
     return {};
@@ -56,82 +67,9 @@ const IndexBar: React.FC<IndexBarProps> & { Anchor?: React.FC<IndexAnchorProps> 
     return {};
   }, [highlightColor]);
 
-  const renderIndexes = () =>
-    props.indexList.map((index) => {
-      const active = index === activeAnchor;
-      return (
-        <span
-          key={index}
-          className={classnames(bem('index', { active }))}
-          style={active ? highlightStyle : null}
-          data-index={index}
-        >
-          {index}
-        </span>
-      );
-    });
-
-  useEffect(() => {
-    if (props.onChange && typeof props.onChange === 'function') {
-      props.onChange(activeAnchor);
-    }
-  }, [activeAnchor]);
-
-  const onTouchStart = (event: TouchEvent | React.TouchEvent) => {
-    touch.start(event as TouchEvent);
-  };
-
-  const scrollTo = (index: number | string) => {
-    if (!index) {
-      return;
-    }
-
-    if (refs[index]) {
-      refs[index].root.current.scrollIntoView();
-
-      if (props.sticky && props.stickyOffsetTop) {
-        setRootScrollTop(getRootScrollTop() - props.stickyOffsetTop);
-      }
-
-      if (props.onSelect && typeof props.onSelect === 'function') {
-        props.onSelect(activeAnchor);
-      }
-    }
-  };
-
-  const scrollToElement = (element) => {
-    const { index } = element.dataset;
-    scrollTo(index);
-  };
-
-  const onClick = (event: MouseEvent) => {
-    scrollToElement(event.target);
-  };
-
-  const onTouchMove = (event) => {
-    touch.move(event);
-
-    preventDefault(event);
-
-    if (touch.isVertical()) {
-      const { clientX, clientY } = event.touches[0];
-      const target: any = document.elementFromPoint(clientX, clientY);
-
-      if (target) {
-        const { index } = target.dataset;
-
-        /* istanbul ignore else */
-        if (touchActiveIndex.current !== index) {
-          touchActiveIndex.current = index;
-          scrollToElement(target);
-        }
-      }
-    }
-  };
-
   const getScrollerRect = () => {
     if (scrollParent.getBoundingClientRect) {
-      return useRect(scrollParent);
+      return getRect(scrollParent);
     }
     return {
       top: 0,
@@ -170,28 +108,98 @@ const IndexBar: React.FC<IndexBarProps> & { Anchor?: React.FC<IndexAnchorProps> 
 
     if (sticky) {
       Object.values(refs).forEach((item: any, index) => {
-        const { setLeft, setWidth, setTop, setActive } = item;
+        const { updateState } = item;
         if (index === active || index === active - 1) {
           const rect = item.root.current.getBoundingClientRect();
-          setLeft(rect.left);
-          setWidth(rect.width);
+          updateState({ left: rect.left, width: rect.width });
         } else {
-          setLeft(null);
-          setWidth(null);
+          updateState({ left: null, width: null });
         }
         if (index === active) {
-          setActive(true);
-          setTop(
-            Math.max(props.stickyOffsetTop, rects[index].top - scrollTop) + scrollParentRect.top,
-          );
+          updateState({
+            active: true,
+            top:
+              Math.max(props.stickyOffsetTop, rects[index].top - scrollTop) + scrollParentRect.top,
+          });
         } else if (index === active - 1) {
           const activeItemTop = rects[active].top - scrollTop;
-          setActive(activeItemTop > 0);
-          setTop(activeItemTop + scrollParentRect.top - rects[index].height);
+          updateState({
+            active: activeItemTop > 0,
+            top: activeItemTop + scrollParentRect.top - rects[index].height,
+          });
         } else {
-          setActive(false);
+          updateState({ active: false });
         }
       });
+    }
+  };
+
+  const init = () => setTimeout(onScroll, 0);
+
+  const renderIndexes = () =>
+    props.indexList.map((index) => {
+      const active = index === activeAnchor;
+      return (
+        <span
+          key={index}
+          className={classnames(bem('index', { active }))}
+          style={active ? highlightStyle : null}
+          data-index={index}
+        >
+          {index}
+        </span>
+      );
+    });
+
+  const onTouchStart = (event: TouchEvent | React.TouchEvent) => {
+    touch.start(event as TouchEvent);
+  };
+
+  const scrollTo = (index: number | string) => {
+    if (!index) {
+      return;
+    }
+
+    if (refs[index]) {
+      refs[index].root.current.scrollIntoView();
+
+      if (props.sticky && props.stickyOffsetTop) {
+        setRootScrollTop(getRootScrollTop() - props.stickyOffsetTop);
+      }
+
+      if (props.onSelect && typeof props.onSelect === 'function') {
+        props.onSelect(activeAnchor);
+      }
+    }
+  };
+
+  const scrollToElement = (element) => {
+    const { index } = element.dataset;
+    scrollTo(index);
+  };
+
+  const onClickSidebar = (event: MouseEvent) => {
+    scrollToElement(event.target);
+  };
+
+  const onTouchMove = (event) => {
+    touch.move(event);
+
+    preventDefault(event);
+
+    if (touch.isVertical()) {
+      const { clientX, clientY } = event.touches[0];
+      const target: any = document.elementFromPoint(clientX, clientY);
+
+      if (target) {
+        const { index } = target.dataset;
+
+        /* istanbul ignore else */
+        if (touchActiveIndex.current !== index) {
+          touchActiveIndex.current = index;
+          scrollToElement(target);
+        }
+      }
     }
   };
 
@@ -203,6 +211,14 @@ const IndexBar: React.FC<IndexBarProps> & { Anchor?: React.FC<IndexAnchorProps> 
     target: sidebar.current,
     depends: [sidebar.current, touch.deltaY],
   });
+
+  useEffect(() => {
+    if (props.onChange && typeof props.onChange === 'function') {
+      props.onChange(activeAnchor);
+    }
+  }, [activeAnchor]);
+
+  useMount(init);
 
   const handleMapChildren = ($children: ReactNode) => {
     let isFind = false;
@@ -224,23 +240,30 @@ const IndexBar: React.FC<IndexBarProps> & { Anchor?: React.FC<IndexAnchorProps> 
     });
   };
 
+  useImperativeHandle(ref, () => ({
+    scrollTo,
+  }));
+
   return (
     <IndexBarContext.Provider value={{ zIndex, highlightColor, sticky }}>
-      <div ref={root} className={classnames(bem(), props.className)}>
-        <div
-          ref={sidebar}
-          className={classnames(bem('sidebar'))}
-          style={sidebarStyle}
-          onClick={onClick}
-          onTouchStart={onTouchStart}
-        >
-          {renderIndexes()}
-        </div>
+      <div ref={root} className={classnames(bem(), props.className)} style={props.style}>
+        {renderToContainer(
+          props.teleport,
+          <div
+            ref={sidebar}
+            className={classnames(bem('sidebar'))}
+            style={sidebarStyle}
+            onClick={onClickSidebar}
+            onTouchStart={onTouchStart}
+          >
+            {renderIndexes()}
+          </div>,
+        )}
         {handleMapChildren(children)}
       </div>
     </IndexBarContext.Provider>
   );
-};
+});
 
 function genAlphabet() {
   const indexList = [];

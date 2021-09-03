@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import './style.less';
 
 export default (): React.ReactNode => {
-  const { DemoBlock, DemoSection } = components;
+  const { DemoSection } = components;
 
   const indexList = [];
   const customIndexList = [1, 2, 3, 4, 5, 6, 8, 9, 10];

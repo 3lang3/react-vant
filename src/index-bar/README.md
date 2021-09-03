@@ -62,7 +62,8 @@ const indexList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 | zIndex | z-index 层级 | _number \| string_ | `1` |
 | sticky | 是否开启锚点自动吸顶 | _boolean_ | `true` |
 | stickyOffsetTop | 锚点自动吸顶时与顶部的距离 | _number_ | `0` |
-| highlightColor | 索引字符高亮颜色 | _string_ | `#2879ff` |
+| highlightColor | 索引字符高亮颜色 | _string_ | `#3f45ff` |
+| teleport | 指定索引栏挂载的节点	 | _Element\|() => Element_ | - |
 
 ### IndexAnchor Props
 
@@ -74,14 +75,9 @@ const indexList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 | 事件名            | 说明                         | 回调参数                  |
 | ----------------- | ---------------------------- | ------------------------- |
-| select            | 点击索引栏的字符时触发       | _index: number \| string_ |
-| change         | 当前高亮的索引字符变化时触发 | _index: number \| string_ |
+| onSelect            | 点击索引栏的字符时触发       | _index: number \| string_ |
+| onChange         | 当前高亮的索引字符变化时触发 | _index: number \| string_ |
 
-### IndexAnchor Slots
-
-| 名称    | 说明                             |
-| ------- | -------------------------------- |
-| default | 锚点位置显示内容，默认为索引字符 |
 
 ### 样式变量
 
