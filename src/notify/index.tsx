@@ -6,11 +6,11 @@ import ReactDOM from 'react-dom';
 import { extend, isObject, noop, once } from '../utils';
 import { NotifyOptions, NotifyProps, NotifyStatic } from './PropsType';
 
-import BaseNotify from './Notify';
+import Notify from './Notify';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from '../toast/lock-click';
 
-const Notify = BaseNotify as NotifyStatic;
+const NotifyNamespace = {} as NotifyStatic;
 
 function parseOptions(message: string | NotifyProps) {
   return isObject(message) ? message : { message };
@@ -34,9 +34,9 @@ function nextTickClear() {
 }
 
 // 可返回用于销毁此弹窗的方法
-Notify.show = (p: NotifyProps) => {
+const show = (p: NotifyProps) => {
   const props = parseOptions(p);
-  const interProps = { ...Notify.currentOptions, ...props };
+  const interProps = { ...NotifyNamespace.currentOptions, ...props };
   const { onClose = noop, duration, ...restProps } = interProps;
   let timer = 0;
   const userContainer = resolveContainer(props.teleport);
@@ -48,21 +48,25 @@ Notify.show = (p: NotifyProps) => {
   const TempNotify = () => {
     const [visible, setVisible] = useState(false);
 
+    destroy = () => {
+      setVisible(false);
+      if (onClose) onClose();
+    };
+
     // clearDOM after animation
+    const internalOnClosed = () => {
+      const unmountResult = ReactDOM.unmountComponentAtNode(container);
+      if (unmountResult && container.parentNode) {
+        container.parentNode.removeChild(container);
+      }
+    };
+
     const internalAfterClose = useCallback(
       once(() => {
-        if (onClose) onClose();
-        const unmountResult = ReactDOM.unmountComponentAtNode(container);
-        if (unmountResult && container.parentNode) {
-          container.parentNode.removeChild(container);
-        }
+        internalOnClosed();
       }),
       [onClose, container],
     );
-
-    destroy = () => {
-      setVisible(false);
-    };
 
     useEffect(() => {
       setVisible(true);
@@ -79,20 +83,13 @@ Notify.show = (p: NotifyProps) => {
       };
     }, []);
 
-    const afterClose = () => {
-      if (onClose) onClose();
-      const unmountResult = ReactDOM.unmountComponentAtNode(container);
-      if (unmountResult && container.parentNode) {
-        container.parentNode.removeChild(container);
-      }
-    };
-
     return (
-      <BaseNotify
+      <Notify
         {...restProps}
         visible={visible}
         teleport={() => container}
-        onClose={afterClose}
+        onClose={onClose}
+        onClosed={internalOnClosed}
       />
     );
   };
@@ -116,16 +113,25 @@ function defaultOptions() {
   } as NotifyOptions;
 }
 
-Notify.currentOptions = defaultOptions();
+NotifyNamespace.currentOptions = defaultOptions();
 
-Notify.setDefaultOptions = (options: NotifyOptions) => {
-  extend(Notify.currentOptions, options);
+const setDefaultOptions = (options: NotifyOptions) => {
+  extend(NotifyNamespace.currentOptions, options);
 };
 
-Notify.resetDefaultOptions = () => {
-  Notify.currentOptions = defaultOptions();
+const resetDefaultOptions = () => {
+  NotifyNamespace.currentOptions = defaultOptions();
 };
 
-Notify.clear = nextTickClear;
+const clear = nextTickClear;
 
-export default Notify;
+const exportNotifyNamespace = Object.assign(Notify, {
+  show,
+  setDefaultOptions,
+  resetDefaultOptions,
+  clear,
+});
+
+export default exportNotifyNamespace;
+export { exportNotifyNamespace as Notify };
+export type { NotifyProps, NotifyStatic } from './PropsType';

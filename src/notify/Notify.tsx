@@ -1,12 +1,12 @@
 import React from 'react';
 import cls from 'classnames';
 import Popup from '../popup';
-import { NotifyProps } from './PropsType';
+import { NotifyPrivateProps, NotifyProps } from './PropsType';
 import { createNamespace } from '../utils';
 
 const [bem] = createNamespace('notify');
 
-const Notify: React.FC<NotifyProps> = ({ children, ...props }) => {
+const Notify: React.FC<NotifyProps & NotifyPrivateProps> = ({ children, ...props }) => {
   const style = {
     color: props.color,
     background: props.background,
@@ -22,6 +22,7 @@ const Notify: React.FC<NotifyProps> = ({ children, ...props }) => {
       lockScroll={props.lockScroll}
       onClick={props.onClick}
       onClose={props.onClose}
+      onClosed={props.onClosed}
       teleport={props.teleport}
     >
       {children || props.message}
@@ -34,7 +35,6 @@ Notify.defaultProps = {
   duration: 3000,
   color: 'white',
   lockScroll: false,
-  teleport: document.body,
 };
 
 export default Notify;
