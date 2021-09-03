@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps, TeleportType } from '../utils';
 
 export interface IndexBarProps extends BaseTypeProps {
@@ -23,11 +24,13 @@ export interface IndexBarProps extends BaseTypeProps {
   onSelect?: (value: number | string) => void;
   /** 指定索引栏挂载的节点	 */
   teleport?: TeleportType;
+  children?: React.ReactNode;
 }
 
 export interface IndexAnchorProps extends BaseTypeProps {
   /** 索引字符	 */
   index: number | string;
+  children?: React.ReactNode;
 }
 
 export type IndexBarInstance = {
