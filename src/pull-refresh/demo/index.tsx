@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useMemo } from 'react';
 import { Tabs, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -18,7 +19,7 @@ export default (): React.ReactNode => {
     return new Promise((resolve) => {
       setTimeout(() => {
         if (showToast) {
-          Toast('刷新成功');
+          Toast.info('刷新成功');
         }
         setCount(count + 1);
         resolve(true);
@@ -41,17 +42,19 @@ export default (): React.ReactNode => {
         </Tabs.TabPane>
         <Tabs.TabPane title="自定义内容">
           <PullRefresh
-            headHeight="80"
-            pullingText={() => (
-              <img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />
+            headHeight={80}
+            pullingText={({ distance }) => (
+              <img
+                className="doge"
+                src="https://img.yzcdn.cn/vant/doge.png"
+                style={{ transform: `scale(${distance / 80})` }}
+              />
             )}
-            loosingText={() => (
-              <img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />
-            )}
+            loosingText={() => <img className="doge" src="https://img.yzcdn.cn/vant/doge.png" />}
             loadingText={() => (
-              <img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />
+              <img className="doge" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />
             )}
-            onRefresh={() => onRefresh(false)}
+            onRefresh={() => onRefresh(true)}
           >
             <p>{tips}</p>
           </PullRefresh>

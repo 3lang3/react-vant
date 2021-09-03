@@ -50,10 +50,15 @@ export default () => {
 ```jsx
 <PullRefresh
   headHeight={80}
-  refreshing={refreshing}
-  pullingText={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />}
-  loosingText={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge.png" />}
-  loadingText={<img className="doge" alt="" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />}
+  pullingText={({ distance }) => (
+    <img
+      className="doge"
+      src="https://img.yzcdn.cn/vant/doge.png"
+      style={{ transform: `scale(${distance / 80})` }}
+    />
+  )}
+  loosingText={() => <img className="doge" src="https://img.yzcdn.cn/vant/doge.png" />}
+  loadingText={() => <img className="doge" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />}
   onRefresh={onRefresh}
 >
   <p>{tips}</p>
@@ -87,9 +92,9 @@ export default () => {
 
 ### Events
 
-| 事件名    | 说明           | 类型 | 回调参数 |
-| --------- | -------------- | ---- | -------- |
-| onRefresh | 下拉刷新时触发 | _() => Promise<unknown>_       |  - |
+| 事件名    | 说明           | 类型                     | 回调参数 |
+| --------- | -------------- | ------------------------ | -------- |
+| onRefresh | 下拉刷新时触发 | _() => Promise<unknown>_ | -        |
 
 ### 样式变量
 
