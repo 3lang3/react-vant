@@ -16,6 +16,9 @@ import { PullRefresh } from 'react-vant';
 
 下拉刷新时会触发 `onRefresh` 事件，在事件的回调函数中可以进行同步或异步操作，操作完成后表示加载完成。
 
+> 和 vant 不同的是，react-vant 根据onRefresh在组件内部维护了loading状态。
+
+
 ```jsx
 export default () => {
   const onRefresh = () => {
@@ -94,7 +97,7 @@ export default () => {
 
 | 事件名    | 说明           | 类型                     | 回调参数 |
 | --------- | -------------- | ------------------------ | -------- |
-| onRefresh | 下拉刷新时触发 | _() => Promise<unknown>_ | -        |
+| onRefresh | 下拉刷新时触发 | _() => (Promise\|void)_ | -        |
 
 ### 样式变量
 
