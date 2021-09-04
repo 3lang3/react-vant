@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { PasswordInput, Dialog } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
-const Component = () => {
+export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const onSubmit = (val: string) => {
     Dialog.alert({
@@ -11,7 +12,7 @@ const Component = () => {
     });
   };
   const onChange = (val: string) => {
-    console.log('onchange');
+    console.log('onchange', val);
   };
   return (
     <DemoSection>
@@ -52,5 +53,3 @@ const Component = () => {
     </DemoSection>
   );
 };
-
-export default Component;
