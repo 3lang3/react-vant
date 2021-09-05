@@ -136,14 +136,15 @@ const actions = [
 | duration | 动画时长，单位秒，设置为 0 可以禁用动画 | _number \| string_ | `0.3` |
 | offset | 出现位置的偏移量 | _[number, number]_ | `[0, 8]` |
 | overlay | 是否显示遮罩层 | _boolean_ | `false` |
-| overlayClass | 自定义遮罩层类名 | _string \| Array \| object_ | - |
-| overlayStyle | 自定义遮罩层样式 | _object_ | - |
+| overlayClass | 自定义遮罩层类名 | _string_ | - |
+| overlayStyle | 自定义遮罩层样式 | _CSSProperties_ | - |
 | closeOnClickAction | 是否在点击选项后关闭 | _boolean_ | `true` |
 | closeOnClickOutside | 是否在点击外部元素后关闭菜单 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭菜单 | _boolean_ | `true` |
 | iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | children | 自定义菜单内容 | _React.ReactNode_ | - |
 | reference | 触发 Popover 显示的元素内容 | _React.ReactNode_ | - |
+| teleport | 指定挂载的节点 | _Element\|() => Element_ | - |
 
 ### Action 数据结构
 
@@ -155,13 +156,18 @@ const actions = [
 | icon | 文字左侧的图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ |
 | color | 选项文字颜色 | _string_ |
 | disabled | 是否为禁用状态 | _boolean_ |
-| className | 为对应选项添加额外的类名 | _string \| Array \| object_ |
+| className | 为对应选项添加额外的类名 | _string_ |
 
 ### Events
 
 | 事件名   | 说明           | 回调参数                        |
 | -------- | -------------- | ------------------------------- |
 | onSelect | 点击选项时触发 | _action: Action, index: number_ |
+| onOpen          | 打开菜单时触发           | -                               |
+| onClose         | 关闭菜单时触发           | -                               |
+| onOpened        | 打开菜单且动画结束后触发 | -                               |
+| onClosed        | 关闭菜单且动画结束后触发 | -                               |
+| onClickOverlay | 点击遮罩层时触发         | _event: MouseEvent_             |
 
 ### 方法
 

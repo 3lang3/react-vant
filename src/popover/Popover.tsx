@@ -17,6 +17,12 @@ const popupProps = [
   'overlayStyle',
   'overlayClass',
   'closeOnClickOverlay',
+  'teleport',
+  'onClose',
+  'onOpen',
+  'onClosed',
+  'onOpened',
+  'onClickOverlay',
 ] as const;
 
 const Popover = forwardRef<PopoverInstance, PopoverProps>(

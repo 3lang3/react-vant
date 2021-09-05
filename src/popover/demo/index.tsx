@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import React, { useRef, useState } from 'react';
-import { Toast, Popover, Button, Grid, Popup, Picker, Cell } from 'react-vant';
+import { Toast, Button, Grid, Popup, Picker, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
-import { PopoverInstance } from '../PropsType';
+import { PopoverInstance, PopoverPlacement } from '../PropsType';
+import Popover from '../index';
 import './style.less';
 
 const actions = [{ text: '选项一' }, { text: '选项二' }, { text: '选项三' }];
@@ -33,7 +34,7 @@ const placements = [
   'bottom',
   'bottom-start',
   'bottom-end',
-];
+] as PopoverPlacement[];
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
