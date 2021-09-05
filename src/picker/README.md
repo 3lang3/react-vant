@@ -299,7 +299,7 @@ const columnsFieldNames = {
 
 ### 类型定义
 
-通过 `PickerInstance` 获取 Picker 实例的类型定义（从 3.2.0 版本开始支持）。
+通过 `PickerInstance` 获取 Picker 实例的类型定义。
 
 ```jsx
 import { useRef } from 'react';
