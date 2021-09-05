@@ -1,8 +1,8 @@
 import CheckboxGroup from './CheckboxGroup';
 import Checkbox from './Checkbox';
 
-Checkbox.Group = CheckboxGroup;
+const CheckboxNamespace = Object.assign(Checkbox, { Group: CheckboxGroup });
 
-export default Checkbox;
-export { Checkbox, CheckboxGroup };
-export type { CheckboxProps } from './PropsType';
+export default CheckboxNamespace;
+export { CheckboxNamespace as Checkbox, CheckboxGroup };
+export type { CheckBoxGroupProps, CheckboxProps } from './PropsType';

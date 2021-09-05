@@ -9,7 +9,7 @@ import { createNamespace } from '../utils';
 
 const [bem] = createNamespace('checkbox');
 
-const CheckBox: React.FC<CheckboxProps> & { Group?: React.FC } = (props) => {
+const CheckBox: React.FC<CheckboxProps> = (props) => {
   const { parent, ...context } = useContext(CheckBoxContext);
   const [checked, setChecked] = useMergedState<boolean>({
     value: props.checked,
