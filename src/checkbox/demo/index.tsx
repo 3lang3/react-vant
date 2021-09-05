@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Cell, Toast } from 'react-vant';
+import { Checkbox, Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
-import Checkbox from '../index';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
