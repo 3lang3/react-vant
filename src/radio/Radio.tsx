@@ -8,7 +8,7 @@ import { createNamespace } from '../utils';
 
 const [bem] = createNamespace('radio');
 
-const Radio: React.FC<RadioProps> & { Group?: React.FC } = (props) => {
+const Radio: React.FC<RadioProps> = (props) => {
   const { parent, ...context } = useContext(RadioContext);
 
   const checked = useMemo(() => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Cell, Radio, Toast } from 'react-vant';
+import { Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import { Radio } from '../index';
 import './style.less';
 
 let timer;
@@ -93,7 +94,7 @@ export default (): React.ReactNode => {
               clearTimeout(timer);
               timer = setTimeout(() => {
                 Toast.clear();
-                setValue(val);
+                setValue(val as string);
               }, 500);
             }}
           >

@@ -1,6 +1,8 @@
 import RadioGroup from './RadioGroup';
 import Radio from './Radio';
 
-Radio.Group = RadioGroup;
+const RadioNamespace = Object.assign(Radio, { Group: RadioGroup });
 
-export default Radio;
+export default RadioNamespace;
+export { RadioNamespace as Radio, RadioGroup };
+export type { RadioGroupProps, RadioProps } from './PropsType';

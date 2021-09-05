@@ -1,17 +1,19 @@
 import { BaseTypeProps } from '../utils';
 import { CheckerProps } from '../checkbox/PropsType';
 
-export interface RadioGroupProps extends BaseTypeProps {
+type RadioValueType = number | string;
+
+export interface RadioGroupProps<T = RadioValueType> extends BaseTypeProps {
   disabled?: boolean;
   iconSize?: number | string;
   direction?: string;
   checkedColor?: string;
-  value?: string | number;
-  defaultValue?: string | number;
+  value?: T;
+  defaultValue?: T;
   asyncChange?: boolean;
-  onChange?: (name: string | number) => void;
+  onChange?: (name: T) => void;
 }
 
-export interface RadioProps extends CheckerProps<RadioGroupProps> {
-  value?: string | number;
+export interface RadioProps<T = RadioValueType> extends CheckerProps<RadioGroupProps<T>> {
+  value?: T;
 }
