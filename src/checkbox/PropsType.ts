@@ -63,8 +63,6 @@ export interface CheckerProps<T> extends BaseTypeProps {
   checked?: boolean;
   /** 默认勾选状态 */
   defaultChecked?: boolean;
-  /** 是否开启异步更新 */
-  asyncChange?: boolean;
   /** 切换选择状态时触发 */
   onToggle?: () => void;
   /** 点击时触发 */

@@ -1,8 +1,8 @@
 import { createContext, Context } from 'react';
-import { CheckBoxGroupProps } from './PropsType';
+import { CheckboxGroupProps } from './PropsType';
 
 export interface CheckboxContextState {
-  parent?: { props: CheckBoxGroupProps };
+  parent?: { props: CheckboxGroupProps };
   toggle?: (names: Array<string | number>) => void;
   checked?: (string | number)[];
 }
