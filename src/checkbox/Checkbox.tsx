@@ -1,27 +1,20 @@
-import React, { useContext, useMemo } from 'react';
+import React, { forwardRef, useContext, useImperativeHandle, useMemo } from 'react';
 
 import Checker from './Checker';
 import CheckBoxContext from './CheckboxContext';
 import useMergedState from '../hooks/use-merged-state';
 
-import { CheckboxProps } from './PropsType';
+import { CheckboxInstance, CheckboxProps } from './PropsType';
 import { createNamespace } from '../utils';
 
 const [bem] = createNamespace('checkbox');
 
-const CheckBox: React.FC<CheckboxProps> = (props) => {
+const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((props, ref) => {
   const { parent, ...context } = useContext(CheckBoxContext);
   const [checked, setChecked] = useMergedState<boolean>({
     value: props.checked,
     defaultValue: props.defaultChecked,
   });
-
-  const emit = (type?: string, args?: unknown) => {
-    const name = `on${type.replace(/( |^)[a-z]/g, (L) => L.toUpperCase())}`;
-    if (props[name] && typeof props[name] === 'function') {
-      props[name](args);
-    }
-  };
 
   const setParentValue = (isChecked: boolean) => {
     const { name } = props;
@@ -63,9 +56,15 @@ const CheckBox: React.FC<CheckboxProps> = (props) => {
       setParentValue(newValue);
     } else {
       setChecked(newValue);
-      emit('change', newValue);
+      props.onChange?.(newValue);
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    toggle,
+    checked: isChecked,
+    props,
+  }));
 
   return (
     <Checker
@@ -79,7 +78,7 @@ const CheckBox: React.FC<CheckboxProps> = (props) => {
       onToggle={toggle}
     />
   );
-};
+});
 
 CheckBox.defaultProps = {
   bindGroup: true,

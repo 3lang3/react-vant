@@ -1,18 +1,25 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
-import { Checkbox, Cell, Toast } from 'react-vant';
+import React, { useRef, useState } from 'react';
+import { Checkbox, Button, Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import { CheckboxGroupInstance } from '../PropsType';
 import './style.less';
+
+const activeIcon = 'https://img.yzcdn.cn/vant/user-active.png';
+const inactiveIcon = 'https://img.yzcdn.cn/vant/user-inactive.png';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
 
+  const ref = useRef<CheckboxGroupInstance>(null);
+  const [checkAll, setCheckAll] = useState(['a']);
+  const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(false);
 
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Checkbox defaultChecked onChange={(val) => console.log(val)}>
+        <Checkbox checked={checked} onChange={setChecked}>
           复选框
         </Checkbox>
       </DemoBlock>
@@ -20,23 +27,31 @@ export default (): React.ReactNode => {
         <Checkbox defaultChecked disabled>
           复选框
         </Checkbox>
-        <Checkbox defaultChecked={false} disabled>
-          复选框
-        </Checkbox>
+        <Checkbox disabled>复选框</Checkbox>
       </DemoBlock>
       <DemoBlock title="自定义形状">
         <Checkbox defaultChecked shape="square">
-          复选框
+          自定义形状
         </Checkbox>
       </DemoBlock>
       <DemoBlock title="自定义颜色">
         <Checkbox defaultChecked checkedColor="#ee0a24">
-          复选框
+          自定义颜色
         </Checkbox>
       </DemoBlock>
       <DemoBlock title="自定义大小">
         <Checkbox defaultChecked iconSize="24px">
-          复选框
+          自定义大小
+        </Checkbox>
+      </DemoBlock>
+      <DemoBlock title="自定义图标">
+        <Checkbox
+          defaultChecked
+          iconRender={({ checked: isActive }) => (
+            <img alt="" src={isActive ? activeIcon : inactiveIcon} />
+          )}
+        >
+          自定义图标
         </Checkbox>
       </DemoBlock>
       <DemoBlock title="禁止文本点击">
@@ -61,9 +76,10 @@ export default (): React.ReactNode => {
       </DemoBlock>
 
       <DemoBlock title="复选框组">
-        <Checkbox.Group defaultValue={['a', 'b']}>
+        <Checkbox.Group onChange={(v) => console.log(v)} defaultValue={['a', 'b']}>
           <Checkbox name="a">复选框a</Checkbox>
           <Checkbox name="b">复选框b</Checkbox>
+          <Checkbox name="c">复选框c</Checkbox>
         </Checkbox.Group>
       </DemoBlock>
       <DemoBlock title="水平排列">
@@ -78,6 +94,21 @@ export default (): React.ReactNode => {
           <Checkbox name="b">复选框b</Checkbox>
           <Checkbox name="c">复选框c</Checkbox>
         </Checkbox.Group>
+      </DemoBlock>
+      <DemoBlock title="全选与反选">
+        <Checkbox.Group ref={ref} value={checkAll} onChange={setCheckAll}>
+          <Checkbox name="a">复选框a</Checkbox>
+          <Checkbox name="b">复选框b</Checkbox>
+          <Checkbox name="c">复选框c</Checkbox>
+        </Checkbox.Group>
+        <div className="demo-checkbox-buttons">
+          <Button type="primary" onClick={() => ref.current?.toggleAll(true)}>
+            全选
+          </Button>
+          <Button type="primary" onClick={() => ref.current?.toggleAll()}>
+            反选
+          </Button>
+        </div>
       </DemoBlock>
       <DemoBlock title="搭配单元格组件使用">
         <Checkbox.Group defaultValue={[]} max={2}>

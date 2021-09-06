@@ -44,7 +44,7 @@ import { Checkbox } from 'react-vant';
 
 ### 自定义颜色
 
-通过 `checked-color` 属性设置选中状态的图标颜色。
+通过 `checkedColor` 属性设置选中状态的图标颜色。
 
 ```jsx
 <Checkbox defaultChecked checkedColor="#ee0a24">
@@ -54,10 +54,10 @@ import { Checkbox } from 'react-vant';
 
 ### 自定义大小
 
-通过 `icon-size` 属性可以自定义图标的大小。
+通过 `iconSize` 属性可以自定义图标的大小。
 
 ```jsx
-<Checkbox defaultChecked iconSize="24px">
+<Checkbox defaultChecked iconSize={24}>
   复选框
 </Checkbox>
 ```
@@ -130,6 +130,36 @@ const checked = ['a', 'b'];
 </Checkbox.Group>
 ```
 
+### 全选与反选
+
+通过 `CheckboxGroup` 实例上的`toggleAll`方法可以实现全选与反选。
+
+```jsx
+import { useState, useRef } from 'react'
+import { Checkbox, Button } from 'react-vant';
+
+export default () => {
+  const ref = useRef(null)
+  const [checkedAll, setCheckedAll] = useState([])
+  return (
+    <>
+      <Checkbox.Group value={checkedAll} onChange={setCheckedAll} ref={ref}>
+        <Checkbox name="a">复选框 a</Checkbox>
+        <Checkbox name="b">复选框 b</Checkbox>
+        <Checkbox name="c">复选框 c</Checkbox>
+      </Checkbox.Group>
+
+      <Button type="primary" onClick={() => ref.current?.toggleAll()}>
+        全选
+      </Button>
+      <Button type="primary" onClick={() => ref.current?.toggleAll(false)}>
+        反选
+      </Button>
+    </>
+  );
+};
+```
+
 ### 搭配单元格组件使用
 
 此时你需要再引入 `Cell` 和 `Cell.Group` 组件，并通过 `Checkbox` 实例上的 toggle 方法触发切换。
@@ -147,25 +177,25 @@ const checked = ['a', 'b'];
 
 ### Checkbox Props
 
-| 参数           | 说明                      | 类型               | 默认值    |
-| -------------- | ------------------------- | ------------------ | --------- |
-| checked        | 是否为选中状态            | _boolean_          | `false`   |
-| defaultChecked | 默认选中项的标识符        | _any[]_            | -         |
-| name           | 标识符                    | _any_              | -         |
-| shape          | 形状，可选值为 `square`   | _string_           | `round`   |
-| disabled       | 是否禁用复选框            | _boolean_          | `false`   |
-| labelDisabled  | 是否禁用复选框文本点击    | _boolean_          | `false`   |
-| labelPosition  | 文本位置，可选值为 `left` | _string_           | `right`   |
-| iconSize       | 图标大小，默认单位为 `px` | _number \| string_ | `20px`    |
-| iconRender       | 自定义图标	 | _({ checked, disabled }) => ReactNode_ | -    |
-| checkedColor   | 选中状态颜色              | _string_           | `#1989fa` |
-| bindGroup      | 是否与复选框组绑定        | _boolean_          | `true`    |
+| 参数           | 说明                      | 类型                                   | 默认值    |
+| -------------- | ------------------------- | -------------------------------------- | --------- |
+| checked        | 是否为选中状态            | _boolean_                              | `false`   |
+| defaultChecked | 默认选中项的标识符        | _any[]_                                | -         |
+| name           | 标识符                    | _any_                                  | -         |
+| shape          | 形状，可选值为 `square`   | _string_                               | `round`   |
+| disabled       | 是否禁用复选框            | _boolean_                              | `false`   |
+| labelDisabled  | 是否禁用复选框文本点击    | _boolean_                              | `false`   |
+| labelPosition  | 文本位置，可选值为 `left` | _string_                               | `right`   |
+| iconSize       | 图标大小，默认单位为 `px` | _number \| string_                     | `20px`    |
+| iconRender     | 自定义图标                | _({ checked, disabled }) => ReactNode_ | -         |
+| checkedColor   | 选中状态颜色              | _string_                               | `#1989fa` |
+| bindGroup      | 是否与复选框组绑定        | _boolean_                              | `true`    |
 
 ### CheckboxGroup Props
 
 | 参数           | 说明                                  | 类型               | 默认值     |
 | -------------- | ------------------------------------- | ------------------ | ---------- |
-| checked        | 所有选中项的标识符                    | _any[]_            | -          |
+| value        | 所有选中项的标识符                    | _any[]_            | -          |
 | defaultChecked | 默认选中项的标识符                    | _any[]_            | -          |
 | disabled       | 是否禁用所有复选框                    | _boolean_          | `false`    |
 | max            | 最大可选数，`0`为无限制               | _number \| string_ | `0`        |
@@ -175,29 +205,70 @@ const checked = ['a', 'b'];
 
 ### Checkbox Events
 
-| 事件名 | 说明                     | 回调参数           |
-| ------ | ------------------------ | ------------------ |
+| 事件名   | 说明                     | 回调参数           |
+| -------- | ------------------------ | ------------------ |
 | onChange | 当绑定值变化时触发的事件 | _checked: boolean_ |
-| onClick  | 点击复选框时触发         | _event: Event_     |
+| onClick  | 点击复选框时触发         | _event: MouseEvent_     |
 
 ### CheckboxGroup Events
 
-| 事件名 | 说明                     | 回调参数       |
-| ------ | ------------------------ | -------------- |
+| 事件名   | 说明                     | 回调参数       |
+| -------- | ------------------------ | -------------- |
 | onChange | 当绑定值变化时触发的事件 | _names: any[]_ |
 
 ### CheckboxGroup 方法
 
-通过 ref 可以获取到 CheckboxGroup 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+通过 ref 可以获取到 CheckboxGroup 实例并调用实例方法。
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
 | toggleAll | 切换所有复选框，传 `true` 为选中，`false` 为取消选中，不传参为取反 | _options?: boolean \| object_ | - |
 
+### toggleAll 方法示例
+
+```jsx
+import { CheckboxGroupInstance } from 'react-vant'
+
+const checkboxGroup = useRef<CheckboxGroupInstance>(null);
+
+// 全部反选
+checkboxGroup.current?.toggleAll();
+// 全部选中
+checkboxGroup.current?.toggleAll(true);
+// 全部取消
+checkboxGroup.current?.toggleAll(false);
+
+// 全部反选，并跳过禁用的复选框
+checkboxGroup.current?.toggleAll({
+  skipDisabled: true,
+});
+// 全部选中，并跳过禁用的复选框
+checkboxGroup.current?.toggleAll({
+  checked: true,
+  skipDisabled: true,
+});
+```
+
+
 ### Checkbox 方法
 
-通过 ref 可以获取到 Checkbox 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+通过 ref 可以获取到 Checkbox 实例并调用实例方法。
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
 | toggle | 切换选中状态，传 `true` 为选中，`false` 为取消选中，不传参为取反 | _checked?: boolean_ | - |
+
+### 类型定义
+
+通过 `CheckboxInstance` 和 `CheckboxGroupInstance` 获取 Checkbox 实例的类型定义（从 3.2.0 版本开始支持）。
+
+```ts
+import { useRef } from 'react';
+import type { CheckboxInstance, CheckboxGroupInstance } from 'react-vant';
+
+const checkboxRef = useRef<CheckboxInstance>();
+const checkboxGroupRef = useRef<CheckboxGroupInstance>();
+
+checkboxRef.current?.toggle();
+checkboxGroupRef.current?.toggleAll();
+```

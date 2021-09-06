@@ -5,4 +5,10 @@ const CheckboxNamespace = Object.assign(Checkbox, { Group: CheckboxGroup });
 
 export default CheckboxNamespace;
 export { CheckboxNamespace as Checkbox, CheckboxGroup };
-export type { CheckBoxGroupProps, CheckboxProps } from './PropsType';
+export type {
+  CheckboxGroupInstance,
+  CheckboxInstance,
+  CheckboxGroupProps,
+  CheckboxProps,
+  CheckboxGroupToggleAllOptions,
+} from './PropsType';
