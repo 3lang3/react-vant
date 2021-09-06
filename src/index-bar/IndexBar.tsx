@@ -33,6 +33,7 @@ import {
 } from '../utils';
 import { useMount } from '../hooks';
 import { renderToContainer } from '../utils/dom/renderToContainer';
+import useSsrCompat from '../hooks/use-ssr-compat';
 
 const [bem] = createNamespace('index-bar');
 
@@ -48,6 +49,8 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   const touch = useTouch();
   const scrollParent = useScrollParent(root) as Element;
   const [refs, setRefs] = useRefs();
+
+  const ssrCompatRender = useSsrCompat();
 
   const sidebarStyle = useMemo(() => {
     if (isDef(zIndex)) {
@@ -247,17 +250,19 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   return (
     <IndexBarContext.Provider value={{ zIndex, highlightColor, sticky }}>
       <div ref={root} className={classnames(bem(), props.className)} style={props.style}>
-        {renderToContainer(
-          props.teleport,
-          <div
-            ref={sidebar}
-            className={classnames(bem('sidebar'))}
-            style={sidebarStyle}
-            onClick={onClickSidebar}
-            onTouchStart={onTouchStart}
-          >
-            {renderIndexes()}
-          </div>,
+        {ssrCompatRender(() =>
+          renderToContainer(
+            props.teleport,
+            <div
+              ref={sidebar}
+              className={classnames(bem('sidebar'))}
+              style={sidebarStyle}
+              onClick={onClickSidebar}
+              onTouchStart={onTouchStart}
+            >
+              {renderIndexes()}
+            </div>,
+          ),
         )}
         {handleMapChildren(children)}
       </div>
