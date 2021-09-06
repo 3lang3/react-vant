@@ -22,7 +22,7 @@ const useMergedState = <T, R = T>(option?: {
     setInnerValue(newValue);
   }
 
-  return [(mergedValue as unknown) as R, triggerChange];
+  return [mergedValue as unknown as R, triggerChange];
 };
 
 export default useMergedState;

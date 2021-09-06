@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Rate } from 'react-vant';
+// import { Rate } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Rate from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -13,6 +14,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection className="demo-rat">
       <DemoBlock title="基础用法">
+        <div onClick={() => setValue(1)}>test</div>
         <Rate value={value} onChange={onChange} />
       </DemoBlock>
       <DemoBlock title="自定义图标">
@@ -44,7 +46,7 @@ export default (): React.ReactNode => {
         <Rate allowHalf value={value} disabled onChange={onChange} />
       </DemoBlock>
       <DemoBlock title="只读状态显示小数">
-        <Rate allowHalf value={3.6} readonly onChange={onChange} />
+        <Rate allowHalf defaultValue={3.6} readonly onChange={onChange} />
       </DemoBlock>
     </DemoSection>
   );

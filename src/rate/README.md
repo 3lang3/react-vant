@@ -23,7 +23,7 @@ import { Rate } from 'react-vant';
 ```jsx
 export default () => {
   const [value, setValue] = useState(3);
-  return <Rate value={value} onChange={current => setValue(current)} />
+  return <Rate value={value} onChange={(current) => setValue(current)} />;
 };
 ```
 
@@ -32,7 +32,7 @@ export default () => {
 通过 `icon` 属性设置选中时的图标，`voidIcon` 属性设置未选中时的图标。
 
 ```jsx
-<Rate value={3} icon="like" voidIcon="like-o" />
+<Rate defaultValue={3} icon="like" voidIcon="like-o" />
 ```
 
 ### 自定义样式
@@ -40,7 +40,7 @@ export default () => {
 通过 `size` 属性设置图标大小，`color` 属性设置选中时的颜色，`voidColor` 设置未选中时的颜色。
 
 ```jsx
-<Rate value={3} size={25} color="#ffd21e" voidIcon="star" voidColor="#eee" />
+<Rate defaultValue={3} size={25} color="#ffd21e" voidIcon="star" voidColor="#eee" />
 ```
 
 ### 半星
@@ -48,7 +48,7 @@ export default () => {
 设置 `allowHalf` 属性后可以选中半星。
 
 ```jsx
-<Rate value={3.5} allow-half />
+<Rate defaultValue={3.5} allow-half />
 ```
 
 ### 自定义数量
@@ -56,7 +56,7 @@ export default () => {
 通过 `count` 属性设置评分总数。
 
 ```jsx
-<Rate value={1} count="8" />
+<Rate defaultValue={1} count="8" />
 ```
 
 ### 禁用状态
@@ -64,7 +64,7 @@ export default () => {
 通过 `disabled` 属性来禁用评分。
 
 ```jsx
-<Rate value={3} disabled />
+<Rate defaultValue={3} disabled />
 ```
 
 ### 只读状态显示小数
@@ -72,7 +72,7 @@ export default () => {
 设置 `readonly` 和 `allowHalf` 属性后，Rate 组件可以展示任意小数结果。
 
 ```jsx
-<Rate value={3.3} readonly allowHalf />
+<Rate defaultValue={3.3} readonly allowHalf />
 ```
 
 ## API
@@ -82,6 +82,7 @@ export default () => {
 | 参数          | 说明                                         | 类型               | 默认值    |
 | ------------- | -------------------------------------------- | ------------------ | --------- |
 | value         | 当前分值                                     | _number_           | -         |
+| defaultValue  | 默认分值                                     | _number_           | -         |
 | count         | 图标总数                                     | _number \| string_ | `5`       |
 | size          | 图标大小，默认单位为`px`                     | _number \| string_ | `20px`    |
 | gutter        | 图标间距，默认单位为`px`                     | _number \| string_ | `4px`     |
