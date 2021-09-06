@@ -10,7 +10,7 @@ import {
   CheckboxGroupInstance,
   CheckboxInstance,
 } from './PropsType';
-import { createNamespace } from '../utils';
+import { createNamespace, WithDisplayNameReactElement } from '../utils';
 import useRefs from '../hooks/use-refs';
 
 const [bem] = createNamespace('checkbox-group');
@@ -56,9 +56,10 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
   return (
     <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked }}>
       <div className={classnames(bem([props.direction]))}>
-        {React.Children.map(props.children, (child: React.ReactElement, index: number) =>
-          React.cloneElement(child, { ref: setChildrenRefs(index) }),
-        )}
+        {React.Children.map(props.children, (child: WithDisplayNameReactElement, index: number) => {
+          if (child.type.displayName !== 'Checkbox') return child;
+          return React.cloneElement(child, { ref: setChildrenRefs(index) });
+        })}
       </div>
     </CheckBoxContext.Provider>
   );

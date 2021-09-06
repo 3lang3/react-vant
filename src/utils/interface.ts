@@ -7,3 +7,5 @@ export interface BaseTypeProps {
 
 /** 指定挂载的节点 */
 export type TeleportType = HTMLElement | (() => HTMLElement) | null;
+
+export type WithDisplayNameReactElement = React.ReactElement & { type: { displayName: string } };

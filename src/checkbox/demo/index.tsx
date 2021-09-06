@@ -13,8 +13,16 @@ export default (): React.ReactNode => {
 
   const ref = useRef<CheckboxGroupInstance>(null);
   const [checkAll, setCheckAll] = useState(['a']);
+  const [cellCheck, setCellCheck] = useState([]);
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(false);
+
+  const toggle = (name) => {
+    const newValue = cellCheck.includes(name)
+      ? cellCheck.filter((el) => el !== name)
+      : [...cellCheck, name];
+    setCellCheck(newValue);
+  };
 
   return (
     <DemoSection>
@@ -111,10 +119,22 @@ export default (): React.ReactNode => {
         </div>
       </DemoBlock>
       <DemoBlock title="搭配单元格组件使用">
-        <Checkbox.Group defaultValue={[]} max={2}>
+        <Checkbox.Group value={cellCheck} onChange={setCellCheck}>
           <Cell.Group>
-            <Cell title="单选框1" icon="shop-o" rightIcon={<Checkbox name="a" />} />
-            <Cell title="单选框2" icon="shop-o" rightIcon={<Checkbox name="b" />} />
+            <Cell
+              clickable
+              title="单选框1"
+              icon="shop-o"
+              onClick={() => toggle('a')}
+              rightIcon={<Checkbox name="a" />}
+            />
+            <Cell
+              clickable
+              title="单选框2"
+              icon="shop-o"
+              onClick={() => toggle('b')}
+              rightIcon={<Checkbox name="b" />}
+            />
           </Cell.Group>
         </Checkbox.Group>
       </DemoBlock>

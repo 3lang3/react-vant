@@ -80,6 +80,7 @@ const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((props, ref) => {
   );
 });
 
+CheckBox.displayName = 'Checkbox';
 CheckBox.defaultProps = {
   bindGroup: true,
 };

@@ -135,12 +135,12 @@ const checked = ['a', 'b'];
 通过 `CheckboxGroup` 实例上的`toggleAll`方法可以实现全选与反选。
 
 ```jsx
-import { useState, useRef } from 'react'
+import { useState, useRef } from 'react';
 import { Checkbox, Button } from 'react-vant';
 
 export default () => {
-  const ref = useRef(null)
-  const [checkedAll, setCheckedAll] = useState([])
+  const ref = useRef(null);
+  const [checkedAll, setCheckedAll] = useState([]);
   return (
     <>
       <Checkbox.Group value={checkedAll} onChange={setCheckedAll} ref={ref}>
@@ -162,15 +162,40 @@ export default () => {
 
 ### 搭配单元格组件使用
 
-此时你需要再引入 `Cell` 和 `Cell.Group` 组件，并通过 `Checkbox` 实例上的 toggle 方法触发切换。
+此时你需要再引入 `Cell` 和 `Cell.Group` 组件。
 
 ```jsx
-<Checkbox.Group defaultChecked="checked">
-  <Cell.Group>
-    <Cell title="单选框1" icon="shop-o" rightIcon={() => <Checkbox name="a" />} />
-    <Cell title="单选框2" icon="shop-o" rightIcon={() => <Checkbox name="b" />} />
-  </Cell.Group>
-</Checkbox.Group>
+export default () => {
+  const [value, setValue] = useState([]);
+
+  const toggle = (name) => {
+    const newValue = cellCheck.includes(name)
+      ? cellCheck.filter((el) => el !== name)
+      : [...cellCheck, name];
+    setValue(newValue);
+  };
+
+  return (
+    <Checkbox.Group value={value}>
+      <Cell.Group>
+        <Cell
+          clickable
+          title="单选框1"
+          icon="shop-o"
+          onClick={() => toggle('a')}
+          rightIcon={<Checkbox name="a" />}
+        />
+        <Cell
+          clickable
+          title="单选框2"
+          icon="shop-o"
+          onClick={() => toggle('b')}
+          rightIcon={<Checkbox name="b" />}
+        />
+      </Cell.Group>
+    </Checkbox.Group>
+  );
+};
 ```
 
 ## API
@@ -195,7 +220,7 @@ export default () => {
 
 | 参数           | 说明                                  | 类型               | 默认值     |
 | -------------- | ------------------------------------- | ------------------ | ---------- |
-| value        | 所有选中项的标识符                    | _any[]_            | -          |
+| value          | 所有选中项的标识符                    | _any[]_            | -          |
 | defaultChecked | 默认选中项的标识符                    | _any[]_            | -          |
 | disabled       | 是否禁用所有复选框                    | _boolean_          | `false`    |
 | max            | 最大可选数，`0`为无限制               | _number \| string_ | `0`        |
@@ -205,10 +230,10 @@ export default () => {
 
 ### Checkbox Events
 
-| 事件名   | 说明                     | 回调参数           |
-| -------- | ------------------------ | ------------------ |
-| onChange | 当绑定值变化时触发的事件 | _checked: boolean_ |
-| onClick  | 点击复选框时触发         | _event: MouseEvent_     |
+| 事件名   | 说明                     | 回调参数            |
+| -------- | ------------------------ | ------------------- |
+| onChange | 当绑定值变化时触发的事件 | _checked: boolean_  |
+| onClick  | 点击复选框时触发         | _event: MouseEvent_ |
 
 ### CheckboxGroup Events
 
@@ -227,9 +252,9 @@ export default () => {
 ### toggleAll 方法示例
 
 ```jsx
-import { CheckboxGroupInstance } from 'react-vant'
+import { CheckboxGroupInstance } from 'react-vant';
 
-const checkboxGroup = useRef<CheckboxGroupInstance>(null);
+const checkboxGroup = useRef < CheckboxGroupInstance > null;
 
 // 全部反选
 checkboxGroup.current?.toggleAll();
@@ -248,7 +273,6 @@ checkboxGroup.current?.toggleAll({
   skipDisabled: true,
 });
 ```
-
 
 ### Checkbox 方法
 
