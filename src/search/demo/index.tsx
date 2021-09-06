@@ -1,12 +1,15 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Search, Toast } from 'react-vant';
+import { Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Search from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const [value0, setValue0] = useState('');
   const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
   return (
     <DemoSection>
       <DemoBlock title="基本用法">
@@ -26,7 +29,6 @@ export default (): React.ReactNode => {
       <DemoBlock title="事件监听">
         <Search
           value={value1}
-          label="搜索"
           placeholder="请输入搜索关键词"
           showAction
           actionText="取消"
@@ -35,7 +37,7 @@ export default (): React.ReactNode => {
           }}
           onSearch={(val) => {
             Toast(val);
-            setValue0(val);
+            setValue1(val);
           }}
           onCancel={() => {
             Toast('取消');
@@ -49,7 +51,18 @@ export default (): React.ReactNode => {
       </DemoBlock>
 
       <DemoBlock title="自定义背景色 & maxLength">
-        <Search shape="round" placeholder="请输入搜索关键词" background="#4fc08d" maxlength="6" />
+        <Search shape="round" placeholder="请输入搜索关键词" background="#4fc08d" maxlength={6} />
+      </DemoBlock>
+
+      <DemoBlock title="自定义按钮">
+        <Search
+          value={value2}
+          onChange={setValue2}
+          label="地址"
+          placeholder="请输入搜索关键词"
+          actionText={<div onClick={() => Toast.info(value2)}>搜索</div>}
+          showAction
+        />
       </DemoBlock>
     </DemoSection>
   );

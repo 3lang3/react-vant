@@ -13,7 +13,7 @@ const useMergedState = <T, R = T>(option?: {
     if (defaultValue !== undefined) {
       return typeof defaultValue === 'function' ? (defaultValue as any)() : defaultValue;
     }
-    return null;
+    return undefined;
   });
 
   const mergedValue = value !== undefined ? value : innerValue;

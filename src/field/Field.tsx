@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import Icon from '../icon';
 import Cell from '../cell';
 import { FieldInstance, FieldProps } from './PropsType';
-import { createNamespace, isDef, addUnit, formatNumber, isObject } from '../utils';
+import { createNamespace, isDef, addUnit, formatNumber, isObject, preventDefault } from '../utils';
 
 const [bem] = createNamespace('field');
 const ICON_SIZE = '16px';
@@ -161,9 +161,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
     const handleKeypress = (e) => {
       const { onKeypress } = props;
-      const inputValue = e?.currentTarget?.value;
 
       if (e.key === 'Enter' || +e.charCode === 13) {
+        if (props.type !== 'textarea') {
+          preventDefault(e);
+        }
         // trigger blur after click keyboard search button
         if (props.type === 'search') {
           blur();
@@ -171,7 +173,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       }
 
       if (onKeypress && typeof onKeypress === 'function') {
-        onKeypress(inputValue);
+        onKeypress(e);
       }
     };
 
