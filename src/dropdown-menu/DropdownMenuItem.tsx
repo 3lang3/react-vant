@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
 import Cell from '../cell';
 import { useSetState } from '../hooks';
+import useSsrCompat from '../hooks/use-ssr-compat';
 import Icon from '../icon';
 import Popup from '../popup';
 import { createNamespace, getZIndexStyle, pick } from '../utils';
@@ -39,6 +40,7 @@ const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemPr
       transition: true,
       showWrapper: false,
     });
+    const ssrCompatRender = useSsrCompat();
 
     const parent = useContext(DropdownMenuContext);
     const currentValue = parent.value?.[props.name];
@@ -155,7 +157,8 @@ const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemPr
       options: props.options,
     }));
 
-    if (props.teleport) return renderToContainer(props.teleport, renderContent());
+    if (props.teleport)
+      return ssrCompatRender(() => renderToContainer(props.teleport, renderContent()));
     return renderContent();
   },
 );
