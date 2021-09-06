@@ -51,8 +51,12 @@ import { Radio } from 'react-vant';
 
 ```jsx
 <Radio.Group defaultValue="1">
-  <Radio name="1" shape="square">单选框 1</Radio>
-  <Radio name="2" shape="square">单选框 2</Radio>
+  <Radio name="1" shape="square">
+    单选框 1
+  </Radio>
+  <Radio name="2" shape="square">
+    单选框 2
+  </Radio>
 </Radio.Group>
 ```
 
@@ -62,8 +66,12 @@ import { Radio } from 'react-vant';
 
 ```jsx
 <Radio.Group defaultValue="1">
-  <Radio name="1" checkedColor="#ee0a24">单选框 1</Radio>
-  <Radio name="2" checkedColor="#ee0a24">单选框 2</Radio>
+  <Radio name="1" checkedColor="#ee0a24">
+    单选框 1
+  </Radio>
+  <Radio name="2" checkedColor="#ee0a24">
+    单选框 2
+  </Radio>
 </Radio.Group>
 ```
 
@@ -73,8 +81,12 @@ import { Radio } from 'react-vant';
 
 ```jsx
 <Radio.Group defaultValue="1">
-  <Radio name="1" iconSize="24px">单选框 1</Radio>
-  <Radio name="2" iconSize="24px">单选框 2</Radio>
+  <Radio name="1" iconSize="24px">
+    单选框 1
+  </Radio>
+  <Radio name="2" iconSize="24px">
+    单选框 2
+  </Radio>
 </Radio.Group>
 ```
 
@@ -84,8 +96,12 @@ import { Radio } from 'react-vant';
 
 ```jsx
 <Radio.Group defaultValue="1">
-  <Radio name="1" labelDisabled>单选框 1</Radio>
-  <Radio name="2" labelDisabled>单选框 2</Radio>
+  <Radio name="1" labelDisabled>
+    单选框 1
+  </Radio>
+  <Radio name="2" labelDisabled>
+    单选框 2
+  </Radio>
 </Radio.Group>
 ```
 
@@ -105,9 +121,14 @@ import { Radio } from 'react-vant';
       // 注意此时修改 value 后会再次触发 change 事件
       setValue(val);
     }, 500);
-  }}>
-  <Radio name="1" labelDisabled>单选框 1</Radio>
-  <Radio name="2" labelDisabled>单选框 2</Radio>
+  }}
+>
+  <Radio name="1" labelDisabled>
+    单选框 1
+  </Radio>
+  <Radio name="2" labelDisabled>
+    单选框 2
+  </Radio>
 </Radio.Group>
 ```
 
@@ -118,8 +139,8 @@ import { Radio } from 'react-vant';
 ```jsx
 <Radio.Group value="1">
   <Cell.Group>
-    <Cell title="单选框1" icon="shop-o" rightIconSlot={() => <Radio name="1" />} /> <Cell
-    title="单选框2" icon="shop-o" rightIconSlot={() => <Radio name="2" />} />
+    <Cell title="单选框1" icon="shop-o" rightIconSlot={() => <Radio name="1" />} />{' '}
+    <Cell title="单选框2" icon="shop-o" rightIconSlot={() => <Radio name="2" />} />
   </Cell.Group>
 </Radio.Group>
 ```
@@ -128,15 +149,16 @@ import { Radio } from 'react-vant';
 
 ### Radio Props
 
-| 参数          | 说明                      | 类型               | 默认值    |
-| ------------- | ------------------------- | ------------------ | --------- |
-| name          | 标识符                    | _any_              | -         |
-| shape         | 形状，可选值为 `square`   | _string_           | `round`   |
-| disabled      | 是否为禁用状态            | _boolean_          | `false`   |
-| labelDisabled | 是否禁用文本内容点击      | _boolean_          | `false`   |
-| labelPosition | 文本位置，可选值为 `left` | _string_           | `right`   |
-| iconSize      | 图标大小，默认单位为`px`  | _number \| string_ | `21px`    |
-| checkedColor  | 选中状态颜色              | _string_           | `#1989fa` |
+| 参数          | 说明                      | 类型                                   | 默认值    |
+| ------------- | ------------------------- | -------------------------------------- | --------- |
+| name          | 标识符                    | _any_                                  | -         |
+| shape         | 形状，可选值为 `square`   | _string_                               | `round`   |
+| disabled      | 是否为禁用状态            | _boolean_                              | `false`   |
+| labelDisabled | 是否禁用文本内容点击      | _boolean_                              | `false`   |
+| labelPosition | 文本位置，可选值为 `left` | _string_                               | `right`   |
+| iconSize      | 图标大小，默认单位为`px`  | _number \| string_                     | `21px`    |
+| checkedColor  | 选中状态颜色              | _string_                               | `#1989fa` |
+| iconRender    | 自定义图标                | _({ checked, disabled }) => ReactNode_ | -         |
 
 ### RadioGroup Props
 
@@ -147,26 +169,18 @@ import { Radio } from 'react-vant';
 | direction    | 排列方向，可选值为`horizontal`       | _string_           | `vertical` |
 | iconSize     | 所有单选框的图标大小，默认单位为`px` | _number \| string_ | `21px`     |
 | checkedColor | 所有单选框的选中状态颜色             | _string_           | `#1989fa`  |
-| asyncChange  | 是否开启异步更新                     | _boolean_          | `false`    |
 
 ### Radio Events
 
-| 事件名 | 说明             | 回调参数       |
-| ------ | ---------------- | -------------- |
-| click  | 点击单选框时触发 | _event: Event_ |
+| 事件名  | 说明             | 回调参数       |
+| ------- | ---------------- | -------------- |
+| onClick | 点击单选框时触发 | _event: Event_ |
 
 ### RadioGroup Events
 
-| 事件名 | 说明                     | 回调参数       |
-| ------ | ------------------------ | -------------- |
-| change | 当绑定值变化时触发的事件 | _name: string_ |
-
-### Radio Slots
-
-| 名称    | 说明       | 参数               |
-| ------- | ---------- | ------------------ |
-| default | 自定义文本 | -                  |
-| icon    | 自定义图标 | _checked: boolean_ |
+| 事件名   | 说明                     | 回调参数       |
+| -------- | ------------------------ | -------------- |
+| onChange | 当绑定值变化时触发的事件 | _name: string_ |
 
 ### 样式变量
 

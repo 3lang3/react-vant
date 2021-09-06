@@ -7,6 +7,7 @@ let timer;
 
 export default (): React.ReactNode => {
   const [value, setValue] = useState('1');
+  const [cellValue, setCellValue] = useState('');
 
   const { DemoBlock, DemoSection } = components;
 
@@ -107,10 +108,22 @@ export default (): React.ReactNode => {
         </div>
       </DemoBlock>
       <DemoBlock title="搭配单元格组件使用">
-        <Radio.Group value="1">
+        <Radio.Group value={cellValue}>
           <Cell.Group>
-            <Cell title="单选框1" icon="shop-o" rightIconSlot={() => <Radio name="1" />} />
-            <Cell title="单选框2" icon="shop-o" rightIconSlot={() => <Radio name="2" />} />
+            <Cell
+              clickable
+              title="单选框1"
+              icon="shop-o"
+              onClick={() => setCellValue('1')}
+              rightIcon={<Radio name="1" />}
+            />
+            <Cell
+              clickable
+              title="单选框2"
+              icon="shop-o"
+              onClick={() => setCellValue('2')}
+              rightIcon={<Radio name="2" />}
+            />
           </Cell.Group>
         </Radio.Group>
       </DemoBlock>

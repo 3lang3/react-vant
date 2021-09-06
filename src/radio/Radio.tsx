@@ -22,13 +22,12 @@ const Radio: React.FC<RadioProps> = (props) => {
 
   return (
     <Checker
-      className={props.className}
+      {...props}
       bem={bem}
       role="radio"
       parent={parent}
       checked={checked}
       onToggle={toggle}
-      {...props}
     />
   );
 };

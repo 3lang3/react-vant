@@ -23,7 +23,11 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
 
   return (
     <RadioContext.Provider value={{ parent: { props }, toggle, checked }}>
-      <div className={classnames(bem([props.direction]))} role="radiogroup">
+      <div
+        className={classnames(props.className, bem([props.direction]))}
+        style={props.style}
+        role="radiogroup"
+      >
         {props.children}
       </div>
     </RadioContext.Provider>

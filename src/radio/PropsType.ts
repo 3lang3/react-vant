@@ -16,8 +16,6 @@ export interface RadioGroupProps<T = RadioValueType> extends BaseTypeProps {
   value?: T;
   /** 默认值 */
   defaultValue?: T;
-  /** 是否开启异步更新 */
-  asyncChange?: boolean;
   /** 当绑定值变化时触发的事件	 */
   onChange?: (name: T) => void;
 }
