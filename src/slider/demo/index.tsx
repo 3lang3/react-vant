@@ -1,19 +1,20 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Toast, Slider } from 'react-vant';
+import { Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Slider from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const [value1, setValue1] = useState(10);
-  const [value2, setValue2] = useState([10, 50]);
+  const [value2, setValue2] = useState<[number, number]>([10, 50]);
   const [value3, setValue3] = useState(10);
   const [value4, setValue4] = useState(10);
   const [value5, setValue5] = useState(10);
   const [value6, setValue6] = useState(10);
   const [value7, setValue7] = useState(50);
-  const [value8, setValue8] = useState([20, 50]);
+  const [value8, setValue8] = useState<[number, number]>([20, 50]);
 
   const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
   return (

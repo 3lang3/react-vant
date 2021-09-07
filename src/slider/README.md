@@ -100,8 +100,8 @@ export default () => {
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| value | 当前进度百分比，在双滑块模式下为数组格式 | _number | [number, number]_ | `0` |
+| --- | --- | --- | --- | --- |
+| value | 当前进度百分比，在双滑块模式下为数组格式 | \_number | [number, number]\_ | `0` |
 | max | 最大值 | _number \| string_ | `100` |
 | min | 最小值 | _number \| string_ | `0` |
 | step | 步长 | _number \| string_ | `1` |
@@ -110,6 +110,7 @@ export default () => {
 | activeColor | 进度条激活态颜色 | _string_ | `#3f45ff` |
 | inactiveColor | 进度条非激活态颜色 | _string_ | `#e5e5e5` |
 | range | 是否开启双滑块模式 | _boolean_ | `false` |
+| reverse | 是否将进度条反转 | _boolean_ | `false` |
 | disabled | 是否禁用滑块 | _boolean_ | `false` |
 | readonly | 是否为只读状态，只读状态下无法修改滑块的值 | _boolean_ | `false` |
 | vertical | 是否垂直展示 | _boolean_ | `false` |
@@ -121,8 +122,8 @@ export default () => {
 
 `SliderValue`指`props.value`
 
-| 事件名        | 说明                         | 回调参数                             |
-| ------------- | ---------------------------- | ------------------------------------ |
+| 事件名        | 说明                         | 回调参数                                  |
+| ------------- | ---------------------------- | ----------------------------------------- |
 | onChange      | 进度变化时**实时触发**       | _value: SliderValue_                      |
 | onChangeAfter | 进度变化且**结束拖动后触发** | _value: SliderValue_                      |
 | onDragStart   | 开始拖动时触发               | _event: TouchEvent_, _value: SliderValue_ |
