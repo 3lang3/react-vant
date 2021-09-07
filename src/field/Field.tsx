@@ -349,7 +349,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           <Icon
             className={classnames(bem('clear'))}
             onTouchStart={handleClear}
-            name="clear"
+            name={props.clearIcon}
             size={ICON_SIZE}
           />
         )}
@@ -362,9 +362,8 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   );
 });
 
-// Field.defaultProps = {
-//   type: 'text',
-//   formatTrigger: 'onChange',
-// };
+Field.defaultProps = {
+  clearIcon: 'clear',
+};
 
 export default Field;

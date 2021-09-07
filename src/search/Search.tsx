@@ -60,6 +60,12 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     clearable = true,
     clearTrigger,
     placeholder,
+    inputAlign,
+    readonly,
+    error,
+    errorMessage,
+    formatter,
+    formatTrigger,
   } = props;
 
   const fieldPropNames = {
@@ -70,6 +76,12 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     placeholder,
     disabled,
     maxlength,
+    inputAlign,
+    readonly,
+    error,
+    errorMessage,
+    formatter,
+    formatTrigger,
   };
 
   const renderField = () => {
@@ -112,6 +124,7 @@ Search.defaultProps = {
   shape: 'square',
   leftIcon: 'search',
   actionText: '取消',
+  inputAlign: 'left',
 } as const;
 
 export default Search;

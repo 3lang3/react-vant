@@ -46,6 +46,10 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
+      <DemoBlock title="搜索框内容对齐">
+        <Search placeholder="请输入搜索关键词" inputAlign="center" />
+      </DemoBlock>
+
       <DemoBlock title="禁用搜索框">
         <Search placeholder="请输入搜索关键词" disabled />
       </DemoBlock>
