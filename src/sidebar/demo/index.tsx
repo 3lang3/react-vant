@@ -1,10 +1,12 @@
-import React from 'react';
-import { Grid, Sidebar, Toast } from 'react-vant';
+import React, { useState } from 'react';
+import { Grid, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Sidebar from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
+  const [ac, setAc] = useState(2);
   return (
     <DemoSection className="demo-sidebar">
       <Grid columnNum={2} border={false}>
@@ -37,10 +39,16 @@ export default (): React.ReactNode => {
         </Grid.Item>
         <Grid.Item>
           <DemoBlock title="监听切换事件">
-            <Sidebar onChange={(v) => Toast.info(`标签名 ${v + 1}`)}>
-              <Sidebar.Item title="标签名" />
-              <Sidebar.Item title="标签名" />
-              <Sidebar.Item title="标签名" />
+            <Sidebar
+              value={ac}
+              onChange={(v) => {
+                setAc(+v);
+                Toast.info(`标签名 ${+v + 1}`);
+              }}
+            >
+              <Sidebar.Item title="标签名1" />
+              <Sidebar.Item title="标签名2" />
+              <Sidebar.Item title="标签名3" />
             </Sidebar>
           </DemoBlock>
         </Grid.Item>

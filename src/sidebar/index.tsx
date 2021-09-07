@@ -1,9 +1,8 @@
-import BaseSidebar from './Sidebar';
+import Sidebar from './Sidebar';
 import SidebarItem from './SidebarItem';
-import { SidebarStatic } from './PropsType';
 
-const Sidebar = BaseSidebar as SidebarStatic;
+const SidebarNamespace = Object.assign(Sidebar, { Item: SidebarItem });
 
-Sidebar.Item = SidebarItem;
-
-export default Sidebar;
+export default SidebarNamespace;
+export { SidebarNamespace as Sidebar, SidebarItem };
+export type { SidebarProps, SidebarItemProps } from './PropsType';

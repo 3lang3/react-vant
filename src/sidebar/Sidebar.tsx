@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cls from 'classnames';
 import { createNamespace } from '../utils';
 
 import { SidebarProps } from './PropsType';
+import useMergedState from '../hooks/use-merged-state';
 
 const [bem] = createNamespace('sidebar');
 
 const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props }) => {
-  const [active, updateActive] = useState(() => +props.value);
+  const [active, updateActive] = useMergedState({
+    value: props.value,
+    defaultValue: props.defaultValue,
+  });
+
   const getActive = () => active;
 
   const setActive = (value: number) => {
@@ -29,10 +34,6 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
       )}
     </div>
   );
-};
-
-Sidebar.defaultProps = {
-  value: 0,
 };
 
 export default Sidebar;
