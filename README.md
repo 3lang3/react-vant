@@ -1,30 +1,38 @@
-# react-vant
+<p align="center">
+    <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="140" style="margin-bottom: 10px;">
+</p>
 
-参照 Vant 打造的 React 框架移动端组件库。
+<h1 align="center">React Vant</h1>
 
-[![NPM version][npm-image]][npm-url] 
+<p align="center">参照 Vant 打造的 React 框架移动端组件库。</p>
 
-[npm-image]: http://img.shields.io/npm/v/react-vant.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/react-vant
+<p align="center">
+    <img src="https://img.shields.io/npm/v/react-vant/latest?style=flat-square" alt="npm version" />
+</p>
 
-## Roadmap
+<p align="center">
+  🌈 <a href="https://3lang3.github.io/react-vant/">文档网站（GitHub）</a>
+</p>
+
+## 路线图
 
 [Roadmap](https://github.com/3lang3/react-vant/discussions/16)概览
 
-
 ## 特性
 
-- 50+ 高质量组件，覆盖移动端基本场景
+- 提供 50 多个高质量组件，覆盖移动端各类场景
+- 性能极佳，组件平均体积不到 1kb（min+gzip）
+- 完善的文档和示例
 - 支持按需引入
 - 支持主题定制
-- 支持 SSR
 - 支持 TypeScript
+- 支持 SSR
 
-## Install
+## 安装
 
 [![react-vant](https://nodei.co/npm/react-vant.png)](https://npmjs.org/package/react-vant)
 
-## Quickstart
+## 快速开始
 
 ```jsx
 import ReactDOM from 'react-dom';
@@ -40,108 +48,22 @@ ReactDOM.render(<App />, mountNode);
 
 请参阅[Quickstart](https://3lang3.github.io/react-vant/#/zh-CN/)中的更多内容。
 
-## 📦 Dev App
+## 浏览器支持
 
-npm
+React Vant 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0。
 
-```bash
-npm install
-```
+## 贡献代码
 
-yarn
+修改代码请阅读我们的 [贡献指南](https://3lang3.github.io/react-vant/#/zh-CN/contribution)。
 
-```bash
-yarn
-```
+使用过程中发现任何问题都可以提 [Issue](https://github.com/3lang3/react-vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/3lang3/react-vant/pulls)。
 
-### 启动文档
+> 欢迎加入我们的微信讨论组
 
-```bash
-yarn start
-```
+<img src="https://user-images.githubusercontent.com/7098719/130221473-851855c7-1429-4a36-838d-4f7f95a48418.jpg" width="140">
 
-### 打包文档
+## 手机预览
 
-```bash
-yarn build:site
-```
+可以手机扫码以下二维码访问手机端 demo：
 
-### 发布文档
-
-```bash
-yarn release:site
-```
-
-### 打包组件
-
-```bash
-yarn build
-```
-
-### 测试组件
-
-```bash
-yarn test
-```
-
-### Contributor group
-
-欢迎加入我们的微信讨论组
-
-<img src="https://user-images.githubusercontent.com/7098719/130221473-851855c7-1429-4a36-838d-4f7f95a48418.jpg" width="200">
-
-## Components completion status
-
-### Layout Components
-
-- [x] Flex 布局
-
-### Basic Components
-
-- [x] Button 按钮
-- [x] Typography 文本
-- [x] Icon 图标
-- [x] Image 图片
-- [x] Popup 弹出框
-- [x] Cell 单元格
-- [x] Toast 轻提示
-- [x] 内置样式（IPhoneX 适配，细边框等）
-
-### Form Components
-
-- [x] Field 输入框
-- [x] CheckBox 复选框
-- [x] Radio 单选框
-- [x] Rate 评分
-- [x] Picker 选择器
-- [x] Stepper 步进器
-- [x] Search 搜索
-- [x] DatetimePicker 时间选择
-- [x] PasswordInput 密码输入框
-
-### Display Components
-
-- [x] Badge 徽标
-- [x] Collapse 折叠面板
-- [x] CountDown 倒计时
-- [x] Empty 空状态
-- [x] ImagePreview 图片预览
-- [x] List 列表
-- [x] NoticeBar 通知栏
-- [x] Sticky 粘性布局
-- [x] Swipe 轮播
-- [x] Tag 标签
-
-### Action Components
-
-- [x] ActionSheet 动作面板
-- [x] Loading 加载
-- [x] Overlay 遮罩层
-- [x] Dialog 弹出层
-- [x] PullRefresh 下拉刷新
-
-### Navigation Components
-
-- [x] IndexBar 索引栏
-- [x] NavBar 导航栏
-- [x] Tabs 标签页
+<img src="https://user-images.githubusercontent.com/7098719/132332336-20429085-18b7-4639-8022-a5e7098610ad.png" width="200" height="200" >
