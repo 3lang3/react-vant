@@ -40,7 +40,7 @@ const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemPr
       transition: true,
       showWrapper: false,
     });
-    const ssrCompatRender = useSsrCompat();
+    const [ssrCompatRender] = useSsrCompat();
 
     const parent = useContext(DropdownMenuContext);
     const currentValue = parent.value?.[props.name];

@@ -50,7 +50,7 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   const scrollParent = useScrollParent(root) as Element;
   const [refs, setRefs] = useRefs();
 
-  const ssrCompatRender = useSsrCompat();
+  const [ssrCompatRender] = useSsrCompat();
 
   const sidebarStyle = useMemo(() => {
     if (isDef(zIndex)) {

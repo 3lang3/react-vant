@@ -49,14 +49,14 @@ const [bem] = createNamespace('popup');
 let globalZIndex = 2000;
 
 const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
-  const { round, closeable, title, descrition, children, duration, closeIcon, position } = props;
+  const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
+    props;
   const opened = useRef(false);
   const zIndex = useRef(globalZIndex);
   const popupRef = useRef<HTMLDivElement>();
-  const [visible, setVisible] = useState(false);
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
-  const ssrCompatRender = useSsrCompat();
+  const [ssrCompatRender, rendered] = useSsrCompat();
 
   const style = useMemo(() => {
     const initStyle = {
@@ -107,7 +107,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     if (props.overlay) {
       return (
         <Overlay
-          visible={visible}
+          visible={visible && rendered}
           className={props.overlayClass}
           customStyle={props.overlayStyle}
           zIndex={zIndex.current}
@@ -160,7 +160,10 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     return (
       <div
         ref={popupRef}
-        style={{ ...style, display: !visible && !animatedVisible ? 'none' : undefined }}
+        style={{
+          ...style,
+          display: !visible && !rendered && !animatedVisible ? 'none' : undefined,
+        }}
         className={classnames(
           props.className,
           bem({
@@ -184,7 +187,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     const name = position === 'center' ? 'rv-fade' : `rv-popup-slide-${position}`;
     return (
       <CSSTransition
-        in={visible}
+        in={visible && rendered}
         timeout={duration}
         classNames={transition || name}
         mountOnEnter={!forceRender}
@@ -208,17 +211,14 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   });
 
   useEffect(() => {
-    setVisible(props.visible);
-  }, [props.visible]);
-
-  useEffect(() => {
+    if (!rendered) return;
     if (visible) {
       lockScroll();
       setAnimatedVisible(true);
     } else {
       unlockScroll();
     }
-  }, [visible]);
+  }, [visible, rendered]);
 
   useImperativeHandle(ref, () => ({
     popupRef,

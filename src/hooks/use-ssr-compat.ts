@@ -1,12 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useSsrCompat() {
   const [mounted, setMounted] = useState(false);
+  const [rendered, setRendered] = useState(mounted);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  return useCallback((render: () => JSX.Element) => (mounted ? render() : null), [mounted]);
+  useEffect(() => {
+    if (mounted) {
+      setRendered(true);
+    }
+  }, [mounted]);
+
+  return [
+    useCallback((render: () => any) => (mounted ? render() : null), [mounted]),
+    rendered,
+  ] as const;
 }
