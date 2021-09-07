@@ -58,8 +58,8 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="徽标提示">
         <Grid columnNum={2}>
-          <Grid.Item icon="home-o" text="文字" dot />
-          <Grid.Item icon="search" text="文字" badge="99+" />
+          <Grid.Item icon="home-o" text="文字" badge={{ dot: true }} />
+          <Grid.Item icon="search" text="文字" badge={{ content: '99+' }} />
         </Grid>
       </DemoBlock>
     </DemoSection>

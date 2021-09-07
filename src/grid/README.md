@@ -99,8 +99,8 @@ import { Grid } from 'react-vant';
 
 ```jsx
 <Grid columnNum={2}>
-  <Grid.Item icon="home-o" text="文字" dot />
-  <Grid.Item icon="search" text="文字" badge="99+" />
+  <Grid.Item icon="home-o" text="文字" badge={{ dot: true }} />
+  <Grid.Item icon="search" text="文字" badge={{ content: "99+" }} />
 </Grid>
 ```
 
@@ -129,8 +129,7 @@ import { Grid } from 'react-vant';
 | icon | [图标名称](#/zh-CN/icon)或图片链接 | _string \| React.ReactNode_ | - |
 | iconPrefix | 图标类名前缀，等同于 Icon 组件的 [classPrefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | iconColor | 图标颜色，等同于 Icon 组件的 [color 属性](#/zh-CN/icon#props) | _string_ | - |
-| dot | 是否显示图标右上角小红点 | _boolean_ | `false` |
-| badge | 图标右上角徽标的内容 | _number \| string_ | - |
+| badge | 图标右上角徽标的内容 | _BadgeProps_ | - |
 | className | 类名 | _string_ | - |
 | style | style | _React.CSSProperties_ | - |
 | contentClassName | 内容类名 | _string_ | - |
