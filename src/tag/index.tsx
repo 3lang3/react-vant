@@ -1,4 +1,4 @@
-import React, { useMemo, MouseEvent, useState } from 'react';
+import React, { useMemo, MouseEvent, useState, useRef } from 'react';
 import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
@@ -11,6 +11,7 @@ const [bem] = createNamespace('tag');
 
 const Tag: React.FC<TagProps> = (props) => {
   const { show, type, mark, plain, round, size, closeable, hairline } = props;
+  const nodeRef = useRef(null);
   const [selected, setSelected] = useState<boolean>(props.selected);
 
   const onClose = (event: MouseEvent) => {
@@ -43,8 +44,9 @@ const Tag: React.FC<TagProps> = (props) => {
   );
 
   return (
-    <CSSTransition classNames="rv-fade" in={show} timeout={50} unmountOnExit>
+    <CSSTransition nodeRef={nodeRef} classNames="rv-fade" in={show} timeout={50} unmountOnExit>
       <span
+        ref={nodeRef}
         style={{ ...getStyle, ...props.style }}
         className={classnames(
           bem([classes, type]),
