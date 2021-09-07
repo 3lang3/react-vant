@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Flex, Typography, Switch, Skeleton } from 'react-vant';
+import { Flex, Typography, Switch } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Skeleton from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
