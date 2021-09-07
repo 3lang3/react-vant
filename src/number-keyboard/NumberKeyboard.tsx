@@ -185,6 +185,7 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
     <CSSTransition
       mountOnEnter
       unmountOnExit
+      nodeRef={root}
       in={props.visible}
       timeout={300}
       classNames={props.transition ? 'rv-slide-up' : ''}

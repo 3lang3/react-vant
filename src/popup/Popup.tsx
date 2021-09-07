@@ -189,6 +189,10 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     return (
       <CSSTransition
         in={visible && rendered}
+        /**
+         * https://github.com/reactjs/react-transition-group/pull/559
+         */
+        nodeRef={popupRef}
         timeout={duration}
         classNames={transition || name}
         mountOnEnter={!forceRender}
