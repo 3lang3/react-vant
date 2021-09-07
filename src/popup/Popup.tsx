@@ -162,7 +162,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         ref={popupRef}
         style={{
           ...style,
-          display: !visible && !rendered && !animatedVisible ? 'none' : undefined,
+          display: !visible && !animatedVisible ? 'none' : undefined,
         }}
         className={classnames(
           props.className,
@@ -185,6 +185,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const renderTransition = () => {
     const { transition, destroyOnClose, forceRender } = props;
     const name = position === 'center' ? 'rv-fade' : `rv-popup-slide-${position}`;
+
     return (
       <CSSTransition
         in={visible && rendered}
