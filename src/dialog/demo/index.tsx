@@ -198,7 +198,7 @@ export default (): React.ReactNode => {
         }}
         onCancel={() => setShow(false)}
       >
-        <img src="https://img.yzcdn.cn/vant/apple-3.jpg" alt="2131" />
+        <img className="demo-dialog-img" src="https://img.yzcdn.cn/vant/apple-3.jpg" alt="2131" />
       </Dialog>
     </DemoSection>
   );

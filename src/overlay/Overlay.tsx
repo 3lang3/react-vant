@@ -1,4 +1,4 @@
-import React, { CSSProperties, TouchEvent } from 'react';
+import React, { CSSProperties, TouchEvent, useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
 import { OverlayProps } from './PropsType';
@@ -7,7 +7,8 @@ import { noop, createNamespace, preventDefault, isDef } from '../utils';
 const [bem] = createNamespace('overlay');
 
 const OverLay: React.FC<OverlayProps> = (props) => {
-  const { visible, duration } = props;
+  const { duration } = props;
+  const [visible, setVisible] = useState(false);
 
   const preventTouchMove = (event: TouchEvent) => {
     preventDefault(event, true);
@@ -35,6 +36,10 @@ const OverLay: React.FC<OverlayProps> = (props) => {
       </div>
     );
   };
+
+  useEffect(() => {
+    setVisible(props.visible);
+  }, [props.visible]);
 
   return (
     <CSSTransition mountOnEnter unmountOnExit in={visible} timeout={duration} classNames="rv-fade">

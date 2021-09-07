@@ -49,11 +49,11 @@ const [bem] = createNamespace('popup');
 let globalZIndex = 2000;
 
 const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
-  const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
-    props;
+  const { round, closeable, title, descrition, children, duration, closeIcon, position } = props;
   const opened = useRef(false);
   const zIndex = useRef(globalZIndex);
   const popupRef = useRef<HTMLDivElement>();
+  const [visible, setVisible] = useState(false);
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
   const ssrCompatRender = useSsrCompat();
@@ -182,7 +182,6 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const renderTransition = () => {
     const { transition, destroyOnClose, forceRender } = props;
     const name = position === 'center' ? 'rv-fade' : `rv-popup-slide-${position}`;
-
     return (
       <CSSTransition
         in={visible}
@@ -207,6 +206,10 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
       close();
     }
   });
+
+  useEffect(() => {
+    setVisible(props.visible);
+  }, [props.visible]);
 
   useEffect(() => {
     if (visible) {
