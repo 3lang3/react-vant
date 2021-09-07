@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="140" style="margin-bottom: 10px;">
+    <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="240" style="margin-bottom: 10px;">
 </p>
 
 <h1 align="center">React Vant</h1>
