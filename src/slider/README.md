@@ -100,7 +100,7 @@ export default () => {
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | value | 当前进度百分比，在双滑块模式下为数组格式 | \_number | [number, number]\_ | `0` |
 | max | 最大值 | _number \| string_ | `100` |
 | min | 最小值 | _number \| string_ | `0` |
