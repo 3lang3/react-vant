@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Cell, ShareSheet } from 'react-vant';
+import { Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import ShareSheet from '..';
 import './style.less';
 
 const options = [

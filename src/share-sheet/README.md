@@ -119,13 +119,13 @@ const options = [
 | --- | --- | --- | --- |
 | visible | 是否显示分享面板 | _boolean_ | `false` |
 | options | 分享选项 | _Option[]_ | `[]` |
-| title | 顶部标题 | _JSX.Element_ | - |
-| cancelText | 取消按钮文字，传入空字符串可以隐藏按钮 | _JSX.Element_ | `'取消'` |
-| description | 标题下方的辅助描述文字 | _JSX.Element_ | - |
+| title | 顶部标题 | _ReactNode_ | - |
+| cancelText | 取消按钮文字，传入空字符串可以隐藏按钮 | _ReactNode_ | `'取消'` |
+| description | 标题下方的辅助描述文字 | _ReactNode_ | - |
 | duration | 动画时长，单位秒，设置为 0 可以禁用动画 | _number \| string_ | `0.3` |
 | overlay | 是否显示遮罩层 | _boolean_ | `true` |
-| overlayClass | 自定义遮罩层类名 | _string \| Array \| object_ | - |
-| overlayStyle | 自定义遮罩层样式 | _object_ | - |
+| overlayClass | 自定义遮罩层类名 | _string_ | - |
+| overlayStyle | 自定义遮罩层样式 | _CSSProperties_ | - |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
