@@ -6,6 +6,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "style": "lib/index.css",
+  "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "es"
