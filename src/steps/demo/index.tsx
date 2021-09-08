@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Steps, Button } from 'react-vant';
+import { Button } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Steps from '..';
 import './style.less';
 
 export default (): React.ReactNode => {

@@ -1,18 +1,13 @@
 import React, { useMemo } from 'react';
 import cls from 'classnames';
 import { createNamespace } from '../utils';
-import { StepsProps } from './PropsType';
+import { StepsItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
 import Icon from '../icon';
 
 const [bem] = createNamespace('step');
 
-type InternalProps = {
-  parent: StepsProps;
-  index: number;
-};
-
-const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
+const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
   const { index, parent: parentProps } = props;
   if (!parentProps) {
     if (process.env.NODE_ENV !== 'production') {
@@ -48,7 +43,9 @@ const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
     return {};
   }, [index, parentProps.active, parentProps.activeColor, parentProps.inactiveColor]);
 
-  const onClickStep = () => parentProps.onClickStep(index);
+  const onClickStep = () => {
+    if (parentProps.onClickStep) parentProps.onClickStep(index);
+  };
 
   const renderCircle = () => {
     const { iconPrefix, finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;
@@ -99,7 +96,10 @@ const StepsItem: React.FC<InternalProps> = ({ children, ...props }) => {
   const status = getStatus();
 
   return (
-    <div className={cls(BORDER, bem([parentProps.direction, { [status]: status }]))}>
+    <div
+      style={props.style}
+      className={cls(props.className, BORDER, bem([parentProps.direction, { [status]: status }]))}
+    >
       <div
         className={cls(bem('title', { active: isActive() }))}
         style={titleStyle}

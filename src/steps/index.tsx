@@ -1,9 +1,8 @@
-import BaseGrid from './Steps';
+import Steps from './Steps';
 import StepsItem from './StepsItem';
-import { StepStatic } from './PropsType';
 
-const Steps = BaseGrid as StepStatic;
+const StepsNamespace = Object.assign(Steps, { Item: StepsItem });
 
-Steps.Item = StepsItem;
-
-export default Steps;
+export default StepsNamespace;
+export { StepsNamespace as Steps, StepsItem };
+export type { StepsProps } from './PropsType';
