@@ -1,14 +1,15 @@
-import React, { CSSProperties, useState, useRef, useMemo, useEffect, useLayoutEffect } from 'react';
+import React, { CSSProperties, useRef, useMemo, useEffect } from 'react';
 import classnames from 'classnames';
 import { ImageProps } from './PropsType';
 import { isDef, addUnit, createNamespace } from '../utils';
 import Icon from '../icon';
+import { useSetState, useUpdateEffect } from '../hooks';
 
 const [bem] = createNamespace('image');
 
 const Image: React.FC<ImageProps> = (props) => {
   const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
-  const [status, setStatus] = useState({ loading: true, error: false });
+  const [status, setStatus] = useSetState({ loading: true, error: false });
   const unmountedRef = useRef(false);
 
   const style = useMemo(() => {
@@ -36,13 +37,13 @@ const Image: React.FC<ImageProps> = (props) => {
     };
   }, []);
 
-  useLayoutEffect(() => {
+  useUpdateEffect(() => {
     setStatus({ error: false, loading: true });
   }, [props.src]);
 
   const onLoad = (e) => {
     if (!unmountedRef.current) {
-      setStatus((v) => ({ ...v, loading: false }));
+      setStatus({ loading: false });
       props.onLoad?.(e);
     }
   };
