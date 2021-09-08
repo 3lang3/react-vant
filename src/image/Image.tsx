@@ -33,17 +33,18 @@ const Image: React.FC<ImageProps> = (props) => {
   }, []);
 
   useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      setStatus({ loading: false, error: false });
+    }
     return () => {
       unmountedRef.current = true;
     };
   }, []);
 
   useUpdateEffect(() => {
-    let loading = true;
-    if (imgRef.current && imgRef.current.complete) {
-      loading = false;
+    if (imgRef.current && !imgRef.current.complete) {
+      setStatus({ error: false, loading: true });
     }
-    setStatus({ error: false, loading });
   }, [props.src]);
 
   const onLoad = (e) => {
