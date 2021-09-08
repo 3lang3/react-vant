@@ -10,6 +10,7 @@ const [bem] = createNamespace('image');
 const Image: React.FC<ImageProps> = (props) => {
   const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
   const [status, setStatus] = useSetState({ loading: true, error: false });
+  const imgRef = useRef<HTMLImageElement>(null);
   const unmountedRef = useRef(false);
 
   const style = useMemo(() => {
@@ -38,7 +39,11 @@ const Image: React.FC<ImageProps> = (props) => {
   }, []);
 
   useUpdateEffect(() => {
-    setStatus({ error: false, loading: true });
+    let loading = true;
+    if (imgRef.current && imgRef.current.complete) {
+      loading = false;
+    }
+    setStatus({ error: false, loading });
   }, [props.src]);
 
   const onLoad = (e) => {
@@ -110,7 +115,14 @@ const Image: React.FC<ImageProps> = (props) => {
       onClick: props.onClick,
     };
     return (
-      <img alt={props.alt || 'img'} src={props.src} onLoad={onLoad} onError={onError} {...attrs} />
+      <img
+        ref={imgRef}
+        alt={props.alt || 'img'}
+        src={props.src}
+        onLoad={onLoad}
+        onError={onError}
+        {...attrs}
+      />
     );
   };
 
