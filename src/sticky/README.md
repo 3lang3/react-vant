@@ -18,7 +18,7 @@ import { Sticky } from 'react-vant';
 
 ```jsx
 <Sticky>
-  <button type="primary">基础用法</button>
+  <Button type="primary">基础用法</Button>
 </Sticky>
 ```
 
@@ -28,7 +28,7 @@ import { Sticky } from 'react-vant';
 
 ```jsx
 <Sticky offsetTop={50}>
-  <button type="info">吸顶距离</button>
+  <Button type="info">吸顶距离</Button>
 </Sticky>
 ```
 
@@ -50,21 +50,34 @@ const container = useRef(null);
 </div>
 ```
 
+### 吸底距离
+
+将 `position` 设置为 `bottom` 可以让组件吸附在底部。通过 `offsetBottom` 属性可以设置组件在吸底时与底部的距离。
+
+```jsx
+<Sticky position="bottom" offsetBottom={50}>
+  <Button type="info">吸底距离</Button>
+</Sticky>
+```
+
 ## API
 
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| position | 吸附位置，可选值为 `bottom` | _string_ | `top` |
 | offsetTop | 吸顶时与顶部的距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `0` |
+| offsetBottom | 吸底时与底部的距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `0` |
 | zIndex | 吸顶时的 z-index | _number \| string_ | `99` |
-| container | 容器对应的 HTML 节点 | _Element_ | - |
+| container | 容器对应的 HTML 节点 | _RefElement_ | - |
 
 ### Events
 
-| 事件名 | 说明       | 回调参数                                       |
-| ------ | ---------- | ---------------------------------------------- |
-| scroll | 滚动时触发 | { scrollTop: 距离顶部位置, isFixed: 是否吸顶 } |
+| 事件名   | 说明                 | 回调参数                                  |
+| -------- | -------------------- | ----------------------------------------- |
+| onScroll | 滚动时触发           | _{ scrollTop: number, isFixed: boolean }_ |
+| onChange | 当吸顶状态改变时触发 | _isFixed: boolean_                        |
 
 ### 样式变量
 

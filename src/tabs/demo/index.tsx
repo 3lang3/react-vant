@@ -1,6 +1,7 @@
 import React from 'react';
-import { Tabs, Toast } from 'react-vant';
+import { Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Tabs from '..';
 import './style.less';
 
 export default (): React.ReactNode => {

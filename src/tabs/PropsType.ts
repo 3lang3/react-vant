@@ -37,7 +37,7 @@ export interface TabsProps extends BaseTypeProps {
 }
 
 export interface TabsTitleProps extends BaseTypeProps {
-  key?: number;
+  key?: React.Key;
   dot: boolean;
   type: string;
   color: string;
@@ -65,7 +65,7 @@ export interface TabsContentProps {
 }
 
 export interface TabPaneProps {
-  key?: number;
+  key?: React.Key;
   dot?: boolean;
   index?: number;
   name?: number | string;

@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { Button, Sticky } from 'react-vant';
+import React, { useRef } from 'react';
+import { Button } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Sticky from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -31,6 +32,14 @@ export default (): React.ReactNode => {
             </Button>
           </Sticky>
         </div>
+      </DemoBlock>
+      <DemoBlock title="吸底距离">
+        <div style={{ height: 200 }} />
+        <Sticky position="bottom" offsetBottom={50}>
+          <Button type="info" style={{ marginLeft: '15px' }}>
+            吸底距离
+          </Button>
+        </Sticky>
       </DemoBlock>
     </DemoSection>
   );
