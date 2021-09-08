@@ -46,11 +46,14 @@ export type ToastPrivateProps = {
 };
 
 type ToastInstanceOpts = Omit<ToastProps, 'type'> | string;
+type ToastReturnType = {
+  config: React.Dispatch<React.SetStateAction<ToastProps>>;
+};
 export interface ToastInstance {
-  (opts: ToastProps | string): React.Dispatch<React.SetStateAction<ToastProps>>;
-  info(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
-  loading(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
-  success(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
-  fail(opts: ToastInstanceOpts | string): React.Dispatch<React.SetStateAction<ToastProps>>;
+  (opts: ToastProps | string): ToastReturnType;
+  info(opts: ToastInstanceOpts | string): ToastReturnType;
+  loading(opts: ToastInstanceOpts | string): ToastReturnType;
+  success(opts: ToastInstanceOpts | string): ToastReturnType;
+  fail(opts: ToastInstanceOpts | string): ToastReturnType;
   clear(): void;
 }

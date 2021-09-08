@@ -28,7 +28,7 @@ function nextTickClear() {
 // 可返回用于销毁此弹窗的方法
 const Toast = (p: ToastProps): unknown => {
   const props = parseOptions(p);
-  let updateConfig: React.Dispatch<React.SetStateAction<ToastProps>> = () => {};
+  const update: { config: React.Dispatch<React.SetStateAction<ToastProps>> } = { config: () => {} };
   let timer = 0;
   const { onClose, teleport } = props;
   const container = document.createElement('div');
@@ -48,7 +48,6 @@ const Toast = (p: ToastProps): unknown => {
     } as ToastProps;
     const [visible, setVisible] = useState(false);
     const [state, setState] = useState<ToastProps>({ ...options });
-
     // clearDOM after animation
     const internalOnClosed = useCallback(() => {
       const unmountResult = ReactDOM.unmountComponentAtNode(container);
@@ -63,7 +62,7 @@ const Toast = (p: ToastProps): unknown => {
       if (onClose) onClose();
     }, []);
 
-    updateConfig = useCallback(
+    update.config = useCallback(
       (nextState) => {
         setState((prev) =>
           typeof nextState === 'function'
@@ -99,9 +98,10 @@ const Toast = (p: ToastProps): unknown => {
       />
     );
   };
+
   ReactDOM.render(<TempToast />, container);
 
-  return updateConfig;
+  return update;
 };
 
 function parseOptions(message) {
