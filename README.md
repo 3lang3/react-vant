@@ -4,7 +4,7 @@
 
 <h1 align="center">React Vant</h1>
 
-<p align="center">参照 Vant 打造的 React 框架移动端组件库。</p>
+<p align="center">参照 <a href="https://github.com/youzan/vant">Vant</a> 打造的 React 框架移动端组件库。</p>
 
 <p align="center">
     <img src="https://img.shields.io/npm/v/react-vant/latest?style=flat-square" alt="npm version" />
