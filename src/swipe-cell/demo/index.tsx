@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
-import { Flex, Button, SwipeCell, Cell, Dialog, Image, Typography, Toast } from 'react-vant';
+import { Flex, Button, Cell, Dialog, Image, Typography, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { SwipeCellInstance } from '../PropsType';
+import SwipeCell from '..';
 import './style.less';
 
 const beforeClose = ({ position }) => {
@@ -11,7 +12,7 @@ const beforeClose = ({ position }) => {
     case 'outside':
       return true;
     case 'right':
-      return new Promise((resolve) => {
+      return new Promise<boolean>((resolve) => {
         Dialog.confirm({
           title: '确定删除吗？',
         }).then(resolve);

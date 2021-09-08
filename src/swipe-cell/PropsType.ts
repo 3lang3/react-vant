@@ -13,7 +13,7 @@ export interface SwipeCellProps extends BaseTypeProps {
   /** 右侧滑动区域的内容 */
   rightAction?: React.ReactNode;
   /** 关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise */
-  beforeClose?: () => void;
+  beforeClose?: (...args: any[]) => Promise<boolean> | boolean;
   /** 是否阻止滑动事件冒泡	 */
   stopPropagation?: boolean;
   /** 是否禁用 */
