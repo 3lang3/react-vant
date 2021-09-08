@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { Rate } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Rate from '..';
 import './style.less';

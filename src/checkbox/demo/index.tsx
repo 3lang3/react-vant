@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import React, { useRef, useState } from 'react';
-import { Checkbox, Button, Cell, Toast } from 'react-vant';
+import { Button, Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { CheckboxGroupInstance } from '../PropsType';
+import Checkbox from '..';
 import './style.less';
 
 const activeIcon = 'https://img.yzcdn.cn/vant/user-active.png';

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Radio, Cell, Toast } from 'react-vant';
+import { Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Radio from '..';
 import './style.less';
 
 let timer;

@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Switch, Dialog, Cell } from 'react-vant';
+import { Dialog, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Switch from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
