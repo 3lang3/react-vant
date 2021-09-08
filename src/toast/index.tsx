@@ -30,7 +30,7 @@ const Toast = (p: ToastProps): unknown => {
   const props = parseOptions(p);
   let updateConfig: React.Dispatch<React.SetStateAction<ToastProps>> = () => {};
   let timer = 0;
-  const { onClose, teleport = () => document.body } = props;
+  const { onClose, teleport } = props;
   const container = document.createElement('div');
   const bodyContainer = resolveContainer(teleport);
   bodyContainer.appendChild(container);
@@ -80,7 +80,7 @@ const Toast = (p: ToastProps): unknown => {
       toastArray.push(internalOnClosed);
 
       if (state.duration !== 0 && 'duration' in state) {
-        timer = window.setTimeout(destroy, state.duration);
+        timer = window.setTimeout(destroy, +state.duration);
       }
       return () => {
         if (timer !== 0) {
