@@ -12,19 +12,19 @@
     height: @stepper-input-height;
     margin: 0;
     padding: 0;
-    color: @stepper-border-color;
+    color: @stepper-button-icon-color;
     vertical-align: middle;
-    background: transparent;
-    border: 1 * @hd solid @stepper-border-color;
+    background-color: @stepper-background-color;
+    border: 0;
     cursor: pointer;
 
     &::before {
       width: 50%;
-      height: 1 * @hd;
+      height: 1px;
     }
 
     &::after {
-      width: 1 * @hd;
+      width: 1px;
       height: 50%;
     }
 
@@ -44,18 +44,17 @@
 
     &--disabled {
       color: @stepper-button-disabled-icon-color;
-      border-color: @stepper-button-disabled-color;
+      background-color: @stepper-button-disabled-color;
       cursor: not-allowed;
 
       &:active {
-        background-color: transparent;
-        border-color: @stepper-button-disabled-color;
+        background-color: @stepper-button-disabled-color;
       }
     }
   }
 
   &__minus {
-    border-radius: @stepper-border-radius;
+    border-radius: @stepper-border-radius 0 0 @stepper-border-radius;
 
     &::after {
       display: none;
@@ -63,27 +62,32 @@
   }
 
   &__plus {
-    border-radius: @stepper-border-radius;
+    border-radius: 0 @stepper-border-radius @stepper-border-radius 0;
   }
 
   &__input {
     box-sizing: border-box;
     width: @stepper-input-width;
-    margin: 0 2 * @hd;
+    height: @stepper-input-height;
+    margin: 0 2px;
     padding: 0;
     color: @stepper-input-text-color;
-    font-weight: 500;
     font-size: @stepper-input-font-size;
-    line-height: @stepper-input-height;
+    line-height: @stepper-input-line-height;
     text-align: center;
     vertical-align: middle;
-    background-color: transparent;
+    background-color: @stepper-background-color;
     border: 0;
+    border-width: 1px 0;
+    border-radius: 0;
     -webkit-appearance: none;
 
     &:disabled {
+      color: @stepper-input-disabled-text-color;
+      background-color: @stepper-input-disabled-background-color;
+      // fix disabled color in iOS
+      -webkit-text-fill-color: @stepper-input-disabled-text-color;
       opacity: 1;
-      -webkit-text-fill-color: currentColor; // fix disabled color in iOS
     }
 
     &:read-only {
@@ -99,7 +103,6 @@
     .rv-stepper__plus,
     .rv-stepper__minus {
       border-radius: 100%;
-      user-select: none;
 
       &:active {
         opacity: @active-opacity;
@@ -121,7 +124,7 @@
     .rv-stepper__minus {
       color: @stepper-button-round-theme-color;
       background-color: @white;
-      border: 1 * @hd solid @stepper-button-round-theme-color;
+      border: 1px solid @stepper-button-round-theme-color;
     }
   }
 }

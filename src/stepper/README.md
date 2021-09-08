@@ -108,10 +108,10 @@ import { Stepper } from 'react-vant';
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 当前输入的值 | _number \| string_ | - |
+| value | 当前输入的值 | _number_ | - |
 | min | 最小值 | _number \| string_ | `1` |
 | max | 最大值 | _number \| string_ | - |
-| default-value | 初始值，当 value 为空时生效 | _number \| string_ | `1` |
+| defaultValue | 初始值，当 value 为空时生效 | _number_ | `1` |
 | step | 步长，每次点击时改变的值 | _number \| string_ | `1` |
 | name | 标识符，可以在 `change` 事件回调参数中获取 | _number \| string_ | - |
 | inputWidth | 输入框宽度，默认单位为 `px` | _number \| string_ | `32px` |
@@ -135,12 +135,12 @@ import { Stepper } from 'react-vant';
 
 | 事件名    | 说明                     | 回调参数                                  |
 | --------- | ------------------------ | ----------------------------------------- |
-| change    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
-| overlimit | 点击不可用的按钮时触发   | -                                         |
-| plus      | 点击增加按钮时触发       | -                                         |
-| minus     | 点击减少按钮时触发       | -                                         |
-| focus     | 输入框聚焦时触发         | _event: Event_                            |
-| blur      | 输入框失焦时触发         | _event: Event_                            |
+| onChange    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
+| onOverlimit | 点击不可用的按钮时触发   | -                                         |
+| onPlus      | 点击增加按钮时触发       | -                                         |
+| onMinus     | 点击减少按钮时触发       | -                                         |
+| onFocus     | 输入框聚焦时触发         | _event: Event_                            |
+| onBlur      | 输入框失焦时触发         | _event: Event_                            |
 
 ### 样式变量
 
