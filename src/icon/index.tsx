@@ -1,5 +1,7 @@
 import Icon from './Icon';
+import createFromIconfontCN from './createFromIconfontCN';
 
-export default Icon;
-export { Icon };
-export type { IconProps } from './PropsType';
+const IconNameSpace = Object.assign(Icon, {createFromIconfontCN})
+export default IconNameSpace;
+export {IconNameSpace as Icon, createFromIconfontCN};
+export type {IconProps} from './PropsType';

@@ -49,7 +49,7 @@ import { Icon } from 'react-vant';
 ```
 
 ### 自定义图标
-
+#### 方式一
 如果需要在现有 `Icon` 的基础上使用更多图标，可以引入第三方 `iconfont` 对应的字体文件和 `CSS` 文件，之后就可以在 `Icon` 组件中直接使用
 
 ```css
@@ -70,7 +70,18 @@ import { Icon } from 'react-vant';
 
 ```jsx
 <!-- 通过 classPrefix 指定类名为 my-icon -->
-<Icon classPrefix="my-icon" name="extra" />
+<Icon classPrefix="my-icon" name="extra"/>
+```
+
+#### 方式二
+
+通过方法`createFromIconfontCN` 引入[iconfont.cn](https://www.iconfont.cn)上的js文件
+
+```jsx
+const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/xxx.js');
+<!-- classPrefix 属性失效不要再指定 -->
+<IconFont name="cuIcon-thank"/>
+
 ```
 
 ## API

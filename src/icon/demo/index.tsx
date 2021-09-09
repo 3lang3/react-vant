@@ -1,8 +1,10 @@
 import React from 'react';
 import icons from '@vant/icons';
-import { Icon, Tabs, Toast, Flex } from 'react-vant';
-import { components } from 'site-mobile-demo';
+import {Flex, Icon, Tabs, Toast} from 'react-vant';
+import {components} from 'site-mobile-demo';
 import './style.less';
+
+const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/font_2763890_w471tfudy4d.js')
 
 // from https://30secondsofcode.org
 function copyToClipboard(str: string) {
@@ -33,7 +35,6 @@ function copyToClipboard(str: string) {
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
-
   const copy = (icon: string, option: Record<string, unknown> = {}) => {
     let tag = `<Icon name="${icon}"`;
     if ('dot' in option) {
@@ -98,10 +99,20 @@ export default (): React.ReactNode => {
           <DemoBlock title="图标大小">
             <Flex>
               <Flex.Item span={6}>
-                <Icon name="close" size="40" />
+                <Icon name="close" size="40"/>
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="close" size="3rem" />
+                <Icon name="close" size="3rem"/>
+              </Flex.Item>
+            </Flex>
+          </DemoBlock>
+          <DemoBlock title="自定义图标">
+            <Flex>
+              <Flex.Item span={6}>
+                <IconFont name="cuIcon-classify" color="#f44336"/>
+              </Flex.Item>
+              <Flex.Item span={6}>
+                <IconFont name="cuIcon-classify_fill" color="green"/>
               </Flex.Item>
             </Flex>
           </DemoBlock>
@@ -110,7 +121,7 @@ export default (): React.ReactNode => {
           <Flex wrap="wrap">
             {icons.basic.map((icon) => (
               <Flex.Item onClick={() => copy(icon)} key={icon} span={6}>
-                <Icon name={icon} />
+                <Icon name={icon}/>
                 <span>{icon}</span>
               </Flex.Item>
             ))}
