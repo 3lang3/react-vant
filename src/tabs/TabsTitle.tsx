@@ -38,7 +38,7 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
   const renderText = () => {
     const Text = (
       <span className={classnames(bem('text', { ellipsis: !props.scrollable }))}>
-        {props.renderTitle ? props.renderTitle() : props.title}
+        {props.renderTitle || props.title}
       </span>
     );
 

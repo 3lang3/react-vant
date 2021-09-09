@@ -161,7 +161,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   // correct the index of active tab
   const setCurrentIndexByName = (name: string | number) => {
-    const currentIndex = React.Children.toArray(children).findIndex(
+    const currentIndex = childrenList.findIndex(
       (tab: TabPaneProps, index) => getTabName(tab, index) === name,
     );
     setCurrentIndex(currentIndex);

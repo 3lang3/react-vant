@@ -23,6 +23,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           className={classnames(bem('track'))}
           duration={+duration}
           showIndicators={false}
+          onChange={props.onChange}
         >
           {React.Children.map(props.children, (child) => (
             <Swipe.Item role="tabpanel" className={classnames(bem('pane-wrapper'))}>
