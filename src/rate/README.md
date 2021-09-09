@@ -48,7 +48,7 @@ export default () => {
 设置 `allowHalf` 属性后可以选中半星。
 
 ```jsx
-<Rate defaultValue={3.5} allow-half />
+<Rate defaultValue={3.5} allowHalf />
 ```
 
 ### 自定义数量
