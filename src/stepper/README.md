@@ -49,7 +49,7 @@ import { Stepper } from 'react-vant';
 通过设置 `disabled` 属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
 
 ```jsx
-<Stepper value={value} disabled onChange={val = setValue(val)}/>
+<Stepper value={value} disabled onChange={val => setValue(val)}/>
 ```
 
 ### 禁用输入框
