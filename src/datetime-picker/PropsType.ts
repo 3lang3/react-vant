@@ -29,6 +29,7 @@ export interface SharedProps extends Omit<PickerProps, 'onConfirm' | 'onChange' 
   onConfirm?: (value: Date) => void;
   /** 当值变化时触发的事件	 */
   onChange?: (value: Date) => void;
+  onCancel?: () => void;
 }
 
 export interface DatePickerProps extends SharedProps {
