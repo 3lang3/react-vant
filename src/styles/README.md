@@ -50,7 +50,10 @@
 ### 动画
 
 这里通过 `react-transition-group` 第三方库使用内置的动画
-
+```bash
+# 安装
+yarn add react-transition-group
+```
 ```js
 import { CSSTransition } from 'react-transition-group';
 ```
