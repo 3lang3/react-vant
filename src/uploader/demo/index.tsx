@@ -33,7 +33,7 @@ export default (): React.ReactNode => {
       message: '上传失败',
     },
   ]);
-  const [demo1, setDemo1] = useState<UploaderFileListItem[]>([]);
+  const [beforeReadDemo, setBeforeReadDemo] = useState<UploaderFileListItem[]>([]);
   const [maxCountDemo, setMaxCountDemo] = useState<UploaderFileListItem[]>([demoUploadValue[0]]);
   const [maxSizeDemo, setMaxSizeDemo] = useState<UploaderFileListItem[]>([demoUploadValue[0]]);
   const [previewDemo, setPreviewDemo] = useState<UploaderFileListItem[]>(demoUploadValue);
@@ -137,8 +137,8 @@ export default (): React.ReactNode => {
       <DemoBlock title="上传前置处理">
         <Uploader
           multiple
-          value={demo1}
-          onChange={(v) => setDemo1(v)}
+          value={beforeReadDemo}
+          onChange={setBeforeReadDemo}
           beforeRead={asyncBeforeRead}
         />
       </DemoBlock>
