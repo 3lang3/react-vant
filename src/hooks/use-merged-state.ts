@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import useUpdateEffect from './use-update-effect';
 
 const useMergedState = <T, R = T>(option?: {
   defaultValue?: T | (() => T);
@@ -17,15 +16,13 @@ const useMergedState = <T, R = T>(option?: {
     return undefined;
   });
 
+  const mergedValue = value !== undefined ? value : innerValue;
+
   function triggerChange(newValue: T) {
     setInnerValue(newValue);
   }
 
-  useUpdateEffect(() => {
-    triggerChange(value);
-  }, [value]);
-
-  return [innerValue as unknown as R, triggerChange];
+  return [mergedValue as unknown as R, triggerChange];
 };
 
 export default useMergedState;

@@ -44,9 +44,13 @@ export default (): React.ReactNode => {
         <Cell
           center
           title="标题"
-          rightIconSlot={() => (
-            <Switch defaultChecked onChange={(checked) => console.log(`switch to ${checked}`)} />
-          )}
+          rightIcon={
+            <Switch
+              size={24}
+              defaultChecked
+              onChange={(checked) => console.log(`switch to ${checked}`)}
+            />
+          }
         />
       </DemoBlock>
     </DemoSection>
