@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { PasswordInput, Dialog } from 'react-vant';
+import { Dialog } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import PasswordInput from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -14,14 +15,23 @@ export default (): React.ReactNode => {
   const onChange = (val: string) => {
     console.log('onchange', val);
   };
+
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <PasswordInput value="12a" length={4} type="text" onSubmit={onSubmit} />
+        <PasswordInput onSubmit={onSubmit} />
       </DemoBlock>
 
       <DemoBlock title="限制长度">
-        <PasswordInput type="text" length={6} onSubmit={onSubmit} />
+        <PasswordInput length={4} onSubmit={onSubmit} />
+      </DemoBlock>
+
+      <DemoBlock title="格子间距">
+        <PasswordInput gutter={10} onSubmit={onSubmit} />
+      </DemoBlock>
+
+      <DemoBlock title="明文展示">
+        <PasswordInput value="123" mask={false} onSubmit={onSubmit} />
       </DemoBlock>
 
       <DemoBlock title="只允许数字">
@@ -49,6 +59,10 @@ export default (): React.ReactNode => {
 
       <DemoBlock title="自动聚焦">
         <PasswordInput length={4} autoFocus onSubmit={onSubmit} />
+      </DemoBlock>
+
+      <DemoBlock title="提示信息">
+        <PasswordInput onSubmit={onSubmit} info={<div>密码为6位数字</div>} />
       </DemoBlock>
     </DemoSection>
   );

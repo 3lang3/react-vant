@@ -17,10 +17,10 @@ import { PasswordInput } from 'react-vant';
 ```jsx
 const onSubmit = (val: string) => {
   Dialog.alert({
-    message: val
-  })
+    message: val,
+  });
 };
-<PasswordInput value="12a" length={4} type="text" onSubmit={onSubmit} />
+<PasswordInput value="12a" length={4} type="text" onSubmit={onSubmit} />;
 ```
 
 ### 限制长度
@@ -28,10 +28,10 @@ const onSubmit = (val: string) => {
 ```jsx
 const onSubmit = (val: string) => {
   Dialog.alert({
-    message: val
-  })
+    message: val,
+  });
 };
-<PasswordInput type="text" length={6} onSubmit={onSubmit} />
+<PasswordInput type="text" length={6} onSubmit={onSubmit} />;
 ```
 
 ### 只允许数字
@@ -39,16 +39,10 @@ const onSubmit = (val: string) => {
 ```jsx
 const onSubmit = (val: string) => {
   Dialog.alert({
-    message: val
-  })
+    message: val,
+  });
 };
-<PasswordInput
-  type="number"
-  value=""
-  mask={false}
-  length={4}
-  onSubmit={onSubmit}
-/>
+<PasswordInput type="number" value="" mask={false} length={4} onSubmit={onSubmit} />;
 ```
 
 ### 自定义规则
@@ -58,8 +52,8 @@ const onSubmit = (val: string) => {
 ```jsx
 const onSubmit = (val: string) => {
   Dialog.alert({
-    message: val
-  })
+    message: val,
+  });
 };
 <PasswordInput
   value="124"
@@ -69,7 +63,7 @@ const onSubmit = (val: string) => {
     return /^[0-3]{0,4}$/.test(val);
   }}
   onSubmit={onSubmit}
-/>
+/>;
 ```
 
 ### 自动聚焦
@@ -77,14 +71,10 @@ const onSubmit = (val: string) => {
 ```jsx
 const onSubmit = (val: string) => {
   Dialog.alert({
-    message: val
-  })
+    message: val,
+  });
 };
-<PasswordInput
-  length={4}
-  autoFocus
-  onSubmit={onSubmit}
-/>
+<PasswordInput length={4} autoFocus onSubmit={onSubmit} />;
 ```
 
 ## API
@@ -93,27 +83,29 @@ const onSubmit = (val: string) => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 值  | _string_ | - |
-| type  | 类型 默认为text | _string_ | `number` `text` |
-| length | 长度 | _number_ | 6 |
+| value | 值 | _string_ | - |
+| type | 类型 默认为 text | _string_ | `number` `text` |
+| info | 输入框下方文字提示 | _ReactNode_ | - |
+| length | 密码最大长度 | _number \| string_ | `6` |
+| gutter | 输入框格子之间的间距，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `0` |
 | autoFocus | 自动聚焦 | _boolean_ | false |
 | mask | 是否隐藏密码 | _boolean_ | true |
 | validator | 自定义规则, 这个规则并非单个输入框的 | _function_ | - |
-| highlightClass | 高亮样式(mask=true时不生效) | _string_ | - |
+| highlightClass | 高亮样式(mask=true 时不生效) | _string_ | - |
 
 ### Events
 
-| 事件名 | 说明       | 回调参数       |
-| ------ | ---------- | -------------- |
-| onChange  | 数据改变时触发 | val: _string_ |
-| onSubmit  | 数据输满时触发 | val: _string_ |
-
+| 事件名   | 说明             | 回调参数      |
+| -------- | ---------------- | ------------- |
+| onChange | 数据改变时触发   | val: _string_ |
+| onSubmit | 数据输满时触发   | val: _string_ |
+| onFocus  | 输入框聚焦时触发 | -             |
 
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
 
-| 名称                      | 默认值               | 描述 |
-| ------------------------- | -------------------- | ---- |
-| @password-input-color     | `#2879ff`            | -    |
-| @password-border-color    | `#dee4e7`            | -    |
+| 名称                   | 默认值    | 描述 |
+| ---------------------- | --------- | ---- |
+| @password-input-color  | `#2879ff` | -    |
+| @password-border-color | `#dee4e7` | -    |
