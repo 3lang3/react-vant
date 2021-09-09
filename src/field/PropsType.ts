@@ -31,8 +31,6 @@ export type FieldRule = {
 };
 
 export interface FieldCommonProps {
-  /** 当前输入的值	 */
-  value?: string | number;
   /** 输入框占位提示文字	 */
   placeholder?: string;
   /** 输入的最大字符数	 */
@@ -72,6 +70,7 @@ export interface FieldCommonProps {
 }
 
 export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<CellProps> {
+  value?: string;
   /** 输入框类型 */
   type?: FieldType;
   /** 名称，提交表单的标识符	 */
@@ -107,11 +106,11 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   button?: React.ReactNode;
   /** 自定义输入框最右侧的额外内容 */
   extra?: React.ReactNode;
-  onChange?: (val: string | number) => void;
+  onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onFocus?: (val: string | number) => void;
-  onBlur?: (val: string | number) => void;
+  onFocus?: (val: string) => void;
+  onBlur?: (val: string) => void;
   onKeypress?: (e: React.KeyboardEvent) => void;
   onClickInput?: (e: React.MouseEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
   onClickLeftIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;

@@ -1,17 +1,18 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, useRef } from 'react';
-import { Field, Cell, Button, Toast } from 'react-vant';
+import { Cell, Button, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Field from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');
-  const [tel, setTel] = useState();
-  const [digit, setDigit] = useState();
-  const [number, setNumber] = useState();
-  const [password, setPasswrod] = useState();
+  const [tel, setTel] = useState('');
+  const [digit, setDigit] = useState('');
+  const [number, setNumber] = useState('');
+  const [password, setPasswrod] = useState('');
   const [value3, setValue3] = useState('');
   const [value4, setValue4] = useState('');
   const [username, setUsername] = useState('');
@@ -157,7 +158,7 @@ export default (): React.ReactNode => {
       <DemoBlock card title="高度自适应">
         <Field
           value={message}
-          rows="1"
+          rows={1}
           autosize
           label="留言"
           type="textarea"
@@ -169,11 +170,11 @@ export default (): React.ReactNode => {
       <DemoBlock card title="显示字数统计">
         <Field
           value={message2}
-          rows="2"
+          rows={2}
           autosize
           label="留言"
           type="textarea"
-          maxlength="50"
+          maxlength={50}
           placeholder="请输入留言"
           showWordLimit
           onChange={setMessage2}
