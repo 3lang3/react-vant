@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent, FormEvent, TouchEvent } from 'react';
 import classnames from 'classnames';
 
@@ -14,7 +14,6 @@ import {
   resetScroll,
   preventDefault,
 } from '../utils';
-import useMergedState from '../hooks/use-merged-state';
 
 const [bem] = createNamespace('stepper');
 
@@ -60,11 +59,9 @@ const Stepper: React.FC<StepperProps> = (props) => {
 
   let actionType: 'plus' | 'minus';
   const inputRef = useRef(null);
+  const innerEffectRef = useRef(false);
   const preValue = useRef(getInitialValue());
-  const [current, setCurrent] = useMergedState({
-    value: preValue.current,
-    defaultValue: props.defaultValue,
-  });
+  const [current, setCurrent] = useState(() => preValue.current);
 
   const minusDisabled = useMemo(
     () => props.disabled || props.disableMinus || current <= +props.min,
@@ -87,6 +84,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
   const buttonStyle = useMemo(() => getSizeStyle(props.buttonSize), [props.buttonSize]);
 
   const innerChange = (value: number | string) => {
+    innerEffectRef.current = true;
     setCurrent(value);
     props.onChange?.(+value);
   };
@@ -212,6 +210,13 @@ const Stepper: React.FC<StepperProps> = (props) => {
     onTouchCancel: onTouchEnd,
   });
 
+  useEffect(() => {
+    if (innerEffectRef.current) {
+      innerEffectRef.current = false;
+      return;
+    }
+    setCurrent(props.value);
+  }, [props.value]);
   useEffect(() => check, [props.max, props.min, props.integer, props.decimalLength]);
 
   return (
