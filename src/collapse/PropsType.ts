@@ -4,11 +4,11 @@ import { BaseTypeProps } from '../utils';
 
 export interface CollapseProps extends BaseTypeProps {
   /** 是否开启手风琴模式	 */
-  accordion: boolean;
+  accordion?: boolean;
   /** 默认打开的面板name */
-  initExpanded: string | number | Array<number | string>;
+  initExpanded?: string | number | Array<number | string>;
   /** 是否显示外边框	 */
-  border: boolean;
+  border?: boolean;
   /** 当前展开面板的 name	 */
   value?: number | string | Array<number | string>;
   /** 切换面板时触发	*/
