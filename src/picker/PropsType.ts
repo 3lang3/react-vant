@@ -63,7 +63,7 @@ export interface Column {
   disabled?: boolean;
 }
 
-export interface PickerProps extends BaseTypeProps {
+export interface PickerCommonProps extends BaseTypeProps {
   /** 对象数组，配置每一列显示的数据	 */
   columns?: PickerOption[] | PickerColumn[];
   /** 自定义 columns 结构中的字段	 */
@@ -98,14 +98,27 @@ export interface PickerProps extends BaseTypeProps {
   columnsBottom?: React.ReactNode;
   /** 自定义确认按钮内容	 */
   optionRender?: (option: string | object) => React.ReactNode;
-  /** 选项改变时触发	 */
-  onChange?: (value?: number | string, index?: number) => void;
-  /** 点击完成按钮时触发	 */
-  onConfirm?: (value?: number | string, index?: number) => void;
-  /** 点击取消按钮时触发	 */
-  onCancel?: (value?: number | string, index?: number) => void;
 }
 
+export interface PickerSingleProps extends PickerCommonProps {
+  /** 选项改变时触发	 */
+  onChange?: (value: number | string, index?: number) => void;
+  /** 点击完成按钮时触发	 */
+  onConfirm?: (value: number | string, index?: number) => void;
+  /** 点击取消按钮时触发	 */
+  onCancel?: (value: number | string, index?: number) => void;
+}
+
+export interface PickerMultipleProps extends PickerCommonProps {
+  /** 选项改变时触发	 */
+  onChange?: (value: (number | string)[], index?: number) => void;
+  /** 点击完成按钮时触发	 */
+  onConfirm?: (value: (number | string)[], index?: number[]) => void;
+  /** 点击取消按钮时触发	 */
+  onCancel?: (value: (number | string)[], index?: number[]) => void;
+}
+
+export type PickerProps = PickerSingleProps | PickerMultipleProps;
 export interface PickerColumnProps extends BaseTypeProps {
   index?: number;
   textKey: string;

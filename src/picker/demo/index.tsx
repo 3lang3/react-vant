@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useRef, useState } from 'react';
-import { Picker, Toast, Field, Popup } from 'react-vant';
+import { Toast, Field, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Picker from '..';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
@@ -95,7 +96,7 @@ export default (): React.ReactNode => {
         <Picker
           ref={picker}
           columns={[{ values: Object.keys(cities) }, { values: cities['浙江'], defaultIndex: 2 }]}
-          onChange={(values: string[]) => {
+          onChange={(values) => {
             picker.current.setColumnValues(1, cities[values[0]]);
           }}
         />
