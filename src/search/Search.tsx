@@ -1,27 +1,28 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import classnames from 'classnames';
 import { SearchInstance, SearchProps } from './PropsType';
 import { createNamespace, preventDefault } from '../utils';
 
 // Components
 import Field, { FieldInstance } from '../field';
-import useMergedState from '../hooks/use-merged-state';
 
 const [bem] = createNamespace('search');
 
 const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   const filedRef = useRef<FieldInstance>();
-  const [value, setValue] = useMergedState({ value: props.value });
+  const innerEffect = useRef<boolean>(false);
+  const [value, setValue] = useState(() => props.value);
 
   const blur = () => filedRef.current?.blur();
   const focus = () => filedRef.current?.focus();
   const change = (v) => {
+    innerEffect.current = true;
     props.onChange?.(v);
     setValue(v);
   };
 
   const onCancel = () => {
-    if (!props.actionText) {
+    if (typeof props.actionText === 'string') {
       change('');
       props.onCancel?.();
     }
@@ -100,6 +101,14 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
       />
     );
   };
+
+  useEffect(() => {
+    if (innerEffect.current) {
+      innerEffect.current = false;
+      return;
+    }
+    setValue(props.value);
+  }, [props.value]);
 
   useImperativeHandle(ref, () => ({
     focus,
