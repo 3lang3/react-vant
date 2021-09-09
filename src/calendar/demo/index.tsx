@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Toast, Cell, Calendar, useSetState } from 'react-vant';
+import { Toast, Cell, useSetState } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Calendar from '..';
 import './style.less';
 
 const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
@@ -75,7 +76,7 @@ export default (): React.ReactNode => {
           visible={state.v2}
           type="multiple"
           onClose={() => set({ v2: false })}
-          onConfirm={(v) => {
+          onConfirm={(v: any[]) => {
             set({ v2: false, t2: `选择了 ${v.length} 个日期` });
           }}
         />

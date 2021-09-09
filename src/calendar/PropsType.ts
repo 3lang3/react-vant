@@ -112,8 +112,8 @@ export interface CalendarProps extends BaseTypeProps {
   type?: CalendarType;
   position?: PopupPosition;
   maxRange?: number | string;
-  minDate: Date;
-  maxDate: Date;
+  minDate?: Date;
+  maxDate?: Date;
   firstDayOfWeek?: number | string;
   showRangePrompt?: boolean;
   footer?: React.ReactNode;
