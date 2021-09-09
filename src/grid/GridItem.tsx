@@ -137,4 +137,9 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
   );
 };
 
+GridItem.defaultProps = {
+  index: 0,
+  parent: {},
+};
+
 export default GridItem;

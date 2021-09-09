@@ -29,7 +29,7 @@ export interface FlexProps extends BaseTypeProps {
 
 export type FlexType = number | 'none' | 'auto' | string;
 
-export interface FlexItemProps extends BaseTypeProps {
+export interface FlexItemProps extends React.HTMLAttributes<HTMLDivElement>, BaseTypeProps {
   /**  栅格占位格数 */
   span?: number | string;
   /** flex 布局属性	 */
