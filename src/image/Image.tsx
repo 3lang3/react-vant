@@ -113,7 +113,6 @@ const Image: React.FC<ImageProps> = (props) => {
       style: {
         objectFit: fit,
       },
-      onClick: props.onClick,
     };
     return (
       <img
@@ -128,7 +127,11 @@ const Image: React.FC<ImageProps> = (props) => {
   };
 
   return (
-    <div className={classnames(props.className, bem({ block, round: props.round }))} style={style}>
+    <div
+      className={classnames(props.className, bem({ block, round: props.round }))}
+      style={style}
+      onClick={props.onClick}
+    >
       {renderImage()}
       {renderPlaceholder()}
       {props.children}
