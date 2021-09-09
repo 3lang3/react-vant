@@ -70,20 +70,6 @@ export default () => {
 <Uploader multiple maxCount={2} value={demo2} afterRead={afterRead} onChange={(v) => setDemo2(v)} />
 ```
 
-```js
-import { ref } from 'vue';
-
-export default {
-  setup() {
-    const fileList = ref([]);
-
-    return {
-      fileList,
-    };
-  },
-};
-```
-
 ### 限制上传大小
 
 通过 `maxSize` 属性可以限制上传文件的大小，超过大小的文件会被自动过滤，这些文件信息可以通过 `onOversize` 事件获取。
@@ -100,7 +86,7 @@ export default () => {
     const maxSize = file.type === 'image/jpeg' ? 500 * 1024 : 1000 * 1024;
     return file.size >= maxSize;
   };
-  return <Uploader maxSize={5 * 1024} onOversize={onOversize} />;
+  return <Uploader maxSize={isOverSize} onOversize={onOversize} />;
 };
 ```
 
@@ -121,24 +107,34 @@ export default () => {
 通过传入 `beforeRead` 函数可以在上传前进行校验和处理，返回 `true` 表示校验通过，返回 `false` 表示校验失败。支持返回 `Promise` 对 file 对象进行自定义处理，例如压缩图片。
 
 ```jsx
+
 export default () => {
+  // 返回 boolean
   const beforeRead = (file) => {
-    if (file.type !== 'image/jpeg') {
-      Toast('请上传 jpg 格式图片');
-      return false;
-    }
-    return true;
+    const files = Array.isArray(file) ? file : [file];
+    return files.some(f => {
+      if (f.type !== 'image/jpeg') {
+        Toast('请上传 jpg 格式图片');
+        return true;
+      }
+      return false
+    })
   };
 
   // 返回 Promise
-  const asyncBeforeRead = (file) => {
-    return new Promise((resolve, reject) => {
-      if (file.type !== 'image/jpeg') {
-        Toast('请上传 jpg 格式图片');
-        reject();
-      } else {
-        resolve(file);
-      }
+  const asyncBeforeRead = async (file: File | File[]) => {
+    // multiple 为 true, `file`是array类型
+    const files = Array.isArray(file) ? file : [file];
+    return new Promise<File[]>((resolve) => {
+      // 过滤掉不符合的文件，符合的还是会上传
+      const passFiles = files.filter((f) => {
+        if (f.type !== 'image/jpeg') {
+          Toast.info(`${f.name}格式错误，请上传 jpg 格式图片`);
+          return false;
+        }
+        return true;
+      });
+      resolve(passFiles);
     });
   };
 
@@ -161,18 +157,22 @@ export default () => {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 已上传的文件列表 | _FileListItem[]_ | - |
-| onChange | 组件值更新时调用 | _function_ | - |
 | accept | 允许上传的文件类型，[详细说明](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file#%E9%99%90%E5%88%B6%E5%85%81%E8%AE%B8%E7%9A%84%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B) | _string_ | `image/*` |
 | name | 标识符，可以在回调函数的第二项参数中获取 | _number \| string_ | - |
+| previewSize | 预览图和上传区域的尺寸，默认单位为 `px` | _number \| string_ | `80px` |
+| previewImage | 是否在上传完成后展示预览图 | _boolean_ | `true` |
+| previewFullImage | 是否在点击预览图后展示全屏图片预览 | _boolean_ | `true` |
+| previewOptions | 全屏图片预览的配置项，可选值见 [ImagePreview](#/zh-CN/image-preview) | _object_ | - |
 | multiple | 是否开启图片多选，部分安卓机型不支持 | _boolean_ | `false` |
 | disabled | 是否禁用文件上传 | _boolean_ | `false` |
+| readonly | 是否将上传区域设置为只读状态 | _boolean_ | `false` |
 | deletable | 是否展示删除按钮 | _boolean_ | `true` |
 | showUpload | 是否展示上传区域 | _boolean_ | `true` |
 | capture | 图片选取模式，可选值为 `camera` (直接调起摄像头) | _string_ | - |
 | afterRead | 文件读取完成后的回调函数 | _Function_ | - |
 | beforeRead | 文件读取前的回调函数，返回 `false` 可终止文件读取，<br>支持返回 `Promise` | _Function_ | - |
 | beforeDelete | 文件删除前的回调函数，返回 `false` 可终止文件读取，<br>支持返回 `Promise` | _Function_ | - |
-| maxSize `v3.0.17` | 文件大小限制，单位为 `byte` | _number \| string \| (file: File) => boolean_ | - |
+| maxSize | 文件大小限制，单位为 `byte` | _number \| string \| (file: File) => boolean_ | - |
 | maxCount | 文件上传数量限制 | _number \| string_ | - |
 | resultType | 文件读取结果类型，可选值为 `file` `text` | _string_ | `dataUrl` |
 | uploadText | 上传区域文字提示 | _string_ | - |
@@ -183,10 +183,11 @@ export default () => {
 
 ### Events
 
-| 事件名     | 说明                   | 回调参数       |
-| ---------- | ---------------------- | -------------- |
-| onOversize | 文件大小超过限制时触发 | 同 `afterRead` |
-| onDelete   | 删除文件预览时触发     | 同 `afterRead` |
+| 事件名     | 说明                   | 回调参数                 |
+| ---------- | ---------------------- | ------------------------ |
+| onChange   | 组件值更新时调用       | _UploaderFileListItem[]_ |
+| onOversize | 文件大小超过限制时触发 | 同 `afterRead`           |
+| onDelete   | 删除文件预览时触发     | 同 `afterRead`           |
 
 ### 回调参数
 
