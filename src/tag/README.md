@@ -24,7 +24,9 @@ import { Tag } from 'react-vant';
 设置 `plain` 属性设置为空心样式。
 
 ```jsx
-<Tag plain type="primary">标签</Tag>
+<Tag plain type="primary">
+  标签
+</Tag>
 ```
 
 ### 圆角样式
@@ -32,7 +34,9 @@ import { Tag } from 'react-vant';
 通过 `round` 设置为圆角样式。
 
 ```jsx
-<Tag round type="primary">标签</Tag>
+<Tag round type="primary">
+  标签
+</Tag>
 ```
 
 ### 标记样式
@@ -40,7 +44,9 @@ import { Tag } from 'react-vant';
 通过 `mark` 设置为标记样式(半圆角)。
 
 ```jsx
-<Tag mark type="primary">标签</Tag>
+<Tag mark type="primary">
+  标签
+</Tag>
 ```
 
 ### 可关闭标签
@@ -51,14 +57,6 @@ import { Tag } from 'react-vant';
 <Tag show={show} closeable size="medium" type="primary" onClose={() => setShow(false)}>
   标签
 </Tag>
-```
-
-### 细边框
-
-添加 `hairline` 属性设置 `plain` 状态下的边框为细边框
-
-```jsx
-<Tag hairline plain type="primary">标签</Tag>
 ```
 
 ### 标签大小
@@ -82,24 +80,6 @@ import { Tag } from 'react-vant';
 <Tag color="#7232dd" plain>标签</Tag>
 ```
 
-### 可选中标签
-
-通过 `selected` 属性设置标签的选中状态。
-
-```jsx
-<Tag
-  size="medium"
-  color="#f5f5f9"
-  textColor="#888"
-  selected
-  onChange={(selected) => {
-    console.log(`tag selected: ${selected}`);
-  }}
->
-  标签
-</Tag>
-```
-
 ## API
 
 ### Props
@@ -113,18 +93,16 @@ import { Tag } from 'react-vant';
 | plain     | 是否为空心样式                                        | _boolean_ | `false`   |
 | round     | 是否为圆角样式                                        | _boolean_ | `false`   |
 | mark      | 是否为标记样式                                        | _boolean_ | `false`   |
-| hairline  | 是否为细边框                                          | _boolean_ | `false`   |
-| selected  | 是否为可选中模式                                      | _boolean_ | `false`   |
 | textColor | 文本颜色，优先级高于 `color` 属性                     | _string_  | `white`   |
 | closeable | 是否为可关闭标签                                      | _boolean_ | `false`   |
 
 ### Events
 
-| 事件名 | 说明           | 回调参数       |
-| ------ | -------------- | -------------- |
-| click  | 点击时触发     | _event: Event_ |
-| close  | 关闭标签时触发 | -              |
-| change | 选中模式下出发 | _selected: boolean_  |
+| 事件名 | 说明           | 回调参数            |
+| ------ | -------------- | ------------------- |
+| onClick  | 点击时触发     | _event: MouseEvent_      |
+| onClose  | 关闭标签时触发 | _event: MouseEvent_                   |
+
 ### 样式变量
 
 组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
