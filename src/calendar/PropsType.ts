@@ -74,8 +74,8 @@ export interface CalendarMonthProps extends BaseTypeProps {
   showMonthTitle?: boolean;
   firstDayOfWeek?: number;
   date: Date;
-  minDate: Date;
-  maxDate: Date;
+  minDate?: Date;
+  maxDate?: Date;
   lazyRender?: boolean;
   topInfoRender?: (day: CalendarDayItem) => React.ReactNode;
   bottomInfoRender?: (day: CalendarDayItem) => React.ReactNode;
