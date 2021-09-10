@@ -4,34 +4,44 @@
 
 通过本章节你可以了解到一些进阶用法，比如多种浏览器适配方式。
 
+### 组件实例方法
+
+React Vant 中的许多组件提供了实例方法，调用实例方法时，我们需要通过 [useRef](https://v3.cn.vuejs.org/guide/component-template-refs.html) 来引用组件实例，我们可以通过`ref.current`访问到对应的组件实例，并调用上面的实例方法。
+
+```jsx
+import { useRef } from 'react'
+import { Checkbox } from 'react-vant'
+
+export default () => {
+  const checkbox = useRef(null)
+  return <Checkbox checked={checked} ref={checkbox}>复选框</Checkbox>
+};
+
+```
+
+
 ## 浏览器适配
 
-### Rem 布局适配
+React Vant 默认使用 `px` 作为样式单位，如果需要使用 `viewport` 单位 (vw, vh, vmin, vmax)，推荐使用 [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport) 进行转换。
 
-样式默认使用 `px` 作为单位，如果需要使用 `rem` 单位，推荐使用以下两个工具：
+[postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport) 是一款 PostCSS 插件，用于将 px 单位转化为 vw/vh 单位。
 
-- [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 是一款 postcss 插件，用于将单位转化为 rem
-- [lib-flexible](https://github.com/amfe/lib-flexible) 用于设置 rem 基准值
+#### PostCSS PostCSS 示例配置
 
-#### PostCSS 配置
-
-下面提供了一份基本的 postcss 配置，可以在此配置的基础上根据项目需求进行修改。
+下面提供了一份基本的 PostCSS 示例配置，可以在此配置的基础上根据项目需求进行修改。
 
 ```js
+// postcss.config.js
 module.exports = {
   plugins: {
-    autoprefixer: {
-      browsers: ['Android >= 4.0', 'iOS >= 8'],
-    },
-    'postcss-pxtorem': {
-      rootValue: 37.5,
-      propList: ['*'],
+    'postcss-px-to-viewport': {
+      viewportWidth: 375,
     },
   },
 };
 ```
 
-> Tips: 在配置 postcss-loader 时，应避免 ignore node_modules 目录，否则将导致 react-vant 样式无法被编译。
+> Tips: 在配置 postcss-loader 时，应避免 ignore node_modules 目录，否则将导致 React Vant 样式无法被编译。
 
 ### 触摸事件模拟
 

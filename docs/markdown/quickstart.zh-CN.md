@@ -49,9 +49,12 @@ module.exports = {
 ```
 
 ```js
-// 接着你可以在代码中直接引入 react-vant 组件
-// 插件会自动将代码转化为方式二中的按需引入形式
+// 原始代码
 import { Button } from 'react-vant';
+
+// 编译后代码
+import Button from 'react-/es/button';
+import 'react-/es/button/style';
 ```
 
 > Tips: 如果你在使用 TypeScript，可以使用 [ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) 实现按需引入。
