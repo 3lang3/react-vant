@@ -6,7 +6,7 @@ import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
 
   return (
     <DemoSection>

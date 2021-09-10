@@ -1,17 +1,21 @@
 @import '../../styles/themes/default.less';
 
 .demo-uploader {
-  background: #fff;
+  background-color: @white;
 
-  .vant-doc-demo-block {
-    padding: 0 @padding-md;
+  .rv-uploader {
+    margin-left: @padding-md;
   }
 
-  .vant-doc-demo-block__title {
-    padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
+  .preview-cover {
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
   }
 }

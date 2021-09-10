@@ -28,6 +28,6 @@ export interface ImagePreviewProps extends BaseTypeProps {
 }
 
 export type ImagePreviewStatic = {
-  (ImagePreviewProps): React.ReactNode;
-  open: (OpenProps: Omit<ImagePreviewProps, 'visible'>) => void;
+  (ImagePreviewProps): JSX.Element;
+  open: (OpenProps: Omit<ImagePreviewProps, 'visible'>) => () => void;
 };

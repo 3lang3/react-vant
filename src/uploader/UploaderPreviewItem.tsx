@@ -46,8 +46,9 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) =>
     });
   };
 
-  // @todo
-  const onPreview = () => console.log('preview');
+  const onPreview = () => {
+    if (props.onPreview) props.onPreview();
+  };
 
   const renderDeleteIcon = () => {
     if (props.deletable && props.item.status !== 'uploading') {
@@ -61,11 +62,11 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) =>
   };
 
   const renderCover = () => {
-    if (props.previewCover) {
+    if (props.previewCoverRender) {
       const { index, item } = props;
       return (
         <div className={cls(bem('preview-cover'))}>
-          {props.previewCover(extend({ index }, item))}
+          {props.previewCoverRender(extend({ index }, item))}
         </div>
       );
     }

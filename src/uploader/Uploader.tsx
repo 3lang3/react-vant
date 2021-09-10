@@ -1,16 +1,18 @@
-import React, { useRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import cls from 'classnames';
 // Utils
 import { isPromise, getSizeStyle, extend, pick } from '../utils';
-import { bem, isOversize, filterFiles, readFileContent, toArray } from './utils';
+import { bem, isOversize, filterFiles, readFileContent, toArray, isImageFile } from './utils';
 // Components
 import Icon from '../icon';
 
 // Types
-import { UploaderFileListItem, UploaderProps } from './PropsType';
+import { UploaderFileListItem, UploaderInstance, UploaderProps } from './PropsType';
 import { UploaderPreviewItem } from './UploaderPreviewItem';
+import ImagePreview from '../image-preview';
 
-const Uploader: React.FC<UploaderProps> = (props) => {
+const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
+  const imagePreview = useRef(null);
   const inputRef = useRef<HTMLInputElement>();
 
   const getDetail = (index = props?.value.length || 0) => ({
@@ -97,8 +99,7 @@ const Uploader: React.FC<UploaderProps> = (props) => {
     const file = files.length === 1 ? files[0] : ([].slice.call(files) as File[]);
 
     if (props.beforeRead) {
-      const response = props.beforeRead(file, getDetail());
-
+      const response = props.beforeRead(file, getDetail()) as File | File[];
       if (!response) {
         resetInput();
         return;
@@ -119,6 +120,35 @@ const Uploader: React.FC<UploaderProps> = (props) => {
     }
     readFile(file);
   };
+  const onClosePreview = () => {
+    if (props.onClosePreview) {
+      props.onClosePreview();
+    }
+  };
+  const previewImage = (item: UploaderFileListItem) => {
+    if (props.previewFullImage) {
+      const imageFiles = props.value.filter(isImageFile);
+      const images = imageFiles
+        .map((image) => image.content || image.url)
+        .filter(Boolean) as string[];
+      imagePreview.current = ImagePreview.open(
+        extend(
+          {
+            images,
+            startPosition: imageFiles.indexOf(item),
+            onClose: onClosePreview,
+          },
+          props.previewOptions,
+        ),
+      );
+    }
+  };
+
+  const closeImagePreview = () => {
+    if (imagePreview.current) {
+      imagePreview.current.close();
+    }
+  };
 
   const deleteFile = (item: UploaderFileListItem, index: number) => {
     const fileList = props.value.slice(0);
@@ -138,8 +168,10 @@ const Uploader: React.FC<UploaderProps> = (props) => {
         item={item}
         key={index}
         index={index}
+        previewCoverRender={props.previewCoverRender}
         onDelete={() => deleteFile(item, index)}
-        {...pick(props, ['name', 'lazyLoad'])}
+        onPreview={() => previewImage(item)}
+        {...pick(props, ['name'])}
         {...previewData}
       />
     );
@@ -157,7 +189,7 @@ const Uploader: React.FC<UploaderProps> = (props) => {
       return null;
     }
 
-    const Input = (
+    const Input = props.readonly ? null : (
       <input
         ref={inputRef}
         type="file"
@@ -180,13 +212,27 @@ const Uploader: React.FC<UploaderProps> = (props) => {
     }
 
     return (
-      <div className={cls(bem('upload'))} style={getSizeStyle(props.previewSize)}>
+      <div
+        className={cls(bem('upload', { readonly: props.readonly }))}
+        style={getSizeStyle(props.previewSize)}
+      >
         <Icon name={props.uploadIcon} className={cls(bem('upload-icon'))} />
         {props.uploadText && <span className={cls(bem('upload-text'))}>{props.uploadText}</span>}
         {Input}
       </div>
     );
   };
+
+  const chooseFile = () => {
+    if (inputRef.current && !props.disabled) {
+      inputRef.current.click();
+    }
+  };
+
+  useImperativeHandle(ref, () => ({
+    chooseFile,
+    closeImagePreview,
+  }));
 
   return (
     <div className={cls(bem())}>
@@ -196,7 +242,7 @@ const Uploader: React.FC<UploaderProps> = (props) => {
       </div>
     </div>
   );
-};
+});
 
 Uploader.defaultProps = {
   maxSize: Number.MAX_VALUE,
@@ -204,6 +250,7 @@ Uploader.defaultProps = {
   deletable: true,
   showUpload: true,
   previewImage: true,
+  previewFullImage: true,
   name: '',
   accept: 'image/*',
   value: [],

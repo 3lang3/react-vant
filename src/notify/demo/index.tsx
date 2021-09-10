@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Cell, Icon, Flex, Notify } from 'react-vant';
+import { Cell, Icon, Flex } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Notify from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -11,16 +12,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection className="demo-notify">
       <DemoBlock card title="基础用法">
-        <Cell
-          title="基础用法"
-          isLink
-          onClick={() =>
-            Notify.show({
-              message: '通知内容',
-              onClose: () => console.log('close'),
-            })
-          }
-        />
+        <Cell title="基础用法" isLink onClick={() => Notify.show('通知内容')} />
       </DemoBlock>
       <DemoBlock card title="通知类型">
         <Cell

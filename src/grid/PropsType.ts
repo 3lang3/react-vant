@@ -25,7 +25,7 @@ export interface GridProps extends BaseTypeProps {
   style?: React.CSSProperties;
 }
 
-export interface GridItemProps extends GridProps, BaseTypeProps {
+export interface GridItemProps extends BaseTypeProps {
   /**  图标右上角徽标	 */
   badge?: BadgeSettingProps;
   /** 文字 */

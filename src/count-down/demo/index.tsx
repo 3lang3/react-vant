@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
-import { Grid, CountDown, Toast } from 'react-vant';
+import { CountDown, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { CountDownInstance } from '../PropsType';
+import Grid from '../../grid';
 import './style.less';
 
 const demoTime = 30 * 60 * 60 * 1000;
