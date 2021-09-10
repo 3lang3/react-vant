@@ -169,6 +169,9 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
         key={index}
         index={index}
         previewCoverRender={props.previewCoverRender}
+        onClick={() => {
+          if (props.onClickPreview) props.onClickPreview(item, getDetail(index));
+        }}
         onDelete={() => deleteFile(item, index)}
         onPreview={() => previewImage(item)}
         {...pick(props, ['name'])}
@@ -182,6 +185,10 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
       return props.value.map(renderPreviewItem);
     }
     return null;
+  };
+
+  const onClickUpload = (event) => {
+    if (props.onClickUpload) props.onClickUpload(event);
   };
 
   const renderUpload = () => {
@@ -204,7 +211,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
 
     if (props.children) {
       return (
-        <div className={cls(bem('input-wrapper'))}>
+        <div className={cls(bem('input-wrapper'))} onClick={onClickUpload}>
           {props.children}
           {Input}
         </div>
@@ -215,6 +222,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
       <div
         className={cls(bem('upload', { readonly: props.readonly }))}
         style={getSizeStyle(props.previewSize)}
+        onClick={onClickUpload}
       >
         <Icon name={props.uploadIcon} className={cls(bem('upload-icon'))} />
         {props.uploadText && <span className={cls(bem('upload-text'))}>{props.uploadText}</span>}

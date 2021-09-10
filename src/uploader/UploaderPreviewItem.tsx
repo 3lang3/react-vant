@@ -103,7 +103,7 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) =>
   };
 
   return (
-    <div className={cls(bem('preview'))}>
+    <div className={cls(bem('preview'))} onClick={props.onClick}>
       {renderPreview()}
       {renderMask()}
       {renderDeleteIcon()}

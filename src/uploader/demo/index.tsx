@@ -95,7 +95,16 @@ export default (): React.ReactNode => {
         <Uploader afterRead={(file) => console.log(file)} />
       </DemoBlock>
       <DemoBlock title="文件预览">
-        <Uploader readonly value={previewDemo} onChange={setPreviewDemo} />
+        <Uploader
+          onClickPreview={(items, detail) => {
+            console.log(items, detail);
+          }}
+          onClickUpload={() => {
+            console.log('click upload tigger');
+          }}
+          value={previewDemo}
+          onChange={setPreviewDemo}
+        />
       </DemoBlock>
       <DemoBlock title="上传状态">
         <Uploader multiple value={demo} afterRead={afterRead} onChange={(v) => setDemo(v)} />

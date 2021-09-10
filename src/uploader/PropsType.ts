@@ -64,6 +64,7 @@ export interface UploaderPrviewItemProps {
   /** 删除文件预览时触发	 */
   onDelete?: () => void;
   onPreview?: () => void;
+  onClick?: () => void;
   item: UploaderFileListItem;
 }
 
