@@ -1,6 +1,6 @@
 import React from 'react';
-import { Flex } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Flex from '..';
 import './style.less';
 
 export default (): React.ReactNode => {

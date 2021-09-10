@@ -63,11 +63,11 @@ const Sticky: React.FC<StickyProps> = (props) => {
     return style;
   }, [props.position, state.fixed, offset, state.width, state.height, state.transform]);
 
-  const emitScroll = (scrollTop: number) => {
+  const emitScroll = (scrollTop: number, isFixed: boolean) => {
     if (props.onScroll) {
       props.onScroll({
         scrollTop,
-        isFixed: state.fixed,
+        isFixed,
       });
     }
   };
@@ -108,7 +108,7 @@ const Sticky: React.FC<StickyProps> = (props) => {
       }
     }
     updateState(newState);
-    emitScroll(scrollTop);
+    emitScroll(scrollTop, newState.fixed);
   };
 
   useEventListener('scroll', onScroll, { target: scrollParent });

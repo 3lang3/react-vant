@@ -54,7 +54,7 @@ export type NotifyMethodProps = string | Omit<NotifyProps, 'visible' | 'type'>;
 
 export type NotifyStatic = {
   /** 展示提示	 */
-  show: (option: NotifyProps) => void;
+  show: (option: NotifyProps | string) => void;
   /** 关闭提示	 */
   clear: () => void;
   /** 修改默认配置，对所有 Notify 生效	 */

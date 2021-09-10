@@ -42,8 +42,8 @@ export default (): React.ReactNode => {
             <Sidebar
               value={ac}
               onChange={(v) => {
-                setAc(+v);
-                Toast.info(`标签名 ${+v + 1}`);
+                setAc(v);
+                Toast.info(`标签名 ${v + 1}`);
               }}
             >
               <Sidebar.Item title="标签名1" />
