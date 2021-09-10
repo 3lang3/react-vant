@@ -67,7 +67,7 @@ program
   .action(buildSite);
 
 program
-  .command('commit-lint <gitParams>')
+  .command('commit-lint')
   .description('Lint commit message')
   .action(commitLint);
 
