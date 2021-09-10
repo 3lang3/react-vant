@@ -1,11 +1,11 @@
 {
   "name": "@react-vant/cli",
-  "version": "1.0.6",
+  "version": "1.0.10",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "bin": {
-    "react-vant-cli": "./lib/index.js"
+    "react-vant-cli": "./lib/bin.js"
   },
   "scripts": {
     "dev": "tsc --watch",
@@ -13,6 +13,12 @@
     "test": "jest",
     "release": "tsc --build & release-it"
   },
+  "files": [
+    "lib",
+    "site",
+    "template",
+    "preset.js"
+  ],
   "release-it": {
     "git": {
       "tag": false,

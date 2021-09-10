@@ -1383,10 +1383,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.10.1.tgz#728ecd95ab207aab8a9a4e421f0422db329232be"
   integrity sha512-HnUhk1Sy9IuKrxEMdIRCxpIqPw6BFsbYSEUO9p/hNw5sMld/+3OLMWQP80F8/db9qsv3qUjs7ZR5bS/R+iinXw==
 
-"@react-vant/cli@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@react-vant/cli/-/cli-1.0.6.tgz#83c6fb53897c4ebe52b1501f5c9bff274eae9feb"
-  integrity sha512-21ih0aoYOP5G2zYPIWLr31lioWctp3XMarlJJEr62PvN0RjgEXGLnRXJtH7SfHS/7WeLu+/8g5PH4moPCj/Otg==
+"@react-vant/cli@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@react-vant/cli/-/cli-1.0.10.tgz#8d9e5f20aece49374d4556c5d3df79ee9748343b"
+  integrity sha512-dX2nnNpNlGGH5fUaISxG8o6hgSQfDcoBnrMUPAij6c4w9HqfAxXF+TaQRIk5RETHZV5JNaqYD+e41PL5XKHHHw==
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-decorators" "^7.12.1"
