@@ -3,7 +3,7 @@ import {ActionSheet, Cell} from 'react-vant';
 import {components} from 'site-mobile-demo';
 import './style.less';
 
-const actions = [{ name: '选项一'}, {name: '选项二'}, {name: '选项三'}];
+const actions = [{name: '选项一'}, {name: '选项二'}, {name: '选项三'}];
 const actions1 = [{name: '选项一'}, {name: '选项二'}, {name: '选项三', subname: '描述信息'}];
 const actions2 = [
   {name: '选项一', color: '#ee0a24'},
