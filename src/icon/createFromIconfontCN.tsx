@@ -1,5 +1,5 @@
-import React, {FunctionComponent, ReactNode} from 'react';
-import {IconProps} from './PropsType';
+import React, { FunctionComponent, ReactNode } from 'react';
+import { IconProps } from './PropsType';
 import Icon from './Icon'
 
 const cache = new Set<string>();
@@ -24,14 +24,14 @@ export default function createFromIconfontCN(scriptUrl: string): FunctionCompone
   const Iconfont: FunctionComponent<Omit<IconProps, 'classPrefix'>> = (props) => {
     Iconfont.displayName = 'Iconfont';
 
-    const {name} = props;
+    const { name } = props;
 
     let content: ReactNode;
     if (name) {
       content = (<svg width="1em" height="1em" fill="currentColor">
-        <use xlinkHref={`#${name}`}/>
+        <use xlinkHref={`#${name}`} />
       </svg>)
-      ;
+        ;
     }
     return <Icon {...props}>{content}</Icon>;
   };

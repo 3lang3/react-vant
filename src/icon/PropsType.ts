@@ -1,6 +1,6 @@
 import React from 'react';
-import {BadgeSettingProps, HtmlTagType} from '../badge/PropsType';
-import {BaseTypeProps} from '../utils';
+import { BadgeSettingProps, HtmlTagType } from '../badge/PropsType';
+import { BaseTypeProps } from '../utils';
 
 export interface IconProps extends BaseTypeProps {
   /** HTML 标签
