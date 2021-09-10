@@ -183,11 +183,14 @@ export default () => {
 
 ### Events
 
-| 事件名     | 说明                   | 回调参数                 |
-| ---------- | ---------------------- | ------------------------ |
-| onChange   | 组件值更新时调用       | _UploaderFileListItem[]_ |
-| onOversize | 文件大小超过限制时触发 | 同 `afterRead`           |
-| onDelete   | 删除文件预览时触发     | 同 `afterRead`           |
+| 事件名         | 说明                   | 回调参数                 |
+| -------------- | ---------------------- | ------------------------ |
+| onChange       | 组件值更新时调用       | _UploaderFileListItem[]_ |
+| onOversize     | 文件大小超过限制时触发 | 同 `afterRead`           |
+| onClickUpload  | 点击上传区域时触发     | _event: MouseEvent_      |
+| onClickPreview | 点击预览图时触发       | 同 `afterRead`           |
+| onClosePreview | 关闭全屏图片预览时触发 | -                        |
+| onDelete       | 删除文件预览时触发     | 同 `afterRead`           |
 
 ### 回调参数
 
