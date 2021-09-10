@@ -14,7 +14,7 @@ const actions2 = [
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const [visible, setVisible] = useState(-1);
-  const onCancel = () => setVisible(-1)
+  const onCancel = () => setVisible(-1);
   return (
     <DemoSection>
       <DemoBlock card title="基础用法">

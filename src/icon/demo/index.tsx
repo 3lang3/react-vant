@@ -4,7 +4,7 @@ import { Flex, Icon, Tabs, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
-const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/font_2763890_w471tfudy4d.js')
+const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/font_2763890_w471tfudy4d.js');
 
 // from https://30secondsofcode.org
 function copyToClipboard(str: string) {

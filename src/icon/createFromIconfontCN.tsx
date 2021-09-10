@@ -1,11 +1,12 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { IconProps } from './PropsType';
-import Icon from './Icon'
+import Icon from './Icon';
 
 const cache = new Set<string>();
 
-export default function createFromIconfontCN(scriptUrl: string): FunctionComponent<Omit<IconProps, 'classPrefix'>> {
-
+export default function createFromIconfontCN(
+  scriptUrl: string,
+): FunctionComponent<Omit<IconProps, 'classPrefix'>> {
   if (
     typeof document !== 'undefined' &&
     typeof window !== 'undefined' &&
@@ -28,10 +29,11 @@ export default function createFromIconfontCN(scriptUrl: string): FunctionCompone
 
     let content: ReactNode;
     if (name) {
-      content = (<svg width="1em" height="1em" fill="currentColor">
-        <use xlinkHref={`#${name}`} />
-      </svg>)
-        ;
+      content = (
+        <svg width="1em" height="1em" fill="currentColor">
+          <use xlinkHref={`#${name}`} />
+        </svg>
+      );
     }
     return <Icon {...props}>{content}</Icon>;
   };
