@@ -49,6 +49,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     return null;
   };
   const getModelValue = () => String(props.value ?? '');
+
   const showClear = () => {
     const readonly = getProp('readonly');
 
@@ -364,6 +365,8 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
 Field.defaultProps = {
   clearIcon: 'clear',
+  clearTrigger: 'focus',
+  formatTrigger: 'onChange',
 };
 
 export default Field;
