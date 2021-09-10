@@ -12,6 +12,25 @@ npm i react-vant
 yarn add react-vant
 ```
 
+### 在create-react-app中使用
+
+参考[react-vant-cra](https://github.com/3lang3/react-vant-template/tree/main/template/create-react-app)
+
+### 在umijs使用
+
+参考[react-vant-umi](https://github.com/3lang3/react-vant-template/tree/main/template/umi)
+
+### 在nextjs使用
+
+参考[react-vant-nextjs](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
+
+
+
+
+
+
+
+
 ## 引入组件
 
 ### 方式一. 自动按需引入组件 (推荐)
