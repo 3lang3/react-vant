@@ -78,5 +78,5 @@ interface ItemPrivateProps {
   value?: string | number;
   /** @private */
   showPopup?: boolean;
-  offset: number;
+  offset?: number;
 }

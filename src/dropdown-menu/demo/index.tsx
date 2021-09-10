@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { DropdownMenu, Cell, Switch } from 'react-vant';
+import { Cell, Switch } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import DropdownMenu from '..';
 import './style.less';
 
 const option1 = [
@@ -15,8 +16,9 @@ const option2 = [
 ];
 
 export default (): React.ReactNode => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<Record<string, string | number>>({});
   const { DemoBlock, DemoSection } = components;
+
   return (
     <DemoSection className="demo-badge">
       <DemoBlock title="基础用法">
