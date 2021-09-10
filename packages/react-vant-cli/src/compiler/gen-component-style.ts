@@ -94,18 +94,18 @@ export function genComponentStyle(
   const baseFile = getCssBaseFile();
 
   components.forEach((component) => {
-    genEntry({
-      baseFile,
-      component,
-      filename: 'index.js',
-      ext: '.css',
-    });
+    // genEntry({
+    //   baseFile,
+    //   component,
+    //   filename: 'index.js',
+    //   ext: `.${CSS_LANG}`,
+    // });
 
     if (CSS_LANG !== 'css') {
       genEntry({
         baseFile,
         component,
-        filename: `${CSS_LANG}.js`,
+        filename: 'index.js',
         ext: `.${CSS_LANG}`,
       });
     }
