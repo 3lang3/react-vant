@@ -7,9 +7,9 @@ export interface IconProps extends BaseTypeProps {
    * @default 'i'
    */
   tag?: HtmlTagType;
-  /** 图标名称或图片链接	 */
+  /** 图标名称或图片链接   */
   name: string;
-  /** 图标颜色	 */
+  /** 图标颜色   */
   color?: string;
   /**
    * 图标大小，如 20px 2em，默认单位为px
@@ -23,7 +23,7 @@ export interface IconProps extends BaseTypeProps {
    * @default 'van-icon'
    */
   classPrefix?: string;
-  /** 点击图标时触发	 */
+  /** 点击图标时触发   */
   onClick?: (e: React.MouseEvent) => void;
   onTouchStart?: (e: React.MouseEvent) => void;
 }
