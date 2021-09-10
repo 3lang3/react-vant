@@ -171,7 +171,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     if (props.scrollspy) {
       const target = contentRefs[current ?? state.currentIndex];
       if (target && scroller) {
-        const to = getElementTop(target, scroller) - tabHeight.current;
+        const to = getElementTop(target, scroller) - (offsetTopPx + tabHeight.current);
         lockScroll.current = true;
         scrollTopTo(scroller, to, immediate ? 0 : +props.duration, () => {
           lockScroll.current = false;
