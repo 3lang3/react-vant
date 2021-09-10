@@ -4,7 +4,7 @@ import Icon from './Icon'
 
 const cache = new Set<string>();
 
-export default function createFromIconfontCN(scriptUrl: string): FunctionComponent<IconProps> {
+export default function createFromIconfontCN(scriptUrl: string): FunctionComponent<Omit<IconProps, 'classPrefix'>> {
 
   if (
     typeof document !== 'undefined' &&
@@ -21,7 +21,7 @@ export default function createFromIconfontCN(scriptUrl: string): FunctionCompone
     document.body.appendChild(script);
   }
 
-  const Iconfont: FunctionComponent<IconProps> = (props) => {
+  const Iconfont: FunctionComponent<Omit<IconProps, 'classPrefix'>> = (props) => {
     Iconfont.displayName = 'Iconfont';
 
     const {name} = props;

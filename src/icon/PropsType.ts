@@ -26,5 +26,4 @@ export interface IconProps extends BaseTypeProps {
   /** 点击图标时触发   */
   onClick?: (e: React.MouseEvent) => void;
   onTouchStart?: (e: React.MouseEvent) => void;
-  createFromIconfontCN?: (e: string) => void;
 }

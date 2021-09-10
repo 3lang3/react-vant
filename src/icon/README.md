@@ -86,6 +86,12 @@ const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/xxx.js');
 
 ## API
 
+### 方法
+
+| 方法名        | 说明         | 参数                 | 返回值     |
+| ------------- | ------------ | -------------------- | ---------- |
+| Icon.createFromIconfontCN   | 创建第三方Icon     | `scriptUrl: string`  | `void`     |
+
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
