@@ -186,11 +186,11 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   };
 
   const onClickTab = (item, index: number, event: React.MouseEvent) => {
-    const { disabled = false } = titleRefs[index];
-    const name = getTabName(titleRefs[index], index);
+    const { title, disabled = false } = item;
+    const name = getTabName(item, index);
     props.onClickTab?.({
       name,
-      title: item.title,
+      title,
       event,
       disabled,
     });
