@@ -11,6 +11,7 @@ const [bem] = createNamespace('tabs');
 
 const TabsContent: React.FC<TabsContentProps> = (props) => {
   const swipeRef = useRef<SwipeInstance>();
+  const innerEffect = useRef(false);
   const { animated, swipeable, duration } = props;
 
   const renderChildren = () => {
@@ -23,7 +24,13 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           className={classnames(bem('track'))}
           duration={+duration}
           showIndicators={false}
-          onChange={props.onChange}
+          onChange={(idx) => {
+            if (innerEffect.current) {
+              innerEffect.current = false;
+              return;
+            }
+            if (props.onChange) props.onChange(idx);
+          }}
         >
           {React.Children.map(props.children, (child) => (
             <Swipe.Item role="tabpanel" className={classnames(bem('pane-wrapper'))}>
@@ -40,6 +47,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
     const swipe = swipeRef.current;
     if (!swipe) return;
     if (swipe.activeIndex !== index) {
+      innerEffect.current = true;
       swipe.slideTo(index, !props.inited ? 0 : +duration);
     }
   };

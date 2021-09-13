@@ -61,11 +61,9 @@ function parseOptions(opts: SwipeProps) {
     rest.autoplay = { delay: rest.autoplay, disableOnInteraction: false };
   }
   if (onChange) {
-    const back = rest.onActiveIndexChange;
-    rest.onActiveIndexChange = (sw) => {
+    rest.onSlideChange = (sw) => {
       const idx = opts.loop ? sw.realIndex : sw.activeIndex;
       onChange?.(idx);
-      back?.(sw);
     };
   }
   return rest;

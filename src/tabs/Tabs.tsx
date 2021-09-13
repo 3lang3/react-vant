@@ -38,6 +38,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const root = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const tabHeight = useRef<number>(0);
+  const initChange = useRef<boolean>(false);
   const lockScroll = useRef<boolean>(false);
   const stickyFixed = useRef<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -151,8 +152,12 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
     setState({ currentIndex: newIndex });
 
-    if (newName !== props.active) {
-      // emit('update:active', newName);
+    if (!initChange.current) {
+      initChange.current = true;
+      return;
+    }
+
+    if (initChange.current) {
       if (shouldEmitChange) {
         props.onChange?.(newName, newTab.title);
       }
@@ -181,11 +186,11 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   };
 
   const onClickTab = (item, index: number, event: React.MouseEvent) => {
-    const { title, disabled } = titleRefs[index];
+    const { disabled = false } = titleRefs[index];
     const name = getTabName(titleRefs[index], index);
     props.onClickTab?.({
       name,
-      title,
+      title: item.title,
       event,
       disabled,
     });
