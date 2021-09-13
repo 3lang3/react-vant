@@ -49,4 +49,5 @@ export { default as Slider } from './slider';
 export { default as Stepper } from './stepper';
 export { default as Switch } from './switch';
 export { default as Uploader } from './uploader';
+export { default as Progress } from './progress';
 export * from './hooks';

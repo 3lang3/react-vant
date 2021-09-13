@@ -264,6 +264,10 @@ module.exports = {
                 title: 'Popover 气泡弹出框',
               },
               {
+                path: 'progress',
+                title: 'Progress 进度条',
+              },
+              {
                 path: 'sticky',
                 title: 'Sticky 粘性布局',
               },
