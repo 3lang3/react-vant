@@ -72,11 +72,11 @@ import { Tag } from 'react-vant';
 
 ### 自定义颜色
 
-通过 `color` 和 `text-color` 属性设置标签颜色。
+通过 `color` 和 `textColor` 属性设置标签颜色。
 
 ```jsx
 <Tag color="#7232dd">标签</Tag>
-<Tag color="#ffe1e1" text-color="#ad0000">标签</Tag>
+<Tag color="#ffe1e1" textColor="#ad0000">标签</Tag>
 <Tag color="#7232dd" plain>标签</Tag>
 ```
 
@@ -110,7 +110,7 @@ import { Tag } from 'react-vant';
 | 名称                        | 默认值                      | 描述 |
 | --------------------------- | --------------------------- | ---- |
 | @tag-padding                | `0 @padding-base`           | -    |
-| @tag-text-color             | `@white`                    | -    |
+| @tag-textColor             | `@white`                    | -    |
 | @tag-font-size              | `@font-size-sm`             | -    |
 | @tag-border-radius          | `2px`                       | -    |
 | @tag-line-height            | `16px`                      | -    |
