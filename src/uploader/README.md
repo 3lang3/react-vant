@@ -20,6 +20,26 @@ import { Uploader } from 'react-vant';
 <Uploader afterRead={(file) => console.log(file)} />
 ```
 
+
+### 文件预览
+
+通过 `value` 可以绑定已经上传的文件列表，并展示文件列表的预览图。
+
+
+```jsx
+export default () => {
+  const [demo, setDemo] = useState([
+    { url: 'https://img.yzcdn.cn/vant/leaf.jpg' },
+    // Uploader 根据文件后缀来判断是否为图片文件
+    // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
+    { url: 'https://cloud-image', isImage: true },
+  ]);
+
+
+  return <Uploader value={demo} />;
+};
+```
+
 ### 上传状态
 
 通过 `status` 属性可以标识上传状态，`uploading` 表示上传中，`failed` 表示上传失败，`done` 表示上传完成。
