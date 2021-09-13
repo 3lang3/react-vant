@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -10,7 +11,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Tabs swipeable active={2}>
+        <Tabs swipeable active={2} onClickTab={(tab) => console.log(tab)}>
           {[1, 2, 3, 4].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
               内容 {item}
@@ -19,7 +20,7 @@ export default (): React.ReactNode => {
         </Tabs>
       </DemoBlock>
       <DemoBlock title="通过名称匹配">
-        <Tabs active="c">
+        <Tabs active="c" onClickTab={(tab) => console.log(tab)}>
           {['a', 'b', 'c'].map((item, index) => (
             <Tabs.TabPane key={item} title={`标签${index + 1}`} name={item}>
               内容 {index + 1}
@@ -28,7 +29,7 @@ export default (): React.ReactNode => {
         </Tabs>
       </DemoBlock>
       <DemoBlock title="标签栏滚动">
-        <Tabs>
+        <Tabs onClickTab={(tab) => console.log(tab)}>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
               内容 {item}
@@ -37,7 +38,7 @@ export default (): React.ReactNode => {
         </Tabs>
       </DemoBlock>
       <DemoBlock title="禁用标签">
-        <Tabs>
+        <Tabs onClickTab={(tab) => console.log(tab)}>
           <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
           <Tabs.TabPane title="标签2" disabled>
             内容2
@@ -46,7 +47,7 @@ export default (): React.ReactNode => {
         </Tabs>
       </DemoBlock>
       <DemoBlock title="样式风格">
-        <Tabs type="card">
+        <Tabs type="card" onClickTab={(tab) => console.log(tab)}>
           {[1, 2, 3].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
               内容 {item}
@@ -54,14 +55,14 @@ export default (): React.ReactNode => {
           ))}
         </Tabs>
       </DemoBlock>
-      <DemoBlock title="点击事件">
+      <DemoBlock title="点击事件" onClickTab={(tab) => console.log(tab)}>
         <Tabs onClick={(name, title) => Toast(title)}>
           <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
           <Tabs.TabPane title="标签2">内容2</Tabs.TabPane>
         </Tabs>
       </DemoBlock>
       <DemoBlock title="粘性布局">
-        <Tabs active={2} sticky>
+        <Tabs active={2} sticky onClickTab={(tab) => console.log(tab)}>
           {[1, 2, 3, 4].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
               <div style={{ height: '50vh' }}>内容 {item}</div>
@@ -70,7 +71,7 @@ export default (): React.ReactNode => {
         </Tabs>
       </DemoBlock>
       <DemoBlock title="滚动导航">
-        <Tabs sticky scrollspy offsetTop={50}>
+        <Tabs sticky scrollspy onClickTab={(tab) => console.log(tab)}>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
               内容 {item}
