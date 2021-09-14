@@ -111,6 +111,17 @@ import { Button } from 'react-vant';
 <Button color="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</Button>
 ```
 
+### 按钮组
+
+通过 `Button.Group` 将多个按钮并排显示。
+
+```jsx
+ <Button.Group>
+  <Button block>上一步</Button>
+  <Button block type="primary" >下一步</Button>
+</Button.Group>
+```
+
 ## API
 
 ### Props

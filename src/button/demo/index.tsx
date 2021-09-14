@@ -93,6 +93,14 @@ export default (): React.ReactNode => {
         </Button>
         <Button color="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</Button>
       </DemoBlock>
+      <DemoBlock title="按钮组">
+        <Button.Group>
+          <Button block>上一步</Button>
+          <Button block type="primary">
+            下一步
+          </Button>
+        </Button.Group>
+      </DemoBlock>
     </DemoSection>
   );
 };

@@ -148,14 +148,17 @@
 
   &--shadow {
     transition: box-shadow 0.2s linear;
+
     &-1 {
       box-shadow: rgba(0, 0, 0, 0.2) 0 2 * @hd 1 * @hd -1 * @hd,
         rgba(0, 0, 0, 0.14) 0 1 * @hd 1 * @hd 0, rgba(0, 0, 0, 0.12) 0 1 * @hd 3 * @hd 0;
     }
+
     &-2 {
       box-shadow: rgba(0, 0, 0, 0.2) 0 3 * @hd 1 * @hd -2 * @hd,
         rgba(0, 0, 0, 0.14) 0 2 * @hd 2 * @hd 0, rgba(0, 0, 0, 0.12) 0 1 * @hd 5 * @hd 0;
     }
+
     &-3 {
       box-shadow: rgba(0, 0, 0, 0.2) 0 3 * @hd 3 * @hd -2 * @hd,
         rgba(0, 0, 0, 0.14) 0 3 * @hd 4 * @hd 0, rgba(0, 0, 0, 0.12) 0 1 * @hd 8 * @hd 0;
@@ -206,6 +209,26 @@
 
     &.@{rv-prefix}-button--square::after {
       border-radius: 0;
+    }
+  }
+
+  &-group {
+    .@{rv-prefix}-button {
+      border-radius: 0;
+    }
+
+    .@{rv-prefix}-button:not(:first-child) {
+      border-left: 0;
+    }
+
+    .@{rv-prefix}-button:last-child {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+
+    .@{rv-prefix}-button:first-child {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
     }
   }
 }
