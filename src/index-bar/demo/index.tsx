@@ -1,6 +1,7 @@
 import React from 'react';
-import { Tabs, Cell, IndexBar } from 'react-vant';
+import { Tabs, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import IndexBar from '..';
 import './style.less';
 
 export default (): React.ReactNode => {

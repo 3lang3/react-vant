@@ -22,7 +22,7 @@ export interface IndexBarProps extends BaseTypeProps {
   onChange?: (value: number | string) => void;
   /** 点击索引栏的字符时触发	 */
   onSelect?: (value: number | string) => void;
-  /** 指定索引栏挂载的节点	 */
+  /** 指定索引栏挂载的节点 */
   teleport?: TeleportType;
   children?: React.ReactNode;
 }

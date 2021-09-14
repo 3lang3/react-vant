@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
   useContext,
+  useCallback,
 } from 'react';
 import classnames from 'classnames';
 
@@ -43,12 +44,15 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
   });
   const [rect, setRect] = useState({ top: 0, height: 0 });
 
-  const isSticky = useMemo(() => state.active && context.sticky, [state.active, context.sticky]);
+  const isSticky = useCallback(
+    () => state.active && context.sticky,
+    [state.active, context.sticky],
+  );
 
   const anchorStyle = useMemo(() => {
     const { zIndex, highlightColor } = context;
 
-    if (isSticky) {
+    if (isSticky()) {
       return {
         zIndex: `${zIndex}`,
         left: state.left ? `${state.left}px` : null,
@@ -58,7 +62,7 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
       };
     }
     return null;
-  }, [isSticky, state.width, state.left, state.top]);
+  }, [isSticky(), state.width, state.left, state.top]);
 
   const getRect = (scrollParent: Element | Window, scrollParentRect) => {
     const rootRect = getElementRect(root.current);
@@ -84,12 +88,12 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
     root,
   }));
 
-  const sticky = isSticky;
+  const sticky = isSticky();
   return (
     <div
       className={props.className}
       ref={root}
-      style={{ ...props.style, height: sticky ? `${state.rect.height}px` : null }}
+      style={{ ...props.style, height: sticky ? `${state.rect.height}px` : undefined }}
     >
       <div
         style={anchorStyle as CSSProperties}
