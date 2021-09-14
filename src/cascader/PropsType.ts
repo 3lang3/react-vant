@@ -36,6 +36,8 @@ export interface CascaderProps extends BaseTypeProps {
   closeable?: boolean;
   /** 是否开启手势左右滑动切换	 */
   swipeable?: boolean;
+  /** 选中项 */
+  value?: (number | string)[];
   /** 默认选中项 */
   defaultValue?: (number | string)[];
   /** 自定义 options 结构中的字段	 */

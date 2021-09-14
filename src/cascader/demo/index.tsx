@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Toast, Popup, Field, useSetState } from 'react-vant';
+import { Toast, Button, Popup, Field, useSetState } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Cascader from '..';
 import './style.less';
@@ -138,6 +138,9 @@ export default (): React.ReactNode => {
     t3: '',
     v4: false,
     t4: '',
+    v5: false,
+    t5: getTextFromValue(['330000', '330100', '330103'], options),
+    value5: ['330000', '330100', '330103'],
   });
   const [dynamicOpts, setDynamicOpts] = useState([
     {
@@ -256,9 +259,48 @@ export default (): React.ReactNode => {
               },
             ]}
             onClose={() => set({ v3: false })}
-            defaultValue={['320000', '320100']}
             onFinish={({ selectedOptions }) => {
               set({ v3: false, t3: selectedOptions.map((option) => option.name).join('/') });
+            }}
+          />
+        </Popup>
+      </DemoBlock>
+      <DemoBlock card title="受控组件">
+        <Field
+          isLink
+          value={state.t5}
+          readonly
+          label="地区"
+          placeholder="请选择所在地区"
+          errorMessage={<div>当前值:{JSON.stringify(state.value5)}</div>}
+          onClick={() => set({ v5: true })}
+        />
+
+        <Button
+          type="primary"
+          size="small"
+          block
+          onClick={() =>
+            set({
+              value5: ['330000', '330100', '330104'],
+              t5: getTextFromValue(['330000', '330100', '330104'], options),
+            })
+          }
+        >
+          外部设置
+        </Button>
+        <Popup visible={state.v5} round position="bottom" onClose={() => set({ v5: false })}>
+          <Cascader
+            title="请选择所在地区"
+            value={state.value5}
+            options={options}
+            onClose={() => set({ v5: false })}
+            onFinish={({ selectedOptions }) => {
+              set({
+                v5: false,
+                value5: selectedOptions.map((option) => option.value),
+                t5: selectedOptions.map((option) => option.text).join('/'),
+              });
             }}
           />
         </Popup>
@@ -266,3 +308,13 @@ export default (): React.ReactNode => {
     </DemoSection>
   );
 };
+
+function getTextFromValue(value: any[], opts: any[]): string {
+  const rs = [];
+  value.reduce((a, v) => {
+    const matchOpt = a.find((opt) => opt.value === v);
+    rs.push(matchOpt.text);
+    return matchOpt.children;
+  }, opts);
+  return rs.join('/');
+}

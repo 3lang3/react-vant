@@ -10,12 +10,15 @@ import { TabsClickTabEventParams } from '../tabs/PropsType';
 
 const [bem] = createNamespace('cascader');
 
+const INITIAL_STATE = {
+  tabs: [],
+  activeTab: 0,
+};
+
 const Cascader: React.FC<CascaderProps> = (props) => {
   const [internalValue, updateInternalValue] = useState(undefined);
-  const [state, updateState] = useSetState<{ tabs: CascaderTab[]; activeTab: number }>({
-    tabs: [],
-    activeTab: 0,
-  });
+  const [state, updateState] =
+    useSetState<{ tabs: CascaderTab[]; activeTab: number }>(INITIAL_STATE);
 
   const {
     text: textKey,
@@ -147,6 +150,27 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     props.onClickTab?.(+name, title);
   };
 
+  const getStateFromValue = (value: (number | string)[]) => {
+    if (!value || !value.length) return INITIAL_STATE;
+    try {
+      const initialState = { activeTab: value.length - 1, tabs: [] } as typeof state;
+      value.reduce((options, v) => {
+        const selectedOption = options.find((tabs) => tabs[valueKey] === v);
+        if (!selectedOption)
+          throw Error(
+            'Cascader: unable to match options correctly, Please check value or defaultValue props.',
+          );
+        initialState.tabs.push({ options, selectedOption });
+        return selectedOption[childrenKey];
+      }, props.options);
+      return initialState;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      return INITIAL_STATE;
+    }
+  };
+
   const renderHeader = () => (
     <div className={cls(bem('header'))}>
       <h2 className={cls(bem('title'))}>{props.title}</h2>
@@ -234,27 +258,16 @@ const Cascader: React.FC<CascaderProps> = (props) => {
   }, [JSON.stringify(props.options)]);
 
   useEffect(() => {
-    if (Array.isArray(props.defaultValue)) {
-      try {
-        const initialState = { activeTab: props.defaultValue.length - 1, tabs: [] } as typeof state;
-        props.defaultValue.reduce((options, v) => {
-          const selectedOption = options.find((tabs) => tabs[valueKey] === v);
-          if (!selectedOption)
-            throw Error(
-              'Cascader: defaultValue unable to match options correctly, Please check defaultValue or options.',
-            );
-          initialState.tabs.push({ options, selectedOption });
-          return selectedOption[childrenKey];
-        }, props.options);
-        if (initialState.tabs.length > 0) {
-          updateState(initialState);
-        }
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      }
-    }
+    const value = props.value ?? props.defaultValue;
+    if (!value) return;
+    const initialState = getStateFromValue(value);
+    updateState(initialState);
   }, []);
+
+  useUpdateEffect(() => {
+    const initialState = getStateFromValue(props.value);
+    updateState(initialState);
+  }, [props.value]);
 
   useUpdateEffect(() => {
     if (internalValue || internalValue === 0) {

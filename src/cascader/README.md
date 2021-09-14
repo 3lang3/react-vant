@@ -165,6 +165,85 @@ const options = [
 />;
 ```
 
+### 受控组件
+
+通过 `value` 属性可以 Cascader 成为受控组件。
+
+> 此处 options 数据和右侧 demo 数据不一致，完整数据请看 [options](https://github.com/3lang3/react-vant/blob/main/src/cascader/demo/index.tsx#L7-L128)
+
+```jsx
+import { useState } from 'react';
+import { Cascader, Button, Popup, Field } from 'react-vant';
+
+// 选项列表，children 代表子选项，支持多级嵌套
+const options = [
+  {
+    text: '浙江省',
+    value: '330000',
+    children: [{ text: '杭州市', value: '330100' }],
+  },
+  {
+    text: '江苏省',
+    value: '320000',
+    children: [{ text: '南京市', value: '320100' }],
+  },
+];
+
+// 从当前选中值获取选中文本
+// 在实际业务中可能需要结合childrenKey，valueKey等进行调整
+function getTextFromValue(value, opts) {
+  const rs = [];
+  value.reduce((a, v) => {
+    const matchOpt = a.find((opt) => opt.value === v);
+    rs.push(matchOpt.text);
+    return matchOpt.children;
+  }, opts);
+  return rs.join('/');
+}
+
+export default () => {
+  const [text, setText] = useState(getTextFromValue(['330000', '330100', '330103'], options));
+  const [value, setValue] = useState(['330000', '330100', '330103']);
+  const [visible, setVisible] = useState(false);
+
+  const onFinish = ({ selectedOptions }) => {
+    setText(selectedOptions.map((option) => option.text).join('/'));
+    setValue(selectedOptions.map((option) => option.value));
+    setVisible(false);
+  };
+
+  const onSetting = () => {
+    const newValue = ['330000', '330100', '330104'];
+    setText(getTextFromValue(newValue, options));
+    setValue(newValue);
+  };
+  return (
+    <>
+      <Field
+        isLink
+        readonly
+        value={text}
+        label="地区"
+        placeholder="请选择所在地区"
+        errorMessage={<div>当前值:{JSON.stringify(value)}</div>}
+        onClick={() => setVisible(true)}
+      />
+      <Popup visible={visible} round position="bottom" onClose={() => setVisible(false)}>
+        <Cascader
+          title="请选择所在地区"
+          options={options}
+          value={value}
+          onClose={() => setVisible(false)}
+          onFinish={onFinish}
+        />
+      </Popup>
+
+      <Button onClick={onSetting}>外部设置</Button>
+    </>
+  );
+};
+```
+
 ## API
 
 ### Props
@@ -172,6 +251,7 @@ const options = [
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | title | 顶部标题 | _ReactNode_ | - |
+| value | 当前选中的值 | _(string \| number)[]_ | - |
 | defaultValue | 默认选中的值 | _(string \| number)[]_ | - |
 | options | 可选项数据源 | _Option[]_ | `[]` |
 | optionRender | 自定义选项文字 | _({ option: Option, selected: boolean }) => ReactNode_ | - |
@@ -185,20 +265,20 @@ const options = [
 
 `options` 属性是一个由对象构成的数组，数组中的每个对象配置一个可选项，对象可以包含以下值：
 
-| 键名               | 说明                     | 类型                        |
-| ------------------ | ------------------------ | --------------------------- |
-| text               | 选项文字（必填）         | _string_                    |
-| value              | 选项对应的值（必填）     | _string \| number_          |
+| 键名      | 说明                     | 类型                        |
+| --------- | ------------------------ | --------------------------- |
+| text      | 选项文字（必填）         | _string_                    |
+| value     | 选项对应的值（必填）     | _string \| number_          |
 | color     | 选项文字颜色             | _string_                    |
-| children           | 子选项列表               | _Option[]_                  |
-| disabled   | 是否禁用选项             | _boolean_                   |
-| className  | 为对应列添加额外的 class | _string \| Array \| object_ |
+| children  | 子选项列表               | _Option[]_                  |
+| disabled  | 是否禁用选项             | _boolean_                   |
+| className | 为对应列添加额外的 class | _string \| Array \| object_ |
 
 ### Events
 
-| 事件      | 说明                   | 回调参数                               |
-| --------- | ---------------------- | -------------------------------------- |
-| onChange    | 选中项变化时触发       | `{ value, selectedOptions, tabIndex }` |
-| onFinish    | 全部选项选择完成后触发 | `{ value, selectedOptions, tabIndex }` |
-| onClose     | 点击关闭图标时触发     | -                                      |
+| 事件       | 说明                   | 回调参数                               |
+| ---------- | ---------------------- | -------------------------------------- |
+| onChange   | 选中项变化时触发       | `{ value, selectedOptions, tabIndex }` |
+| onFinish   | 全部选项选择完成后触发 | `{ value, selectedOptions, tabIndex }` |
+| onClose    | 点击关闭图标时触发     | -                                      |
 | onClickTab | 点击标签时触发         | _tabIndex: number, title: string_      |
