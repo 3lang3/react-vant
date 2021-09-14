@@ -11,6 +11,14 @@
       margin-right: @padding-md;
     }
   }
+  .rv-button-group {
+    display: flex;
+    .rv-button {
+      &--normal:not(:last-child) {
+        margin-right: 0;
+      }
+    }
+  }
 
   .vant-doc-demo-block {
     padding: 0 @padding-md;
