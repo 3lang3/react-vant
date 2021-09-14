@@ -10,7 +10,7 @@ export { default as Icon } from './icon';
 export { default as Image } from './image';
 export { default as ImagePreview } from './image-preview';
 export { default as Popup } from './popup';
-export { default as OverLay } from './overlay';
+export { default as Overlay } from './overlay';
 export { default as Empty } from './empty';
 export { default as Loading } from './loading';
 export { default as Notify } from './notify';

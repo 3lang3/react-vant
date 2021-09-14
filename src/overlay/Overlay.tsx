@@ -6,7 +6,7 @@ import { noop, createNamespace, preventDefault, isDef } from '../utils';
 
 const [bem] = createNamespace('overlay');
 
-const OverLay: React.FC<OverlayProps> = (props) => {
+const Overlay: React.FC<OverlayProps> = (props) => {
   const nodeRef = useRef(null);
   const { visible, duration } = props;
 
@@ -52,9 +52,9 @@ const OverLay: React.FC<OverlayProps> = (props) => {
   );
 };
 
-OverLay.defaultProps = {
+Overlay.defaultProps = {
   lockScroll: true,
   duration: 300,
 };
 
-export default OverLay;
+export default Overlay;
