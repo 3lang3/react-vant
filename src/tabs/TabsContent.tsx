@@ -21,9 +21,11 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           ref={swipeRef}
           loop={false}
           autoplay={false}
+          allowTouchMove={swipeable}
           className={classnames(bem('track'))}
           duration={+duration}
           showIndicators={false}
+          autoHeight
           onChange={(idx) => {
             if (innerEffect.current) {
               innerEffect.current = false;
@@ -33,7 +35,11 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           }}
         >
           {React.Children.map(props.children, (child) => (
-            <Swipe.Item role="tabpanel" className={classnames(bem('pane-wrapper'))}>
+            <Swipe.Item
+              role="tabpanel"
+              style={{ cursor: !swipeable ? 'auto' : undefined }}
+              className={classnames(bem('pane-wrapper'))}
+            >
               {child}
             </Swipe.Item>
           ))}
