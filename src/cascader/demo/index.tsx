@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Toast, Popup, Cascader, Field, useSetState } from 'react-vant';
+import { Toast, Popup, Field, useSetState } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Cascader from '..';
 import './style.less';
 
 const options = [
@@ -255,6 +256,7 @@ export default (): React.ReactNode => {
               },
             ]}
             onClose={() => set({ v3: false })}
+            defaultValue={['320000', '320100']}
             onFinish={({ selectedOptions }) => {
               set({ v3: false, t3: selectedOptions.map((option) => option.name).join('/') });
             }}

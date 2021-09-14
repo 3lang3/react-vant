@@ -171,8 +171,8 @@ const options = [
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 顶部标题 | _ReactNod_ | - |
-| value | 选中项的值 | _string \| number_ | - |
+| title | 顶部标题 | _ReactNode_ | - |
+| defaultValue | 默认选中的值 | _(string \| number)[]_ | - |
 | options | 可选项数据源 | _Option[]_ | `[]` |
 | optionRender | 自定义选项文字 | _({ option: Option, selected: boolean }) => ReactNode_ | - |
 | placeholder | 未选中时的提示文案 | _string_ | `请选择` |

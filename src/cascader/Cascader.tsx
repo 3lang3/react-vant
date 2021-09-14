@@ -103,6 +103,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       return;
     }
     let tabs = JSON.parse(JSON.stringify(state.tabs));
+
     tabs[tabIndex].selectedOption = option;
 
     if (tabs.length > tabIndex + 1) {
@@ -230,11 +231,30 @@ const Cascader: React.FC<CascaderProps> = (props) => {
 
   useEffect(() => {
     updateTabs();
-  }, []);
-
-  useUpdateEffect(() => {
-    updateTabs();
   }, [JSON.stringify(props.options)]);
+
+  useEffect(() => {
+    if (Array.isArray(props.defaultValue)) {
+      try {
+        const initialState = { activeTab: props.defaultValue.length - 1, tabs: [] } as typeof state;
+        props.defaultValue.reduce((options, v) => {
+          const selectedOption = options.find((tabs) => tabs[valueKey] === v);
+          if (!selectedOption)
+            throw Error(
+              'Cascader: defaultValue unable to match options correctly, Please check defaultValue or options.',
+            );
+          initialState.tabs.push({ options, selectedOption });
+          return selectedOption[childrenKey];
+        }, props.options);
+        if (initialState.tabs.length > 0) {
+          updateState(initialState);
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    }
+  }, []);
 
   useUpdateEffect(() => {
     if (internalValue || internalValue === 0) {
