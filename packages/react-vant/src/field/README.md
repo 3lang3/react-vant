@@ -46,10 +46,10 @@ const [value1, setValue1] = useState('');
 
 ```js
 const [value2, setValue2] = useState('');
-const [tel, setTel] = useState();
-const [digit, setDigit] = useState();
-const [number, setNumber] = useState();
-const [password, setPasswrod] = useState();
+const [tel, setTel] = useState('');
+const [digit, setDigit] = useState('');
+const [number, setNumber] = useState('');
+const [password, setPasswrod] = useState('');
 ```
 
 ### 禁用输入框
