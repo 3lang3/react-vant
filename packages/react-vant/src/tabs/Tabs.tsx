@@ -1,4 +1,11 @@
-import React, { useMemo, useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
+import React, {
+  useMemo,
+  useRef,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import classnames from 'classnames';
 
 import useRefs from '../hooks/use-refs';
@@ -36,8 +43,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const { children, color, background } = props;
 
   const root = useRef<HTMLDivElement>(null);
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const tabHeight = useRef<number>(0);
+  const [wrapRef, setWrapRef] = useState<HTMLDivElement>(null);
   const initChange = useRef<boolean>(false);
   const lockScroll = useRef<boolean>(false);
   const stickyFixed = useRef<boolean>(false);
@@ -47,6 +53,11 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const [titleRefs, setTitleRefs] = useRefs();
   const [contentRefs, setContentRefs] = useRefs();
+
+  const tabHeight = useMemo(() => {
+    if (!wrapRef) return 0;
+    return getVisibleHeight(wrapRef);
+  }, [wrapRef]);
 
   const [state, setState] = useSetState({
     inited: false,
@@ -169,14 +180,14 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     const currentIndex = childrenList.findIndex(
       (tab: TabPaneProps, index) => getTabName(tab, index) === name,
     );
-    setCurrentIndex(currentIndex);
+    setCurrentIndex(currentIndex < 0 ? 0 : currentIndex);
   };
 
   const scrollToCurrentContent = (immediate?, current?) => {
     if (props.scrollspy) {
       const target = contentRefs[current ?? state.currentIndex];
       if (target && scroller) {
-        const to = getElementTop(target, scroller) - (offsetTopPx + tabHeight.current);
+        const to = getElementTop(target, scroller) - (offsetTopPx + tabHeight);
         lockScroll.current = true;
         scrollTopTo(scroller, to, immediate ? 0 : +props.duration, () => {
           lockScroll.current = false;
@@ -214,7 +225,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   };
 
   const getCurrentIndexOnScroll = () => {
-    const scrollOffset = offsetTopPx + tabHeight.current;
+    const scrollOffset = offsetTopPx + tabHeight;
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < contentRefs.length; index++) {
       const $el = contentRefs[index];
@@ -273,7 +284,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     const { type, border } = props;
     return (
       <div
-        ref={wrapRef}
+        ref={setWrapRef}
         className={classnames([
           bem('wrap', { scrollable }),
           { [BORDER_TOP_BOTTOM]: type === 'line' && border },
@@ -326,7 +337,6 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const init = () => {
     setCurrentIndexByName(props.active);
     setTimeout(() => {
-      tabHeight.current = getVisibleHeight(wrapRef.current!);
       scrollIntoView(true);
       setState({ inited: true });
     }, 0);
