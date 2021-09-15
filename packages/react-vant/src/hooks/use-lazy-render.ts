@@ -9,7 +9,7 @@ function useLazyRender(show: boolean): (render: () => JSX.Element) => () => Reac
     }
   }, [show]);
 
-  return (render) => () => (inited ? render() : null);
+  return (render) => () => inited ? render() : null;
 }
 
 export default useLazyRender;

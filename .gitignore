@@ -2,15 +2,26 @@
 .cache
 .DS_Store
 .idea
+.eslintcache
+.now
+.env
+.env.*
 
 # npm
 node_modules
 package-lock.json
+package-error.json
+yarn.lock
+yarn-error.json
 
 # dist file
 es
 lib
 site
+dist
+
+# log file
+.changelog
 
 # tests
 tests/coverage

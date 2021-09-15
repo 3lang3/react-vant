@@ -1,0 +1,25 @@
+{
+  "changelog": {
+    "labels": {
+      "pr(enhancement)": ":rocket: Enhancement",
+      "pr(bug)": ":bug: Bug Fix",
+      "pr(documentation)": ":book: Documentation",
+      "pr(dependency)": ":deciduous_tree: Dependency",
+      "pr(chore)": ":turtle: Chore"
+    },
+    "repo": "react-vant",
+    "cacheDir": ".changelog"
+  },
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "version": {
+      "exact": true
+    }
+  },
+  "version": "independent",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "npmClientArgs": ["--ignore-engines"]
+}

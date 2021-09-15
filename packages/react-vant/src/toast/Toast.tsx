@@ -1,3 +1,4 @@
+/* eslint-disable react/default-props-match-prop-types */
 import React, { useEffect } from 'react';
 import classnames from 'classnames';
 
@@ -11,6 +12,7 @@ import { ToastPrivateProps, ToastProps } from './PropsType';
 
 const [bem] = createNamespace('toast');
 
+// eslint-disable-next-line react/require-default-props
 const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = (props) => {
   let clickable = false;
 

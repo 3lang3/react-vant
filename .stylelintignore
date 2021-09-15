@@ -1,3 +1,5 @@
-/packages
-/es
-/lib
+/packages/react-vant/es
+/packages/react-vant/lib
+/packages/react-vant-cli
+/packages/react-vant-fabric
+/packages/react-vant-markdown-loader

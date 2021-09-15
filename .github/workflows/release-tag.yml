@@ -19,7 +19,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          # body: |
-          #  更新内容参见 [CHANGELOG](https://youzan.github.io/vant/#/zh-CN/changelog)。
-
-          #  Please refer to [CHANGELOG](https://youzan.github.io/vant/#/en-US/changelog) for details.
+          body: |
+           更新内容参见 [CHANGELOG](https://3lang3.github.io/react-vant/#/zh-CN/)。
