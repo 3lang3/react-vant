@@ -1,6 +1,6 @@
 {
   "name": "@react-vant/fabric",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of configuration files containing prettier, eslint, stylelint",
   "main": "dist/index.js",
   "files": [
@@ -18,7 +18,6 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "typescript": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "4.4.1",
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.2.1",
@@ -34,6 +33,7 @@
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
-    "stylelint-order": "^4.0.0"
+    "stylelint-order": "^4.0.0",
+    "typescript": "^4.0.3"
   }
 }

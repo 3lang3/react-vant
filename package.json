@@ -1,38 +1,29 @@
 {
-  "name": "react-vant",
-  "version": "0.5.10",
-  "description": "React Mobile UI Components base on Vant UI",
-  "repository": "https://github.com/3lang3/react-vant.git",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "style": "lib/index.css",
-  "typings": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "es"
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "bootstrap": "yarn || npm i",
-    "start": "react-vant-cli dev",
-    "build": "react-vant-cli build",
-    "release": "react-vant-cli release --tag dev",
-    "build:site": "react-vant-cli build-site",
-    "release:site": "npm run build:site && gh-pages -d site",
-    "test": "react-vant-cli test --coverage",
-    "test:coverage": "open tests/coverage/index.html"
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna exec --scope react-vant yarn build",
+    "build:site": "lerna exec --scope react-vant yarn release:site",
+    "changelog": "lerna-changelog",
+    "clean": "lerna clean -y",
+    "publish": "npm run build && lerna publish"
   },
-  "author": "3lang3",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3lang3/react-vant.git"
   },
-  "keywords": [
-    "ui",
-    "react",
-    "mobile",
-    "components"
-  ],
+  "devDependencies": {
+    "@react-vant/fabric": "^1.0.0",
+    "eslint": "^7.32.0",
+    "husky": "4",
+    "lerna": "^3.22.1",
+    "lerna-changelog": "^2.1.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -40,38 +31,11 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.{ts,tsx,js,less}": "prettier --write",
-    "./src/**/*.{ts,tsx,js}": "eslint --fix",
-    "./src/**/*.{css,less}": "stylelint --fix"
+    "./packages/react-vant/src/**/*.{ts,tsx,js,less}": "prettier --write",
+    "./packages/react-vant/src/**/*.{ts,tsx,js}": "eslint --fix",
+    "./packages/react-vant/src/**/*.{css,less}": "stylelint --fix"
   },
-  "devDependencies": {
-    "@react-vant/cli": "^1.0.10",
-    "@react-vant/fabric": "^1.0.0",
-    "@types/classnames": "^2.2.11",
-    "@types/react": "^16.9.55",
-    "@types/react-dom": "^16.9.9",
-    "eslint": "^7.30.0",
-    "gh-pages": "^3.2.3",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.1",
-    "prettier": "^2.1.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "typescript": "^4.0.5"
-  },
-  "peerDependencies": {
-    "react": ">=16.14.0",
-    "react-dom": ">=16.14.0"
-  },
-  "browserslist": [
-    "Android >= 4.0",
-    "iOS >= 8"
-  ],
   "dependencies": {
-    "@vant/icons": "^1.7.0",
-    "@vant/popperjs": "^1.1.0",
-    "classnames": "^2.2.6",
-    "react-transition-group": "^4.4.1",
-    "swiper": "^6.8.1"
+    "@react-vant/cli": "^1.0.10"
   }
 }
