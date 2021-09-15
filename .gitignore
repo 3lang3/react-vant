@@ -11,7 +11,7 @@
 node_modules
 package-lock.json
 package-error.json
-yarn-lock.json
+yarn.lock
 yarn-error.json
 
 # dist file

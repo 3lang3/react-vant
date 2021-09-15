@@ -14,9 +14,6 @@
     "packages/*"
   ],
   "command": {
-    "version": {
-      "exact": true
-    },
     "publish": {
       "registry": "https://registry.npmjs.org/"
     }
