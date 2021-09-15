@@ -4,6 +4,8 @@
     "packages/*"
   ],
   "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna exec --scope react-vant yarn build",
     "changelog": "lerna-changelog",
     "clean": "lerna clean -y"
   },
