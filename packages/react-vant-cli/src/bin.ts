@@ -71,4 +71,4 @@ program
   .description('Lint commit message')
   .action(commitLint);
 
-program.parse();
+program.parse(process.argv);
