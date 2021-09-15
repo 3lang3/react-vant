@@ -14,6 +14,8 @@ export const cliVersion: string = packageJson.version;
 
 process.env.REACT_VANT_CLI_VERSION = cliVersion;
 
+// @todo changelog
+
 export {
   dev,
   lint,
