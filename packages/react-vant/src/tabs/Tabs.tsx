@@ -319,9 +319,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     if (state.inited) {
       setCurrentIndexByName(props.active || currentName);
       setLine();
-      setTimeout(() => {
-        scrollIntoView(true);
-      }, 0);
+      scrollIntoView(true);
     }
   }, [React.Children.count(children)]);
 
@@ -336,10 +334,8 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const init = () => {
     setCurrentIndexByName(props.active);
-    setTimeout(() => {
-      scrollIntoView(true);
-      setState({ inited: true });
-    }, 0);
+    scrollIntoView(true);
+    setState({ inited: true });
   };
 
   useEffect(() => {
