@@ -6,8 +6,10 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna exec --scope react-vant yarn build",
+    "build:site": "lerna exec --scope react-vant yarn release:site",
     "changelog": "lerna-changelog",
-    "clean": "lerna clean -y"
+    "clean": "lerna clean -y",
+    "publish": "npm run build && lerna publish"
   },
   "repository": {
     "type": "git",
