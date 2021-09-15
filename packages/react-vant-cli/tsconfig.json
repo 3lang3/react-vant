@@ -9,5 +9,5 @@
     "lib": ["esnext", "dom"]
   },
   "include": ["src/**/*", "site"],
-  "exclude": ["node_modules", "package.json"]
+  "exclude": ["node_modules"]
 }
