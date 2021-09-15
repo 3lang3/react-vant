@@ -5,6 +5,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "start": "lerna exec --scope react-vant yarn start",
     "build": "lerna exec --scope react-vant yarn build",
     "build:site": "lerna exec --scope react-vant yarn release:site",
     "changelog": "lerna-changelog",
