@@ -7,7 +7,7 @@
       "pr(dependency)": ":deciduous_tree: Dependency",
       "pr(chore)": ":turtle: Chore"
     },
-    "repo": "react-vant",
+    "repo": "3lang3/react-vant",
     "cacheDir": ".changelog"
   },
   "packages": [
@@ -16,6 +16,9 @@
   "command": {
     "version": {
       "exact": true
+    },
+    "publish": {
+      "registry": "https://registry.npmjs.org/"
     }
   },
   "version": "independent",
