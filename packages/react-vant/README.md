@@ -24,7 +24,7 @@
 - 性能极佳，组件平均体积不到 1kb（min+gzip）
 - 完善的文档和示例
 - 支持按需引入
-- 支持主题定制
+- 支持主题定制(less modifyVars)
 - 支持 TypeScript
 - 支持 SSR
 
