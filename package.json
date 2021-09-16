@@ -4,14 +4,16 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare": "yarn build:cli && yarn build:fabric",
     "bootstrap": "lerna bootstrap",
-    "start": "yarn build:cli && lerna exec --scope react-vant yarn start",
+    "start": "lerna exec --scope react-vant yarn start",
     "build": "lerna exec --scope react-vant yarn build",
     "build:cli": "lerna exec --scope @react-vant/cli yarn build",
+    "build:fabric": "lerna exec --scope @react-vant/fabric yarn build",
     "build:site": "lerna exec --scope react-vant yarn release:site",
     "changelog": "lerna-changelog",
     "clean": "lerna clean -y",
-    "publish": "npm run build && lerna publish -m \"chore: publish\""
+    "publish": "npm run build && lerna publish"
   },
   "repository": {
     "type": "git",
