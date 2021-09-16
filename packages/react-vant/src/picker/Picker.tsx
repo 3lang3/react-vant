@@ -313,7 +313,6 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
 
   useEventListener('touchmove', preventDefault, {
     target: wrapper.current,
-    depends: [wrapper.current],
   });
 
   useImperativeHandle(ref, () => ({

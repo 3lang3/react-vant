@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { useState, useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 const MIN_DISTANCE = 10;
 
@@ -18,64 +18,64 @@ function getDirection(x: number, y: number) {
 }
 
 const useTouch = () => {
-  const [startX, setStartX] = useState<number>(0);
-  const [startY, setStartY] = useState<number>(0);
-  const [deltaX, setDeltaX] = useState<number>(0);
-  const [deltaY, setDeltaY] = useState<number>(0);
-  const [offsetX, setOffsetX] = useState<number>(0);
-  const [offsetY, setOffsetY] = useState<number>(0);
-  const [direction, setDirection] = useState<Direction>('');
+  const state = useRef({
+    startX: 0,
+    startY: 0,
+    deltaX: 0,
+    deltaY: 0,
+    offsetX: 0,
+    offsetY: 0,
+    direction: '' as Direction,
+  });
 
   const deltaYRef = useRef<number>(0);
 
-  const isVertical = useCallback(() => direction === 'vertical', [direction]);
-  const isHorizontal = useCallback(() => direction === 'horizontal', [direction]);
+  const isVertical = useCallback(
+    () => state.current.direction === 'vertical',
+    [state.current.direction],
+  );
+  const isHorizontal = useCallback(
+    () => state.current.direction === 'horizontal',
+    [state.current.direction],
+  );
 
   const reset = () => {
-    setDeltaX(0);
-    setDeltaY(0);
-    setOffsetX(0);
-    setOffsetY(0);
-    setDirection('');
+    state.current.deltaX = 0;
+    state.current.deltaY = 0;
+    state.current.offsetX = 0;
+    state.current.offsetY = 0;
+    state.current.direction = '';
 
     deltaYRef.current = 0;
   };
 
   const start = ((event: TouchEvent) => {
     reset();
-    setStartX(event.touches[0].clientX);
-    setStartY(event.touches[0].clientY);
+    state.current.startX = event.touches[0].clientX;
+    state.current.startY = event.touches[0].clientY;
   }) as EventListener;
 
   const move = ((event: TouchEvent) => {
     const touch = event.touches[0];
 
-    const _deltaX = touch.clientX - startX;
-    const _deltaY = touch.clientY - startY;
+    // Fix: Safari back will set clientX to negative number
+    state.current.deltaX = touch.clientX < 0 ? 0 : touch.clientX - state.current.startX;
+    state.current.deltaY = touch.clientY - state.current.startY;
+    state.current.offsetX = Math.abs(state.current.deltaX);
+    state.current.offsetY = Math.abs(state.current.deltaY);
 
-    setDeltaX(_deltaX);
-    setDeltaY(_deltaY);
-    setOffsetX(Math.abs(_deltaX));
-    setOffsetY(Math.abs(_deltaY));
+    deltaYRef.current = state.current.deltaY;
 
-    deltaYRef.current = _deltaY;
-
-    if (!direction) {
-      setDirection(getDirection(Math.abs(_deltaX), Math.abs(_deltaY)));
+    if (!state.current.direction) {
+      state.current.direction = getDirection(Math.abs(state.current.offsetX), Math.abs(state.current.offsetY));
     }
   }) as EventListener;
 
   return {
+    ...state.current,
     move,
     start,
     reset,
-    startX,
-    startY,
-    deltaX,
-    deltaY,
-    offsetX,
-    offsetY,
-    direction,
     deltaYRef,
     isVertical,
     isHorizontal,

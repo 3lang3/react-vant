@@ -177,7 +177,7 @@ const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>((props, instance
 
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: root.current,
-    depends: [root.current, touch.deltaX],
+    depends: [touch.deltaX],
   });
 
   return (

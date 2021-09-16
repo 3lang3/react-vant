@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import classnames from 'classnames';
 import { PullRefreshProps, PullRefreshStatus } from './PropsType';
 import { createNamespace, getScrollTop, preventDefault } from '../utils';
@@ -42,7 +42,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
     return null;
   };
 
-  const isTouchable = useMemo(() => {
+  const isTouchable = useCallback(() => {
     return state.status !== 'loading' && state.status !== 'success' && !disabled;
   }, [state.status, disabled]);
 
@@ -129,6 +129,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
 
   const checkPosition = (event: TouchEvent) => {
     reachTop.current = getScrollTop(scrollParent) === 0;
+
     if (reachTop.current) {
       updateState({ duration: 0 });
       touch.start(event);
@@ -136,36 +137,36 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
   };
 
   const onTouchStart = (event) => {
-    if (isTouchable) {
+    if (isTouchable()) {
       checkPosition(event.nativeEvent);
     }
   };
 
-  const onTouchMove = (event: TouchEvent) => {
-    if (isTouchable) {
-      if (!reachTop.current) {
-        checkPosition(event);
-      }
+  const onTouchMove = useCallback(
+    (event: TouchEvent) => {
+      if (isTouchable()) {
+        if (!reachTop.current) {
+          checkPosition(event);
+        }
 
-      touch.move(event);
-      const { deltaY } = touch;
-
-      if (reachTop.current && deltaY >= 0) {
-        preventDefault(event);
-        if (touch.isVertical()) {
-          setStatus(ease(deltaY));
+        touch.move(event);
+        if (reachTop.current && touch.deltaY >= 0 && touch.isVertical()) {
+          setStatus(ease(touch.deltaY));
+          preventDefault(event);
+        } else {
+          setStatus(0)
         }
       }
-    }
-  };
+    },
+    [reachTop.current, touch.deltaY, isTouchable],
+  );
 
   const onTouchEnd = async () => {
-    if (reachTop.current && touch.deltaY && isTouchable) {
+    if (reachTop.current && touch.deltaY && isTouchable()) {
       updateState({ duration: +animationDuration });
       if (state.status === 'loosing') {
         setStatus(+props.headHeight, true);
         onRefresh();
-        touch.reset();
       } else {
         setStatus(0);
       }
@@ -174,7 +175,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
 
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: track.current,
-    depends: [track.current, reachTop.current, isTouchable, touch.deltaY],
+    depends: [reachTop.current, isTouchable(), touch.deltaY],
   });
 
   useUpdateEffect(() => {
@@ -188,12 +189,13 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
     }
   }, [state.refreshing]);
 
-  const trackStyle = {
-    transitionDuration: `${state.duration}ms`,
-    transform: state.distance ? `translate3d(0,${state.distance}px, 0)` : '',
-  };
-
-  // console.log(state.distance)
+  const trackStyle = useMemo(
+    () => ({
+      transitionDuration: `${state.duration}ms`,
+      transform: state.distance ? `translate3d(0,${state.distance}px, 0)` : '',
+    }),
+    [state.duration, state.distance],
+  );
 
   return (
     <div ref={root} className={classnames(props.className, bem())} style={props.style}>

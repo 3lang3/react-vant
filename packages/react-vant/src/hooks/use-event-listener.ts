@@ -58,7 +58,7 @@ function useEventListener(
   useEffect(() => {
     add();
     return () => remove();
-  }, [...depends]);
+  }, [target, ...depends]);
 }
 
 export default useEventListener;

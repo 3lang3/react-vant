@@ -212,7 +212,7 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   });
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: sidebar.current,
-    depends: [sidebar.current, touch.deltaY],
+    depends: [touch.deltaY],
   });
 
   useEffect(() => {

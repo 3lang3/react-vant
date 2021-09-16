@@ -274,11 +274,11 @@ const Slider: React.FC<SliderProps> = (props) => {
 
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: buttonRef1.current,
-    depends: [buttonRef1.current, touch.deltaX, touch.deltaY],
+    depends: [touch.deltaX, touch.deltaY, props.disabled, props.readonly],
   });
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: buttonRef2.current,
-    depends: [buttonRef2.current, touch.deltaX, touch.deltaY],
+    depends: [touch.deltaX, touch.deltaY, props.disabled, props.readonly],
   });
 
   return (
