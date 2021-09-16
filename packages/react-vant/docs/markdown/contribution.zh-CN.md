@@ -89,9 +89,6 @@ git remote add upstream https://github.com/3lang3/react-vant.git
 # 拉取主仓库最新代码
 git fetch upstream
 
-# 切换至 dev 分支
-git checkout dev
-
 # 合并主仓库代码
 git merge upstream/main
 ```
