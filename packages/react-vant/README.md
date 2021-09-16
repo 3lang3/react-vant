@@ -24,7 +24,7 @@
 - 性能极佳，组件平均体积不到 1kb（min+gzip）
 - 完善的文档和示例
 - 支持按需引入
-- 支持主题定制
+- 支持主题定制(less modifyVars)
 - 支持 TypeScript
 - 支持 SSR
 
@@ -45,6 +45,21 @@ function App() {
 
 ReactDOM.render(<App />, mountNode);
 ```
+
+### 快速集成
+
+#### 在create-react-app中使用
+
+参考[react-vant-cra](https://github.com/3lang3/react-vant-template/tree/main/template/create-react-app)
+
+#### 在umijs使用
+
+参考[react-vant-umi](https://github.com/3lang3/react-vant-template/tree/main/template/umi)
+
+#### 在nextjs使用
+
+参考[react-vant-nextjs](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
+
 
 请参阅[Quickstart](https://3lang3.github.io/react-vant/#/zh-CN/)中的更多内容。
 
