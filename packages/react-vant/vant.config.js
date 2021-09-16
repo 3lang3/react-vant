@@ -80,12 +80,12 @@ module.exports = {
                 title: 'Button 按钮',
               },
               {
-                path: 'typography',
-                title: 'Typography 文本',
-              },
-              {
                 path: 'cell',
                 title: 'Cell 单元格',
+              },
+              {
+                path: 'typography',
+                title: 'Typography 文本',
               },
               {
                 path: 'icon',
@@ -125,12 +125,12 @@ module.exports = {
                 title: 'Checkbox 复选框',
               },
               {
-                path: 'field',
-                title: 'Field 输入框',
-              },
-              {
                 path: 'datetime-picker',
                 title: 'DatetimePicker 时间选择',
+              },
+              {
+                path: 'field',
+                title: 'Field 输入框',
               },
               {
                 path: 'number-keyboard',
