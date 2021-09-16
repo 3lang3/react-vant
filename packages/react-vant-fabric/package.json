@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc --build",
+    "prepublish": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

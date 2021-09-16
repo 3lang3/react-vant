@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
-    "release": "yarn build & release-it"
+    "prepublish": "yarn build",
+    "release": "yarn prepublish & release-it"
   },
   "files": [
     "lib",

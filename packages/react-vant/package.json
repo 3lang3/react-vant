@@ -17,6 +17,7 @@
     "release": "react-vant-cli release --tag dev",
     "build:site": "react-vant-cli build-site",
     "release:site": "npm run build:site && gh-pages -d site",
+    "prepublish": "yarn build",
     "test": "react-vant-cli test --coverage",
     "test:coverage": "open tests/coverage/index.html"
   },
