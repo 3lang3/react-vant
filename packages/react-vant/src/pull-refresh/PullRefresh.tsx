@@ -154,7 +154,13 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
           setStatus(ease(touch.deltaY));
           preventDefault(event);
         } else {
-          setStatus(0)
+          /**
+           * IN THIS CASE:
+           * if component don't rerender after event.preventDefault
+           * ios will hold `preventDefault` behavior when touchmoving
+           * it will cause window unscrollable
+           */
+          setStatus(0);
         }
       }
     },
