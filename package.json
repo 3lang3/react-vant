@@ -13,7 +13,7 @@
     "build:site": "lerna exec --scope react-vant yarn release:site",
     "changelog": "lerna-changelog",
     "clean": "lerna clean -y",
-    "publish": "npm run build && lerna publish"
+    "publish": "lerna publish"
   },
   "repository": {
     "type": "git",
