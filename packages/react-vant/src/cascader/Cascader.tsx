@@ -259,7 +259,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
 
   useEffect(() => {
     const value = props.value ?? props.defaultValue;
-    if (!value) return;
+    if (!value || (Array.isArray(value) && !value.length)) return;
     const initialState = getStateFromValue(value);
     updateState(initialState);
   }, []);
