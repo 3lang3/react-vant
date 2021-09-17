@@ -26,7 +26,7 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
 
-      {/* <DemoBlock title="事件监听">
+      <DemoBlock title="事件监听">
         <Search
           value={value1}
           placeholder="请输入搜索关键词"
@@ -67,7 +67,7 @@ export default (): React.ReactNode => {
           actionText={<div onClick={() => Toast.info(value2)}>搜索</div>}
           showAction
         />
-      </DemoBlock> */}
+      </DemoBlock>
     </DemoSection>
   );
 };
