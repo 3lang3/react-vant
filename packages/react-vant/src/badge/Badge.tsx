@@ -71,6 +71,7 @@ const Badge: React.FC<BadgeProps> = (props) => {
       {
         className: classnames(bem('wrapper'), props.className),
         onClick: props.onClick,
+        onTouchStart: props.onTouchStart,
         style: props.style,
       },
       props.children,
