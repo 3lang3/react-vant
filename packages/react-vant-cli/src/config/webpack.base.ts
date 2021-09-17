@@ -3,13 +3,7 @@ import { join, resolve } from 'path';
 import { existsSync } from 'fs';
 import { consola } from '../common/logger';
 import { WebpackConfig } from '../common/types';
-import {
-  CWD,
-  CACHE_DIR,
-  STYLE_EXTS,
-  SCRIPT_EXTS,
-  POSTCSS_CONFIG_FILE,
-} from '../common/constant';
+import { CWD, CACHE_DIR, STYLE_EXTS, SCRIPT_EXTS, POSTCSS_CONFIG_FILE } from '../common/constant';
 
 const CACHE_LOADER = {
   loader: 'cache-loader',
@@ -35,7 +29,7 @@ const plugins = [
   new FriendlyErrorsPlugin({
     clearConsole: false,
     logLevel: 'WARNING',
-  }),
+  })
 ];
 
 const tsconfigPath = join(CWD, 'tsconfig.json');
@@ -43,6 +37,13 @@ if (existsSync(tsconfigPath)) {
   const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
   plugins.push(
     new ForkTsCheckerPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+        mode: "write-references",
+      },
       formatter: 'codeframe',
       logger: {
         // skip info message
@@ -54,7 +55,7 @@ if (existsSync(tsconfigPath)) {
           consola.error(message);
         },
       },
-    })
+    }),
   );
 }
 
