@@ -4,7 +4,7 @@ import { PullRefreshProps, PullRefreshStatus } from './PropsType';
 import { createNamespace, getScrollTop, preventDefault } from '../utils';
 
 import useTouch from '../hooks/use-touch';
-import useScrollParent from '../hooks/use-scroll-parent';
+import { getScrollParent } from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
 import Loading from '../loading';
@@ -19,8 +19,6 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
   const { disabled, animationDuration } = props;
 
   const root = useRef<HTMLDivElement>();
-  const scrollParent = useScrollParent(root);
-
   const [state, updateState] = useSetState({
     refreshing: false,
     status: 'normal' as PullRefreshStatus,
@@ -128,8 +126,8 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
   };
 
   const checkPosition = (event: TouchEvent) => {
-    reachTop.current = getScrollTop(scrollParent) === 0;
-
+    const scrollTarget = getScrollParent(event.target as HTMLElement)
+    reachTop.current = getScrollTop(scrollTarget) === 0;
     if (reachTop.current) {
       updateState({ duration: 0 });
       touch.start(event);
