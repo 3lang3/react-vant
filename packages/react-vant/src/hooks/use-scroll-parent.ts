@@ -1,16 +1,18 @@
 /* eslint-disable no-param-reassign */
 import { useState, useEffect } from 'react';
+import { inBrowser } from '../utils';
 
-type ScrollElement = HTMLElement | Window;
+type ScrollElement = Element | HTMLElement | Window;
 
 const overflowScrollReg = /scroll|auto/i;
+const defaultRoot = inBrowser ? window : undefined;
 
 function isElement(node: Element) {
   const ELEMENT_NODE_TYPE = 1;
   return node.tagName !== 'HTML' && node.tagName !== 'BODY' && node.nodeType === ELEMENT_NODE_TYPE;
 }
 
-function getScrollParent(el: Element, root: ScrollElement = window) {
+export function getScrollParent(el: Element, root: ScrollElement = defaultRoot): ScrollElement {
   if (root === undefined) {
     root = window;
   }
