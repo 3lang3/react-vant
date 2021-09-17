@@ -76,8 +76,9 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   // whether the nav is scrollable
   const scrollable = useMemo(
     () => childrenList.length > props.swipeThreshold || !props.ellipsis,
-    [],
+    [childrenList.length, props.swipeThreshold, props.ellipsis],
   );
+
   const navStyle = useMemo(
     () => ({
       borderColor: color,
