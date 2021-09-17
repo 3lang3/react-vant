@@ -15,7 +15,6 @@ function syncClear() {
   let fn = toastArray.pop();
   while (fn) {
     fn();
-    lockClick(false);
     fn = toastArray.pop();
   }
 }
@@ -50,6 +49,9 @@ const Toast = (p: ToastProps): unknown => {
     const [state, setState] = useState<ToastProps>({ ...options });
     // clearDOM after animation
     const internalOnClosed = useCallback(() => {
+      if (state.forbidClick) {
+        lockClick(false);
+      }
       const unmountResult = ReactDOM.unmountComponentAtNode(container);
       if (unmountResult && container.parentNode) {
         container.parentNode.removeChild(container);
