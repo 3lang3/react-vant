@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Mobile UI Components base on Vant UI",
   "repository": "https://github.com/3lang3/react-vant.git",
   "main": "lib/index.js",
@@ -34,7 +34,7 @@
     "components"
   ],
   "devDependencies": {
-    "@react-vant/cli": "^1.1.7",
+    "@react-vant/cli": "^1.1.8",
     "@types/classnames": "^2.2.11",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
