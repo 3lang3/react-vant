@@ -26,14 +26,17 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
 
   // 判断是否需要加载
   const check = async () => {
+    if (!props.onLoad) return;
     if (state.loading || props.finished || state.error) {
       return;
     }
     const { offset, direction } = props;
     const scrollParentRect = getRect(scrollParent.current);
+
     if (!scrollParentRect.height || isHidden(root.current)) {
       return;
     }
+
     let isReachEdge = false;
     const placeholderRect = getRect(placeholder.current);
 
@@ -42,11 +45,10 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
     } else {
       isReachEdge = placeholderRect.bottom - scrollParentRect.bottom <= offset;
     }
-
     if (isReachEdge) {
       try {
         updateState({ loading: true });
-        await props.onLoad();
+        if (props.onLoad) await props.onLoad();
         updateState({ loading: false });
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -97,8 +99,10 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
   };
 
   useUpdateEffect(() => {
-    check();
-  }, [state.loading, props.finished, state.error]);
+    if (props.autoCheck) {
+      check();
+    }
+  }, [state.loading, props.finished, props.error]);
 
   useUpdateEffect(() => {
     updateState({ loading: props.loading, error: props.error });
@@ -137,6 +141,7 @@ List.defaultProps = {
   offset: 300,
   direction: 'down',
   immediateCheck: true,
+  autoCheck: true,
   loadingText: '加载中...',
   finishedText: '没有更多了',
 };

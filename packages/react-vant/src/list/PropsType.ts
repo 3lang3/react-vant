@@ -33,6 +33,21 @@ export interface ListProps extends BaseTypeProps {
    * @default true
    */
   immediateCheck?: boolean;
+  /**
+   * 是否在onLoad执行后再次检查滚动位置
+   * @default true
+   * @import 请确保onLoad在执行数次后, List会铺满页面
+   * @example
+   * ```jsx
+   * // 这样会无限触发onLoad事件
+   * <List
+   *  onLoad={() => null}
+   * >
+   *  {...}
+   * </List>
+   * ```
+   */
+  autoCheck?: boolean;
   /** 滚动条与底部距离小于 offset 时触发	 */
   onLoad?: () => Promise<unknown> | void;
   children?: React.ReactNode;
