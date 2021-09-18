@@ -25,6 +25,12 @@ yarn add react-vant
 参考[react-vant-nextjs](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
 
 
+### vite集成
+
+参考[react-vant-vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
+
+
+
 
 
 

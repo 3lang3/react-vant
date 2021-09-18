@@ -28,7 +28,8 @@
 - 支持按需引入
 - 支持主题定制(less modifyVars)
 - 支持 TypeScript
-- 支持 SSR
+- 支持 [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
+- 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
 
 ## 安装
 
