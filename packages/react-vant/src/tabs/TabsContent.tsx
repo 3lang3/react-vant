@@ -25,7 +25,6 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           className={classnames(bem('track'))}
           duration={+duration}
           showIndicators={false}
-          autoHeight
           onChange={(idx) => {
             if (innerEffect.current) {
               innerEffect.current = false;

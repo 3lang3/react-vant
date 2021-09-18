@@ -170,7 +170,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
             round,
             [position]: position,
           }),
-          { 'safe-area-inset-bottom': safeAreaInsetBottom },
+          { 'rv-safe-area-bottom': safeAreaInsetBottom },
         )}
         onClick={props.onClick}
       >

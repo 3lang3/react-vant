@@ -138,6 +138,7 @@ const onRefresh = async () => {
 | finishedText | 加载完成后的提示文案 | _ReactNode_ | - |
 | errorText | 加载失败后的提示文案 | _ReactNode_ | - |
 | immediateCheck | 是否在初始化时立即执行滚动位置检查 | _boolean_ | `true` |
+| autoCheck `v1.0.1` | 是否在onLoad执行后再次检查滚动位置 | _boolean_ | `true` |
 
 ### Events
 

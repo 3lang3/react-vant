@@ -261,14 +261,14 @@ const formatter = (value) => value.replace(/\d/g, '');
 
 | 事件             | 说明                 | 回调参数                |
 | ---------------- | -------------------- | ----------------------- |
-| onFocus          | 输入框获得焦点时触发 | _val: string \| number_ |
-| onFocus          | 输入框获得焦点时触发 | _val: string \| number_ |
-| onBlur           | 输入框失去焦点时触发 | _val: string \| number_ |
-| onClear          | 点击清除按钮时触发   | _event: Event_          |
-| onClick          | 点击 Field 时触发    | _event: Event_          |
-| onClickInput     | 点击输入区域时触发   | _event: Event_          |
-| onClickLeftIcon  | 点击左侧图标时触发   | _event: Event_          |
-| onClickRightIcon | 点击右侧图标时触发   | _event: Event_          |
+| onChange          | 输入框获得焦点时触发 | _val: string \| number_ |
+| onFocus          | 输入框获得焦点时触发 | _event: MouseEvent_ |
+| onBlur           | 输入框失去焦点时触发 | _event: MouseEvent_ |
+| onClear          | 点击清除按钮时触发   | _event: MouseEvent_          |
+| onClick          | 点击 Field 时触发    | _event: MouseEvent_          |
+| onClickInput     | 点击输入区域时触发   | _event: MouseEvent_          |
+| onClickLeftIcon  | 点击左侧图标时触发   | _event: MouseEvent_          |
+| onClickRightIcon | 点击右侧图标时触发   | _event: MouseEvent_          |
 
 ### 方法
 

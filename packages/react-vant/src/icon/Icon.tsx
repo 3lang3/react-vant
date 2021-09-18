@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
-import { addUnit, preventDefault } from '../utils';
+import { addUnit } from '../utils';
 import { IconProps } from './PropsType';
 import Badge from '../badge';
 
@@ -12,22 +12,8 @@ const Icon: React.FC<IconProps> = (props) => {
   const { tag, name, className, onClick, onTouchStart } = props;
 
   const imageIcon = isImage(name);
-  const ref = useRef(null);
 
   const classPrefix = useMemo(() => props.classPrefix || 'van-icon', [props.classPrefix]);
-
-  useEffect(() => {
-    // 解决touchstart无法preventDefault的问题
-    // touchstart事件passive默认开启
-    ref.current?.addEventListener(
-      'touchstart',
-      (e) => {
-        preventDefault(e, true);
-        onTouchStart?.(e);
-      },
-      { passive: false },
-    );
-  }, []);
 
   return (
     <Badge
@@ -43,6 +29,7 @@ const Icon: React.FC<IconProps> = (props) => {
         ...props.style,
       }}
       onClick={onClick}
+      onTouchStart={onTouchStart}
       {...props.badge}
     >
       {props?.children}

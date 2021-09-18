@@ -5,12 +5,13 @@ import React, {
   CSSProperties,
   forwardRef,
   useImperativeHandle,
+  useMemo,
 } from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import Cell from '../cell';
 import { FieldInstance, FieldProps } from './PropsType';
-import { createNamespace, isDef, addUnit, formatNumber, isObject, preventDefault } from '../utils';
+import { createNamespace, isDef, addUnit, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
 
 const [bem] = createNamespace('field');
 const ICON_SIZE = '16px';
@@ -50,7 +51,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   };
   const getModelValue = () => String(props.value ?? '');
 
-  const showClear = () => {
+  const showClear = useMemo(() => {
     const readonly = getProp('readonly');
 
     if (props.clearable && !readonly) {
@@ -61,7 +62,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       return hasValue && trigger;
     }
     return false;
-  };
+  }, [props.value, props.clearTrigger, inputFocus]);
 
   const labelStyle = (): CSSProperties => {
     const labelW = getProp('labelWidth');
@@ -141,23 +142,24 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
     const handleFocus = (e) => {
       const { onFocus } = props;
-      const inputValue = e?.currentTarget?.value;
       setInputFocus(true);
       if (onFocus && typeof onFocus === 'function') {
-        onFocus(inputValue);
+        onFocus(e);
+      }
+
+      // readonly not work in legacy mobile safari
+      if (readonly) {
+        blur();
       }
     };
 
     const handleBulr = (e) => {
-      const { onBlur, onChange } = props;
-      const inputValue = e?.currentTarget?.value;
+      const { onBlur } = props;
       setInputFocus(false);
-      if (onChange && typeof onChange === 'function') {
-        onChange(formatValue(inputValue, 'onBlur'));
-      }
       if (onBlur && typeof onBlur === 'function') {
-        onBlur(inputValue);
+        onBlur(e);
       }
+      resetScroll();
     };
 
     const handleKeypress = (e) => {
@@ -293,7 +295,9 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   const handleClear = (e) => {
     const { onClear, onChange } = props;
     inputRef.current.value = '';
-    onChange('');
+    if (onChange && typeof onChange === 'function') {
+      onChange('');
+    }
     if (onClear && typeof onClear === 'function') {
       onClear(e);
     }
@@ -346,7 +350,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     >
       <div className={classnames(bem('body'))}>
         {renderInput()}
-        {showClear() && (
+        {showClear && (
           <Icon
             className={classnames(bem('clear'))}
             onTouchStart={handleClear}

@@ -126,7 +126,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
   };
 
   const checkPosition = (event: TouchEvent) => {
-    const scrollTarget = getScrollParent(event.target as HTMLElement)
+    const scrollTarget = getScrollParent(event.target as HTMLElement);
     reachTop.current = getScrollTop(scrollTarget) === 0;
     if (reachTop.current) {
       updateState({ duration: 0 });
