@@ -377,7 +377,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     };
 
     const renderFooter = () => (
-      <div className={cls(bem('footer'), { 'van-safe-area-bottom': props.safeAreaInsetBottom })}>
+      <div className={cls(bem('footer'), { 'rv-safe-area-bottom': props.safeAreaInsetBottom })}>
         {renderFooterButton()}
       </div>
     );

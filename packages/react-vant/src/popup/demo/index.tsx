@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useReducer } from 'react';
-import { Popup, Cell } from 'react-vant';
+import { Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Popup from '..'
 import './style.less';
 
 const initialState = {
