@@ -129,7 +129,7 @@ export default () => {
 | cancelText | 取消按钮 | _ReactNode_ | - |
 | description | 选项上方的描述信息 | _ReactNode_ | - |
 | closeable | 是否显示关闭图标 | _boolean_ | `true` |
-| closeIcon | 关闭[图标名称](#/zh-CN/icon)或图片链接 | _string_ | `cross` |
+| closeIcon | 关闭图标 | _string\|ReactNode_ | `cross` |
 | duration | 动画时长，单位毫秒 | _number \| string_ | `300` |
 | round | 是否显示圆角 | _boolean_ | `true` |
 | overlay | 是否显示遮罩层 | _boolean_ | `true` |

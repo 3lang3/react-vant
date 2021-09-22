@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import React, { useEffect, useState } from 'react';
+import React, { isValidElement, useEffect, useState } from 'react';
 import cls from 'classnames';
 import { CascaderOption, CascaderProps, CascaderTab } from './PropsType';
 import { createNamespace, extend } from '../utils';
@@ -171,12 +171,21 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     }
   };
 
+  const renderCloseIcon = () => {
+    if (!props.closeable) return null;
+    if (typeof props.closeIcon === 'string') {
+      return <Icon name={props.closeIcon} className={cls(bem('close-icon'))} onClick={onClose} />;
+    }
+    if (isValidElement(props.closeIcon)) {
+      return props.closeIcon;
+    }
+    return null;
+  };
+
   const renderHeader = () => (
     <div className={cls(bem('header'))}>
       <h2 className={cls(bem('title'))}>{props.title}</h2>
-      {props.closeable ? (
-        <Icon name={props.closeIcon} className={cls(bem('close-icon'))} onClick={onClose} />
-      ) : null}
+      {renderCloseIcon()}
     </div>
   );
 

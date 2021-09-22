@@ -11,7 +11,15 @@ import classnames from 'classnames';
 import Icon from '../icon';
 import Cell from '../cell';
 import { FieldInstance, FieldProps } from './PropsType';
-import { createNamespace, isDef, addUnit, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
+import {
+  createNamespace,
+  isDef,
+  addUnit,
+  formatNumber,
+  isObject,
+  preventDefault,
+  resetScroll,
+} from '../utils';
 
 const [bem] = createNamespace('field');
 const ICON_SIZE = '16px';
@@ -350,14 +358,17 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     >
       <div className={classnames(bem('body'))}>
         {renderInput()}
-        {showClear && (
-          <Icon
-            className={classnames(bem('clear'))}
-            onTouchStart={handleClear}
-            name={props.clearIcon}
-            size={ICON_SIZE}
-          />
-        )}
+        {showClear &&
+          (typeof props.clearIcon === 'string' ? (
+            <Icon
+              className={classnames(bem('clear'))}
+              onTouchStart={handleClear}
+              name={props.clearIcon}
+              size={ICON_SIZE}
+            />
+          ) : (
+            props.clearIcon
+          ))}
         {renderRightIcon()}
         {button && button}
       </div>

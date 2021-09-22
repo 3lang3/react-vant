@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, isValidElement, useImperativeHandle, useRef } from 'react';
 import cls from 'classnames';
 // Utils
 import { isPromise, getSizeStyle, extend, pick } from '../utils';
@@ -191,6 +191,18 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
     if (props.onClickUpload) props.onClickUpload(event);
   };
 
+  const renderUploadIcon = () => {
+    if (typeof props.uploadIcon === 'string') {
+      return <Icon name={props.uploadIcon} className={cls(bem('upload-icon'))} />;
+    }
+
+    if (isValidElement(props.uploadIcon)) {
+      return props.uploadIcon;
+    }
+
+    return null;
+  };
+
   const renderUpload = () => {
     if (props.value.length >= props.maxCount || !props.showUpload) {
       return null;
@@ -224,7 +236,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
         style={getSizeStyle(props.previewSize)}
         onClick={onClickUpload}
       >
-        <Icon name={props.uploadIcon} className={cls(bem('upload-icon'))} />
+        {renderUploadIcon()}
         {props.uploadText && <span className={cls(bem('upload-text'))}>{props.uploadText}</span>}
         {Input}
       </div>

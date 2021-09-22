@@ -67,6 +67,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     errorMessage,
     formatter,
     formatTrigger,
+    clearIcon,
   } = props;
 
   const fieldPropNames = {
@@ -83,6 +84,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     errorMessage,
     formatter,
     formatTrigger,
+    clearIcon,
   };
 
   const renderField = () => {

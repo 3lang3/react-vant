@@ -12,7 +12,7 @@ export interface ToastProps extends BaseTypeProps {
   /** 展示时长(ms)，值为 0 时，toast 不会消失	 */
   duration?: number | string;
   /** 自定义图标，支持传入图标名称或图片链接	 */
-  icon?: string;
+  icon?: string | React.ReactNode;
   /** 图标大小，如 20px 2em，默认单位为 px	 */
   iconSize?: number | string;
   /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */

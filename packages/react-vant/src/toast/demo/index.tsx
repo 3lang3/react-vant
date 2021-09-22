@@ -52,6 +52,7 @@ export default (): React.ReactNode => {
             })
           }
         />
+
         <Cell
           title="自定义图片"
           isLink

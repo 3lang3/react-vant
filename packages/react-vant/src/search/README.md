@@ -114,7 +114,7 @@ export default () => {
 | maxlength | 输入的最大字符数 | _number \| string_ | - |
 | placeholder | 占位提示文字 | _string_ | - |
 | clearable | 是否启用清除图标，点击清除图标后会清空输入框 | _boolean_ | `true` |
-| clearIcon | 清除[图标名称](#/zh-CN/icon)或图片链接 | _string_ | `clear` |
+| clearIcon | 清除图标 | _string\|ReactNode_ | `clear` |
 | clearTrigger | 显示清除图标的时机，`always` 表示输入框不为空时展示，<br>`focus` 表示输入框聚焦且不为空时展示 | _string_ | `focus` |
 | autofocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
 | showAction | 是否在搜索框右侧显示取消按钮 | _boolean_ | `false` |
@@ -126,8 +126,8 @@ export default () => {
 | formatter | 输入内容格式化函数 | _(val: string) => string_ | - |
 | formatTrigger | 格式化函数触发的时机，可选值为 `onBlur` | _string_ | `onChange` |
 | inputAlign | 输入框内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| leftIcon | 输入框左侧[图标名称](#/zh-CN/icon)或图片链接 | _string\|ReactNode_ | `search` |
-| rightIcon | 输入框右侧[图标名称](#/zh-CN/icon)或图片链接 | _string\|ReactNode_ | - |
+| leftIcon | 输入框左侧 | _string\|ReactNode_ | `search` |
+| rightIcon | 输入框右侧 | _string\|ReactNode_ | - |
 
 ### Events
 

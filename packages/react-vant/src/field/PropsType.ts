@@ -45,7 +45,7 @@ export interface FieldCommonProps {
   /** 是否启用清除图标，点击清除图标后会清空输入框	 */
   clearable?: boolean;
   /** 清除图标名称或图片链接	 */
-  clearIcon?: string;
+  clearIcon?: string | React.ReactNode;
   /** 是否将输入内容标红	 */
   error?: boolean;
   /** 底部错误提示文案，为空时不展示 */

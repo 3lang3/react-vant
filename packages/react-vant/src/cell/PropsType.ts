@@ -36,8 +36,8 @@ export interface CellProps extends BaseTypeProps {
   /** 是否显示内边框	 */
   border?: boolean;
   /** 左侧图标名称或图片链接 */
-  icon?: React.ReactNode;
-  /** 右侧图标 */
+  icon?: string | React.ReactNode;
+  /** 右侧自定义图标 */
   rightIcon?: React.ReactNode;
   /** 自定义单元格最右侧的额外内容 */
   extra?: React.ReactNode;

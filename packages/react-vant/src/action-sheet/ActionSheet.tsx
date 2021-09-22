@@ -24,7 +24,9 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
           (typeof props.closeIcon === 'string' ? (
             <Icon name={props.closeIcon} className={classnames(bem('close'))} onClick={onCancel} />
           ) : (
-            props.closeIcon
+            <div className={classnames(bem('close'))} onClick={onCancel}>
+              {props.closeIcon}
+            </div>
           ))}
       </div>
     );

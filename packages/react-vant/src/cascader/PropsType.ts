@@ -57,7 +57,7 @@ export interface CascaderProps extends BaseTypeProps {
     selected: boolean;
   }) => React.ReactNode;
   /** 关闭图标名称或图片链接	 */
-  closeIcon?: string;
+  closeIcon?: string | React.ReactNode;
   /** 点击关闭图标时触发	 */
   onClose?: () => void;
   /** 选中项变化时触发	 */

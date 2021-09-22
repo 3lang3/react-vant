@@ -118,8 +118,8 @@ import { Cell } from 'react-vant';
 | value | 右侧内容 | _number \| string_ | - |
 | label | 标题下方的描述信息 | _ReactNode_ | - |
 | size | 单元格大小，可选值为 `large` | _string_ | - |
-| icon | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
-| rightIcon | 自定义右侧按钮，默认为`arrow` | _string_ | - |
+| icon | 左侧图标 | _string\|ReactNode_ | - |
+| rightIcon | 自定义右侧按钮，默认为`arrow` | _string\|ReactNode_ | - |
 | iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon) | _string_ | `van-icon` |
 | border | 是否显示内边框 | _boolean_ | `true` |
 | replace | 是否在跳转时替换当前页面历史 | _boolean_ | `false` |

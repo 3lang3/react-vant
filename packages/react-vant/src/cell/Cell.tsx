@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import { createNamespace, isDef } from '../utils';
@@ -43,11 +43,7 @@ const Cell: React.FC<CellProps> = (props) => {
   };
 
   const renderLeftIcon = () => {
-    if (typeof props.icon !== 'string') {
-      return props.icon;
-    }
-
-    if (props.icon) {
+    if (typeof props.icon === 'string') {
       return (
         <Icon
           name={props.icon}
@@ -56,6 +52,11 @@ const Cell: React.FC<CellProps> = (props) => {
         />
       );
     }
+
+    if (isValidElement(props.icon)) {
+      return props.icon;
+    }
+
     return null;
   };
 

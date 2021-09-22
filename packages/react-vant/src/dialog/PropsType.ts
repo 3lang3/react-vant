@@ -14,7 +14,7 @@ export interface DialogProps extends BaseTypeProps {
    * 关闭按钮icon值
    * @see https://3lang3.github.io/react-vant/#/zh-CN/icon
    */
-  closeIcon?: string;
+  closeIcon?: string | React.ReactNode;
   /** 标题 */
   title?: string | React.ReactNode;
   /** 样式风格，可选值为`round-button`	 */

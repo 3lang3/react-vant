@@ -2,7 +2,7 @@ import React from 'react';
 import { Swipe } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
-import NoticeBar from '../index';
+import NoticeBar from '..';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;

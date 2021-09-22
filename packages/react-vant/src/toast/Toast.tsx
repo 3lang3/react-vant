@@ -41,13 +41,15 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
     const { icon, type, iconPrefix, iconSize, loadingType } = props;
     const hasIcon = icon || type === 'success' || type === 'fail';
     if (hasIcon) {
-      return (
+      return typeof icon === 'string' ? (
         <Icon
           name={icon || (type === 'fail' ? 'cross' : type)}
           size={iconSize}
           className={classnames(bem('icon'))}
           classPrefix={iconPrefix}
         />
+      ) : (
+        icon
       );
     }
 

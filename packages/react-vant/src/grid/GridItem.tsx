@@ -65,11 +65,7 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
   }, [parent.gutter, parent.columnNum, props.contentStyle]);
 
   const renderIcon = () => {
-    if (React.isValidElement(props.icon)) {
-      return <Badge {...props.badge}>{props.icon}</Badge>;
-    }
-
-    if (props.icon) {
+    if (typeof props.icon === 'string') {
       return (
         <Icon
           badge={props.badge}
@@ -81,6 +77,11 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
         />
       );
     }
+
+    if (React.isValidElement(props.icon)) {
+      return <Badge {...props.badge}>{props.icon}</Badge>;
+    }
+
     return null;
   };
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon, Collapse } from 'react-vant';
+import { Icon } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Collapse from '..'
 import './style.less';
 
 export default (): React.ReactNode => {

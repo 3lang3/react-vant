@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../icon';
@@ -101,10 +101,11 @@ const Dialog: React.FC<DialogProps> = (props) => {
   );
 
   const renderCloseIcon = () => {
-    if (closeable) {
+    if (!closeable) return null;
+    if (typeof props.closeIcon === 'string') {
       return (
         <Icon
-          name={closeIcon}
+          name={props.closeIcon}
           className={classnames(bem('close-icon'))}
           onClick={() => {
             if (onClickCloseIcon) {
@@ -113,6 +114,21 @@ const Dialog: React.FC<DialogProps> = (props) => {
             props.onClose?.();
           }}
         />
+      );
+    }
+    if (isValidElement(props.closeIcon)) {
+      return (
+        <div
+          className={classnames(bem('close-icon'))}
+          onClick={() => {
+            if (onClickCloseIcon) {
+              onClickCloseIcon();
+            }
+            props.onClose?.();
+          }}
+        >
+          {props.closeIcon}
+        </div>
       );
     }
     return null;

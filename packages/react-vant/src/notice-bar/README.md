@@ -89,7 +89,7 @@ import { NoticeBar } from 'react-vant';
 | text                | 通知文本内容                             | _ReactNode_         | `''`      |
 | color               | 通知文本颜色                             | _string_            | `#f60`    |
 | background          | 滚动条背景                               | _string_            | `#fff7cc` |
-| leftIcon            | 左侧[图标名称](#/zh-CN/icon)或图片链接   | _string\|ReactNode_ | -         |
+| leftIcon            | 左侧图标   | _string\|ReactNode_ | -         |
 | rightIcon           | 自定义右侧图标                           |
 | _string\|ReactNode_ | -                                        |
 | delay               | 动画延迟时间 (s)                         | _number \| string_  | `1`       |

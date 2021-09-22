@@ -11,7 +11,6 @@ const [bem] = createNamespace('button');
 const Button: React.FC<ButtonProps> = (props) => {
   const {
     tag,
-    icon,
     type,
     color,
     plain,
@@ -88,8 +87,10 @@ const Button: React.FC<ButtonProps> = (props) => {
       return renderLoadingIcon();
     }
 
+
+
     if (typeof props.icon === 'string') {
-      return <Icon name={icon as string} className={classnames(bem('icon'))} classPrefix={iconPrefix} />;
+      return <Icon name={props.icon} className={classnames(bem('icon'))} classPrefix={iconPrefix} />;
     }
 
     if (isValidElement(props.icon)) {

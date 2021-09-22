@@ -133,7 +133,7 @@ export interface UploaderProps extends BaseTypeProps {
    * 上传区域图标名称或图片链接
    * @default 'photograph'
    */
-  uploadIcon?: string;
+  uploadIcon?: string | React.ReactNode;
   /**
    * 上传input value变化时触发
    */

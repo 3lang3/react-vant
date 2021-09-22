@@ -247,8 +247,8 @@ const formatter = (value) => value.replace(/\d/g, '');
 | inputAlign | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | errorMessageAlign | 错误提示文案对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | autosize | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 { maxHeight: 100, minHeight: 50 }，<br>单位为`px` | _boolean \| object_ | `false` |
-| leftIcon | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string\|ReactNode_ | - |
-| rightIcon | 右侧[图标名称](#/zh-CN/icon)或图片链接 | _string\|ReactNode_ | - |
+| leftIcon | 左侧图标 | _string\|ReactNode_ | - |
+| rightIcon | 右侧图标 | _string\|ReactNode_ | - |
 | iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
 #### TODO

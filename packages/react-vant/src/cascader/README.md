@@ -258,7 +258,7 @@ export default () => {
 | placeholder | 未选中时的提示文案 | _string_ | `请选择` |
 | activeColor | 选中状态的高亮颜色 | _string_ | `#ee0a24` |
 | closeable | 是否显示关闭图标 | _boolean_ | `true` |
-| closeIcon | 关闭[图标名称](#/zh-CN/icon)或图片链接 | _string_ | `cross` |
+| closeIcon | 关闭图标 | _string\|ReactNode_ | `cross` |
 | fieldNames | 自定义 `options` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', children: 'children' }` |
 
 ### Option 数据结构

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ActionSheet, Cell } from 'react-vant';
+import { Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import ActionSheet from '..'
 import './style.less';
 
 const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
@@ -53,6 +54,7 @@ export default (): React.ReactNode => {
       />
       <ActionSheet
         title="自定义内容"
+        closeIcon={<div>close</div>}
         visible={visible === 5}
         onCancel={onCancel}
         cancelText={false}

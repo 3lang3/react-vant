@@ -197,7 +197,7 @@ export default () => {
 | resultType | 文件读取结果类型，可选值为 `file` `text` | _string_ | `dataUrl` |
 | uploadText | 上传区域文字提示 | _string_ | - |
 | imageFit | 预览图裁剪模式，可选值见 [Image](#/zh-CN/image) 组件 | _string_ | `cover` |
-| uploadIcon | 上传区域[图标名称](#/zh-CN/icon)或图片链接 | _string_ | `photograph` |
+| uploadIcon | 上传区域图标 | _string\|ReactNode_ | `photograph` |
 
 > 注意：accept、capture 和 multiple 为浏览器 input 标签的原生属性，移动端各种机型对这些属性的支持程度有所差异，因此在不同机型和 WebView 下可能出现一些兼容性问题。
 
