@@ -129,7 +129,7 @@ export default () => {
 组件导出以下类型定义：
 
 ```js
-import type { CircleStartPosition } from 'vant';
+import type { CircleStartPosition } from 'react-vant';
 ```
 
 ## 主题定制

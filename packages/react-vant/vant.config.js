@@ -301,6 +301,10 @@ module.exports = {
                 title: 'NavBar 导航栏',
               },
               {
+                path: 'pagination',
+                title: 'Pagination 分页',
+              },
+              {
                 path: 'sidebar',
                 title: 'Sidebar 侧边导航',
               },
