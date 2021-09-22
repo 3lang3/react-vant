@@ -224,6 +224,10 @@ module.exports = {
                 title: 'Badge 徽标',
               },
               {
+                path: 'circle',
+                title: 'Circle 环形进度条',
+              },
+              {
                 path: 'collapse',
                 title: 'Collapse 折叠面板',
               },
