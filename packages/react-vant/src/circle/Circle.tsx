@@ -1,8 +1,9 @@
-import React, { CSSProperties, useEffect, useMemo } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
 import classnames from 'classnames';
 import { CircleProps, CircleStartPosition } from './PropsType';
 import { createNamespace, isObject, getSizeStyle } from '../utils';
 import { cancelRaf, raf } from '../utils/raf';
+import useMergedState from '../hooks/use-merged-state';
 
 const [bem] = createNamespace('circle');
 
@@ -30,6 +31,13 @@ const Circle: React.FC<CircleProps> = (props) => {
   // eslint-disable-next-line no-plusplus
   const id = `van-circle-${uid++}`;
 
+  const [currentRate, setCurrentRate] = useState(() => props.defaultRate || 0)
+
+  const [current] = useMergedState({
+    defaultValue: props.defaultRate,
+    value: props.rate,
+  });
+
   const viewBoxSize = useMemo(() => +props.strokeWidth + 1000, [props.strokeWidth]);
 
   const path = useMemo(() => getPath(props.clockwise, viewBoxSize), [props.clockwise, viewBoxSize]);
@@ -47,19 +55,22 @@ const Circle: React.FC<CircleProps> = (props) => {
   useEffect(() => {
     let rafId: number | undefined;
     const startTime = Date.now();
-    const startRate = props.currentRate;
-    const endRate = format(props.rate);
+    const startRate = currentRate;
+    const endRate = format(current);
     const duration = Math.abs(((startRate - endRate) * 1000) / +props.speed);
 
     const animate = () => {
       const now = Date.now();
       const progress = Math.min((now - startTime) / duration, 1);
       const rate = progress * (endRate - startRate) + startRate;
+      const crate = format(parseFloat(rate.toFixed(1)))
 
-      props.onChange?.(format(parseFloat(rate.toFixed(1))));
+      setCurrentRate(crate);
 
       if (endRate > startRate ? rate < endRate : rate > endRate) {
         rafId = raf(animate);
+      } else {
+        props.onChange?.(crate)
       }
     };
     if (props.speed) {
@@ -68,13 +79,13 @@ const Circle: React.FC<CircleProps> = (props) => {
       }
       rafId = raf(animate);
     } else {
-      props.onChange?.(endRate);
+      setCurrentRate(endRate);
     }
-  }, [props.rate]);
+  }, [current]);
 
   const renderHover = () => {
     const PERIMETER = 3140;
-    const { strokeWidth, currentRate } = props;
+    const { strokeWidth } = props;
     const offset = (PERIMETER * currentRate) / 100;
     const color = isObject(props.color) ? `url(#${id})` : props.color;
 
@@ -143,10 +154,8 @@ const Circle: React.FC<CircleProps> = (props) => {
 
 Circle.defaultProps = {
   clockwise: true,
-  currentRate: 0,
   speed: 100,
   fill: 'none',
-  rate: 100,
   strokeWidth: 40,
   startPosition: 'top',
 };

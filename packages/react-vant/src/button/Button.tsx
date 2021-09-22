@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import Loading from '../loading';
@@ -88,9 +88,14 @@ const Button: React.FC<ButtonProps> = (props) => {
       return renderLoadingIcon();
     }
 
-    if (props.icon) {
-      return <Icon name={icon} className={classnames(bem('icon'))} classPrefix={iconPrefix} />;
+    if (typeof props.icon === 'string') {
+      return <Icon name={icon as string} className={classnames(bem('icon'))} classPrefix={iconPrefix} />;
     }
+
+    if (isValidElement(props.icon)) {
+      return props.icon;
+    }
+
     return null;
   };
 

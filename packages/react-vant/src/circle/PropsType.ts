@@ -4,9 +4,9 @@ import { BaseTypeProps } from '../utils';
 export type CircleStartPosition = 'top' | 'right' | 'bottom' | 'left';
 
 export interface CircleProps extends BaseTypeProps {
-  /** 当前进度	 */
-  currentRate?: number;
-  /** 目标进度	 */
+  /** 默认进度 */
+  defaultRate?: number;
+  /** 当前进度 */
   rate?: number;
   /** 圆环直径，默认单位为 px	 */
   size?: number | string;

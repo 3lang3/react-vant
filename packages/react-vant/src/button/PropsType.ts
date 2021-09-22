@@ -21,7 +21,7 @@ export interface ButtonProps extends BaseTypeProps {
    * */
   text?: string;
   /** 左侧图标名称或图片链接 */
-  icon?: string;
+  icon?: string | React.ReactNode;
   /** 按钮颜色，支持传入 linear-gradient 渐变色 */
   color?: string;
   /** 是否为块级元素(全宽)	 */

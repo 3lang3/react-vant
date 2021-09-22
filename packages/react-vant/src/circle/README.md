@@ -6,8 +6,6 @@
 
 ### 引入
 
-通过以下方式来全局注册组件，更多注册方式请参考[组件注册](#/zh-CN/advanced-usage#zu-jian-zhu-ce)。
-
 ```js
 import { Circle } from 'react-vant';
 ```
@@ -16,140 +14,95 @@ import { Circle } from 'react-vant';
 
 ### 基础用法
 
-`rate` 属性表示进度条的目标进度，`currentRate` 表示动画过程中的实时进度。当 `rate` 发生变化时，`currentRate` 会以 `speed` 的速度变化，直至达到 `rate` 设定的值。
+`rate` 属性表示进度条的进度，当 `rate` 发生变化时，进度条会以 `speed` 的速度变化，直至达到 `rate` 设定的值。
 
 ```jsx
-<Circle
-  currentRate={currentRate}
-  rate="30"
-  speed={100}
-  text="text"
-/>
-```
+import { setState } from 'react';
+import { Circle, Button } from 'react-vant';
 
-```js
-import { ref, computed } from 'vue';
+const format = (rate: number) => Math.min(Math.max(rate, 0), 100);
 
-export default {
-  setup() {
-    const currentRate = ref(0);
-    const text = computed(() => currentRate.value.toFixed(0) + '%');
+export default () => {
+  const [rate, setRate] = useState(70);
 
-    return {
-      text,
-      currentRate,
-    };
-  },
+  const add = () => {
+    setRate((r) => format(r + 20));
+  };
+  const reduce = () => {
+    setRate((r) => format(r - 20));
+  };
+
+  return (
+    <>
+      <Circle rate={rate} speed={100} text={`${rate}%`} />
+      <Button.Group>
+        <Button onClick={add} type="primary">
+          增加
+        </Button>
+        <Button onClick={reduce} type="danger">
+          减少
+        </Button>
+      </Button.Group>
+    </>
+  );
 };
 ```
 
 ### 宽度定制
 
-通过 `stroke-width` 属性来控制进度条宽度。
+通过 `strokeWidth` 属性来控制进度条宽度。
 
-```html
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  :stroke-width="60"
-  text="宽度定制"
-/>
+```jsx
+<Circle rate={rate} strokeWidth={60} text="宽度定制" />
 ```
 
 ### 颜色定制
 
 通过 `color` 属性来控制进度条颜色，`layer-color` 属性来控制轨道颜色。
 
-```html
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  layer-color="#ebedf0"
-  text="颜色定制"
-/>
+```jsx
+<Circle rate={rate} layerColor="#ebedf0" text="颜色定制" />
 ```
 
 ### 渐变色
 
 `color` 属性支持传入对象格式来定义渐变色。
 
-```html
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  :color="gradientColor"
+```jsx
+<Circle
+  rate={rate}
   text="渐变色"
+  color={{
+    '0%': '#3fecff',
+    '100%': '#6149f6',
+  }}
 />
-```
-
-```js
-import { ref } from 'vue';
-
-export default {
-  setup() {
-    const currentRate = ref(0);
-    const gradientColor = {
-      '0%': '#3fecff',
-      '100%': '#6149f6',
-    };
-
-    return {
-      currentRate,
-      gradientColor,
-    };
-  },
-};
 ```
 
 ### 逆时针方向
 
 将 `clockwise` 设置为 `false`，进度会从逆时针方向开始。
 
-```html
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  :clockwise="false"
-  text="逆时针方向"
-/>
+```jsx
+<Circle rate={rate} clockwise={false} text="逆时针方向" />
 ```
 
 ### 大小定制
 
 通过 `size` 属性设置圆环直径。
 
-```html
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  size="120px"
-  text="大小定制"
-/>
+```jsx
+<Circle rate={rate} size={120} text="大小定制" />
 ```
 
 ### 起始位置
 
-进度条默认从顶部开始，可以通过 `start-position` 属性设置起始位置。
+进度条默认从顶部开始，可以通过 `startPosition` 属性设置起始位置。
 
-```html
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  :text="左侧"
-  start-position="left"
-/>
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  text="右侧"
-  start-position="right"
-/>
-<van-circle
-  v-model:current-rate="currentRate"
-  :rate="rate"
-  text="底部"
-  start-position="bottom"
-/>
+```jsx
+<Circle defaultRate={70} text="左侧" startPosition="left" />
+<Circle defaultRate={70} text="右侧" startPosition="right" />
+<Circle defaultRate={70} text="底部" startPosition="bottom" />
 ```
 
 ## API
@@ -158,8 +111,8 @@ export default {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| currentRate | 当前进度 | _number_ | - |
-| rate | 目标进度 | _number \| string_ | `100` |
+| defaultRate | 默认进度 | _number_ | - |
+| rate | 当前进度 | _number_ | - |
 | size | 圆环直径，默认单位为 `px` | _number \| string_ | `100px` |
 | color | 进度条颜色，传入对象格式可以定义渐变色 | _string \| object_ | `#1989fa` |
 | layerColor | 轨道颜色 | _string_ | `white` |
@@ -175,7 +128,7 @@ export default {
 
 组件导出以下类型定义：
 
-```ts
+```js
 import type { CircleStartPosition } from 'vant';
 ```
 
