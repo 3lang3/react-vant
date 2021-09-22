@@ -1,5 +1,5 @@
 ---
-name: Bug report
+name: Bug报告
 about: Create a report to help us improve
 title: ''
 labels: ''
@@ -7,32 +7,25 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**简述bug**
+对bug的清晰而简洁的描述。
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**复现代码**
+提供复现代码片段，极大的提升开源工作效率。
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+- [react vant template](https://codesandbox.io/s/react-vant-template-eez7b)
+- [react vant nextjs template](https://codesandbox.io/s/react-vant-nextjs-template-uepyw)
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**预期行为**
+预期行为描述。
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**截图**
+如果方便，请提供截屏图片
 
-**Smartphone (please complete the following information):**
+
+**设备信息:**
  - Device: [e.g. iPhone6]
  - OS: [e.g. iOS8.1]
  - Browser [e.g. stock browser, safari]
  - Version [e.g. 22]
 
-**Additional context**
-Add any other context about the problem here.
