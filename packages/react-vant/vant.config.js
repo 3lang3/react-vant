@@ -289,6 +289,10 @@ module.exports = {
             title: '导航组件',
             items: [
               {
+                path: 'action-bar',
+                title: 'ActionBar 动作栏',
+              },
+              {
                 path: 'grid',
                 title: 'Grid 宫格',
               },

@@ -52,4 +52,5 @@ export { default as Uploader } from './uploader';
 export { default as Progress } from './progress';
 export { default as Circle } from './circle';
 export { default as Pagination } from './pagination';
+export { default as ActionBar } from './action-bar';
 export * from './hooks';
