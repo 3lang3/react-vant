@@ -21,7 +21,9 @@ import { createNamespace, getScrollTop, getRootScrollTop } from '../utils';
 import { BORDER_BOTTOM } from '../utils/constant';
 import { useSetState } from '../hooks';
 
-const [bem] = createNamespace('index-anchor');
+const [bem, name] = createNamespace('index-anchor');
+
+export const INDEX_ANCHORE_KEY = Symbol(name);
 
 const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
   const root = useRef();
@@ -105,4 +107,6 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
   );
 });
 
-export default IndexAnchor;
+const IndexAnchorNamespace = Object.assign(IndexAnchor, { __REACT_VANT_TYPE: INDEX_ANCHORE_KEY });
+
+export default IndexAnchorNamespace;

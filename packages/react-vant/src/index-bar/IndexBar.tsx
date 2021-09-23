@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, {
   forwardRef,
   ReactElement,
@@ -34,6 +33,7 @@ import {
 import { useMount } from '../hooks';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
+import { INDEX_ANCHORE_KEY } from './IndexAnchor';
 
 const [bem] = createNamespace('index-bar');
 
@@ -224,28 +224,28 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   useMount(init);
 
   const handleMapChildren = ($children: ReactNode) => {
-    let isFind = false;
-    return React.Children.map($children, (child: ReactElement) => {
-      if (isFind) {
+    return React.Children.map(
+      $children,
+      (child: ReactElement & { type: { __REACT_VANT_TYPE: Symbol } }) => {
+        if (child.type?.__REACT_VANT_TYPE === INDEX_ANCHORE_KEY) {
+          return React.cloneElement(child, {
+            ref: setRefs(child.props.index),
+          });
+        }
+        if (child.props?.children) {
+          const deepMap = handleMapChildren(child.props.children);
+          return deepMap.length ? deepMap : child;
+        }
         return child;
-      }
-      if (child.props?.index) {
-        isFind = true;
-        return React.cloneElement(child, {
-          ref: setRefs(child.props.index),
-        });
-      }
-      if (child.props?.children) {
-        const deepMap = handleMapChildren(child.props.children);
-        return deepMap.length ? deepMap : child;
-      }
-      return null;
-    });
+      },
+    );
   };
 
   useImperativeHandle(ref, () => ({
     scrollTo,
   }));
+
+  const memoChildren = useMemo(() => handleMapChildren(children), [children]);
 
   return (
     <IndexBarContext.Provider value={{ zIndex, highlightColor, sticky }}>
@@ -264,7 +264,7 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
             </div>,
           ),
         )}
-        {handleMapChildren(children)}
+        {memoChildren}
       </div>
     </IndexBarContext.Provider>
   );
