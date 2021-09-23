@@ -123,7 +123,7 @@ Toast 默认采用单例模式，即同一时间只会存在一个 Toast，如�
 ```js
 Toast.allowMultiple();
 
-const toast1 = Toast('第一个 Toast');
+const toast1 = Toast.info('第一个 Toast');
 const toast2 = Toast.success('第二个 Toast');
 
 toast1.clear();
