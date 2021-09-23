@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import { StickyProps } from '../sticky/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export interface TabsProps extends BaseTypeProps {
@@ -7,7 +8,7 @@ export interface TabsProps extends BaseTypeProps {
   /** 是否显示标签栏外边框，仅在 type="line" 时有效	 */
   border?: boolean;
   /** 是否使用粘性定位布局	 */
-  sticky?: boolean;
+  sticky?: boolean | StickyProps;
   /** 是否开启切换标签内容时的转场动画	 */
   animated?: boolean;
   /** 是否开启手势左右滑动切换	 */
@@ -76,7 +77,7 @@ export interface TabsTitleProps extends BaseTypeProps {
   disabled: boolean;
   scrollable: boolean;
   activeColor: string;
-  renderTitle: React.ReactNode;
+  renderTitle?: React.ReactNode | ((active: boolean) => React.ReactNode);
   showZeroBadge?: boolean;
   inactiveColor: string;
   onClick: (event) => void;
@@ -114,7 +115,7 @@ export interface TabPaneProps {
   /** 是否禁用标签	 */
   disabled?: boolean;
   /** 自定义渲染title */
-  renderTitle?: React.ReactNode;
+  renderTitle?: React.ReactNode | ((active: boolean) => React.ReactNode);
   children?: React.ReactNode;
 }
 

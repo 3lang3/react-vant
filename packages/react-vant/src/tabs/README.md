@@ -144,12 +144,12 @@ import { Tabs } from 'react-vant';
 | titleInactiveColor | 标题默认态颜色 | _string_ | - |
 | beforeChange | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise | _(name) => boolean \| Promise_ | - |
 
-### Tab Props
+### TabPane Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | title | 标题 | _string_ | - |
-| renderTitle | 自定义标题 | _() => ReactNode_ | - |
+| renderTitle | 自定义标题 | _ReactNode \|(active: boolean) => ReactNode_ | - |
 | disabled | 是否禁用标签 | _boolean_ | `false` |
 | dot | 是否在标题右上角显示小红点 | _boolean_ | `false` |
 | badge | 图标右上角徽标的内容 | _number \| string_ | - |

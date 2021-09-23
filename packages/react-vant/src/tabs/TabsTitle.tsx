@@ -38,7 +38,12 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
   const renderText = () => {
     const Text = (
       <span className={classnames(bem('text', { ellipsis: !props.scrollable }))}>
-        {props.renderTitle || props.title}
+        {(() => {
+          if (typeof props.renderTitle === 'function') {
+            return props.renderTitle(isActive);
+          }
+          return props.renderTitle || props.title;
+        })()}
       </span>
     );
 
