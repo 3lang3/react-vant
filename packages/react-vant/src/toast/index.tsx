@@ -1,14 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import { isObject } from '../utils';
+import { extend, isObject } from '../utils';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from './lock-click';
-import { ToastProps, ToastInstance } from './PropsType';
+import { ToastProps, ToastInstance, ToastReturnType, ToastType } from './PropsType';
 
 import BaseToast from './Toast';
 
+const defaultOptions: ToastProps = {
+  icon: '',
+  message: '',
+  className: '',
+  type: 'info',
+  position: 'middle',
+  forbidClick: false,
+  duration: 2000,
+  teleport: () => document.body,
+};
+
 const toastArray: (() => void)[] = [];
+let allowMultiple = false;
+let currentOptions = extend({}, defaultOptions);
+// default options of specific type
+const defaultOptionsMap = new Map<string, ToastProps>();
 
 // 同步的销毁
 function syncClear() {
@@ -27,7 +42,10 @@ function nextTickClear() {
 // 可返回用于销毁此弹窗的方法
 const Toast = (p: ToastProps): unknown => {
   const props = parseOptions(p);
-  const update: { config: React.Dispatch<React.SetStateAction<ToastProps>> } = { config: () => {} };
+  const update: ToastReturnType = {
+    config: () => {},
+    clear: () => null,
+  };
   let timer = 0;
   const { onClose, teleport } = props;
   const container = document.createElement('div');
@@ -36,13 +54,6 @@ const Toast = (p: ToastProps): unknown => {
 
   const TempToast = () => {
     const options = {
-      icon: '',
-      message: '',
-      className: '',
-      type: 'info',
-      position: 'middle',
-      forbidClick: false,
-      duration: 2000,
       ...props,
     } as ToastProps;
     const [visible, setVisible] = useState(false);
@@ -64,6 +75,8 @@ const Toast = (p: ToastProps): unknown => {
       if (onClose) onClose();
     }, []);
 
+    update.clear = internalOnClosed;
+
     update.config = useCallback(
       (nextState) => {
         setState((prev) =>
@@ -77,7 +90,7 @@ const Toast = (p: ToastProps): unknown => {
 
     useEffect(() => {
       setVisible(true);
-      syncClear();
+      if (!allowMultiple) syncClear();
       toastArray.push(internalOnClosed);
 
       if (state.duration !== 0 && 'duration' in state) {
@@ -115,14 +128,38 @@ function parseOptions(message) {
 
 const createMethod = (type) => (options) =>
   Toast({
-    type,
+    ...currentOptions,
+    ...defaultOptionsMap.get(type),
     ...parseOptions(options),
+    type,
   });
 
 ['info', 'loading', 'success', 'fail'].forEach((method) => {
   Toast[method] = createMethod(method);
 });
 
+Toast.allowMultiple = (value = true) => {
+  allowMultiple = value;
+};
 Toast.clear = nextTickClear;
+
+function setDefaultOptions(type: ToastType | ToastProps, options?: ToastProps) {
+  if (typeof type === 'string') {
+    defaultOptionsMap.set(type, options);
+  } else {
+    extend(currentOptions, type);
+  }
+}
+
+Toast.setDefaultOptions = setDefaultOptions;
+
+Toast.resetDefaultOptions = (type?: ToastType) => {
+  if (typeof type === 'string') {
+    defaultOptionsMap.delete(type);
+  } else {
+    currentOptions = extend({}, defaultOptions);
+    defaultOptionsMap.clear();
+  }
+};
 
 export default Toast as ToastInstance;

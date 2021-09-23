@@ -46,14 +46,34 @@ export type ToastPrivateProps = {
 };
 
 type ToastInstanceOpts = Omit<ToastProps, 'type'> | string;
-type ToastReturnType = {
+export type ToastReturnType = {
+  /** 动态更新方法 */
   config: React.Dispatch<React.SetStateAction<ToastProps>>;
+  /** 清楚单例toast */
+  clear: () => void;
 };
 export interface ToastInstance {
   (opts: ToastProps | string): ToastReturnType;
+  /** 文本提示	 */
   info(opts: ToastInstanceOpts | string): ToastReturnType;
+  /** 展示加载提示	 */
   loading(opts: ToastInstanceOpts | string): ToastReturnType;
+  /** 展示成功提示	 */
   success(opts: ToastInstanceOpts | string): ToastReturnType;
+  /** 展示失败提示	 */
   fail(opts: ToastInstanceOpts | string): ToastReturnType;
+  /**
+   * 修改默认配置，对所有 Toast 生效。
+   * 传入 type 可以修改指定类型的默认配置
+   */
+  setDefaultOptions(type: ToastType | ToastProps, options?: ToastProps): void;
+  /**
+   * 重置默认配置，对所有 Toast 生效。
+   * 传入 type 可以重置指定类型的默认配置
+   */
+  resetDefaultOptions(type?: ToastType): void;
+  /** 允许同时存在多个 Toast	 */
+  allowMultiple(value: boolean): void;
+  /** 关闭提示	 */
   clear(): void;
 }

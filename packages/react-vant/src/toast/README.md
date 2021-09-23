@@ -105,14 +105,43 @@ Toast({
 ```js
 let remain = 4;
 let timer;
-const update = Toast.info({
+const toast = Toast.info({
   message: `还剩 ${remain + 1} 秒`,
   duration: 5000,
   onClose: () => clearInterval(timer),
 });
 timer = setInterval(() => {
-  update.config({ message: `还剩 ${remain--} 秒` });
+  toast.config({ message: `还剩 ${remain--} 秒` });
 }, 1000);
+```
+
+
+### 单例模式
+
+Toast 默认采用单例模式，即同一时间只会存在一个 Toast，如果需要在同一时间弹出多个 Toast，可以参考下面的示例：
+
+```js
+Toast.allowMultiple();
+
+const toast1 = Toast('第一个 Toast');
+const toast2 = Toast.success('第二个 Toast');
+
+toast1.clear();
+toast2.clear();
+```
+
+### 修改默认配置
+
+通过 `Toast.setDefaultOptions` 函数可以全局修改 Toast 的默认配置。
+
+```js
+Toast.setDefaultOptions({ duration: 2000 });
+
+Toast.setDefaultOptions('loading', { forbidClick: true });
+
+Toast.resetDefaultOptions();
+
+Toast.resetDefaultOptions('loading');
 ```
 
 ## API
@@ -127,6 +156,9 @@ timer = setInterval(() => {
 | Toast.success | 展示成功提示 | `options \| message` | toast 实例 |
 | Toast.fail    | 展示失败提示 | `options \| message` | toast 实例 |
 | Toast.clear   | 关闭提示     | `clearAll: boolean`  | `void`     |
+| Toast.allowMultiple | 允许同时存在多个 Toast | - | `void` |
+| Toast.setDefaultOptions | 修改默认配置，对所有 Toast 生效。<br>传入 type 可以修改指定类型的默认配置 | `type \| options` | `void` |
+| Toast.resetDefaultOptions | 重置默认配置，对所有 Toast 生效。<br>传入 type 可以重置指定类型的默认配置 | `type` | `void` |
 
 ### Options
 
