@@ -316,6 +316,10 @@ module.exports = {
                 path: 'tabs',
                 title: 'Tabs 标签页',
               },
+              {
+                path: 'tabbar',
+                title: 'Tabbar 标签栏',
+              },
             ],
           },
           {

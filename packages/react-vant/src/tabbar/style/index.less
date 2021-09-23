@@ -1,0 +1,51 @@
+@import '../../styles/themes/default.less';
+
+.rv-tabbar {
+  z-index: @tabbar-z-index;
+  display: flex;
+  box-sizing: content-box;
+  width: 100%;
+  height: @tabbar-height;
+  background-color: @tabbar-background-color;
+
+  &--fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.rv-tabbar-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: @tabbar-item-text-color;
+  font-size: @tabbar-item-font-size;
+  line-height: @tabbar-item-line-height;
+  cursor: pointer;
+
+  &__icon {
+    margin-bottom: @tabbar-item-icon-margin-bottom;
+    font-size: @tabbar-item-icon-size;
+
+    .van-icon {
+      display: block;
+    }
+
+    .rv-badge {
+      margin-top: @padding-base;
+    }
+
+    img {
+      display: block;
+      height: 20px;
+    }
+  }
+
+  &--active {
+    color: @tabbar-item-active-color;
+    background-color: @tabbar-item-active-background-color;
+  }
+}
