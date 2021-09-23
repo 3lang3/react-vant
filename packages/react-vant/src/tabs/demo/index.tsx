@@ -71,10 +71,10 @@ export default (): React.ReactNode => {
         </Tabs>
       </DemoBlock>
       <DemoBlock title="滚动导航">
-        <Tabs sticky scrollspy onClickTab={(tab) => console.log(tab)}>
+        <Tabs sticky scrollspy={{ autoFocusLast: true, reachBottomThreshold: 50 }} onClickTab={(tab) => console.log(tab)}>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
-              内容 {item}
+              <div style={{ height: '50vh' }}>内容 {item}</div>
             </Tabs.TabPane>
           ))}
         </Tabs>

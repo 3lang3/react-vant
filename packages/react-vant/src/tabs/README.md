@@ -137,12 +137,19 @@ import { Tabs } from 'react-vant';
 | sticky | 是否使用粘性定位布局 | _boolean_ | `false` |
 | swipeable | 是否开启手势滑动切换 | _boolean_ | `false` |
 | lazyRender | 是否开启延迟渲染（首次切换到标签时才触发内容渲染） | _boolean_ | `true` |
-| scrollspy | 是否开启滚动导航 | _boolean_ | `false` |
+| scrollspy | 是否开启滚动导航 | _boolean\|ScrollspyConfig_ | `false` |
 | offsetTop | 粘性定位布局下与顶部的最小距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `0` |
 | swipeThreshold | 滚动阈值，标签数量超过阈值且总宽度超过标签栏宽度时开始横向滚动 | _number \| string_ | `5` |
 | titleActiveColor | 标题选中态颜色 | _string_ | - |
 | titleInactiveColor | 标题默认态颜色 | _string_ | - |
 | beforeChange | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise | _(name) => boolean \| Promise_ | - |
+
+### ScrollspyConfig 
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| autoFocusLast | 滚动导航模式下，容器滚动触底时是否将最后一个tab转为Active状态 | _boolean_ | - |
+| reachBottomThreshold | 触底偏移量 | _number_ | - |
 
 ### TabPane Props
 

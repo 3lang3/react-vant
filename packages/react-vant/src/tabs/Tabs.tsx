@@ -36,6 +36,7 @@ import { callInterceptor } from '../utils/interceptor';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import { useSetState, useUpdateEffect } from '../hooks';
 import useEventListener from '../hooks/use-event-listener';
+import { isReachBottom } from './utils';
 
 const [bem] = createNamespace('tabs');
 
@@ -58,6 +59,10 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     if (!wrapRef) return 0;
     return getVisibleHeight(wrapRef);
   }, [wrapRef]);
+
+  const tabHeightRef = useRef(tabHeight);
+
+  tabHeightRef.current = tabHeight;
 
   const [state, setState] = useSetState({
     inited: false,
@@ -188,7 +193,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     if (props.scrollspy) {
       const target = contentRefs[current ?? state.currentIndex];
       if (target && scroller) {
-        const to = getElementTop(target, scroller) - (offsetTopPx + tabHeight);
+        const to = getElementTop(target, scroller) - (offsetTopPx + tabHeightRef.current);
         lockScroll.current = true;
         scrollTopTo(scroller, to, immediate ? 0 : +props.duration, () => {
           lockScroll.current = false;
@@ -226,7 +231,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   };
 
   const getCurrentIndexOnScroll = () => {
-    const scrollOffset = offsetTopPx + tabHeight;
+    const scrollOffset = offsetTopPx + tabHeightRef.current;
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < contentRefs.length; index++) {
       const $el = contentRefs[index];
@@ -241,7 +246,12 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const onScroll = () => {
     if (props.scrollspy && !lockScroll.current) {
-      const index = getCurrentIndexOnScroll();
+      let index = getCurrentIndexOnScroll();
+      if (typeof props.scrollspy === 'object') {
+        if (props.scrollspy.autoFocusLast && isReachBottom(props.scrollspy.reachBottomThreshold)) {
+          index = titleRefs.length - 1;
+        }
+      }
       if (index !== state.currentIndex) {
         setCurrentIndex(index);
       }

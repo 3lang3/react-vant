@@ -2,6 +2,13 @@ import React, { CSSProperties } from 'react';
 import { StickyProps } from '../sticky/PropsType';
 import { BaseTypeProps } from '../utils';
 
+type ScrollspyConfig = {
+  /** 滚动导航模式下，容器滚动触底时是否将最后一个tab转为Active状态 */
+  autoFocusLast?: boolean;
+  /** 触底偏移量 */
+  reachBottomThreshold?: number;
+}
+
 export interface TabsProps extends BaseTypeProps {
   /** 标签主题色	 */
   color?: string;
@@ -14,7 +21,7 @@ export interface TabsProps extends BaseTypeProps {
   /** 是否开启手势左右滑动切换	 */
   swipeable?: boolean;
   /** 是否开启滚动导航	 */
-  scrollspy?: boolean;
+  scrollspy?: boolean | ScrollspyConfig;
   /** 标签栏背景色	 */
   background?: string;
   /** 底部条宽度，默认单位 px	 */
