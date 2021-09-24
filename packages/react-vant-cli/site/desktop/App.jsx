@@ -8,8 +8,6 @@ import routes, { getLangFromRoute } from './routes';
 
 import './index.less';
 
-console.log(config);
-
 const App = () => {
   const { pathname } = useLocation();
   const history = useHistory();
