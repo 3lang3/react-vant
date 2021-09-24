@@ -1,18 +1,14 @@
 import React, { useMemo, useEffect } from 'react';
-import {
-  Switch,
-  Route,
-  Redirect,
-  useLocation,
-  useHistory,
-} from 'react-router-dom';
-import { config as zfpConfig, packageVersion } from 'site-desktop-shared';
+import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
+import { config, packageVersion } from 'site-desktop-shared';
 
 import { isMobile } from '../common';
 import Doc from './components/index';
 import routes, { getLangFromRoute } from './routes';
 
 import './index.less';
+
+console.log(config);
 
 const App = () => {
   const { pathname } = useLocation();
@@ -31,7 +27,7 @@ const App = () => {
         history.push(event.data.pathname);
       }
     },
-    false
+    false,
   );
 
   const path = window.location.pathname.replace(/\/index(\.html)?/, '/');
@@ -41,27 +37,49 @@ const App = () => {
     return getLangFromRoute(pathname);
   }, [pathname]);
 
-  const config = useMemo(() => {
-    const { locales } = zfpConfig.site;
+  const localeConfig = useMemo(() => {
+    const { locales } = config.site;
     if (locales) {
       return locales[lang];
     }
-    return zfpConfig.site;
+    return config.site;
   }, [lang]);
 
   // 文档语言数据
   const langConfigs = React.useMemo(() => {
-    const { locales = {} } = zfpConfig.site;
+    const { locales = {} } = config.site;
     return Object.keys(locales).map((key) => ({
       lang: key,
       label: locales[key].langLabel || '',
     }));
-  }, [zfpConfig]);
+  }, [config]);
+
+
+  // 更新标题
+  const setTitle = () => {
+    const currentCompnentName = pathname.replace(/\/.*\//, '');
+
+    let { title } = localeConfig;
+
+    const navItems = localeConfig.nav.reduce((result, nav) => [...result, ...nav.items], []);
+
+    const current = navItems.find((item) => item.path === currentCompnentName);
+
+    if (current && current.title) {
+      title = `${current.title} - ${title}`;
+    } else if (localeConfig.description) {
+      title += ` - ${localeConfig.description}`;
+    }
+
+    document.title = title;
+  }
+
+  useEffect(setTitle);
 
   // 文档版本数据
   const versions = React.useMemo(() => {
-    if (zfpConfig.site.versions) {
-      return [{ label: packageVersion }, ...config.site.versions];
+    if (config.site.versions) {
+      return [{ label: packageVersion }, ...localeConfig.site.versions];
     }
     return [{ label: packageVersion }];
   }, []);
@@ -69,7 +87,7 @@ const App = () => {
   return (
     <Doc
       lang={lang}
-      config={config}
+      config={localeConfig}
       langConfigs={langConfigs}
       versions={versions}
       simulator={simulator}
@@ -83,11 +101,9 @@ const App = () => {
               key={route.path}
               exact={route.exact}
               path={route.path}
-              render={(props) => (
-                <route.component {...props} routes={route.routes} />
-              )}
+              render={(props) => <route.component {...props} routes={route.routes} />}
             />
-          )
+          ),
         )}
       </Switch>
     </Doc>
