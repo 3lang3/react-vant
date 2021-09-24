@@ -15,6 +15,8 @@ export type CurrentTime = {
   milliseconds: number;
 };
 
+export type CountDownCurrentTime = CurrentTime
+
 export type UseCountDownOptions = {
   time: number;
   millisecond?: boolean;
