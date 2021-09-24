@@ -299,7 +299,7 @@ const formatter = (day) => {
 
 通过 `CalendarInstance` 获取 Calendar 实例的类型定义（从 3.2.0 版本开始支持）。
 
-```ts
+```js
 import { useRef } from 'react';
 import type { CalendarInstance } from 'react-vant';
 
