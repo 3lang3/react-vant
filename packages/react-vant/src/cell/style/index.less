@@ -1,20 +1,50 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 @import '../../styles/mixins/hairline.less';
 
-.rv-cell {
+:root {
+  --rv-cell-font-size: @cell-font-size;
+  --rv-cell-line-height: @cell-line-height;
+  --rv-cell-vertical-padding: @cell-vertical-padding;
+  --rv-cell-horizontal-padding: @cell-horizontal-padding;
+  --rv-cell-text-color: @cell-text-color;
+  --rv-cell-background-color: @cell-background-color;
+  --rv-cell-border-color: @cell-border-color;
+  --rv-cell-active-color: @cell-active-color;
+  --rv-cell-required-color: @cell-required-color;
+  --rv-cell-label-color: @cell-label-color;
+  --rv-cell-label-font-size: @cell-label-font-size;
+  --rv-cell-label-line-height: @cell-label-line-height;
+  --rv-cell-label-margin-top: @cell-label-margin-top;
+  --rv-cell-value-color: @cell-value-color;
+  --rv-cell-icon-size: @cell-icon-size;
+  --rv-cell-right-icon-color: @cell-right-icon-color;
+  --rv-cell-large-vertical-padding: @cell-large-vertical-padding;
+  --rv-cell-large-title-font-size: @cell-large-title-font-size;
+  --rv-cell-large-label-font-size: @cell-large-label-font-size;
+  --rv-cell-group-background-color: @cell-group-background-color;
+  --rv-cell-group-title-color: @cell-group-title-color;
+  --rv-cell-group-title-padding: @cell-group-title-padding;
+  --rv-cell-group-title-font-size: @cell-group-title-font-size;
+  --rv-cell-group-title-line-height: @cell-group-title-line-height;
+  --rv-cell-group-inset-padding: @cell-group-inset-padding;
+  --rv-cell-group-inset-border-radius: @cell-group-inset-border-radius;
+  --rv-cell-group-inset-title-padding: @cell-group-inset-title-padding;
+}
+
+.@{rv-prefix}-cell {
   position: relative;
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  padding: @cell-vertical-padding @cell-horizontal-padding;
+  padding: var(--rv-cell-vertical-padding) var(--rv-cell-horizontal-padding);
   overflow: hidden;
-  color: @cell-text-color;
-  font-size: @cell-font-size;
-  line-height: @cell-line-height;
-  background-color: @cell-background-color;
+  color: var(--rv-cell-text-color);
+  font-size: var(--rv-cell-font-size);
+  line-height: var(--rv-cell-line-height);
+  background-color: var(--rv-cell-background-color);
 
   &::after {
-    .hairline-bottom(@cell-border-color, @padding-md, @padding-md);
+    .hairline-bottom(var(--rv-cell-border-color), var(--rv-padding-md), var(--rv-padding-md));
   }
 
   &:last-child::after,
@@ -23,10 +53,10 @@
   }
 
   &__label {
-    margin-top: @cell-label-margin-top;
-    color: @cell-label-color;
-    font-size: @cell-label-font-size;
-    line-height: @cell-label-line-height;
+    margin-top: var(--rv-cell-label-margin-top);
+    color: var(--rv-cell-label-color);
+    font-size: var(--rv-cell-label-font-size);
+    line-height: var(--rv-cell-label-line-height);
   }
 
   &__title,
@@ -37,42 +67,38 @@
   &__value {
     position: relative;
     overflow: hidden;
-    color: @cell-value-color;
+    color: var(--rv-cell-value-color);
     text-align: right;
     vertical-align: middle;
     word-wrap: break-word;
 
     &--alone {
-      color: @text-color;
+      color: var(--rv-text-color);
       text-align: left;
     }
   }
 
   &__left-icon,
   &__right-icon {
-    height: @cell-line-height;
-    font-size: @cell-icon-size;
-    line-height: @cell-line-height;
+    height: var(--rv-cell-line-height);
+    font-size: var(--rv-cell-icon-size);
+    line-height: var(--rv-cell-line-height);
   }
 
   &__left-icon {
-    margin-right: @padding-base;
+    margin-right: var(--rv-padding-base);
   }
 
   &__right-icon {
-    margin-left: @padding-base;
-    color: @cell-right-icon-color;
-  }
-
-  &--round {
-    border-radius: @cell-border-radius;
+    margin-left: var(--rv-padding-base);
+    color: var(--rv-cell-right-icon-color);
   }
 
   &--clickable {
     cursor: pointer;
 
     &:active {
-      background-color: @cell-active-color;
+      background-color: var(--rv-cell-active-color);
     }
   }
 
@@ -81,9 +107,9 @@
 
     &::before {
       position: absolute;
-      left: @padding-xs;
-      color: @cell-required-color;
-      font-size: @cell-font-size;
+      left: var(--rv-padding-xs);
+      color: var(--rv-cell-required-color);
+      font-size: var(--rv-cell-font-size);
       content: '*';
     }
   }
@@ -93,35 +119,37 @@
   }
 
   &--large {
-    padding-top: @cell-large-vertical-padding;
-    padding-bottom: @cell-large-vertical-padding;
+    padding-top: var(--rv-cell-large-vertical-padding);
+    padding-bottom: var(--rv-cell-large-vertical-padding);
 
-    .rv-cell__title {
-      font-size: @cell-large-title-font-size;
+    .@{rv-prefix}-cell__title {
+      font-size: var(--rv-cell-large-title-font-size);
     }
 
-    .rv-cell__label {
-      font-size: @cell-large-label-font-size;
+    .@{rv-prefix}-cell__label {
+      font-size: var(--rv-cell-large-label-font-size);
     }
   }
 }
 
-.rv-cell-group {
-  background-color: @cell-group-background-color;
+
+.@{rv-prefix}-cell-group {
+  background-color: var(--rv-cell-group-background-color);
 
   &--inset {
-    margin: @cell-group-inset-padding;
+    margin: var(--rv-cell-group-inset-padding);
     overflow: hidden;
-    border-radius: @cell-group-inset-border-radius;
+    border-radius: var(--rv-cell-group-inset-border-radius);
   }
 
   &__title {
-    padding: @cell-group-title-padding;
-    color: @cell-group-title-color;
-    font-size: @cell-group-title-font-size;
-    line-height: @cell-group-title-line-height;
+    padding: var(--rv-cell-group-title-padding);
+    color: var(--rv-cell-group-title-color);
+    font-size: var(--rv-cell-group-title-font-size);
+    line-height: var(--rv-cell-group-title-line-height);
+
     &--inset {
-      padding: @cell-group-inset-title-padding;
+      padding: var(--rv-cell-group-inset-title-padding);
     }
   }
 }
