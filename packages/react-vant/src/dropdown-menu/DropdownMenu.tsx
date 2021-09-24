@@ -165,7 +165,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
         <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
           {childrenRefs.map(renderTitle)}
         </div>
-        {Children.map(props.children, (child: ReactElement, index: number) =>
+        {Children.toArray(props.children).filter(Boolean).map((child: ReactElement, index: number) =>
           cloneElement(child, {
             ref: setChildrenRefs(index),
             offset: offset.current,

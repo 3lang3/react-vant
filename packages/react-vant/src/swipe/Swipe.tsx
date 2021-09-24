@@ -33,9 +33,9 @@ const Swipe = forwardRef<SwipeInstance, SwipeProps>((props, ref) => {
       autoplay={autoplay as Swiper['autoplay']}
       {...parseProsp}
     >
-      {Children.map(children, (child: ReactElement) =>
-        cloneElement(child, { className: 'rv-swipe-item' }),
-      )}
+      {Children.toArray(children)
+        .filter(Boolean)
+        .map((child: ReactElement) => cloneElement(child, { className: 'rv-swipe-item' }))}
     </Swiper>
   );
 });
