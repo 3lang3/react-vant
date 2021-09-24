@@ -12,7 +12,7 @@ import DropdownMenuContext from './DropdownMenuContext';
 import {
   DropdownMenuItemProps,
   DropdownMenuItemOption,
-  DropdownMenuItemInstance,
+  DropdownItemInstance,
 } from './PropsType';
 
 const [bem] = createNamespace('dropdown-item');
@@ -34,7 +34,7 @@ function inheritProps(parentProps, props) {
   return { ...parentProps, ...props };
 }
 
-const DropdownMenuItem = forwardRef<DropdownMenuItemInstance, DropdownMenuItemProps>(
+const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>(
   (props, ref) => {
     const [state, setState] = useSetState({
       transition: true,

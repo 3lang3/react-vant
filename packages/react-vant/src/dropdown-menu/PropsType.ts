@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseTypeProps, TeleportType } from '../utils';
 
-type DropdownMenuDirection = 'up' | 'down';
+export type DropdownMenuDirection = 'up' | 'down';
 
 export type DropdownMenuItemOption = {
   /** 文本 */
@@ -11,6 +11,8 @@ export type DropdownMenuItemOption = {
   /** 选项值 */
   value: number | string;
 };
+
+export type DropdownItemOption = DropdownMenuItemOption
 
 interface DropdownMenuCommonProps extends BaseTypeProps {
   /** 是否显示遮罩层	 */
@@ -64,7 +66,7 @@ export interface DropdownMenuItemProps extends DropdownMenuCommonProps, ItemPriv
   children?: React.ReactNode;
 }
 
-export type DropdownMenuItemInstance = {
+export type DropdownItemInstance = {
   toggle: (show: boolean, options?: { immediate?: boolean }) => void;
   renderTitle?: (itemValue: string | number) => void;
   state: {
