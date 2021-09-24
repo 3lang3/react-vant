@@ -17,7 +17,7 @@ const ActionBar: React.FC<ActionBarProps> = (props) => {
         })}
         style={props.style}
       >
-        {React.Children.map(props.children, (child: React.ReactElement, index: number) =>
+        {React.Children.toArray(props.children).filter(Boolean).map((child: React.ReactElement, index: number) =>
           React.cloneElement(child, {
             index,
           }),
