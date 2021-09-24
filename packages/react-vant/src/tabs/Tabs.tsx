@@ -393,12 +393,14 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
           currentIndex={state.currentIndex}
           onChange={setCurrentIndex}
         >
-          {React.Children.map(children, (node: React.ReactElement, index: number) =>
-            React.cloneElement(node, {
-              index,
-              ref: setContentRefs(index),
-            }),
-          )}
+          {React.Children.toArray(children)
+            .filter(Boolean)
+            .map((node: React.ReactElement, index: number) =>
+              React.cloneElement(node, {
+                index,
+                ref: setContentRefs(index),
+              }),
+            )}
         </TabsContent>
       </div>
     </TabsContext.Provider>
