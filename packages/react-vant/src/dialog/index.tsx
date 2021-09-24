@@ -112,8 +112,6 @@ Dialog.alert = (props: AlertDialogProps) => {
   return new Promise((resolve) => {
     Dialog.show({
       ...props,
-      // 强制不现实 OK Btn
-      showCancelButton: false,
       onConfirm: (e) => {
         onConfirm(e);
         resolve(e);
