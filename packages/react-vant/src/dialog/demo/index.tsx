@@ -81,6 +81,7 @@ export default (): React.ReactNode => {
             Dialog.alert({
               title: '标题',
               theme: 'round-button',
+              showCancelButton: true,
               message: '代码是写出来给人看的，附带能在机器上运行',
             })
           }

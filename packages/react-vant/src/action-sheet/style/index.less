@@ -1,6 +1,6 @@
 @import './var.less';
+@import '../../styles/var.less';
 @import '../../styles/mixins/hairline';
-
 
 :root {
   --rv-action-sheet-max-height: @action-sheet-max-height;
@@ -44,7 +44,7 @@
   &__cancel {
     display: block;
     width: 100%;
-    padding: 14px var(--rv-padding-md);
+    padding: 14 * @hd var(--rv-padding-md);
     font-size: var(--rv-action-sheet-item-font-size);
     background-color: var(--rv-action-sheet-item-background);
     border: none;
@@ -106,7 +106,7 @@
   &__description {
     position: relative;
     flex-shrink: 0;
-    padding: 20px var(--rv-padding-md);
+    padding: 20 * @hd var(--rv-padding-md);
     color: var(--rv-action-sheet-description-color);
     font-size: var(--rv-action-sheet-description-font-size);
     line-height: var(--rv-action-sheet-description-line-height);

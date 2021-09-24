@@ -1,3 +1,4 @@
+@import '../../styles/var.less';
 @import './var.less';
 
 :root {
@@ -28,7 +29,6 @@
   background-color: var(--rv-action-bar-background-color);
 }
 
-
 .@{rv-prefix}-action-bar-button {
   flex: 1;
   height: var(--rv-action-bar-button-height);
@@ -38,13 +38,13 @@
   border-radius: 0;
 
   &--first {
-    margin-left: 5px;
+    margin-left: 5 * @hd;
     border-top-left-radius: var(--rv-border-radius-max);
     border-bottom-left-radius: var(--rv-border-radius-max);
   }
 
   &--last {
-    margin-right: 5px;
+    margin-right: 5 * @hd;
     border-top-right-radius: var(--rv-border-radius-max);
     border-bottom-right-radius: var(--rv-border-radius-max);
   }
@@ -58,10 +58,9 @@
   }
 
   @media (max-width: 321px) {
-    font-size: 13px;
+    font-size: 13 * @hd;
   }
 }
-
 
 .@{rv-prefix}-action-bar-icon {
   display: flex;

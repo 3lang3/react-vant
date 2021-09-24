@@ -180,30 +180,32 @@ const [show, setShow] = useState(false);
 | onClose | Dialog 关闭时的回调 | _Function_ | - |
 | onClosed | Dialog 完全关闭时的回调 | _Function_ | - |
 | teleport | 指定挂载的节点 | _HTMLElement \| () => HTMLElement_ | `body` |
+| footer | 自定义底部按钮区域 | _ReactNode_ | - |
+
+## 主题定制
 
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                  | 默认值                     | 描述 |
-| ------------------------------------- | -------------------------- | ---- |
-| @dialog-width                         | `320px`                    | -    |
-| @dialog-small-screen-width            | `90%`                      | -    |
-| @dialog-font-size                     | `@font-size-lg`            | -    |
-| @dialog-transition                    | `@animation-duration-base` | -    |
-| @dialog-border-radius                 | `20px`                     | -    |
-| @dialog-background-color              | `@white`                   | -    |
-| @dialog-header-font-weight            | `@font-weight-bold`        | -    |
-| @dialog-header-line-height            | `20px`                     | -    |
-| @dialog-header-padding-top            | `24px`                     | -    |
-| @dialog-header-isolated-padding       | `@padding-lg 0`            | -    |
-| @dialog-message-padding               | `@padding-lg`              | -    |
-| @dialog-message-font-size             | `@font-size-md`            | -    |
-| @dialog-message-line-height           | `@line-height-md`          | -    |
-| @dialog-message-max-height            | `60vh`                     | -    |
-| @dialog-has-title-message-text-color  | `@gray-8`                  | -    |
-| @dialog-has-title-message-padding-top | `@padding-xs`              | -    |
-| @dialog-button-height                 | `44px`                     | -    |
-| @dialog-round-button-height           | `36px`                     | -    |
-| @dialog-confirm-button-text-color     | `@red`                     | -    |
-| @dialog-close-icon-margin             | `16px`                     | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-dialog-width | _320px_ | - |
+| --rv-dialog-small-screen-width | _90%_ | - |
+| --rv-dialog-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-dialog-transition | _var(--rv-animation-duration-base)_ | - |
+| --rv-dialog-border-radius | _16px_ | - |
+| --rv-dialog-background-color | _var(--rv-white)_ | - |
+| --rv-dialog-header-font-weight | _var(--rv-font-weight-bold)_ | - |
+| --rv-dialog-header-line-height | _24px_ | - |
+| --rv-dialog-header-padding-top | _26px_ | - |
+| --rv-dialog-header-isolated-padding | _var(--rv-padding-lg) 0_ | - |
+| --rv-dialog-message-padding | _var(--rv-padding-lg)_ | - |
+| --rv-dialog-message-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-dialog-message-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-dialog-message-max-height | _60vh_ | - |
+| --rv-dialog-has-title-message-text-color | _var(--rv-gray-7)_ | - |
+| --rv-dialog-has-title-message-padding-top | _var(--rv-padding-xs)_ | - |
+| --rv-dialog-button-height | _48px_ | - |
+| --rv-dialog-round-button-height | _36px_ | - |
+| --rv-dialog-confirm-button-text-color | _var(--rv-danger-color)_ | - |

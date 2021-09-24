@@ -1,3 +1,4 @@
+@import '../../styles/var.less';
 @import './var.less';
 
 :root {
@@ -44,7 +45,7 @@
   &__tabs {
     .@{rv-prefix}-tab {
       flex: none;
-      padding: 0 10px;
+      padding: 0 10 * @hd;
     }
 
     &.@{rv-prefix}-tabs--line .@{rv-prefix}-tabs__wrap {
@@ -52,8 +53,8 @@
     }
 
     .@{rv-prefix}-tabs__nav--complete {
-      padding-right: 6px;
-      padding-left: 6px;
+      padding-right: 6 * @hd;
+      padding-left: 6 * @hd;
     }
   }
 
@@ -71,7 +72,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px var(--rv-padding-md);
+    padding: 10 * @hd var(--rv-padding-md);
     font-size: var(--rv-font-size-md);
     line-height: var(--rv-line-height-md);
     cursor: pointer;
@@ -102,7 +103,7 @@
   &__options {
     box-sizing: border-box;
     height: var(--rv-cascader-options-height);
-    padding-top: 6px;
+    padding-top: 6 * @hd;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }

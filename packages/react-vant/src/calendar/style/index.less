@@ -1,3 +1,4 @@
+@import '../../styles/var.less';
 @import './var.less';
 
 :root {
@@ -46,7 +47,7 @@
     }
 
     .@{rv-prefix}-popup__close-icon {
-      top: 11px;
+      top: 11 * @hd;
     }
   }
 
@@ -178,16 +179,16 @@
     line-height: var(--rv-calendar-info-line-height);
 
     @media (max-width: 350px) {
-      font-size: 9px;
+      font-size: 9 * @hd;
     }
   }
 
   &__top-info {
-    top: 6px;
+    top: 6 * @hd;
   }
 
   &__bottom-info {
-    bottom: 6px;
+    bottom: 6 * @hd;
   }
 
   &__selected-day {
