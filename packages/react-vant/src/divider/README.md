@@ -64,3 +64,22 @@ import { Divider } from 'react-vant';
 | contentPosition | 内容位置，可选值为 `left` `right` | _string_              | `center` |
 | className       | 类名                              | _string_              | -        |
 | style           | style                             | _React.CSSProperties_ | -        |
+
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称                              | 默认值                    | 描述 |
+| --------------------------------- | ------------------------- | ---- |
+| --rv-divider-margin              | _var(--rv-padding-md) 0_ | -    |
+| --rv-divider-text-color          | _var(--rv-gray-6)_       | -    |
+| --rv-divider-font-size           | _var(--rv-font-size-md)_ | -    |
+| --rv-divider-line-height         | _24px_                    | -    |
+| --rv-divider-border-color        | _var(--rv-border-color)_ | -    |
+| --rv-divider-content-padding     | _var(--rv-padding-md)_   | -    |
+| --rv-divider-content-left-width  | _10%_                     | -    |
+| --rv-divider-content-right-width | _10%_                     | -    |
