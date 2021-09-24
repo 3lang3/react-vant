@@ -154,3 +154,56 @@ import { Button } from 'react-vant';
 | 事件名  | 说明                                     | 回调参数       |
 | ------- | ---------------------------------------- | -------------- |
 | onClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { ButtonType, ButtonSize } from 'react-vant';
+```
+
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-button-mini-height | _24px_ | - |
+| --rv-button-mini-padding | _0 var(--rv-padding-base)_ | - |
+| --rv-button-mini-font-size | _var(--rv-font-size-xs)_ | - |
+| --rv-button-small-height | _32px_ | - |
+| --rv-button-small-padding | _0 var(--rv-padding-xs)_ | - |
+| --rv-button-small-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-button-normal-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-button-normal-padding | _0 15px_ | - |
+| --rv-button-large-height | _50px_ | - |
+| --rv-button-default-height | _44px_ | - |
+| --rv-button-default-line-height | _1.2_ | - |
+| --rv-button-default-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-button-default-color | _var(--rv-text-color)_ | - |
+| --rv-button-default-background-color | _var(--rv-white)_ | - |
+| --rv-button-default-border-color | _var(--rv-border-color)_ | - |
+| --rv-button-primary-color | _var(--rv-white)_ | - |
+| --rv-button-primary-background-color | _var(--rv-primary-color)_ | - |
+| --rv-button-primary-border-color | _var(--rv-primary-color)_ | - |
+| --rv-button-success-color | _var(--rv-white)_ | - |
+| --rv-button-success-background-color | _var(--rv-success-color)_ | - |
+| --rv-button-success-border-color | _var(--rv-success-color)_ | - |
+| --rv-button-danger-color | _var(--rv-white)_ | - |
+| --rv-button-danger-background-color | _var(--rv-danger-color)_ | - |
+| --rv-button-danger-border-color | _var(--rv-danger-color)_ | - |
+| --rv-button-warning-color | _var(--rv-white)_ | - |
+| --rv-button-warning-background-color | _var(--rv-orange)_ | - |
+| --rv-button-warning-border-color | _var(--rv-orange)_ | - |
+| --rv-button-border-width | _var(--rv-border-width-base)_ | - |
+| --rv-button-border-radius | _var(--rv-border-radius-sm)_ | - |
+| --rv-button-round-border-radius | _var(--rv-border-radius-max)_ | - |
+| --rv-button-plain-background-color | _var(--rv-white)_ | - |
+| --rv-button-disabled-opacity | _var(--rv-disabled-opacity)_ | - |
+| --rv-button-icon-size | _1.2em_ | - |
+| --rv-button-loading-icon-size | _20px_ | - |

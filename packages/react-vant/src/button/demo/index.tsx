@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Button from '..'
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -95,8 +95,9 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="按钮组">
         <Button.Group>
-          <Button block>上一步</Button>
-          <Button block type="primary">
+          <Button icon="arrow-left" block>上一步</Button>
+          <Button icon="replay" block>刷新</Button>
+          <Button icon="arrow" block>
             下一步
           </Button>
         </Button.Group>
