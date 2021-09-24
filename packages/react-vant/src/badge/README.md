@@ -116,3 +116,24 @@ import { Badge } from 'react-vant';
 | 事件名  | 说明       | 回调参数       |
 | ------- | ---------- | -------------- |
 | onClick | 点击时触发 | _event: Event_ |
+
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-badge-size | _16px_ | - |
+| --rv-badge-color | _var(--rv-white)_ | - |
+| --rv-badge-padding | _0 3px_ | - |
+| --rv-badge-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-badge-font-weight | _var(--rv-font-weight-bold)_ | - |
+| --rv-badge-border-width | _var(--rv-border-width-base)_ | - |
+| --rv-badge-background-color | _var(--rv-danger-color)_ | - |
+| --rv-badge-dot-color | _var(--rv-danger-color)_ | - |
+| --rv-badge-dot-size | _8px_ | - |
+| --rv-badge-font-family | _-apple-system-font, Helvetica Neue, Arial, sans-serif_ | - |
