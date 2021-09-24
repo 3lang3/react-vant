@@ -23,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
   };
   return (
     <div style={style} className={cls(className, bem())}>
-      {React.Children.map(children, (child: React.ReactElement, index: number) =>
+      {React.Children.toArray(children).filter(Boolean).map((child: React.ReactElement, index: number) =>
         React.cloneElement(child, {
           index,
           parent: {

@@ -70,7 +70,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
   return (
     <CollapseContext.Provider value={{ isExpanded, toggle }}>
       <div className={classnames(bem(), { [BORDER_TOP_BOTTOM]: props.border })}>
-        {React.Children.map(props.children, (child: ReactElement, index: number) =>
+        {React.Children.toArray(props.children).filter(Boolean).map((child: ReactElement, index: number) =>
           React.cloneElement(child, {
             index,
           }),

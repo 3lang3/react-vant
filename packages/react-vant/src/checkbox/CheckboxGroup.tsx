@@ -56,7 +56,7 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
   return (
     <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked }}>
       <div className={classnames(bem([props.direction]))}>
-        {React.Children.map(props.children, (child: WithDisplayNameReactElement, index: number) => {
+        {React.Children.toArray(props.children).filter(Boolean).map((child: WithDisplayNameReactElement, index: number) => {
           if (child.type.displayName !== 'Checkbox') return child;
           return React.cloneElement(child, { ref: setChildrenRefs(index) });
         })}

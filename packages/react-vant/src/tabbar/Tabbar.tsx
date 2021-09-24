@@ -44,7 +44,7 @@ const Tabbar: React.FC<TabbarProps> = (props) => {
             'rv-safe-area-bottom': enableSafeArea(),
           })}
         >
-          {React.Children.map(props.children, (child: React.ReactElement, index) =>
+          {React.Children.toArray(props.children).filter(Boolean).map((child: React.ReactElement, index) =>
             React.cloneElement(child, {
               setActive,
               index,

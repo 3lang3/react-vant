@@ -224,9 +224,9 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   useMount(init);
 
   const handleMapChildren = ($children: ReactNode) => {
-    return React.Children.map(
-      $children,
-      (child: ReactElement & { type: { __REACT_VANT_TYPE: Symbol } }) => {
+    return React.Children.toArray($children)
+      .filter(Boolean)
+      .map((child: ReactElement & { type: { __REACT_VANT_TYPE: Symbol } }) => {
         if (child.type?.__REACT_VANT_TYPE === INDEX_ANCHORE_KEY) {
           return React.cloneElement(child, {
             ref: setRefs(child.props.index),
@@ -237,8 +237,7 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
           return deepMap.length ? deepMap : child;
         }
         return child;
-      },
-    );
+      });
   };
 
   useImperativeHandle(ref, () => ({
