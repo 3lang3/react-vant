@@ -16,7 +16,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Swipe autoplay={3000}>
+        <Swipe autoplay={false}>
           <Swipe.Item>1</Swipe.Item>
           <Swipe.Item>2</Swipe.Item>
           <Swipe.Item>3</Swipe.Item>
