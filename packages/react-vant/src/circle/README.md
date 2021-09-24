@@ -140,10 +140,10 @@ import type { CircleStartPosition } from 'react-vant';
 
 | 名称                          | 默认值                        | 描述 |
 | ----------------------------- | ----------------------------- | ---- |
-| --van-circle-size             | _100px_                       | -    |
-| --van-circle-color            | _var(--van-primary-color)_    | -    |
-| --van-circle-layer-color      | _var(--van-white)_            | -    |
-| --van-circle-text-color       | _var(--van-text-color)_       | -    |
-| --van-circle-text-font-weight | _var(--van-font-weight-bold)_ | -    |
-| --van-circle-text-font-size   | _var(--van-font-size-md)_     | -    |
-| --van-circle-text-line-height | _var(--van-line-height-md)_   | -    |
+| --rv-circle-size             | _100px_                       | -    |
+| --rv-circle-color            | _var(--rv-primary-color)_    | -    |
+| --rv-circle-layer-color      | _var(--rv-white)_            | -    |
+| --rv-circle-text-color       | _var(--rv-text-color)_       | -    |
+| --rv-circle-text-font-weight | _var(--rv-font-weight-bold)_ | -    |
+| --rv-circle-text-font-size   | _var(--rv-font-size-md)_     | -    |
+| --rv-circle-text-line-height | _var(--rv-line-height-md)_   | -    |
