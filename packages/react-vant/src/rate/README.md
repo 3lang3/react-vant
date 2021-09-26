@@ -101,3 +101,18 @@ export default () => {
 | 事件名   | 说明                     | 回调参数 |
 | -------- | ------------------------ | -------- |
 | onChange | 当前分值变化时触发的事件 | 当前分值 |
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称                           | 默认值                    | 描述 |
+| ------------------------------ | ------------------------- | ---- |
+| --rv-rate-icon-size           | _20px_                    | -    |
+| --rv-rate-icon-gutter         | _var(--rv-padding-base)_ | -    |
+| --rv-rate-icon-void-color     | _var(--rv-gray-5)_       | -    |
+| --rv-rate-icon-full-color     | _var(--rv-danger-color)_ | -    |
+| --rv-rate-icon-disabled-color | _var(--rv-gray-5)_       | -    |

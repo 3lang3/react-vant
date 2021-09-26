@@ -13,7 +13,6 @@ export default (): React.ReactNode => {
   return (
     <DemoSection className="demo-rat">
       <DemoBlock title="基础用法">
-        <div onClick={() => setValue(1)}>test</div>
         <Rate value={value} onChange={onChange} />
       </DemoBlock>
       <DemoBlock title="自定义图标">
