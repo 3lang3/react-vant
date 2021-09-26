@@ -91,6 +91,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     return (
       <Field
         ref={filedRef}
+        className={classnames(bem('field'))}
         type="search"
         rows={1}
         value={value || ''}

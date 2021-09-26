@@ -163,6 +163,28 @@ const searchRef = useRef<SearchInstance>();
 searchRef.current?.focus();
 ```
 
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称                                  | 默认值                       | 描述 |
+| ------------------------------------- | ---------------------------- | ---- |
+| --rv-search-padding                  | _10px var(--rv-padding-sm)_ | -    |
+| --rv-search-background-color         | _var(--rv-white)_           | -    |
+| --rv-search-content-background-color | _var(--rv-gray-1)_          | -    |
+| --rv-search-input-height             | _34px_                       | -    |
+| --rv-search-label-padding            | _0 5px_                      | -    |
+| --rv-search-label-color              | _var(--rv-text-color)_      | -    |
+| --rv-search-label-font-size          | _var(--rv-font-size-md)_    | -    |
+| --rv-search-left-icon-color          | _var(--rv-gray-6)_          | -    |
+| --rv-search-action-padding           | _0 var(--rv-padding-xs)_    | -    |
+| --rv-search-action-text-color        | _var(--rv-text-color)_      | -    |
+| --rv-search-action-font-size         | _var(--rv-font-size-md)_    | -    |
+
+
 ## 常见问题
 
 ### 在桌面端点击清除按钮无效？
