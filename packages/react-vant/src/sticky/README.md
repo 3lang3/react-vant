@@ -79,10 +79,20 @@ const container = useRef(null);
 | onScroll | 滚动时触发           | _{ scrollTop: number, isFixed: boolean }_ |
 | onChange | 当吸顶状态改变时触发 | _isFixed: boolean_                        |
 
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { StickyPosition } from 'react-vant';
+```
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称            | 默认值 | 描述 |
-| --------------- | ------ | ---- |
-| @sticky-z-index | `99`   | -    |
+| 名称                 | 默认值 | 描述 |
+| -------------------- | ------ | ---- |
+| --rv-sticky-z-index | _99_   | -    |

@@ -3,7 +3,7 @@ export type ScrollEventParams = {
   isFixed: boolean;
 };
 
-type StickyPosition = 'top' | 'bottom';
+export type StickyPosition = 'top' | 'bottom';
 
 export interface StickyProps {
   /** 吸顶时的 z-index	 */
