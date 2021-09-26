@@ -140,3 +140,27 @@ import { Grid } from 'react-vant';
 | 事件名  | 说明           | 回调参数            |
 | ------- | -------------- | ------------------- |
 | onClick | 点击格子时触发 | _event: MouseEvent_ |
+
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { GridDirection } from 'react-vant';
+```
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-grid-item-content-padding | _var(--rv-padding-md) var(--rv-padding-xs)_ | - |
+| --rv-grid-item-content-background-color | _var(--rv-white)_ | - |
+| --rv-grid-item-content-active-color | _var(--rv-active-color)_ | - |
+| --rv-grid-item-icon-size | _28px_ | - |
+| --rv-grid-item-text-color | _var(--rv-gray-7)_ | - |
+| --rv-grid-item-text-font-size | _var(--rv-font-size-sm)_ | - |
