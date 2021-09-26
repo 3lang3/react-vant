@@ -1,20 +1,32 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-notice-bar {
+:root {
+  --rv-notice-bar-height: @notice-bar-height;
+  --rv-notice-bar-padding: @notice-bar-padding;
+  --rv-notice-bar-wrapable-padding: @notice-bar-wrapable-padding;
+  --rv-notice-bar-text-color: @notice-bar-text-color;
+  --rv-notice-bar-font-size: @notice-bar-font-size;
+  --rv-notice-bar-line-height: @notice-bar-line-height;
+  --rv-notice-bar-background-color: @notice-bar-background-color;
+  --rv-notice-bar-icon-size: @notice-bar-icon-size;
+  --rv-notice-bar-icon-min-width: @notice-bar-icon-min-width;
+}
+
+.@{rv-prefix}-notice-bar {
   position: relative;
   display: flex;
   align-items: center;
-  height: @notice-bar-height;
-  padding: @notice-bar-padding;
-  color: @notice-bar-text-color;
-  font-size: @notice-bar-font-size;
-  line-height: @notice-bar-line-height;
-  background-color: @notice-bar-background-color;
+  height: var(--rv-notice-bar-height);
+  padding: var(--rv-notice-bar-padding);
+  color: var(--rv-notice-bar-text-color);
+  font-size: var(--rv-notice-bar-font-size);
+  line-height: var(--rv-notice-bar-line-height);
+  background-color: var(--rv-notice-bar-background-color);
 
   &__left-icon,
   &__right-icon {
-    min-width: @notice-bar-icon-min-width;
-    font-size: @notice-bar-icon-size;
+    min-width: var(--rv-notice-bar-icon-min-width);
+    font-size: var(--rv-notice-bar-icon-size);
   }
 
   &__right-icon {
@@ -36,16 +48,16 @@
     white-space: nowrap;
     transition-timing-function: linear;
 
-    &.rv-ellipsis {
+    &.@{rv-prefix}-ellipsis {
       max-width: 100%;
     }
   }
 
   &--wrapable {
     height: auto;
-    padding: @notice-bar-wrapable-padding;
+    padding: var(--rv-notice-bar-wrapable-padding);
 
-    .rv-notice-bar {
+    .@{rv-prefix}-notice-bar {
       &__wrap {
         height: auto;
       }
