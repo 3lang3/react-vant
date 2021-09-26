@@ -54,6 +54,7 @@ const Toast = (p: ToastProps): unknown => {
 
   const TempToast = () => {
     const options = {
+      duration: 2000,
       ...props,
     } as ToastProps;
     const [visible, setVisible] = useState(false);
