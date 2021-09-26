@@ -164,3 +164,4 @@ Toast.resetDefaultOptions = (type?: ToastType) => {
 };
 
 export default Toast as ToastInstance;
+export type { ToastType, ToastPosition, ToastOptions } from './PropsType'

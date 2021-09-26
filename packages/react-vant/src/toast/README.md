@@ -183,3 +183,37 @@ Toast.resetDefaultOptions('loading');
 | onClose | 关闭时的回调函数 | _Function_ | - |
 | transition | 动画类名 | _string_ | `rv-fade` |
 | teleport | 指定挂载的节点 | _HTMLElement_ _(() => HTMLElement))_ | `document.body` |
+
+
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { ToastType, ToastOptions, ToastPosition } from 'react-vant';
+```
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-toast-max-width | _70%_ | - |
+| --rv-toast-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-toast-text-color | _var(--rv-white)_ | - |
+| --rv-toast-loading-icon-color | _var(--rv-white)_ | - |
+| --rv-toast-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-toast-border-radius | _var(--rv-border-radius-lg)_ | - |
+| --rv-toast-background-color | _fade(var(--rv-black), 70%)_ | - |
+| --rv-toast-icon-size | _36px_ | - |
+| --rv-toast-text-min-width | _96px_ | - |
+| --rv-toast-text-padding | _var(--rv-padding-xs) var(--rv-padding-sm)_ | - |
+| --rv-toast-default-padding | _var(--rv-padding-md)_ | - |
+| --rv-toast-default-width | _88px_ | - |
+| --rv-toast-default-min-height | _88px_ | - |
+| --rv-toast-position-top-distance | _20%_ | - |
+| --rv-toast-position-bottom-distance | _20%_ | - |
