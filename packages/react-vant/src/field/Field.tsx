@@ -370,7 +370,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
             props.clearIcon
           ))}
         {renderRightIcon()}
-        {button && button}
+        {button && <div className={classnames(bem('button'))}>{button}</div>}
       </div>
       {renderWordLimit()}
       {renderMessage()}
