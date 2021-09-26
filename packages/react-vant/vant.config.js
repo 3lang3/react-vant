@@ -84,6 +84,10 @@ module.exports = {
                 title: 'Cell 单元格',
               },
               {
+                path: 'config-provider',
+                title: 'ConfigProvider 全局配置',
+              },
+              {
                 path: 'typography',
                 title: 'Typography 文本',
               },

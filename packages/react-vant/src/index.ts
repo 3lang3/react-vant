@@ -54,4 +54,5 @@ export { default as Circle } from './circle';
 export { default as Pagination } from './pagination';
 export { default as ActionBar } from './action-bar';
 export { default as Tabbar } from './tabbar';
+export { default as ConfigProvider } from './config-provider';
 export * from './hooks';
