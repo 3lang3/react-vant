@@ -178,6 +178,30 @@ const actions = [
 | show   | 显示 popover | -    | -      |
 | hide   | 关闭 popover | -    | -      |
 
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-popover-arrow-size | _6px_ | - |
+| --rv-popover-border-radius | _var(--rv-border-radius-lg)_ | - |
+| --rv-popover-action-width | _128px_ | - |
+| --rv-popover-action-height | _44px_ | - |
+| --rv-popover-action-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-popover-action-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-popover-action-icon-size | _20px_ | - |
+| --rv-popover-light-text-color | _var(--rv-text-color)_ | - |
+| --rv-popover-light-background-color | _var(--rv-white)_ | - |
+| --rv-popover-light-action-disabled-text-color | _var(--rv-gray-5)_ | - |
+| --rv-popover-dark-text-color | _var(--rv-white)_ | - |
+| --rv-popover-dark-background-color | _#4a4a4a_ | - |
+| --rv-popover-dark-action-disabled-text-color | _var(--rv-gray-6)_ | - |
+
+
 ## 常见问题
 
 ### Popover 的点击事件无法正确触发？
