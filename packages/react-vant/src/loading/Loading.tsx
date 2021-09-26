@@ -5,10 +5,10 @@ import { LoadingProps } from './PropsType';
 
 const [bem] = createNamespace('loading');
 
-const SpinIcon: JSX.Element[] = [];
-for (let i = 0; i < 12; i += 1) {
-  SpinIcon.push(<i key={i} />);
-}
+const SpinIcon: JSX.Element[] = Array(12)
+  .fill(null)
+  // eslint-disable-next-line react/no-array-index-key
+  .map((_, index) => <i key={index} className={classnames(bem('line', String(index + 1)))} />);
 
 const CircularIcon = (
   <svg className={classnames(bem('circular'))} viewBox="25 25 50 50">

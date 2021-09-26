@@ -75,14 +75,24 @@ import { Loading } from 'react-vant';
 | textColor | 文字颜色                     | _string_           | `#c9c9c9`  |
 | vertical  | 是否垂直排列图标和文字内容   | _boolean_          | `false`    |
 
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { LoadingType } from 'react-vant';
+```
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                | 默认值          | 描述 |
-| ----------------------------------- | --------------- | ---- |
-| @loading-text-color                 | `@gray-6`       | -    |
-| @loading-text-font-size             | `@font-size-md` | -    |
-| @loading-spinner-color              | `@gray-5`       | -    |
-| @loading-spinner-size               | `30px`          | -    |
-| @loading-spinner-animation-duration | `0.8s`          | -    |
+| 名称                                     | 默认值                    | 描述 |
+| ---------------------------------------- | ------------------------- | ---- |
+| --rv-loading-text-color                 | _var(--rv-gray-6)_       | -    |
+| --rv-loading-text-font-size             | _var(--rv-font-size-md)_ | -    |
+| --rv-loading-spinner-color              | _var(--rv-gray-5)_       | -    |
+| --rv-loading-spinner-size               | _30px_                    | -    |
+| --rv-loading-spinner-animation-duration | _0.8s_                    | -    |
