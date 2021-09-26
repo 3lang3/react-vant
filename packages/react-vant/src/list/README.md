@@ -154,16 +154,22 @@ const onRefresh = async () => {
 | ------ | ------------------------------------------------------ | ---- | ------ |
 | check  | 检查当前的滚动位置，若已滚动至底部，则会触发 onLoad 事件 | -    | -      |
 
+
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                    | 默认值          | 描述 |
-| ----------------------- | --------------- | ---- |
-| @list-icon-margin-right | `5px`           | -    |
-| @list-text-color        | `@gray-6`       | -    |
-| @list-text-font-size    | `@font-size-md` | -    |
-| @list-text-line-height  | `50px`          | -    |
+| 名称                         | 默认值                    | 描述 |
+| ---------------------------- | ------------------------- | ---- |
+| --rv-list-text-color        | _var(--rv-gray-6)_       | -    |
+| --rv-list-text-font-size    | _var(--rv-font-size-md)_ | -    |
+| --rv-list-text-line-height  | _50px_                    | -    |
+| --rv-list-loading-icon-size | _16px_                    | -    |
+
+
 
 ## 常见问题
 
