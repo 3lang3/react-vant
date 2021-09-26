@@ -103,26 +103,28 @@ import { Tag } from 'react-vant';
 | onClick  | 点击时触发     | _event: MouseEvent_      |
 | onClose  | 关闭标签时触发 | _event: MouseEvent_                   |
 
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                        | 默认值                      | 描述 |
-| --------------------------- | --------------------------- | ---- |
-| @tag-padding                | `0 @padding-base`           | -    |
-| @tag-textColor             | `@white`                    | -    |
-| @tag-font-size              | `@font-size-sm`             | -    |
-| @tag-border-radius          | `2px`                       | -    |
-| @tag-line-height            | `16px`                      | -    |
-| @tag-medium-padding         | `2px 6px`                   | -    |
-| @tag-mini-font-size         | `@font-size-xs`             | -    |
-| @tag-large-padding          | `@padding-base @padding-xs` | -    |
-| @tag-large-border-radius    | `@border-radius-md`         | -    |
-| @tag-large-font-size        | `@font-size-md`             | -    |
-| @tag-round-border-radius    | `@border-radius-max`        | -    |
-| @tag-danger-color           | `@red`                      | -    |
-| @tag-primary-color          | `@blue`                     | -    |
-| @tag-success-color          | `@green`                    | -    |
-| @tag-warning-color          | `@orange`                   | -    |
-| @tag-default-color          | `@gray-6`                   | -    |
-| @tag-plain-background-color | `@white`                    | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-tag-padding | _0 var(--rv-padding-base)_ | - |
+| --rv-tag-text-color | _var(--rv-white)_ | - |
+| --rv-tag-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-tag-border-radius | _2px_ | - |
+| --rv-tag-line-height | _16px_ | - |
+| --rv-tag-medium-padding | _2px 6px_ | - |
+| --rv-tag-large-padding | _var(--rv-padding-base) var(--rv-padding-xs)_ | - |
+| --rv-tag-large-border-radius | _var(--rv-border-radius-md)_ | - |
+| --rv-tag-large-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-tag-round-border-radius | _var(--rv-border-radius-max)_ | - |
+| --rv-tag-danger-color | _var(--rv-danger-color)_ | - |
+| --rv-tag-primary-color | _var(--rv-primary-color)_ | - |
+| --rv-tag-success-color | _var(--rv-success-color)_ | - |
+| --rv-tag-warning-color | _var(--rv-warning-color)_ | - |
+| --rv-tag-default-color | _var(--rv-gray-6)_ | - |
+| --rv-tag-plain-background-color | _var(--rv-white)_ | - |
