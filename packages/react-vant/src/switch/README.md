@@ -105,20 +105,23 @@ import { Switch } from 'react-vant';
 | onChange | 开关状态切换时触发 | _value: any_   |
 | onClick  | 点击时触发         | _event: Event_ |
 
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                          | 默认值                                        | 描述 |
-| ----------------------------- | --------------------------------------------- | ---- |
-| @switch-size                  | `30px`                                        | -    |
-| @switch-width                 | `51px`                                        | -    |
-| @switch-height                | `1em`                                         | -    |
-| @switch-node-size             | `1em`                                         | -    |
-| @switch-node-background-color | `@white`                                      | -    |
-| @switch-node-box-shadow       | `0 3px 1px 0 rgba(0, 0, 0, 0.05)`             | -    |
-| @switch-background-color      | `@white`                                      | -    |
-| @switch-on-background-color   | `@blue`                                       | -    |
-| @switch-transition-duration   | `@animation-duration-base`                    | -    |
-| @switch-disabled-opacity      | `@disabled-opacity`                           | -    |
-| @switch-border                | `@border-width-base solid rgba(0, 0, 0, 0.1)` | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-switch-size | _30px_ | - |
+| --rv-switch-width | _2em_ | - |
+| --rv-switch-height | _1em_ | - |
+| --rv-switch-node-size | _1em_ | - |
+| --rv-switch-node-background-color | _var(--rv-white)_ | - |
+| --rv-switch-node-box-shadow | _0 3px 1px 0 rgba(0, 0, 0, 0.05)_ | - |
+| --rv-switch-background-color | _var(--rv-white)_ | - |
+| --rv-switch-on-background-color | _var(--rv-primary-color)_ | - |
+| --rv-switch-transition-duration | _var(--rv-animation-duration-base)_ | - |
+| --rv-switch-disabled-opacity | _var(--rv-disabled-opacity)_ | - |
+| --rv-switch-border | _var(--rv-border-width-base) solid rgba(0, 0, 0, 0.1)_ | - |
