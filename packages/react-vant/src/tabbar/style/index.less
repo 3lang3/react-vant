@@ -1,12 +1,25 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-tabbar {
-  z-index: @tabbar-z-index;
+:root {
+  --rv-tabbar-height: @tabbar-height;
+  --rv-tabbar-z-index: @tabbar-z-index;
+  --rv-tabbar-background-color: @tabbar-background-color;
+  --rv-tabbar-item-font-size: @tabbar-item-font-size;
+  --rv-tabbar-item-text-color: @tabbar-item-text-color;
+  --rv-tabbar-item-active-color: @tabbar-item-active-color;
+  --rv-tabbar-item-active-background-color: @tabbar-item-active-background-color;
+  --rv-tabbar-item-line-height: @tabbar-item-line-height;
+  --rv-tabbar-item-icon-size: @tabbar-item-icon-size;
+  --rv-tabbar-item-icon-margin-bottom: @tabbar-item-icon-margin-bottom;
+}
+
+.@{rv-prefix}-tabbar {
+  z-index: var(--rv-tabbar-z-index);
   display: flex;
   box-sizing: content-box;
   width: 100%;
-  height: @tabbar-height;
-  background-color: @tabbar-background-color;
+  height: var(--rv-tabbar-height);
+  background-color: var(--rv-tabbar-background-color);
 
   &--fixed {
     position: fixed;
@@ -15,37 +28,37 @@
   }
 }
 
-.rv-tabbar-item {
+.@{rv-prefix}-tabbar-item {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: @tabbar-item-text-color;
-  font-size: @tabbar-item-font-size;
-  line-height: @tabbar-item-line-height;
+  color: var(--rv-tabbar-item-text-color);
+  font-size: var(--rv-tabbar-item-font-size);
+  line-height: var(--rv-tabbar-item-line-height);
   cursor: pointer;
 
   &__icon {
-    margin-bottom: @tabbar-item-icon-margin-bottom;
-    font-size: @tabbar-item-icon-size;
+    margin-bottom: var(--rv-tabbar-item-icon-margin-bottom);
+    font-size: var(--rv-tabbar-item-icon-size);
 
     .van-icon {
       display: block;
     }
 
-    .rv-badge {
-      margin-top: @padding-base;
+    .@{rv-prefix}-badge {
+      margin-top: var(--rv-padding-base);
     }
 
     img {
       display: block;
-      height: 20px;
+      height: 20 * @hd;
     }
   }
 
   &--active {
-    color: @tabbar-item-active-color;
-    background-color: @tabbar-item-active-background-color;
+    color: var(--rv-tabbar-item-active-color);
+    background-color: var(--rv-tabbar-item-active-background-color);
   }
 }
