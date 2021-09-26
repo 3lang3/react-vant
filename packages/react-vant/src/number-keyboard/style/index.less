@@ -1,17 +1,35 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-number-keyboard {
+:root {
+  --rv-number-keyboard-background-color: @number-keyboard-background-color;
+  --rv-number-keyboard-key-height: @number-keyboard-key-height;
+  --rv-number-keyboard-key-font-size: @number-keyboard-key-font-size;
+  --rv-number-keyboard-key-active-color: @number-keyboard-key-active-color;
+  --rv-number-keyboard-key-background-color: @number-keyboard-key-background-color;
+  --rv-number-keyboard-delete-font-size: @number-keyboard-delete-font-size;
+  --rv-number-keyboard-title-color: @number-keyboard-title-color;
+  --rv-number-keyboard-title-height: @number-keyboard-title-height;
+  --rv-number-keyboard-title-font-size: @number-keyboard-title-font-size;
+  --rv-number-keyboard-close-padding: @number-keyboard-close-padding;
+  --rv-number-keyboard-close-color: @number-keyboard-close-color;
+  --rv-number-keyboard-close-font-size: @number-keyboard-close-font-size;
+  --rv-number-keyboard-button-text-color: @number-keyboard-button-text-color;
+  --rv-number-keyboard-button-background-color: @number-keyboard-button-background-color;
+  --rv-number-keyboard-z-index: @number-keyboard-z-index;
+}
+
+.@{rv-prefix}-number-keyboard {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: @number-keyboard-z-index;
+  z-index: var(--rv-number-keyboard-z-index);
   width: 100%;
-  padding-bottom: 22px;
-  background-color: @number-keyboard-background-color;
+  padding-bottom: 22*@hd;
+  background-color: var(--rv-number-keyboard-background-color);
   user-select: none;
 
   &--with-title {
-    border-radius: 20px 20px 0 0;
+    border-radius: 20*@hd 20*@hd 0 0;
   }
 
   &__header {
@@ -20,10 +38,10 @@
     align-items: center;
     justify-content: center;
     box-sizing: content-box;
-    height: @number-keyboard-title-height;
-    padding-top: 6px;
-    color: @number-keyboard-title-color;
-    font-size: @number-keyboard-title-font-size;
+    height: var(--rv-number-keyboard-title-height);
+    padding-top: 6*@hd;
+    color: var(--rv-number-keyboard-title-color);
+    font-size: var(--rv-number-keyboard-title-font-size);
   }
 
   &__title {
@@ -38,7 +56,7 @@
 
   &__body {
     display: flex;
-    padding: 6px 0 0 6px;
+    padding: 6*@hd 0 0 6*@hd;
   }
 
   &__keys {
@@ -51,15 +69,15 @@
     position: absolute;
     right: 0;
     height: 100%;
-    padding: @number-keyboard-close-padding;
-    color: @number-keyboard-close-color;
-    font-size: @number-keyboard-close-font-size;
+    padding: var(--rv-number-keyboard-close-padding);
+    color: var(--rv-number-keyboard-close-color);
+    font-size: var(--rv-number-keyboard-close-font-size);
     background-color: transparent;
     border: none;
     cursor: pointer;
 
     &:active {
-      opacity: @active-opacity;
+      opacity: var(--rv-active-opacity);
     }
   }
 
@@ -74,15 +92,15 @@
   }
 }
 
-.rv-key {
+.@{rv-prefix}-key {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: @number-keyboard-key-height;
-  font-size: @number-keyboard-key-font-size;
+  height: var(--rv-number-keyboard-key-height);
+  font-size: var(--rv-number-keyboard-key-font-size);
   line-height: 1.5;
-  background-color: @white;
-  border-radius: @border-radius-lg;
+  background-color: var(--rv-number-keyboard-key-background-color);
+  border-radius: var(--rv-border-radius-lg);
   cursor: pointer;
 
   &--large {
@@ -90,27 +108,27 @@
     // see: https://stackoverflow.com/questions/33636796
     position: absolute;
     top: 0;
-    right: 6px;
-    bottom: 6px;
+    right: 6*@hd;
+    bottom: 6*@hd;
     left: 0;
     height: auto;
   }
 
   &--blue,
   &--delete {
-    font-size: @number-keyboard-delete-font-size;
+    font-size: var(--rv-number-keyboard-delete-font-size);
   }
 
   &--active {
-    background-color: @number-keyboard-key-active-color;
+    background-color: var(--rv-number-keyboard-key-active-color);
   }
 
   &--blue {
-    color: @number-keyboard-button-text-color;
-    background-color: @number-keyboard-button-background-color;
+    color: var(--rv-number-keyboard-button-text-color);
+    background-color: var(--rv-number-keyboard-button-background-color);
 
-    &.rv-key--active {
-      opacity: @active-opacity;
+    &.@{rv-prefix}-key--active {
+      opacity: var(--rv-active-opacity);
     }
   }
 
@@ -119,7 +137,7 @@
     flex: 1;
     flex-basis: 33%;
     box-sizing: border-box;
-    padding: 0 6px 6px 0;
+    padding: 0 6*@hd 6*@hd 0;
 
     &--wider {
       flex-basis: 66%;
@@ -127,16 +145,16 @@
   }
 
   &__delete-icon {
-    width: 32px;
-    height: 22px;
+    width: 32*@hd;
+    height: 22*@hd;
   }
 
   &__collapse-icon {
-    width: 30px;
-    height: 24px;
+    width: 30*@hd;
+    height: 24*@hd;
   }
 
   &__loading-icon {
-    color: @number-keyboard-button-text-color;
+    color: var(--rv-number-keyboard-button-text-color);
   }
 }

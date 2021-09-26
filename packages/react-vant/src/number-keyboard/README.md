@@ -150,6 +150,40 @@ export default () => {
 | onShow   | 键盘完全弹出时触发             | -             |
 | onHide   | 键盘完全收起时触发             | -             |
 
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { NumberKeyboardTheme } from 'react-vant';
+```
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-number-keyboard-background-color | _var(--rv-gray-2)_ | - |
+| --rv-number-keyboard-key-height | _48px_ | - |
+| --rv-number-keyboard-key-font-size | _28px_ | - |
+| --rv-number-keyboard-key-active-color | _var(--rv-gray-3)_ | - |
+| --rv-number-keyboard-key-background-color | _van(--rv-white)_ | - |
+| --rv-number-keyboard-delete-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-number-keyboard-title-color | _var(--rv-gray-7)_ | - |
+| --rv-number-keyboard-title-height | _34px_ | - |
+| --rv-number-keyboard-title-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-number-keyboard-close-padding | _0 var(--rv-padding-md)_ | - |
+| --rv-number-keyboard-close-color | _var(--rv-text-link-color)_ | - |
+| --rv-number-keyboard-close-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-number-keyboard-button-text-color | _var(--rv-white)_ | - |
+| --rv-number-keyboard-button-background-color | _var(--rv-primary-color)_ | - |
+| --rv-number-keyboard-z-index | _100_ | - |
+
+
 ## 常见问题
 
 ### 在桌面端无法操作组件？
