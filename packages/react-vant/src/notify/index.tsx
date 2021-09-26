@@ -134,4 +134,4 @@ const exportNotifyNamespace = Object.assign(Notify, {
 
 export default exportNotifyNamespace;
 export { exportNotifyNamespace as Notify };
-export type { NotifyProps, NotifyStatic } from './PropsType';
+export type { NotifyProps, NotifyType, NotifyStatic } from './PropsType';
