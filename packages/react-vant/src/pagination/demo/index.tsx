@@ -35,7 +35,7 @@ export default (): React.ReactNode => {
           showPageSize={5}
           prevText={<Icon name="arrow-left" />}
           nextText={<Icon name="arrow" />}
-          pageRender={({ text }) => `😀${text}`}
+          pageRender={({ text }) => `${text} 😀`}
         />
       </DemoBlock>
     </DemoSection>

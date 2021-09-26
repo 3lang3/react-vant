@@ -97,12 +97,12 @@ import type { PaginationMode } from 'react-vant';
 
 | 名称                                            | 默认值                        | 描述 |
 | ----------------------------------------------- | ----------------------------- | ---- |
-| --van-pagination-height                         | _40px_                        | -    |
-| --van-pagination-font-size                      | _var(--van-font-size-md)_     | -    |
-| --van-pagination-item-width                     | _36px_                        | -    |
-| --van-pagination-item-default-color             | _var(--van-primary-color)_    | -    |
-| --van-pagination-item-disabled-color            | _var(--van-gray-7)_           | -    |
-| --van-pagination-item-disabled-background-color | _var(--van-background-color)_ | -    |
-| --van-pagination-background-color               | _var(--van-white)_            | -    |
-| --van-pagination-desc-color                     | _var(--van-gray-7)_           | -    |
-| --van-pagination-disabled-opacity               | _var(--van-disabled-opacity)_ | -    |
+| --rv-pagination-height                         | _40px_                        | -    |
+| --rv-pagination-font-size                      | _var(--rv-font-size-md)_     | -    |
+| --rv-pagination-item-width                     | _36px_                        | -    |
+| --rv-pagination-item-default-color             | _var(--rv-primary-color)_    | -    |
+| --rv-pagination-item-disabled-color            | _var(--rv-gray-7)_           | -    |
+| --rv-pagination-item-disabled-background-color | _var(--rv-background-color)_ | -    |
+| --rv-pagination-background-color               | _var(--rv-white)_            | -    |
+| --rv-pagination-desc-color                     | _var(--rv-gray-7)_           | -    |
+| --rv-pagination-disabled-opacity               | _var(--rv-disabled-opacity)_ | -    |
