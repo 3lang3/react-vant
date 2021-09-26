@@ -73,11 +73,11 @@ import { NavBar } from 'react-vant';
 
 | 名称                           | 默认值                     | 描述 |
 | ------------------------------ | -------------------------- | ---- |
-| --van-nav-bar-height           | _46px_                     | -    |
-| --van-nav-bar-background-color | _var(--van-white)_         | -    |
-| --van-nav-bar-arrow-size       | _16px_                     | -    |
-| --van-nav-bar-icon-color       | _var(--van-primary-color)_ | -    |
-| --van-nav-bar-text-color       | _var(--van-primary-color)_ | -    |
-| --van-nav-bar-title-font-size  | _var(--van-font-size-lg)_  | -    |
-| --van-nav-bar-title-text-color | _var(--van-text-color)_    | -    |
-| --van-nav-bar-z-index          | _1_                        | -    |
+| --rv-nav-bar-height           | _46px_                     | -    |
+| --rv-nav-bar-background-color | _var(--rv-white)_         | -    |
+| --rv-nav-bar-arrow-size       | _16px_                     | -    |
+| --rv-nav-bar-icon-color       | _var(--rv-primary-color)_ | -    |
+| --rv-nav-bar-text-color       | _var(--rv-primary-color)_ | -    |
+| --rv-nav-bar-title-font-size  | _var(--rv-font-size-lg)_  | -    |
+| --rv-nav-bar-title-text-color | _var(--rv-text-color)_    | -    |
+| --rv-nav-bar-z-index          | _1_                        | -    |
