@@ -142,22 +142,34 @@ import { Stepper } from 'react-vant';
 | onFocus     | 输入框聚焦时触发         | _event: Event_                            |
 | onBlur      | 输入框失焦时触发         | _event: Event_                            |
 
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { StepperTheme } from 'react-vant';
+```
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                     | 默认值              | 描述 |
-| ---------------------------------------- | ------------------- | ---- |
-| @stepper-active-color                    | `#e8e8e8`           | -    |
-| @stepper-border-color                    | `@blue`             | -    |
-| @stepper-button-icon-color               | `#cccccc`           | -    |
-| @stepper-button-disabled-color           | `#cccccc`           | -    |
-| @stepper-button-disabled-icon-color      | `@gray-5`           | -    |
-| @stepper-button-round-theme-color        | `@blue`             | -    |
-| @stepper-input-width                     | `38px`              | -    |
-| @stepper-input-height                    | `22px`              | -    |
-| @stepper-input-font-size                 | `@font-size-xl`     | -    |
-| @stepper-input-text-color                | `@text-color`       | -    |
-| @stepper-input-disabled-text-color       | `@gray-5`           | -    |
-| @stepper-input-disabled-background-color | `@active-color`     | -    |
-| @stepper-border-radius                   | `@border-radius-md` | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-stepper-active-color | _#e8e8e8_ | - |
+| --rv-stepper-background-color | _var(--rv-active-color)_ | - |
+| --rv-stepper-button-icon-color | _var(--rv-text-color)_ | - |
+| --rv-stepper-button-disabled-color | _var(--rv-background-color)_ | - |
+| --rv-stepper-button-disabled-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-stepper-button-round-theme-color | _var(--rv-danger-color)_ | - |
+| --rv-stepper-input-width | _32px_ | - |
+| --rv-stepper-input-height | _28px_ | - |
+| --rv-stepper-input-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-stepper-input-line-height | _normal_ | - |
+| --rv-stepper-input-text-color | _var(--rv-text-color)_ | - |
+| --rv-stepper-input-disabled-text-color | _var(--rv-gray-5)_ | - |
+| --rv-stepper-input-disabled-background-color | _var(--rv-active-color)_ | - |
+| --rv-stepper-border-radius | _var(--rv-border-radius-md)_ | - |
