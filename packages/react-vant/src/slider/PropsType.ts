@@ -39,7 +39,7 @@ export interface SliderBaseProps<T> extends BaseTypeProps {
    */
   step?: number;
   /** 自定义滑块按钮	 */
-  button?: React.ReactNode;
+  button?: React.ReactNode | (({ value }: { value: SliderValue }) =>  React.ReactNode);
   /** 自定义左侧滑块按钮（双滑块模式下） */
   leftButton?: React.ReactNode;
   /** 自定义右侧滑块按钮 （双滑块模式下）	*/

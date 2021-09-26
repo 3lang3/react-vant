@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { useCallback, useRef } from 'react';
+import useSetState from './use-set-state';
 
 const MIN_DISTANCE = 10;
 
@@ -17,62 +16,82 @@ function getDirection(x: number, y: number) {
   return '';
 }
 
-const useTouch = () => {
-  const state = useRef({
-    startX: 0,
-    startY: 0,
-    deltaX: 0,
-    deltaY: 0,
-    offsetX: 0,
-    offsetY: 0,
-    direction: '' as Direction,
-  });
+const INITIAL_STATE = {
+  startX: 0,
+  startY: 0,
+  deltaX: 0,
+  deltaY: 0,
+  offsetX: 0,
+  offsetY: 0,
+  direction: '' as Direction,
+};
+
+const useTouch = (stateable?: boolean) => {
+  const refState = useRef(INITIAL_STATE);
+  const state = useSetState(INITIAL_STATE);
+
+  const update = (value) => {
+    if (stateable) {
+      state[1](value);
+    } else {
+      refState.current = {
+        ...refState.current,
+        ...value,
+      };
+    }
+  };
+
+  const innerState = stateable ? state[0] : refState.current;
 
   const deltaYRef = useRef<number>(0);
 
-  const isVertical = useCallback(
-    () => state.current.direction === 'vertical',
-    [state.current.direction],
-  );
+  const isVertical = useCallback(() => innerState.direction === 'vertical', [innerState.direction]);
   const isHorizontal = useCallback(
-    () => state.current.direction === 'horizontal',
-    [state.current.direction],
+    () => innerState.direction === 'horizontal',
+    [innerState.direction],
   );
 
   const reset = () => {
-    state.current.deltaX = 0;
-    state.current.deltaY = 0;
-    state.current.offsetX = 0;
-    state.current.offsetY = 0;
-    state.current.direction = '';
-
+    update({
+      deltaX: 0,
+      deltaY: 0,
+      offsetX: 0,
+      offsetY: 0,
+      direction: '',
+    });
     deltaYRef.current = 0;
   };
 
   const start = ((event: TouchEvent) => {
     reset();
-    state.current.startX = event.touches[0].clientX;
-    state.current.startY = event.touches[0].clientY;
+    update({
+      startX: event.touches[0].clientX,
+      startY: event.touches[0].clientY,
+    });
   }) as EventListener;
 
   const move = ((event: TouchEvent) => {
     const touch = event.touches[0];
 
     // Fix: Safari back will set clientX to negative number
-    state.current.deltaX = touch.clientX < 0 ? 0 : touch.clientX - state.current.startX;
-    state.current.deltaY = touch.clientY - state.current.startY;
-    state.current.offsetX = Math.abs(state.current.deltaX);
-    state.current.offsetY = Math.abs(state.current.deltaY);
+    const newState = {} as typeof innerState;
 
-    deltaYRef.current = state.current.deltaY;
+    newState.deltaX = touch.clientX < 0 ? 0 : touch.clientX - innerState.startX;
+    newState.deltaY = touch.clientY - innerState.startY;
+    newState.offsetX = Math.abs(innerState.deltaX);
+    newState.offsetY = Math.abs(innerState.deltaY);
 
-    if (!state.current.direction) {
-      state.current.direction = getDirection(Math.abs(state.current.offsetX), Math.abs(state.current.offsetY));
+    deltaYRef.current = newState.deltaY;
+
+    if (!innerState.direction) {
+      newState.direction = getDirection(Math.abs(newState.offsetX), Math.abs(newState.offsetY));
     }
+
+    update(newState);
   }) as EventListener;
 
   return {
-    ...state.current,
+    ...innerState,
     move,
     start,
     reset,

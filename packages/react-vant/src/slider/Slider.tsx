@@ -1,4 +1,4 @@
-import React, { CSSProperties, useMemo, useRef } from 'react';
+import React, { CSSProperties, useMemo, useRef, useState } from 'react';
 import cls from 'classnames';
 import { SliderProps, SliderValue } from './PropsType';
 import {
@@ -16,16 +16,18 @@ import useEventListener from '../hooks/use-event-listener';
 
 const [bem] = createNamespace('slider');
 
+type NumberRange = [number, number];
+
 const Slider: React.FC<SliderProps> = (props) => {
-  const buttonRef1 = useRef(null);
-  const buttonRef2 = useRef(null);
+  const [buttonRef1, setButtonRef1] = useState<HTMLDivElement>(null)
+  const [buttonRef2, setButtonRef2] = useState<HTMLDivElement>(null)
   const buttonIndex = useRef<0 | 1>();
   const startValue = useRef<SliderValue>();
   const currentValue = useRef<SliderValue>(props.value);
 
   const root = useRef<HTMLDivElement>();
   const dragStatus = useRef<'start' | 'dragging' | ''>();
-  const touch = useTouch();
+  const touch = useTouch(true);
 
   const scope = useMemo(() => Number(props.max) - Number(props.min), [props.max, props.min]);
 
@@ -94,17 +96,17 @@ const Slider: React.FC<SliderProps> = (props) => {
   const isSameValue = (newValue: SliderValue, oldValue: SliderValue) =>
     JSON.stringify(newValue) === JSON.stringify(oldValue);
 
-  // 处理两个滑块重叠之后的情况
-  const handleOverlap = (value: [number, number]) => {
-    if (value[0] > value[1]) {
-      return value.slice(0).reverse();
-    }
-    return value;
+  const handleRangeValue = (value: NumberRange) => {
+    // 设置默认值
+    const left = value[0] ?? Number(props.min);
+    const right = value[1] ?? Number(props.max);
+    // 处理两个滑块重叠之后的情况
+    return left > right ? [right, left] : [left, right];
   };
 
   const updateValue = (value: SliderValue, end?: boolean) => {
     if (isRange(value)) {
-      value = handleOverlap(value).map(format) as [number, number];
+      value = handleRangeValue(value).map(format) as [number, number];
     } else {
       value = format(value) as number;
     }
@@ -178,11 +180,11 @@ const Slider: React.FC<SliderProps> = (props) => {
       return;
     }
 
-    preventDefault(event, true);
     if (dragStatus.current === 'start') {
       props.onDragStart?.(event, startValue.current as number & [number, number]);
     }
 
+    preventDefault(event, true);
     touch.move(event);
     dragStatus.current = 'dragging';
 
@@ -232,6 +234,10 @@ const Slider: React.FC<SliderProps> = (props) => {
       }
     }
 
+    if (typeof props.button === 'function') {
+      return props.button({ value })
+    }
+
     if (props.button) {
       return props.button;
     }
@@ -239,15 +245,15 @@ const Slider: React.FC<SliderProps> = (props) => {
     return <div className={cls(bem('button'))} style={getSizeStyle(props.buttonSize)} />;
   };
 
-  const renderButton = (index?: 0 | 1) => {
+  const renderButton = (setButtounRef, index?: 0 | 1) => {
     const value =
       typeof index === 'number'
         ? (props.value as [number, number])[index]
         : (props.value as number);
-    const ref = index === 0 ? buttonRef1 : buttonRef2;
+
     return (
       <div
-        ref={ref}
+        ref={setButtounRef}
         key={index}
         role="slider"
         className={cls(getButtonClassName(index))}
@@ -273,11 +279,11 @@ const Slider: React.FC<SliderProps> = (props) => {
   };
 
   useEventListener('touchmove', onTouchMove as EventListener, {
-    target: buttonRef1.current,
+    target: buttonRef1,
     depends: [touch.deltaX, touch.deltaY, props.disabled, props.readonly],
   });
   useEventListener('touchmove', onTouchMove as EventListener, {
-    target: buttonRef2.current,
+    target: buttonRef2,
     depends: [touch.deltaX, touch.deltaY, props.disabled, props.readonly],
   });
 
@@ -295,7 +301,7 @@ const Slider: React.FC<SliderProps> = (props) => {
       onClick={onClick}
     >
       <div className={cls(bem('bar'))} style={barStyle}>
-        {props.range ? [renderButton(0), renderButton(1)] : renderButton()}
+        {props.range ? [renderButton(setButtonRef1,  0), renderButton(setButtonRef2, 1)] : renderButton(setButtonRef1)}
       </div>
     </div>
   );
