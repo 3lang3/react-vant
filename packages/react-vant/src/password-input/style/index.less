@@ -1,8 +1,26 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-password-input {
+:root {
+  --rv-password-input-height: @password-input-height;
+  --rv-password-input-margin: @password-input-margin;
+  --rv-password-input-font-size: @password-input-font-size;
+  --rv-password-input-border-radius: @password-input-border-radius;
+  --rv-password-input-background-color: @password-input-background-color;
+  --rv-password-input-info-color: @password-input-info-color;
+  --rv-password-input-info-font-size: @password-input-info-font-size;
+  --rv-password-input-error-info-color: @password-input-error-info-color;
+  --rv-password-input-dot-size: @password-input-dot-size;
+  --rv-password-input-dot-color: @password-input-dot-color;
+  --rv-password-input-text-color: @password-input-text-color;
+  --rv-password-input-cursor-color: @password-input-cursor-color;
+  --rv-password-input-cursor-width: @password-input-cursor-width;
+  --rv-password-input-cursor-height: @password-input-cursor-height;
+  --rv-password-input-cursor-animation-duration: @password-input-cursor-animation-duration;
+}
+
+.@{rv-prefix}-password-input {
   position: relative;
-  margin: @password-input-margin;
+  margin: var(--rv-password-input-margin);
   user-select: none;
 
   input {
@@ -30,27 +48,27 @@
 
   &__info,
   &__error-info {
-    margin-top: @padding-md;
-    font-size: @password-input-info-font-size;
+    margin-top: var(--rv-padding-md);
+    font-size: var(--rv-password-input-info-font-size);
     text-align: center;
   }
 
   &__info {
-    color: @password-input-info-color;
+    color: var(--rv-password-input-info-color);
   }
 
   &__error-info {
-    color: @password-input-error-info-color;
+    color: var(--rv-password-input-error-info-color);
   }
 
   &__security {
     display: flex;
     width: 100%;
-    height: @password-input-height;
+    height: var(--rv-password-input-height);
     cursor: pointer;
 
     &::after {
-      border-radius: @password-input-border-radius;
+      border-radius: var(--rv-password-input-border-radius);
     }
 
     li {
@@ -60,19 +78,19 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      color: @password-input-text-color;
-      font-size: @password-input-font-size;
+      color: var(--rv-password-input-text-color);
+      font-size: var(--rv-password-input-font-size);
       line-height: 1.2;
-      background-color: @password-input-background-color;
+      background-color: var(--rv-password-input-background-color);
     }
 
     i {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: @password-input-dot-size;
-      height: @password-input-dot-size;
-      background-color: @password-input-dot-color;
+      width: var(--rv-password-input-dot-size);
+      height: var(--rv-password-input-dot-size);
+      background-color: var(--rv-password-input-dot-color);
       border-radius: 100%;
       transform: translate(-50%, -50%);
       visibility: hidden;
@@ -83,15 +101,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: @password-input-cursor-width;
-    height: @password-input-cursor-height;
-    background-color: @password-input-cursor-color;
+    width: var(--rv-password-input-cursor-width);
+    height: var(--rv-password-input-cursor-height);
+    background-color: var(--rv-password-input-cursor-color);
     transform: translate(-50%, -50%);
-    animation: @password-input-cursor-animation-duration van-cursor-flicker infinite;
+    animation: var(--rv-password-input-cursor-animation-duration)
+      rv-cursor-flicker infinite;
   }
 }
 
-@keyframes van-cursor-flicker {
+@keyframes rv-cursor-flicker {
   from {
     opacity: 0;
   }
