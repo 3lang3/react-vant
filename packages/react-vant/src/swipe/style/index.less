@@ -1,7 +1,15 @@
-@import '../../styles/themes/default.less';
-
 @import '~swiper/swiper.less';
 @import '~swiper/components/pagination/pagination.less';
+@import './var.less';
+
+:root {
+  --rv-swipe-indicator-size: @swipe-indicator-size;
+  --rv-swipe-indicator-margin: @swipe-indicator-margin;
+  --rv-swipe-indicator-active-opacity: @swipe-indicator-active-opacity;
+  --rv-swipe-indicator-inactive-opacity: @swipe-indicator-inactive-opacity;
+  --rv-swipe-indicator-active-background-color: @swipe-indicator-active-background-color;
+  --rv-swipe-indicator-inactive-background-color: @swipe-indicator-inactive-background-color;
+}
 
 .@{rv-prefix}-swipe {
   position: relative;
@@ -10,16 +18,16 @@
   user-select: none;
 
   .swiper-pagination-bullet {
-    width: @swipe-indicator-size;
-    height: @swipe-indicator-size;
-    background-color: @swipe-indicator-inactive-background-color;
+    width: var(--rv-swipe-indicator-size);
+    height: var(--rv-swipe-indicator-size);
+    background-color: var(--rv-swipe-indicator-inactive-background-color);
     border-radius: 100%;
-    opacity: @swipe-indicator-inactive-opacity;
-    transition: opacity @animation-duration-fast, background-color @animation-duration-fast;
+    opacity: var(--rv-swipe-indicator-inactive-opacity);
+    transition: opacity var(--van-animation-duration-fast), background-color var(--van-animation-duration-fast);
 
     &-active {
-      background-color: @swipe-indicator-active-background-color;
-      opacity: @swipe-indicator-active-opacity;
+      background-color: var(--rv-swipe-indicator-active-background-color);
+      opacity: var(--rv-swipe-indicator-active-opacity);
     }
   }
 }
