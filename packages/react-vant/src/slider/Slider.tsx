@@ -221,7 +221,7 @@ const Slider: React.FC<SliderProps> = (props) => {
   const getButtonClassName = (index?: 0 | 1) => {
     if (typeof index === 'number') {
       const position = ['left', 'right'];
-      return bem(`button-wrapper-${position[index]}`);
+      return bem('button-wrapper', position[index]);
     }
     return bem('button-wrapper', props.reverse ? 'left' : 'right');
   };
