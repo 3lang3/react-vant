@@ -85,3 +85,20 @@ export default () => {
 | avatarShape | 头像占位图形状，可选值为 `square` | _string_ | `round` |
 | className | 类名 | _string_ | - |
 | style | style | _React.CSSProperties_ | - |
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称                                   | 默认值                    | 描述 |
+| -------------------------------------- | ------------------------- | ---- |
+| --rv-skeleton-row-height              | _16px_                    | -    |
+| --rv-skeleton-row-background-color    | _var(--rv-active-color)_ | -    |
+| --rv-skeleton-row-margin-top          | _var(--rv-padding-sm)_   | -    |
+| --rv-skeleton-title-width             | _40%_                     | -    |
+| --rv-skeleton-avatar-size             | _32px_                    | -    |
+| --rv-skeleton-avatar-background-color | _var(--rv-active-color)_ | -    |
+| --rv-skeleton-animation-duration      | _1.2s_                    | -    |
