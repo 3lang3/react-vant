@@ -220,7 +220,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
   useEffect(() => check, [props.max, props.min, props.integer, props.decimalLength]);
 
   return (
-    <div className={classnames(bem([props.theme]))}>
+    <div className={classnames(props.className, bem([props.theme]))} style={props.style}>
       {props.showMinus && (
         <button
           type="button"

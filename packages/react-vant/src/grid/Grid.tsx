@@ -13,7 +13,7 @@ const Grid: React.FC<GridProps> = ({ children, className, style, ...props }) => 
       style={{ paddingLeft: addUnit(props.gutter), ...style }}
       className={cls(className, bem(), { [BORDER_TOP]: props.border && !props.gutter })}
     >
-      {React.Children.map(children, (child: React.ReactElement, index: number) =>
+      {React.Children.toArray(children).filter(Boolean).map((child: React.ReactElement, index: number) =>
         React.cloneElement(child, {
           index,
           parent: props,

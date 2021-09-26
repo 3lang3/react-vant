@@ -10,12 +10,14 @@ const Steps: React.FC<StepsProps> = ({ children, className, style, ...props }) =
   return (
     <div className={cls(className, bem([props.direction]))} style={style}>
       <div className={cls(bem('items'))}>
-        {React.Children.map(children, (child: React.ReactElement, index: number) =>
-          React.cloneElement(child, {
-            index,
-            parent: props,
-          }),
-        )}
+        {React.Children.toArray(children)
+          .filter(Boolean)
+          .map((child: React.ReactElement, index: number) =>
+            React.cloneElement(child, {
+              index,
+              parent: props,
+            }),
+          )}
       </div>
     </div>
   );
