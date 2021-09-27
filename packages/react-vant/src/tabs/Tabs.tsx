@@ -353,7 +353,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     init();
   }, []);
 
-  useEventListener('scroll', onScroll, { target: scroller });
+  useEventListener('scroll', onScroll, { target: scroller, depends: [state.currentIndex] });
 
   useImperativeHandle(ref, () => ({
     resize: setLine,
