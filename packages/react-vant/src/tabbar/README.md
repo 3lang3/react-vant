@@ -134,7 +134,7 @@ const icon = {
 | fixed | 是否固定在底部 | _boolean_ | `true` |
 | border | 是否显示外边框 | _boolean_ | `true` |
 | zIndex | 元素 z-index | _number \| string_ | `1` |
-| activeColor | 选中标签的颜色 | _string_ | `#1989fa` |
+| activeColor | 选中标签的颜色 | _string_ | `#3f45ff` |
 | inactiveColor | 未选中标签的颜色 | _string_ | `#7d7e80` |
 | placeholder | 固定在底部时，是否在标签位置生成一个等高的占位元素 | _boolean_ | `false` |
 | safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei)，设置 fixed 时默认开启 | _boolean_ | `false` |

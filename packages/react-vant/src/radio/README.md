@@ -157,7 +157,7 @@ import { Radio } from 'react-vant';
 | labelDisabled | 是否禁用文本内容点击      | _boolean_                              | `false`   |
 | labelPosition | 文本位置，可选值为 `left` | _string_                               | `right`   |
 | iconSize      | 图标大小，默认单位为`px`  | _number \| string_                     | `21px`    |
-| checkedColor  | 选中状态颜色              | _string_                               | `#1989fa` |
+| checkedColor  | 选中状态颜色              | _string_                               | `#3f45ff` |
 | iconRender    | 自定义图标                | _({ checked, disabled }) => ReactNode_ | -         |
 
 ### RadioGroup Props
@@ -168,7 +168,7 @@ import { Radio } from 'react-vant';
 | disabled     | 是否禁用所有单选框                   | _boolean_          | `false`    |
 | direction    | 排列方向，可选值为`horizontal`       | _string_           | `vertical` |
 | iconSize     | 所有单选框的图标大小，默认单位为`px` | _number \| string_ | `21px`     |
-| checkedColor | 所有单选框的选中状态颜色             | _string_           | `#1989fa`  |
+| checkedColor | 所有单选框的选中状态颜色             | _string_           | `#3f45ff`  |
 
 ### Radio Events
 

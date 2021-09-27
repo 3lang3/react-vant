@@ -93,7 +93,7 @@ import { Switch } from 'react-vant';
 | loading        | 是否为加载状态           | _boolean_          | `false`   |
 | disabled       | 是否为禁用状态           | _boolean_          | `false`   |
 | size           | 开关尺寸，默认单位为`px` | _number \| string_ | `30px`    |
-| activeColor    | 打开时的背景色           | _string_           | `#1989fa` |
+| activeColor    | 打开时的背景色           | _string_           | `#3f45ff` |
 | inactiveColor  | 关闭时的背景色           | _string_           | `white`   |
 | activeValue    | 打开时对应的值           | _any_              | `true`    |
 | inactiveValue  | 关闭时对应的值           | _any_              | `false`   |

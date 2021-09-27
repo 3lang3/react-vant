@@ -59,7 +59,7 @@ import { Progress } from 'react-vant';
 | ------------ | -------------------------- | ------------------ | ------------ |
 | percentage   | 进度百分比                 | _number \| string_ | `0`          |
 | strokeWidth | 进度条粗细，默认单位为`px` | _number \| string_ | `4px`        |
-| color        | 进度条颜色                 | _string_           | `#1989fa`    |
+| color        | 进度条颜色                 | _string_           | `#3f45ff`    |
 | trackColor  | 轨道颜色                   | _string_           | `#e5e5e5`    |
 | pivotText   | 进度文字内容               | _ReactNode_           | 百分比       |
 | pivotColor  | 进度文字背景色             | _string_           | 同进度条颜色 |
