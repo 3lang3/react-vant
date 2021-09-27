@@ -1,13 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import classnames from 'classnames';
 import { RateProps } from './PropsType';
-import { addUnit, createNamespace, preventDefault } from '../utils';
+import { addUnit, preventDefault } from '../utils';
 import useTouch from '../hooks/use-touch';
 import useRefs from '../hooks/use-refs';
 import Icon from '../icon';
 import useMergedState from '../hooks/use-merged-state';
-
-const [bem] = createNamespace('rate');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 type RateStatus = 'full' | 'half' | 'void';
 
@@ -42,6 +41,8 @@ function getRateStatus(
 }
 
 const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('rate', prefixCls);
   const [value, setValue] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,

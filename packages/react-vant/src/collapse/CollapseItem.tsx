@@ -13,119 +13,113 @@ import CollapseContext from './CollapseContext';
 import useLazyRender from '../hooks/use-lazy-render';
 
 import { CollapseItemInstance, CollapseItemProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { raf, doubleRaf } from '../utils/raf';
 import { useUpdateEffect } from '../hooks';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem] = createNamespace('collapse-item');
+const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props, ref) => {
+  const { index } = props;
+  const parent = useContext(CollapseContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('collapse-item', prefixCls);
 
-const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
-  (props, ref) => {
-    const { index } = props;
-    const parent = useContext(CollapseContext);
+  const wrapperRef = useRef(null);
+  const contentRef = useRef(null);
 
-    const wrapperRef = useRef(null);
-    const contentRef = useRef(null);
+  const name = useMemo(() => props.name ?? index, [props.name]);
+  const expanded = useMemo(() => {
+    if (parent) {
+      return parent.isExpanded(name);
+    }
+    return null;
+  }, [parent, name]);
 
-    const name = useMemo(() => props.name ?? index, [props.name]);
-    const expanded = useMemo(() => {
-      if (parent) {
-        return parent.isExpanded(name);
+  const [show, setShow] = useState(() => expanded);
+  const lazyRender = useLazyRender(show);
+
+  const onTransitionEnd = () => {
+    if (!expanded) {
+      setShow(false);
+    } else {
+      wrapperRef.current.style.height = '';
+    }
+  };
+
+  useUpdateEffect(() => {
+    if (expanded) {
+      setShow(true);
+    }
+
+    raf(() => {
+      if (!contentRef.current || !wrapperRef.current) {
+        return;
       }
-      return null;
-    }, [parent, name]);
 
-    const [show, setShow] = useState(() => expanded);
-    const lazyRender = useLazyRender(show);
+      const { offsetHeight } = contentRef.current;
+      if (offsetHeight) {
+        const contentHeight = `${offsetHeight}px`;
+        wrapperRef.current.style.height = expanded ? 0 : contentHeight;
 
-    const onTransitionEnd = () => {
-      if (!expanded) {
-        setShow(false);
+        // use double raf to ensure animation can start
+        doubleRaf(() => {
+          wrapperRef.current.style.height = expanded ? contentHeight : 0;
+        });
       } else {
-        wrapperRef.current.style.height = '';
+        onTransitionEnd();
       }
-    };
+    });
+  }, [expanded]);
 
-    useUpdateEffect(() => {
-      if (expanded) {
-        setShow(true);
-      }
+  const toggle = (value = !expanded) => {
+    parent.toggle(name, value);
+  };
 
-      raf(() => {
-        if (!contentRef.current || !wrapperRef.current) {
-          return;
-        }
+  const onClickTitle = () => {
+    if (!props.disabled && !props.readonly) {
+      toggle();
+    }
+  };
 
-        const { offsetHeight } = contentRef.current;
-        if (offsetHeight) {
-          const contentHeight = `${offsetHeight}px`;
-          wrapperRef.current.style.height = expanded ? 0 : contentHeight;
-
-          // use double raf to ensure animation can start
-          doubleRaf(() => {
-            wrapperRef.current.style.height = expanded ? contentHeight : 0;
-          });
-        } else {
-          onTransitionEnd();
-        }
-      });
-    }, [expanded]);
-
-    const toggle = (value = !expanded) => {
-      parent.toggle(name, value);
-    };
-
-    const onClickTitle = () => {
-      if (!props.disabled && !props.readonly) {
-        toggle();
-      }
-    };
-
-    const renderTitle = () => {
-      const { border, disabled, children, readonly, ...others } = props;
-
-      return (
-        <Cell
-          className={classnames(
-            bem('title', {
-              disabled,
-              expanded,
-              borderless: !border,
-            }),
-          )}
-          aria-expanded={String(expanded)}
-          onClick={onClickTitle}
-          {...others}
-          isLink={readonly ? false : others.isLink}
-          clickable={disabled || readonly ? false : others.clickable}
-        />
-      );
-    };
-
-    const renderContent = lazyRender(() => (
-      <div
-        ref={wrapperRef}
-        className={classnames(bem('wrapper'))}
-        onTransitionEnd={onTransitionEnd}
-      >
-        <div ref={contentRef} className={classnames(bem('content'))}>
-          {props.children}
-        </div>
-      </div>
-    ));
-
-    useImperativeHandle(ref, () => ({
-      toggle,
-    }));
+  const renderTitle = () => {
+    const { border, disabled, children, readonly, ...others } = props;
 
     return (
-      <div className={classnames(bem({ border: index && props.border }))}>
-        {renderTitle()}
-        {renderContent()}
-      </div>
+      <Cell
+        className={classnames(
+          bem('title', {
+            disabled,
+            expanded,
+            borderless: !border,
+          }),
+        )}
+        aria-expanded={String(expanded)}
+        onClick={onClickTitle}
+        {...others}
+        isLink={readonly ? false : others.isLink}
+        clickable={disabled || readonly ? false : others.clickable}
+      />
     );
-  },
-);
+  };
+
+  const renderContent = lazyRender(() => (
+    <div ref={wrapperRef} className={classnames(bem('wrapper'))} onTransitionEnd={onTransitionEnd}>
+      <div ref={contentRef} className={classnames(bem('content'))}>
+        {props.children}
+      </div>
+    </div>
+  ));
+
+  useImperativeHandle(ref, () => ({
+    toggle,
+  }));
+
+  return (
+    <div className={classnames(bem({ border: index && props.border }))}>
+      {renderTitle()}
+      {renderContent()}
+    </div>
+  );
+});
 
 CollapseItem.defaultProps = {
   isLink: true,

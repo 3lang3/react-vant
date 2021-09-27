@@ -3,6 +3,7 @@ import React, {
   forwardRef,
   ReactElement,
   ReactNode,
+  useContext,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -24,7 +25,6 @@ import { IndexBarInstance, IndexBarProps } from './PropsType';
 import {
   isDef,
   isHidden,
-  createNamespace,
   getScrollTop,
   preventDefault,
   setRootScrollTop,
@@ -34,10 +34,11 @@ import { useMount } from '../hooks';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
 import { INDEX_ANCHORE_KEY } from './IndexAnchor';
-
-const [bem] = createNamespace('index-bar');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('index-bar', prefixCls);
   const { children, sticky, zIndex, highlightColor } = props;
 
   const [activeAnchor, setActiveAnchor] = useState<string | number>(null);

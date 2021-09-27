@@ -2,15 +2,15 @@
 import React, { useContext, useMemo } from 'react';
 import classnames from 'classnames';
 import { TabbarItemProps } from './PropsType';
-import { createNamespace } from '../utils';
 import TabbarContext from './TabbarContext';
 import { Icon } from '../icon';
 import { Badge } from '../badge';
-
-const [bem] = createNamespace('tabbar-item');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const TabbarItem: React.FC<TabbarItemProps> = (props) => {
   const { setActive, index } = props;
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('tabbar-item', prefixCls);
   const { parent } = useContext(TabbarContext);
   const { activeColor, inactiveColor } = parent;
   if (!parent) {

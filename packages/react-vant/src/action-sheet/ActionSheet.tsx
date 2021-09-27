@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classnames from 'classnames';
 import { ActionSheetProps, ActionSheetAction } from './PropsType';
-import { createNamespace, pick } from '../utils';
+import { pick } from '../utils';
 import Icon from '../icon';
 import Loading from '../loading';
 import Popup from '../popup';
 import { sharedPopupProps } from '../popup/Popup';
-
-const [bem] = createNamespace('action-sheet');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ActionSheet: React.FC<ActionSheetProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('action-sheet', prefixCls);
+
   const onCancel = () => {
     props.onClose?.();
     props.onCancel?.();

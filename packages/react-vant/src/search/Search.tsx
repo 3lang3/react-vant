@@ -1,14 +1,16 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import classnames from 'classnames';
 import { SearchInstance, SearchProps } from './PropsType';
-import { createNamespace, preventDefault } from '../utils';
+import { preventDefault } from '../utils';
 
 // Components
 import Field, { FieldInstance } from '../field';
-
-const [bem] = createNamespace('search');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('search', prefixCls);
+
   const filedRef = useRef<FieldInstance>();
   const innerEffect = useRef<boolean>(false);
   const [value, setValue] = useState(() => props.value);

@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
 import { SkeletonProps } from './PropsType';
-import { addUnit, createNamespace, getSizeStyle } from '../utils';
-
-const [bem] = createNamespace('skeleton');
+import { addUnit, getSizeStyle } from '../utils';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const DEFAULT_ROW_WIDTH = '100%';
 const DEFAULT_LAST_ROW_WIDTH = '60%';
 
 const Skeleton: React.FC<SkeletonProps> = ({ children, className, style, ...props }) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('skeleton', prefixCls);
+
   const getRowWidth = (index: number) => {
     const { rowWidth } = props;
 

@@ -3,12 +3,12 @@ import classnames from 'classnames';
 
 import TabsContext from './TabsContext';
 import { TabPaneProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { useUpdateEffect } from '../hooks';
-
-const [bem] = createNamespace('tab');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const TabPane = forwardRef<HTMLDivElement, TabPaneProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('tab', prefixCls);
   const parent = useContext(TabsContext);
 
   const [inited, setInited] = useState(false);

@@ -1,15 +1,13 @@
 /* eslint-disable no-console */
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useContext, useRef, useState } from 'react';
 import classnames from 'classnames';
 
 import CollapseContext from './CollapseContext';
 
 import { CollapseProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import { useUpdateEffect } from '../hooks';
-
-const [bem] = createNamespace('collapse');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 function validateModelValue(
   modelValue: string | number | Array<string | number>,
@@ -27,6 +25,9 @@ function validateModelValue(
 }
 
 const Collapse: React.FC<CollapseProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('collapse', prefixCls);
+
   const innerEffect = useRef(false);
   const [expanded, setExpanded] = useState(() => props.value ?? props.initExpanded);
   const updateName = (name: number | string | Array<number | string>) => {

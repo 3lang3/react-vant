@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useContext, useMemo, useRef } from 'react';
 import classnames from 'classnames';
 import { PullRefreshProps, PullRefreshStatus } from './PropsType';
-import { createNamespace, getScrollTop, preventDefault } from '../utils';
+import { getScrollTop, preventDefault } from '../utils';
 
 import useTouch from '../hooks/use-touch';
 import { getScrollParent } from '../hooks/use-scroll-parent';
@@ -9,13 +9,15 @@ import useEventListener from '../hooks/use-event-listener';
 
 import Loading from '../loading';
 import { useSetState, useUpdateEffect } from '../hooks';
-
-const [bem] = createNamespace('pull-refresh');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const DEFAULT_HEAD_HEIGHT = 50;
 const TEXT_STATUS = ['pulling', 'loosing', 'success'];
 
 const PullRefresh: React.FC<PullRefreshProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('pull-refresh', prefixCls);
+
   const { disabled, animationDuration } = props;
 
   const root = useRef<HTMLDivElement>();

@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle, isValidElement } from 'react';
+import React, { useRef, forwardRef, useImperativeHandle, isValidElement, useContext } from 'react';
 import classnames from 'classnames';
 
 import Loading from '../loading';
@@ -6,13 +6,14 @@ import { getRect } from '../hooks/use-rect';
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
-import { createNamespace, isHidden } from '../utils';
+import { isHidden } from '../utils';
 import { ListInstance, ListProps } from './PropsType';
 import { useSetState, useUpdateEffect } from '../hooks';
-
-const [bem] = createNamespace('list');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const List = forwardRef<ListInstance, ListProps>((props, ref) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('list', prefixCls);
   const [state, updateState] = useSetState({
     loading: props.loading,
     error: props.error,

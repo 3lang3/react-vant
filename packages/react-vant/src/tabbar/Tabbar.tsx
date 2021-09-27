@@ -1,15 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import classnames from 'classnames';
 import { TabbarProps } from './PropsType';
-import { createNamespace, getZIndexStyle } from '../utils';
+import { getZIndexStyle } from '../utils';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import useHeight from '../hooks/use-height';
 import TabbarContext from './TabbarContext';
 import useMergedState from '../hooks/use-merged-state';
-
-const [bem] = createNamespace('tabbar');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Tabbar: React.FC<TabbarProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('tabbar', prefixCls);
+
   const [current, setCurrent] = useMergedState({ value: props.value, defaultValue: props.defaultValue });
   const root = useRef<HTMLDivElement>();
   const height = useHeight(root);

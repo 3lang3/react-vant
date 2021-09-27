@@ -17,15 +17,17 @@ import useHeight from '../hooks/use-height';
 import IndexBarContext from './IndexBarContext';
 
 import { IndexAnchorProps } from './PropsType';
-import { createNamespace, getScrollTop, getRootScrollTop } from '../utils';
+import { getScrollTop, getRootScrollTop } from '../utils';
 import { BORDER_BOTTOM } from '../utils/constant';
 import { useSetState } from '../hooks';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem, name] = createNamespace('index-anchor');
 
-export const INDEX_ANCHORE_KEY = Symbol(name);
+export const INDEX_ANCHORE_KEY = Symbol('index-anchor');
 
 const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('index-anchor', prefixCls);
   const root = useRef();
   const height = useHeight(root);
 

@@ -1,13 +1,15 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react';
+import React, { forwardRef, useContext, useEffect, useImperativeHandle, useMemo } from 'react';
 import cls from 'classnames';
 import { CountDownProps, CountDownInstance } from './PropsType';
-import { createNamespace, noop } from '../utils';
+import { noop } from '../utils';
 import { useCountDown } from './useCountDown';
 import { parseFormat } from './utils';
-
-const [bem] = createNamespace('count-down');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CountDown = forwardRef<CountDownInstance, CountDownProps>((props, ref) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('count-down', prefixCls);
+
   const { start, pause, reset, current } = useCountDown({
     time: +props.time,
     millisecond: props.millisecond,

@@ -174,7 +174,7 @@
 }
 
 .generate-spinner(@n, @i: 1) when (@i =< @n) {
-  .rv-loading__spinner--spinner i:nth-of-type(@{i}) {
+  .@{rv-prefix}-loading__spinner--spinner i:nth-of-type(@{i}) {
     transform: rotate(@i * 30deg);
     opacity: 1 - (0.75 / 12) * (@i - 1);
   }

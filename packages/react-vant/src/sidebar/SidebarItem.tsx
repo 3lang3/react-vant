@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
-import { createNamespace } from '../utils';
 import { SidebarItemProps, SidebarProvide } from './PropsType';
 import Badge from '../badge';
-
-const [bem] = createNamespace('sidebar-item');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = ({ children, ...props }) => {
   const { parent, index } = props;
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('sidbar-item', prefixCls);
 
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {

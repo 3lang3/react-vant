@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { BEM, createBEM } from './bem';
 
-type CreateNamespaceReturn = [BEM, string];
+export type CreateNamespaceReturn = [BEM, string];
 
-export function createNamespace(name: string): CreateNamespaceReturn {
-  name = `rv-${name}`;
+export function createNamespace(name: string, prefix?: string): CreateNamespaceReturn {
+  name = `${prefix || 'rv'}-${name}`;
   return [createBEM(name), name];
 }

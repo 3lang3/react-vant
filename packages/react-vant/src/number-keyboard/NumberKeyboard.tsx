@@ -1,15 +1,17 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import cls from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-import { createNamespace, getZIndexStyle, noop, stopPropagation } from '../utils';
+import { getZIndexStyle, noop, stopPropagation } from '../utils';
 import { KeyType, KeyConfig, NumberKeyboardProps } from './PropsType';
 import NumberKeyboardKey from './NumberKeyboardKey';
 import { useUpdateEffect } from '../hooks';
 import useClickAway from '../hooks/use-click-away';
-
-const [bem] = createNamespace('number-keyboard');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...props }) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('number-keyboard', prefixCls);
+
   const root = useRef<HTMLDivElement>();
 
   const genBasicKeys = () => {

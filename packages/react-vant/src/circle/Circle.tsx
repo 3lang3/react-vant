@@ -1,11 +1,10 @@
-import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
+import React, { CSSProperties, useContext, useEffect, useMemo, useState } from 'react';
 import classnames from 'classnames';
 import { CircleProps, CircleStartPosition } from './PropsType';
-import { createNamespace, isObject, getSizeStyle } from '../utils';
+import { isObject, getSizeStyle } from '../utils';
 import { cancelRaf, raf } from '../utils/raf';
 import useMergedState from '../hooks/use-merged-state';
-
-const [bem] = createNamespace('circle');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 let uid = 0;
 
@@ -28,6 +27,9 @@ const ROTATE_ANGLE_MAP: Record<CircleStartPosition, number> = {
 };
 
 const Circle: React.FC<CircleProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('circle', prefixCls);
+
   // eslint-disable-next-line no-plusplus
   const id = `van-circle-${uid++}`;
 

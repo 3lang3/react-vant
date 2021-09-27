@@ -1,12 +1,14 @@
-import React, { CSSProperties, TouchEvent, useRef } from 'react';
+import React, { CSSProperties, TouchEvent, useContext, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
 import { OverlayProps } from './PropsType';
-import { noop, createNamespace, preventDefault, isDef } from '../utils';
-
-const [bem] = createNamespace('overlay');
+import { noop, preventDefault, isDef } from '../utils';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Overlay: React.FC<OverlayProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('overlay', prefixCls);
+
   const nodeRef = useRef(null);
   const { visible, duration } = props;
 

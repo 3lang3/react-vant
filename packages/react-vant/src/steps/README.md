@@ -96,15 +96,15 @@ export default () => {
 
 | 名称                                  | 默认值                     | 描述 |
 | ------------------------------------- | -------------------------- | ---- |
-| --van-step-text-color                 | _var(--van-gray-6)_        | -    |
-| --van-step-active-color               | _var(--van-success-color)_ | -    |
-| --van-step-process-text-color         | _var(--van-text-color)_    | -    |
-| --van-step-font-size                  | _var(--van-font-size-md)_  | -    |
-| --van-step-line-color                 | _var(--van-border-color)_  | -    |
-| --van-step-finish-line-color          | _var(--van-success-color)_ | -    |
-| --van-step-finish-text-color          | _var(--van-text-color)_    | -    |
-| --van-step-icon-size                  | _12px_                     | -    |
-| --van-step-circle-size                | _5px_                      | -    |
-| --van-step-circle-color               | _var(--van-gray-6)_        | -    |
-| --van-step-horizontal-title-font-size | _var(--van-font-size-sm)_  | -    |
-| --van-steps-background-color          | _var(--van-white)_         | -    |
+| --rv-step-text-color                 | _var(--rv-gray-6)_        | -    |
+| --rv-step-active-color               | _var(--rv-success-color)_ | -    |
+| --rv-step-process-text-color         | _var(--rv-text-color)_    | -    |
+| --rv-step-font-size                  | _var(--rv-font-size-md)_  | -    |
+| --rv-step-line-color                 | _var(--rv-border-color)_  | -    |
+| --rv-step-finish-line-color          | _var(--rv-success-color)_ | -    |
+| --rv-step-finish-text-color          | _var(--rv-text-color)_    | -    |
+| --rv-step-icon-size                  | _12px_                     | -    |
+| --rv-step-circle-size                | _5px_                      | -    |
+| --rv-step-circle-color               | _var(--rv-gray-6)_        | -    |
+| --rv-step-horizontal-title-font-size | _var(--rv-font-size-sm)_  | -    |
+| --rv-steps-background-color          | _var(--rv-white)_         | -    |

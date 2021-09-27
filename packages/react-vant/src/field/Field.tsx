@@ -6,13 +6,13 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useMemo,
+  useContext,
 } from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import Cell from '../cell';
 import { FieldInstance, FieldProps } from './PropsType';
 import {
-  createNamespace,
   isDef,
   addUnit,
   formatNumber,
@@ -20,11 +20,14 @@ import {
   preventDefault,
   resetScroll,
 } from '../utils';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem] = createNamespace('field');
 const ICON_SIZE = '16px';
 
 const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('field', prefixCls);
+
   const [inputFocus, setInputFocus] = useState(false);
   const fieldRef = useRef(null);
   const inputRef = useRef(null);

@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
 // Utils
-import { bem, isImageFile } from './utils';
+import { isImageFile } from './utils';
 import { isDef, getSizeStyle, extend } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 
@@ -11,8 +11,12 @@ import Icon from '../icon';
 import Image from '../image';
 import Loading from '../loading';
 import { UploaderPrviewItemProps } from './PropsType';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('uploader', prefixCls);
+
   const renderMask = () => {
     const { status, message } = props.item;
 

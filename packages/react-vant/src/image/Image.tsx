@@ -1,13 +1,14 @@
-import React, { CSSProperties, useRef, useMemo, useEffect } from 'react';
+import React, { CSSProperties, useRef, useMemo, useEffect, useContext } from 'react';
 import classnames from 'classnames';
 import { ImageProps } from './PropsType';
-import { isDef, addUnit, createNamespace } from '../utils';
+import { isDef, addUnit } from '../utils';
 import Icon from '../icon';
 import { useSetState, useUpdateEffect } from '../hooks';
-
-const [bem] = createNamespace('image');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Image: React.FC<ImageProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('image', prefixCls);
   const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
   const [status, setStatus] = useSetState({ loading: true, error: false });
   const imgRef = useRef<HTMLImageElement>(null);

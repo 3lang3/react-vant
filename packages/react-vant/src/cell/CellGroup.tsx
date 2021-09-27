@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classnames from 'classnames';
 import { CellGroupProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
-
-const [bem] = createNamespace('cell-group');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CellGroup: React.FC<CellGroupProps> = (props) => {
   const { title, border, inset } = props;
+
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('cell-group', prefixCls);
 
   const renderGroup = () => (
     <div className={classnames(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border })}>

@@ -1,5 +1,5 @@
 /* eslint-disable react/default-props-match-prop-types */
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../icon';
@@ -7,14 +7,16 @@ import Popup from '../popup';
 import Loading from '../loading';
 
 import { lockClick } from './lock-click';
-import { createNamespace, isDef } from '../utils';
+import { isDef } from '../utils';
 import { ToastPrivateProps, ToastProps } from './PropsType';
-
-const [bem] = createNamespace('toast');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 // eslint-disable-next-line react/require-default-props
 const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = (props) => {
   let clickable = false;
+
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('toast', prefixCls);
 
   const toggleClickable = () => {
     const newValue = props.visible && props.forbidClick;

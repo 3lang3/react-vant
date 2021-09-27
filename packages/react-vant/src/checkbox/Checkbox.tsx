@@ -1,15 +1,13 @@
 import React, { forwardRef, useContext, useImperativeHandle, useMemo } from 'react';
-
 import Checker from './Checker';
 import CheckBoxContext from './CheckboxContext';
 import useMergedState from '../hooks/use-merged-state';
-
 import { CheckboxInstance, CheckboxProps } from './PropsType';
-import { createNamespace } from '../utils';
-
-const [bem] = createNamespace('checkbox');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((props, ref) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('checkbox', prefixCls);
   const { parent, ...context } = useContext(CheckBoxContext);
   const [checked, setChecked] = useMergedState<boolean>({
     value: props.checked,

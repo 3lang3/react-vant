@@ -1,5 +1,12 @@
 /* eslint-disable no-plusplus */
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from 'react';
 import cls from 'classnames';
 import { CalendarDayItem, CalendarInstance, CalendarProps } from './PropsType';
 import { getScrollTop, pick } from '../utils';
@@ -13,7 +20,6 @@ import {
   getNextDay,
   getPrevDay,
   getToday,
-  bem,
 } from './utils';
 import useRefs from '../hooks/use-refs';
 import { raf } from '../utils/raf';
@@ -25,9 +31,13 @@ import CalendarHeader from './CalendarHeader';
 import Popup from '../popup';
 import useSetState from '../hooks/use-set-state';
 import useUpdateEffect from '../hooks/use-update-effect';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Calendar = forwardRef<CalendarInstance, CalendarProps>(
   ({ className, style, ...props }, ref) => {
+    const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+    const [bem] = createNamespace('calendar', prefixCls);
+
     const limitDateRange = (date: Date, minDate = props.minDate, maxDate = props.maxDate) => {
       if (compareDay(date, minDate) === -1) {
         return minDate;

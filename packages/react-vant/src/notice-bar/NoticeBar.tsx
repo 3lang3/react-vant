@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useRef, useEffect, useImperativeHandle, forwardRef, useContext } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../icon';
@@ -7,14 +7,15 @@ import { getRect } from '../hooks/use-rect';
 import useEventListener from '../hooks/use-event-listener';
 
 import { NoticeBarInstance, NoticeBarProps } from './PropsType';
-import { createNamespace, isDef, noop } from '../utils';
+import { isDef, noop } from '../utils';
 import { raf, doubleRaf } from '../utils/raf';
 import { useSetState } from '../hooks';
-
-const [bem] = createNamespace('notice-bar');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => {
   const { text, color, background, wrapable, scrollable, speed, delay = 1 } = props;
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('notice-bar', prefixCls);
 
   const [state, setState] = useSetState({
     show: true,

@@ -5,6 +5,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useState,
+  useContext,
 } from 'react';
 import classnames from 'classnames';
 
@@ -20,7 +21,6 @@ import TabsContext from './TabsContext';
 import { TabPaneProps, TabsInstance, TabsProps } from './PropsType';
 import {
   addUnit,
-  createNamespace,
   parseChildList,
   isHidden,
   isDef,
@@ -37,10 +37,12 @@ import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import { useSetState, useUpdateEffect } from '../hooks';
 import useEventListener from '../hooks/use-event-listener';
 import { isReachBottom } from './utils';
-
-const [bem] = createNamespace('tabs');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('tabs', prefixCls);
+
   const { children, color, background } = props;
 
   const root = useRef<HTMLDivElement>(null);

@@ -1,16 +1,17 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import classnames from 'classnames';
 import { PageItem, PaginationProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { BORDER } from '../utils/constant';
-
-const [bem] = createNamespace('pagination');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 function makePage(number: number, text: string | number, active?: boolean): PageItem {
   return { number, text, active };
 }
 
 const Pagination: React.FC<PaginationProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('pagination', prefixCls);
+
   const count = useMemo(() => {
     const { pageCount, totalItems, itemsPerPage } = props;
     const innerCount = +pageCount || Math.ceil(+totalItems / +itemsPerPage);

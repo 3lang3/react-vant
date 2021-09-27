@@ -1,4 +1,5 @@
 import React, { CSSProperties, useMemo } from 'react';
+import ConfigProviderContext, { INITIAL_STATE } from './ConfigProviderContext';
 import { ConfigProviderProps } from './PropsType';
 
 function kebabCase(str: string): string {
@@ -16,20 +17,31 @@ function mapThemeVarsToCSSVars(themeVars: Record<string, string | number>) {
   return cssVars;
 }
 
-const ConfigProvider: React.FC<ConfigProviderProps> = ({ className, ...props }) => {
-  const style = useMemo<CSSProperties | undefined>(() => {
-    if (props.themeVars) {
-      return { ...props.style, ...mapThemeVarsToCSSVars(props.themeVars) };
+const ConfigProvider: React.FC<ConfigProviderProps> = ({
+  className,
+  style,
+  themeVars,
+  tag,
+  children,
+  ...props
+}) => {
+  const varStyle = useMemo<CSSProperties | undefined>(() => {
+    if (themeVars) {
+      return { ...style, ...mapThemeVarsToCSSVars(themeVars) };
     }
-    return props.style;
-  }, [props.themeVars]);
-  return React.createElement(
-    props.tag,
-    {
-      className,
-      style,
-    },
-    props.children,
+    return style;
+  }, [themeVars]);
+  return (
+    <ConfigProviderContext.Provider value={{ ...INITIAL_STATE, ...props }}>
+      {React.createElement(
+        tag,
+        {
+          className,
+          style: varStyle,
+        },
+        children,
+      )}
+    </ConfigProviderContext.Provider>
   );
 };
 

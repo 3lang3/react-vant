@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classnames from 'classnames';
 import FlexContext from './FlexContext';
-import { createNamespace } from '../utils';
 import { FlexItemProps, FlexType } from './PropsType';
-
-const [bem] = createNamespace('flexitem');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const FlexItem: React.FC<FlexItemProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('flexitem', prefixCls);
   const { style, className, span, children, flex, ...others } = props;
 
   const classes = classnames(bem([span?.toString()]), className);

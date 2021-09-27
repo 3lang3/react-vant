@@ -1,4 +1,4 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, useContext } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../icon';
@@ -7,12 +7,14 @@ import Button from '../button';
 import ActionBar from '../action-bar';
 
 import { DialogProps, DialogStatic } from './PropsType';
-import { createNamespace, addUnit, noop } from '../utils';
+import { addUnit, noop } from '../utils';
 import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
-
-const [bem] = createNamespace('dialog');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Dialog: React.FC<DialogProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('dialog', prefixCls);
+
   const {
     width,
     title,

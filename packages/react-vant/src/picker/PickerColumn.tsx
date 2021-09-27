@@ -6,15 +6,17 @@ import React, {
   useImperativeHandle,
   useCallback,
   forwardRef,
+  useContext,
 } from 'react';
 import classnames from 'classnames';
 
 import useTouch from '../hooks/use-touch';
 
 import { PickerColumnProps, Column, PickerOption } from './PropsType';
-import { createNamespace, isObject, range } from '../utils';
+import { isObject, range } from '../utils';
 import { deepClone } from '../utils/deep-clone';
 import { useSetState, useUpdateEffect } from '../hooks';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const DEFAULT_DURATION = 200;
 
@@ -23,8 +25,6 @@ const DEFAULT_DURATION = 200;
 // 距离大于 `MOMENTUM_LIMIT_DISTANCE` 时，执行惯性滑动
 const MOMENTUM_LIMIT_TIME = 300;
 const MOMENTUM_LIMIT_DISTANCE = 15;
-
-const [bem] = createNamespace('picker-column');
 
 function getElementTranslateY(element) {
   const style = window.getComputedStyle(element);
@@ -39,6 +39,9 @@ function isOptionDisabled(option) {
 }
 
 const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('picker-column', prefixCls);
+
   const { itemHeight, visibleItemCount, defaultIndex, initialOptions } = props;
 
   const root = useRef(null);

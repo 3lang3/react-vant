@@ -2,6 +2,7 @@ import React, {
   Children,
   cloneElement,
   ReactElement,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -9,7 +10,7 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 import { DropdownMenuProps } from './PropsType';
-import { isDef, createNamespace } from '../utils';
+import { isDef } from '../utils';
 import useEventListener from '../hooks/use-event-listener';
 import useScrollParent from '../hooks/use-scroll-parent';
 import { getRect } from '../hooks/use-rect';
@@ -17,12 +18,12 @@ import useRefs from '../hooks/use-refs';
 import DropdownMenuContext from './DropdownMenuContext';
 import { useUpdateEffect } from '../hooks';
 import useClickAway from '../hooks/use-click-away';
-
-const [bem, name] = createNamespace('dropdown-menu');
-
-export const DROPDOWN_KEY = Symbol(name);
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('dropdown-menu', prefixCls);
+
   const [innerValue = {}, setInnerValue] = useState(() => props.value);
   const [childrenRefs, setChildrenRefs] = useRefs();
   const [showPopupIndex, setShowPopupIndex] = useState<number>(null);

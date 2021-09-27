@@ -1,9 +1,4 @@
 /* eslint-disable no-nested-ternary */
-import { createNamespace } from '../utils';
-
-const [bem, name] = createNamespace('calendar');
-
-export { name, bem };
 
 export function formatMonthTitle(date: Date) {
   return `${date.getFullYear()}年${date.getMonth() + 1}月`;

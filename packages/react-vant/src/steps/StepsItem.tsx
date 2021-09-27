@@ -1,14 +1,15 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import cls from 'classnames';
-import { createNamespace } from '../utils';
 import { StepsItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
 import Icon from '../icon';
-
-const [bem] = createNamespace('step');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
   const { index, parent: parentProps } = props;
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('step', prefixCls);
+
   if (!parentProps) {
     if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console

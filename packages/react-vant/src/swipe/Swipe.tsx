@@ -5,6 +5,7 @@ import React, {
   ReactElement,
   forwardRef,
   useImperativeHandle,
+  useContext,
 } from 'react';
 import cls from 'classnames';
 
@@ -13,13 +14,14 @@ import SwiperCore, { Pagination, Autoplay, Lazy } from 'swiper';
 import { Swiper } from 'swiper/react';
 
 import { SwipeProps, SwipeInstance } from './PropsType';
-import { createNamespace } from '../utils';
-
-const [bem] = createNamespace('swipe');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 SwiperCore.use([Autoplay, Pagination, Lazy]);
 
 const Swipe = forwardRef<SwipeInstance, SwipeProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('swipe', prefixCls);
+
   const { children, className, autoplay, ...parseProsp } = parseOptions(props);
   const internalSwipeRef = useRef<SwipeInstance>(null);
   useImperativeHandle(ref, () => internalSwipeRef.current, [internalSwipeRef.current]);
