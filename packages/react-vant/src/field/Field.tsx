@@ -12,20 +12,13 @@ import classnames from 'classnames';
 import Icon from '../icon';
 import Cell from '../cell';
 import { FieldInstance, FieldProps } from './PropsType';
-import {
-  isDef,
-  addUnit,
-  formatNumber,
-  isObject,
-  preventDefault,
-  resetScroll,
-} from '../utils';
+import { isDef, addUnit, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ICON_SIZE = '16px';
 
 const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('field', prefixCls);
 
   const [inputFocus, setInputFocus] = useState(false);
@@ -74,6 +67,13 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     }
     return false;
   }, [props.value, props.clearTrigger, inputFocus]);
+
+  const showError = useMemo(() => {
+    if (typeof props.error === 'boolean') {
+      return props.error;
+    }
+    return false;
+  }, []);
 
   const labelStyle = (): CSSProperties => {
     const labelW = getProp('labelWidth');
@@ -124,7 +124,22 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
   const renderInput = () => {
     const { type, name, rows, value, placeholder, disabled, readonly, onClickInput } = props;
-    const inputAlign = getProp('inputAlign');
+    const controlClass = bem('control', [
+      getProp('inputAlign'),
+      {
+        error: showError,
+        custom: !!props.children,
+        'min-height': props.type === 'textarea' && !props.autosize,
+      },
+    ]);
+
+    if (props.children) {
+      return (
+        <div className={classnames(controlClass)} onClick={onClickInput}>
+          {props.children}
+        </div>
+      );
+    }
 
     const handleChange = (e) => {
       const { maxlength, onChange } = props;
@@ -197,7 +212,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           ref={inputRef}
           name={name}
           rows={rows}
-          className={classnames(bem('control', inputAlign))}
+          className={classnames(controlClass)}
           value={value}
           disabled={disabled}
           readOnly={readonly}
@@ -233,7 +248,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
         inputMode={inputMode}
         ref={inputRef}
         name={name}
-        className={classnames(bem('control', inputAlign))}
+        className={classnames(controlClass)}
         disabled={disabled}
         readOnly={readonly}
         placeholder={placeholder || ''}

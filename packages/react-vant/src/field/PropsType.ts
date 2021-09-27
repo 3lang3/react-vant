@@ -67,6 +67,8 @@ export interface FieldCommonProps {
    * @default 'focus'
    */
   clearTrigger?: FieldClearTrigger;
+  /** 自定义输入框，使用此插槽后，与输入框相关的属性和事件将失效。 */
+  children?: React.ReactNode;
 }
 
 export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<CellProps> {
@@ -112,7 +114,7 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   onFocus?: (e: React.MouseEvent) => void;
   onBlur?: (e: React.MouseEvent) => void;
   onKeypress?: (e: React.KeyboardEvent) => void;
-  onClickInput?: (e: React.MouseEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onClickInput?: (e: React.MouseEvent) => void;
   onClickLeftIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClickRightIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
   getFieldRef?: (ref) => void;

@@ -52,26 +52,37 @@ React Vant 组件通过丰富的 [CSS 变量](https://developer.mozilla.org/zh-C
 `ConfigProvider` 组件提供了覆盖 CSS 变量的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `themeVars` 属性来配置一些主题变量。
 
 ```jsx
-import { ConfigProvider, Button } from 'react-vant';
+import { ConfigProvider, Field, Rate, Slider, Button } from 'react-vant';
 
 // themeVars 内的值会被转换成对应 CSS 变量
 // 比如 sliderBarHeight 会转换成 `--rv-slider-bar-height`
 const themeVars = {
-  rateIconFullColor: '#07c160',
+  rateIconFullColor: '#ffcc56',
   sliderBarHeight: '4px',
   sliderButtonWidth: '20px',
   sliderButtonHeight: '20px',
-  sliderActiveBackgroundColor: '#07c160',
-  buttonPrimaryBorderColor: '#07c160',
-  buttonPrimaryBackgroundColor: '#07c160',
+  sliderActiveBackgroundColor: '#951fff',
+  buttonPrimaryBorderColor: '#951fff',
+  buttonPrimaryBackgroundColor: '#951fff',
 };
 
 export default () => {
+  const [rate, updateRate] = useState(4);
+  const [slider, updateSlider] = useState(50);
+
   return (
     <ConfigProvider themeVars={themeVars}>
-      <Button round block type="primary">
-        提交
-      </Button>
+      <Field label="评分">
+        <Rate value={rate} onChange={updateRate} />
+      </Field>
+      <Field label="滑块">
+        <Slider value={slider} onChange={updateSlider} />
+      </Field>
+      <div style={{ margin: 16 }}>
+        <Button block round type="primary">
+          提交
+        </Button>
+      </div>
     </ConfigProvider>
   );
 };
@@ -173,9 +184,8 @@ React Vant 中的 CSS 变量分为 **基础变量** 和 **组件变量**。组�
 
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| themeVars | 自定义主题变量 | _object_ | - |
-| prefixCls | 设置统一样式前缀。注意：需要配合 less 变量 `@rv-prefix` 使用 | _string_ | `rv` |
-| iconPrefix | 所有图标的类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
-| tag | `ConfigProdiver`对应的 HTML 节点标签名 | _string_ | `div` |
+| 参数      | 说明                                                           | 类型     | 默认值 |
+| --------- | -------------------------------------------------------------- | -------- | ------ |
+| themeVars | 自定义主题变量                                                 | _object_ | -      |
+| prefixCls | 设置统一样式前缀。注意：需要配合 less 变量 [@rv-prefix]() 使用 | _string_ | `rv`   |
+| tag       | `ConfigProdiver`对应的 HTML 节点标签名                         | _string_ | `div`  |

@@ -208,7 +208,7 @@ Rate.defaultProps = {
   count: 5,
   gutter: 4,
   icon: 'star',
-  voidIcon: 'star-0',
+  voidIcon: 'star-o',
   touchable: true,
 };
 
