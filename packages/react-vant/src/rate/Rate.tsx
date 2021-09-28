@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import classnames from 'classnames';
 import { RateProps } from './PropsType';
 import { addUnit, createNamespace, preventDefault } from '../utils';
@@ -6,6 +6,7 @@ import useTouch from '../hooks/use-touch';
 import useRefs from '../hooks/use-refs';
 import Icon from '../icon';
 import useMergedState from '../hooks/use-merged-state';
+import useEventListener from '../hooks/use-event-listener';
 
 const [bem] = createNamespace('rate');
 
@@ -46,7 +47,8 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
     value: props.value,
     defaultValue: props.defaultValue,
   });
-  const touch = useTouch();
+  const root = useRef<HTMLDivElement>(null);
+  const touch = useTouch(true);
   const [itemRefs, setItemRefs] = useRefs();
 
   const untouchable = () => props.readonly || props.disabled || !touchable;
@@ -59,29 +61,29 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
     [value, count],
   );
 
-  let ranges: Array<{ left: number; score: number }>;
+  const ranges = useRef<{ left: number; score: number }[]>();
 
   const updateRanges = () => {
     const rects = itemRefs.map((item) => item.getBoundingClientRect());
 
-    ranges = [];
+    ranges.current = [];
     rects.forEach((rect, index) => {
       if (props.allowHalf) {
-        ranges.push(
+        ranges.current.push(
           { score: index + 0.5, left: rect.left },
           { score: index + 1, left: rect.left + rect.width / 2 },
         );
       } else {
-        ranges.push({ score: index + 1, left: rect.left });
+        ranges.current.push({ score: index + 1, left: rect.left });
       }
     });
   };
 
   const getScoreByPosition = (x: number) => {
     // eslint-disable-next-line no-plusplus
-    for (let i = ranges.length - 1; i > 0; i--) {
-      if (x > ranges[i].left) {
-        return ranges[i].score;
+    for (let i = ranges.current.length - 1; i > 0; i--) {
+      if (x > ranges.current[i].left) {
+        return ranges.current[i].score;
       }
     }
     return props.allowHalf ? 0.5 : 1;
@@ -103,12 +105,12 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
     updateRanges();
   };
 
-  const onTouchMove = (event: React.TouchEvent) => {
+  const onTouchMove = (event) => {
     if (untouchable()) {
       return;
     }
 
-    touch.move(event.nativeEvent);
+    touch.move(event);
 
     if (touch.isHorizontal()) {
       const { clientX } = event.touches[0];
@@ -184,8 +186,14 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
     );
   };
 
+  useEventListener('touchmove', onTouchMove as EventListener, {
+    target: root.current,
+    depends: [touch.deltaY],
+  });
+
   return (
     <div
+      ref={root}
       role="radiogroup"
       className={classnames(
         bem({
@@ -195,7 +203,6 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
       )}
       tabIndex={0}
       onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
     >
       {list.map(renderStar)}
     </div>
@@ -207,7 +214,7 @@ Rate.defaultProps = {
   count: 5,
   gutter: 4,
   icon: 'star',
-  voidIcon: 'star-0',
+  voidIcon: 'star-o',
   touchable: true,
 };
 
