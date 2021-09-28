@@ -29,10 +29,16 @@
     "prettier": "^2.4.0",
     "stylelint": "^13.13.1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "react-vant-cli commit-lint"
+    }
+  },
   "lint-staged": {
-    "./packages/react-vant/src/**/*.{ts,tsx,js,less}": "prettier --write",
-    "./packages/react-vant/src/**/*.{ts,tsx,js}": "eslint --fix",
-    "./packages/react-vant/src/**/*.{css,less}": "stylelint --fix"
+    "*.{ts,tsx,js,less}": "prettier --write",
+    "*.{ts,tsx,js}": "eslint --fix",
+    "*.{css,less}": "stylelint --fix"
   },
   "dependencies": {
     "@react-vant/cli": "^1.0.10"
