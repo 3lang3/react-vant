@@ -20,7 +20,7 @@ export default () => {
 ```
 
 
-## 浏览器适配
+### 浏览器适配
 
 React Vant 默认使用 `px` 作为样式单位，如果需要使用 `viewport` 单位 (vw, vh, vmin, vmax)，推荐使用 [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport) 进行转换。
 

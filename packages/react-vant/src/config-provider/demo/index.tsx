@@ -3,6 +3,7 @@ import { Button, Rate, Field, Slider } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import ConfigProvider from '..';
 import './style.less';
+import './font.less';
 
 const themeVars = {
   rateIconFullColor: '#ffcc56',
@@ -43,6 +44,18 @@ export default (): React.ReactNode => {
           </Field>
           <div style={{ margin: 16 }}>
             <Button block round type="primary">
+              提交
+            </Button>
+          </div>
+        </ConfigProvider>
+      </DemoBlock>
+      <DemoBlock title="Icon替换">
+        <ConfigProvider iconPrefix="iconfont">
+          <Field label="评分">
+            <Rate icon="emojifill" voidIcon="emojilight"  />
+          </Field>
+          <div style={{ margin: 16 }}>
+            <Button icon="1111" block round type="primary">
               提交
             </Button>
           </div>
