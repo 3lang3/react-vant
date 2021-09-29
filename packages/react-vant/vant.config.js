@@ -176,7 +176,6 @@ module.exports = {
                 path: 'uploader',
                 title: 'Uploader 文件上传',
               },
-
             ],
           },
           {
@@ -325,10 +324,6 @@ module.exports = {
                 title: 'Tabbar 标签栏',
               },
             ],
-          },
-          {
-            title: '业务组件',
-            items: [],
           },
         ],
       },
