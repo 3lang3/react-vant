@@ -26,13 +26,20 @@ const INITIAL_STATE = {
   direction: '' as Direction,
 };
 
+type StateType = Partial<typeof INITIAL_STATE>;
+type StateFunctionType = (value: StateType) => typeof INITIAL_STATE;
+
 const useTouch = (stateable?: boolean) => {
   const refState = useRef(INITIAL_STATE);
   const state = useSetState(INITIAL_STATE);
 
-  const update = (value) => {
+  const innerState = stateable ? state[0] : refState.current;
+
+  const update = (value: StateType | StateFunctionType) => {
     if (stateable) {
       state[1](value);
+    } else if (typeof value === 'function') {
+      refState.current = value(refState.current);
     } else {
       refState.current = {
         ...refState.current,
@@ -40,10 +47,6 @@ const useTouch = (stateable?: boolean) => {
       };
     }
   };
-
-  const innerState = stateable ? state[0] : refState.current;
-
-  const deltaYRef = useRef<number>(0);
 
   const isVertical = useCallback(() => innerState.direction === 'vertical', [innerState.direction]);
   const isHorizontal = useCallback(
@@ -59,7 +62,6 @@ const useTouch = (stateable?: boolean) => {
       offsetY: 0,
       direction: '',
     });
-    deltaYRef.current = 0;
   };
 
   const start = ((event: TouchEvent) => {
@@ -73,21 +75,20 @@ const useTouch = (stateable?: boolean) => {
   const move = ((event: TouchEvent) => {
     const touch = event.touches[0];
 
-    // Fix: Safari back will set clientX to negative number
-    const newState = {} as typeof innerState;
+    update((value) => {
+      // Fix: Safari back will set clientX to negative number
+      const newState = {} as typeof innerState;
 
-    newState.deltaX = touch.clientX < 0 ? 0 : touch.clientX - innerState.startX;
-    newState.deltaY = touch.clientY - innerState.startY;
-    newState.offsetX = Math.abs(innerState.deltaX);
-    newState.offsetY = Math.abs(innerState.deltaY);
+      newState.deltaX = touch.clientX < 0 ? 0 : touch.clientX - value.startX;
+      newState.deltaY = touch.clientY - value.startY;
+      newState.offsetX = Math.abs(value.deltaX);
+      newState.offsetY = Math.abs(value.deltaY);
 
-    deltaYRef.current = newState.deltaY;
-
-    if (!innerState.direction) {
-      newState.direction = getDirection(Math.abs(newState.offsetX), Math.abs(newState.offsetY));
-    }
-
-    update(newState);
+      if (!value.direction) {
+        newState.direction = getDirection(Math.abs(newState.offsetX), Math.abs(newState.offsetY));
+      }
+      return newState;
+    });
   }) as EventListener;
 
   return {
@@ -95,7 +96,6 @@ const useTouch = (stateable?: boolean) => {
     move,
     start,
     reset,
-    deltaYRef,
     isVertical,
     isHorizontal,
   };

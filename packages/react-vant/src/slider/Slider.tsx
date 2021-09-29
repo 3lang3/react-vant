@@ -1,14 +1,7 @@
 import React, { CSSProperties, useContext, useMemo, useRef, useState } from 'react';
 import cls from 'classnames';
 import { SliderProps, SliderValue } from './PropsType';
-import {
-  addUnit,
-  range,
-  addNumber,
-  preventDefault,
-  getSizeStyle,
-  stopPropagation,
-} from '../utils';
+import { addUnit, range, addNumber, preventDefault, getSizeStyle, stopPropagation } from '../utils';
 import useTouch from '../hooks/use-touch';
 import { getRect } from '../hooks/use-rect';
 import useEventListener from '../hooks/use-event-listener';
@@ -20,8 +13,8 @@ const Slider: React.FC<SliderProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('slider', prefixCls);
 
-  const [buttonRef1, setButtonRef1] = useState<HTMLDivElement>(null)
-  const [buttonRef2, setButtonRef2] = useState<HTMLDivElement>(null)
+  const [buttonRef1, setButtonRef1] = useState<HTMLDivElement>(null);
+  const [buttonRef2, setButtonRef2] = useState<HTMLDivElement>(null);
   const buttonIndex = useRef<0 | 1>();
   const startValue = useRef<SliderValue>();
   const currentValue = useRef<SliderValue>(props.value);
@@ -167,6 +160,7 @@ const Slider: React.FC<SliderProps> = (props) => {
 
     touch.start(event);
     currentValue.current = JSON.parse(JSON.stringify(props.value));
+
     if (isRange(currentValue.current)) {
       startValue.current = currentValue.current.map(format) as [number, number];
     } else {
@@ -213,7 +207,7 @@ const Slider: React.FC<SliderProps> = (props) => {
 
     if (dragStatus.current === 'dragging') {
       const value = updateValue(currentValue.current, true);
-      props.onDragStart?.(event, value as number & [number, number]);
+      props.onDragEnd?.(event, value as number & [number, number]);
     }
 
     dragStatus.current = '';
@@ -236,7 +230,7 @@ const Slider: React.FC<SliderProps> = (props) => {
     }
 
     if (typeof props.button === 'function') {
-      return props.button({ value })
+      return props.button({ value });
     }
 
     if (props.button) {
@@ -246,7 +240,7 @@ const Slider: React.FC<SliderProps> = (props) => {
     return <div className={cls(bem('button'))} style={getSizeStyle(props.buttonSize)} />;
   };
 
-  const renderButton = (setButtounRef, index?: 0 | 1) => {
+  const renderButton = (buttounRef, index?: 0 | 1) => {
     const value =
       typeof index === 'number'
         ? (props.value as [number, number])[index]
@@ -254,7 +248,7 @@ const Slider: React.FC<SliderProps> = (props) => {
 
     return (
       <div
-        ref={setButtounRef}
+        ref={buttounRef}
         key={index}
         role="slider"
         className={cls(getButtonClassName(index))}
@@ -302,7 +296,9 @@ const Slider: React.FC<SliderProps> = (props) => {
       onClick={onClick}
     >
       <div className={cls(bem('bar'))} style={barStyle}>
-        {props.range ? [renderButton(setButtonRef1,  0), renderButton(setButtonRef2, 1)] : renderButton(setButtonRef1)}
+        {props.range
+          ? [renderButton(setButtonRef1, 0), renderButton(setButtonRef2, 1)]
+          : renderButton(setButtonRef1)}
       </div>
     </div>
   );

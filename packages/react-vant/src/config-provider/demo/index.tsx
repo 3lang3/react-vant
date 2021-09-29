@@ -20,8 +20,8 @@ export default (): React.ReactNode => {
   const [rate, updateRate] = useState(4);
   const [slider, updateSlider] = useState(50);
   return (
-    <DemoSection className="demo-badge">
-      <DemoBlock title="基础用法">
+    <DemoSection className="demo-config-prodiver">
+      <DemoBlock title="默认主题">
         <Field label="评分">
           <Rate value={rate} onChange={updateRate} />
         </Field>
@@ -52,7 +52,7 @@ export default (): React.ReactNode => {
       <DemoBlock title="Icon替换">
         <ConfigProvider iconPrefix="iconfont">
           <Field label="评分">
-            <Rate icon="emojifill" voidIcon="emojilight"  />
+            <Rate icon="emojifill" voidIcon="emojilight" />
           </Field>
           <div style={{ margin: 16 }}>
             <Button icon="1111" block round type="primary">
