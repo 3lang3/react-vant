@@ -7,6 +7,7 @@
     "prepare": "yarn build:cli && yarn build:fabric",
     "bootstrap": "lerna bootstrap",
     "start": "lerna exec --scope react-vant yarn start",
+    "create-component": "lerna exec --scope react-vant yarn create-component",
     "build": "lerna exec --scope react-vant yarn build",
     "build:cli": "lerna exec --scope @react-vant/cli yarn build",
     "build:fabric": "lerna exec --scope @react-vant/fabric yarn build",
@@ -35,6 +36,6 @@
     "./packages/react-vant/src/**/*.{css,less}": "stylelint --fix"
   },
   "dependencies": {
-    "@react-vant/cli": "^1.0.10"
+    "@react-vant/cli": "^1.1.5"
   }
 }

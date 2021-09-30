@@ -21,6 +21,8 @@ cd my-app && npm run bootstrap
 
 # 进入开发模式，浏览器访问 http://localhost:8080
 npm run start
+# 创建新组件，根据提示输入组件信息
+npm run create-component
 ```
 
 ### 目录结构
