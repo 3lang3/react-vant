@@ -68,13 +68,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     return false;
   }, [props.value, props.clearTrigger, inputFocus]);
 
-  const showError = useMemo(() => {
-    if (typeof props.error === 'boolean') {
-      return props.error;
-    }
-    return false;
-  }, []);
-
   const labelStyle = (): CSSProperties => {
     const labelW = getProp('labelWidth');
     if (labelW) {
@@ -123,11 +116,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   };
 
   const renderInput = () => {
-    const { type, name, rows, value, placeholder, disabled, readonly, onClickInput } = props;
+    const { type, error, name, rows, value, placeholder, disabled, readonly, onClickInput } = props;
     const controlClass = bem('control', [
       getProp('inputAlign'),
       {
-        error: showError,
+        error,
         custom: !!props.children,
         'min-height': props.type === 'textarea' && !props.autosize,
       },

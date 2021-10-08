@@ -50,7 +50,7 @@ const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>((props, instance
     }
   }, []);
 
-  const touch = useTouch(true);
+  const touch = useTouch();
 
   const leftWidth = useMemo(
     () => (isDef(props.leftWidth) ? +props.leftWidth : actionWidth.left),

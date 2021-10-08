@@ -38,14 +38,14 @@ const useTouch = (stateable?: boolean) => {
   const update = (value: StateType | StateFunctionType) => {
     if (stateable) {
       state[1](value);
-    } else if (typeof value === 'function') {
-      refState.current = value(refState.current);
-    } else {
-      refState.current = {
-        ...refState.current,
-        ...value,
-      };
+      return;
     }
+    if (typeof value === 'function') {
+      value = value(refState.current);
+    }
+    Object.entries(value).forEach(([k, v]) => {
+      refState.current[k] = v;
+    });
   };
 
   const isVertical = useCallback(() => innerState.direction === 'vertical', [innerState.direction]);
@@ -77,15 +77,15 @@ const useTouch = (stateable?: boolean) => {
 
     update((value) => {
       // Fix: Safari back will set clientX to negative number
-      const newState = {} as typeof innerState;
+      const newState = { ...value } as typeof innerState;
 
-      newState.deltaX = touch.clientX < 0 ? 0 : touch.clientX - value.startX;
-      newState.deltaY = touch.clientY - value.startY;
-      newState.offsetX = Math.abs(value.deltaX);
-      newState.offsetY = Math.abs(value.deltaY);
+      newState.deltaX = touch.clientX < 0 ? 0 : touch.clientX - newState.startX;
+      newState.deltaY = touch.clientY - newState.startY;
+      newState.offsetX = Math.abs(newState.deltaX);
+      newState.offsetY = Math.abs(newState.deltaY);
 
-      if (!value.direction) {
-        newState.direction = getDirection(Math.abs(newState.offsetX), Math.abs(newState.offsetY));
+      if (!newState.direction) {
+        newState.direction = getDirection(newState.offsetX, newState.offsetY);
       }
       return newState;
     });
