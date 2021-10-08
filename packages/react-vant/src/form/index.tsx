@@ -1,6 +1,9 @@
-import Badge from './Form';
+import Form from './Form';
+import FormItem from './FormItem';
 
-export default Badge;
-export { Badge };
+const FormNamespace = Object.assign(Form, { Item: FormItem });
 
-export type { FormProps } from './PropsType';
+export default FormNamespace;
+export { Form, FormItem };
+
+export type { FormProps, FormItemProps } from './PropsType';

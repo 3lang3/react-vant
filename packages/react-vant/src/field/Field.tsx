@@ -395,4 +395,8 @@ Field.defaultProps = {
   formatTrigger: 'onChange',
 };
 
-export default Field;
+export const FIELD_KEY = Symbol('field');
+
+const FieldNamespace = Object.assign(Field, { __REACT_VANT_TYPE: FIELD_KEY });
+
+export default FieldNamespace;
