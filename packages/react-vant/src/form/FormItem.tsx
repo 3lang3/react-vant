@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import { Field as RcField, FormInstance } from 'rc-field-form';
 import type { FieldProps } from 'rc-field-form/lib/Field';
 import FieldContext from 'rc-field-form/lib/FieldContext';
 import type { Meta } from 'rc-field-form/lib/interface';
 
-import { FormContext } from './FormContext';
 import type { CellProps } from '../cell';
 import Field from '../field';
 import type { FormItemLayoutProps } from './PropsType';
@@ -37,61 +36,39 @@ export type FormItemProps = RcFieldProps &
     children: ChildrenType;
   };
 
-interface MemoInputProps {
+type MemoInputProps = {
   value: any;
   update: number;
   children: React.ReactNode;
-}
+} & Record<string, any>;
 
 const MemoInput = React.memo(
-  ({ children }: MemoInputProps) => children as JSX.Element,
+  ({ children, ...props }: MemoInputProps) =>
+    React.cloneElement(children as React.ReactElement, props) as JSX.Element,
   (prev, next) => prev.value === next.value && prev.update === next.update,
 );
 
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
-  const {
-    className,
-    style,
+  const { className, style, label, required, disabled, meta, onClick, children, isFieldChildren } =
+    props;
+
+  const errorMessage = meta && meta.errors.length > 0 ? meta.errors[0] : null;
+  const error = !!errorMessage;
+
+  const attrs = {
+    className: classNames(classPrefix, className),
     label,
-    help,
-    required,
+    style,
     disabled,
-    meta,
-    children,
-    htmlFor,
-    isFieldChildren,
-  } = props;
+    required,
+    error,
+    errorMessage,
+    onClick,
+  };
 
-  const context = useContext(FormContext);
+  if (isFieldChildren) return React.cloneElement(children as React.ReactElement, attrs);
 
-  const hasFeedback = props.hasFeedback || context.hasFeedback;
-  const layout = props.layout || context.layout;
-
-  const formItemLabelClass = classNames(`${classPrefix}-label`, {
-    [`${classPrefix}-label-disable`]: disabled,
-  });
-
-  const feedback = hasFeedback && meta && meta.errors.length > 0 ? meta.errors[0] : null;
-
-  const descriptionElement = feedback && <div className={`${classPrefix}-footer`}>{feedback}</div>;
-
-  if (isFieldChildren) {
-    return React.cloneElement(children as any, {
-      label,
-      required,
-    });
-  }
-  return (
-    <Field
-      style={style}
-      label={label}
-      required={required}
-      className={classNames(classPrefix, className)}
-      onClick={props.onClick}
-    >
-      {isFieldChildren ? null : children}
-    </Field>
-  );
+  return <Field {...attrs}>{children}</Field>;
 };
 
 const FormItem: FC<FormItemProps> = (props) => {
@@ -137,7 +114,6 @@ const FormItem: FC<FormItemProps> = (props) => {
     if (noStyle) {
       return baseChildren;
     }
-
     return (
       <FormItemLayout
         isFieldChildren={isFieldChildren}
@@ -183,7 +159,6 @@ const FormItem: FC<FormItemProps> = (props) => {
     >
       {(control, meta, context) => {
         let childNode: React.ReactNode = null;
-
         const isRequired =
           required !== undefined
             ? required
@@ -198,7 +173,6 @@ const FormItem: FC<FormItemProps> = (props) => {
               );
 
         const fieldId = (toArray(name).length && meta ? meta.name : []).join('_');
-
         if (shouldUpdate && dependencies) {
           devWarning('Form.Item', "`shouldUpdate` and `dependencies` shouldn't be used together.");
         }
@@ -234,7 +208,7 @@ const FormItem: FC<FormItemProps> = (props) => {
               '`defaultValue` will not work on controlled Field. You should use `initialValues` of Form instead.',
             );
           }
-          const childProps = { ...children.props, ...control, label, required };
+          const childProps = { ...children.props, ...control };
 
           if (!childProps.id) {
             childProps.id = fieldId;
@@ -262,6 +236,11 @@ const FormItem: FC<FormItemProps> = (props) => {
               {React.cloneElement(children, childProps)}
             </MemoInput>
           );
+
+          if (isFieldChildren) {
+            childProps.value = childProps.value || '';
+            childNode = React.cloneElement(children, childProps);
+          }
         } else {
           if (name) {
             devWarning(
@@ -271,7 +250,6 @@ const FormItem: FC<FormItemProps> = (props) => {
           }
           childNode = children;
         }
-
         return renderLayout(childNode, fieldId, meta, isRequired);
       }}
     </RcField>

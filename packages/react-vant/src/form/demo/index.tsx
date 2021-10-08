@@ -21,10 +21,17 @@ export default (): React.ReactNode => {
             </Button>
           }
         >
-          <Form.Item required name="input" label="输入框">
-            <Field />
+          <Form.Item
+            rules={[
+              { required: true, message: '姓名不能为空' },
+              { pattern: /^\d*$/, message: '只接受数字' },
+            ]}
+            name="input"
+            label="输入框"
+          >
+            <Field placeholder="请输入姓名" />
           </Form.Item>
-          <Form.Item required name="checkbox" label="复选框">
+          <Form.Item rules={[{ required: true }]} name="checkbox" label="复选框">
             <Checkbox>复选框a</Checkbox>
           </Form.Item>
         </Form>

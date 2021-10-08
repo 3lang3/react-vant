@@ -49,7 +49,7 @@ export interface FieldCommonProps {
   /** 是否将输入内容标红	 */
   error?: boolean;
   /** 底部错误提示文案，为空时不展示 */
-  errorMessage?: string;
+  errorMessage?: React.ReactNode;
   /** 左侧图标名称或图片链接	 */
   leftIcon?: string | React.ReactNode;
   /** 右侧图标名称或图片链接	 */
