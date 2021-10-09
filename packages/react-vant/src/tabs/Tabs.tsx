@@ -38,9 +38,11 @@ import { useSetState, useUpdateEffect } from '../hooks';
 import useEventListener from '../hooks/use-event-listener';
 import { isReachBottom } from './utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import PopupContext from '../popup/PopupContext';
 
 const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const popupContext = useContext(PopupContext);
   const [bem] = createNamespace('tabs', prefixCls);
 
   const { children, color, background } = props;
@@ -120,8 +122,8 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     let shouldAnimate = state.inited;
     if (immediate) shouldAnimate = false;
     const titles = titleRefs;
-
-    if (!titles || !titles[state.currentIndex] || props.type !== 'line' || isHidden(root.current)) {
+    const hidden = isHidden(root.current);
+    if (!titles || !titles[state.currentIndex] || props.type !== 'line' || hidden) {
       return;
     }
 
@@ -354,6 +356,12 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   useEffect(() => {
     init();
   }, []);
+
+  useUpdateEffect(() => {
+    if (popupContext.visible) {
+      setLine();
+    }
+  }, [popupContext.visible]);
 
   useEventListener('scroll', onScroll, { target: scroller, depends: [state.currentIndex] });
 
