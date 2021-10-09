@@ -31,7 +31,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "pretty-quick --staged",
       "commit-msg": "react-vant-cli commit-lint"
     }
   },
