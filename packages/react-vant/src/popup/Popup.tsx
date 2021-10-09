@@ -22,6 +22,7 @@ import { callInterceptor } from '../utils/interceptor';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import PopupContext from './PopupContext';
 
 export const sharedPopupProps = [
   'round',
@@ -235,10 +236,10 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   return ssrCompatRender(() =>
     renderToContainer(
       props.teleport,
-      <>
+      <PopupContext.Provider value={{ visible }}>
         {renderOverlay()}
         {renderTransition()}
-      </>,
+      </PopupContext.Provider>,
     ),
   );
 });
