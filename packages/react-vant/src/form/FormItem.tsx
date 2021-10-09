@@ -5,16 +5,16 @@ import { Field as RcField, FormInstance } from 'rc-field-form';
 import type { FieldProps } from 'rc-field-form/lib/Field';
 import FieldContext from 'rc-field-form/lib/FieldContext';
 import type { Meta } from 'rc-field-form/lib/interface';
-
 import type { CellProps } from '../cell';
 import Field from '../field';
 import type { FormItemLayoutProps } from './PropsType';
 import { toArray } from '../uploader/utils';
 import { FIELD_KEY } from '../field/Field';
+import { COMPONENT_TYPE_KEY } from '../utils/constant';
 
 function devWarning(component: string, message: string): void {
   if (process.env.NODE_ENV !== 'production') {
-    console.warn(`[antd-mobile: ${component}] ${message}`);
+    console.warn(`[${component}] ${message}`);
   }
 }
 
@@ -103,7 +103,7 @@ const FormItem: FC<FormItemProps> = (props) => {
   const updateRef = React.useRef(0);
   updateRef.current += 1;
 
-  const isFieldChildren = (children as any).type?.__REACT_VANT_TYPE === FIELD_KEY;
+  const isFieldChildren = (children as any).type?.[COMPONENT_TYPE_KEY] === FIELD_KEY;
 
   function renderLayout(
     baseChildren: React.ReactNode,

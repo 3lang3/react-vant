@@ -35,9 +35,10 @@ import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
 import { INDEX_ANCHORE_KEY } from './IndexAnchor';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { COMPONENT_TYPE_KEY } from '../utils/constant';
 
 const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('index-bar', prefixCls);
   const { children, sticky, zIndex, highlightColor } = props;
 
@@ -227,8 +228,8 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   const handleMapChildren = ($children: ReactNode) => {
     return React.Children.toArray($children)
       .filter(Boolean)
-      .map((child: ReactElement & { type: { __REACT_VANT_TYPE: Symbol } }) => {
-        if (child.type?.__REACT_VANT_TYPE === INDEX_ANCHORE_KEY) {
+      .map((child: ReactElement) => {
+        if (child.type?.[COMPONENT_TYPE_KEY] === INDEX_ANCHORE_KEY) {
           return React.cloneElement(child, {
             ref: setRefs(child.props.index),
           });

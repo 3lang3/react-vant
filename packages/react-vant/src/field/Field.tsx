@@ -14,6 +14,7 @@ import Cell from '../cell';
 import { FieldInstance, FieldProps } from './PropsType';
 import { isDef, addUnit, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { COMPONENT_TYPE_KEY } from '../utils/constant';
 
 const ICON_SIZE = '16px';
 
@@ -397,6 +398,6 @@ Field.defaultProps = {
 
 export const FIELD_KEY = Symbol('field');
 
-const FieldNamespace = Object.assign(Field, { __REACT_VANT_TYPE: FIELD_KEY });
+const FieldNamespace = Object.assign(Field, { [COMPONENT_TYPE_KEY]: FIELD_KEY });
 
 export default FieldNamespace;

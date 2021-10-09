@@ -6,7 +6,7 @@ import { CheckboxInstance, CheckboxProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((props, ref) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('checkbox', prefixCls);
   const { parent, ...context } = useContext(CheckBoxContext);
   const [checked, setChecked] = useMergedState<boolean>({
@@ -18,7 +18,6 @@ const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((props, ref) => {
     const { name } = props;
     const { max } = parent.props;
     const value = context.checked.slice();
-
     if (isChecked) {
       const overlimit = max && value.length >= max;
 
