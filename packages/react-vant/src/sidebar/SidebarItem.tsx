@@ -7,7 +7,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = ({ children, ...props }) => {
   const { parent, index } = props;
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sidbar-item', prefixCls);
+  const [bem] = createNamespace('sidebar-item', prefixCls);
 
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {
