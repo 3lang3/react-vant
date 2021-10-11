@@ -5,10 +5,13 @@ export const ComponentPrompt = [
   {
     name: 'componentName',
     type: 'input',
-    message: 'Please enter a new component name? eg:ActionBar',
+    message: 'Please enter a new component name(CamelCase)? eg:ActionBar',
     validate(input) {
       if (getComponents().includes(kebabCase(input))) {
         return new Error(`${input} already exists`);
+      }
+      if (!/([A-Z][a-z0-9]+)+/g.test(input)) {
+        return new Error(`${input} does not match camel case`);
       }
       return true;
     },
