@@ -20,7 +20,12 @@ import {
   configContent,
 } from '../templates/component';
 import { EXPORT_PATH, EXPORT_CONTENT } from '../templates/component/Export';
-import { STYLE_INDEX_CONTENT, STYLE_INDEX_LESS_PATH } from '../templates/component/style';
+import {
+  STYLE_INDEX_CONTENT,
+  STYLE_INDEX_LESS_PATH,
+  STYLE_VAR_CONTENT,
+  STYLE_VAR_LESS_PATH,
+} from '../templates/component/style';
 // 中横线组件名,路径
 let HLComponent = '';
 // 组件驼峰命名
@@ -43,9 +48,10 @@ async function generateDemo() {
   smartOutputFile(DEMO_STYLE_PATH(HLComponent), DEMO_STYLE_CONTENT(HLComponent));
 }
 
-// 生成样式 style/index.less
+// 生成样式 style/index.less，style/var.less
 async function generateStyle() {
   smartOutputFile(STYLE_INDEX_LESS_PATH(HLComponent), STYLE_INDEX_CONTENT(HLComponent));
+  smartOutputFile(STYLE_VAR_LESS_PATH(HLComponent), STYLE_VAR_CONTENT());
 }
 
 // 生成PropsType.ts
