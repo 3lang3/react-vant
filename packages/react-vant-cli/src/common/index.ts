@@ -1,11 +1,5 @@
 import { sep, join } from 'path';
-import {
-  lstatSync,
-  existsSync,
-  readdirSync,
-  readFileSync,
-  outputFileSync,
-} from 'fs-extra';
+import { lstatSync, existsSync, readdirSync, readFileSync, outputFileSync } from 'fs-extra';
 import merge from 'webpack-merge';
 import {
   SRC_DIR,
@@ -36,7 +30,11 @@ export function hasDefaultExport(code: string) {
   return code.includes('export default') || code.includes('export { default }');
 }
 
-export function getComponents() {
+/**
+ * Get components Array
+ * return ['action-bar','action-sheet','cascader',……]
+ */
+export function getComponents(): Array<string> {
   const EXCLUDES = ['.DS_Store'];
   const dirs = readdirSync(SRC_DIR);
   return dirs
@@ -47,9 +45,8 @@ export function getComponents() {
         if (existsSync(path)) {
           return hasDefaultExport(readFileSync(path, 'utf-8'));
         }
-
         return false;
-      })
+      }),
     );
 }
 
@@ -64,7 +61,6 @@ export function isDemoDir(dir: string) {
 export function isTestDir(dir: string) {
   return TEST_REGEXP.test(dir);
 }
-
 
 export function isAsset(path: string) {
   return ASSET_REGEXP.test(path);
@@ -90,10 +86,7 @@ export function camelize(str: string): string {
 }
 
 export function pascalize(str: string): string {
-  return camelize(str).replace(
-    pascalizeRE,
-    (_, c1, c2) => c1.toUpperCase() + c2
-  );
+  return camelize(str).replace(pascalizeRE, (_, c1, c2) => c1.toUpperCase() + c2);
 }
 
 export function decamelize(str: string, sepc = '-') {
@@ -139,6 +132,10 @@ export function setModuleEnv(value: ModuleEnv) {
   process.env.BABEL_MODULE = value;
 }
 
+/**
+ * set Node Env / 设置Node环境
+ * @param value
+ */
 export function setNodeEnv(value: NodeEnv) {
   process.env.NODE_ENV = value;
 }
@@ -163,6 +160,13 @@ export function smartOutputFile(filePath: string, content: string) {
   }
 
   outputFileSync(filePath, content);
+}
+
+export function kebabCase(str: string): string {
+  return str
+    .replace(/([A-Z])/g, '-$1')
+    .toLowerCase()
+    .replace(/^-/, '');
 }
 
 export { getVantConfig };
