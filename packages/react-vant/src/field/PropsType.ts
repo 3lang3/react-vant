@@ -108,6 +108,10 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   button?: React.ReactNode;
   /** 自定义输入框最右侧的额外内容 */
   extra?: React.ReactNode;
+  /** 额外的提示信息 */
+  intro?: React.ReactNode;
+  /** 字段提示信息 */
+  tooltip?: React.ReactNode;
   onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;

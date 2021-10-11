@@ -49,11 +49,22 @@ const MemoInput = React.memo(
 );
 
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
-  const { className, style, label, required, disabled, meta, onClick, children, isFieldChildren } =
-    props;
+  const {
+    className,
+    help,
+    style,
+    label,
+    required,
+    disabled,
+    meta,
+    onClick,
+    children,
+    isFieldChildren,
+  } = props;
 
-  const errorMessage = meta && meta.errors.length > 0 ? meta.errors[0] : null;
-  const error = !!errorMessage;
+  const fieldErrorMessage = meta && meta.errors.length > 0 ? meta.errors[0] : null;
+  const error = !!fieldErrorMessage;
+  const errorMessage = help || fieldErrorMessage;
 
   const attrs = {
     className: classNames(classPrefix, className),

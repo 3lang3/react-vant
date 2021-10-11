@@ -20,6 +20,8 @@ export type FormItemProps = FieldProps &
   BaseTypeProps & {
     label?: string;
     help?: string;
+    extra?: React.ReactNode;
+    tooltip?: React.ReactNode;
     hasFeedback?: boolean;
     required?: boolean;
     noStyle?: boolean;

@@ -117,6 +117,7 @@ import { Cell } from 'react-vant';
 | title | 左侧标题 | _ReactNode_ | - |
 | value | 右侧内容 | _number \| string_ | - |
 | label | 标题下方的描述信息 | _ReactNode_ | - |
+| extra | 自定义单元格最右侧的额外内容 | _ReactNode_ | - |
 | size | 单元格大小，可选值为 `large` | _string_ | - |
 | icon | 左侧图标 | _string\|ReactNode_ | - |
 | rightIcon | 自定义右侧按钮，默认为`arrow` | _string\|ReactNode_ | - |

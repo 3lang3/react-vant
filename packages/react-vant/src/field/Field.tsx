@@ -298,15 +298,19 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   };
 
   const renderMessage = () => {
-    // if (form && form.props.showErrorMessage === false) {
-    //   return null;
-    // }
-
     const message = props.errorMessage;
 
     if (message) {
       const errorMessageAlign = getProp('errorMessageAlign');
       return <div className={classnames(bem('error-message', errorMessageAlign))}>{message}</div>;
+    }
+
+    return null;
+  };
+
+  const renderIntro = () => {
+    if (props.intro) {
+      return <div className={classnames(bem('intro'))}>{props.intro}</div>;
     }
 
     return null;
@@ -386,6 +390,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       </div>
       {renderWordLimit()}
       {renderMessage()}
+      {renderIntro()}
     </Cell>
   );
 });
