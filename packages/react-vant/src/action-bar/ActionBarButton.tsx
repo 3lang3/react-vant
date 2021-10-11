@@ -1,14 +1,15 @@
 import React, { useContext, useMemo } from 'react';
 import classnames from 'classnames';
 import { ActionBarButtonProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { Button } from '../button';
 import ActionBarContext from './ActionBarContext';
-
-const [bem] = createNamespace('action-bar-button');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ActionBarButton: React.FC<ActionBarButtonProps> = (props) => {
   const { type, icon, text, color, loading, disabled, index } = props;
+
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('action-bar-button', prefixCls);
 
   const { parent } = useContext(ActionBarContext);
 

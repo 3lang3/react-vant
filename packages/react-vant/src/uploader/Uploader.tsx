@@ -1,8 +1,8 @@
-import React, { forwardRef, isValidElement, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, isValidElement, useContext, useImperativeHandle, useRef } from 'react';
 import cls from 'classnames';
 // Utils
 import { isPromise, getSizeStyle, extend, pick } from '../utils';
-import { bem, isOversize, filterFiles, readFileContent, toArray, isImageFile } from './utils';
+import { isOversize, filterFiles, readFileContent, toArray, isImageFile } from './utils';
 // Components
 import Icon from '../icon';
 
@@ -10,8 +10,12 @@ import Icon from '../icon';
 import { UploaderFileListItem, UploaderInstance, UploaderProps } from './PropsType';
 import { UploaderPreviewItem } from './UploaderPreviewItem';
 import ImagePreview from '../image-preview';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('uploader', prefixCls);
+
   const imagePreview = useRef(null);
   const inputRef = useRef<HTMLInputElement>();
 

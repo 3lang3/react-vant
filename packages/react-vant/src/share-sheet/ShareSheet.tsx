@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
 import { ShareSheetOption, ShareSheetProps } from './PropsType';
-import { createNamespace, pick } from '../utils';
+import { pick } from '../utils';
 import Popup from '../popup';
-
-const [bem] = createNamespace('share-sheet');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const PRESET_ICONS = [
   'qq',
@@ -25,6 +24,9 @@ function getIconURL(icon: string) {
 }
 
 const ShareSheet: React.FC<ShareSheetProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('share-sheet', prefixCls);
+
   const onCancel = () => {
     props.onCancel?.();
   };

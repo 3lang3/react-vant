@@ -1,16 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import cls from 'classnames';
 import { ImagePreviewProps } from './PropsType';
-import { createNamespace, pick } from '../utils';
+import { pick } from '../utils';
 import Icon from '../icon';
 import Swipe from '../swipe';
 import Image from '../image';
 import Loading from '../loading';
 import Popup from '../popup';
-
-const [bem] = createNamespace('image-preview');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('imagee-preview', prefixCls);
   const [active, setActive] = useState(() => props.startPosition);
   const mountedRef = useRef(false);
 

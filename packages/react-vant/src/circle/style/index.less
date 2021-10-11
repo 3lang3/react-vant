@@ -1,10 +1,20 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-circle {
+:root {
+  --rv-circle-size: @circle-size;
+  --rv-circle-color: @circle-color;
+  --rv-circle-layer-color: @circle-layer-color;
+  --rv-circle-text-color: @circle-text-color;
+  --rv-circle-text-font-weight: @circle-text-font-weight;
+  --rv-circle-text-font-size: @circle-text-font-size;
+  --rv-circle-text-line-height: @circle-text-line-height;
+}
+
+.@{rv-prefix}-circle {
   position: relative;
   display: inline-block;
-  width: @circle-size;
-  height: @circle-size;
+  width: var(--rv-circle-size);
+  height: var(--rv-circle-size);
   text-align: center;
 
   svg {
@@ -16,12 +26,12 @@
   }
 
   &__layer {
-    stroke: @circle-layer-color;
+    stroke: var(--rv-circle-layer-color);
   }
 
   &__hover {
     fill: none;
-    stroke: @circle-color;
+    stroke: var(--rv-circle-color);
     stroke-linecap: round;
   }
 
@@ -31,11 +41,11 @@
     left: 0;
     box-sizing: border-box;
     width: 100%;
-    padding: 0 @padding-base;
-    color: @circle-text-color;
-    font-weight: @circle-text-font-weight;
-    font-size: @circle-text-font-size;
-    line-height: @circle-text-line-height;
+    padding: 0 var(--rv-padding-base);
+    color: var(--rv-circle-text-color);
+    font-weight: var(--rv-circle-text-font-weight);
+    font-size: var(--rv-circle-text-font-size);
+    line-height: var(--rv-circle-text-line-height);
     transform: translateY(-50%);
   }
 }

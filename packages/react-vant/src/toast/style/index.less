@@ -1,4 +1,22 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
+
+:root {
+  --rv-toast-max-width: @toast-max-width;
+  --rv-toast-font-size: @toast-font-size;
+  --rv-toast-text-color: @toast-text-color;
+  --rv-toast-loading-icon-color: @toast-loading-icon-color;
+  --rv-toast-line-height: @toast-line-height;
+  --rv-toast-border-radius: @toast-border-radius;
+  --rv-toast-background-color: @toast-background-color;
+  --rv-toast-icon-size: @toast-icon-size;
+  --rv-toast-text-min-width: @toast-text-min-width;
+  --rv-toast-text-padding: @toast-text-padding;
+  --rv-toast-default-padding: @toast-default-padding;
+  --rv-toast-default-width: @toast-default-width;
+  --rv-toast-default-min-height: @toast-default-min-height;
+  --rv-toast-position-top-distance: @toast-position-top-distance;
+  --rv-toast-position-bottom-distance: @toast-position-bottom-distance;
+}
 
 .@{rv-prefix}-toast {
   display: flex;
@@ -6,26 +24,28 @@
   align-items: center;
   justify-content: center;
   box-sizing: content-box;
-
   // hack for avoid max-width when use left & fixed
-  min-width: @toast-default-width;
-  max-width: @toast-max-width;
-  min-height: @toast-default-min-height;
-  padding: @toast-default-padding;
-  color: @toast-text-color;
-  font-size: @toast-font-size;
-  line-height: @toast-line-height;
+  width: var(--rv-toast-default-width);
+  max-width: var(--rv-toast-max-width);
+  min-height: var(--rv-toast-default-min-height);
+  padding: var(--rv-toast-default-padding);
+  color: var(--rv-toast-text-color);
+  font-size: var(--rv-toast-font-size);
+  line-height: var(--rv-toast-line-height);
 
-  // allow newline charactor
+  // allow newline character
   white-space: pre-wrap;
   text-align: center;
-  word-wrap: break-word;
-  background-color: @toast-background-color;
-  border-radius: @toast-border-radius;
+  // https://github.com/youzan/vant/issues/8959
+  word-break: break-all;
+  background-color: var(--rv-toast-background-color);
+  border-radius: var(--rv-toast-border-radius);
+  transition: all var(--rv-animation-duration-fast);
 
   &--unclickable {
     // lock scroll
     overflow: hidden;
+    cursor: not-allowed;
 
     // should not add pointer-events: none directly to body tag
     // that will cause unexpected tap-highlight-color in mobile safari
@@ -37,34 +57,34 @@
   &--info,
   &--html {
     width: fit-content;
-    min-width: @toast-text-min-width;
+    min-width: var(--rv-toast-text-min-width);
     min-height: 0;
-    padding: @toast-text-padding;
+    padding: var(--rv-toast-text-padding);
 
-    .rv-toast__text {
+    .@{rv-prefix}-toast__info {
       margin-top: 0;
     }
   }
 
   &--top {
-    top: @toast-position-top-distance;
+    top: var(--rv-toast-position-top-distance);
   }
 
   &--bottom {
     top: auto;
-    bottom: @toast-position-bottom-distance;
+    bottom: var(--rv-toast-position-bottom-distance);
   }
 
   &__icon {
-    font-size: @toast-icon-size;
+    font-size: var(--rv-toast-icon-size);
   }
 
   &__loading {
-    padding: @padding-base;
-    color: @toast-loading-icon-color;
+    padding: var(--rv-padding-base);
+    color: var(--rv-toast-loading-icon-color);
   }
 
-  &__text {
-    margin-top: @padding-xs;
+  &__info {
+    margin-top: var(--rv-padding-xs);
   }
 }

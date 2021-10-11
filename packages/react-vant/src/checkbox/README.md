@@ -213,7 +213,7 @@ export default () => {
 | labelPosition  | 文本位置，可选值为 `left` | _string_                               | `right`   |
 | iconSize       | 图标大小，默认单位为 `px` | _number \| string_                     | `20px`    |
 | iconRender     | 自定义图标                | _({ checked, disabled }) => ReactNode_ | -         |
-| checkedColor   | 选中状态颜色              | _string_                               | `#1989fa` |
+| checkedColor   | 选中状态颜色              | _string_                               | `#3f45ff` |
 | bindGroup      | 是否与复选框组绑定        | _boolean_                              | `true`    |
 
 ### CheckboxGroup Props
@@ -226,7 +226,7 @@ export default () => {
 | max            | 最大可选数，`0`为无限制               | _number \| string_ | `0`        |
 | direction      | 排列方向，可选值为 `horizontal`       | _string_           | `vertical` |
 | iconSize       | 所有复选框的图标大小，默认单位为 `px` | _number \| string_ | `20px`     |
-| checkedColor   | 所有复选框的选中状态颜色              | _string_           | `#1989fa`  |
+| checkedColor   | 所有复选框的选中状态颜色              | _string_           | `#3f45ff`  |
 
 ### Checkbox Events
 
@@ -286,7 +286,7 @@ checkboxGroup.current?.toggleAll({
 
 通过 `CheckboxInstance` 和 `CheckboxGroupInstance` 获取 Checkbox 实例的类型定义（从 3.2.0 版本开始支持）。
 
-```ts
+```js
 import { useRef } from 'react';
 import type { CheckboxInstance, CheckboxGroupInstance } from 'react-vant';
 
@@ -296,3 +296,22 @@ const checkboxGroupRef = useRef<CheckboxGroupInstance>();
 checkboxRef.current?.toggle();
 checkboxGroupRef.current?.toggleAll();
 ```
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-checkbox-size | _20px_ | - |
+| --rv-checkbox-border-color | _var(--rv-gray-5)_ | - |
+| --rv-checkbox-transition-duration | _var(--rv-animation-duration-fast)_ | - |
+| --rv-checkbox-label-margin | _var(--rv-padding-xs)_ | - |
+| --rv-checkbox-label-color | _var(--rv-text-color)_ | - |
+| --rv-checkbox-checked-icon-color | _var(--rv-primary-color)_ | - |
+| --rv-checkbox-disabled-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-checkbox-disabled-label-color | _var(--rv-gray-5)_ | - |
+| --rv-checkbox-disabled-background-color | _var(--rv-border-color)_ | - |

@@ -134,7 +134,7 @@ const icon = {
 | fixed | 是否固定在底部 | _boolean_ | `true` |
 | border | 是否显示外边框 | _boolean_ | `true` |
 | zIndex | 元素 z-index | _number \| string_ | `1` |
-| activeColor | 选中标签的颜色 | _string_ | `#1989fa` |
+| activeColor | 选中标签的颜色 | _string_ | `#3f45ff` |
 | inactiveColor | 未选中标签的颜色 | _string_ | `#7d7e80` |
 | placeholder | 固定在底部时，是否在标签位置生成一个等高的占位元素 | _boolean_ | `false` |
 | safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei)，设置 fixed 时默认开启 | _boolean_ | `false` |
@@ -154,21 +154,22 @@ const icon = {
 | iconPrefix | 图标类名前缀，等同于 Icon 组件的 [classPrefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | badge | 图标右上角徽标的内容 | _BadgeProps_ | - |
 
+
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                      | 默认值                     | 描述 |
-| ----------------------------------------- | -------------------------- | ---- |
-| --van-tabbar-height                       | _50px_                     | -    |
-| --van-tabbar-z-index                      | _1_                        | -    |
-| --van-tabbar-background-color             | _var(--van-white)_         | -    |
-| --van-tabbar-item-font-size               | _var(--van-font-size-sm)_  | -    |
-| --van-tabbar-item-text-color              | _var(--van-gray-7)_        | -    |
-| --van-tabbar-item-active-color            | _var(--van-primary-color)_ | -    |
-| --van-tabbar-item-active-background-color | _var(--van-white)_         | -    |
-| --van-tabbar-item-line-height             | _1_                        | -    |
-| --van-tabbar-item-icon-size               | _22px_                     | -    |
-| --van-tabbar-item-icon-margin-bottom      | _var(--van-padding-base)_  | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-tabbar-height | _50px_ | - |
+| --rv-tabbar-z-index | _1_ | - |
+| --rv-tabbar-background-color | _var(--rv-white)_ | - |
+| --rv-tabbar-item-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-tabbar-item-text-color | _var(--rv-gray-7)_ | - |
+| --rv-tabbar-item-active-color | _var(--rv-primary-color)_ | - |
+| --rv-tabbar-item-active-background-color | _var(--rv-white)_ | - |
+| --rv-tabbar-item-line-height | _1_ | - |
+| --rv-tabbar-item-icon-size | _22px_ | - |
+| --rv-tabbar-item-icon-margin-bottom | _var(--rv-padding-base)_ | - |

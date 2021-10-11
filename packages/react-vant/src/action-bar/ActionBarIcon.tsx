@@ -1,13 +1,14 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, useContext } from 'react';
 import classnames from 'classnames';
 import { ActionBarIconProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { Icon } from '../icon';
 import Badge from '../badge';
-
-const [bem] = createNamespace('action-bar-icon');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ActionBarIcon: React.FC<ActionBarIconProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('action-bar-icon', prefixCls);
+
   const renderIcon = () => {
     const { badge, icon, color, iconClass, iconPrefix } = props;
     if (typeof icon === 'string') {

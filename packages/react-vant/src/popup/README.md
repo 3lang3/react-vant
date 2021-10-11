@@ -96,6 +96,7 @@ const [showPopup, setShowPopup] = useState(false);
 | title | 弹出层标题 | _string_ | - |
 | descrition | 弹出层描述 | _string_ | - |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
+| destroyOnClose | 关闭时销毁 Popup 里的子元素 | _boolean_ | `false` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `false` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |
@@ -117,17 +118,28 @@ const [showPopup, setShowPopup] = useState(false);
 | onOpened         | 打开弹出层且动画结束后触发 | -              |
 | onClosed         | 关闭弹出层且动画结束后触发 | -              |
 
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { PopupPosition, PopupCloseIconPosition } from 'react-vant';
+```
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                           | 默认值                               | 描述 |
-| ------------------------------ | ------------------------------------ | ---- |
-| @popup-background-color        | `@white`                             | -    |
-| @popup-transition              | `transform @animation-duration-base` | -    |
-| @popup-round-border-radius     | `16px`                               | -    |
-| @popup-close-icon-size         | `22px`                               | -    |
-| @popup-close-icon-color        | `@gray-5`                            | -    |
-| @popup-close-icon-active-color | `@gray-6`                            | -    |
-| @popup-close-icon-margin       | `16px`                               | -    |
-| @popup-close-icon-z-index      | `1`                                  | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-popup-background-color | _var(--rv-white)_ | - |
+| --rv-popup-transition | _transform var(--rv-animation-duration-base)_ | - |
+| --rv-popup-round-border-radius | _16px_ | - |
+| --rv-popup-close-icon-size | _22px_ | - |
+| --rv-popup-close-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-popup-close-icon-active-color | _var(--rv-gray-6)_ | - |
+| --rv-popup-close-icon-margin | _16px_ | - |
+| --rv-popup-close-icon-z-index | _1_ | - |

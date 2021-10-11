@@ -77,19 +77,6 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 <DatetimePicker type="time" minHour="10" maxHour="20" value="12:00" />
 ```
 
-### 选择日期时间（包含星期）
-
-将 type 设置为 `weektime` 即可选择时间日期和时间（包含日期）
-
-```jsx
-<DatetimePicker
-  type="weektime"
-  minDate={new Date(2021, 0, 1)}
-  maxDate={new Date(2021, 2, 1)}
-  value={new Date()}
-/>
-```
-
 ### 选择完整时间
 
 将 type 设置为 `datetime` 即可选择完整时间，包括年月日和小时、分钟。
@@ -147,19 +134,6 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 />
 ```
 
-### 确认按钮
-
-```jsx
-<DatetimePicker
-  showSubmitBtn
-  onConfirm={(value: Date) => Toast(`确认的日期：${value}`)}
-  type="weektime"
-  minDate={new Date(2021, 0, 1)}
-  maxDate={new Date(2021, 2, 1)}
-  value={new Date()}
-/>
-```
-
 ### 搭配弹出层使用
 
 ```jsx
@@ -185,7 +159,7 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
       setFieldValue(value);
       setShowPicker(false);
     }}
-    type="weektime"
+    type="datetime"
     filter={(type: string, options) => {
       if (type === 'minute') {
         return options.filter((option) => option % 5 === 0);

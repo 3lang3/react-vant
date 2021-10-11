@@ -1,19 +1,22 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import classnames from 'classnames';
 import { addUnit } from '../utils';
 import { IconProps } from './PropsType';
 import Badge from '../badge';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 function isImage(name?: string): boolean {
   return name ? name.indexOf('/') !== -1 : false;
 }
 
 const Icon: React.FC<IconProps> = (props) => {
+  const { iconPrefix } = useContext(ConfigProviderContext);
+
   const { tag, name, className, onClick, onTouchStart } = props;
 
   const imageIcon = isImage(name);
 
-  const classPrefix = useMemo(() => props.classPrefix || 'van-icon', [props.classPrefix]);
+  const classPrefix = useMemo(() => props.classPrefix || iconPrefix, [props.classPrefix, iconPrefix]);
 
   return (
     <Badge
@@ -21,7 +24,7 @@ const Icon: React.FC<IconProps> = (props) => {
       className={classnames(
         className,
         classPrefix,
-        imageIcon ? '' : `${props.classPrefix}-${name}`,
+        imageIcon ? '' : `${classPrefix}-${name}`,
       )}
       style={{
         color: props.color,
@@ -39,7 +42,6 @@ const Icon: React.FC<IconProps> = (props) => {
 };
 
 Icon.defaultProps = {
-  classPrefix: 'van-icon',
   tag: 'i',
 };
 

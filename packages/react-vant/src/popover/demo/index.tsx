@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import React, { useRef, useState } from 'react';
-import { Toast, Popover, Button, Grid, Popup, Picker, Cell } from 'react-vant';
+import { Toast, Button, Grid, Popup, Picker, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { PopoverInstance, PopoverPlacement } from '../PropsType';
+import Popover from '..'
 import './style.less';
 
 const actions = [{ text: '选项一' }, { text: '选项二' }, { text: '选项三' }];
@@ -77,7 +78,7 @@ export default (): React.ReactNode => {
               reference={<div className="demo-popover-refer" />}
             />
           </div>
-          <Picker columns={placements} onChange={onPickerChange} />
+          <Picker showToolbar={false} columns={placements} onChange={onPickerChange} />
         </Popup>
       </DemoBlock>
       <DemoBlock title="选项配置">

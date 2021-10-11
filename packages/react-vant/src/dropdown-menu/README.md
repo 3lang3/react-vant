@@ -171,3 +171,57 @@ export default () => {
 | onOpened | 打开菜单栏且动画结束后触发    | -        |
 | onClosed | 关闭菜单栏且动画结束后触发    | -        |
 
+
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type {
+  DropdownItemOption,
+  DropdownItemInstance,
+  DropdownMenuDirection,
+} from 'react-vant';
+```
+
+`DropdownItemInstance` 是组件实例的类型，用法如下：
+
+```js
+import { useRef } from 'react';
+import type { DropdownItemInstance } from 'react-vant';
+
+const dropdownItemRef = useRef<DropdownItemInstance>();
+
+dropdownItemRef.current?.toggle();
+```
+
+### Option 数据结构
+
+| 键名  | 说明                                   | 类型               |
+| ----- | -------------------------------------- | ------------------ |
+| text  | 文字                                   | _string_           |
+| value | 标识符                                 | _number \| string_ |
+| icon  | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_           |
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-dropdown-menu-height | _48px_ | - |
+| --rv-dropdown-menu-background-color | _var(--rv-white)_ | - |
+| --rv-dropdown-menu-box-shadow | _0 2px 12px fade(var(--rv-gray-7), 12)_ | - |
+| --rv-dropdown-menu-title-font-size | _15px_ | - |
+| --rv-dropdown-menu-title-text-color | _var(--rv-text-color)_ | - |
+| --rv-dropdown-menu-title-active-text-color | _var(--rv-danger-color)_ | - |
+| --rv-dropdown-menu-title-disabled-text-color | _var(--rv-gray-6)_ | - |
+| --rv-dropdown-menu-title-padding | _0 var(--rv-padding-xs)_ | - |
+| --rv-dropdown-menu-title-line-height | _var(--rv-line-height-lg)_ | - |
+| --rv-dropdown-menu-option-active-color | _var(--rv-danger-color)_ | - |
+| --rv-dropdown-menu-content-max-height | _80%_ | - |
+| --rv-dropdown-item-z-index | _10_ | - |

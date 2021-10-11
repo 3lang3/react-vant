@@ -1,11 +1,22 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-nav-bar {
+:root {
+  --rv-nav-bar-height: @nav-bar-height;
+  --rv-nav-bar-background-color: @nav-bar-background-color;
+  --rv-nav-bar-arrow-size: @nav-bar-arrow-size;
+  --rv-nav-bar-icon-color: @nav-bar-icon-color;
+  --rv-nav-bar-text-color: @nav-bar-text-color;
+  --rv-nav-bar-title-font-size: @nav-bar-title-font-size;
+  --rv-nav-bar-title-text-color: @nav-bar-title-text-color;
+  --rv-nav-bar-z-index: @nav-bar-z-index;
+}
+
+.@{rv-prefix}-nav-bar {
   position: relative;
-  z-index: @nav-bar-z-index;
-  line-height: @line-height-lg;
+  z-index: var(--rv-nav-bar-z-index);
+  line-height: var(--rv-line-height-lg);
   text-align: center;
-  background-color: @nav-bar-background-color;
+  background-color: var(--rv-nav-bar-background-color);
   user-select: none;
 
   &--fixed {
@@ -21,27 +32,27 @@
   }
 
   .van-icon {
-    color: @nav-bar-icon-color;
+    color: var(--rv-nav-bar-icon-color);
   }
 
   &__content {
     position: relative;
     display: flex;
     align-items: center;
-    height: @nav-bar-height;
+    height: var(--rv-nav-bar-height);
   }
 
   &__arrow {
-    margin-right: @padding-base;
-    font-size: @nav-bar-arrow-size;
+    margin-right: var(--rv-padding-base);
+    font-size: var(--rv-nav-bar-arrow-size);
   }
 
   &__title {
     max-width: 60%;
     margin: 0 auto;
-    color: @nav-bar-title-text-color;
-    font-weight: @font-weight-bold;
-    font-size: @nav-bar-title-font-size;
+    color: var(--rv-nav-bar-title-text-color);
+    font-weight: var(--rv-font-weight-bold);
+    font-size: var(--rv-nav-bar-title-font-size);
   }
 
   &__left,
@@ -51,12 +62,12 @@
     bottom: 0;
     display: flex;
     align-items: center;
-    padding: 0 @padding-md;
-    font-size: @font-size-md;
+    padding: 0 var(--rv-padding-md);
+    font-size: var(--rv-font-size-md);
     cursor: pointer;
 
     &:active {
-      opacity: @active-opacity;
+      opacity: var(--rv-active-opacity);
     }
   }
 
@@ -69,6 +80,6 @@
   }
 
   &__text {
-    color: @nav-bar-text-color;
+    color: var(--rv-nav-bar-text-color);
   }
 }

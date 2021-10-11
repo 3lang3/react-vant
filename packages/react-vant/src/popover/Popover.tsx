@@ -1,15 +1,21 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import cls from 'classnames';
 import { Instance, createPopper, offsetModifier } from '@vant/popperjs';
 import { PopoverAction, PopoverInstance, PopoverProps } from './PropsType';
-import { createNamespace, extend, pick } from '../utils';
+import { extend, pick } from '../utils';
 import { PopupInstanceType } from '../popup/PropsType';
 import Icon from '../icon';
 import { BORDER_BOTTOM } from '../utils/constant';
 import useClickAway from '../hooks/use-click-away';
 import Popup from '../popup';
-
-const [bem] = createNamespace('popover');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const popupProps = [
   'overlay',
@@ -27,6 +33,9 @@ const popupProps = [
 
 const Popover = forwardRef<PopoverInstance, PopoverProps>(
   ({ children, className, ...props }, ref) => {
+    const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+    const [bem] = createNamespace('popover', prefixCls);
+
     const [visible, updateShow] = useState(false);
 
     const popper = useRef<Instance>(null);

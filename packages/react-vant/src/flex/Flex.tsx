@@ -1,14 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import classnames from 'classnames';
 import FlexContext from './FlexContext';
 import { FlexProps } from './PropsType';
-import { createNamespace } from '../utils';
-
-const [bem] = createNamespace('flexbox');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Flex: React.FC<FlexProps> = (props) => {
   const { direction, wrap, justify, align, gutter, style, className, children, ...rest } = props;
-
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('flexbox', prefixCls);
   const getGutter: [number, number] = useMemo(
     () => (Array.isArray(gutter) ? gutter : [gutter, 0]),
     [gutter],

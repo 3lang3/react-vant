@@ -1,13 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import classnames from 'classnames';
-import { BaseTypeProps, createNamespace } from '../utils';
+import { BaseTypeProps } from '../utils';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem] = createNamespace('button-group');
+export const ButtonGroup: FC<BaseTypeProps> = ({ className, style, children }) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('button-group', prefixCls);
 
-export const ButtonGroup: FC<BaseTypeProps> = ({ className, style, children }) => (
-  <div style={style} className={classnames(className, bem())}>
-    {children}
-  </div>
-);
+  return (
+    <div style={style} className={classnames(className, bem())}>
+      {children}
+    </div>
+  );
+};
 
 export default ButtonGroup;

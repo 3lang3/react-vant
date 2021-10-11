@@ -7,6 +7,7 @@ import React, {
   useRef,
   useImperativeHandle,
   forwardRef,
+  useContext,
 } from 'react';
 import classnames from 'classnames';
 
@@ -17,12 +18,14 @@ import useRefs from '../hooks/use-refs';
 import useEventListener from '../hooks/use-event-listener';
 
 import { PickerProps, PickerInstance, PickerObjectColumn } from './PropsType';
-import { createNamespace, unitToPx, preventDefault, extend } from '../utils';
+import { unitToPx, preventDefault, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
-
-const [bem] = createNamespace('picker');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('picker', prefixCls);
+
   const [refs, setRefs] = useRefs();
   const [formattedColumns, setFormattedColumns] = useState([]);
 

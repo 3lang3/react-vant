@@ -301,30 +301,35 @@ const fieldRef = useRef < FieldInstance > null;
 | focus  | 获取输入框焦点 | -    | -      |
 | blur   | 取消输入框焦点 | -    | -      |
 
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                             | 默认值          | 描述 |
-| -------------------------------- | --------------- | ---- |
-| @field-label-width               | `5.2em`         | -    |
-| @field-label-color               | `@gray-8`       | -    |
-| @field-label-margin-right        | `@padding-sm`   | -    |
-| @field-input-text-color          | `@text-color`   | -    |
-| @field-input-error-text-color    | `@red`          | -    |
-| @field-input-disabled-text-color | `@gray-5`       | -    |
-| @field-placeholder-text-color    | `@gray-5`       | -    |
-| @field-icon-size                 | `16px`          | -    |
-| @field-clear-icon-size           | `16px`          | -    |
-| @field-clear-icon-color          | `@gray-5`       | -    |
-| @field-right-icon-color          | `@gray-6`       | -    |
-| @field-error-message-color       | `@red`          | -    |
-| @field-error-message-text-color  | `12px`          | -    |
-| @field-text-area-min-height      | `60px`          | -    |
-| @field-word-limit-color          | `@gray-7`       | -    |
-| @field-word-limit-font-size      | `@font-size-sm` | -    |
-| @field-word-limit-line-height    | `16px`          | -    |
-| @field-disabled-text-color       | `@gray-5`       | -    |
+| 名称                                  | 默认值                    | 描述 |
+| ------------------------------------- | ------------------------- | ---- |
+| --rv-field-label-width               | _6.2em_                   | -    |
+| --rv-field-label-color               | _var(--rv-gray-7)_       | -    |
+| --rv-field-label-margin-right        | _var(--rv-padding-sm)_   | -    |
+| --rv-field-input-text-color          | _var(--rv-text-color)_   | -    |
+| --rv-field-input-error-text-color    | _var(--rv-danger-color)_ | -    |
+| --rv-field-input-disabled-text-color | _var(--rv-gray-5)_       | -    |
+| --rv-field-placeholder-text-color    | _var(--rv-gray-5)_       | -    |
+| --rv-field-icon-size                 | _16px_                    | -    |
+| --rv-field-clear-icon-size           | _16px_                    | -    |
+| --rv-field-clear-icon-color          | _var(--rv-gray-5)_       | -    |
+| --rv-field-right-icon-color          | _var(--rv-gray-6)_       | -    |
+| --rv-field-error-message-color       | _var(--rv-danger-color)_ | -    |
+| --rv-field-error-message-font-size   | _12px_                    | -    |
+| --rv-field-text-area-min-height      | _60px_                    | -    |
+| --rv-field-word-limit-color          | _var(--rv-gray-7)_       | -    |
+| --rv-field-word-limit-font-size      | _var(--rv-font-size-sm)_ | -    |
+| --rv-field-word-limit-line-height    | _16px_                    | -    |
+| --rv-field-disabled-text-color       | _var(--rv-gray-5)_       | -    |
+| --rv-field-required-mark-color       | _var(--rv-red)_          | -    |
+
 
 ## 常见问题
 

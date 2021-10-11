@@ -1,14 +1,17 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle, useMemo } from 'react';
+import React, { useEffect, useRef, forwardRef, useImperativeHandle, useMemo, useContext } from 'react';
 import classnames from 'classnames';
-import { isFunction, createNamespace, formatNumber, isDef, addUnit } from '../utils';
+import { isFunction, formatNumber, isDef, addUnit } from '../utils';
 import { PasswordInputInstance, PasswordInputProps } from './PropsType';
 import { useSetState, useUpdateEffect } from '../hooks';
 import { BORDER_LEFT, BORDER_SURROUND } from '../utils/constant';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem] = createNamespace('password-input');
 type InputMode = 'text' | 'none' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search';
 
 const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('password-input', prefixCls);
+
   const innerEffect = useRef<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const [state, updateState] = useSetState({

@@ -6,6 +6,7 @@ import React, {
   useRef,
   forwardRef,
   useImperativeHandle,
+  useContext,
 } from 'react';
 import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
@@ -15,11 +16,13 @@ import Overlay from '../overlay';
 import useLockScroll from '../hooks/use-lock-scroll';
 import useEventListener from '../hooks/use-event-listener';
 
-import { createNamespace, isDef } from '../utils';
+import { isDef } from '../utils';
 import { PopupInstanceType, PopupProps } from './PropsType';
 import { callInterceptor } from '../utils/interceptor';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import PopupContext from './PopupContext';
 
 export const sharedPopupProps = [
   'round',
@@ -44,11 +47,12 @@ export const sharedPopupProps = [
   'beforeClose',
 ] as const;
 
-const [bem] = createNamespace('popup');
-
 let globalZIndex = 2000;
 
 const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('popup', prefixCls);
+
   const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
     props;
   const opened = useRef(false);
@@ -232,10 +236,10 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   return ssrCompatRender(() =>
     renderToContainer(
       props.teleport,
-      <>
+      <PopupContext.Provider value={{ visible }}>
         {renderOverlay()}
         {renderTransition()}
-      </>,
+      </PopupContext.Provider>,
     ),
   );
 });

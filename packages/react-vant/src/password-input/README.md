@@ -101,11 +101,27 @@ const onSubmit = (val: string) => {
 | onSubmit | 数据输满时触发   | val: _string_ |
 | onFocus  | 输入框聚焦时触发 | -             |
 
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                   | 默认值    | 描述 |
-| ---------------------- | --------- | ---- |
-| @password-input-color  | `#2879ff` | -    |
-| @password-border-color | `#dee4e7` | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-password-input-height | _50px_ | - |
+| --rv-password-input-margin | _0 var(--rv-padding-md)_ | - |
+| --rv-password-input-font-size | _20px_ | - |
+| --rv-password-input-border-radius | _6px_ | - |
+| --rv-password-input-background-color | _var(--rv-white)_ | - |
+| --rv-password-input-info-color | _var(--rv-gray-6)_ | - |
+| --rv-password-input-info-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-password-input-error-info-color | _var(--rv-danger-color)_ | - |
+| --rv-password-input-dot-size | _10px_ | - |
+| --rv-password-input-dot-color | _var(--rv-black)_ | - |
+| --rv-password-input-text-color | _var(--rv-text-color)_ | - |
+| --rv-password-input-cursor-color | _var(--rv-text-color)_ | - |
+| --rv-password-input-cursor-width | _1px_ | - |
+| --rv-password-input-cursor-height | _40%_ | - |
+| --rv-password-input-cursor-animation-duration | _1s_ | - |

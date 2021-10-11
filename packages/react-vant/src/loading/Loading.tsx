@@ -1,22 +1,25 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import classnames from 'classnames';
-import { addUnit, createNamespace, getSizeStyle } from '../utils';
+import { addUnit, getSizeStyle } from '../utils';
 import { LoadingProps } from './PropsType';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem] = createNamespace('loading');
+const SpinIcon = ({ bem }) => (
+  <>
+    {Array(12)
+    .fill(null)
+    // eslint-disable-next-line react/no-array-index-key
+    .map((_, index) => <i key={index} className={classnames(bem('line', String(index + 1)))} />)}
+  </>
+)
 
-const SpinIcon: JSX.Element[] = [];
-for (let i = 0; i < 12; i += 1) {
-  SpinIcon.push(<i key={i} />);
-}
-
-const CircularIcon = (
+const CircularIcon = ({ bem }) => (
   <svg className={classnames(bem('circular'))} viewBox="25 25 50 50">
     <circle cx="50" cy="50" r="20" fill="none" />
   </svg>
 );
 
-const BallIcon = (
+const BallIcon = ({ bem }) => (
   <div className={classnames(bem('ball'))}>
     <div />
     <div />
@@ -24,13 +27,15 @@ const BallIcon = (
   </div>
 );
 
-const Icon = {
-  spinner: SpinIcon,
-  circular: CircularIcon,
-  ball: BallIcon,
-};
+const Icon = (bem) =>  ({
+  spinner: <SpinIcon bem={bem} />,
+  circular: <CircularIcon bem={bem} />,
+  ball: <BallIcon bem={bem} />,
+});
 
 const Loading: React.FC<LoadingProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('loading', prefixCls);
   const { className, type, vertical, color, size, textColor, children, textSize } = props;
 
   const spinnerStyle = useMemo(
@@ -61,7 +66,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
   return (
     <div className={classnames(className, bem([type, { vertical }]))}>
       <span className={classnames(bem('spinner', type))} style={spinnerStyle}>
-        {Icon[type]}
+        {Icon(bem)[type]}
       </span>
       {renderText()}
     </div>

@@ -1,19 +1,56 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
+
+:root {
+  --rv-button-mini-height: @button-mini-height;
+  --rv-button-mini-padding: @button-mini-padding;
+  --rv-button-mini-font-size: @button-mini-font-size;
+  --rv-button-small-height: @button-small-height;
+  --rv-button-small-padding: @button-small-padding;
+  --rv-button-small-font-size: @button-small-font-size;
+  --rv-button-normal-padding: @button-normal-padding;
+  --rv-button-normal-font-size: @button-normal-font-size;
+  --rv-button-large-height: @button-large-height;
+  --rv-button-default-height: @button-default-height;
+  --rv-button-default-line-height: @button-default-line-height;
+  --rv-button-default-font-size: @button-default-font-size;
+  --rv-button-default-color: @button-default-color;
+  --rv-button-default-background-color: @button-default-background-color;
+  --rv-button-default-border-color: @button-default-border-color;
+  --rv-button-primary-color: @button-primary-color;
+  --rv-button-primary-background-color: @button-primary-background-color;
+  --rv-button-primary-border-color: @button-primary-border-color;
+  --rv-button-success-color: @button-success-color;
+  --rv-button-success-background-color: @button-success-background-color;
+  --rv-button-success-border-color: @button-success-border-color;
+  --rv-button-danger-color: @button-danger-color;
+  --rv-button-danger-background-color: @button-danger-background-color;
+  --rv-button-danger-border-color: @button-danger-border-color;
+  --rv-button-warning-color: @button-warning-color;
+  --rv-button-warning-background-color: @button-warning-background-color;
+  --rv-button-warning-border-color: @button-warning-border-color;
+  --rv-button-border-width: @button-border-width;
+  --rv-button-border-radius: @button-border-radius;
+  --rv-button-round-border-radius: @button-round-border-radius;
+  --rv-button-plain-background-color: @button-plain-background-color;
+  --rv-button-disabled-opacity: @button-disabled-opacity;
+  --rv-button-icon-size: @button-icon-size;
+  --rv-button-loading-icon-size: @button-loading-icon-size;
+}
 
 .@{rv-prefix}-button {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  height: @button-default-height;
+  height: var(--rv-button-default-height);
   margin: 0;
   padding: 0;
-  font-size: @button-default-font-size;
-  line-height: @button-default-line-height;
+  font-size: var(--rv-button-default-font-size);
+  line-height: var(--rv-button-default-line-height);
   text-align: center;
-  border-radius: @button-border-radius;
-  transition: opacity @animation-duration-fast;
+  border-radius: var(--rv-button-border-radius);
+  cursor: pointer;
+  transition: opacity var(--rv-animation-duration-fast);
   -webkit-appearance: none;
-  -webkit-text-size-adjust: 100%;
 
   &::before {
     position: absolute;
@@ -21,9 +58,9 @@
     left: 50%;
     width: 100%;
     height: 100%;
-    background-color: @black;
+    background: var(--rv-black);
     border: inherit;
-    border-color: @black;
+    border-color: var(--rv-black);
     border-radius: inherit; /* inherit parent's border radius */
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -42,104 +79,109 @@
   }
 
   &--default {
-    color: @button-default-color;
-    background-color: @button-default-background-color;
-    border: @button-border-width solid @button-default-border-color;
+    color: var(--rv-button-default-color);
+    background: var(--rv-button-default-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-default-border-color);
   }
 
   &--primary {
-    color: @button-primary-color;
-    background-color: @button-primary-background-color;
-    border: @button-border-width solid @button-primary-border-color;
+    color: var(--rv-button-primary-color);
+    background: var(--rv-button-primary-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-primary-border-color);
   }
 
+  &--success,
   &--info {
-    color: @button-info-color;
-    background-color: @button-info-background-color;
-    border: @button-border-width solid @button-info-border-color;
+    color: var(--rv-button-success-color);
+    background: var(--rv-button-success-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-success-border-color);
   }
 
   &--danger {
-    color: @button-danger-color;
-    background-color: @button-danger-background-color;
-    border: @button-border-width solid @button-danger-border-color;
+    color: var(--rv-button-danger-color);
+    background: var(--rv-button-danger-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-danger-border-color);
   }
 
   &--warning {
-    color: @button-warning-color;
-    background-color: @button-warning-background-color;
-    border: @button-border-width solid @button-warning-border-color;
+    color: var(--rv-button-warning-color);
+    background: var(--rv-button-warning-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-warning-border-color);
   }
 
   &--plain {
-    background-color: @button-plain-background-color;
+    background: var(--rv-button-plain-background-color);
 
     &.@{rv-prefix}-button--primary {
-      color: @button-primary-background-color;
+      color: var(--rv-button-primary-background-color);
     }
 
-    &.@{rv-prefix}-button--info {
-      color: @button-info-background-color;
+    &.@{rv-prefix}-button--success, &.@{rv-prefix}-button--info {
+      color: var(--rv-button-success-background-color);
     }
 
     &.@{rv-prefix}-button--danger {
-      color: @button-danger-background-color;
+      color: var(--rv-button-danger-background-color);
     }
 
     &.@{rv-prefix}-button--warning {
-      color: @button-warning-background-color;
+      color: var(--rv-button-warning-background-color);
     }
   }
 
   &--large {
     width: 100%;
-    height: @button-large-height;
-    line-height: @button-large-line-height;
+    height: var(--rv-button-large-height);
   }
 
   &--normal {
-    padding: 0 15 * @hd;
-    font-size: @button-normal-font-size;
+    padding: var(--rv-button-normal-padding);
+    font-size: var(--rv-button-normal-font-size);
   }
 
   &--small {
-    min-width: @button-small-min-width;
-    height: @button-small-height;
-    padding: 0 @padding-xs;
-    font-size: @button-small-font-size;
-    line-height: @button-small-line-height;
+    height: var(--rv-button-small-height);
+    padding: var(--rv-button-small-padding);
+    font-size: var(--rv-button-small-font-size);
   }
 
   &__loading {
-    display: inline-block;
     color: inherit;
-    vertical-align: top;
+    font-size: inherit;
+
+    .@{rv-prefix}-loading__spinner {
+      width: var(--rv-button-loading-icon-size);
+      height: var(--rv-button-loading-icon-size);
+      color: currentColor;
+    }
   }
 
   &--mini {
-    display: inline-block;
-    min-width: @button-mini-min-width;
-    height: @button-mini-height;
-    font-size: @button-mini-font-size;
-    line-height: @button-mini-line-height;
+    height: var(--rv-button-mini-height);
+    padding: var(--rv-button-mini-padding);
+    font-size: var(--rv-button-mini-font-size);
 
     & + .@{rv-prefix}-button--mini {
-      margin-left: 5 * @hd;
+      margin-left: var(--rv-padding-base);
     }
   }
 
   &--block {
     display: block;
     width: 100%;
-    font-size: @button-default-font-size;
   }
 
   &--disabled {
-    opacity: @button-disabled-opacity;
+    cursor: not-allowed;
+    opacity: var(--rv-button-disabled-opacity);
+  }
+
+  &--loading {
+    cursor: default;
   }
 
   &--round {
-    border-radius: @button-round-border-radius;
+    border-radius: var(--rv-button-round-border-radius);
   }
 
   &--square {
@@ -171,6 +213,8 @@
     }
   }
 
+  // align-items are ignored when flex container is a button in legacy safari
+  // see: https://bugs.webkit.org/show_bug.cgi?id=169700
   &__content {
     display: flex;
     align-items: center;
@@ -178,13 +222,14 @@
     height: 100%;
 
     // fix icon vertical align
+    // see: https://github.com/youzan/vant/issues/7617
     &::before {
       content: ' ';
     }
   }
 
   &__icon {
-    font-size: 1.2em;
+    font-size: var(--rv-button-icon-size);
     line-height: inherit;
   }
 
@@ -192,7 +237,7 @@
   &__loading + &__text,
   &__text + &__icon,
   &__text + &__loading {
-    margin-left: @padding-base;
+    margin-left: var(--rv-padding-base);
   }
 
   &--hairline {
@@ -200,11 +245,11 @@
 
     &::after {
       border-color: inherit;
-      border-radius: @button-border-radius * 2;
+      border-radius: calc(var(--rv-button-border-radius) * 2);
     }
 
     &.@{rv-prefix}-button--round::after {
-      border-radius: @button-round-border-radius;
+      border-radius: var(--rv-button-round-border-radius);
     }
 
     &.@{rv-prefix}-button--square::after {
@@ -222,13 +267,13 @@
     }
 
     .@{rv-prefix}-button:last-child {
-      border-top-right-radius: 2 * @hd;
-      border-bottom-right-radius: 2 * @hd;
+      border-top-right-radius: var(--rv-button-border-radius);
+      border-bottom-right-radius: var(--rv-button-border-radius);
     }
 
     .@{rv-prefix}-button:first-child {
-      border-top-left-radius: 2 * @hd;
-      border-bottom-left-radius: 2 * @hd;
+      border-top-left-radius: var(--rv-button-border-radius);
+      border-bottom-left-radius: var(--rv-button-border-radius);
     }
   }
 }

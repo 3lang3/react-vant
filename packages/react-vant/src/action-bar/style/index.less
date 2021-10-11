@@ -1,6 +1,22 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-action-bar {
+:root {
+  --rv-action-bar-background-color: @action-bar-background-color;
+  --rv-action-bar-height: @action-bar-height;
+  --rv-action-bar-button-height: @action-bar-button-height;
+  --rv-action-bar-button-warning-color: @action-bar-button-warning-color;
+  --rv-action-bar-button-danger-color: @action-bar-button-danger-color;
+  --rv-action-bar-icon-width: @action-bar-icon-width;
+  --rv-action-bar-icon-height: @action-bar-icon-height;
+  --rv-action-bar-icon-color: @action-bar-icon-color;
+  --rv-action-bar-icon-size: @action-bar-icon-size;
+  --rv-action-bar-icon-font-size: @action-bar-icon-font-size;
+  --rv-action-bar-icon-active-color: @action-bar-icon-active-color;
+  --rv-action-bar-icon-text-color: @action-bar-icon-text-color;
+  --rv-action-bar-icon-background-color: @action-bar-icon-background-color;
+}
+
+.@{rv-prefix}-action-bar {
   position: fixed;
   right: 0;
   bottom: 0;
@@ -8,66 +24,63 @@
   display: flex;
   align-items: center;
   box-sizing: content-box;
-  height: @action-bar-height;
-  background-color: @action-bar-background-color;
+  height: var(--rv-action-bar-height);
+  background-color: var(--rv-action-bar-background-color);
 }
 
-
-.rv-action-bar-button {
+.@{rv-prefix}-action-bar-button {
   flex: 1;
-  height: @action-bar-button-height;
-  font-weight: @font-weight-bold;
-  font-size: @font-size-md;
+  height: var(--rv-action-bar-button-height);
+  font-weight: var(--rv-font-weight-bold);
+  font-size: var(--rv-font-size-md);
   border: none;
   border-radius: 0;
 
   &--first {
-    margin-left: 5px;
-    border-top-left-radius: @border-radius-max;
-    border-bottom-left-radius: @border-radius-max;
+    margin-left: 5 * @hd;
+    border-top-left-radius: var(--rv-border-radius-max);
+    border-bottom-left-radius: var(--rv-border-radius-max);
   }
 
   &--last {
-    margin-right: 5px;
-    border-top-right-radius: @border-radius-max;
-    border-bottom-right-radius: @border-radius-max;
+    margin-right: 5 * @hd;
+    border-top-right-radius: var(--rv-border-radius-max);
+    border-bottom-right-radius: var(--rv-border-radius-max);
   }
 
   &--warning {
-    background: @action-bar-button-warning-color;
+    background: var(--rv-action-bar-button-warning-color);
   }
 
   &--danger {
-    background: @action-bar-button-danger-color;
+    background: var(--rv-action-bar-button-danger-color);
   }
 
   @media (max-width: 321px) {
-    font-size: 13px;
+    font-size: 13 * @hd;
   }
 }
 
-
-
-.rv-action-bar-icon {
+.@{rv-prefix}-action-bar-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: @action-bar-icon-width;
-  height: @action-bar-icon-height;
-  color: @action-bar-icon-text-color;
-  font-size: @action-bar-icon-font-size;
+  min-width: var(--rv-action-bar-icon-width);
+  height: var(--rv-action-bar-icon-height);
+  color: var(--rv-action-bar-icon-text-color);
+  font-size: var(--rv-action-bar-icon-font-size);
   line-height: 1;
   text-align: center;
-  background-color: @action-bar-icon-background-color;
+  background-color: var(--rv-action-bar-icon-background-color);
   cursor: pointer;
 
   &:active {
-    background-color: @action-bar-icon-active-color;
+    background-color: var(--rv-action-bar-icon-active-color);
   }
 
   &__icon {
-    margin: 0 auto @padding-base;
-    color: @action-bar-icon-color;
-    font-size: @action-bar-icon-size;
+    margin: 0 auto var(--rv-padding-base);
+    color: var(--rv-action-bar-icon-color);
+    font-size: var(--rv-action-bar-icon-size);
   }
 }

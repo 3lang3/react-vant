@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { DatetimePicker, Toast, Field, Popup } from 'react-vant';
+import { Field, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import DatetimePicker from '..';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
@@ -59,14 +60,6 @@ export default (): React.ReactNode => {
       <DemoBlock card title="选择时间">
         <DatetimePicker type="time" minHour="10" maxHour="20" value="12:00" />
       </DemoBlock>
-      <DemoBlock card title="选择日期时间（包含星期）">
-        <DatetimePicker
-          type="weektime"
-          minDate={new Date(2021, 0, 1)}
-          maxDate={new Date(2021, 2, 1)}
-          value={new Date()}
-        />
-      </DemoBlock>
       <DemoBlock card title="选择完整时间">
         <DatetimePicker
           type="datetime"
@@ -91,7 +84,7 @@ export default (): React.ReactNode => {
           value="12:00"
           filter={(type, options) => {
             if (type === 'minute') {
-              return options.filter((option) => option % 5 === 0);
+              return options.filter((option) => +option % 5 === 0);
             }
             return options;
           }}
@@ -103,16 +96,6 @@ export default (): React.ReactNode => {
           columnsOrder={['month', 'day', 'year']}
           minDate={new Date(2020, 0, 1)}
           maxDate={new Date(2025, 10, 1)}
-          value={new Date()}
-        />
-      </DemoBlock>
-      <DemoBlock card title="确认按钮">
-        <DatetimePicker
-          showSubmitBtn
-          onConfirm={(value: Date) => Toast(`确认的日期：${value}`)}
-          type="weektime"
-          minDate={new Date(2021, 0, 1)}
-          maxDate={new Date(2021, 2, 1)}
           value={new Date()}
         />
       </DemoBlock>
@@ -136,15 +119,14 @@ export default (): React.ReactNode => {
       >
         <div style={{ padding: '0 8px' }}>
           <DatetimePicker
-            showSubmitBtn
-            onConfirm={(value: string) => {
+            type="datetime"
+            onConfirm={(value) => {
               setFieldValue(value);
               setShowPicker(false);
             }}
-            type="weektime"
             filter={(type: string, options) => {
               if (type === 'minute') {
-                return options.filter((option) => option % 5 === 0);
+                return options.filter((option) => +option % 5 === 0);
               }
               return options;
             }}

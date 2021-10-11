@@ -1,13 +1,35 @@
-@import '../../styles/themes/default.less';
-@import '../../styles/mixins/hairline.less';
+@import './var.less';
+@import '../../cell/style/var.less';
+
+:root {
+  --rv-field-label-width: @field-label-width;
+  --rv-field-label-color: @field-label-color;
+  --rv-field-label-margin-right: @field-label-margin-right;
+  --rv-field-input-text-color: @field-input-text-color;
+  --rv-field-input-error-text-color: @field-input-error-text-color;
+  --rv-field-input-disabled-text-color: @field-input-disabled-text-color;
+  --rv-field-placeholder-text-color: @field-placeholder-text-color;
+  --rv-field-icon-size: @field-icon-size;
+  --rv-field-clear-icon-size: @field-clear-icon-size;
+  --rv-field-clear-icon-color: @field-clear-icon-color;
+  --rv-field-right-icon-color: @field-right-icon-color;
+  --rv-field-error-message-color: @field-error-message-color;
+  --rv-field-error-message-font-size: @field-error-message-font-size;
+  --rv-field-text-area-min-height: @field-text-area-min-height;
+  --rv-field-word-limit-color: @field-word-limit-color;
+  --rv-field-word-limit-font-size: @field-word-limit-font-size;
+  --rv-field-word-limit-line-height: @field-word-limit-line-height;
+  --rv-field-disabled-text-color: @field-disabled-text-color;
+  --rv-field-required-mark-color: @field-required-mark-color;
+}
 
 .@{rv-prefix}-field {
   &__label {
     flex: none;
     box-sizing: border-box;
-    width: @field-label-width;
-    margin-right: @field-label-margin-right;
-    color: @field-label-color;
+    width: var(--rv-field-label-width);
+    margin-right: var(--rv-field-label-margin-right);
+    color: var(--rv-field-label-color);
     text-align: left;
     word-wrap: break-word;
 
@@ -18,11 +40,19 @@
     &--right {
       text-align: right;
     }
+
+    &--required {
+      &::before {
+        margin-right: 2 * @hd;
+        color: var(--rv-field-required-mark-color);
+        content: '*';
+      }
+    }
   }
 
   &--disabled {
     .@{rv-prefix}-field__label {
-      color: @field-disabled-text-color;
+      color: var(--rv-field-disabled-text-color);
     }
   }
 
@@ -42,23 +72,25 @@
     min-width: 0; // for flex-shrink in field__button
     margin: 0;
     padding: 0;
-    color: @field-input-text-color;
+    color: var(--rv-field-input-text-color);
     line-height: inherit;
     text-align: left;
     background-color: transparent;
     border: 0;
     resize: none;
+    // https://github.com/youzan/vant/pull/9418
+    user-select: auto;
 
     &::placeholder {
-      color: @field-placeholder-text-color;
+      color: var(--rv-field-placeholder-text-color);
     }
 
     &:disabled {
-      color: @field-input-disabled-text-color;
+      color: var(--rv-field-input-disabled-text-color);
       cursor: not-allowed;
       opacity: 1;
       // fix disabled color in mobile safari
-      -webkit-text-fill-color: @field-input-disabled-text-color;
+      -webkit-text-fill-color: var(--rv-field-input-disabled-text-color);
     }
 
     &:read-only {
@@ -78,14 +110,24 @@
     &--custom {
       display: flex;
       align-items: center;
-      min-height: @cell-line-height;
+      min-height: var(--rv-cell-line-height);
+    }
+
+    &--error,
+    &--error::placeholder {
+      color: var(--rv-field-input-error-text-color);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    &--min-height {
+      min-height: var(--rv-field-text-area-min-height);
     }
 
     // for ios wechat
     &[type='date'],
     &[type='time'],
     &[type='datetime-local'] {
-      min-height: @cell-line-height;
+      min-height: var(--rv-cell-line-height);
     }
 
     // for safari
@@ -95,40 +137,47 @@
   }
 
   &__clear,
+  &__icon,
+  &__button,
   &__right-icon {
-    margin-right: -@padding-xs;
-    padding: 0 @padding-xs;
+    flex-shrink: 0;
+  }
+
+  &__clear,
+  &__right-icon {
+    margin-right: calc(var(--rv-padding-xs) * -1);
+    padding: 0 var(--rv-padding-xs);
     line-height: inherit;
   }
 
   &__clear {
-    color: @field-clear-icon-color;
-    font-size: @field-clear-icon-size;
+    color: var(--rv-field-clear-icon-color);
+    font-size: var(--rv-field-clear-icon-size);
     cursor: pointer;
   }
 
-  &__left-icon .@{rv-prefix}-icon,
-  &__right-icon .@{rv-prefix}-icon {
+  &__left-icon .van-icon,
+  &__right-icon .van-icon {
     display: block;
-    font-size: @field-icon-size;
+    font-size: var(--rv-field-icon-size);
     line-height: inherit;
   }
 
   &__left-icon {
-    margin-right: @padding-base;
+    margin-right: var(--rv-padding-base);
   }
 
   &__right-icon {
-    color: @field-right-icon-color;
+    color: var(--rv-field-right-icon-color);
   }
 
   &__button {
-    padding-left: @padding-xs;
+    padding-left: var(--rv-padding-xs);
   }
 
   &__error-message {
-    color: @field-error-message-color;
-    font-size: @field-error-message-text-color;
+    color: var(--rv-field-error-message-color);
+    font-size: var(--rv-field-error-message-font-size);
     text-align: left;
 
     &--center {
@@ -141,26 +190,10 @@
   }
 
   &__word-limit {
-    margin-top: @padding-base;
-    color: @field-word-limit-color;
-    font-size: @field-word-limit-font-size;
-    line-height: @field-word-limit-line-height;
+    margin-top: var(--rv-padding-base);
+    color: var(--rv-field-word-limit-color);
+    font-size: var(--rv-field-word-limit-font-size);
+    line-height: var(--rv-field-word-limit-line-height);
     text-align: right;
-  }
-
-  &--error {
-    .@{rv-prefix}-field__control {
-      &,
-      &::placeholder {
-        color: @field-input-error-text-color;
-        -webkit-text-fill-color: currentColor;
-      }
-    }
-  }
-
-  &--min-height {
-    .@{rv-prefix}-field__control {
-      min-height: @field-text-area-min-height;
-    }
   }
 }

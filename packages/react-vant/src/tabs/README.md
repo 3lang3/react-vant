@@ -184,21 +184,24 @@ import { Tabs } from 'react-vant';
 | resize | 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘 | - | - |
 | scrollTo | 滚动到指定的标签页，在滚动导航模式下可用 | _name: string \| number_ | - |
 
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                       | 默认值                | 描述 |
-| -------------------------- | --------------------- | ---- |
-| @tab-text-color            | `@gray-7`             | -    |
-| @tab-active-text-color     | `@text-color`         | -    |
-| @tab-disabled-text-color   | `@gray-5`             | -    |
-| @tab-font-size             | `@font-size-md`       | -    |
-| @tab-line-height           | `@line-height-md`     | -    |
-| @tabs-default-color        | `@red`                | -    |
-| @tabs-line-height          | `44px`                | -    |
-| @tabs-card-height          | `30px`                | -    |
-| @tabs-nav-background-color | `@white`              | -    |
-| @tabs-bottom-bar-width     | `40px`                | -    |
-| @tabs-bottom-bar-height    | `3px`                 | -    |
-| @tabs-bottom-bar-color     | `@tabs-default-color` | -    |
+| 名称                            | 默认值                      | 描述 |
+| ------------------------------- | --------------------------- | ---- |
+| --rv-tab-text-color            | _var(--rv-gray-7)_         | -    |
+| --rv-tab-active-text-color     | _var(--rv-text-color)_     | -    |
+| --rv-tab-disabled-text-color   | _var(--rv-gray-5)_         | -    |
+| --rv-tab-font-size             | _var(--rv-font-size-md)_   | -    |
+| --rv-tab-line-height           | _var(--rv-line-height-md)_ | -    |
+| --rv-tabs-default-color        | _var(--rv-danger-color)_   | -    |
+| --rv-tabs-line-height          | _44px_                      | -    |
+| --rv-tabs-card-height          | _30px_                      | -    |
+| --rv-tabs-nav-background-color | _var(--rv-white)_          | -    |
+| --rv-tabs-bottom-bar-width     | _40px_                      | -    |
+| --rv-tabs-bottom-bar-height    | _3px_                       | -    |
+| --rv-tabs-bottom-bar-color     | _var(--rv-danger-color)_   | -    |

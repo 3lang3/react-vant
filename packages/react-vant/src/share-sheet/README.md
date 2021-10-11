@@ -149,6 +149,32 @@ const options = [
 | onSelect | 点击分享选项时触发 | _option: Option, index: number_ |
 | onCancel | 点击取消按钮时触发 | -                               |
 
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-share-sheet-header-padding | _var(--rv-padding-sm) var(--rv-padding-md) var(--rv-padding-base)_ | - |
+| --rv-share-sheet-title-color | _var(--rv-text-color)_ | - |
+| --rv-share-sheet-title-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-share-sheet-title-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-share-sheet-description-color | _var(--rv-gray-6)_ | - |
+| --rv-share-sheet-description-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-share-sheet-description-line-height | _16px_ | - |
+| --rv-share-sheet-icon-size | _48px_ | - |
+| --rv-share-sheet-option-name-color | _var(--rv-gray-7)_ | - |
+| --rv-share-sheet-option-name-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-share-sheet-option-description-color | _var(--rv-gray-5)_ | - |
+| --rv-share-sheet-option-description-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-share-sheet-cancel-button-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-share-sheet-cancel-button-height | _48px_ | - |
+| --rv-share-sheet-cancel-button-background | _var(--rv-white)_ | - |
+
+
 ## 常见问题
 
 ### 如何实现分享逻辑？

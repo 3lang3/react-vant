@@ -1,6 +1,14 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-loading {
+:root {
+  --rv-loading-text-color: @loading-text-color;
+  --rv-loading-text-font-size: @loading-text-font-size;
+  --rv-loading-spinner-color: @loading-spinner-color;
+  --rv-loading-spinner-size: @loading-spinner-size;
+  --rv-loading-spinner-animation-duration: @loading-spinner-animation-duration;
+}
+
+.@{rv-prefix}-loading {
   position: relative;
   color: @loading-spinner-color;
   font-size: 0;
@@ -9,34 +17,17 @@
   &__spinner {
     position: relative;
     display: inline-block;
-    width: @loading-spinner-size;
+    width: var(--rv-loading-spinner-size);
     // compatible for 1.x, users may set width or height in root element
     max-width: 100%;
-    height: @loading-spinner-size;
+    height: var(--rv-loading-spinner-size);
     max-height: 100%;
     vertical-align: middle;
-    animation: rv-rotate @loading-spinner-animation-duration linear infinite;
+    animation: rv-rotate var(--rv-loading-spinner-animation-duration) linear
+      infinite;
 
     &--spinner {
       animation-timing-function: steps(12);
-
-      i {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-
-        &::before {
-          display: block;
-          width: 2 * @hd;
-          height: 25%;
-          margin: 0 auto;
-          background-color: currentColor;
-          border-radius: 40%;
-          content: ' ';
-        }
-      }
     }
 
     &--circular {
@@ -45,6 +36,24 @@
 
     &--ball {
       animation: none;
+    }
+  }
+
+  &__line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &::before {
+      display: block;
+      width: 2px;
+      height: 25%;
+      margin: 0 auto;
+      background-color: currentColor;
+      border-radius: 40%;
+      content: ' ';
     }
   }
 
@@ -63,9 +72,9 @@
 
   &__text {
     display: inline-block;
-    margin-left: @padding-xs;
-    color: @loading-text-color;
-    font-size: @loading-text-font-size;
+    margin-left: var(--rv-padding-xs);
+    color: var(--rv-loading-text-color);
+    font-size: var(--rv-loading-text-font-size);
     vertical-align: middle;
   }
 
@@ -74,8 +83,8 @@
     flex-direction: column;
     align-items: center;
 
-    .rv-loading__text {
-      margin: @padding-xs 0 0;
+    .@{rv-prefix}-loading__text {
+      margin: var(--rv-padding-xs) 0 0;
     }
   }
 
@@ -132,6 +141,7 @@
     opacity: 0;
   }
 }
+
 @keyframes rv-ball--right {
   0% {
     transform: translate(0, 0);
@@ -164,7 +174,7 @@
 }
 
 .generate-spinner(@n, @i: 1) when (@i =< @n) {
-  .rv-loading__spinner--spinner i:nth-of-type(@{i}) {
+  .@{rv-prefix}-loading__spinner--spinner i:nth-of-type(@{i}) {
     transform: rotate(@i * 30deg);
     opacity: 1 - (0.75 / 12) * (@i - 1);
   }

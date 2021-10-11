@@ -1,11 +1,4 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 
 import Picker, { PickerInstance } from '../picker';
 
@@ -31,7 +24,7 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   };
 
   const picker = useRef<PickerInstance>(null);
-  const [currentDate, setCurrentDate] = useState(() => formatValue(props.value));
+  const currentDate = useRef(formatValue(props.value));
 
   const ranges = useMemo(
     () => [
@@ -75,7 +68,7 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   );
 
   const updateColumnValue = () => {
-    const pair = currentDate.split(':');
+    const pair = currentDate.current.split(':');
     const values = [props.formatter('hour', pair[0]), props.formatter('minute', pair[1])];
 
     setTimeout(() => {
@@ -90,19 +83,17 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
     const hour = hourColumn.values[hourIndex] || hourColumn.values[0];
     const minute = minuteColumn.values[minuteIndex] || minuteColumn.values[0];
 
-    setCurrentDate(formatValue(`${hour}:${minute}`));
+    currentDate.current = formatValue(`${hour}:${minute}`);
     updateColumnValue();
   };
 
-  const onConfirm = () => props.onConfirm(currentDate as unknown as Date);
+  const onConfirm = () => props.onConfirm(currentDate.current);
   const onCancel = () => props.onCancel();
 
   const onChange = () => {
     updateInnerValue();
     if (props.onChange) {
-      setTimeout(() => {
-        props.onChange(currentDate as unknown as Date);
-      }, 0);
+      props.onChange(currentDate.current);
     }
   };
 
@@ -121,8 +112,8 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   useUpdateEffect(() => {
     const value = formatValue(props.value);
 
-    if (value !== currentDate) {
-      setCurrentDate(value);
+    if (value !== currentDate.current) {
+      currentDate.current = value;
       updateColumnValue();
     }
   }, [props.value]);
@@ -139,7 +130,14 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
       onChange={onChange}
       onConfirm={onConfirm}
       onCancel={onCancel}
-      // {...pick(props, Object.keys(pickerProps))}
+      title={props.title}
+      loading={props.loading}
+      showToolbar={props.showToolbar}
+      cancelButtonText={props.cancelButtonText}
+      confirmButtonText={props.confirmButtonText}
+      itemHeight={props.itemHeight}
+      visibleItemCount={props.visibleItemCount}
+      swipeDuration={props.swipeDuration}
     />
   );
 });

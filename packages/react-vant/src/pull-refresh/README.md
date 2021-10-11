@@ -99,15 +99,19 @@ export default () => {
 | --------- | -------------- | ------------------------ | -------- |
 | onRefresh | 下拉刷新时触发 | _() => (Promise\|void)_ | -        |
 
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                          | 默认值          | 描述 |
-| ----------------------------- | --------------- | ---- |
-| @pull-refresh-head-height     | `50px`          | -    |
-| @pull-refresh-head-font-size  | `@font-size-md` | -    |
-| @pull-refresh-head-text-color | `@gray-6`       | -    |
+| 名称                                 | 默认值                    | 描述 |
+| ------------------------------------ | ------------------------- | ---- |
+| --rv-pull-refresh-head-height       | _50px_                    | -    |
+| --rv-pull-refresh-head-font-size    | _var(--rv-font-size-md)_ | -    |
+| --rv-pull-refresh-head-text-color   | _var(--rv-gray-6)_       | -    |
+| --rv-pull-refresh-loading-icon-size | _16px_                    | -    |
+
 
 ## 常见问题
 

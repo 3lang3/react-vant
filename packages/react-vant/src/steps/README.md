@@ -87,3 +87,24 @@ export default () => {
 | 事件名      | 说明                       | 回调参数        |
 | ----------- | -------------------------- | --------------- |
 | onClickStep | 点击步骤的标题或图标时触发 | _index: number_ |
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称                                  | 默认值                     | 描述 |
+| ------------------------------------- | -------------------------- | ---- |
+| --rv-step-text-color                 | _var(--rv-gray-6)_        | -    |
+| --rv-step-active-color               | _var(--rv-success-color)_ | -    |
+| --rv-step-process-text-color         | _var(--rv-text-color)_    | -    |
+| --rv-step-font-size                  | _var(--rv-font-size-md)_  | -    |
+| --rv-step-line-color                 | _var(--rv-border-color)_  | -    |
+| --rv-step-finish-line-color          | _var(--rv-success-color)_ | -    |
+| --rv-step-finish-text-color          | _var(--rv-text-color)_    | -    |
+| --rv-step-icon-size                  | _12px_                     | -    |
+| --rv-step-circle-size                | _5px_                      | -    |
+| --rv-step-circle-color               | _var(--rv-gray-6)_        | -    |
+| --rv-step-horizontal-title-font-size | _var(--rv-font-size-sm)_  | -    |
+| --rv-steps-background-color          | _var(--rv-white)_         | -    |

@@ -299,7 +299,7 @@ const formatter = (day) => {
 
 通过 `CalendarInstance` 获取 Calendar 实例的类型定义（从 3.2.0 版本开始支持）。
 
-```ts
+```js
 import { useRef } from 'react';
 import type { CalendarInstance } from 'react-vant';
 
@@ -307,6 +307,43 @@ const calendarRef = ref<CalendarInstance>();
 
 calendarRef.value?.reset();
 ```
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-calendar-background-color | _var(--rv-white)_ | - |
+| --rv-calendar-popup-height | _80%_ | - |
+| --rv-calendar-header-box-shadow | _0 2px 10px rgba(125, 126, 128, 0.16)_ | - |
+| --rv-calendar-header-title-height | _44px_ | - |
+| --rv-calendar-header-title-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-calendar-header-subtitle-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-calendar-weekdays-height | _30px_ | - |
+| --rv-calendar-weekdays-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-calendar-month-title-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-calendar-month-mark-color | _fade(var(--rv-gray-2), 80%)_ | - |
+| --rv-calendar-month-mark-font-size | _160px_ | - |
+| --rv-calendar-day-height | _64px_ | - |
+| --rv-calendar-day-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-calendar-range-edge-color | _var(--rv-white)_ | - |
+| --rv-calendar-range-edge-background-color | _var(--rv-danger-color)_ | - |
+| --rv-calendar-range-middle-color | _var(--rv-danger-color)_ | - |
+| --rv-calendar-range-middle-background-opacity | _0.1_ | - |
+| --rv-calendar-selected-day-size | _54px_ | - |
+| --rv-calendar-selected-day-color | _var(--rv-white)_ | - |
+| --rv-calendar-info-font-size | _var(--rv-font-size-xs)_ | - |
+| --rv-calendar-info-line-height | _var(--rv-line-height-xs)_ | - |
+| --rv-calendar-selected-day-background-color | _var(--rv-danger-color)_ | - |
+| --rv-calendar-day-disabled-color | _var(--rv-gray-5)_ | - |
+| --rv-calendar-confirm-button-height | _36px_ | - |
+| --rv-calendar-confirm-button-margin | _7px 0_ | - |
+
+
 
 ## 常见问题
 

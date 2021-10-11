@@ -26,3 +26,7 @@ export interface CollapseItemProps extends CellProps {
   index?: number;
   children: ReactNode;
 }
+
+export type CollapseItemInstance = {
+  toggle: (expand: boolean) => void;
+}

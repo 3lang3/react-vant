@@ -1,4 +1,4 @@
-@import '../../styles/themes/default.less';
+@import '../../styles/var.less';
 
 .demo-flex {
   .vant-doc-demo-block {
@@ -19,10 +19,10 @@
       background-clip: content-box;
 
       &:nth-child(odd) {
-        background-color: #39a9ed;
+        background-color: @blue;
       }
       &:nth-child(even) {
-        background-color: #66c6f2;
+        background-color: lighten(@blue, 8%);
       }
     }
   }

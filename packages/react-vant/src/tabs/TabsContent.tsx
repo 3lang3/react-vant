@@ -1,15 +1,16 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import classnames from 'classnames';
 
 import Swipe from '../swipe';
 
 import { TabsContentProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { SwipeInstance } from '../swipe/PropsType';
-
-const [bem] = createNamespace('tabs');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const TabsContent: React.FC<TabsContentProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('tabs', prefixCls);
+
   const swipeRef = useRef<SwipeInstance>();
   const innerEffect = useRef(false);
   const { animated, swipeable, duration } = props;

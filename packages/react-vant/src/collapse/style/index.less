@@ -1,28 +1,40 @@
-@import '../../styles/themes/default.less';
-@import '../../styles/mixins/hairline.less';
+@import './var.less';
+@import '../../styles/mixins/hairline';
 
-.rv-collapse-item {
+:root {
+  --rv-collapse-item-transition-duration: @collapse-item-transition-duration;
+  --rv-collapse-item-content-padding: @collapse-item-content-padding;
+  --rv-collapse-item-content-font-size: @collapse-item-content-font-size;
+  --rv-collapse-item-content-line-height: @collapse-item-content-line-height;
+  --rv-collapse-item-content-text-color: @collapse-item-content-text-color;
+  --rv-collapse-item-content-background-color: @collapse-item-content-background-color;
+  --rv-collapse-item-title-disabled-color: @collapse-item-title-disabled-color;
+}
+
+.@{rv-prefix}-collapse-item {
   position: relative;
 
   &--border {
     &::after {
-      .hairline-top(@cell-border-color, @padding-md, @padding-md);
+      .hairline-top(var(--rv-border-color), var(--rv-padding-md), var(--rv-padding-md));
     }
   }
 
   &__title {
-    .rv-cell__right-icon::before {
-      transform: rotate(90deg);
-      transition: transform @collapse-item-transition-duration;
+    .@{rv-prefix}-cell__right-icon::before {
+      // using translateZ to fix safari rendering issues
+      // see: https://github.com/youzan/vant/issues/8608
+      transform: rotate(90deg) translateZ(0);
+      transition: transform var(--rv-collapse-item-transition-duration);
     }
 
     &::after {
-      right: @padding-md;
+      right: var(--rv-padding-md);
       display: none;
     }
 
     &--expanded {
-      .rv-cell__right-icon::before {
+      .@{rv-prefix}-cell__right-icon::before {
         transform: rotate(-90deg);
       }
 
@@ -41,27 +53,23 @@
       cursor: not-allowed;
 
       &,
-      & .rv-cell__right-icon {
-        color: @collapse-item-title-disabled-color;
-      }
-
-      &:active {
-        background-color: @white;
+      & .@{rv-prefix}-cell__right-icon {
+        color: var(--rv-collapse-item-title-disabled-color);
       }
     }
   }
 
   &__wrapper {
     overflow: hidden;
-    transition: height @collapse-item-transition-duration ease-in-out;
+    transition: height var(--rv-collapse-item-transition-duration) ease-in-out;
     will-change: height;
   }
 
   &__content {
-    padding: @collapse-item-content-padding;
-    color: @collapse-item-content-text-color;
-    font-size: @collapse-item-content-font-size;
-    line-height: @collapse-item-content-line-height;
-    background-color: @collapse-item-content-background-color;
+    padding: var(--rv-collapse-item-content-padding);
+    color: var(--rv-collapse-item-content-text-color);
+    font-size: var(--rv-collapse-item-content-font-size);
+    line-height: var(--rv-collapse-item-content-line-height);
+    background-color: var(--rv-collapse-item-content-background-color);
   }
 }

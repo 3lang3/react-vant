@@ -1,6 +1,6 @@
 import React from 'react';
 
-const prefix = 'van-empty-network-';
+const prefix = 'rv-empty-network-';
 const renderStop = (color: string, offset: number, opacity?: number) => (
   <stop stopColor={color} offset={`${offset}%`} stopOpacity={opacity} />
 );

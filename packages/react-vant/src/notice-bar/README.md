@@ -105,18 +105,21 @@ import { NoticeBar } from 'react-vant';
 | onClose  | 关闭通知栏时触发             | _event: Event_ |
 | onReplay | 每当滚动栏重新开始滚动时触发 | -              |
 
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                         | 默认值                    | 描述 |
-| ---------------------------- | ------------------------- | ---- |
-| @notice-bar-height           | `40px`                    | -    |
-| @notice-bar-padding          | `0 @padding-md`           | -    |
-| @notice-bar-wrapable-padding | `@padding-xs @padding-md` | -    |
-| @notice-bar-text-color       | `@brown`                  | -    |
-| @notice-bar-font-size        | `@font-size-md`           | -    |
-| @notice-bar-line-height      | `24px`                    | -    |
-| @notice-bar-background-color | `@yellow`                 | -    |
-| @notice-bar-icon-size        | `16px`                    | -    |
-| @notice-bar-icon-min-width   | `24px`                    | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-notice-bar-height | _40px_ | - |
+| --rv-notice-bar-padding | _0 var(--rv-padding-md)_ | - |
+| --rv-notice-bar-wrapable-padding | _var(--rv-padding-xs) var(--rv-padding-md)_ | - |
+| --rv-notice-bar-text-color | _var(--rv-orange-dark)_ | - |
+| --rv-notice-bar-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-notice-bar-line-height | _24px_ | - |
+| --rv-notice-bar-background-color | _var(--rv-orange-light)_ | - |
+| --rv-notice-bar-icon-size | _16px_ | - |
+| --rv-notice-bar-icon-min-width | _24px_ | - |

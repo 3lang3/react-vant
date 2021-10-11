@@ -45,7 +45,8 @@ export type ToastPrivateProps = {
   onClosed?: () => void;
 };
 
-type ToastInstanceOpts = Omit<ToastProps, 'type'> | string;
+export type ToastOptions = Omit<ToastProps, 'type'> | string;
+
 export type ToastReturnType = {
   /** 动态更新方法 */
   config: React.Dispatch<React.SetStateAction<ToastProps>>;
@@ -55,13 +56,13 @@ export type ToastReturnType = {
 export interface ToastInstance {
   (opts: ToastProps | string): ToastReturnType;
   /** 文本提示	 */
-  info(opts: ToastInstanceOpts | string): ToastReturnType;
+  info(opts: ToastOptions): ToastReturnType;
   /** 展示加载提示	 */
-  loading(opts: ToastInstanceOpts | string): ToastReturnType;
+  loading(opts: ToastOptions): ToastReturnType;
   /** 展示成功提示	 */
-  success(opts: ToastInstanceOpts | string): ToastReturnType;
+  success(opts: ToastOptions): ToastReturnType;
   /** 展示失败提示	 */
-  fail(opts: ToastInstanceOpts | string): ToastReturnType;
+  fail(opts: ToastOptions): ToastReturnType;
   /**
    * 修改默认配置，对所有 Toast 生效。
    * 传入 type 可以修改指定类型的默认配置

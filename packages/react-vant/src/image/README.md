@@ -96,6 +96,33 @@ import { Image } from 'react-vant';
 | onLoad   | 图片加载完毕时触发 | -                   |
 | onError  | 图片加载失败时触发 | -                   |
 
+
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { ImageFit } from 'react-vant';
+```
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-image-placeholder-text-color | _var(--rv-gray-6)_ | - |
+| --rv-image-placeholder-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-image-placeholder-background-color | _var(--rv-background-color)_ | - |
+| --rv-image-loading-icon-size | _32px_ | - |
+| --rv-image-loading-icon-color | _var(--rv-gray-4)_ | - |
+| --rv-image-error-icon-size | _32px_ | - |
+| --rv-image-error-icon-color | _var(--rv-gray-4)_ | - |
+
+
 ## 常见问题
 
 ### 如何引用本地图片？

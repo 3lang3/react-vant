@@ -1,12 +1,14 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, useContext } from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
-import { createNamespace, isDef } from '../utils';
+import { isDef } from '../utils';
 import { CellProps } from './PropsType';
-
-const [bem] = createNamespace('cell');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Cell: React.FC<CellProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('cell', prefixCls);
+
   const renderLabel = () => {
     const showLabel = isDef(props.label);
 

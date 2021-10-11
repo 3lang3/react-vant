@@ -1,6 +1,34 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-uploader {
+:root {
+  --rv-uploader-size: @uploader-size;
+  --rv-uploader-icon-size: @uploader-icon-size;
+  --rv-uploader-icon-color: @uploader-icon-color;
+  --rv-uploader-text-color: @uploader-text-color;
+  --rv-uploader-text-font-size: @uploader-text-font-size;
+  --rv-uploader-upload-background-color: @uploader-upload-background-color;
+  --rv-uploader-upload-active-color: @uploader-upload-active-color;
+  --rv-uploader-delete-color: @uploader-delete-color;
+  --rv-uploader-delete-icon-size: @uploader-delete-icon-size;
+  --rv-uploader-delete-background-color: @uploader-delete-background-color;
+  --rv-uploader-file-background-color: @uploader-file-background-color;
+  --rv-uploader-file-icon-size: @uploader-file-icon-size;
+  --rv-uploader-file-icon-color: @uploader-file-icon-color;
+  --rv-uploader-file-name-padding: @uploader-file-name-padding;
+  --rv-uploader-file-name-margin-top: @uploader-file-name-margin-top;
+  --rv-uploader-file-name-font-size: @uploader-file-name-font-size;
+  --rv-uploader-file-name-text-color: @uploader-file-name-text-color;
+  --rv-uploader-mask-text-color: @uploader-mask-text-color;
+  --rv-uploader-mask-background-color: @uploader-mask-background-color;
+  --rv-uploader-mask-icon-size: @uploader-mask-icon-size;
+  --rv-uploader-mask-message-font-size: @uploader-mask-message-font-size;
+  --rv-uploader-mask-message-line-height: @uploader-mask-message-line-height;
+  --rv-uploader-loading-icon-size: @uploader-loading-icon-size;
+  --rv-uploader-loading-icon-color: @uploader-loading-icon-color;
+  --rv-uploader-disabled-opacity: @uploader-disabled-opacity;
+}
+
+.@{rv-prefix}-uploader {
   position: relative;
   display: inline-block;
 
@@ -9,7 +37,7 @@
     flex-wrap: wrap;
 
     &--disabled {
-      opacity: @uploader-disabled-opacity;
+      opacity: var(--rv-uploader-disabled-opacity);
     }
   }
 
@@ -39,40 +67,40 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: @uploader-size;
-    height: @uploader-size;
-    margin: 0 @padding-xs @padding-xs;
-    background-color: @uploader-upload-background-color;
+    width: var(--rv-uploader-size);
+    height: var(--rv-uploader-size);
+    margin: 0 var(--rv-padding-xs) var(--rv-padding-xs) 0;
+    background-color: var(--rv-uploader-upload-background-color);
 
     &:active {
-      background-color: @uploader-upload-active-color;
+      background-color: var(--rv-uploader-upload-active-color);
     }
 
     &--readonly:active {
-      background-color: @uploader-upload-background-color;
+      background-color: var(--rv-uploader-upload-background-color);
     }
 
     &-icon {
-      color: @uploader-icon-color;
-      font-size: @uploader-icon-size;
+      color: var(--rv-uploader-icon-color);
+      font-size: var(--rv-uploader-icon-size);
     }
 
     &-text {
-      margin-top: @padding-xs;
-      color: @uploader-text-color;
-      font-size: @uploader-text-font-size;
+      margin-top: var(--rv-padding-xs);
+      color: var(--rv-uploader-text-color);
+      font-size: var(--rv-uploader-text-font-size);
     }
   }
 
   &__preview {
     position: relative;
-    margin: 0 @padding-xs @padding-xs;
+    margin: 0 var(--rv-padding-xs) var(--rv-padding-xs) 0;
     cursor: pointer;
 
     &-image {
       display: block;
-      width: @uploader-size;
-      height: @uploader-size;
+      width: var(--rv-uploader-size);
+      height: var(--rv-uploader-size);
       overflow: hidden;
     }
 
@@ -80,19 +108,18 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: @uploader-delete-icon-size;
-      height: @uploader-delete-icon-size;
-      background-color: @uploader-delete-background-color;
-      border-radius: 0 0 0 12px;
+      width: var(--rv-uploader-delete-icon-size);
+      height: var(--rv-uploader-delete-icon-size);
+      background-color: var(--rv-uploader-delete-background-color);
+      border-radius: 0 0 0 12*@hd;
 
       &-icon {
         position: absolute;
-        top: -2px;
-        right: -2px;
-        color: #fff;
-        color: @uploader-delete-color;
-        font-size: 16px;
-        transform: scale(0.5);
+        top: 0;
+        right: 0;
+        color: var(--rv-uploader-delete-color);
+        font-size: var(--rv-uploader-delete-icon-size);
+        transform: scale(0.7) translate(10%, -10%);
       }
     }
 
@@ -115,25 +142,25 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: @uploader-mask-text-color;
-    background-color: @uploader-mask-background-color;
+    color: var(--rv-uploader-mask-text-color);
+    background-color: var(--rv-uploader-mask-background-color);
 
     &-icon {
-      font-size: @uploader-mask-icon-size;
+      font-size: var(--rv-uploader-mask-icon-size);
     }
 
     &-message {
-      margin-top: 6px;
-      padding: 0 @padding-base;
-      font-size: @uploader-mask-message-font-size;
-      line-height: @uploader-mask-message-line-height;
+      margin-top: 6*@hd;
+      padding: 0 var(--rv-padding-base);
+      font-size: var(--rv-uploader-mask-message-font-size);
+      line-height: var(--rv-uploader-mask-message-line-height);
     }
   }
 
   &__loading {
-    width: @uploader-loading-icon-size;
-    height: @uploader-loading-icon-size;
-    color: @uploader-loading-icon-color;
+    width: var(--rv-uploader-loading-icon-size);
+    height: var(--rv-uploader-loading-icon-size);
+    color: var(--rv-uploader-loading-icon-color);
   }
 
   &__file {
@@ -141,22 +168,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: @uploader-size;
-    height: @uploader-size;
-    background-color: @uploader-file-background-color;
+    width: var(--rv-uploader-size);
+    height: var(--rv-uploader-size);
+    background-color: var(--rv-uploader-file-background-color);
 
     &-icon {
-      color: @uploader-file-icon-color;
-      font-size: @uploader-file-icon-size;
+      color: var(--rv-uploader-file-icon-color);
+      font-size: var(--rv-uploader-file-icon-size);
     }
 
     &-name {
       box-sizing: border-box;
       width: 100%;
-      margin-top: @uploader-file-name-margin-top;
-      padding: @uploader-file-name-padding;
-      color: @uploader-file-name-text-color;
-      font-size: @uploader-file-name-font-size;
+      margin-top: var(--rv-uploader-file-name-margin-top);
+      padding: var(--rv-uploader-file-name-padding);
+      color: var(--rv-uploader-file-name-text-color);
+      font-size: var(--rv-uploader-file-name-font-size);
       text-align: center;
     }
   }

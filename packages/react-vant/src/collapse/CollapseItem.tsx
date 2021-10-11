@@ -12,16 +12,16 @@ import Cell from '../cell';
 import CollapseContext from './CollapseContext';
 import useLazyRender from '../hooks/use-lazy-render';
 
-import { CollapseItemProps } from './PropsType';
-import { createNamespace } from '../utils';
+import { CollapseItemInstance, CollapseItemProps } from './PropsType';
 import { raf, doubleRaf } from '../utils/raf';
 import { useUpdateEffect } from '../hooks';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem] = createNamespace('collapse-item');
-
-const CollapseItem = forwardRef<{}, CollapseItemProps>((props, ref) => {
+const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props, ref) => {
   const { index } = props;
   const parent = useContext(CollapseContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('collapse-item', prefixCls);
 
   const wrapperRef = useRef(null);
   const contentRef = useRef(null);

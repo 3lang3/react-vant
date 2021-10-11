@@ -121,19 +121,9 @@ const initExpanded = ['1'];
 | border      | 是否显示内边框                               | _boolean_          | `true`  |
 | isLink      | 是否展示标题栏右侧箭头并开启点击反馈         | _boolean_          | `true`  |
 | disabled    | 是否禁用面板                                 | _boolean_          | `false` |
-| title-class | 左侧标题额外类名                             | _string_           | -       |
-| value-class | 右侧内容额外类名                             | _string_           | -       |
-| label-class | 描述信息额外类名                             | _string_           | -       |
-
-### CollapseItem Slots
-
-| 名称       | 说明                           |
-| ---------- | ------------------------------ |
-| default    | 面板内容                       |
-| value      | 自定义显示内容                 |
-| icon       | 自定义 `icon`                  |
-| title      | 自定义 `title`                 |
-| right-icon | 自定义右侧按钮，默认是 `arrow` |
+| titleClass | 左侧标题额外类名                             | _string_           | -       |
+| valueClass | 右侧内容额外类名                             | _string_           | -       |
+| labelClass | 描述信息额外类名                             | _string_           | -       |
 
 ### CollapseItem 方法
 
@@ -141,18 +131,42 @@ const initExpanded = ['1'];
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| toggle `v2.10.9` | 切换面试展开状态，传 `true` 为展开，`false` 为收起，不传参为切换 | _expand?: boolean_ | - |
+| toggle  | 切换面试展开状态，传 `true` 为展开，`false` 为收起，不传参为切换 | _expand?: boolean_ | - |
+
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { CollapseItemInstance } from 'react-vant';
+```
+
+`CollapseItemInstance` 是组件实例的类型，用法如下：
+
+```js
+import { useRef } from 'react';
+import type { CollapseItemInstance } from 'react-vant';
+
+const collapseItemRef = useRef<CollapseItemInstance>();
+
+collapseItemRef.current?.toggle();
+```
+
+
+
+## 主题定制
 
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                    | 默认值                     | 描述 |
-| --------------------------------------- | -------------------------- | ---- |
-| @collapse-item-transition-duration      | `@animation-duration-base` | -    |
-| @collapse-item-content-padding          | `@padding-sm @padding-md`  | -    |
-| @collapse-item-content-font-size        | `@font-size-md`            | -    |
-| @collapse-item-content-line-height      | `1.5`                      | -    |
-| @collapse-item-content-text-color       | `@gray-6`                  | -    |
-| @collapse-item-content-background-color | `@white`                   | -    |
-| @collapse-item-title-disabled-color     | `@gray-5`                  | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-collapse-item-transition-duration | _var(--rv-animation-duration-base)_ | - |
+| --rv-collapse-item-content-padding | _var(--rv-padding-sm) var(--rv-padding-md)_ | - |
+| --rv-collapse-item-content-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-collapse-item-content-line-height | _1.5_ | - |
+| --rv-collapse-item-content-text-color | _var(--rv-gray-6)_ | - |
+| --rv-collapse-item-content-background-color | _var(--rv-white)_ | - |
+| --rv-collapse-item-title-disabled-color | _var(--rv-gray-5)_ | - |

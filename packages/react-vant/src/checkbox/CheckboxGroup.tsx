@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useContext, useImperativeHandle } from 'react';
 import classnames from 'classnames';
 
 import useMergedState from '../hooks/use-merged-state';
@@ -10,12 +10,14 @@ import {
   CheckboxGroupInstance,
   CheckboxInstance,
 } from './PropsType';
-import { createNamespace, WithDisplayNameReactElement } from '../utils';
+import { WithDisplayNameReactElement } from '../utils';
 import useRefs from '../hooks/use-refs';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const [bem] = createNamespace('checkbox-group');
 
 const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((props, ref) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('checkbox-group', prefixCls);
   const [childrenRefs, setChildrenRefs] = useRefs();
   const [checked, setChecked] = useMergedState({
     value: props.value,

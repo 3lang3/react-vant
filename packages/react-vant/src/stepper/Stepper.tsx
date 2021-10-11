@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent, FormEvent, TouchEvent } from 'react';
 import classnames from 'classnames';
 
@@ -9,13 +9,11 @@ import {
   addUnit,
   getSizeStyle,
   isDef,
-  createNamespace,
   formatNumber,
   resetScroll,
   preventDefault,
 } from '../utils';
-
-const [bem] = createNamespace('stepper');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const LONG_PRESS_INTERVAL = 200;
 const LONG_PRESS_START_TIME = 600;
@@ -31,6 +29,9 @@ function add(num1: number, num2: number) {
 }
 
 const Stepper: React.FC<StepperProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('stepper', prefixCls);
+
   const format = (value: string | number) => {
     const { min, max, allowEmpty, decimalLength } = props;
 

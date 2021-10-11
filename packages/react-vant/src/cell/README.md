@@ -138,3 +138,47 @@ import { Cell } from 'react-vant';
 | 事件名  | 说明             | 回调参数       |
 | ------- | ---------------- | -------------- |
 | onClick | 点击单元格时触发 | _event: Event_ |
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { CellArrowDirection } from 'react-vant';
+```
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-cell-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-cell-line-height | _24px_ | - |
+| --rv-cell-vertical-padding | _10px_ | - |
+| --rv-cell-horizontal-padding | _var(--rv-padding-md)_ | - |
+| --rv-cell-text-color | _var(--rv-text-color)_ | - |
+| --rv-cell-background-color | _var(--rv-white)_ | - |
+| --rv-cell-border-color | _var(--rv-border-color)_ | - |
+| --rv-cell-active-color | _var(--rv-active-color)_ | - |
+| --rv-cell-required-color | _var(--rv-danger-color)_ | - |
+| --rv-cell-label-color | _var(--rv-gray-6)_ | - |
+| --rv-cell-label-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-cell-label-line-height | _var(--rv-line-height-sm)_ | - |
+| --rv-cell-label-margin-top | _var(--rv-padding-base)_ | - |
+| --rv-cell-value-color | _var(--rv-gray-6)_ | - |
+| --rv-cell-icon-size | _16px_ | - |
+| --rv-cell-right-icon-color | _var(--rv-gray-6)_ | - |
+| --rv-cell-large-vertical-padding | _var(--rv-padding-sm)_ | - |
+| --rv-cell-large-title-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-cell-large-label-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-cell-group-background-color | _var(--rv-white)_ | - |
+| --rv-cell-group-title-color | _var(--rv-gray-6)_ | - |
+| --rv-cell-group-title-padding | _var(--rv-padding-md) var(--rv-padding-md) var(--rv-padding-xs)_ | - |
+| --rv-cell-group-title-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-cell-group-title-line-height | _16px_ | - |
+| --rv-cell-group-inset-padding | _0 var(--rv-padding-md)_ | - |
+| --rv-cell-group-inset-border-radius | _var(--rv-border-radius-lg)_ | - |
+| --rv-cell-group-inset-title-padding | _var(--rv-padding-md) var(--rv-padding-md) var(--rv-padding-xs) var(--rv-padding-xl)_ | - |

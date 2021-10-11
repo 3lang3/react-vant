@@ -114,7 +114,7 @@ export default () => {
 | defaultRate | 默认进度 | _number_ | - |
 | rate | 当前进度 | _number_ | - |
 | size | 圆环直径，默认单位为 `px` | _number \| string_ | `100px` |
-| color | 进度条颜色，传入对象格式可以定义渐变色 | _string \| object_ | `#1989fa` |
+| color | 进度条颜色，传入对象格式可以定义渐变色 | _string \| object_ | `#3f45ff` |
 | layerColor | 轨道颜色 | _string_ | `white` |
 | fill | 填充颜色 | _string_ | `none` |
 | speed | 动画速度（单位为 rate/s） | _number \| string_ | `0` |
@@ -140,10 +140,10 @@ import type { CircleStartPosition } from 'react-vant';
 
 | 名称                          | 默认值                        | 描述 |
 | ----------------------------- | ----------------------------- | ---- |
-| --van-circle-size             | _100px_                       | -    |
-| --van-circle-color            | _var(--van-primary-color)_    | -    |
-| --van-circle-layer-color      | _var(--van-white)_            | -    |
-| --van-circle-text-color       | _var(--van-text-color)_       | -    |
-| --van-circle-text-font-weight | _var(--van-font-weight-bold)_ | -    |
-| --van-circle-text-font-size   | _var(--van-font-size-md)_     | -    |
-| --van-circle-text-line-height | _var(--van-line-height-md)_   | -    |
+| --rv-circle-size             | _100px_                       | -    |
+| --rv-circle-color            | _var(--rv-primary-color)_    | -    |
+| --rv-circle-layer-color      | _var(--rv-white)_            | -    |
+| --rv-circle-text-color       | _var(--rv-text-color)_       | -    |
+| --rv-circle-text-font-weight | _var(--rv-font-weight-bold)_ | -    |
+| --rv-circle-text-font-size   | _var(--rv-font-size-md)_     | -    |
+| --rv-circle-text-line-height | _var(--rv-line-height-md)_   | -    |

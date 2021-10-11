@@ -182,6 +182,38 @@ export default () => {
 | pause  | 暂停倒计时                                                    | -    | -      |
 | reset  | 重设倒计时，若 `autoStart` 为 `true`，重设后会自动开始倒计时 | -    | -      |
 
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type { CountDownInstance, CountDownCurrentTime } from 'react-vant';
+```
+
+`CountDownInstance` 是组件实例的类型，用法如下：
+
+```js
+import { useRef } from 'react';
+import type { CountDownInstance } from 'react-vant';
+
+const countDownRef = useRef<CountDownInstance>();
+
+countDownRef.current?.start();
+```
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称                         | 默认值                      | 描述 |
+| ---------------------------- | --------------------------- | ---- |
+| --rv-count-down-text-color  | _var(--rv-text-color)_     | -    |
+| --rv-count-down-font-size   | _var(--rv-font-size-md)_   | -    |
+| --rv-count-down-line-height | _var(--rv-line-height-md)_ | -    |
+
 ## 常见问题
 
 ### 在 iOS 系统上倒计时不生效？

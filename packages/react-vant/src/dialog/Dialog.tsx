@@ -1,17 +1,20 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, useContext } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../icon';
 import Popup from '../popup';
 import Button from '../button';
+import ActionBar from '../action-bar';
 
 import { DialogProps, DialogStatic } from './PropsType';
-import { createNamespace, addUnit, noop } from '../utils';
+import { addUnit, noop } from '../utils';
 import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
-
-const [bem] = createNamespace('dialog');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Dialog: React.FC<DialogProps> = (props) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('dialog', prefixCls);
+
   const {
     width,
     title,
@@ -69,7 +72,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
   };
 
   const renderButtons = () => (
-    <div className={classnames(theme === 'round-button' ? '' : BORDER_TOP, bem('footer'))}>
+    <div className={classnames(BORDER_TOP, bem('footer'))}>
       {props.showCancelButton && (
         <Button
           size="large"
@@ -84,12 +87,8 @@ const Dialog: React.FC<DialogProps> = (props) => {
       {props.showConfirmButton && (
         <Button
           size="large"
-          type={theme === 'round-button' ? 'primary' : 'default'}
           text={props.confirmButtonText || '确认'}
-          className={classnames(
-            bem('confirm'),
-            theme === 'round-button' ? '' : { [BORDER_LEFT]: props.showCancelButton },
-          )}
+          className={classnames(bem('confirm'), { [BORDER_LEFT]: props.showCancelButton })}
           round={theme === 'round-button'}
           style={{ color: props.confirmButtonColor }}
           loading={props.confirmProps?.loading}
@@ -98,6 +97,33 @@ const Dialog: React.FC<DialogProps> = (props) => {
         />
       )}
     </div>
+  );
+
+  const renderRoundButtons = () => (
+    <ActionBar className={classnames(bem('footer'))}>
+      {props.showCancelButton && (
+        <ActionBar.Button
+          type="warning"
+          text={props.cancelButtonText || '取消'}
+          className={classnames(bem('cancel'))}
+          color={props.cancelButtonColor}
+          loading={props.cancelProps?.loading}
+          disabled={props.cancelProps?.disabled}
+          onClick={props.cancelProps?.loading ? noop : props.onCancel}
+        />
+      )}
+      {props.showConfirmButton && (
+        <ActionBar.Button
+          type="danger"
+          text={props.confirmButtonText || '确认'}
+          className={classnames(bem('confirm'))}
+          color={props.confirmButtonColor}
+          loading={props.confirmProps?.loading}
+          disabled={props.confirmProps?.disabled}
+          onClick={props.confirmProps?.loading ? noop : props.onConfirm}
+        />
+      )}
+    </ActionBar>
   );
 
   const renderCloseIcon = () => {
@@ -134,6 +160,11 @@ const Dialog: React.FC<DialogProps> = (props) => {
     return null;
   };
 
+  const renderFooter = () => {
+    if (props.footer) return props.footer;
+    return props.theme === 'round-button' ? renderRoundButtons() : renderButtons();
+  };
+
   return (
     <Popup
       {...others}
@@ -148,7 +179,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       {renderCloseIcon()}
       {renderTitle()}
       {renderContent()}
-      {renderButtons()}
+      {renderFooter()}
     </Popup>
   );
 };

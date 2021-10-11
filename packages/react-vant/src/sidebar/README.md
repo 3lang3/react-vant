@@ -104,3 +104,28 @@ export default () => {
 | 事件名 | 说明       | 回调参数        |
 | ------ | ---------- | --------------- |
 | onClick  | 点击时触发 | _index: number_ |
+
+
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-sidebar-width | _80px_ | - |
+| --rv-sidebar-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-sidebar-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-sidebar-text-color | _var(--rv-text-color)_ | - |
+| --rv-sidebar-disabled-text-color | _var(--rv-gray-5)_ | - |
+| --rv-sidebar-padding | _20px var(--rv-padding-sm)_ | - |
+| --rv-sidebar-active-color | _var(--rv-active-color)_ | - |
+| --rv-sidebar-background-color | _var(--rv-background-color)_ | - |
+| --rv-sidebar-selected-font-weight | _var(--rv-font-weight-bold)_ | - |
+| --rv-sidebar-selected-text-color | _var(--rv-text-color)_ | - |
+| --rv-sidebar-selected-border-width | _4px_ | - |
+| --rv-sidebar-selected-border-height | _16px_ | - |
+| --rv-sidebar-selected-border-color | _var(--rv-danger-color)_ | - |
+| --rv-sidebar-selected-background-color | _var(--rv-white)_ | - |

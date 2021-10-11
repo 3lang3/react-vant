@@ -1,38 +1,57 @@
-@import '../../styles/themes/default.less';
 @import '../../styles/mixins/hairline.less';
+@import './var.less';
 
-.rv-share-sheet {
+
+:root {
+  --rv-share-sheet-header-padding: @share-sheet-header-padding;
+  --rv-share-sheet-title-color: @share-sheet-title-color;
+  --rv-share-sheet-title-font-size: @share-sheet-title-font-size;
+  --rv-share-sheet-title-line-height: @share-sheet-title-line-height;
+  --rv-share-sheet-description-color: @share-sheet-description-color;
+  --rv-share-sheet-description-font-size: @share-sheet-description-font-size;
+  --rv-share-sheet-description-line-height: @share-sheet-description-line-height;
+  --rv-share-sheet-icon-size: @share-sheet-icon-size;
+  --rv-share-sheet-option-name-color: @share-sheet-option-name-color;
+  --rv-share-sheet-option-name-font-size: @share-sheet-option-name-font-size;
+  --rv-share-sheet-option-description-color: @share-sheet-option-description-color;
+  --rv-share-sheet-option-description-font-size: @share-sheet-option-description-font-size;
+  --rv-share-sheet-cancel-button-font-size: @share-sheet-cancel-button-font-size;
+  --rv-share-sheet-cancel-button-height: @share-sheet-cancel-button-height;
+  --rv-share-sheet-cancel-button-background: @share-sheet-cancel-button-background;
+}
+
+.@{rv-prefix}-share-sheet {
   &__header {
-    padding: @share-sheet-header-padding;
+    padding: var(--rv-share-sheet-header-padding);
     text-align: center;
   }
 
   &__title {
-    margin-top: @padding-xs;
-    color: @share-sheet-title-color;
+    margin-top: var(--rv-padding-xs);
+    color: var(--rv-share-sheet-title-color);
     font-weight: normal;
-    font-size: @share-sheet-title-font-size;
-    line-height: @share-sheet-title-line-height;
+    font-size: var(--rv-share-sheet-title-font-size);
+    line-height: var(--rv-share-sheet-title-line-height);
   }
 
   &__description {
     display: block;
-    margin-top: @padding-xs;
-    color: @share-sheet-description-color;
-    font-size: @share-sheet-description-font-size;
-    line-height: @share-sheet-description-line-height;
+    margin-top: var(--rv-padding-xs);
+    color: var(--rv-share-sheet-description-color);
+    font-size: var(--rv-share-sheet-description-font-size);
+    line-height: var(--rv-share-sheet-description-line-height);
   }
 
   &__options {
     position: relative;
     display: flex;
-    padding: @padding-md 0 @padding-md @padding-xs;
+    padding: var(--rv-padding-md) 0 var(--rv-padding-md) var(--rv-padding-xs);
     overflow-x: auto;
     overflow-y: visible;
     -webkit-overflow-scrolling: touch;
 
     &--border::before {
-      .hairline-top(@border-color, @padding-md);
+      .hairline-top(var(--rv-border-color), var(--rv-padding-md));
     }
 
     &::-webkit-scrollbar {
@@ -48,49 +67,49 @@
     user-select: none;
 
     &:active {
-      opacity: @active-opacity;
+      opacity: var(--rv-active-opacity);
     }
   }
 
   &__icon {
-    width: @share-sheet-icon-size;
-    height: @share-sheet-icon-size;
-    margin: 0 @padding-md;
+    width: var(--rv-share-sheet-icon-size);
+    height: var(--rv-share-sheet-icon-size);
+    margin: 0 var(--rv-padding-md);
   }
 
   &__name {
-    margin-top: @padding-xs;
-    padding: 0 @padding-base;
-    color: @share-sheet-option-name-color;
-    font-size: @share-sheet-option-name-font-size;
+    margin-top: var(--rv-padding-xs);
+    padding: 0 var(--rv-padding-base);
+    color: var(--rv-share-sheet-option-name-color);
+    font-size: var(--rv-share-sheet-option-name-font-size);
   }
 
   &__option-description {
-    padding: 0 @padding-base;
-    color: @share-sheet-option-description-color;
-    font-size: @share-sheet-option-description-font-size;
+    padding: 0 var(--rv-padding-base);
+    color: var(--rv-share-sheet-option-description-color);
+    font-size: var(--rv-share-sheet-option-description-font-size);
   }
 
   &__cancel {
     display: block;
     width: 100%;
     padding: 0;
-    font-size: @share-sheet-cancel-button-font-size;
-    line-height: @share-sheet-cancel-button-height;
+    font-size: var(--rv-share-sheet-cancel-button-font-size);
+    line-height: var(--rv-share-sheet-cancel-button-height);
     text-align: center;
-    background: @share-sheet-cancel-button-background;
+    background: var(--rv-share-sheet-cancel-button-background);
     border: none;
     cursor: pointer;
 
     &::before {
       display: block;
-      height: @padding-xs;
-      background-color: @background-color;
+      height: var(--rv-padding-xs);
+      background-color: var(--rv-background-color);
       content: ' ';
     }
 
     &:active {
-      background-color: @active-color;
+      background-color: var(--rv-active-color);
     }
   }
 }

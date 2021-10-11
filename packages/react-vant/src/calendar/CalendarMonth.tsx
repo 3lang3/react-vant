@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 import React, {
   forwardRef,
+  useContext,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -10,16 +11,20 @@ import React, {
 import cls from 'classnames';
 import { CalendarDayItem, CalendarDayType, CalendarMonthProps } from './PropsType';
 import { addUnit, setScrollTop } from '../utils';
-import { compareDay, formatMonthTitle, getNextDay, getPrevDay, bem } from './utils';
+import { compareDay, formatMonthTitle, getNextDay, getPrevDay } from './utils';
 import { getMonthEndDay } from '../datetime-picker/utils';
 import CalendarDay from './CalendarDay';
 import { getRect } from '../hooks/use-rect';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
   const [visible, setVisible] = useState();
   const daysRef = useRef<HTMLDivElement>();
   const [monthRef, setMonthRef] = useState<HTMLDivElement>();
   const height = useRef<number>(0);
+
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('calendar', prefixCls);
 
   useEffect(() => {
     if (monthRef) {

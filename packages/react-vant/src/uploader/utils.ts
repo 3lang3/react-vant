@@ -1,9 +1,6 @@
-import { createNamespace, isFunction } from '../utils';
+import { isFunction } from '../utils';
 import { UploaderFileListItem, UploaderMaxSize, UploaderResultType } from './PropsType';
 
-const [bem] = createNamespace('uploader');
-
-export { bem };
 
 export function toArray<T>(item: T | T[]): T[] {
   if (Array.isArray(item)) {

@@ -1,59 +1,73 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-typography {
-  color: @gray-8;
+:root {
+  --rv-typography-color: @typography-color;
+  --rv-typography-link-color: @typography-link-color;
+  --rv-typography-font-size: @typography-font-size;
+  --rv-typography-line-height: @typography-line-height;
+  --rv-typography-primary-color: @typography-primary-color;
+  --rv-typography-danger-color: @typography-danger-color;
+  --rv-typography-success-color: @typography-success-color;
+  --rv-typography-secondary-color: @typography-secondary-color;
+  --rv-typography-warning-color: @typography-warning-color;
+  --rv-typography-disabled-color: @typography-disabled-color;
+  --rv-typography-light-color: @typography-light-color;
+}
+
+.@{rv-prefix}-typography {
+  color: var(--rv-typography-color);
   word-wrap: break-word;
 
   &--xs {
-    font-size: @font-size-xs;
-    line-height: @line-height-xs;
+    font-size: calc(0.8 * var(--rv-typography-font-size));
+    line-height: calc(0.8 * var(--rv-typography-line-height));
   }
   &--sm {
-    font-size: @font-size-sm;
-    line-height: @line-height-sm;
+    font-size: calc(0.9 * var(--rv-typography-font-size));
+    line-height: calc(0.9 * var(--rv-typography-line-height));
   }
   &--md,
   &--5 {
-    font-size: @font-size-md;
-    line-height: @line-height-md;
+    font-size: var(--rv-typography-font-size);
+    line-height: var(--rv-typography-line-height);
   }
 
   &--lg,
   &--l4 {
-    font-size: @font-size-lg;
-    line-height: @line-height-lg;
+    font-size: calc(1.2 * var(--rv-typography-font-size));
+    line-height: calc(1.2 * var(--rv-typography-line-height));
   }
   &--xl,
   &--l3 {
-    font-size: @font-size-xl;
-    line-height: @line-height-xl;
+    font-size: calc(1.4 * var(--rv-typography-font-size));
+    line-height: calc(1.4 * var(--rv-typography-line-height));
   }
   &--xxl,
   &--l2 {
-    font-size: @font-size-xxl;
-    line-height: @line-height-xxl;
+    font-size: calc(1.6 * var(--rv-typography-font-size));
+    line-height: calc(1.6 * var(--rv-typography-line-height));
   }
 
   &--primary {
-    color: @brand-color;
+    color: var(--rv-typography-primary-color);
   }
   &--danger {
-    color: @red;
+    color: var(--rv-typography-danger-color);
   }
   &--success {
-    color: @green;
+    color: var(--rv-typography-success-color);
   }
   &--secondary {
-    color: @gray-6;
+    color: var(--rv-typography-secondary-color);
   }
   &--light {
-    color: @white;
+    color: var(--rv-typography-light-color);
   }
   &--warning {
-    color: @orange;
+    color: var(--rv-typography-warning-color);
   }
   &--disabled {
-    color: @gray-5;
+    color: var(--rv-typography-disabled-color);
     cursor: not-allowed;
   }
   &--underline {
@@ -66,7 +80,7 @@
   &--text {
     display: inline-block;
 
-    &.rv-ellipsis {
+    &.@{rv-prefix}-ellipsis {
       display: block;
     }
   }
@@ -76,25 +90,25 @@
   }
 
   &--l1 {
-    margin-bottom: 25px;
-    font-size: @font-size-xxxl;
-    line-height: @line-height-xxl;
+    margin-bottom: 25 * @hd;
+    font-size: calc(2 * var(--rv-typography-font-size));
+    line-height: calc(2 * var(--rv-typography-line-height));
   }
   &--l2 {
-    margin-bottom: 20px;
+    margin-bottom: 20 * @hd;
   }
   &--l3 {
-    margin-bottom: 15px;
+    margin-bottom: 15 * @hd;
   }
   &--l4 {
-    margin-bottom: 10px;
+    margin-bottom: 10 * @hd;
   }
   &--l5 {
-    margin-bottom: 6px;
+    margin-bottom: 6 * @hd;
   }
 
   &--link {
-    color: @blue;
+    color: var(--rv-typography-link-color);
     cursor: pointer;
   }
 

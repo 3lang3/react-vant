@@ -84,6 +84,10 @@ module.exports = {
                 title: 'Cell 单元格',
               },
               {
+                path: 'config-provider',
+                title: 'ConfigProvider 全局配置',
+              },
+              {
                 path: 'typography',
                 title: 'Typography 文本',
               },
@@ -172,7 +176,6 @@ module.exports = {
                 path: 'uploader',
                 title: 'Uploader 文件上传',
               },
-
             ],
           },
           {
@@ -321,10 +324,6 @@ module.exports = {
                 title: 'Tabbar 标签栏',
               },
             ],
-          },
-          {
-            title: '业务组件',
-            items: [],
           },
         ],
       },

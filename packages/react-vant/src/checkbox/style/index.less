@@ -1,18 +1,23 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
 
-.rv-checkbox {
+:root {
+  --rv-checkbox-size: @checkbox-size;
+  --rv-checkbox-border-color: @checkbox-border-color;
+  --rv-checkbox-transition-duration: @checkbox-transition-duration;
+  --rv-checkbox-label-margin: @checkbox-label-margin;
+  --rv-checkbox-label-color: @checkbox-label-color;
+  --rv-checkbox-checked-icon-color: @checkbox-checked-icon-color;
+  --rv-checkbox-disabled-icon-color: @checkbox-disabled-icon-color;
+  --rv-checkbox-disabled-label-color: @checkbox-disabled-label-color;
+  --rv-checkbox-disabled-background-color: @checkbox-disabled-background-color;
+}
+
+.@{rv-prefix}-checkbox {
   display: flex;
   align-items: center;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
-
-  &-group {
-    &--horizontal {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  }
 
   &--disabled {
     cursor: not-allowed;
@@ -23,13 +28,13 @@
   }
 
   &--horizontal {
-    margin-right: @padding-sm;
+    margin-right: var(--rv-padding-sm);
   }
 
   &__icon {
     flex: none;
     height: 1em;
-    font-size: @checkbox-size;
+    font-size: var(--rv-checkbox-size);
     line-height: 1em;
     cursor: pointer;
 
@@ -42,8 +47,8 @@
       font-size: 0.8em;
       line-height: 1.25;
       text-align: center;
-      border: 1px solid @checkbox-border-color;
-      transition-duration: @checkbox-transition-duration;
+      border: 1px solid var(--rv-checkbox-border-color);
+      transition-duration: var(--rv-checkbox-transition-duration);
       transition-property: color, border-color, background-color;
     }
 
@@ -55,9 +60,9 @@
 
     &--checked {
       .van-icon {
-        color: @white;
-        background-color: @checkbox-checked-icon-color;
-        border-color: @checkbox-checked-icon-color;
+        color: var(--rv-white);
+        background-color: var(--rv-checkbox-checked-icon-color);
+        border-color: var(--rv-checkbox-checked-icon-color);
       }
     }
 
@@ -65,29 +70,36 @@
       cursor: not-allowed;
 
       .van-icon {
-        background-color: @checkbox-disabled-background-color;
-        border-color: @checkbox-disabled-icon-color;
+        background-color: var(--rv-checkbox-disabled-background-color);
+        border-color: var(--rv-checkbox-disabled-icon-color);
       }
     }
 
     &--disabled&--checked {
       .van-icon {
-        color: @checkbox-disabled-icon-color;
+        color: var(--rv-checkbox-disabled-icon-color);
       }
     }
   }
 
   &__label {
-    margin-left: @checkbox-label-margin;
-    color: @checkbox-label-color;
-    line-height: @checkbox-size;
+    margin-left: var(--rv-checkbox-label-margin);
+    color: var(--rv-checkbox-label-color);
+    line-height: var(--rv-checkbox-size);
 
     &--left {
-      margin: 0 @checkbox-label-margin 0 0;
+      margin: 0 var(--rv-checkbox-label-margin) 0 0;
     }
 
     &--disabled {
-      color: @checkbox-disabled-label-color;
+      color: var(--rv-checkbox-disabled-label-color);
     }
+  }
+}
+
+.@{rv-prefix}-checkbox-group {
+  &--horizontal {
+    display: flex;
+    flex-wrap: wrap;
   }
 }

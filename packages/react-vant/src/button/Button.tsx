@@ -1,12 +1,10 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, useContext } from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import Loading from '../loading';
 import { ButtonProps } from './PropsType';
-import { createNamespace } from '../utils';
 import { BORDER_SURROUND, WHITE } from '../utils/constant';
-
-const [bem] = createNamespace('button');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Button: React.FC<ButtonProps> = (props) => {
   const {
@@ -22,6 +20,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     loadingText,
     iconPosition,
   } = props;
+
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('button', prefixCls);
 
   const classes = classnames(
     className,
@@ -87,10 +88,10 @@ const Button: React.FC<ButtonProps> = (props) => {
       return renderLoadingIcon();
     }
 
-
-
     if (typeof props.icon === 'string') {
-      return <Icon name={props.icon} className={classnames(bem('icon'))} classPrefix={iconPrefix} />;
+      return (
+        <Icon name={props.icon} className={classnames(bem('icon'))} classPrefix={iconPrefix} />
+      );
     }
 
     if (isValidElement(props.icon)) {

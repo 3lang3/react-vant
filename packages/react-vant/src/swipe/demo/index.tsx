@@ -93,7 +93,7 @@ export default (): React.ReactNode => {
             Popup中展示轮播图
           </Button>
         </div>
-        <Popup visible={visible} onClose={() => set(false)} style={{ width: '100%' }}>
+        <Popup className="demo-swipe-popup" visible={visible} onClose={() => set(false)} style={{ width: '100%' }}>
           <Swipe resizeObserver autoplay={1000}>
             <Swipe.Item>1</Swipe.Item>
             <Swipe.Item>2</Swipe.Item>

@@ -54,7 +54,6 @@ export default (): React.ReactNode => {
       />
       <ActionSheet
         title="自定义内容"
-        closeIcon={<div>close</div>}
         visible={visible === 5}
         onCancel={onCancel}
         cancelText={false}

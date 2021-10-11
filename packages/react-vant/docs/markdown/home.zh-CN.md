@@ -4,10 +4,15 @@
 
 ### 特性
 
-- 30+ 高质量组件，覆盖移动端基本场景
+
+- 提供 50 多个高质量组件，覆盖移动端各类场景
+- 性能极佳，组件平均体积不到 1kb（min+gzip）
+- 完善的文档和示例
 - 支持按需引入
 - 支持主题定制
 - 支持 TypeScript
+- 支持 [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
+- 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
 
 ### 快速上手
 

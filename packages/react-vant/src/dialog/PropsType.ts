@@ -56,6 +56,8 @@ export interface DialogProps extends BaseTypeProps {
   confirmProps?: DialogBtnProps;
   /** Dialog弹出时的的父容器 */
   teleport?: HTMLElement | (() => HTMLElement);
+  /** 自定义底部按钮区域 */
+  footer?: React.ReactNode;
   /** Dialog关闭时的回调 */
   onClose?: () => void;
   /** Dialog完全关闭后的回调 */

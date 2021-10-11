@@ -63,17 +63,21 @@ import { NavBar } from 'react-vant';
 | onClickLeft  | 点击左侧按钮时触发 | -        |
 | onClickRight | 点击右侧按钮时触发 | -        |
 
+
+
+## 主题定制
+
 ### 样式变量
 
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                      | 默认值          | 描述 |
-| ------------------------- | --------------- | ---- |
-| @nav-bar-height           | `46px`          | -    |
-| @nav-bar-background-color | `@white`        | -    |
-| @nav-bar-arrow-size       | `16px`          | -    |
-| @nav-bar-icon-color       | `@gray-8`         | -    |
-| @nav-bar-text-color       | `@gray-8`         | -    |
-| @nav-bar-title-font-size  | `@font-size-lg` | -    |
-| @nav-bar-title-text-color | `@text-color`   | -    |
-| @nav-bar-z-index          | `1`             | -    |
+| 名称                           | 默认值                     | 描述 |
+| ------------------------------ | -------------------------- | ---- |
+| --rv-nav-bar-height           | _46px_                     | -    |
+| --rv-nav-bar-background-color | _var(--rv-white)_         | -    |
+| --rv-nav-bar-arrow-size       | _16px_                     | -    |
+| --rv-nav-bar-icon-color       | _var(--rv-primary-color)_ | -    |
+| --rv-nav-bar-text-color       | _var(--rv-primary-color)_ | -    |
+| --rv-nav-bar-title-font-size  | _var(--rv-font-size-lg)_  | -    |
+| --rv-nav-bar-title-text-color | _var(--rv-text-color)_    | -    |
+| --rv-nav-bar-z-index          | _1_                        | -    |

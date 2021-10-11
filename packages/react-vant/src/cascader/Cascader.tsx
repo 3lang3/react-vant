@@ -1,14 +1,13 @@
 /* eslint-disable no-plusplus */
-import React, { isValidElement, useEffect, useState } from 'react';
+import React, { isValidElement, useContext, useEffect, useState } from 'react';
 import cls from 'classnames';
 import { CascaderOption, CascaderProps, CascaderTab } from './PropsType';
-import { createNamespace, extend } from '../utils';
+import { extend } from '../utils';
 import { useSetState, useUpdateEffect } from '../hooks';
 import Icon from '../icon';
 import Tabs from '../tabs';
 import { TabsClickTabEventParams } from '../tabs/PropsType';
-
-const [bem] = createNamespace('cascader');
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const INITIAL_STATE = {
   tabs: [],
@@ -16,6 +15,9 @@ const INITIAL_STATE = {
 };
 
 const Cascader: React.FC<CascaderProps> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('cascader', prefixCls);
+
   const [internalValue, updateInternalValue] = useState(undefined);
   const [state, updateState] =
     useSetState<{ tabs: CascaderTab[]; activeTab: number }>(INITIAL_STATE);

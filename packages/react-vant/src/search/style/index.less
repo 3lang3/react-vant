@@ -1,38 +1,52 @@
-@import '../../styles/themes/default.less';
+@import './var.less';
+
+:root {
+  --rv-search-padding: @search-padding;
+  --rv-search-background-color: @search-background-color;
+  --rv-search-content-background-color: @search-content-background-color;
+  --rv-search-input-height: @search-input-height;
+  --rv-search-label-padding: @search-label-padding;
+  --rv-search-label-color: @search-label-color;
+  --rv-search-label-font-size: @search-label-font-size;
+  --rv-search-left-icon-color: @search-left-icon-color;
+  --rv-search-action-padding: @search-action-padding;
+  --rv-search-action-text-color: @search-action-text-color;
+  --rv-search-action-font-size: @search-action-font-size;
+}
 
 .@{rv-prefix}-search {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: @search-padding;
-  background-color: @search-background-color;
+  padding: var(--rv-search-padding);
+  background-color: var(--rv-search-background-color);
 
   &__content {
     display: flex;
     flex: 1;
-    padding-left: @padding-sm;
-    background-color: @search-content-background-color;
-    border-radius: @border-radius-sm;
+    padding-left: var(--rv-padding-sm);
+    background-color: var(--rv-search-content-background-color);
+    border-radius: var(--rv-border-radius-sm);
 
     &--round {
-      border-radius: @border-radius-max;
+      border-radius: var(--rv-border-radius-max);
     }
   }
 
   &__label {
-    padding: @search-label-padding;
-    color: @search-label-color;
-    font-size: @search-label-font-size;
-    line-height: @search-input-height;
+    padding: var(--rv-search-label-padding);
+    color: var(--rv-search-label-color);
+    font-size: var(--rv-search-label-font-size);
+    line-height: var(--rv-search-input-height);
   }
 
-  .@{rv-prefix}-cell {
+  &__field {
     flex: 1;
-    padding: 5 * @hd @padding-xs 5 * @hd 0;
+    padding: 5* @hd var(--rv-padding-xs) 5* @hd 0;
     background-color: transparent;
 
-    &__left-icon {
-      color: @search-left-icon-color;
+    .@{rv-prefix}-field__left-icon {
+      color: var(--rv-search-left-icon-color);
     }
   }
 
@@ -50,15 +64,15 @@
   }
 
   &__action {
-    padding: @search-action-padding;
-    color: @search-action-text-color;
-    font-size: @search-action-font-size;
-    line-height: @search-input-height;
+    padding: var(--rv-search-action-padding);
+    color: var(--rv-search-action-text-color);
+    font-size: var(--rv-search-action-font-size);
+    line-height: var(--rv-search-input-height);
     cursor: pointer;
     user-select: none;
 
     &:active {
-      background-color: @active-color;
+      background-color: var(--rv-active-color);
     }
   }
 }

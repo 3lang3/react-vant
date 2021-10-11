@@ -231,6 +231,66 @@ beforeRead、afterRead、beforeDelete 执行时会传递以下回调参数：
 | text    | 结果包含 File 对象，以及文件的文本内容         |
 | dataUrl | 结果包含 File 对象，以及文件对应的 base64 编码 |
 
+
+
+### 类型定义
+
+组件导出以下类型定义：
+
+```js
+import type {
+  UploaderInstance,
+  UploaderResultType,
+  UploaderFileListItem,
+} from 'react-vant';
+```
+
+`UploaderInstance` 是组件实例的类型，用法如下：
+
+```js
+import { useRef } from 'react';
+import type { UploaderInstance } from 'react-vant';
+
+const uploaderRef = useRef<UploaderInstance>();
+
+uploaderRef.current?.chooseFile();
+```
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-uploader-size | _80px_ | - |
+| --rv-uploader-icon-size | _24px_ | - |
+| --rv-uploader-icon-color | _var(--rv-gray-4)_ | - |
+| --rv-uploader-text-color | _var(--rv-gray-6)_ | - |
+| --rv-uploader-text-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-uploader-upload-background-color | _var(--rv-gray-1)_ | - |
+| --rv-uploader-upload-active-color | _var(--rv-active-color)_ | - |
+| --rv-uploader-delete-color | _var(--rv-white)_ | - |
+| --rv-uploader-delete-icon-size | _14px_ | - |
+| --rv-uploader-delete-background-color | _rgba(0, 0, 0, 0.7)_ | - |
+| --rv-uploader-file-background-color | _var(--rv-background-color)_ | - |
+| --rv-uploader-file-icon-size | _20px_ | - |
+| --rv-uploader-file-icon-color | _var(--rv-gray-7)_ | - |
+| --rv-uploader-file-name-padding | _0 var(--rv-padding-base)_ | - |
+| --rv-uploader-file-name-margin-top | _var(--rv-padding-xs)_ | - |
+| --rv-uploader-file-name-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-uploader-file-name-text-color | _var(--rv-gray-7)_ | - |
+| --rv-uploader-mask-text-color | _var(--rv-white)_ | - |
+| --rv-uploader-mask-background-color | _fade(var(--rv-gray-8), 88%)_ | - |
+| --rv-uploader-mask-icon-size | _22px_ | - |
+| --rv-uploader-mask-message-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-uploader-mask-message-line-height | _var(--rv-line-height-xs)_ | - |
+| --rv-uploader-loading-icon-size | _22px_ | - |
+| --rv-uploader-loading-icon-color | _var(--rv-white)_ | - |
+| --rv-uploader-disabled-opacity | _var(--rv-disabled-opacity)_ | - |
+
+
 ## 常见问题
 
 ### 拍照上传的图片被旋转 90 度？
