@@ -144,11 +144,11 @@ import { Tabs } from 'react-vant';
 | titleInactiveColor | 标题默认态颜色 | _string_ | - |
 | beforeChange | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise | _(name) => boolean \| Promise_ | - |
 
-### ScrollspyConfig 
+### ScrollspyConfig
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| autoFocusLast | 滚动导航模式下，容器滚动触底时是否将最后一个tab转为Active状态 | _boolean_ | - |
+| autoFocusLast | 滚动导航模式下，容器滚动触底时是否将最后一个 tab 转为 Active 状态 | _boolean_ | - |
 | reachBottomThreshold | 触底偏移量 | _number_ | - |
 
 ### TabPane Props
@@ -162,8 +162,8 @@ import { Tabs } from 'react-vant';
 | badge | 图标右上角徽标的内容 | _number \| string_ | - |
 | name | 标签名称，作为匹配的标识符 | _number \| string_ | 标签的索引值 |
 | titleStyle | 自定义标题样式 | _CSSProperties_ | - |
-| titleSlass | 自定义标题类名 | _string_ | - |
-| showZeroBadge  | 当 badge 为数字 0 时，是否展示徽标 | _boolean_ | `true` |
+| titleClass | 自定义标题类名 | _string_ | - |
+| showZeroBadge | 当 badge 为数字 0 时，是否展示徽标 | _boolean_ | `true` |
 
 ### Tabs Events
 
@@ -184,24 +184,23 @@ import { Tabs } from 'react-vant';
 | resize | 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘 | - | - |
 | scrollTo | 滚动到指定的标签页，在滚动导航模式下可用 | _name: string \| number_ | - |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                            | 默认值                      | 描述 |
-| ------------------------------- | --------------------------- | ---- |
+| 名称                           | 默认值                     | 描述 |
+| ------------------------------ | -------------------------- | ---- |
 | --rv-tab-text-color            | _var(--rv-gray-7)_         | -    |
 | --rv-tab-active-text-color     | _var(--rv-text-color)_     | -    |
 | --rv-tab-disabled-text-color   | _var(--rv-gray-5)_         | -    |
 | --rv-tab-font-size             | _var(--rv-font-size-md)_   | -    |
 | --rv-tab-line-height           | _var(--rv-line-height-md)_ | -    |
 | --rv-tabs-default-color        | _var(--rv-danger-color)_   | -    |
-| --rv-tabs-line-height          | _44px_                      | -    |
-| --rv-tabs-card-height          | _30px_                      | -    |
+| --rv-tabs-line-height          | _44px_                     | -    |
+| --rv-tabs-card-height          | _30px_                     | -    |
 | --rv-tabs-nav-background-color | _var(--rv-white)_          | -    |
-| --rv-tabs-bottom-bar-width     | _40px_                      | -    |
-| --rv-tabs-bottom-bar-height    | _3px_                       | -    |
+| --rv-tabs-bottom-bar-width     | _40px_                     | -    |
+| --rv-tabs-bottom-bar-height    | _3px_                      | -    |
 | --rv-tabs-bottom-bar-color     | _var(--rv-danger-color)_   | -    |
