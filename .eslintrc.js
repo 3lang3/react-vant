@@ -9,6 +9,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-use-before-define': 'off',
     'no-explicit-any': 'off',
-    'no-underscore-dangle': 'off'
+    'no-underscore-dangle': 'off',
+    'react/default-props-match-prop-types': 'off',
   },
 };

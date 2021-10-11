@@ -16,7 +16,6 @@ const Notify: React.FC<NotifyProps & NotifyPrivateProps> = ({ children, ...props
   return (
     <Popup
       visible={props.visible}
-      className={cls(bem([props.type]), props.className)}
       style={style}
       overlay={false}
       position="top"
@@ -26,7 +25,7 @@ const Notify: React.FC<NotifyProps & NotifyPrivateProps> = ({ children, ...props
       onClosed={props.onClosed}
       teleport={props.teleport}
     >
-      {children || props.message}
+      <div className={cls(bem([props.type]), props.className)}>{children || props.message}</div>
     </Popup>
   );
 };

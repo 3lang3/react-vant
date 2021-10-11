@@ -169,12 +169,12 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
           display: !visible && !animatedVisible ? 'none' : undefined,
         }}
         className={classnames(
-          props.className,
           bem({
             round,
             [position]: position,
           }),
           { 'rv-safe-area-bottom': safeAreaInsetBottom },
+          props.className,
         )}
         onClick={props.onClick}
       >
