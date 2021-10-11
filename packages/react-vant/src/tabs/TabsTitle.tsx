@@ -13,7 +13,7 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
   const { type, color, isActive, activeColor, inactiveColor, disabled, className } = props;
 
   const customStyle = useMemo(() => {
-    const style: CSSProperties = {};
+    const style: CSSProperties = { ...props.style };
     const isCard = type === 'card';
 
     // card theme color
