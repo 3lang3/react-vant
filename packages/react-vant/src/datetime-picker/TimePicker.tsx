@@ -1,4 +1,11 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import Picker, { PickerInstance } from '../picker';
 
@@ -24,7 +31,8 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   };
 
   const picker = useRef<PickerInstance>(null);
-  const currentDate = useRef(formatValue(props.value));
+  const currentDateRef = useRef<string>(formatValue(props.value));
+  const [currentDate, setCurrentDate] = useState(() => currentDateRef.current);
 
   const ranges = useMemo(
     () => [
@@ -68,7 +76,7 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   );
 
   const updateColumnValue = () => {
-    const pair = currentDate.current.split(':');
+    const pair = currentDateRef.current.split(':');
     const values = [props.formatter('hour', pair[0]), props.formatter('minute', pair[1])];
 
     setTimeout(() => {
@@ -83,17 +91,21 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
     const hour = hourColumn.values[hourIndex] || hourColumn.values[0];
     const minute = minuteColumn.values[minuteIndex] || minuteColumn.values[0];
 
-    currentDate.current = formatValue(`${hour}:${minute}`);
+    setCurrentDate(formatValue(`${hour}:${minute}`));
     updateColumnValue();
   };
 
-  const onConfirm = () => props.onConfirm(currentDate.current);
-  const onCancel = () => props.onCancel();
+  const onConfirm = () => {
+    if (props.onConfirm) props.onConfirm(currentDateRef.current);
+  };
+  const onCancel = () => {
+    if (props.onCancel) props.onCancel();
+  };
 
   const onChange = () => {
     updateInnerValue();
     if (props.onChange) {
-      props.onChange(currentDate.current);
+      props.onChange(currentDateRef.current);
     }
   };
 
@@ -112,8 +124,8 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   useUpdateEffect(() => {
     const value = formatValue(props.value);
 
-    if (value !== currentDate.current) {
-      currentDate.current = value;
+    if (value !== currentDate) {
+      setCurrentDate(value);
       updateColumnValue();
     }
   }, [props.value]);

@@ -110,10 +110,10 @@ export default (): React.ReactNode => {
         />
       </DemoBlock>
       <Popup
+        round
         title="请选择日期"
         closeable
         visible={showPicker}
-        round
         position="bottom"
         onClose={() => setShowPicker(false)}
       >
@@ -132,7 +132,7 @@ export default (): React.ReactNode => {
             }}
             minDate={new Date(2021, 0, 1)}
             maxDate={new Date(2021, 2, 1)}
-            value={new Date()}
+            value={fieldValue}
           />
         </div>
       </Popup>

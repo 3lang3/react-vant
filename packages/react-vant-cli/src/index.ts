@@ -9,6 +9,7 @@ import { clean } from './commands/clean';
 import { release } from './commands/release';
 import { buildSite } from './commands/build-site';
 import { commitLint } from './commands/commit-lint';
+import { create } from "./commands/create";
 
 export const cliVersion: string = packageJson.version;
 
@@ -16,6 +17,7 @@ process.env.REACT_VANT_CLI_VERSION = cliVersion;
 
 export {
   dev,
+  create,
   lint,
   test,
   clean,

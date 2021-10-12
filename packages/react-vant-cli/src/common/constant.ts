@@ -2,7 +2,7 @@ import { get } from 'lodash';
 import { existsSync } from 'fs-extra';
 import { join, dirname, isAbsolute } from 'path';
 
-const CONFIG_FILE_NAME = 'vant.config.js'
+export const CONFIG_FILE_NAME = 'vant.config.js';
 
 function findRootDir(dir: string): string {
   if (dir === '/') {
@@ -42,10 +42,7 @@ export const SITE_MOBILE_COMPONENTS = join(SITE_DIR, 'mobile', 'components');
 export const PACKAGE_ENTRY_FILE = join(DIST_DIR, 'package-entry.js');
 export const PACKAGE_STYLE_FILE = join(DIST_DIR, 'package-style.css');
 export const SITE_MODILE_SHARED_FILE = join(DIST_DIR, 'site-mobile-shared.js');
-export const SITE_DESKTOP_SHARED_FILE = join(
-  DIST_DIR,
-  'site-desktop-shared.js'
-);
+export const SITE_DESKTOP_SHARED_FILE = join(DIST_DIR, 'site-desktop-shared.js');
 export const SITE_MODILE_DEMO_FILE = join(DIST_DIR, 'site-mobile-demo.js');
 export const STYLE_DEPS_JSON_FILE = join(DIST_DIR, 'style-deps.json');
 
@@ -77,6 +74,9 @@ export function getVantConfig() {
   }
 }
 
+/**
+ * src absolute path
+ */
 function getSrcDir() {
   const vantConfig = getVantConfig();
   const srcDir = get(vantConfig, 'build.srcDir');
@@ -92,3 +92,23 @@ function getSrcDir() {
 
 export const SRC_DIR = getSrcDir();
 export const STYLE_DIR = join(SRC_DIR, 'styles');
+
+function ComponentClassification(): {
+  ComponentClassificationArray: Array<string>;
+  navArray: Array<any>;
+} {
+  let ComponentClassificationArray = [];
+  let navArray = [];
+  if (existsSync(ZHPFE_CONFIG_FILE)) {
+    const config = require(ZHPFE_CONFIG_FILE);
+    const { nav } = config.site.locales['zh-CN'];
+    navArray = nav;
+    ComponentClassificationArray = nav.map((item) => {
+      return item.title;
+    });
+  }
+  return { ComponentClassificationArray, navArray };
+}
+
+export const { ComponentClassificationArray: COMPONENT_CLASSIFICATION, navArray: nav } =
+  ComponentClassification();
