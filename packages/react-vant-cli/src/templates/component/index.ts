@@ -25,13 +25,15 @@ const ${ComponentName}: React.FC<${ComponentName}Props> = (props) => {
         className={cls(props.className, bem())}
         style={props.style}
       >
-      ${ComponentName}
+        ${ComponentName}
       </div>
   );
 };
 
 // defaultProps defined if need
-${ComponentName}.defaultProps = {};
+${ComponentName}.defaultProps = {
+
+};
 
 export default ${ComponentName};
 `;

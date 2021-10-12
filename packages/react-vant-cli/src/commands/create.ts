@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import { existsSync, outputFileSync, readFileSync } from 'fs-extra';
-import { kebabCase, getComponents, smartOutputFile, getVantConfig } from '../common';
-import { CONFIG_FILE_NAME, nav, ROOT, SRC_DIR, ZHPFE_CONFIG_FILE } from '../common/constant';
+import { kebabCase, getComponents, smartOutputFile } from '../common';
+import { CONFIG_FILE_NAME, nav, ROOT, ZHPFE_CONFIG_FILE } from '../common/constant';
 import { consola, ora } from '../common/logger';
 import {
   DEMO_INDEX_CONTENT,
