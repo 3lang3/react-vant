@@ -99,12 +99,8 @@ export default (): React.ReactNode => {
               }, 500);
             }}
           >
-            <Radio name="1" labelDisabled>
-              单选框 1
-            </Radio>
-            <Radio name="2" labelDisabled>
-              单选框 2
-            </Radio>
+            <Radio name="1">单选框 1</Radio>
+            <Radio name="2">单选框 2</Radio>
           </Radio.Group>
         </div>
       </DemoBlock>
