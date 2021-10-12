@@ -29,7 +29,10 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   };
 
   const picker = useRef<PickerInstance>(null);
-  const [currentDate, setCurrentDate] = useState(formatValue(props.value));
+  const [currentDate, setCurrentDate] = useState(() => formatValue(props.value));
+  const currentDateRef = useRef<Date>(undefined);
+
+  currentDateRef.current = currentDate;
 
   const getBoundary = (type: 'max' | 'min', value: Date) => {
     const boundary = props[`${type}Date`];
@@ -175,7 +178,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     });
   };
 
-  const getInnerValue = () => {
+  const updateInnerValue = () => {
     const { type } = props;
     const indexes = picker.current?.getIndexes();
 
@@ -219,16 +222,14 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     }
 
     const value = new Date(year, month - 1, day, hour, minute);
-    return formatValue(value);
-  };
-
-  const updateInnerValue = () => {
-    setCurrentDate(getInnerValue());
+    setCurrentDate(formatValue(value));
   };
 
   const onChange = () => {
-    const newCurrentDate = getInnerValue();
-    props.onChange?.(newCurrentDate);
+    updateInnerValue();
+    if (props.onChange) {
+      props.onChange(currentDateRef.current);
+    }
   };
 
   const onConfirm = () => {
