@@ -11,14 +11,15 @@ export { ComponentPrompt } from './Prompt';
  * @param ComponentName 组件名称
  */
 export const INDEX_CONTENT = (HLComponent: string, ComponentName: string) => `\
-import React from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { ${ComponentName}Props } from './PropsType';
-import { createNamespace } from '../utils';
-
-const [bem] = createNamespace('${HLComponent}');
 
 const ${ComponentName}: React.FC<${ComponentName}Props> = (props) => {
+  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('${HLComponent}', prefixCls);
+
   return (
       <div
         className={cls(props.className, bem())}
@@ -29,6 +30,7 @@ const ${ComponentName}: React.FC<${ComponentName}Props> = (props) => {
   );
 };
 
+// defaultProps defined if need
 ${ComponentName}.defaultProps = {};
 
 export default ${ComponentName};

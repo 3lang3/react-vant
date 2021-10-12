@@ -28,6 +28,7 @@ const { DemoBlock, DemoSection } = components;
 // demo style
 export const DEMO_STYLE_CONTENT = (HLComponent) => `\
 @import '../../styles/var.less';
+
 .demo-${HLComponent} {
 
 }
