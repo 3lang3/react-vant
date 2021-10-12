@@ -1,5 +1,6 @@
 import { BaseTypeProps } from '../utils';
 import { CellProps } from '../cell/PropsType';
+import { DialogProps } from '../dialog/PropsType';
 
 export type FieldType = 'tel' | 'text' | 'digit' | 'number' | 'search' | 'password' | 'textarea';
 
@@ -20,6 +21,8 @@ export type FieldValidateError = {
   name?: string;
   message: string;
 };
+
+export type FieldTooltipProps = Omit<DialogProps, 'visible'> & { icon?: React.ReactNode };
 
 export type FieldRule = {
   pattern?: RegExp;
@@ -111,7 +114,7 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   /** 额外的提示信息 */
   intro?: React.ReactNode;
   /** 字段提示信息 */
-  tooltip?: React.ReactNode;
+  tooltip?: React.ReactNode | FieldTooltipProps;
   onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;

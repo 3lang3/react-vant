@@ -36,6 +36,7 @@ export default (): React.ReactNode => {
     <DemoSection>
       <DemoBlock card title="基础用法">
         <Field
+          tooltip="提示tooltip"
           intro={<div>We must make sure that your are a human.</div>}
           value={value1}
           label="文本"

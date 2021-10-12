@@ -40,7 +40,10 @@ export default (): React.ReactNode => {
           }
         >
           <Form.Item
-            help="A prime is a natural number greater than 1 that has no positive divisors other than 1 and itself."
+            tooltip={{
+              message:
+                'A prime is a natural number greater than 1 that has no positive divisors other than 1 and itself.',
+            }}
             rules={[{ required: true, message: '请填写用户名' }]}
             name="username"
             label="用户名"
@@ -182,7 +185,7 @@ function PickerItem({ value, onChange, ...props }: any) {
   const onCancel = () => {
     setVisible(false);
   };
-  const onConfirm = (val, idx) => {
+  const onConfirm = (val) => {
     onChange(val);
     onCancel();
   };

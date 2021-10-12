@@ -21,6 +21,8 @@
   --rv-field-word-limit-line-height: @field-word-limit-line-height;
   --rv-field-disabled-text-color: @field-disabled-text-color;
   --rv-field-required-mark-color: @field-required-mark-color;
+  --rv-field-intro-color: @field-intro-color;
+  --rv-field-tooltip-icon-color: @field-tooltip-icon-color;
 }
 
 .@{rv-prefix}-field {
@@ -188,6 +190,14 @@
     &--right {
       text-align: right;
     }
+  }
+
+  &__tooltip {
+    display: inline-block;
+    margin-left: 2 * @hd;
+    color: var(--rv-field-intro-color);
+    font-weight: bold;
+    vertical-align: middle;
   }
 
   &__intro {

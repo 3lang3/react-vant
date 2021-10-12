@@ -1,13 +1,16 @@
 /* eslint-disable no-console */
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { Field as RcField, FormInstance } from 'rc-field-form';
-import type { FieldProps } from 'rc-field-form/lib/Field';
+import { Field as RcField } from 'rc-field-form';
 import FieldContext from 'rc-field-form/lib/FieldContext';
 import type { Meta } from 'rc-field-form/lib/interface';
-import type { CellProps } from '../cell';
 import Field from '../field';
-import type { FormItemLayoutProps } from './PropsType';
+import type {
+  FormItemLayoutProps,
+  FormItemProps,
+  MemoInputProps,
+  RenderChildren,
+} from './PropsType';
 import { toArray } from '../uploader/utils';
 import { FIELD_KEY } from '../field/Field';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
@@ -18,29 +21,7 @@ function devWarning(component: string, message: string): void {
   }
 }
 
-type RenderChildren<Values = any> = (form: FormInstance<Values>) => React.ReactNode;
-type ChildrenType<Values = any> = RenderChildren<Values> | React.ReactNode;
-
-type RcFieldProps = Omit<FieldProps, 'children'>;
-
-const classPrefix = `adm-form-item`;
-
-export type FormItemProps = RcFieldProps &
-  Pick<CellProps, 'style' | 'className' | 'onClick'> & {
-    label?: string;
-    help?: string;
-    hasFeedback?: boolean;
-    required?: boolean;
-    noStyle?: boolean;
-    disabled?: boolean;
-    children: ChildrenType;
-  };
-
-type MemoInputProps = {
-  value: any;
-  update: number;
-  children: React.ReactNode;
-} & Record<string, any>;
+const classPrefix = `rv-form-item`;
 
 const MemoInput = React.memo(
   ({ children, ...props }: MemoInputProps) =>
@@ -51,7 +32,6 @@ const MemoInput = React.memo(
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
   const {
     className,
-    help,
     style,
     label,
     required,
@@ -60,17 +40,20 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
     onClick,
     children,
     isFieldChildren,
+    tooltip,
+    intro,
   } = props;
 
-  const fieldErrorMessage = meta && meta.errors.length > 0 ? meta.errors[0] : null;
-  const error = !!fieldErrorMessage;
-  const errorMessage = help || fieldErrorMessage;
+  const errorMessage = meta && meta.errors.length > 0 ? meta.errors[0] : null;
+  const error = !!errorMessage;
 
   const attrs = {
     className: classNames(classPrefix, className),
     label,
     style,
     disabled,
+    tooltip,
+    intro,
     required,
     error,
     errorMessage,
@@ -89,12 +72,13 @@ const FormItem: FC<FormItemProps> = (props) => {
     style,
     // FormItem 相关
     label,
-    help,
     hasFeedback,
     name,
     required,
     noStyle,
     // Field 相关
+    tooltip,
+    intro,
     disabled,
     rules,
     children,
@@ -131,7 +115,8 @@ const FormItem: FC<FormItemProps> = (props) => {
         className={className}
         style={style}
         label={label}
-        help={help}
+        tooltip={tooltip}
+        intro={intro}
         required={isRequired}
         disabled={disabled}
         hasFeedback={hasFeedback}
