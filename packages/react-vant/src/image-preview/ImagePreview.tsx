@@ -10,8 +10,8 @@ import Popup from '../popup';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('imagee-preview', prefixCls);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const [bem] = createNamespace('image-preview', prefixCls);
   const [active, setActive] = useState(() => props.startPosition);
   const mountedRef = useRef(false);
 
