@@ -11,6 +11,7 @@
     "build": "lerna exec --scope react-vant yarn build",
     "build:cli": "lerna exec --scope @react-vant/cli yarn build",
     "build:fabric": "lerna exec --scope @react-vant/fabric yarn build",
+    "build:site": "lerna exec --scope react-vant yarn build:site",
     "release:site": "lerna exec --scope react-vant yarn release:site",
     "changelog": "lerna-changelog",
     "clean": "lerna clean -y",

@@ -18,7 +18,7 @@ jobs:
         run: npm run bootstrap
 
       - name: Build Site
-        run: npm run release:site
+        run: npm run build:site
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
