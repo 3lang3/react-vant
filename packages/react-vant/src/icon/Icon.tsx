@@ -16,16 +16,15 @@ const Icon: React.FC<IconProps> = (props) => {
 
   const imageIcon = isImage(name);
 
-  const classPrefix = useMemo(() => props.classPrefix || iconPrefix, [props.classPrefix, iconPrefix]);
+  const classPrefix = useMemo(
+    () => props.classPrefix || iconPrefix,
+    [props.classPrefix, iconPrefix],
+  );
 
   return (
     <Badge
       tag={tag}
-      className={classnames(
-        className,
-        classPrefix,
-        imageIcon ? '' : `${classPrefix}-${name}`,
-      )}
+      className={classnames(classPrefix, imageIcon ? '' : `${classPrefix}-${name}`, className)}
       style={{
         color: props.color,
         fontSize: addUnit(props.size),

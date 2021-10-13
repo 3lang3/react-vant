@@ -12,16 +12,19 @@ import {
   Button,
   Picker,
   Popup,
+  Uploader,
+  DatetimePicker,
+  Calendar,
 } from 'react-vant';
-
 import { components } from 'site-mobile-demo';
-import { FIELD_KEY } from '../../field/Field';
-import { COMPONENT_TYPE_KEY } from '../../utils/constant';
+
 import Form from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
+  const [form] = Form.useForm();
+
   const onFinish = (values) => {
     console.log(values);
   };
@@ -44,6 +47,7 @@ export default (): React.ReactNode => {
               message:
                 'A prime is a natural number greater than 1 that has no positive divisors other than 1 and itself.',
             }}
+            intro="确保这是唯一的用户名"
             rules={[{ required: true, message: '请填写用户名' }]}
             name="username"
             label="用户名"
@@ -124,6 +128,7 @@ export default (): React.ReactNode => {
       <DemoBlock title="表单类型">
         <Form
           inset
+          form={form}
           onFinish={onFinish}
           footer={
             <div style={{ margin: '16px 16px 0' }}>
@@ -133,10 +138,10 @@ export default (): React.ReactNode => {
             </div>
           }
         >
-          <Form.Item name="switch" label="开关">
+          <Form.Item name="switch" label="开关" valuePropName="checked">
             <Switch size={20} />
           </Form.Item>
-          <Form.Item name="checkbox" label="复选框">
+          <Form.Item name="checkbox" label="复选框" valuePropName="checked">
             <Checkbox shape="square" />
           </Form.Item>
           <Form.Item name="checkbox_group" label="复选框组">
@@ -164,11 +169,31 @@ export default (): React.ReactNode => {
           <Form.Item name="slider" label="滑块" initialValue={50}>
             <Slider />
           </Form.Item>
+          <Form.Item
+            name="uploader"
+            label="上传文件"
+            rules={[{ required: true, message: '请选择文件' }]}
+            initialValue={[
+              {
+                url: 'https://img.yzcdn.cn/vant/sand.jpg',
+                status: 'done',
+                name: '图片名称',
+              },
+            ]}
+          >
+            <Uploader />
+          </Form.Item>
           <Form.Item name="textarea" label="详细地址">
             <Field rows={3} autosize type="textarea" maxlength={140} showWordLimit />
           </Form.Item>
-          <Form.Item name="picker" label="选择器" required>
-            <PickerItem />
+          <Form.Item name="picker" label="选择器" customField>
+            <PickerItem placeholder="选择城市" />
+          </Form.Item>
+          <Form.Item name="datetime" label="选择时间" customField>
+            <DatetimePickerItem placeholder="选择时间" />
+          </Form.Item>
+          <Form.Item name="calendar" label="日历" customField>
+            <CalendarItem placeholder="选择时间" />
           </Form.Item>
         </Form>
       </DemoBlock>
@@ -201,4 +226,53 @@ function PickerItem({ value, onChange, ...props }: any) {
   );
 }
 
-PickerItem[COMPONENT_TYPE_KEY] = FIELD_KEY;
+function DatetimePickerItem({ value, onChange, ...props }: any) {
+  const [visible, setVisible] = useState(false);
+
+  const onShow = () => {
+    setVisible(true);
+  };
+  const onCancel = () => {
+    setVisible(false);
+  };
+  const onConfirm = (val) => {
+    onChange(val);
+    onCancel();
+  };
+  return (
+    <>
+      <Field {...props} isLink readonly value={value} onClick={onShow} />
+      <Popup position="bottom" round visible={visible} onCancel={onCancel}>
+        <DatetimePicker
+          title="选择年月日"
+          type="date"
+          minDate={new Date(2020, 0, 1)}
+          maxDate={new Date(2025, 10, 1)}
+          value={value}
+          onConfirm={onConfirm}
+        />
+      </Popup>
+    </>
+  );
+}
+
+function CalendarItem({ value, onChange, ...props }: any) {
+  const [visible, setVisible] = useState(false);
+
+  const onShow = () => {
+    setVisible(true);
+  };
+  const onCancel = () => {
+    setVisible(false);
+  };
+  const onConfirm = (val) => {
+    onChange(val);
+    onCancel();
+  };
+  return (
+    <>
+      <Field {...props} isLink readonly value={value} onClick={onShow} />
+      <Calendar visible={visible} onClose={onCancel} onConfirm={onConfirm} />
+    </>
+  );
+}

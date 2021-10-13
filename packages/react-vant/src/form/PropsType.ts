@@ -9,33 +9,37 @@ import { FieldProps } from '../field/PropsType';
 export type FormLayout = 'vertical' | 'horizontal';
 export interface FormProps extends RcFormProps, Omit<CellGroupProps, 'title'>, BaseTypeProps {
   layout?: FormLayout;
-  hasFeedback?: boolean;
-  label?: React.ReactNode;
   footer?: React.ReactNode;
 }
 
-export type RenderChildren<Values = any> = (form: FormInstance<Values>) => React.ReactNode;
-type ChildrenType<Values = any> = RenderChildren<Values> | React.ReactNode;
+export type RenderChildren<Values = unknown> = (form: FormInstance<Values>) => React.ReactNode;
+type ChildrenType<Values = unknown> = RenderChildren<Values> | React.ReactNode;
 
 export type MemoInputProps = {
-  value: any;
+  value: unknown;
   update: number;
   children: React.ReactNode;
-} & Record<string, any>;
+} & Record<string, unknown>;
 
 export type FormItemProps = RcFieldProps &
   Pick<FieldProps, 'style' | 'className' | 'tooltip' | 'intro' | 'onClick'> & {
     label?: string;
-    hasFeedback?: boolean;
     required?: boolean;
     noStyle?: boolean;
     disabled?: boolean;
+    /** 自定义item，此时不会渲染内置的field */
+    customField?: boolean;
     children: ChildrenType;
   };
 
+export type FormItemSharedProps = Pick<
+  FormItemProps,
+  'label' | 'className' | 'style' | 'disabled' | 'tooltip' | 'intro' | 'required'
+> & { error?: boolean; errorMessage?: string };
+
 export type FormItemLayoutProps = Pick<
   FormItemProps,
-  'required' | 'hasFeedback' | 'disabled' | 'label' | 'style' | 'className' | 'tooltip' | 'intro'
+  'required' | 'disabled' | 'label' | 'style' | 'className' | 'tooltip' | 'intro'
 > & {
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;

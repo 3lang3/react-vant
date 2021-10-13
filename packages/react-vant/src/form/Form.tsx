@@ -11,15 +11,13 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('form', prefixCls);
 
-  const { className, style, hasFeedback, layout, footer, children, border, inset, ...formProps } =
-    props;
+  const { className, style, layout, footer, children, border, inset, ...formProps } = props;
 
   return (
     <RcForm className={classnames(bem(), className)} style={style} ref={ref} {...formProps}>
       <CellGroup border={border} inset={inset}>
         <FormContext.Provider
           value={{
-            hasFeedback,
             layout,
           }}
         >

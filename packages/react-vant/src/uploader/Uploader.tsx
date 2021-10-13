@@ -3,13 +3,12 @@ import cls from 'classnames';
 // Utils
 import { isPromise, getSizeStyle, extend, pick } from '../utils';
 import { isOversize, filterFiles, readFileContent, toArray, isImageFile } from './utils';
-// Components
-import Icon from '../icon';
-
 // Types
 import { UploaderFileListItem, UploaderInstance, UploaderProps } from './PropsType';
 import { UploaderPreviewItem } from './UploaderPreviewItem';
+// Components
 import ImagePreview from '../image-preview';
+import Icon from '../icon';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {

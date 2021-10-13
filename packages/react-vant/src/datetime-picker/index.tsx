@@ -1,5 +1,5 @@
-import DateTimePicker from './DatetimePicker';
+import DatetimePicker from './DatetimePicker';
 
-export default DateTimePicker;
-export { DateTimePicker };
+export default DatetimePicker;
+export { DatetimePicker };
 export type { DateTimePickerProps, DatetimePickerType, DateTimePickerInstance } from './PropsType';

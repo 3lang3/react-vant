@@ -72,13 +72,13 @@ const FormItem: FC<FormItemProps> = (props) => {
     style,
     // FormItem 相关
     label,
-    hasFeedback,
     name,
     required,
     noStyle,
     // Field 相关
     tooltip,
     intro,
+    customField,
     disabled,
     rules,
     children,
@@ -98,7 +98,8 @@ const FormItem: FC<FormItemProps> = (props) => {
   const updateRef = React.useRef(0);
   updateRef.current += 1;
 
-  const isFieldChildren = (children as any).type?.[COMPONENT_TYPE_KEY] === FIELD_KEY;
+  const isFieldChildren =
+    (children as { type: unknown }).type?.[COMPONENT_TYPE_KEY] === FIELD_KEY || customField;
 
   function renderLayout(
     baseChildren: React.ReactNode,
@@ -119,7 +120,6 @@ const FormItem: FC<FormItemProps> = (props) => {
         intro={intro}
         required={isRequired}
         disabled={disabled}
-        hasFeedback={hasFeedback}
         htmlFor={fieldId}
         meta={meta}
         onClick={onClick}
@@ -198,12 +198,6 @@ const FormItem: FC<FormItemProps> = (props) => {
             'Must set `name` or use render props when `dependencies` is set.',
           );
         } else if (React.isValidElement(children)) {
-          if (children.props.defaultValue) {
-            devWarning(
-              'Form.Item',
-              '`defaultValue` will not work on controlled Field. You should use `initialValues` of Form instead.',
-            );
-          }
           const childProps = { ...children.props, ...control };
 
           if (!childProps.id) {
@@ -216,12 +210,12 @@ const FormItem: FC<FormItemProps> = (props) => {
 
           // We should keep user origin event handler
           const triggers = new Set<string>([
-            ...toArray(trigger),
-            ...toArray(mergedValidateTrigger),
-          ] as any);
+            ...toArray<string>(trigger),
+            ...toArray<string>(mergedValidateTrigger as string),
+          ]);
 
           triggers.forEach((eventName) => {
-            childProps[eventName] = (...args: any[]) => {
+            childProps[eventName] = (...args) => {
               control[eventName]?.(...args);
               children.props[eventName]?.(...args);
             };
