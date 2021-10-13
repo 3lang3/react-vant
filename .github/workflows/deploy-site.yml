@@ -18,11 +18,10 @@ jobs:
         run: npm run bootstrap
 
       - name: Build Site
-        run: npm run build:site
+        run: npm run release:site
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
           folder: packages/react-vant/site
-
