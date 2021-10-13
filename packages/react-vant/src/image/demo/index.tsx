@@ -13,9 +13,9 @@ export default (): React.ReactNode => {
   return (
     <DemoSection className="demo-image">
       <DemoBlock title="基础用法">
-        <Image width="100" height="100" src={''} />
+        <Image width="100" height="100" src={base64} />
       </DemoBlock>
-      {/* <DemoBlock title="填充模式">
+      <DemoBlock title="填充模式">
         <Flex wrap="wrap" gutter={20}>
           {fits.map((el) => (
             <Flex.Item key={el} span={8}>
@@ -58,7 +58,7 @@ export default (): React.ReactNode => {
             <div className="text">自定义提示</div>
           </Flex.Item>
         </Flex>
-      </DemoBlock> */}
+      </DemoBlock>
     </DemoSection>
   );
 };
