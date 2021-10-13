@@ -7,7 +7,7 @@ import { useSetState, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Image: React.FC<ImageProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('image', prefixCls);
   const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
   const [status, setStatus] = useSetState({ loading: true, error: false });
@@ -36,6 +36,9 @@ const Image: React.FC<ImageProps> = (props) => {
   useEffect(() => {
     if (imgRef.current && imgRef.current.complete) {
       setStatus({ loading: false, error: false });
+    }
+    if (!props.src) {
+      setStatus({ error: true, loading: false });
     }
     return () => {
       unmountedRef.current = true;
