@@ -201,7 +201,8 @@ export default (): React.ReactNode => {
   );
 };
 
-function PickerItem({ value, onChange, ...props }: any) {
+function PickerItem(props) {
+  const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 
   const onShow = () => {
@@ -218,7 +219,7 @@ function PickerItem({ value, onChange, ...props }: any) {
   const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '宿迁', '泰州', '无锡'];
   return (
     <>
-      <Field {...props} isLink readonly value={value} onClick={onShow} />
+      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
       <Popup position="bottom" round visible={visible} onCancel={onCancel}>
         <Picker title="选择城市" columns={columns} onConfirm={onConfirm} onCancel={onCancel} />
       </Popup>
@@ -226,7 +227,8 @@ function PickerItem({ value, onChange, ...props }: any) {
   );
 }
 
-function DatetimePickerItem({ value, onChange, ...props }: any) {
+function DatetimePickerItem(props) {
+  const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 
   const onShow = () => {
@@ -241,7 +243,7 @@ function DatetimePickerItem({ value, onChange, ...props }: any) {
   };
   return (
     <>
-      <Field {...props} isLink readonly value={value} onClick={onShow} />
+      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
       <Popup position="bottom" round visible={visible} onCancel={onCancel}>
         <DatetimePicker
           title="选择年月日"
@@ -256,7 +258,8 @@ function DatetimePickerItem({ value, onChange, ...props }: any) {
   );
 }
 
-function CalendarItem({ value, onChange, ...props }: any) {
+function CalendarItem(props) {
+  const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 
   const onShow = () => {
@@ -271,7 +274,7 @@ function CalendarItem({ value, onChange, ...props }: any) {
   };
   return (
     <>
-      <Field {...props} isLink readonly value={value} onClick={onShow} />
+      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
       <Calendar visible={visible} onClose={onCancel} onConfirm={onConfirm} />
     </>
   );

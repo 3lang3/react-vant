@@ -43,11 +43,13 @@
     "@types/react-dom": "^16.9.9",
     "gh-pages": "^3.2.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "rc-field-form": "^1.21.2"
   },
   "peerDependencies": {
     "react": ">=16.14.0",
-    "react-dom": ">=16.14.0"
+    "react-dom": ">=16.14.0",
+    "rc-field-form": "^1.21.2"
   },
   "browserslist": [
     "Android >= 4.0",
@@ -57,7 +59,6 @@
     "@vant/icons": "^1.7.0",
     "@vant/popperjs": "^1.1.0",
     "classnames": "^2.2.6",
-    "rc-field-form": "^1.21.2",
     "react-transition-group": "^4.4.1",
     "swiper": "^6.8.1"
   }
