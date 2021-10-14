@@ -7,4 +7,4 @@ const FormNamespace = Object.assign(Form, { Item: FormItem, useForm, List });
 export default FormNamespace;
 export { Form, FormItem };
 
-export type { FormProps, FormItemProps } from './PropsType';
+export type { FormProps, FormItemProps, FormInstance } from './PropsType';

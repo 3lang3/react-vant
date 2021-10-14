@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FormProps as RcFormProps, FormInstance } from 'rc-field-form';
+import type { FormProps as RcFormProps, FormInstance as RcFormInstance } from 'rc-field-form';
 import type { FieldProps as RcFieldProps } from 'rc-field-form/lib/Field';
 import type { Meta } from 'rc-field-form/lib/interface';
 import type { BaseTypeProps } from '../utils';
@@ -13,8 +13,10 @@ export interface FormProps extends RcFormProps, Omit<CellGroupProps, 'title'>, B
   footer?: React.ReactNode;
 }
 
-export type RenderChildren<Values = unknown> = (form: FormInstance<Values>) => React.ReactNode;
+export type RenderChildren<Values = unknown> = (form: RcFormInstance<Values>) => React.ReactNode;
 type ChildrenType<Values = unknown> = RenderChildren<Values> | React.ReactNode;
+
+export type FormInstance = RcFormInstance;
 
 export type MemoInputProps = {
   value: unknown;
