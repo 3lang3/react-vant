@@ -20,6 +20,29 @@
     height: 100%;
   }
 
+  &--fix {
+    overflow: hidden;
+    .@{rv-prefix}-image__img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-width {
+      .@{rv-prefix}-image__img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    &-height {
+      .@{rv-prefix}-image__img {
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
+
   &--round {
     overflow: hidden;
     border-radius: var(--rv-border-radius-max);

@@ -1,8 +1,14 @@
 import React from 'react';
 import { BaseTypeProps } from '../utils';
 
-export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
-
+export type ImageFit =
+  | 'contain'
+  | 'cover'
+  | 'fill'
+  | 'none'
+  | 'scale-down'
+  | 'width-fix'
+  | 'height-fix';
 export interface ImageProps extends BaseTypeProps {
   /** 图片链接	 */
   src?: string;

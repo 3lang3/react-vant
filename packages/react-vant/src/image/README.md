@@ -41,10 +41,7 @@ import { Image } from 'react-vant';
 `Image` 组件提供了默认的加载中提示，支持通过 `loadingIcon` 自定义内容。
 
 ```jsx
-<Image 
-  src="https://img.yzcdn.cn/vant/cat.jpeg" 
-  loadingIcon={<Loading type="spinner" />} 
-/>
+<Image src="https://img.yzcdn.cn/vant/cat.jpeg" loadingIcon={<Loading type="spinner" />} />
 ```
 
 ### 加载失败提示
@@ -52,10 +49,7 @@ import { Image } from 'react-vant';
 `Image` 组件提供了默认的加载失败提示，支持通过 `errorIcon` 自定义内容。
 
 ```jsx
-<Image 
-  src="https://img.yzcdn.cn/vant/cat.jpeg" 
-  errorIcon={<div>加载失败</div>} 
-/>
+<Image src="https://img.yzcdn.cn/vant/cat.jpeg" errorIcon={<div>加载失败</div>} />
 ```
 
 ## API
@@ -73,9 +67,9 @@ import { Image } from 'react-vant';
 | round | 是否显示为圆形 | _boolean_ | `false` |
 | showError | 是否展示图片加载失败提示 | _boolean_ | `true` |
 | showLoading | 是否展示图片加载中提示 | _boolean_ | `true` |
-| errorIcon | 失败时提示的图标 | _string\|ReactNode_| `photo-fail` |
+| errorIcon | 失败时提示的图标 | _string\|ReactNode_ | `photo-fail` |
 | loadingIcon | 加载时提示的图标 | _string\|ReactNode_ | `photo` |
-| iconSize  | 加载图标和失败图标的大小 | _number \| string_ | `32px` |
+| iconSize | 加载图标和失败图标的大小 | _number \| string_ | `32px` |
 | iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
 ### 图片填充模式 
@@ -87,16 +81,16 @@ import { Image } from 'react-vant';
 | fill       | 拉伸图片，使图片填满元素                               |
 | none       | 保持图片原有尺寸                                       |
 | scale-down | 取 `none` 或 `contain` 中较小的一个                    |
+| width-fix  | 缩放模式，宽度不变，高度自动变化，保持原图宽高比不变   |
+| height-fix | 缩放模式，高度不变，宽度自动变化，保持原图宽高比不变   |
 
 ### Events
 
-| 事件名 | 说明               | 回调参数            |
-| ------ | ------------------ | ------------------- |
-| onClick  | 点击图片时触发     | _event: MouseEvent_ |
-| onLoad   | 图片加载完毕时触发 | -                   |
-| onError  | 图片加载失败时触发 | -                   |
-
-
+| 事件名  | 说明               | 回调参数            |
+| ------- | ------------------ | ------------------- |
+| onClick | 点击图片时触发     | _event: MouseEvent_ |
+| onLoad  | 图片加载完毕时触发 | -                   |
+| onError | 图片加载失败时触发 | -                   |
 
 ### 类型定义
 
@@ -112,16 +106,15 @@ import type { ImageFit } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-image-placeholder-text-color | _var(--rv-gray-6)_ | - |
-| --rv-image-placeholder-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-image-placeholder-background-color | _var(--rv-background-color)_ | - |
-| --rv-image-loading-icon-size | _32px_ | - |
-| --rv-image-loading-icon-color | _var(--rv-gray-4)_ | - |
-| --rv-image-error-icon-size | _32px_ | - |
-| --rv-image-error-icon-color | _var(--rv-gray-4)_ | - |
-
+| 名称                                    | 默认值                       | 描述 |
+| --------------------------------------- | ---------------------------- | ---- |
+| --rv-image-placeholder-text-color       | _var(--rv-gray-6)_           | -    |
+| --rv-image-placeholder-font-size        | _var(--rv-font-size-md)_     | -    |
+| --rv-image-placeholder-background-color | _var(--rv-background-color)_ | -    |
+| --rv-image-loading-icon-size            | _32px_                       | -    |
+| --rv-image-loading-icon-color           | _var(--rv-gray-4)_           | -    |
+| --rv-image-error-icon-size              | _32px_                       | -    |
+| --rv-image-error-icon-color             | _var(--rv-gray-4)_           | -    |
 
 ## 常见问题
 
@@ -130,9 +123,9 @@ import type { ImageFit } from 'react-vant';
 在 .tsx, jsx 文件中通过相对路径引用本地图片时，需要在图片的链接外包上一层 `require()`，将图片 URL 转换为 webpack 模块请求，并结合 [file-loader](https://github.com/webpack-contrib/file-loader) 或者 [url-loader](https://github.com/webpack-contrib/url-loader) 进行处理。
 
 ```jsx
-// 错误写法 
+// 错误写法
 <Image src="./image.png" />
 
-// 正确写法 
+// 正确写法
 <Image src="require('./image.png')" />
 ```

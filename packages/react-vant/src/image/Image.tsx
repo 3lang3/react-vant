@@ -3,16 +3,17 @@ import classnames from 'classnames';
 import { ImageProps } from './PropsType';
 import { isDef, addUnit } from '../utils';
 import Icon from '../icon';
-import { useSetState, useUpdateEffect } from '../hooks';
+import { useSetState } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Image: React.FC<ImageProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('image', prefixCls);
-  const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
   const [status, setStatus] = useSetState({ loading: true, error: false });
   const imgRef = useRef<HTMLImageElement>(null);
-  const unmountedRef = useRef(false);
+
+  const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
+  const isFixFit = fit === 'width-fix' || fit === 'height-fix';
 
   const style = useMemo(() => {
     const internalStyle: CSSProperties = {};
@@ -34,38 +35,29 @@ const Image: React.FC<ImageProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (imgRef.current && imgRef.current.complete) {
-      setStatus({ loading: false, error: false });
-    }
+    const payload = { error: false, loading: true } as typeof status;
     if (!props.src) {
-      setStatus({ error: true, loading: false });
+      payload.error = true;
+      payload.loading = false;
     }
-    return () => {
-      unmountedRef.current = true;
-    };
-  }, []);
-
-  useUpdateEffect(() => {
-    if (props.src) {
-      setStatus({ error: false });
+    if (imgRef.current) {
+      if (imgRef.current.complete) {
+        payload.loading = false;
+      } else {
+        payload.loading = true;
+      }
     }
-    if (imgRef.current && !imgRef.current.complete) {
-      setStatus({ error: false, loading: true });
-    }
+    setStatus(payload);
   }, [props.src]);
 
   const onLoad = (e) => {
-    if (!unmountedRef.current) {
-      setStatus({ loading: false });
-      props.onLoad?.(e);
-    }
+    setStatus({ loading: false });
+    props.onLoad?.(e);
   };
 
   const onError = (e) => {
-    if (!unmountedRef.current) {
-      setStatus({ error: true, loading: false });
-      props.onLoad?.(e);
-    }
+    setStatus({ error: true, loading: false });
+    props.onLoad?.(e);
   };
 
   const renderLoadingIcon = () => {
@@ -114,11 +106,11 @@ const Image: React.FC<ImageProps> = (props) => {
     if (status.error || !props.src) {
       return null;
     }
-
+    const objectFit = !isFixFit ? fit : undefined;
     const attrs = {
       className: classnames(bem('img')),
       style: {
-        objectFit: fit,
+        objectFit,
       },
     };
     return (
@@ -135,7 +127,16 @@ const Image: React.FC<ImageProps> = (props) => {
 
   return (
     <div
-      className={classnames(props.className, bem({ block, round: props.round }))}
+      className={classnames(
+        props.className,
+        bem({
+          block,
+          round: props.round,
+          fix: isFixFit,
+          'fix-width': fit === 'width-fix',
+          'fix-height': fit === 'height-fix',
+        }),
+      )}
       style={style}
       onClick={props.onClick}
     >
