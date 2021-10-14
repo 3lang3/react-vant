@@ -6,9 +6,10 @@
 
 ### 引入
 
-通过以下方式来全局注册组件，更多注册方式请参考[组件注册](#/zh-CN/advanced-usage#zu-jian-zhu-ce)。
+`rc-field-form` 是 Form 组件的前置依赖
 
 ```bash
+# 添加 rc-field-form包
 yarn add rc-field-form
 ```
 
@@ -22,7 +23,7 @@ import { Form } from 'react-vant';
 
 在表单中，每个 Form.Item 组件代表一个表单项，使用 Form.Item 的 `rules` 属性定义校验规则。
 
-> Form.Item 基于 Field 和 RcFormItem 进行的封装
+> Form.Item 是基于 Field 和 [RcField](https://github.com/react-component/field-form#field) 的封装
 
 ```jsx
 import React from 'react';
@@ -48,6 +49,81 @@ export default () => {
 ### 校验规则
 
 通过 `rules` 定义表单校验规则，点击此处查看文档[rule](https://github.com/react-component/field-form#rule)。
+
+```jsx
+import React from 'react';
+import { Form, Button, Field } from 'react-vant';
+
+export default () => {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log('form submit', values);
+  };
+
+  return (
+    <Form
+      form={form}
+      onFinish={onFinish}
+      footer={
+        <div style={{ margin: '16px 16px 0' }}>
+          <Button round nativeType="submit" type="primary" block>
+            提交
+          </Button>
+        </div>
+      }
+    >
+      <Form.Item
+        name="text1"
+        label="正则校验"
+        rules={[{ pattern: /\d{6}/, message: '请输入6位数字' }]}
+      >
+        <Field placeholder="正则校验" />
+      </Form.Item>
+      <Form.Item
+        name="text2"
+        label="函数校验"
+        rules={[
+          {
+            validator: (_, value) => {
+              if (/1\d{10}/.test(value)) {
+                return Promise.resolve(true);
+              }
+              return Promise.reject(new Error('请输入正确的手机号码'));
+            },
+          },
+        ]}
+      >
+        <Field placeholder="函数校验" />
+      </Form.Item>
+      <Form.Item
+        label="异步函数校验"
+        name="text3"
+        rules={[
+          {
+            validator: (_, value) => {
+              return new Promise((resolve, reject) => {
+                Toast.loading('验证中...');
+
+                setTimeout(() => {
+                  if (/\d{6}/.test(value)) {
+                    resolve(true);
+                  } else {
+                    reject(new Error('请输入正确内容'));
+                  }
+                  Toast.clear();
+                }, 1000);
+              });
+            },
+          },
+        ]}
+      >
+        <Field placeholder="异步函数校验" />
+      </Form.Item>
+    </Form>
+  );
+};
+```
 
 ### 表单项类型 - 开关
 
@@ -247,27 +323,270 @@ export default () => {
 };
 ```
 
+### 表单项类型 - 选择器
+
+在表单中使用 [Picker 组件](#/zh-CN/picker)。
+
+```jsx
+import React, { useState } from 'react';
+import { Form, Field, Picker, Popup } from 'react-vant';
+
+function PickerItem(props) {
+  const { value, onChange, ...fieldProps } = props;
+  const [visible, setVisible] = useState(false);
+
+  const onShow = () => {
+    setVisible(true);
+  };
+  const onCancel = () => {
+    setVisible(false);
+  };
+  const onConfirm = (val) => {
+    onChange(val);
+    onCancel();
+  };
+
+  const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '宿迁', '泰州', '无锡'];
+  return (
+    <>
+      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
+      <Popup position="bottom" round visible={visible} onCancel={onCancel}>
+        <Picker title="选择城市" columns={columns} onConfirm={onConfirm} onCancel={onCancel} />
+      </Popup>
+    </>
+  );
+}
+
+export default () => {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log('form submit', values);
+  };
+
+  return (
+    <Form onFinish={onFinish} form={form}>
+      <Form.Item name="picker" label="选择器" customField>
+        <PickerItem placeholder="选择城市" />
+      </Form.Item>
+    </Form>
+  );
+};
+```
+
+### 表单项类型 - 时间选择器
+
+在表单中使用 [DatetimePicker 组件](#/zh-CN/datetime-picker)。
+
+```jsx
+import React, { useState } from 'react';
+import { Form, Field, DatetimePicker, Popup } from 'react-vant';
+
+function DatetimePickerItem(props) {
+  const { value, onChange, ...fieldProps } = props;
+  const [visible, setVisible] = useState(false);
+
+  const onShow = () => {
+    setVisible(true);
+  };
+  const onCancel = () => {
+    setVisible(false);
+  };
+  const onConfirm = (val) => {
+    onChange(val);
+    onCancel();
+  };
+  return (
+    <>
+      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
+      <Popup position="bottom" round visible={visible} onCancel={onCancel}>
+        <DatetimePicker
+          title="选择年月日"
+          type="date"
+          minDate={new Date(2020, 0, 1)}
+          maxDate={new Date(2025, 10, 1)}
+          value={value}
+          onConfirm={onConfirm}
+        />
+      </Popup>
+    </>
+  );
+}
+
+export default () => {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log('form submit', values);
+  };
+
+  return (
+    <Form onFinish={onFinish} form={form}>
+      <Form.Item name="datetime" label="选择时间" customField>
+        <DatetimePickerItem placeholder="选择时间" />
+      </Form.Item>
+    </Form>
+  );
+};
+```
+
+### 表单项类型 - 日历
+
+在表单中使用 [Calendar 组件](#/zh-CN/calendar)。
+
+```jsx
+import React, { useState } from 'react';
+import { Form, Field, Calendar } from 'react-vant';
+
+function CalendarItem(props) {
+  const { value, onChange, ...fieldProps } = props;
+  const [visible, setVisible] = useState(false);
+
+  const onShow = () => {
+    setVisible(true);
+  };
+  const onCancel = () => {
+    setVisible(false);
+  };
+  const onConfirm = (val) => {
+    onChange(val);
+    onCancel();
+  };
+  return (
+    <>
+      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
+      <Calendar visible={visible} onClose={onCancel} onConfirm={onConfirm} />
+    </>
+  );
+}
+
+export default () => {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log('form submit', values);
+  };
+
+  return (
+    <Form onFinish={onFinish} form={form}>
+      <Form.Item name="calendar" label="日历" customField>
+        <CalendarItem placeholder="选择时间" />
+      </Form.Item>
+    </Form>
+  );
+};
+```
+
+### 动态增减表单项
+
+Form.List 为字段提供数组化管理。
+
+```jsx
+import React from 'react';
+import { Form, Field, Button } from 'react-vant';
+
+export default () => {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log('form submit', values);
+  };
+
+  return (
+    <Form
+      onFinish={onFinish}
+      footer={
+        <div style={{ margin: '16px 16px 0' }}>
+          <Button round nativeType="submit" type="primary" block>
+            提交
+          </Button>
+        </div>
+      }
+    >
+      <Form.List name="users" initialValue={[{ name: 'react-vant', age: '1' }]}>
+        {(fields, { add, remove }) => (
+          <>
+            {fields.map((field, idx) => (
+              <div className="form-list-item" key={field.key}>
+                <h6>用户{idx + 1}:</h6>
+                <div className="form-list-item__control">
+                  <Form.Item
+                    label="姓名"
+                    name={[field.name, 'name']}
+                    rules={[
+                      { type: 'string', min: 2, max: 6, message: '姓名最少两个字，最多6个字' },
+                    ]}
+                  >
+                    <Field placeholder="请输入用户姓名" />
+                  </Form.Item>
+                  <Form.Item
+                    label="年龄"
+                    name={[field.name, 'age']}
+                    rules={[{ type: 'number', message: '请输入数字', transform: (v) => Number(v) }]}
+                  >
+                    <Field
+                      placeholder="请输入用户年龄"
+                      rightIcon={<Icon name="delete" onClick={() => remove(idx)} />}
+                    />
+                  </Form.Item>
+                </div>
+              </div>
+            ))}
+            <div style={{ padding: 10 }}>
+              <Button round block plain icon="add-o" size="small" onClick={() => add()}>
+                新增用户
+              </Button>
+            </div>
+          </>
+        )}
+      </Form.List>
+    </Form>
+  );
+};
+```
+
 ## API
 
-### Props
+### Form Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label-width | 表单项 label 宽度，默认单位为`px` | _number \| string_ | `6.2em` |
-| label-align |  表单项 label 对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| input-align | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| error-message-align | 错误提示文案对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| validate-trigger | 表单校验触发时机，可选值为 `onChange`、`onSubmit`，详见下表 | _string_ | `onBlur` |
-| colon | 是否在 label 后面添加冒号 | _boolean_ | `false` |
-| disabled | 是否禁用表单中的所有输入框 | _boolean_ | `false` |
-| readonly | 是否将表单中的所有输入框设置为只读状态 | _boolean_ | `false` |
-| validate-first | 是否在某一项校验不通过时停止校验 | _boolean_ | `false` |
-| scroll-to-error | 是否在提交表单且校验不通过时滚动至错误的表单项 | _boolean_ | `false` |
-| show-error | 是否在校验不通过时标红输入框 | _boolean_ | `false` |
-| show-error-message | 是否在校验不通过时在输入框下方展示错误提示 | _boolean_ | `true` |
-| submit-on-enter | 是否在按下回车键时提交表单 | _boolean_ | `true` |
+| layout | 表单布局 | _horizontal \| vertical_ | `horizontal` |
+| colon | 配置 Form.Item 的 colon 的默认值。表示是否显示 label 后面的冒号 | _boolean_ | `false` |
+| footer | 表单底部内容 | _ReactNode_ | - |
 
-> 表单项的 API 参见：[Field 组件](#/zh-CN/field#api)
+> 更多 Form API 参见：[rc-field-form](https://github.com/react-component/field-form#form)
+
+### Form.Item Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| colon | 配合 label 属性使用，表示是否显示 label 后面的冒号 | _boolean_ | `false` |
+| intro | 额外的提示信息 | _ReactNode_ | - |
+| required | 必填样式设置。如不设置，则会根据校验规则自动生成 | _boolean_ | `false` |
+| tooltip | 字段提示信息 | _ReactNode \|_ [DialogProps & { icon: ReactNode }](/#/zh-CN/dialog#props) | - |
+| disabled | 是否禁用标单项 | _boolean_ | `false` |
+| labelClass | 左侧文本额外类名 | _any_ | - |
+| labelWidth | 左侧文本宽度，默认单位为`px` | _number \| string_ | `6.2em` |
+| labelAlign | 左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
+
+> 更多 Form.Item API 参见：[rc-field-form](https://github.com/react-component/field-form#field)
+
+### Form.List Props
+
+| 参数 | 说明 | 类型 |
+| --- | --- | --- |
+| children | 渲染函数 | _(fields: Field[], operation: { add, remove, move }, meta: { errors }) => React.ReactNode_ |
+| initialValue | 设置子元素默认值，如果与 Form 的 initialValues 冲突则以 Form 为准 | _any[]_ |
+| name | 字段名，支持数组 | _string \| number \| (string \| number)[]_ |
+
+#### operation
+
+| 参数   | 说明       | 类型                                                 |
+| ------ | ---------- | ---------------------------------------------------- |
+| add    | 新增表单项 | _(defaultValue?: any, insertIndex?: number) => void_ |
+| move   | 移动表单项 | _(from: number, to: number) => void_                 |
+| remove | 删除表单项 | _(index: number \| number[]) => void_                |
 
 ### Rule 数据结构
 
@@ -275,68 +594,15 @@ export default () => {
 
 | 键名 | 说明 | 类型 |
 | --- | --- | --- |
+| type | 类型，常见有 `string` `number` `boolean` `url` `email`。更多请参考[此处](https://github.com/yiminghe/async-validator#type) | _string_ |
+| enum | 是否匹配枚举中的值（需要将 `type` 设置为 `enum`） | _any[]_ |
+| len | string 类型时为字符串长度；number 类型时为确定数字； array 类型时为数组长度 | _number_ |
+| max | 必须设置 type：string 类型为字符串最大长度；number 类型时为最大值；array 类型时为数组最大长度 | _number_ |
+| min | 必须设置 type：string 类型为字符串最小长度；number 类型时为最小值；array 类型时为数组最小长度 | _number_ |
+| transform | 将字段值转换成目标值后进行校验 | _(value) => any_ |
+| whitespace | 如果字段仅包含空格则校验不通过，只在 type: 'string' 时生效 | _boolean_ |
 | required | 是否为必选字段 | _boolean_ |
-| message | 错误提示文案 | _string \| (value, rule) => string_ |
-| validator | 通过函数进行校验 | _(value, rule) => boolean \| string \| Promise_ |
-| pattern | 通过正则表达式进行校验 | _RegExp_ |
-| trigger | 本项规则的触发时机，可选值为 `onChange`、`onBlur` | _string_ |
-| formatter | 格式化函数，将表单项的值转换后进行校验 | _(value, rule) => any_ |
-
-### validate-trigger  可选值
-
-通过 `validate-trigger` 属性可以自定义表单校验的触发时机。
-
-| 值       | 描述                                 |
-| -------- | ------------------------------------ |
-| onSubmit | 仅在提交表单时触发校验               |
-| onBlur   | 在提交表单和输入框失焦时触发校验     |
-| onChange | 在提交表单和输入框内容变化时触发校验 |
-
-### Events
-
-| 事件名 | 说明                       | 回调参数                                          |
-| ------ | -------------------------- | ------------------------------------------------- |
-| submit | 提交表单且验证通过后触发   | _values: object_                                  |
-| failed | 提交表单且验证不通过后触发 | _errorInfo: { values: object, errors: object[] }_ |
-
-### 方法
-
-通过 ref 可以获取到 Form 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
-
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| submit | 提交表单，与点击提交按钮的效果等价 | - | - |
-| validate | 验证表单，支持传入 `name` 来验证单个或部分表单项 | _name?: string \| string[]_ | _Promise_ |
-| resetValidation | 重置表单项的验证提示，支持传入 `name` 来重置单个或部分表单项 | _name?: string \| string[]_ | - |
-| scrollToField | 滚动到对应表单项的位置，默认滚动到顶部，第二个参数传 false 可滚动至底部 | _name: string, alignToTop: boolean_ | - |
-
-### 类型定义
-
-组件导出以下类型定义：
-
-```ts
-import type { FormInstance } from 'vant';
-```
-
-`FormInstance` 是组件实例的类型，用法如下：
-
-```ts
-import { ref } from 'vue';
-import type { FormInstance } from 'vant';
-
-const formRef = ref<FormInstance>();
-
-formRef.value?.submit();
-```
-
-### Slots
-
-| 名称    | 说明     |
-| ------- | -------- |
-| default | 表单内容 |
-
-## 常见问题
-
-### 如何自定义表单项？
-
-Vant 支持在 Form 组件中插入自定义的表单项，具体用法参见 [useCustomFieldValue](#/zh-CN/use-custom-field-value)。
+| message | 错误提示文案 | _string_ |
+| validator | 自定义校验，接收 Promise 作为返回值 | _(rule, value, callback: (error?: string) => void, form) => Promise \| void_ |
+| pattern | 正则表达式匹配 | _RegExp_ |
+| validateTrigger | 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集 | _string\| string[]_ |

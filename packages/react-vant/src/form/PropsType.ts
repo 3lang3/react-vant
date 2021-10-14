@@ -9,6 +9,7 @@ import { FieldProps } from '../field/PropsType';
 export type FormLayout = 'vertical' | 'horizontal';
 export interface FormProps extends RcFormProps, Omit<CellGroupProps, 'title'>, BaseTypeProps {
   layout?: FormLayout;
+  colon?: boolean;
   footer?: React.ReactNode;
 }
 
@@ -22,7 +23,18 @@ export type MemoInputProps = {
 } & Record<string, unknown>;
 
 export type FormItemProps = RcFieldProps &
-  Pick<FieldProps, 'style' | 'className' | 'tooltip' | 'intro' | 'onClick'> & {
+  Pick<
+    FieldProps,
+    | 'style'
+    | 'className'
+    | 'tooltip'
+    | 'intro'
+    | 'colon'
+    | 'labelWidth'
+    | 'labelAlign'
+    | 'labelClass'
+    | 'onClick'
+  > & {
     label?: string;
     required?: boolean;
     noStyle?: boolean;
@@ -32,14 +44,19 @@ export type FormItemProps = RcFieldProps &
     children: ChildrenType;
   };
 
-export type FormItemSharedProps = Pick<
-  FormItemProps,
-  'label' | 'className' | 'style' | 'disabled' | 'tooltip' | 'intro' | 'required'
-> & { error?: boolean; errorMessage?: string };
-
 export type FormItemLayoutProps = Pick<
   FormItemProps,
-  'required' | 'disabled' | 'label' | 'style' | 'className' | 'tooltip' | 'intro'
+  | 'required'
+  | 'disabled'
+  | 'label'
+  | 'style'
+  | 'className'
+  | 'tooltip'
+  | 'intro'
+  | 'colon'
+  | 'labelWidth'
+  | 'labelAlign'
+  | 'labelClass'
 > & {
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;

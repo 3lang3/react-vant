@@ -92,7 +92,7 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   /** 左侧文本额外类名	 */
   labelClass?: string;
   /** 左侧文本宽度，默认单位为 px	 */
-  labelWidth?: string;
+  labelWidth?: number | string;
   /** 左侧文本对齐方式 */
   labelAlign?: FieldTextAlign;
   /** 是否显示字数统计，需要设置 maxlength 属性 */

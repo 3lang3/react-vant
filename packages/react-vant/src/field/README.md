@@ -228,10 +228,12 @@ const formatter = (value) => value.replace(/\d/g, '');
 | disabled | 是否禁用输入框 | _boolean_ | `false` |
 | readonly | 是否只读 | _boolean_ | `false` |
 | colon | 是否在 label 后面添加冒号 | _boolean_ | `false` |
+| intro | 额外的输入框提示信息 | _ReactNode_ | - |
+| tooltip | 字段提示信息 | _ReactNode \|_ [DialogProps & { icon: ReactNode }](/#/zh-CN/dialog#props) | - |
 | required | 是否显示表单必填星号 | _boolean_ | `false` |
 | center | 是否使内容垂直居中 | _boolean_ | `false` |
 | clearable | 是否启用清除图标，点击清除图标后会清空输入框 | _boolean_ | `false` |
-| clearIcon | 清除图标名称或图片链接	 | _string_ | `clear` |
+| clearIcon | 清除图标名称或图片链接 | _string_ | `clear` |
 | clickable | 是否开启点击反馈 | _boolean_ | `false` |
 | isLink | 是否展示右侧箭头并开启点击反馈 | _boolean_ | `false` |
 | autofocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
@@ -261,14 +263,14 @@ const formatter = (value) => value.replace(/\d/g, '');
 
 | 事件             | 说明                 | 回调参数                |
 | ---------------- | -------------------- | ----------------------- |
-| onChange          | 输入框获得焦点时触发 | _val: string \| number_ |
-| onFocus          | 输入框获得焦点时触发 | _event: MouseEvent_ |
-| onBlur           | 输入框失去焦点时触发 | _event: MouseEvent_ |
-| onClear          | 点击清除按钮时触发   | _event: MouseEvent_          |
-| onClick          | 点击 Field 时触发    | _event: MouseEvent_          |
-| onClickInput     | 点击输入区域时触发   | _event: MouseEvent_          |
-| onClickLeftIcon  | 点击左侧图标时触发   | _event: MouseEvent_          |
-| onClickRightIcon | 点击右侧图标时触发   | _event: MouseEvent_          |
+| onChange         | 输入框获得焦点时触发 | _val: string \| number_ |
+| onFocus          | 输入框获得焦点时触发 | _event: MouseEvent_     |
+| onBlur           | 输入框失去焦点时触发 | _event: MouseEvent_     |
+| onClear          | 点击清除按钮时触发   | _event: MouseEvent_     |
+| onClick          | 点击 Field 时触发    | _event: MouseEvent_     |
+| onClickInput     | 点击输入区域时触发   | _event: MouseEvent_     |
+| onClickLeftIcon  | 点击左侧图标时触发   | _event: MouseEvent_     |
+| onClickRightIcon | 点击右侧图标时触发   | _event: MouseEvent_     |
 
 ### 方法
 
@@ -301,35 +303,33 @@ const fieldRef = useRef < FieldInstance > null;
 | focus  | 获取输入框焦点 | -    | -      |
 | blur   | 取消输入框焦点 | -    | -      |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                  | 默认值                    | 描述 |
-| ------------------------------------- | ------------------------- | ---- |
-| --rv-field-label-width               | _6.2em_                   | -    |
+| 名称                                 | 默认值                   | 描述 |
+| ------------------------------------ | ------------------------ | ---- |
+| --rv-field-label-width               | _6.2em_                  | -    |
 | --rv-field-label-color               | _var(--rv-gray-7)_       | -    |
 | --rv-field-label-margin-right        | _var(--rv-padding-sm)_   | -    |
 | --rv-field-input-text-color          | _var(--rv-text-color)_   | -    |
 | --rv-field-input-error-text-color    | _var(--rv-danger-color)_ | -    |
 | --rv-field-input-disabled-text-color | _var(--rv-gray-5)_       | -    |
 | --rv-field-placeholder-text-color    | _var(--rv-gray-5)_       | -    |
-| --rv-field-icon-size                 | _16px_                    | -    |
-| --rv-field-clear-icon-size           | _16px_                    | -    |
+| --rv-field-icon-size                 | _16px_                   | -    |
+| --rv-field-clear-icon-size           | _16px_                   | -    |
 | --rv-field-clear-icon-color          | _var(--rv-gray-5)_       | -    |
 | --rv-field-right-icon-color          | _var(--rv-gray-6)_       | -    |
 | --rv-field-error-message-color       | _var(--rv-danger-color)_ | -    |
-| --rv-field-error-message-font-size   | _12px_                    | -    |
-| --rv-field-text-area-min-height      | _60px_                    | -    |
+| --rv-field-error-message-font-size   | _12px_                   | -    |
+| --rv-field-text-area-min-height      | _60px_                   | -    |
 | --rv-field-word-limit-color          | _var(--rv-gray-7)_       | -    |
 | --rv-field-word-limit-font-size      | _var(--rv-font-size-sm)_ | -    |
-| --rv-field-word-limit-line-height    | _16px_                    | -    |
+| --rv-field-word-limit-line-height    | _16px_                   | -    |
 | --rv-field-disabled-text-color       | _var(--rv-gray-5)_       | -    |
 | --rv-field-required-mark-color       | _var(--rv-red)_          | -    |
-
 
 ## 常见问题
 

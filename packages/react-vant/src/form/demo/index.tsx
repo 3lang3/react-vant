@@ -15,6 +15,7 @@ import {
   Uploader,
   DatetimePicker,
   Calendar,
+  Icon,
 } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
@@ -195,6 +196,58 @@ export default (): React.ReactNode => {
           <Form.Item name="calendar" label="日历" customField>
             <CalendarItem placeholder="选择时间" />
           </Form.Item>
+        </Form>
+      </DemoBlock>
+      <DemoBlock title="动态增减表单项">
+        <Form
+          onFinish={onFinish}
+          footer={
+            <div style={{ margin: '16px 16px 0' }}>
+              <Button round nativeType="submit" type="primary" block>
+                提交
+              </Button>
+            </div>
+          }
+        >
+          <Form.List name="users" initialValue={[{ name: 'react-vant', age: '1' }]}>
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map((field, idx) => (
+                  <div className="form-list-item" key={field.key}>
+                    <h6>用户{idx + 1}:</h6>
+                    <div className="form-list-item__control">
+                      <Form.Item
+                        label="姓名"
+                        name={[field.name, 'name']}
+                        rules={[
+                          { type: 'string', min: 2, max: 6, message: '姓名最少两个字，最多6个字' },
+                        ]}
+                      >
+                        <Field placeholder="请输入用户姓名" />
+                      </Form.Item>
+                      <Form.Item
+                        label="年龄"
+                        name={[field.name, 'age']}
+                        rules={[
+                          { type: 'number', message: '请输入数字', transform: (v) => Number(v) },
+                        ]}
+                      >
+                        <Field
+                          placeholder="请输入用户年龄"
+                          rightIcon={<Icon name="delete" onClick={() => remove(idx)} />}
+                        />
+                      </Form.Item>
+                    </div>
+                  </div>
+                ))}
+                <div style={{ padding: 10 }}>
+                  <Button round block plain icon="add-o" size="small" onClick={() => add()}>
+                    新增用户
+                  </Button>
+                </div>
+              </>
+            )}
+          </Form.List>
         </Form>
       </DemoBlock>
     </DemoSection>

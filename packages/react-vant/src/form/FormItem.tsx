@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { FC } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { Field as RcField } from 'rc-field-form';
 import FieldContext from 'rc-field-form/lib/FieldContext';
 import type { Meta } from 'rc-field-form/lib/interface';
@@ -14,14 +14,14 @@ import type {
 import { toArray } from '../uploader/utils';
 import { FIELD_KEY } from '../field/Field';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
+import { FormContext } from './FormContext';
+import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 function devWarning(component: string, message: string): void {
   if (process.env.NODE_ENV !== 'production') {
     console.warn(`[${component}] ${message}`);
   }
 }
-
-const classPrefix = `rv-form-item`;
 
 const MemoInput = React.memo(
   ({ children, ...props }: MemoInputProps) =>
@@ -30,34 +30,25 @@ const MemoInput = React.memo(
 );
 
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
-  const {
-    className,
-    style,
-    label,
-    required,
-    disabled,
-    meta,
-    onClick,
-    children,
-    isFieldChildren,
-    tooltip,
-    intro,
-  } = props;
+  const { className, meta, children, isFieldChildren, colon, layout, ...fieldProps } = props;
+  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
+  const [bem] = createNamespace('form', prefixCls);
+  const context = React.useContext(FormContext);
+  const itemLayout = layout ?? context.layout;
+  const itemColon = colon ?? context.colon;
 
   const errorMessage = meta && meta.errors.length > 0 ? meta.errors[0] : null;
   const error = !!errorMessage;
 
   const attrs = {
-    className: classNames(classPrefix, className),
-    label,
-    style,
-    disabled,
-    tooltip,
-    intro,
-    required,
+    ...fieldProps,
+    className: classnames(
+      bem({ vertical: itemLayout === 'vertical' && !isFieldChildren }),
+      className,
+    ),
+    colon: itemColon,
     error,
     errorMessage,
-    onClick,
   };
 
   if (isFieldChildren) return React.cloneElement(children as React.ReactElement, attrs);
@@ -67,19 +58,17 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
 
 const FormItem: FC<FormItemProps> = (props) => {
   const {
-    // 样式相关
     className,
     style,
-    // FormItem 相关
     label,
     name,
     required,
     noStyle,
-    // Field 相关
     tooltip,
     intro,
     customField,
     disabled,
+    colon,
     rules,
     children,
     messageVariables,
@@ -88,6 +77,9 @@ const FormItem: FC<FormItemProps> = (props) => {
     onClick,
     shouldUpdate,
     dependencies,
+    labelWidth,
+    labelAlign,
+    labelClass,
     ...fieldProps
   } = props;
 
@@ -122,6 +114,10 @@ const FormItem: FC<FormItemProps> = (props) => {
         disabled={disabled}
         htmlFor={fieldId}
         meta={meta}
+        colon={colon}
+        labelWidth={labelWidth}
+        labelAlign={labelAlign}
+        labelClass={labelClass}
         onClick={onClick}
       >
         {baseChildren}

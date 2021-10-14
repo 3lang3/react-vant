@@ -336,12 +336,13 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   };
 
   const renderLabel = () => {
-    const { label } = props;
+    const { label, colon } = props;
 
     if (label) {
       return (
         <>
           {label}
+          {colon && ':'}
           {renderTooltip()}
         </>
       );
