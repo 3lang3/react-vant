@@ -7,15 +7,7 @@ import './style.less';
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
   const src = 'https://img.yzcdn.cn/vant/cat.jpeg';
-  const fits = [
-    'contain',
-    'cover',
-    'fill',
-    'none',
-    'scale-down',
-    'width-fix',
-    'height-fix',
-  ] as const;
+  const fits = ['contain', 'cover', 'fill', 'none', 'scale-down'] as const;
   return (
     <DemoSection className="demo-image">
       <DemoBlock title="基础用法">

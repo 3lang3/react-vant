@@ -13,7 +13,6 @@ const Image: React.FC<ImageProps> = (props) => {
   const imgRef = useRef<HTMLImageElement>(null);
 
   const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
-  const isFixFit = fit === 'width-fix' || fit === 'height-fix';
 
   const style = useMemo(() => {
     const internalStyle: CSSProperties = {};
@@ -102,11 +101,10 @@ const Image: React.FC<ImageProps> = (props) => {
     if (status.error || !props.src) {
       return null;
     }
-    const objectFit = !isFixFit ? fit : undefined;
     const attrs = {
       className: classnames(bem('img')),
       style: {
-        objectFit,
+        objectFit: fit,
       },
     };
     return (
@@ -128,9 +126,6 @@ const Image: React.FC<ImageProps> = (props) => {
         bem({
           block,
           round: props.round,
-          fix: isFixFit,
-          'fix-width': fit === 'width-fix',
-          'fix-height': fit === 'height-fix',
         }),
       )}
       style={style}

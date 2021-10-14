@@ -81,8 +81,6 @@ import { Image } from 'react-vant';
 | fill       | 拉伸图片，使图片填满元素                               |
 | none       | 保持图片原有尺寸                                       |
 | scale-down | 取 `none` 或 `contain` 中较小的一个                    |
-| width-fix  | 缩放模式，宽度不变，高度自动变化，保持原图宽高比不变   |
-| height-fix | 缩放模式，高度不变，宽度自动变化，保持原图宽高比不变   |
 
 ### Events
 
