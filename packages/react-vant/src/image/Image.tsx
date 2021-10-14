@@ -46,6 +46,9 @@ const Image: React.FC<ImageProps> = (props) => {
   }, []);
 
   useUpdateEffect(() => {
+    if (props.src) {
+      setStatus({ error: false });
+    }
     if (imgRef.current && !imgRef.current.complete) {
       setStatus({ error: false, loading: true });
     }
