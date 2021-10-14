@@ -36,10 +36,6 @@ const Image: React.FC<ImageProps> = (props) => {
 
   useEffect(() => {
     const payload = { error: false, loading: true } as typeof status;
-    if (!props.src) {
-      payload.error = true;
-      payload.loading = false;
-    }
     if (imgRef.current) {
       if (imgRef.current.complete) {
         payload.loading = false;
