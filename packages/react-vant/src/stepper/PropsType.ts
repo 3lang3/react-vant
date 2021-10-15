@@ -38,7 +38,7 @@ export interface StepperProps extends BaseTypeProps {
   /** 步长，每次点击时改变的值	 */
   step?: number | string;
   /** 默认值 */
-  defaultValue?: number | string;
+  defaultValue?: number;
   /** 是否显示增加按钮	 */
   showPlus?: boolean;
   /** 是否显示减少按钮	 */

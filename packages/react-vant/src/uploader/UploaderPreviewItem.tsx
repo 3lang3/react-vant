@@ -5,7 +5,6 @@ import cls from 'classnames';
 import { isImageFile } from './utils';
 import { isDef, getSizeStyle, extend } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
-
 // Components
 import Icon from '../icon';
 import Image from '../image';

@@ -1,5 +1,6 @@
 import { BaseTypeProps } from '../utils';
 import { CellProps } from '../cell/PropsType';
+import { DialogProps } from '../dialog/PropsType';
 
 export type FieldType = 'tel' | 'text' | 'digit' | 'number' | 'search' | 'password' | 'textarea';
 
@@ -20,6 +21,8 @@ export type FieldValidateError = {
   name?: string;
   message: string;
 };
+
+export type FieldTooltipProps = Omit<DialogProps, 'visible'> & { icon?: React.ReactNode };
 
 export type FieldRule = {
   pattern?: RegExp;
@@ -49,7 +52,7 @@ export interface FieldCommonProps {
   /** 是否将输入内容标红	 */
   error?: boolean;
   /** 底部错误提示文案，为空时不展示 */
-  errorMessage?: string;
+  errorMessage?: React.ReactNode;
   /** 左侧图标名称或图片链接	 */
   leftIcon?: string | React.ReactNode;
   /** 右侧图标名称或图片链接	 */
@@ -89,7 +92,7 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   /** 左侧文本额外类名	 */
   labelClass?: string;
   /** 左侧文本宽度，默认单位为 px	 */
-  labelWidth?: string;
+  labelWidth?: number | string;
   /** 左侧文本对齐方式 */
   labelAlign?: FieldTextAlign;
   /** 是否显示字数统计，需要设置 maxlength 属性 */
@@ -108,6 +111,10 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   button?: React.ReactNode;
   /** 自定义输入框最右侧的额外内容 */
   extra?: React.ReactNode;
+  /** 额外的提示信息 */
+  intro?: React.ReactNode;
+  /** 字段提示信息 */
+  tooltip?: React.ReactNode | FieldTooltipProps;
   onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;

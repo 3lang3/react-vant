@@ -21,6 +21,8 @@
   --rv-field-word-limit-line-height: @field-word-limit-line-height;
   --rv-field-disabled-text-color: @field-disabled-text-color;
   --rv-field-required-mark-color: @field-required-mark-color;
+  --rv-field-intro-color: @field-intro-color;
+  --rv-field-tooltip-icon-color: @field-tooltip-icon-color;
 }
 
 .@{rv-prefix}-field {
@@ -178,6 +180,7 @@
   &__error-message {
     color: var(--rv-field-error-message-color);
     font-size: var(--rv-field-error-message-font-size);
+    line-height: 1.4em;
     text-align: left;
 
     &--center {
@@ -187,6 +190,21 @@
     &--right {
       text-align: right;
     }
+  }
+
+  &__tooltip {
+    display: inline-block;
+    margin-left: 2 * @hd;
+    color: var(--rv-field-intro-color);
+    font-weight: bold;
+    vertical-align: middle;
+  }
+
+  &__intro {
+    color: var(--rv-field-intro-color);
+    font-size: var(--rv-field-error-message-font-size);
+    line-height: 1.4em;
+    text-align: left;
   }
 
   &__word-limit {

@@ -11,9 +11,11 @@ import React, {
 import classnames from 'classnames';
 import Icon from '../icon';
 import Cell from '../cell';
-import { FieldInstance, FieldProps } from './PropsType';
+import Dialog from '../dialog';
+import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
 import { isDef, addUnit, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { COMPONENT_TYPE_KEY } from '../utils/constant';
 
 const ICON_SIZE = '16px';
 
@@ -297,17 +299,54 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   };
 
   const renderMessage = () => {
-    // if (form && form.props.showErrorMessage === false) {
-    //   return null;
-    // }
-
     const message = props.errorMessage;
 
     if (message) {
       const errorMessageAlign = getProp('errorMessageAlign');
       return <div className={classnames(bem('error-message', errorMessageAlign))}>{message}</div>;
     }
+    return null;
+  };
 
+  const renderIntro = () => {
+    if (props.intro) {
+      return <div className={classnames(bem('intro'))}>{props.intro}</div>;
+    }
+    return null;
+  };
+
+  const renderTooltip = () => {
+    const { tooltip } = props;
+    if (tooltip) {
+      let icon = (<Icon name="question-o" />) as React.ReactNode;
+      let dialogProps = { message: tooltip };
+      if (!(React.isValidElement(tooltip) || typeof tooltip === 'string')) {
+        const { icon: customIcon, ...customDialogProps } = tooltip as FieldTooltipProps;
+        icon = customIcon || icon;
+        dialogProps = customDialogProps as typeof dialogProps;
+      }
+
+      return (
+        <div className={classnames(bem('tooltip'))} onClick={() => Dialog.show(dialogProps)}>
+          {icon}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const renderLabel = () => {
+    const { label, colon } = props;
+
+    if (label) {
+      return (
+        <>
+          {label}
+          {colon && ':'}
+          {renderTooltip()}
+        </>
+      );
+    }
     return null;
   };
 
@@ -324,7 +363,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
   const {
     type,
-    label,
     size,
     center,
     border,
@@ -343,7 +381,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
   return (
     <Cell
-      title={label || null}
+      title={renderLabel()}
       size={size}
       icon={renderLeftIcon()}
       center={center}
@@ -385,6 +423,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       </div>
       {renderWordLimit()}
       {renderMessage()}
+      {renderIntro()}
     </Cell>
   );
 });
@@ -395,4 +434,8 @@ Field.defaultProps = {
   formatTrigger: 'onChange',
 };
 
-export default Field;
+export const FIELD_KEY = Symbol('field');
+
+const FieldNamespace = Object.assign(Field, { [COMPONENT_TYPE_KEY]: FIELD_KEY });
+
+export default FieldNamespace;

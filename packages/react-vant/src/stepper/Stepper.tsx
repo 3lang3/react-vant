@@ -1,19 +1,12 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent, FormEvent, TouchEvent } from 'react';
 import classnames from 'classnames';
-
 import { StepperProps } from './PropsType';
 import { isNaN } from '../utils/validate/number';
 import { callInterceptor } from '../utils/interceptor';
-import {
-  addUnit,
-  getSizeStyle,
-  isDef,
-  formatNumber,
-  resetScroll,
-  preventDefault,
-} from '../utils';
+import { addUnit, getSizeStyle, isDef, formatNumber, resetScroll, preventDefault } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { COMPONENT_TYPE_KEY } from '../utils/constant';
 
 const LONG_PRESS_INTERVAL = 200;
 const LONG_PRESS_START_TIME = 600;
@@ -218,6 +211,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
     }
     setCurrent(props.value);
   }, [props.value]);
+
   useEffect(() => check, [props.max, props.min, props.integer, props.decimalLength]);
 
   return (
@@ -237,7 +231,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
           type={props.integer ? 'tel' : 'text'}
           role="spinbutton"
           className={classnames(bem('input'))}
-          value={current}
+          value={current || ''}
           style={inputStyle}
           disabled={props.disabled}
           readOnly={props.disableInput}
@@ -264,10 +258,8 @@ const Stepper: React.FC<StepperProps> = (props) => {
     </div>
   );
 };
-
 Stepper.defaultProps = {
   theme: 'default',
-  name: '',
   max: Number.MAX_VALUE,
   min: 1,
   step: 1,
@@ -278,4 +270,6 @@ Stepper.defaultProps = {
   longPress: true,
 };
 
-export default Stepper;
+export const STEPPER_KEY = Symbol('stepper');
+const StepperNamespace = Object.assign(Stepper, { [COMPONENT_TYPE_KEY]: STEPPER_KEY });
+export default StepperNamespace;
