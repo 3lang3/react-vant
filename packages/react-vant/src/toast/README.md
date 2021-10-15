@@ -45,13 +45,14 @@ Toast.fail('失败文案');
 
 ```jsx
 let remain = 4;
-const updateConfig = Toast.info({
+let timer;
+const update = Toast.info({
   message: `还剩 ${remain + 1} 秒`,
   duration: 5000,
   onClose: () => clearInterval(timer),
 });
-const timer = setInterval(() => {
-  updateConfig({ message: `还剩 ${remain--} 秒` });
+timer = setInterval(() => {
+  update.config({ message: `还剩 ${remain--} 秒` });
 }, 1000);
 ```
 
@@ -115,7 +116,6 @@ timer = setInterval(() => {
 }, 1000);
 ```
 
-
 ### 单例模式
 
 Toast 默认采用单例模式，即同一时间只会存在一个 Toast，如果需要在同一时间弹出多个 Toast，可以参考下面的示例：
@@ -148,14 +148,14 @@ Toast.resetDefaultOptions('loading');
 
 ### 方法
 
-| 方法名        | 说明         | 参数                 | 返回值     |
-| ------------- | ------------ | -------------------- | ---------- |
-| Toast         | 展示提示     | `options \| message` | toast 实例 |
-| Toast.info    | 展示文字提示 | `options \| message` | toast 实例 |
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| Toast | 展示提示 | `options \| message` | toast 实例 |
+| Toast.info | 展示文字提示 | `options \| message` | toast 实例 |
 | Toast.loading | 展示加载提示 | `options \| message` | toast 实例 |
 | Toast.success | 展示成功提示 | `options \| message` | toast 实例 |
-| Toast.fail    | 展示失败提示 | `options \| message` | toast 实例 |
-| Toast.clear   | 关闭提示     | `clearAll: boolean`  | `void`     |
+| Toast.fail | 展示失败提示 | `options \| message` | toast 实例 |
+| Toast.clear | 关闭提示 | `clearAll: boolean` | `void` |
 | Toast.allowMultiple | 允许同时存在多个 Toast | - | `void` |
 | Toast.setDefaultOptions | 修改默认配置，对所有 Toast 生效。<br>传入 type 可以修改指定类型的默认配置 | `type \| options` | `void` |
 | Toast.resetDefaultOptions | 重置默认配置，对所有 Toast 生效。<br>传入 type 可以重置指定类型的默认配置 | `type` | `void` |
@@ -163,7 +163,7 @@ Toast.resetDefaultOptions('loading');
 ### Options
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- |
 | type | 提示类型，可选值为 `loading` `success` `fail` `info` | _string_ | `info` |
 | position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
@@ -184,8 +184,6 @@ Toast.resetDefaultOptions('loading');
 | transition | 动画类名 | _string_ | `rv-fade` |
 | teleport | 指定挂载的节点 | _HTMLElement_ _(() => HTMLElement))_ | `document.body` |
 
-
-
 ### 类型定义
 
 组件导出以下类型定义：
@@ -200,20 +198,20 @@ import type { ToastType, ToastOptions, ToastPosition } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-toast-max-width | _70%_ | - |
-| --rv-toast-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-toast-text-color | _var(--rv-white)_ | - |
-| --rv-toast-loading-icon-color | _var(--rv-white)_ | - |
-| --rv-toast-line-height | _var(--rv-line-height-md)_ | - |
-| --rv-toast-border-radius | _var(--rv-border-radius-lg)_ | - |
-| --rv-toast-background-color | _fade(var(--rv-black), 70%)_ | - |
-| --rv-toast-icon-size | _36px_ | - |
-| --rv-toast-text-min-width | _96px_ | - |
-| --rv-toast-text-padding | _var(--rv-padding-xs) var(--rv-padding-sm)_ | - |
-| --rv-toast-default-padding | _var(--rv-padding-md)_ | - |
-| --rv-toast-default-width | _88px_ | - |
-| --rv-toast-default-min-height | _88px_ | - |
-| --rv-toast-position-top-distance | _20%_ | - |
-| --rv-toast-position-bottom-distance | _20%_ | - |
+| 名称                                | 默认值                                      | 描述 |
+| ----------------------------------- | ------------------------------------------- | ---- |
+| --rv-toast-max-width                | _70%_                                       | -    |
+| --rv-toast-font-size                | _var(--rv-font-size-md)_                    | -    |
+| --rv-toast-text-color               | _var(--rv-white)_                           | -    |
+| --rv-toast-loading-icon-color       | _var(--rv-white)_                           | -    |
+| --rv-toast-line-height              | _var(--rv-line-height-md)_                  | -    |
+| --rv-toast-border-radius            | _var(--rv-border-radius-lg)_                | -    |
+| --rv-toast-background-color         | _fade(var(--rv-black), 70%)_                | -    |
+| --rv-toast-icon-size                | _36px_                                      | -    |
+| --rv-toast-text-min-width           | _96px_                                      | -    |
+| --rv-toast-text-padding             | _var(--rv-padding-xs) var(--rv-padding-sm)_ | -    |
+| --rv-toast-default-padding          | _var(--rv-padding-md)_                      | -    |
+| --rv-toast-default-width            | _88px_                                      | -    |
+| --rv-toast-default-min-height       | _88px_                                      | -    |
+| --rv-toast-position-top-distance    | _20%_                                       | -    |
+| --rv-toast-position-bottom-distance | _20%_                                       | -    |
