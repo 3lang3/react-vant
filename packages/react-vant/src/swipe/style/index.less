@@ -1,5 +1,5 @@
-@import '~swiper/swiper.less';
-@import '~swiper/components/pagination/pagination.less';
+@import '~swiper/swiper.min.css';
+@import '~swiper/components/pagination/pagination.min.css';
 @import './var.less';
 
 :root {
@@ -23,7 +23,8 @@
     background-color: var(--rv-swipe-indicator-inactive-background-color);
     border-radius: 100%;
     opacity: var(--rv-swipe-indicator-inactive-opacity);
-    transition: opacity var(--van-animation-duration-fast), background-color var(--van-animation-duration-fast);
+    transition: opacity var(--van-animation-duration-fast),
+      background-color var(--van-animation-duration-fast);
 
     &-active {
       background-color: var(--rv-swipe-indicator-active-background-color);
