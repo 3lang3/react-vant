@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Cell, Toast, ImagePreview } from 'react-vant';
+import { Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import ImagePreview from '..';
 import './style.less';
 
 const images = [
@@ -15,7 +16,11 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock card title="基础用法">
-        <Cell title="预览图片" isLink onClick={() => ImagePreview.open({ images })} />
+        <Cell
+          title="预览图片"
+          isLink
+          onClick={() => ImagePreview.open({ images, lazyload: true })}
+        />
       </DemoBlock>
       <DemoBlock card title="传入配置项">
         <Cell

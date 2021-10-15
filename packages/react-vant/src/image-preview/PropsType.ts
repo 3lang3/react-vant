@@ -8,6 +8,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   visible?: boolean;
   loop?: boolean;
   overlay?: boolean;
+  lazyload?: boolean;
   closeable?: boolean;
   showIndicators?: boolean;
   showIndex?: boolean;

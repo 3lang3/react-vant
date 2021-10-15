@@ -2,5 +2,7 @@ import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface LazyloadProps extends BaseTypeProps {
-  // 这里写组件的props
+  height?: number | string;
+  placeholder?: React.ReactNode;
+  children?: JSX.Element;
 }

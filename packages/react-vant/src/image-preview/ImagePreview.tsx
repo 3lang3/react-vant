@@ -5,7 +5,6 @@ import { pick } from '../utils';
 import Icon from '../icon';
 import Swipe from '../swipe';
 import Image from '../image';
-import Loading from '../loading';
 import Popup from '../popup';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -27,8 +26,6 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
       onAfterInit={() => {
         mountedRef.current = true;
       }}
-      observer
-      observeParents
       loop={props.loop}
       className={cls(bem('swipe'))}
       duration={props.swipeDuration}
@@ -40,13 +37,13 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
         // eslint-disable-next-line react/no-array-index-key
         <Swipe.Item key={i}>
           <Image
-            onClick={() => {
-              props.onClose?.({ url: image, index: i });
-            }}
-            loadingIcon={<Loading type="spinner" />}
             src={image}
             fit="contain"
             className={cls(bem('image'))}
+            lazyload={props.lazyload}
+            onClick={() => {
+              props.onClose?.({ url: image, index: i });
+            }}
           />
         </Swipe.Item>
       ))}

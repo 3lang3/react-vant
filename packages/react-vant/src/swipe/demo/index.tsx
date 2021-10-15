@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Toast, Swipe, Button, Popup } from 'react-vant';
+import { Toast, Swipe, Button, Popup, Image } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
@@ -54,10 +54,10 @@ export default (): React.ReactNode => {
         </Swipe>
       </DemoBlock>
       <DemoBlock title="图片懒加载">
-        <Swipe lazy>
+        <Swipe>
           {images.map((item) => (
             <Swipe.Item key={item}>
-              <img className="swiper-lazy" data-src={item} alt="" />
+              <Image src={item} lazyload />
             </Swipe.Item>
           ))}
         </Swipe>
@@ -93,7 +93,12 @@ export default (): React.ReactNode => {
             Popup中展示轮播图
           </Button>
         </div>
-        <Popup className="demo-swipe-popup" visible={visible} onClose={() => set(false)} style={{ width: '100%' }}>
+        <Popup
+          className="demo-swipe-popup"
+          visible={visible}
+          onClose={() => set(false)}
+          style={{ width: '100%' }}
+        >
           <Swipe resizeObserver autoplay={1000}>
             <Swipe.Item>1</Swipe.Item>
             <Swipe.Item>2</Swipe.Item>

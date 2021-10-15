@@ -138,13 +138,4 @@ const Image: React.FC<ImageProps> = (props) => {
   );
 };
 
-Image.defaultProps = {
-  fit: 'fill',
-  errorIcon: 'photo-fail',
-  loadingIcon: 'photo',
-  showError: true,
-  showLoading: true,
-  block: true,
-};
-
 export default Image;
