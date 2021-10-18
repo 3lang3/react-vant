@@ -52,7 +52,9 @@ export interface ImageProps extends BaseTypeProps {
   onClick?: (e: React.MouseEvent<HTMLImageElement>) => void;
 }
 
+export type LazyImageType = boolean | Pick<LazyloadProps, 'placeholder'>;
+
 export interface LazyImageProps extends ImageProps {
   /** 是否开启图片懒加载 */
-  lazyload?: boolean | Pick<LazyloadProps, 'placeholder'>;
+  lazyload?: LazyImageType;
 }

@@ -4,11 +4,15 @@ import { getTargetElement, BasicTarget } from '../utils/dom/getTargetElement';
 
 type InViewport = boolean | undefined;
 
-function isInViewPort(el: HTMLElement, viewPortWidth: number, viewPortHeight: number): InViewport {
+function isInViewPort(el: HTMLElement): InViewport {
   if (!el) {
     return undefined;
   }
 
+  const viewPortWidth =
+    window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const viewPortHeight =
+    window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   const rect = el.getBoundingClientRect();
 
   if (rect) {
@@ -20,14 +24,10 @@ function isInViewPort(el: HTMLElement, viewPortWidth: number, viewPortHeight: nu
 }
 
 function useInViewport(target: BasicTarget): InViewport {
-  const viewPortWidth =
-    window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  const viewPortHeight =
-    window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   const [inViewPort, setInViewport] = useState<InViewport>(() => {
     if (!inBrowser || !window.IntersectionObserver) return true;
     const el = getTargetElement(target);
-    return isInViewPort(el as HTMLElement, viewPortWidth, viewPortHeight);
+    return isInViewPort(el as HTMLElement);
   });
 
   useEffect(() => {
@@ -37,15 +37,21 @@ function useInViewport(target: BasicTarget): InViewport {
       return () => {};
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.some((entry) => {
-        if (entry.intersectionRatio > 0 && entry.isIntersecting) {
-          setInViewport(true);
-          return true;
-        }
-        return false;
-      });
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.some((entry) => {
+          if (entry.intersectionRatio > 0) {
+            setInViewport(true);
+            observer.disconnect();
+            return true;
+          }
+          return false;
+        });
+      },
+      {
+        threshold: [0.0001],
+      },
+    );
 
     observer.observe(el as HTMLElement);
 

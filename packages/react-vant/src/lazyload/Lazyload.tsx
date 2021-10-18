@@ -11,18 +11,17 @@ const Lazyload: React.FC<LazyloadProps> = (props) => {
   const ref = useRef<HTMLDivElement>();
   const inViewPort = useInViewport(ref);
 
-  const { className, style, height, placeholder, children } = props;
+  const { height, placeholder, children, className, style } = props;
 
   return inViewPort ? (
     children
   ) : (
-    <div ref={ref} className={cls(className, bem())} style={{ height, ...style }}>
+    <div ref={ref} className={cls(bem(), className)} style={{ height, ...style }}>
       {placeholder}
     </div>
   );
 };
 
-// defaultProps defined if need
 Lazyload.defaultProps = {
   placeholder: <Skeleton title />,
 };
