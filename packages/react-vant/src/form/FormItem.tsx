@@ -30,15 +30,25 @@ const MemoInput = React.memo(
 );
 
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
-  const { className, meta, children, isFieldChildren, colon, layout, ...fieldProps } = props;
+  const {
+    className,
+    meta,
+    children,
+    isFieldChildren,
+    showValidateMessage,
+    colon,
+    layout,
+    ...fieldProps
+  } = props;
   const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
   const [bem] = createNamespace('form', prefixCls);
   const context = React.useContext(FormContext);
   const itemLayout = layout ?? context.layout;
   const itemColon = colon ?? context.colon;
+  const itemShowValidateMessage = showValidateMessage ?? context.showValidateMessage;
 
-  const errorMessage = meta && meta.errors.length > 0 ? meta.errors[0] : null;
-  const error = !!errorMessage;
+  const error = meta && meta.errors.length > 0;
+  const errorMessage = itemShowValidateMessage && error ? meta.errors[0] : null;
 
   const attrs = {
     ...fieldProps,
@@ -80,6 +90,7 @@ const FormItem: FC<FormItemProps> = (props) => {
     labelWidth,
     labelAlign,
     labelClass,
+    showValidateMessage,
     ...fieldProps
   } = props;
 
@@ -118,6 +129,7 @@ const FormItem: FC<FormItemProps> = (props) => {
         labelWidth={labelWidth}
         labelAlign={labelAlign}
         labelClass={labelClass}
+        showValidateMessage={showValidateMessage}
         onClick={onClick}
       >
         {baseChildren}

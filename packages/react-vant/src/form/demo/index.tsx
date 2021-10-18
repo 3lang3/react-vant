@@ -19,7 +19,7 @@ import {
 } from 'react-vant';
 import { components } from 'site-mobile-demo';
 
-import Form from '..';
+import Form, { FormItemProps } from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -34,6 +34,7 @@ export default (): React.ReactNode => {
     <DemoSection>
       <DemoBlock title="基础用法">
         <Form
+          showValidateMessage={false}
           onFinish={onFinish}
           footer={
             <div style={{ margin: '16px 16px 0' }}>
@@ -254,7 +255,13 @@ export default (): React.ReactNode => {
   );
 };
 
-function PickerItem(props) {
+type CustomItemProps = {
+  value?: any;
+  onChange?: (v: any) => void;
+  placeholder?: string;
+} & FormItemProps;
+
+function PickerItem(props: CustomItemProps) {
   const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 
@@ -280,7 +287,7 @@ function PickerItem(props) {
   );
 }
 
-function DatetimePickerItem(props) {
+function DatetimePickerItem(props: CustomItemProps) {
   const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 
@@ -311,7 +318,7 @@ function DatetimePickerItem(props) {
   );
 }
 
-function CalendarItem(props) {
+function CalendarItem(props: CustomItemProps) {
   const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 

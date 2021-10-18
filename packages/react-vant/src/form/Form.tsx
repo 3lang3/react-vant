@@ -11,13 +11,25 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('form', prefixCls);
 
-  const { className, style, layout, footer, children, border, inset, colon, ...formProps } = props;
+  const {
+    className,
+    style,
+    layout,
+    footer,
+    children,
+    border,
+    inset,
+    colon,
+    showValidateMessage,
+    ...formProps
+  } = props;
 
   return (
     <FormContext.Provider
       value={{
         layout,
         colon,
+        showValidateMessage,
       }}
     >
       <RcForm className={classnames(bem(), className)} style={style} ref={ref} {...formProps}>
@@ -29,5 +41,9 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     </FormContext.Provider>
   );
 });
+
+Form.defaultProps = {
+  showValidateMessage: true,
+};
 
 export default Form;

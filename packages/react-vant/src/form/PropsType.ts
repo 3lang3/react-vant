@@ -8,9 +8,14 @@ import { FieldProps } from '../field/PropsType';
 
 export type FormLayout = 'vertical' | 'horizontal';
 export interface FormProps extends RcFormProps, Omit<CellGroupProps, 'title'>, BaseTypeProps {
+  /** 表单布局 */
   layout?: FormLayout;
+  /** 是否显示 label 后面的冒号 */
   colon?: boolean;
+  /** 表单底部内容	 */
   footer?: React.ReactNode;
+  /** 是否显示验证信息 */
+  showValidateMessage?: boolean;
 }
 
 export type RenderChildren<Values = unknown> = (form: RcFormInstance<Values>) => React.ReactNode;
@@ -25,6 +30,7 @@ export type MemoInputProps = {
 } & Record<string, unknown>;
 
 export type FormItemProps = RcFieldProps &
+  Pick<FormProps, 'showValidateMessage'> &
   Pick<
     FieldProps,
     | 'style'
@@ -43,7 +49,7 @@ export type FormItemProps = RcFieldProps &
     disabled?: boolean;
     /** 自定义item，此时不会渲染内置的field */
     customField?: boolean;
-    children: ChildrenType;
+    children?: ChildrenType;
   };
 
 export type FormItemLayoutProps = Pick<
@@ -59,6 +65,7 @@ export type FormItemLayoutProps = Pick<
   | 'labelWidth'
   | 'labelAlign'
   | 'labelClass'
+  | 'showValidateMessage'
 > & {
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;
