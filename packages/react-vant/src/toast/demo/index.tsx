@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React from 'react';
-import { Cell } from 'react-vant';
+import React, { useState } from 'react';
+import { Cell, Switch } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Toast from '..';
 
@@ -93,6 +93,35 @@ export default (): React.ReactNode => {
             Toast({
               message: '底部展示',
               position: 'bottom',
+            })
+          }
+        />
+      </DemoBlock>
+      <DemoBlock card title="单例模式">
+        <Cell title="开启">
+          <Switch
+            style={{ display: 'block', float: 'right' }}
+            size={20}
+            onChange={(v) => {
+              Toast.allowMultiple(v);
+            }}
+          />
+        </Cell>
+        <Cell
+          title="第一个Toast"
+          isLink
+          onClick={() =>
+            Toast({
+              message: '第一个Toast',
+            })
+          }
+        />
+        <Cell
+          title="第二个Toast"
+          isLink
+          onClick={() =>
+            Toast({
+              message: '第二个Toast',
             })
           }
         />
