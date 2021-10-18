@@ -330,6 +330,13 @@ export default () => {
 ```jsx
 import React, { useState } from 'react';
 import { Form, Field, Picker, Popup } from 'react-vant';
+import type { FormItemProps } from 'react-vant';
+
+type CustomItemProps = {
+  value?: any,
+  onChange?: (v: any) => void,
+  placeholder?: string,
+} & FormItemProps;
 
 function PickerItem(props) {
   const { value, onChange, ...fieldProps } = props;
@@ -381,6 +388,13 @@ export default () => {
 ```jsx
 import React, { useState } from 'react';
 import { Form, Field, DatetimePicker, Popup } from 'react-vant';
+import type { FormItemProps } from 'react-vant';
+
+type CustomItemProps = {
+  value?: any,
+  onChange?: (v: any) => void,
+  placeholder?: string,
+} & FormItemProps;
 
 function DatetimePickerItem(props) {
   const { value, onChange, ...fieldProps } = props;
@@ -437,8 +451,15 @@ export default () => {
 ```jsx
 import React, { useState } from 'react';
 import { Form, Field, Calendar } from 'react-vant';
+import type { FormItemProps } from 'react-vant';
 
-function CalendarItem(props) {
+type CustomItemProps = {
+  value?: any,
+  onChange?: (v: any) => void,
+  placeholder?: string,
+} & FormItemProps;
+
+function CalendarItem(props: CustomItemProps) {
   const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 
@@ -553,6 +574,9 @@ export default () => {
 | --- | --- | --- | --- |
 | layout | 表单布局 | _horizontal \| vertical_ | `horizontal` |
 | colon | 配置 Form.Item 的 colon 的默认值。表示是否显示 label 后面的冒号 | _boolean_ | `false` |
+| showValidateMessage | 是否显示验证错误信息 | _boolean_ | `true` |
+| inset | 是否展示为圆角卡片风格 | _boolean_ | `false` |
+| border | 是否显示外边框 | _boolean_ | `false` |
 | footer | 表单底部内容 | _ReactNode_ | - |
 
 > 更多 Form API 参见：[rc-field-form](https://github.com/react-component/field-form#form)
@@ -562,9 +586,11 @@ export default () => {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | colon | 配合 label 属性使用，表示是否显示 label 后面的冒号 | _boolean_ | `false` |
+| showValidateMessage | 是否显示验证信息 | _boolean_ | `true` |
 | intro | 额外的提示信息 | _ReactNode_ | - |
 | required | 必填样式设置。如不设置，则会根据校验规则自动生成 | _boolean_ | `false` |
 | tooltip | 字段提示信息 | _ReactNode \|_ [DialogProps & { icon: ReactNode }](/#/zh-CN/dialog#props) | - |
+| customField | 自定义 item，此时不会渲染内置的 field，通常用于自定义表单项 | _boolean_ | `false` |
 | disabled | 是否禁用标单项 | _boolean_ | `false` |
 | labelClass | 左侧文本额外类名 | _any_ | - |
 | labelWidth | 左侧文本宽度，默认单位为`px` | _number \| string_ | `6.2em` |

@@ -74,7 +74,7 @@ export interface ToastInstance {
    */
   resetDefaultOptions(type?: ToastType): void;
   /** 允许同时存在多个 Toast	 */
-  allowMultiple(value: boolean): void;
+  allowMultiple(value?: boolean): void;
   /** 关闭提示	 */
   clear(): void;
 }
