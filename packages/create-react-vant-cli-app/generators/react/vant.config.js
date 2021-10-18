@@ -1,15 +1,15 @@
+/* eslint-disable no-param-reassign */
 module.exports = {
-  name: '<%= name %>',
+  name: 'react-vant',
   build: {
     css: {
-      preprocessor: '<%= preprocessor %>',
+      preprocessor: 'less',
     },
     site: {
-      publicPath: '/<%= name %>/',
+      publicPath: './',
     },
   },
   site: {
-    // TODO 层级读取问题
     defaultLang: 'zh-CN',
     locales: {
       'zh-CN': {
@@ -17,26 +17,42 @@ module.exports = {
         description: 'React Vant Cli',
         logo: 'https://img01.yzcdn.cn/vant/logo.png',
         langLabel: '中文',
-        nav: [
+        links: [
           {
-            title: '开发指南',
-            items: [
-              {
-                path: 'home',
-                title: '介绍',
-              },
-              {
-                path: 'quickstart',
-                title: '快速上手',
-              },
-            ],
+            logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
+            url: 'https://github.com/3lang3/react-vant',
           },
+        ],
+        nav: [
           {
             title: '基础组件',
             items: [
               {
                 path: 'button',
                 title: 'Button 按钮',
+              },
+            ],
+          },
+        ],
+      },
+      'en-US': {
+        title: '<%= name %>',
+        description: 'Mobile UI Components built on React',
+        logo: 'https://img01.yzcdn.cn/vant/logo.png',
+        langLabel: 'En',
+        links: [
+          {
+            logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
+            url: 'https://github.com/3lang3/react-vant',
+          },
+        ],
+        nav: [
+          {
+            title: 'Basic Components',
+            items: [
+              {
+                path: 'button',
+                title: 'Button',
               },
             ],
           },

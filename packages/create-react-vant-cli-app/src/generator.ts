@@ -4,20 +4,9 @@ import consola from 'consola';
 import { join } from 'path';
 import Yeoman from 'yeoman-environment';
 import Generator from 'yeoman-generator';
-import { CWD, GENERATOR_DIR } from './constant';
+import { CWD, GENERATOR_DIR, GENERATOR_DIR_DIR } from './constant';
 
 const PROMPTS = [
-  {
-    name: 'vueVersion', // TODO 改名字或者去掉
-    message: 'Select Vue version',
-    type: 'list',
-    choices: [
-      {
-        name: 'react',
-        value: 'react',
-      },
-    ],
-  },
   {
     name: 'preprocessor',
     message: 'Select css preprocessor',
@@ -30,7 +19,6 @@ export class ReactVanGenerator extends Generator {
   inputs = {
     name: '',
     cssLang: '',
-    vueVersion: '', // TODO 删掉
     preprocessor: '',
   };
 
@@ -45,23 +33,22 @@ export class ReactVanGenerator extends Generator {
     this.inputs.name = name;
   }
 
-  async prompting() {
-    return this.prompt<Record<string, string>>(PROMPTS).then((inputs) => {
-      const preprocessor = inputs.preprocessor.toLowerCase();
-      const cssLang = preprocessor === 'sass' ? 'scss' : preprocessor;
-
-      this.inputs.cssLang = cssLang;
-      this.inputs.vueVersion = inputs.vueVersion;
-      this.inputs.preprocessor = preprocessor;
-    });
-  }
+  // async prompting() {
+  //   return this.prompt<Record<string, string>>(PROMPTS).then((inputs) => {
+  //     const preprocessor = inputs.preprocessor.toLowerCase();
+  //     const cssLang = preprocessor === 'sass' ? 'scss' : preprocessor;
+  //
+  //     this.inputs.cssLang = cssLang;
+  //     this.inputs.preprocessor = preprocessor;
+  //   });
+  // }
 
   writing() {
     consola.info(`Creating project in ${join(CWD, this.inputs.name)}\n`);
     /**
     @see {@link https://github.com/mrmlnc/fast-glob#how-to-write-patterns-on-windows}
     */
-    const templatePath = join(GENERATOR_DIR, this.inputs.vueVersion).replace(/\\/g, '/');
+    const templatePath = join(GENERATOR_DIR_DIR).replace(/\\/g, '/');
     const templateFiles = glob.sync(join(templatePath, '**', '*').replace(/\\/g, '/'), {
       dot: true,
     });

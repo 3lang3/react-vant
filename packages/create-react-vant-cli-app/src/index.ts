@@ -14,6 +14,7 @@ const PROMPTS = [
 ];
 
 export default async function run() {
+  // 设置命令行传入参数
   const { name } = await inquirer.prompt(PROMPTS);
 
   try {

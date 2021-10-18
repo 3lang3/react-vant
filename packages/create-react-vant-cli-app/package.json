@@ -4,7 +4,7 @@
   "description": "Create React Vant Cli App",
   "main": "lib/index.js",
   "bin": {
-    "create-vant-cli-app": "./lib/index.js"
+    "create-react-vant-cli-app": "./lib/index.js"
   },
   "scripts": {
     "dev": "tsc --watch",

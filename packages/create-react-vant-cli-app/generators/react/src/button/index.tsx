@@ -1,5 +1,7 @@
-import Button from './Button';
+import React from 'react';
+
+const Button = ({ children }) => {
+  return <button className="button">{children}</button>;
+};
 
 export default Button;
-export { Button };
-export type { ButtonProps, ButtonType, ButtonSize, ButtonIconPosition } from './PropsType';

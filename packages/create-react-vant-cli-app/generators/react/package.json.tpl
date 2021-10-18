@@ -21,6 +21,10 @@
   },
   "author": "",
   "license": "MIT",
+    "peerDependencies": {
+      "react": ">=16.14.0",
+      "react-dom": ">=16.14.0"
+    },
   "devDependencies": {
     "@react-vant/cli": "^1.1.12",
     "@types/classnames": "^2.2.11",
