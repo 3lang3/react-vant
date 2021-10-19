@@ -38,8 +38,9 @@ function getDefaultJsCompileOpts(type, filePath) {
           version: require('@babel/runtime/package.json').version,
         },
       ],
+      require.resolve('../babel-transform-less-to-css'),
     ],
-  }
+  };
 }
 
 interface IBabelOpts {

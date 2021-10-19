@@ -108,8 +108,6 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
   );
 });
 
-const IndexAnchorNamespace = Object.assign(IndexAnchor, {
-  [COMPONENT_TYPE_KEY]: INDEX_ANCHORE_KEY,
-});
+IndexAnchor[COMPONENT_TYPE_KEY] = INDEX_ANCHORE_KEY;
 
-export default IndexAnchorNamespace;
+export default IndexAnchor;

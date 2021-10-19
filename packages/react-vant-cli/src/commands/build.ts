@@ -17,7 +17,6 @@ import {
 import { clean } from './clean';
 import { LIB_DIR, ES_DIR, SRC_DIR } from '../common/constant';
 import { genStyleDepsMap } from '../compiler/gen-style-deps-map';
-import { genComponentStyle } from '../compiler/gen-component-style';
 import { genPackageEntry } from '../compiler/gen-package-entry';
 import { genPackageStyle } from '../compiler/gen-package-style';
 import { CSS_LANG } from '../common/css';
@@ -39,7 +38,6 @@ async function compileFile(filePath: string) {
     return Promise.resolve();
   }
 
-  // return remove(filePath);
   return Promise.resolve();
 }
 
@@ -59,7 +57,18 @@ async function compileDir(dir: string) {
       }
 
       return compileFile(filePath);
-    })
+    }),
+  );
+  await Promise.all(
+    files.map((filename) => {
+      const filePath = join(dir, filename);
+
+      if (/\.less/.test(filePath)) {
+        return remove(filePath);
+      }
+
+      return Promise.resolve();
+    }),
   );
 }
 
@@ -82,7 +91,6 @@ async function buildPackageScriptEntry() {
 
 async function buildStyleEntry() {
   await genStyleDepsMap();
-  genComponentStyle();
 }
 
 async function buildPackageStyleEntry() {
@@ -195,7 +203,6 @@ function watchFileChange() {
       await compileFile(esPath);
       await compileFile(libPath);
       await genStyleDepsMap();
-      genComponentStyle({ cache: false });
       spinner.succeed(`Compiled: ${slimPath(path)}`);
     } catch (err) {
       spinner.fail(`Compile failed: ${path}`);
