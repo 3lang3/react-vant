@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "tsc --watch",
+    "prepack": "tsc",
     "release": "tsc & release-it",
     "test": "node lib/index.js"
   },
@@ -20,12 +21,16 @@
     "generators"
   ],
   "keywords": [
-    "vant"
+    "react vant"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "author": "TinsFox",
+  "contributors": [
+    "TinsFox",
+    "3lang3"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
