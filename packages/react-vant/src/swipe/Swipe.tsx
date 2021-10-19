@@ -9,14 +9,14 @@ import React, {
 } from 'react';
 import cls from 'classnames';
 
-import SwiperCore, { Pagination, Autoplay, Lazy } from 'swiper';
+import SwiperCore, { Pagination, Autoplay } from 'swiper';
 
 import { Swiper } from 'swiper/react';
 
 import { SwipeProps, SwipeInstance } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-SwiperCore.use([Autoplay, Pagination, Lazy]);
+SwiperCore.use([Autoplay, Pagination]);
 
 const Swipe = forwardRef<SwipeInstance, SwipeProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);

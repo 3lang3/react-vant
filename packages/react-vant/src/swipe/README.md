@@ -66,13 +66,13 @@ import { Swipe } from 'react-vant';
 
 ### 懒加载
 
-当 Swipe 中含有图片时，可以通过 `lazy` 属性来开启懒加载模式。配置相见[lazy api](https://swiperjs.com/swiper-api#lazy-loading)
+将 `Image` 组件的 lazyload 属性设为 `true` 即可开启懒加载功能。
 
 ```jsx
-<Swipe autoplay={3000} lazy>
+<Swipe autoplay={3000}>
   {images.map((item) => (
     <Swipe.Item key={item}>
-      <img className="swiper-lazy" src={item} alt="" />
+      <Image lazyload className="swiper-lazy" src={item} alt="" />
     </Swipe.Item>
   ))}
 </Swipe>
@@ -123,16 +123,15 @@ const onChange = (index: number) => Toast(`当前 Swipe 索引：${index}`);
 
 > 支持所有 Swiper 的原生 api，[Swiper 文档](https://swiperjs.com/swiper-api)
 
-| 参数         | 说明                     | 类型      | 默认值  |
-| ------------ | ------------------------ | --------- | ------- |
-| autoplay     | 自动轮播间隔，单位为 ms  | _number_  | `3000`  |
-| duration     | 动画时长，单位为 ms      | _number_  | `500`   |
-| initialSwipe | 初始位置索引值           | _number_  | `0`     |
-| width        | 滑块宽度，单位为`px`     | _number_  | -       |
-| height       | 滑块高度，单位为`px`     | _number_  | -       |
-| loop         | 是否开启循环播放         | _boolean_ | `true`  |
-| vertical     | 是否为纵向滚动           | _boolean_ | `false` |
-| lazy         | 是否延迟渲染未展示的轮播 | _boolean_ | `false` |
+| 参数         | 说明                    | 类型      | 默认值  |
+| ------------ | ----------------------- | --------- | ------- |
+| autoplay     | 自动轮播间隔，单位为 ms | _number_  | `3000`  |
+| duration     | 动画时长，单位为 ms     | _number_  | `500`   |
+| initialSwipe | 初始位置索引值          | _number_  | `0`     |
+| width        | 滑块宽度，单位为`px`    | _number_  | -       |
+| height       | 滑块高度，单位为`px`    | _number_  | -       |
+| loop         | 是否开启循环播放        | _boolean_ | `true`  |
+| vertical     | 是否为纵向滚动          | _boolean_ | `false` |
 
 ### Swipe Events
 
@@ -168,18 +167,17 @@ export default () => {
 }
 ```
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-swipe-indicator-size | _6px_ | - |
-| --rv-swipe-indicator-margin | _var(--rv-padding-sm)_ | - |
-| --rv-swipe-indicator-active-opacity | _1_ | - |
-| --rv-swipe-indicator-inactive-opacity | _0.3_ | - |
-| --rv-swipe-indicator-active-background-color | _var(--rv-primary-color)_ | - |
-| --rv-swipe-indicator-inactive-background-color | _var(--rv-border-color)_ | - |
+| 名称                                           | 默认值                    | 描述 |
+| ---------------------------------------------- | ------------------------- | ---- |
+| --rv-swipe-indicator-size                      | _6px_                     | -    |
+| --rv-swipe-indicator-margin                    | _var(--rv-padding-sm)_    | -    |
+| --rv-swipe-indicator-active-opacity            | _1_                       | -    |
+| --rv-swipe-indicator-inactive-opacity          | _0.3_                     | -    |
+| --rv-swipe-indicator-active-background-color   | _var(--rv-primary-color)_ | -    |
+| --rv-swipe-indicator-inactive-background-color | _var(--rv-border-color)_  | -    |

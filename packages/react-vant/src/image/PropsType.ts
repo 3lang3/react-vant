@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyloadProps } from '../lazyload/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
@@ -49,4 +50,11 @@ export interface ImageProps extends BaseTypeProps {
   onError?: (e: React.MouseEvent<HTMLImageElement>) => void;
   /** 点击图片时触发	 */
   onClick?: (e: React.MouseEvent<HTMLImageElement>) => void;
+}
+
+export type LazyImageType = boolean | Pick<LazyloadProps, 'placeholder'>;
+
+export interface LazyImageProps extends ImageProps {
+  /** 是否开启图片懒加载 */
+  lazyload?: LazyImageType;
 }

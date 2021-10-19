@@ -4,47 +4,23 @@
 
 图片预览，支持函数调用和组件调用两种方式。
 
-### 函数调用
-
-`ImagePreview.open` 是一个函数，调用函数后会直接在页面中展示图片预览界面。
-
-```js
-import { ImagePreview } from 'react-vant';
-
-ImagePreview.open({ images: ['https://img.yzcdn.cn/vant/apple-1.jpg'] });
-```
-
-### 组件调用
-
-通过组件调用 `ImagePreview` 时，可以通过下面的方式进行注册。
-
-```jsx
-import { ImagePreview, Button } from 'react-vant';
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-  return (
-    <>
-      <Button onClick={() => setVisible(true)}>组件调用</Button>
-      <ImagePreview
-        visible={visible}
-        onClose={() => setVisible(false)}
-        images={['https://img.yzcdn.cn/vant/apple-1.jpg']}
-      />
-    </>
-  );
-};
-```
-
 ## 代码演示
 
 ### 基础用法
 
 直接传入图片数组，即可展示图片预览。
 
-```js
+```jsx
+import { ImagePreview } from 'react-vant';
+
 ImagePreview.open({
-  images: ['https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg'],
+  images: [
+    'https://img.yzcdn.cn/vant/apple-1.jpg',
+    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://img.yzcdn.cn/vant/apple-3.jpg',
+  ],
+  // 开启懒加载
+  lazyload: true,
 });
 ```
 
@@ -54,7 +30,11 @@ ImagePreview.open({
 
 ```js
 ImagePreview.open({
-  images: ['https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg'],
+  images: [
+    'https://img.yzcdn.cn/vant/apple-1.jpg',
+    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://img.yzcdn.cn/vant/apple-3.jpg',
+  ],
   startPosition: 1,
 });
 ```
@@ -65,7 +45,11 @@ ImagePreview.open({
 
 ```js
 ImagePreview.open({
-  images: ['https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg'],
+  images: [
+    'https://img.yzcdn.cn/vant/apple-1.jpg',
+    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://img.yzcdn.cn/vant/apple-3.jpg',
+  ],
   closeable: true,
 });
 ```
@@ -78,7 +62,11 @@ ImagePreview.open({
 import { Toast } from 'react-vant';
 
 ImagePreview.open({
-  images: ['https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg'],
+  images: [
+    'https://img.yzcdn.cn/vant/apple-1.jpg',
+    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://img.yzcdn.cn/vant/apple-3.jpg',
+  ],
   onClose() {
     Toast('关闭');
   },
@@ -91,7 +79,11 @@ ImagePreview.open({
 
 ```js
 const destory = ImagePreview.open({
-  images: ['https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg'],
+  images: [
+    'https://img.yzcdn.cn/vant/apple-1.jpg',
+    'https://img.yzcdn.cn/vant/apple-2.jpg',
+    'https://img.yzcdn.cn/vant/apple-3.jpg',
+  ],
 });
 
 setTimeout(() => {
@@ -115,7 +107,11 @@ export default () => {
       <ImagePreview
         visible={visible}
         onClose={() => setVisible(false)}
-        images={['https://img.yzcdn.cn/vant/apple-1.jpg']}
+        images={i[
+          'https://img.yzcdn.cn/vant/apple-1.jpg',
+          'https://img.yzcdn.cn/vant/apple-2.jpg',
+          'https://img.yzcdn.cn/vant/apple-3.jpg',
+        ]}
       />
     </>
   );
@@ -131,6 +127,7 @@ export default () => {
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | images | 需要预览的图片 URL 数组 | _string[]_ | `[]` |
+| lazyload | 是否开启懒加载 | _boolean\|[Lazyload Props](/#/zh-CN/lazyload)_ | `false` |
 | startPosition | 图片预览起始位置索引 | _number \| string_ | `0` |
 | swipeDuration | 动画时长，单位为 `ms` | _number \| string_ | `300` |
 | showIndex | 是否显示页码 | _boolean_ | `true` |
@@ -155,22 +152,21 @@ export default () => {
 | url    | 当前图片 URL     | _string_ |
 | index  | 当前图片的索引值 | _number_ |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-image-preview-index-text-color | _var(--rv-white)_ | - |
-| --rv-image-preview-index-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-image-preview-index-line-height | _var(--rv-line-height-md)_ | - |
-| --rv-image-preview-index-text-shadow | _0 1px 1px var(--rv-gray-8)_ | - |
-| --rv-image-preview-overlay-background-color | _rgba(0, 0, 0, 0.9)_ | - |
-| --rv-image-preview-close-icon-size | _22px_ | - |
-| --rv-image-preview-close-icon-color | _var(--rv-gray-5)_ | - |
-| --rv-image-preview-close-icon-active-color | _var(--rv-gray-6)_ | - |
-| --rv-image-preview-close-icon-margin | _var(--rv-padding-md)_ | - |
-| --rv-image-preview-close-icon-z-index | _1_ | - |
+| 名称                                        | 默认值                       | 描述 |
+| ------------------------------------------- | ---------------------------- | ---- |
+| --rv-image-preview-index-text-color         | _var(--rv-white)_            | -    |
+| --rv-image-preview-index-font-size          | _var(--rv-font-size-md)_     | -    |
+| --rv-image-preview-index-line-height        | _var(--rv-line-height-md)_   | -    |
+| --rv-image-preview-index-text-shadow        | _0 1px 1px var(--rv-gray-8)_ | -    |
+| --rv-image-preview-overlay-background-color | _rgba(0, 0, 0, 0.9)_         | -    |
+| --rv-image-preview-close-icon-size          | _22px_                       | -    |
+| --rv-image-preview-close-icon-color         | _var(--rv-gray-5)_           | -    |
+| --rv-image-preview-close-icon-active-color  | _var(--rv-gray-6)_           | -    |
+| --rv-image-preview-close-icon-margin        | _var(--rv-padding-md)_       | -    |
+| --rv-image-preview-close-icon-z-index       | _1_                          | -    |

@@ -1,4 +1,4 @@
-import Image from './Image';
+import Image from './LazyImage';
 
 export default Image;
 export { Image };

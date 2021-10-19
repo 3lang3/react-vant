@@ -1,3 +1,4 @@
+export * from './hooks';
 export { default as Button } from './button';
 export { default as Badge } from './badge';
 export { default as Field } from './field';
@@ -56,4 +57,4 @@ export { default as ActionBar } from './action-bar';
 export { default as Tabbar } from './tabbar';
 export { default as ConfigProvider } from './config-provider';
 export { default as Form } from './form';
-export * from './hooks';
+export { default as Lazyload } from './lazyload';

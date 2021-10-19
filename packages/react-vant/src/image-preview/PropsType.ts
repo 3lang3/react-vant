@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyImageType } from '../image/PropsType';
 import { PopupCloseIconPosition } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
 
@@ -8,6 +9,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   visible?: boolean;
   loop?: boolean;
   overlay?: boolean;
+  lazyload?: LazyImageType;
   closeable?: boolean;
   showIndicators?: boolean;
   showIndex?: boolean;
