@@ -23,6 +23,9 @@ const NavBar: React.FC<NavBarProps> = (props) => {
   const onClickRight = (event: MouseEvent) => {
     if (props.onClickRight) props.onClickRight(event);
   };
+  const onClickTitle = (event: MouseEvent) => {
+    if (props.onClickTitle) props.onClickTitle(event);
+  };
 
   const renderLeft = () => {
     if (typeof props.leftText !== 'string' && isValidElement(props.leftText)) {
@@ -48,6 +51,16 @@ const NavBar: React.FC<NavBarProps> = (props) => {
 
     return <span className={classnames(bem('text'))}>{props.rightText}</span>;
   };
+  const renderTitle = () => {
+    console.log(!props.renderTitle);
+    if (props.title && !props.renderTitle) {
+      return props.title;
+    }
+    if (typeof props.renderTitle !== 'string' && isValidElement(props.renderTitle)) {
+      return props.renderTitle;
+    }
+    return <span />;
+  };
 
   const renderNavBar = () => {
     const { title, fixed, border, zIndex } = props;
@@ -59,6 +72,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
 
     const hasLeft = props.leftArrow || props.leftText;
     const hasRight = props.rightText;
+    const hasTitle = props.renderTitle || title;
 
     return (
       <div
@@ -78,7 +92,12 @@ const NavBar: React.FC<NavBarProps> = (props) => {
               {renderLeft()}
             </div>
           )}
-          <div className={classnames(bem('title'), 'rv-ellipsis')}>{title}</div>
+          {hasTitle && (
+            <div className={classnames(bem('title'), 'rv-ellipsis')} onClick={onClickTitle}>
+              {renderTitle()}
+            </div>
+          )}
+          {}
           {hasRight && (
             <div className={classnames(bem('right'))} onClick={onClickRight}>
               {renderRight()}

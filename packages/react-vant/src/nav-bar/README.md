@@ -4,7 +4,6 @@
 
 为页面提供导航功能，常用于页面顶部。
 
-
 ### 引入
 
 ```js
@@ -55,15 +54,13 @@ import { NavBar } from 'react-vant';
 | placeholder | 固定在顶部时，是否在标签位置生成一个等高的占位元素 | _boolean_ | `false` |
 | safeAreaInsetTop | 是否开启[顶部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `false` |
 
-
 ### Events
 
-| 事件名      | 说明               | 回调参数 |
-| ----------- | ------------------ | -------- |
+| 事件名       | 说明               | 回调参数 |
+| ------------ | ------------------ | -------- |
 | onClickLeft  | 点击左侧按钮时触发 | -        |
 | onClickRight | 点击右侧按钮时触发 | -        |
-
-
+| onClickTitle | 点击标题时触发     | -        |
 
 ## 主题定制
 
@@ -71,13 +68,13 @@ import { NavBar } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                           | 默认值                     | 描述 |
-| ------------------------------ | -------------------------- | ---- |
-| --rv-nav-bar-height           | _46px_                     | -    |
+| 名称                          | 默认值                    | 描述 |
+| ----------------------------- | ------------------------- | ---- |
+| --rv-nav-bar-height           | _46px_                    | -    |
 | --rv-nav-bar-background-color | _var(--rv-white)_         | -    |
-| --rv-nav-bar-arrow-size       | _16px_                     | -    |
+| --rv-nav-bar-arrow-size       | _16px_                    | -    |
 | --rv-nav-bar-icon-color       | _var(--rv-primary-color)_ | -    |
 | --rv-nav-bar-text-color       | _var(--rv-primary-color)_ | -    |
 | --rv-nav-bar-title-font-size  | _var(--rv-font-size-lg)_  | -    |
 | --rv-nav-bar-title-text-color | _var(--rv-text-color)_    | -    |
-| --rv-nav-bar-z-index          | _1_                        | -    |
+| --rv-nav-bar-z-index          | _1_                       | -    |

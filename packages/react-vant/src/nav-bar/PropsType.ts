@@ -14,6 +14,8 @@ export interface NavBarProps extends BaseTypeProps {
   leftText?: React.ReactNode;
   /** 右侧文案	 */
   rightText?: React.ReactNode;
+  /* 自定义标题 */
+  renderTitle: React.ReactNode;
   /** 是否显示左侧箭头	 */
   leftArrow?: boolean;
   /** 是否开启顶部安全区适配	 */
@@ -22,6 +24,10 @@ export interface NavBarProps extends BaseTypeProps {
   border?: boolean;
   /** 固定在顶部时，是否在标签位置生成一个等高的占位元素 */
   placeholder?: boolean;
+  /** 左侧点击 */
   onClickLeft?: (e: MouseEvent) => void;
+  /** 右侧点击 */
   onClickRight?: (e: MouseEvent) => void;
+  /** 点击标题 */
+  onClickTitle?: (e: MouseEvent) => void;
 }
