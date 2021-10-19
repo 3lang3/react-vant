@@ -18,6 +18,8 @@ export interface IconProps extends BaseTypeProps {
   size?: number | string;
   /** 徽标内容 */
   badge?: BadgeSettingProps;
+  /** 旋转 */
+  spin?: boolean;
   /**
    * 类名前缀，用于使用自定义图标
    * @default 'van-icon'

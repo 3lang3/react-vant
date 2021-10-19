@@ -116,6 +116,16 @@ export default (): React.ReactNode => {
               </Flex.Item>
             </Flex>
           </DemoBlock>
+          <DemoBlock title="图标旋转">
+            <Flex>
+              <Flex.Item span={6}>
+                <Icon name="clock-o" spin />
+              </Flex.Item>
+              <Flex.Item span={6}>
+                <IconFont spin name="cuIcon-classify_fill" />
+              </Flex.Item>
+            </Flex>
+          </DemoBlock>
         </Tabs.TabPane>
         <Tabs.TabPane title="基础图标">
           <Flex wrap="wrap">

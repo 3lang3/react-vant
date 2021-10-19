@@ -49,7 +49,9 @@ import { Icon } from 'react-vant';
 ```
 
 ### 自定义图标
+
 #### 方式一
+
 如果需要在现有 `Icon` 的基础上使用更多图标，可以引入第三方 `iconfont` 对应的字体文件和 `CSS` 文件，之后就可以在 `Icon` 组件中直接使用
 
 ```css
@@ -75,7 +77,7 @@ import { Icon } from 'react-vant';
 
 #### 方式二
 
-通过方法`createFromIconfontCN` 引入[iconfont.cn](https://www.iconfont.cn)上的js文件
+通过方法`createFromIconfontCN` 引入[iconfont.cn](https://www.iconfont.cn)上的 js 文件
 
 ```jsx
 const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/xxx.js');
@@ -84,13 +86,22 @@ const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/xxx.js');
 
 ```
 
+### 图标旋转
+
+`Icon` 的 `spin` 属性用来设置图标旋转，默认单位为 `false`。
+
+```jsx
+<Icon name="clock-o" spin/>
+<IconFont name="cuIcon-classify_fill" spin/>
+```
+
 ## API
 
 ### 方法
 
-| 方法名        | 说明         | 参数                 | 返回值     |
-| ------------- | ------------ | -------------------- | ---------- |
-| Icon.createFromIconfontCN   | 创建第三方Icon     | `scriptUrl: string`  | _Icon 组件_     |
+| 方法名                    | 说明            | 参数                | 返回值      |
+| ------------------------- | --------------- | ------------------- | ----------- |
+| Icon.createFromIconfontCN | 创建第三方 Icon | `scriptUrl: string` | _Icon 组件_ |
 
 ### Props
 
@@ -102,6 +113,7 @@ const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/xxx.js');
 | size | 图标大小，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `inherit` |
 | classPrefix | 类名前缀，用于使用自定义图标 | _string_ | `van-icon` |
 | tag | HTML 标签 | _string_ | `i` |
+| spin | 图标旋转 | _boolean_ | `false` |
 
 ### Events
 
