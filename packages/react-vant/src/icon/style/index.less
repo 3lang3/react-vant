@@ -6,4 +6,20 @@
     height: 1em;
     object-fit: contain;
   }
+  &--spin {
+    -webkit-animation: van-spin 1.5s infinite linear;
+    animation: van-spin 1.5s infinite linear;
+  }
+}
+
+@keyframes van-spin {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }

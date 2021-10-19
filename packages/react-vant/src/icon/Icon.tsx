@@ -12,7 +12,7 @@ function isImage(name?: string): boolean {
 const Icon: React.FC<IconProps> = (props) => {
   const { iconPrefix } = useContext(ConfigProviderContext);
 
-  const { tag, name, className, onClick, onTouchStart } = props;
+  const { tag, name, className, onClick, onTouchStart, spin } = props;
 
   const imageIcon = isImage(name);
 
@@ -24,7 +24,9 @@ const Icon: React.FC<IconProps> = (props) => {
   return (
     <Badge
       tag={tag}
-      className={classnames(classPrefix, imageIcon ? '' : `${classPrefix}-${name}`, className)}
+      className={classnames(classPrefix, imageIcon ? '' : `${classPrefix}-${name}`, className, {
+        [`${classPrefix}--spin`]: spin,
+      })}
       style={{
         color: props.color,
         fontSize: addUnit(props.size),
