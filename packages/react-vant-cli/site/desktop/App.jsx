@@ -43,6 +43,9 @@ const App = () => {
     return config.site;
   }, [lang]);
 
+  // 文档模式
+  const { hideSimulator = false } = config.site;
+
   // 文档语言数据
   const langConfigs = React.useMemo(() => {
     const { locales = {} } = config.site;
@@ -51,7 +54,6 @@ const App = () => {
       label: locales[key].langLabel || '',
     }));
   }, [config]);
-
 
   // 更新标题
   const setTitle = () => {
@@ -70,7 +72,7 @@ const App = () => {
     }
 
     document.title = title;
-  }
+  };
 
   useEffect(setTitle);
 
@@ -89,6 +91,7 @@ const App = () => {
       langConfigs={langConfigs}
       versions={versions}
       simulator={simulator}
+      hideSimulator={hideSimulator}
     >
       <Switch>
         {routes.map((route) =>

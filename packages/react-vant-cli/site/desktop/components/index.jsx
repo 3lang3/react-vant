@@ -6,8 +6,7 @@ import Content from './Content';
 import Simulator from './Simulator';
 
 const Doc = (props) => {
-  const { lang, versions, simulator, langConfigs, config } = props;
-
+  const { lang, versions, simulator, langConfigs, config, hideSimulator } = props;
   return (
     <div className="vant-doc">
       <Header
@@ -18,10 +17,10 @@ const Doc = (props) => {
         // onSwitchVersion="$emit('switch-version', $event)"
       />
       <Nav lang={lang} navConfig={config.nav} />
-      <Container hasSimulator={!!simulator}>
+      <Container hasSimulator={!!simulator && !hideSimulator}>
         <Content>{props.children}</Content>
       </Container>
-      {simulator && <Simulator src={simulator} />}
+      {simulator && !hideSimulator && <Simulator src={simulator} />}
     </div>
   );
 };
