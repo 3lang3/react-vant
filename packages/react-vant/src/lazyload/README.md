@@ -94,7 +94,7 @@ export default () => {
 
 | 参数        | 说明               | 类型             | 默认值              |
 | ----------- | ------------------ | ---------------- | ------------------- |
-| height      | 占位容器高度       | _number\|string_ | -                   |
+| height      | 设置占位容器高度   | _number\|string_ | -                   |
 | placeholder | 自定义占位容器视图 | _ReactNode_      | \<Skeleton title /> |
 | style       | 占位容器样式       | _CSSProperties_  | -                   |
 | className   | 占位容器类名       | _string_         | -                   |
