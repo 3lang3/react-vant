@@ -1,4 +1,5 @@
 import NumberKeyboard from './NumberKeyboard';
+import './style/index.less';
 
 export default NumberKeyboard;
 export { NumberKeyboard };

@@ -1,4 +1,5 @@
 import NoticeBar from './NoticeBar';
+import './style/index.less';
 
 export default NoticeBar;
 export { NoticeBar };

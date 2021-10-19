@@ -1,4 +1,5 @@
 import Empty from './Empty';
+import './style/index.less';
 
 export default Empty;
 export { Empty };

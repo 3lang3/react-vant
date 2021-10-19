@@ -7,6 +7,7 @@ import { lockClick } from './lock-click';
 import { ToastProps, ToastInstance, ToastReturnType, ToastType } from './PropsType';
 
 import BaseToast from './Toast';
+import './style/index.less';
 
 const defaultOptions: ToastProps = {
   icon: '',
@@ -164,4 +165,4 @@ Toast.resetDefaultOptions = (type?: ToastType) => {
 };
 
 export default Toast as ToastInstance;
-export type { ToastType, ToastPosition, ToastOptions } from './PropsType'
+export type { ToastType, ToastPosition, ToastOptions } from './PropsType';

@@ -1,5 +1,6 @@
 import { SwiperSlide } from 'swiper/react';
 import Swipe from './Swipe';
+import './style/index.less';
 
 /**
  * https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34757#issuecomment-894053907

@@ -1,4 +1,5 @@
 import Popup from './Popup';
+import './style/index.less';
 
 export default Popup;
 export { Popup };

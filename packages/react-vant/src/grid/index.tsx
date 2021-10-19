@@ -1,5 +1,6 @@
 import Grid from './Grid';
 import GridItem from './GridItem';
+import './style/index.less';
 
 const GridNamespace = Object.assign(Grid, { Item: GridItem });
 
