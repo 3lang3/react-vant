@@ -109,7 +109,12 @@ module.exports = {
               { path: 'sidebar', title: 'Sidebar 侧边导航' },
               { path: 'tabs', title: 'Tabs 标签页' },
               { path: 'tabbar', title: 'Tabbar 标签栏' },
+              { path: 'area', title: 'Area 省市区选择' },
             ],
+          },
+          {
+            title: '业务组件',
+            items: [{ path: 'area', title: 'Area 省市区选择' }],
           },
         ],
       },
