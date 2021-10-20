@@ -8,15 +8,15 @@ export interface CardProps extends BaseTypeProps {
   bottom?: React.ReactNode;
   priceTop?: React.ReactNode;
   footer?: React.ReactNode;
-  num?: number | string;
+  num?: React.ReactNode;
   desc?: React.ReactNode;
   thumb?: React.ReactNode;
   title?: React.ReactNode;
-  price?: number | string;
+  price?: React.ReactNode;
   centered?: boolean;
   lazyload?: boolean;
   thumbLink?: string;
-  originPrice?: number | string;
+  originPrice?: React.ReactNode;
   currency?: string;
   onClick?: (event: React.MouseEvent) => void;
   onClickThumb?: (event: React.MouseEvent) => void;

@@ -6,6 +6,10 @@ import { Tag } from '../tag';
 import { Image } from '../image';
 import { isDef } from '../utils';
 
+function isStringOrNumber(target) {
+  return typeof target === 'string' || typeof target === 'number';
+}
+
 const Card: React.FC<CardProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('card', prefixCls);
@@ -21,7 +25,7 @@ const Card: React.FC<CardProps> = (props) => {
     if (props.tag) {
       return (
         <div className={cls(bem('tag'))}>
-          {typeof props.tag === 'string' ? (
+          {isStringOrNumber(props.tag) ? (
             <Tag mark type="danger">
               {props.tag}
             </Tag>
@@ -64,16 +68,28 @@ const Card: React.FC<CardProps> = (props) => {
   };
 
   const renderPriceText = () => {
-    const priceArr = props.price!.toString().split('.');
+    if (isStringOrNumber(props.price)) {
+      const priceArr = props.price!.toString().split('.');
+      return (
+        <div>
+          <span className={cls(bem('price-currency'))}>{props.currency}</span>
+          <span className={cls(bem('price-integer'))}>{priceArr[0]}</span>.
+          <span className={cls(bem('price-decimal'))}>{priceArr[1]}</span>
+        </div>
+      );
+    }
+    return props.price;
+  };
+
+  const renderOriginalPrice = () => {
     return (
-      <div>
-        <span className={cls(bem('price-currency'))}>{props.currency}</span>
-        <span className={cls(bem('price-integer'))}>{priceArr[0]}</span>.
-        <span className={cls(bem('price-decimal'))}>{priceArr[1]}</span>
+      <div className={cls(bem('origin-price'))}>
+        {isStringOrNumber(props.originPrice)
+          ? `${props.currency} ${props.originPrice}`
+          : props.originPrice}
       </div>
     );
   };
-
   const showNum = isDef(props.num);
   const showPrice = isDef(props.price);
   const showOriginPrice = isDef(props.originPrice);
@@ -81,11 +97,13 @@ const Card: React.FC<CardProps> = (props) => {
 
   const Price = showPrice && <div className={cls(bem('price'))}>{renderPriceText()}</div>;
 
-  const OriginPrice = showOriginPrice && (
-    <div className={cls(bem('origin-price'))}>{`${props.currency} ${props.originPrice}`}</div>
-  );
+  const OriginPrice = showOriginPrice && renderOriginalPrice();
 
-  const Num = showNum && <div className={cls(bem('num'))}>{`x${props.num}`}</div>;
+  const Num = showNum && (
+    <div className={cls(bem('num'))}>
+      {isStringOrNumber(props.num) ? `x${props.num}` : props.num}
+    </div>
+  );
 
   const Footer = props.footer && <div className={cls(bem('footer'))}>{props.footer}</div>;
 
