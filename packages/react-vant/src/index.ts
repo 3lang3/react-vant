@@ -59,3 +59,4 @@ export { default as ConfigProvider } from './config-provider';
 export { default as Form } from './form';
 export { default as Lazyload } from './lazyload';
 export { default as Area } from './area';
+export { default as Card } from './card';

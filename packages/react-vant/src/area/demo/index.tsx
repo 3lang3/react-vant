@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { components } from 'site-mobile-demo';
 import { areaList } from '@vant/area-data';
@@ -6,7 +7,7 @@ import './style.less';
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
-  const [value, setValue] = useState('330302');
+  const [value] = useState('330302');
 
   return (
     <DemoSection>

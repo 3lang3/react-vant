@@ -1,0 +1,128 @@
+@import './var.less';
+
+:root {
+  --rv-card-padding: @card-padding;
+  --rv-card-font-size: @card-font-size;
+  --rv-card-text-color: @card-text-color;
+  --rv-card-background-color: @card-background-color;
+  --rv-card-thumb-size: @card-thumb-size;
+  --rv-card-thumb-border-radius: @card-thumb-border-radius;
+  --rv-card-title-line-height: @card-title-line-height;
+  --rv-card-desc-color: @card-desc-color;
+  --rv-card-desc-line-height: @card-desc-line-height;
+  --rv-card-price-color: @card-price-color;
+  --rv-card-origin-price-color: @card-origin-price-color;
+  --rv-card-num-color: @card-num-color;
+  --rv-card-origin-price-font-size: @card-origin-price-font-size;
+  --rv-card-price-font-size: @card-price-font-size;
+  --rv-card-price-integer-font-size: @card-price-integer-font-size;
+  --rv-card-price-font-family: @card-price-font-family;
+}
+
+.@{rv-prefix}-card {
+  position: relative;
+  box-sizing: border-box;
+  padding: var(--rv-card-padding);
+  color: var(--rv-card-text-color);
+  font-size: var(--rv-card-font-size);
+  background-color: var(--rv-card-background-color);
+
+  &:not(:first-child) {
+    margin-top: var(--rv-padding-xs);
+  }
+
+  &__header {
+    display: flex;
+  }
+
+  &__thumb {
+    position: relative;
+    flex: none;
+    width: var(--rv-card-thumb-size);
+    height: var(--rv-card-thumb-size);
+    margin-right: var(--rv-padding-xs);
+
+    img {
+      border-radius: var(--rv-card-thumb-border-radius);
+    }
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0; /* hack for flex box ellipsis */
+    min-height: var(--rv-card-thumb-size);
+
+    &--centered {
+      justify-content: center;
+    }
+  }
+
+  &__title,
+  &__desc {
+    word-wrap: break-word;
+  }
+
+  &__title {
+    max-height: 32px;
+    font-weight: var(--rv-font-weight-bold);
+    line-height: var(--rv-card-title-line-height);
+  }
+
+  &__desc {
+    max-height: var(--rv-card-desc-line-height);
+    color: var(--rv-card-desc-color);
+    line-height: var(--rv-card-desc-line-height);
+  }
+
+  &__bottom {
+    line-height: var(--rv-line-height-md);
+  }
+
+  &__price {
+    display: inline-block;
+    color: var(--rv-card-price-color);
+    font-weight: var(--rv-font-weight-bold);
+    font-size: var(--rv-card-price-font-size);
+  }
+
+  &__price-integer {
+    font-size: var(--rv-card-price-integer-font-size);
+    font-family: var(--rv-card-price-font-family);
+  }
+
+  &__price-decimal {
+    font-family: var(--rv-card-price-font-family);
+  }
+
+  &__origin-price {
+    display: inline-block;
+    margin-left: 5px;
+    color: var(--rv-card-origin-price-color);
+    font-size: var(--rv-card-origin-price-font-size);
+    text-decoration: line-through;
+  }
+
+  &__num {
+    float: right;
+    color: var(--rv-card-num-color);
+  }
+
+  &__tag {
+    position: absolute;
+    top: 2px;
+    left: 0;
+  }
+
+  &__footer {
+    flex: none;
+    text-align: right;
+
+    .@{rv-prefix}-button {
+      margin-left: 5px;
+    }
+  }
+}
