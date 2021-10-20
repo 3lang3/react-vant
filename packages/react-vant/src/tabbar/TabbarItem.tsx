@@ -50,7 +50,9 @@ const TabbarItem: React.FC<TabbarItemProps> = (props) => {
         {renderIcon()}
       </Badge>
       <div className={classnames(bem('text'))}>
-        {typeof props.children === 'function' ? props.children(active) : props.children}
+        {typeof props.children === 'function'
+          ? (props.children as Function)(active)
+          : props.children}
       </div>
     </div>
   );

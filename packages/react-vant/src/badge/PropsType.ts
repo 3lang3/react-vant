@@ -14,7 +14,7 @@ export interface BadgeProps extends BaseTypeProps {
   /** 徽标背景颜色	 */
   color?: string;
   /** 设置徽标的偏移量，数组的两项分别对应水平和垂直方向的偏移量，默认单位为 px	 */
-  offset?: [x: string | number, y: string | number];
+  offset?: [string | number, string | number];
   /**
    * 当 content 为数字 0 时，是否展示徽标
    * @default true
