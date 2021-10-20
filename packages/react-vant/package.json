@@ -48,7 +48,8 @@
   },
   "peerDependencies": {
     "react": ">=16.14.0",
-    "react-dom": ">=16.14.0"
+    "react-dom": ">=16.14.0",
+    "rc-field-form": "^1.21.2"
   },
   "peerDependenciesMeta": {
     "rc-field-form": {
@@ -63,7 +64,6 @@
     "@vant/icons": "^1.7.0",
     "@vant/popperjs": "^1.1.0",
     "classnames": "^2.2.6",
-    "rc-field-form": "^1.21.2",
     "react-transition-group": "^4.4.1",
     "swiper": "^6.8.1"
   }
