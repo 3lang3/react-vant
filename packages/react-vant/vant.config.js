@@ -116,6 +116,7 @@ module.exports = {
             items: [
               { path: 'area', title: 'Area 省市区选择' },
               { path: 'card', title: 'Card 卡片' },
+              { path: 'submit-bar', title: 'SubmitBar 提交订单栏' },
             ],
           },
         ],
