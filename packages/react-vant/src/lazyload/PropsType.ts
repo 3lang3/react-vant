@@ -6,5 +6,5 @@ export interface LazyloadProps extends BaseTypeProps {
   height?: number | string;
   /** 自定义占位符 */
   placeholder?: React.ReactNode;
-  children?: JSX.Element;
+  children?: React.ReactNode;
 }

@@ -14,7 +14,7 @@ const Lazyload: React.FC<LazyloadProps> = (props) => {
   const { height, placeholder, children, className, style } = props;
 
   return inViewPort ? (
-    children
+    <>{children}</>
   ) : (
     <div ref={ref} className={cls(bem(), className)} style={{ height, ...style }}>
       {placeholder}
