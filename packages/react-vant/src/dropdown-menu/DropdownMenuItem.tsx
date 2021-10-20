@@ -53,6 +53,11 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
     }
   };
 
+  const onClose = () => {
+    parent.close();
+    (props.onClose ?? parent.props.onClose)?.();
+  };
+
   const toggle = (show = !props.showPopup, options: { immediate?: boolean } = {}) => {
     if (show === props.showPopup) {
       return;
@@ -62,13 +67,10 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
 
     if (show) {
       newState.showWrapper = true;
+    } else {
+      onClose();
     }
     setState(newState);
-  };
-
-  const onClose = () => {
-    parent.close();
-    (props.onClose ?? parent.props.onClose)?.();
   };
 
   const renderTitle = (itemValue) => {
