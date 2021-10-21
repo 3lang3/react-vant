@@ -74,8 +74,10 @@ const SubmitBar: React.FC<SubmitBarProps> = (props) => {
       className={cls(props.className, bem(), { 'van-safe-area-bottom': props.safeAreaInsetBottom })}
       style={props.style}
     >
+      {props.top}
       {renderTip()}
       <div className={cls(bem('bar'))}>
+        {props.children}
         {renderText()}
         {renderButton()}
       </div>
