@@ -180,23 +180,33 @@ export default () => {
 | onOpened | 打开菜单栏且动画结束后触发 | -        |
 | onClosed | 关闭菜单栏且动画结束后触发 | -        |
 
+### DropdownMenu 方法
+
+通过 ref 可以获取到 DropdownMenu 实例并调用实例方法。
+
+| 方法名     | 说明                 | 参数           | 返回值 |
+| ---------- | -------------------- | -------------- | ------ |
+| toggleItem | 切换指定菜单展示状态 | _index:number_ | -      |
+| showItem   | 显示指定菜单展示状态 | _index:number_ | -      |
+| close      | 关闭菜单             |                | -      |
+
 ### 类型定义
 
 组件导出以下类型定义：
 
 ```js
-import type { DropdownItemOption, DropdownItemInstance, DropdownMenuDirection } from 'react-vant';
+import type { DropdownMenuInstance, DropdownItemOption, DropdownMenuDirection } from 'react-vant';
 ```
 
-`DropdownItemInstance` 是组件实例的类型，用法如下：
+`DropdownMenuInstance` 是组件实例的类型，用法如下：
 
 ```js
 import { useRef } from 'react';
-import type { DropdownItemInstance } from 'react-vant';
+import type { DropdownMenuInstance } from 'react-vant';
 
-const dropdownItemRef = useRef<DropdownItemInstance>();
+const dropdownRef = useRef<DropdownMenuInstance>();
 
-dropdownItemRef.current?.toggle();
+dropdownRef.current?.toggleItem(0);
 ```
 
 ### Option 数据结构
