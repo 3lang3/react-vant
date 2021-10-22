@@ -12,7 +12,7 @@ export type DropdownMenuItemOption = {
   value: number | string;
 };
 
-export type DropdownItemOption = DropdownMenuItemOption
+export type DropdownItemOption = DropdownMenuItemOption;
 
 interface DropdownMenuCommonProps extends BaseTypeProps {
   /** 是否显示遮罩层	 */
@@ -52,6 +52,7 @@ export interface DropdownMenuProps extends DropdownMenuCommonProps {
   zIndex?: number | string;
   /** 菜单展开方向 */
   direction?: DropdownMenuDirection;
+  children?: React.ReactNode;
 }
 
 export interface DropdownMenuItemProps extends DropdownMenuCommonProps, ItemPrivateProps {
@@ -67,12 +68,24 @@ export interface DropdownMenuItemProps extends DropdownMenuCommonProps, ItemPriv
 }
 
 export type DropdownItemInstance = {
-  toggle: (show: boolean, options?: { immediate?: boolean }) => void;
+  /** 切换菜单展示状态，传 true 为显示，false 为隐藏，不传参为取反	 */
+  toggle: (show?: boolean, options?: { immediate?: boolean }) => void;
+  /** @private */
   renderTitle?: (itemValue: string | number) => void;
+  /** @private */
   state: {
     transition: boolean;
     showWrapper: boolean;
   };
+};
+
+export type DropdownMenuInstance = {
+  /** 切换菜单展示状态	 */
+  toggleItem: (index: number) => void;
+  /** 切换菜单展示状态，传 true 为显示，false 为隐藏，不传参为取反	 */
+  showItem: (index: number) => void;
+  /** 关闭菜单 */
+  close: () => void;
 };
 
 interface ItemPrivateProps {

@@ -1,15 +1,17 @@
 import React, {
   Children,
   cloneElement,
+  forwardRef,
   ReactElement,
   useContext,
   useEffect,
+  useImperativeHandle,
   useMemo,
   useRef,
   useState,
 } from 'react';
 import classnames from 'classnames';
-import { DropdownMenuProps } from './PropsType';
+import { DropdownItemInstance, DropdownMenuInstance, DropdownMenuProps } from './PropsType';
 import { isDef } from '../utils';
 import useEventListener from '../hooks/use-event-listener';
 import useScrollParent from '../hooks/use-scroll-parent';
@@ -20,8 +22,8 @@ import { useUpdateEffect } from '../hooks';
 import useClickAway from '../hooks/use-click-away';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props, ref) => {
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('dropdown-menu', prefixCls);
 
   const [innerValue = {}, setInnerValue] = useState(() => props.value);
@@ -31,6 +33,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
   const root = useRef<HTMLDivElement>();
   const barRef = useRef<HTMLDivElement>();
   const offset = useRef(0);
+  const isToggleEvent = useRef<boolean>(false);
 
   const rect = useRef<{ bottom: number; top: number }>({ bottom: 0, top: 0 });
   const innerEffect = useRef(false);
@@ -50,12 +53,17 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
     showPopupIndexRef.current = current;
     setShowPopupIndex(current);
   };
+  const closeAll = () => {
+    childrenRefs.forEach((item) => {
+      item.toggle(false);
+    });
+    updateShowPopupIndex(null);
+  };
   const onClickAway = () => {
-    if (props.closeOnClickOutside) {
-      childrenRefs.forEach((item) => {
-        item.toggle(false);
-      });
-      updateShowPopupIndex(null);
+    if (props.closeOnClickOutside && !isToggleEvent.current) {
+      closeAll();
+    } else {
+      isToggleEvent.current = false;
     }
   };
 
@@ -76,17 +84,23 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
     }
   };
 
+  const showItem = (index: number) => {
+    const item = childrenRefs[index];
+    isToggleEvent.current = true;
+    updateOffset();
+    updateShowPopupIndex(index);
+    item.toggle(true);
+  };
+
   const toggleItem = (active: number) => {
-    childrenRefs.forEach((item, index) => {
+    childrenRefs.forEach((item: DropdownItemInstance, index) => {
       if (index === active) {
         if (active === showPopupIndexRef.current) {
           updateShowPopupIndex(null);
           item.toggle();
           return;
         }
-        updateOffset();
-        updateShowPopupIndex(index);
-        item.toggle();
+        showItem(active);
       }
     });
   };
@@ -158,6 +172,12 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
   useEventListener('scroll', onScroll, { target: scrollParent });
   useClickAway(root, onClickAway);
 
+  useImperativeHandle(ref, () => ({
+    toggleItem,
+    showItem,
+    close: closeAll,
+  }));
+
   return (
     <DropdownMenuContext.Provider
       value={{ props, value: innerValue, onChange: onInnerChange, close }}
@@ -166,24 +186,26 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
         <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
           {childrenRefs.map(renderTitle)}
         </div>
-        {Children.toArray(props.children).filter(Boolean).map((child: ReactElement, index: number) =>
-          cloneElement(child, {
-            ref: setChildrenRefs(index),
-            offset: offset.current,
-            showPopup: showPopupIndex === index,
-          }),
-        )}
+        {Children.toArray(props.children)
+          .filter(Boolean)
+          .map((child: ReactElement, index: number) =>
+            cloneElement(child, {
+              ref: setChildrenRefs(index),
+              offset: offset.current,
+              showPopup: showPopupIndex === index,
+            }),
+          )}
       </div>
     </DropdownMenuContext.Provider>
   );
-};
+});
 
 DropdownMenu.defaultProps = {
   duration: 200,
   overlay: true,
   closeOnClickOutside: true,
   closeOnClickOverlay: true,
-  direction: 'down',
+  direction: 'down' as const,
 };
 
 export default DropdownMenu;
