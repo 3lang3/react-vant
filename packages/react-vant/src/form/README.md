@@ -2,16 +2,11 @@
 
 ### 介绍
 
-用于数据录入、校验，支持输入框、单选框、复选框、文件上传等类型，需要与 [rc-field-form](https://github.com/react-component/field-form) 搭配使用。
+用于数据录入、校验，支持输入框、单选框、复选框、文件上传等类型。
+
+> Form 组件是基于[rc-field-form](https://github.com/react-component/field-form)的封装。
 
 ### 引入
-
-`rc-field-form` 是 Form 组件的前置依赖
-
-```bash
-# 添加 rc-field-form包
-yarn add rc-field-form
-```
 
 ```js
 import { Form } from 'react-vant';
