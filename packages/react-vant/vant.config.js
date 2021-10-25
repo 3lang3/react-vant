@@ -118,6 +118,7 @@ module.exports = {
               { path: 'card', title: 'Card 卡片' },
               { path: 'coupon', title: 'Coupon 优惠券' },
               { path: 'submit-bar', title: 'SubmitBar 提交订单栏' },
+              { path: 'sku', title: 'Sku 商品规格' },
             ],
           },
         ],
