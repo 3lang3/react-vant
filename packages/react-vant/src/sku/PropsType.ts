@@ -9,8 +9,16 @@ export type SkuFieldNames = {
   children?: string;
 };
 export interface SkuProps extends BaseTypeProps {
+  sku: any;
+  properties?: any;
   fieldNames?: SkuFieldNames;
   stepperProps?: Omit<StepperProps, 'value' | 'onChange'>;
+  stepperQuota?: React.ReactNode;
+  priceTag?: React.ReactNode;
+  originPrice?: number | string;
+  bodyOffsetTop?: number;
+  hideStock?: boolean;
+  hideSelectedText?: boolean;
   onAddCart?: (value: SkuValueType) => void;
   onBuyClicked?: (value: SkuValueType) => void;
   onStepperChange?: (value: number) => void;

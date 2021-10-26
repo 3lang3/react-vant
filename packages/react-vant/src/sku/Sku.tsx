@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import cls from 'classnames';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SkuProps } from './PropsType';
@@ -8,12 +8,23 @@ import { Image } from '../image';
 import { useSetState } from '../hooks';
 import { BORDER_BOTTOM } from '../utils/constant';
 import ImagePreview from '../image-preview';
+import { Popup } from '../popup';
+import { Icon } from '../icon';
 
 const Sku: React.FC<SkuProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('sku', prefixCls);
+  const [bemRow] = createNamespace('sku-row', prefixCls);
 
   const [state, updateState] = useSetState({ num: 1 });
+
+  const bodyStyle = useMemo(() => {
+    const maxHeight = window.innerHeight - props.bodyOffsetTop;
+
+    return {
+      maxHeight: `${maxHeight}px`,
+    };
+  }, [props.bodyOffsetTop]);
 
   const onAddCart = () => {
     props.onAddCart?.({});
@@ -29,6 +40,7 @@ const Sku: React.FC<SkuProps> = (props) => {
       integer,
       min,
       max,
+      className: cls(bem('stepper')),
       value: state.num,
       onChange: (num) => updateState({ num: parseInt(num, 10) }),
     };
@@ -36,6 +48,9 @@ const Sku: React.FC<SkuProps> = (props) => {
       <div className={cls(bem('stepper-stock'))}>
         <div className={cls(bem('stepper-title'))}>{title}</div>
         <Stepper {...attrs} />
+        {props.stepperQuota && (
+          <span className={cls(bem('stepper-quota'))}>{props.stepperQuota}</span>
+        )}
       </div>
     );
   };
@@ -45,7 +60,24 @@ const Sku: React.FC<SkuProps> = (props) => {
   };
 
   const renderHeaderInfo = () => {
-    return null;
+    return (
+      <>
+        <div className={cls(bem('goods-price'))}>
+          <span className={cls(bem('price-symbol'))}>￥</span>
+          <span className={cls(bem('price-num'))}>1.00</span>
+          {props.priceTag && <span className={cls(bem('price-tag'))}>{props.priceTag}</span>}
+        </div>
+        {props.originPrice && <div className={cls(bem('header-item'))}>{props.originPrice}</div>}
+        {!props.hideStock && (
+          <div className={cls(bem('header-item'))}>
+            <span className={cls(bem('stock'))}>剩余 277 件</span>
+          </div>
+        )}
+        {!props.hideSelectedText && (
+          <div className={cls(bem('header-item'))}>请选择 颜色 尺寸 加料 非必选属性</div>
+        )}
+      </>
+    );
   };
 
   const renderHeader = () => {
@@ -54,30 +86,66 @@ const Sku: React.FC<SkuProps> = (props) => {
     return (
       <div className={cls(bem('header'), BORDER_BOTTOM)}>
         {showHeaderImage && (
-          <Image fit="cover" src={imgUrl} className={cls(bem('img-wrap'))} onClick={previewImage} />
+          <Image
+            fit="cover"
+            src={imgUrl}
+            className={cls(bem('header__img-wrap'))}
+            onClick={previewImage}
+          />
         )}
-        <div className={cls(bem('goods-info'))}>{renderHeaderInfo()}</div>
+        <div className={cls(bem('header__goods-info'))}>{renderHeaderInfo()}</div>
       </div>
     );
   };
 
-  const renderRowItem = (data) => {
-    return <div className={cls(bem('row__item'))}>123</div>;
-  };
-
-  const renderRow = (rowData) => {
+  const renderRowItem = (data, idx, largeImageMode?) => {
+    const prefix = largeImageMode ? 'image-item' : 'item';
     return (
-      <div className={cls(bem('row'), BORDER_BOTTOM)}>
-        <div className={cls(bem('row__title'))}>{rowData.title}</div>
-        {renderRowItem({})}
+      <div key={idx} className={cls(bemRow(prefix))}>
+        {data.imgUrl && (
+          <Image fit="cover" src={data.imgUrl} className={cls(bemRow(`${prefix}-img`))} />
+        )}
+        <div className={cls(bemRow(`${prefix}-name`))}>{data.name}</div>
+        {largeImageMode && (
+          <Icon
+            name="expand-o"
+            className={cls(bemRow(`${prefix}-img-icon`))}
+            onClick={previewImage}
+          />
+        )}
       </div>
     );
   };
 
+  const renderRow = (rowData, rowIdx) => {
+    const { largeImageMode } = rowData;
+    const nodes = rowData.v.map((item, idx) => renderRowItem(item, idx, largeImageMode));
+    return (
+      <div key={rowIdx} className={cls(bemRow(), BORDER_BOTTOM)}>
+        <div className={cls(bemRow('title'))}>
+          {rowData.k}
+          {rowData.is_multiple && <span className={cls(bemRow('title-multiple'))}>（可多选）</span>}
+        </div>
+
+        {largeImageMode ? (
+          <div className={cls(bemRow('scroller'))}>
+            <div className={cls(bemRow('row'))}>{nodes}</div>
+          </div>
+        ) : (
+          nodes
+        )}
+      </div>
+    );
+  };
   const renderBody = () => {
+    const { tree = [] } = props.sku;
+
     return (
-      <div className={cls(bem('body'))}>
-        {renderRow({})}
+      <div className={cls(bem('body'))} style={bodyStyle}>
+        <div className={cls(bem('group-container'))}>
+          {tree.map((row, idx) => renderRow(row, idx))}
+          {props.properties.map((row, idx) => renderRow(row, idx))}
+        </div>
         {renderStepper()}
       </div>
     );
@@ -94,17 +162,26 @@ const Sku: React.FC<SkuProps> = (props) => {
     );
   };
   return (
-    <div className={cls(props.className, bem())} style={props.style}>
+    <Popup
+      round
+      visible
+      closeable
+      position="bottom"
+      className={cls(props.className, bem('container'))}
+      style={props.style}
+    >
       {renderHeader()}
       {renderBody()}
       {renderActions()}
-    </div>
+    </Popup>
   );
 };
 
 // defaultProps defined if need
 Sku.defaultProps = {
   stepperProps: {},
+  properties: [],
+  bodyOffsetTop: 200,
 };
 
 export default Sku;
