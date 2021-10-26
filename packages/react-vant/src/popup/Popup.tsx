@@ -56,7 +56,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
     props;
   const opened = useRef(false);
-  const zIndex = useRef(globalZIndex);
+  const zIndex = useRef<number>();
   const popupRef = useRef<HTMLDivElement>();
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
@@ -77,12 +77,12 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 
   const open = () => {
     if (props.zIndex !== undefined) {
-      globalZIndex = +props.zIndex;
+      zIndex.current = +props.zIndex;
+    } else {
+      zIndex.current = globalZIndex++;
     }
 
     opened.current = true;
-    zIndex.current = ++globalZIndex;
-
     props.onOpen?.();
   };
 
@@ -245,7 +245,6 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 });
 
 Popup.defaultProps = {
-  zIndex: 2000,
   duration: 300,
   overlay: true,
   lockScroll: true,
