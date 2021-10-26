@@ -11,6 +11,7 @@ export type SkuFieldNames = {
 export interface SkuProps extends BaseTypeProps {
   sku: any;
   properties?: any;
+  goods?: any;
   fieldNames?: SkuFieldNames;
   stepperProps?: Omit<StepperProps, 'value' | 'onChange'>;
   stepperQuota?: React.ReactNode;

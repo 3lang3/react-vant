@@ -26,6 +26,23 @@ const Sku: React.FC<SkuProps> = (props) => {
     };
   }, [props.bodyOffsetTop]);
 
+  const imageList = useMemo(() => {
+    const { sku, goods } = props;
+    const rs = [goods?.picture];
+    if (sku.tree.length > 0) {
+      sku.tree.forEach((tree) => {
+        if (!tree.v) return;
+        tree.v.forEach((vItem) => {
+          const img = vItem.previewImgUrl || vItem.imgUrl || vItem.img_url;
+          if (img && rs.indexOf(img) === -1) {
+            rs.push(img);
+          }
+        });
+      });
+    }
+    return rs;
+  }, [props.goods?.picture, JSON.stringify(props.sku.tree)]);
+
   const onAddCart = () => {
     props.onAddCart?.({});
   };
@@ -55,8 +72,8 @@ const Sku: React.FC<SkuProps> = (props) => {
     );
   };
 
-  const previewImage = () => {
-    ImagePreview.open({ images: [''] });
+  const previewImage = (startPosition?: number) => {
+    ImagePreview.open({ images: imageList, startPosition });
   };
 
   const renderHeaderInfo = () => {
@@ -82,7 +99,7 @@ const Sku: React.FC<SkuProps> = (props) => {
 
   const renderHeader = () => {
     const showHeaderImage = true;
-    const imgUrl = '';
+    const imgUrl = imageList[0];
     return (
       <div className={cls(bem('header'), BORDER_BOTTOM)}>
         {showHeaderImage && (
@@ -90,7 +107,7 @@ const Sku: React.FC<SkuProps> = (props) => {
             fit="cover"
             src={imgUrl}
             className={cls(bem('header__img-wrap'))}
-            onClick={previewImage}
+            onClick={() => previewImage()}
           />
         )}
         <div className={cls(bem('header__goods-info'))}>{renderHeaderInfo()}</div>
@@ -100,6 +117,7 @@ const Sku: React.FC<SkuProps> = (props) => {
 
   const renderRowItem = (data, idx, largeImageMode?) => {
     const prefix = largeImageMode ? 'image-item' : 'item';
+
     return (
       <div key={idx} className={cls(bemRow(prefix))}>
         {data.imgUrl && (
@@ -110,7 +128,7 @@ const Sku: React.FC<SkuProps> = (props) => {
           <Icon
             name="expand-o"
             className={cls(bemRow(`${prefix}-img-icon`))}
-            onClick={previewImage}
+            onClick={() => previewImage(idx)}
           />
         )}
       </div>
