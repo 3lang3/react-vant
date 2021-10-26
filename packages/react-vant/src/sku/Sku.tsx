@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useContext, useMemo } from 'react';
 import cls from 'classnames';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -9,14 +10,16 @@ import { useSetState } from '../hooks';
 import { BORDER_BOTTOM } from '../utils/constant';
 import ImagePreview from '../image-preview';
 import { Popup } from '../popup';
-import { Icon } from '../icon';
+import { getSkuImgValue } from './utils';
+import { UNSELECTED_SKU_VALUE_ID } from './constants';
+import SkuRowItem from './components/SkuRowItem';
 
 const Sku: React.FC<SkuProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('sku', prefixCls);
   const [bemRow] = createNamespace('sku-row', prefixCls);
 
-  const [state, updateState] = useSetState({ num: 1 });
+  const [state, updateState] = useSetState({ selectedSku: {}, num: 1 });
 
   const bodyStyle = useMemo(() => {
     const maxHeight = window.innerHeight - props.bodyOffsetTop;
@@ -42,6 +45,19 @@ const Sku: React.FC<SkuProps> = (props) => {
     }
     return rs;
   }, [props.goods?.picture, JSON.stringify(props.sku.tree)]);
+
+  const onSelect = (skuValue) => {
+    // 点击已选中的sku时则取消选中
+    const selectedSku =
+      state.selectedSku[skuValue.skuKeyStr] === skuValue.id
+        ? {
+            ...state.selectedSku,
+            [skuValue.skuKeyStr]: UNSELECTED_SKU_VALUE_ID,
+          }
+        : { ...state.selectedSku, [skuValue.skuKeyStr]: skuValue.id };
+
+    updateState({ selectedSku });
+  };
 
   const onAddCart = () => {
     props.onAddCart?.({});
@@ -99,7 +115,8 @@ const Sku: React.FC<SkuProps> = (props) => {
 
   const renderHeader = () => {
     const showHeaderImage = true;
-    const imgUrl = imageList[0];
+    const selectedValue = getSkuImgValue(props.sku, state.selectedSku);
+    const imgUrl = selectedValue ? selectedValue.imgUrl : props.goods.picture;
     return (
       <div className={cls(bem('header'), BORDER_BOTTOM)}>
         {showHeaderImage && (
@@ -115,29 +132,21 @@ const Sku: React.FC<SkuProps> = (props) => {
     );
   };
 
-  const renderRowItem = (data, idx, largeImageMode?) => {
-    const prefix = largeImageMode ? 'image-item' : 'item';
-
-    return (
-      <div key={idx} className={cls(bemRow(prefix))}>
-        {data.imgUrl && (
-          <Image fit="cover" src={data.imgUrl} className={cls(bemRow(`${prefix}-img`))} />
-        )}
-        <div className={cls(bemRow(`${prefix}-name`))}>{data.name}</div>
-        {largeImageMode && (
-          <Icon
-            name="expand-o"
-            className={cls(bemRow(`${prefix}-img-icon`))}
-            onClick={() => previewImage(idx)}
-          />
-        )}
-      </div>
-    );
-  };
-
   const renderRow = (rowData, rowIdx) => {
     const { largeImageMode } = rowData;
-    const nodes = rowData.v.map((item, idx) => renderRowItem(item, idx, largeImageMode));
+    const nodes = rowData.v.map((skuValue, idx) => (
+      <SkuRowItem
+        key={idx}
+        skuList={props.sku.list}
+        skuValue={skuValue}
+        skuKeyStr={rowData.k_s}
+        selectedSku={state.selectedSku}
+        disableSoldoutSku={props.disableSoldoutSku}
+        largeImageMode={largeImageMode}
+        onSkuSelected={onSelect}
+        onSkuPreviewImage={() => previewImage(idx)}
+      />
+    ));
     return (
       <div key={rowIdx} className={cls(bemRow(), BORDER_BOTTOM)}>
         <div className={cls(bemRow('title'))}>

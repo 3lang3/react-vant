@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { components } from 'site-mobile-demo';
 import { Sku } from '..';
