@@ -56,7 +56,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
     props;
   const opened = useRef(false);
-  const zIndex = useRef<number>();
+  const zIndex = useRef<number>(globalZIndex);
   const popupRef = useRef<HTMLDivElement>();
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
