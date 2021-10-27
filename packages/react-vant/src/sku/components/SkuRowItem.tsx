@@ -34,12 +34,11 @@ const SkuRowItem: React.FC<SkuRowItemProps> = (props) => {
     if (!props.disableSoldoutSku) {
       return true;
     }
-
     return isSkuChoosable(props.skuList, props.selectedSku, {
       key: props.skuKeyStr,
       valueId: props.skuValue.id,
     });
-  }, [props.skuList, props.selectedSku, props.skuKeyStr]);
+  }, [JSON.stringify(props.skuList), JSON.stringify(props.selectedSku), props.skuKeyStr]);
 
   const imageRender = () => {
     if (imgUrl) {

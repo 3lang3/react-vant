@@ -78,7 +78,9 @@ export interface SkuProps extends BaseTypeProps {
   sku: any;
   properties?: any;
   goods?: any;
+  goodsId?: number | string;
   disableSoldoutSku?: boolean;
+  showHeaderImage?: boolean;
   lazyload?: boolean;
   fieldNames?: SkuFieldNames;
   stepperProps?: Omit<StepperProps, 'value' | 'onChange'>;
@@ -91,8 +93,8 @@ export interface SkuProps extends BaseTypeProps {
   onAddCart?: (value: SkuValueType) => void;
   onBuyClicked?: (value: SkuValueType) => void;
   onStepperChange?: (value: number) => void;
-  onSkuSelected?: () => void;
-  onSkuPropSelected?: () => void;
+  onSkuSelected?: (value: any) => void;
+  onSkuPropSelected?: (value: any) => void;
   onOpenPreview?: () => void;
   onClosePreview?: () => void;
 }
