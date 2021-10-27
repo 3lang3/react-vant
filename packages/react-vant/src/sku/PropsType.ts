@@ -90,6 +90,7 @@ export interface SkuProps extends BaseTypeProps {
   bodyOffsetTop?: number;
   hideStock?: boolean;
   hideSelectedText?: boolean;
+  stockRender?: (stock: number) => React.ReactNode;
   onAddCart?: (value: SkuValueType) => void;
   onBuyClicked?: (value: SkuValueType) => void;
   onStepperChange?: (value: number) => void;
@@ -97,4 +98,5 @@ export interface SkuProps extends BaseTypeProps {
   onSkuPropSelected?: (value: any) => void;
   onOpenPreview?: () => void;
   onClosePreview?: () => void;
+  onOverLimit?: (value: any) => void;
 }

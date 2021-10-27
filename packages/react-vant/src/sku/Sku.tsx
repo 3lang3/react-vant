@@ -137,6 +137,20 @@ const Sku: React.FC<SkuProps> = (props) => {
     return sku.price;
   }, [JSON.stringify(selectedSkuComb), sku.price]);
 
+  const stock = useMemo(() => {
+    if (selectedSkuComb) {
+      return selectedSkuComb.stock_num;
+    }
+    return sku.stock_num;
+  }, [sku.stock_num, JSON.stringify(selectedSkuComb)]);
+
+  const stockContent = useMemo(() => {
+    if (props.stockRender) {
+      return props.stockRender(stock);
+    }
+    return `剩余 ${stock} 件`;
+  }, [stock]);
+
   const onSelect = (skuValue) => {
     // 点击已选中的sku时则取消选中
     const selectedSku =
@@ -192,6 +206,8 @@ const Sku: React.FC<SkuProps> = (props) => {
     };
   };
 
+  const onBuyOrAddCart = (type) => {};
+
   const onAddCart = () => {
     props.onAddCart?.({});
   };
@@ -236,7 +252,7 @@ const Sku: React.FC<SkuProps> = (props) => {
         {props.originPrice && <div className={cls(bem('header-item'))}>{props.originPrice}</div>}
         {!props.hideStock && (
           <div className={cls(bem('header-item'))}>
-            <span className={cls(bem('stock'))}>剩余 277 件</span>
+            <span className={cls(bem('stock'))}>{stockContent}</span>
           </div>
         )}
         {!props.hideSelectedText && <div className={cls(bem('header-item'))}>{selectedText}</div>}
@@ -247,6 +263,7 @@ const Sku: React.FC<SkuProps> = (props) => {
   const renderHeader = () => {
     const selectedValue = getSkuImgValue(sku, state.selectedSku);
     const imgUrl = selectedValue ? selectedValue.imgUrl : props.goods.picture;
+    const imgUrlPostion = selectedValue ? selectedValue.position : 0;
     return (
       <div className={cls(bem('header'), BORDER_BOTTOM)}>
         {props.showHeaderImage && (
@@ -254,7 +271,7 @@ const Sku: React.FC<SkuProps> = (props) => {
             fit="cover"
             src={imgUrl}
             className={cls(bem('header__img-wrap'))}
-            onClick={() => previewImage()}
+            onClick={() => previewImage(imgUrlPostion)}
           />
         )}
         <div className={cls(bem('header__goods-info'))}>{renderHeaderInfo()}</div>

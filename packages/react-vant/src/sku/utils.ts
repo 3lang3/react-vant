@@ -4,6 +4,7 @@ import { SelectedSkuData, SkuData } from './PropsType';
 type SelectedValueType = {
   ks: string;
   imgUrl: string;
+  position: number;
 };
 
 export function getSkuImgValue(
@@ -16,7 +17,8 @@ export function getSkuImgValue(
     const id = selectedSku[item.k_s];
 
     if (id && item.v) {
-      const matchedSku = item.v.filter((skuValue) => skuValue.id === id)[0];
+      const matchedSkuIdx = item.v.findIndex((skuValue) => skuValue.id === id);
+      const matchedSku = item.v[matchedSkuIdx];
 
       const img = matchedSku?.previewImgUrl || matchedSku?.imgUrl || matchedSku?.img_url;
       if (img) {
@@ -24,6 +26,7 @@ export function getSkuImgValue(
           ...matchedSku,
           ks: item.k_s,
           imgUrl: img,
+          position: matchedSkuIdx,
         };
         return true;
       }
