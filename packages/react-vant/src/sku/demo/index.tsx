@@ -14,7 +14,20 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock title="基础用法">
-        <Sku sku={demoData.sku} properties={demoData.properties} goods={demoData.goods_info} />
+        <Sku
+          goodsId={demoData.goods_id}
+          sku={demoData.sku}
+          properties={demoData.properties}
+          goods={demoData.goods_info}
+          quota={demoData.quota}
+          quotaUsed={demoData.quota_used}
+          startSaleNum={demoData.start_sale_num}
+          onBuyClicked={(r) => console.log(r)}
+          customSkuValidator={(actionType, selected) => {
+            console.log(actionType, selected);
+            return false;
+          }}
+        />
       </DemoBlock>
     </DemoSection>
   );

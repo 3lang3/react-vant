@@ -1,10 +1,9 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo, useRef } from 'react';
 import cls from 'classnames';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { SkuProps } from './PropsType';
+import { SkuActionType, SkuProps } from './PropsType';
 import ActionBar from '../action-bar';
-import { Stepper } from '../stepper';
 import { Image } from '../image';
 import { useSetState } from '../hooks';
 import { BORDER_BOTTOM } from '../utils/constant';
@@ -18,16 +17,25 @@ import {
   getSkuImgValue,
   isAllSelected,
 } from './utils';
-import { UNSELECTED_SKU_VALUE_ID } from './constants';
+import { LIMIT_TYPE, UNSELECTED_SKU_VALUE_ID } from './constants';
 import SkuRow from './components/SkuRow';
 import SkuRowItem from './components/SkuRowItem';
 import SkuRowPropItem from './components/SkuRowPropItem';
+import SkuStepper from './components/SkuStepper';
+import Toast from '../toast';
+
+const { QUOTA_LIMIT } = LIMIT_TYPE;
 
 const Sku: React.FC<SkuProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('sku', prefixCls);
 
-  const [state, updateState] = useSetState({ selectedSku: {}, selectedProp: {}, selectedNum: 1 });
+  const stepperError = useRef<any>();
+  const [state, updateState] = useSetState({
+    selectedSku: {},
+    selectedProp: {},
+    selectedNum: props.startSaleNum,
+  });
 
   const { sku, properties = [] } = props;
   const { tree = [] } = sku;
@@ -106,28 +114,28 @@ const Sku: React.FC<SkuProps> = (props) => {
     selectedPropValues,
   ]);
 
+  const unselectedSku = useMemo(() => {
+    return tree.filter((item) => !state.selectedSku[item.k_s]).map((item) => item.k);
+  }, [tree, state.selectedSku]);
+
+  const getUnselectedProp = useCallback(
+    (isNecessary?: boolean) => {
+      return properties
+        .filter((item) => (isNecessary ? item.is_necessary !== false : true))
+        .filter((item) => (state.selectedProp[item.k_id] || []).length < 1)
+        .map((item) => item.k);
+    },
+    [properties, state.selectedProp],
+  );
+
   const selectedText = useMemo(() => {
     if (selectedSkuComb) {
       const values = selectedSkuValues.concat(selectedPropValues);
       return `已选 ${values.map((item) => item.name).join(' ')}`;
     }
 
-    const unselectedSku = tree.filter((item) => !state.selectedSku[item.k_s]).map((item) => item.k);
-
-    const unselectedProp = properties
-      .filter((item) => (state.selectedProp[item.k_id] || []).length < 1)
-      .map((item) => item.k);
-
-    return `请选择 ${unselectedSku.concat(unselectedProp).join(' ')}`;
-  }, [
-    tree,
-    properties,
-    selectedSkuComb,
-    selectedSkuValues,
-    selectedPropValues,
-    state.selectedSku,
-    state.selectedProp,
-  ]);
+    return `请选择 ${unselectedSku.concat(getUnselectedProp()).join(' ')}`;
+  }, [unselectedSku, getUnselectedProp, selectedSkuComb, selectedSkuValues, selectedPropValues]);
 
   const price = useMemo(() => {
     if (selectedSkuComb) {
@@ -138,6 +146,10 @@ const Sku: React.FC<SkuProps> = (props) => {
   }, [JSON.stringify(selectedSkuComb), sku.price]);
 
   const stock = useMemo(() => {
+    const { stockNum } = props.customStepperConfig;
+    if (stockNum !== undefined) {
+      return stockNum;
+    }
     if (selectedSkuComb) {
       return selectedSkuComb.stock_num;
     }
@@ -198,6 +210,55 @@ const Sku: React.FC<SkuProps> = (props) => {
     }
   };
 
+  const onOverLimit = (data) => {
+    const { action, limitType, quota, quotaUsed } = data;
+    const { handleOverLimit } = props.customStepperConfig;
+
+    if (handleOverLimit) {
+      handleOverLimit(data);
+      return;
+    }
+
+    if (action === 'minus') {
+      if (props.startSaleNum > 1) {
+        Toast(`${props.startSaleNum}件起售`);
+      } else {
+        Toast('至少选择一件');
+      }
+    } else if (action === 'plus') {
+      if (limitType === QUOTA_LIMIT) {
+        if (quotaUsed > 0) {
+          Toast(`每人限购${quota}件，你已购买${quotaUsed}件`);
+        } else {
+          Toast(`每人限购${quota}件`);
+        }
+      } else {
+        Toast('库存不足');
+      }
+    }
+  };
+
+  const onStepperState = (data) => {
+    stepperError.current = data.valid
+      ? null
+      : {
+          ...data,
+          action: 'plus',
+        };
+  };
+
+  const validateSku = () => {
+    if (state.selectedNum === 0) {
+      return '商品已经无法购买啦';
+    }
+
+    if (isSkuCombSelected) {
+      return '';
+    }
+
+    return `请选择 ${unselectedSku.concat(getUnselectedProp(true)).join(' ')}`;
+  };
+
   const getSkuData = () => {
     return {
       goodsId: props.goodsId,
@@ -206,35 +267,40 @@ const Sku: React.FC<SkuProps> = (props) => {
     };
   };
 
-  const onBuyOrAddCart = (type) => {};
-
-  const onAddCart = () => {
-    props.onAddCart?.({});
+  const onAddCart = (data) => {
+    props.onAddCart?.(data);
   };
-  const onBuyClicked = () => {
-    props.onBuyClicked?.({});
+  const onBuyClicked = (data) => {
+    props.onBuyClicked?.(data);
   };
 
-  const renderStepper = () => {
-    const { integer = true, min, max } = props.stepperProps;
-    const title = '购买数量';
-    const attrs = {
-      integer,
-      min,
-      max,
-      className: cls(bem('stepper')),
-      value: state.selectedNum,
-      onChange: (selectedNum) => updateState({ selectedNum: parseInt(selectedNum, 10) }),
-    };
-    return (
-      <div className={cls(bem('stepper-stock'))}>
-        <div className={cls(bem('stepper-title'))}>{title}</div>
-        <Stepper {...attrs} />
-        {props.stepperQuota && (
-          <span className={cls(bem('stepper-quota'))}>{props.stepperQuota}</span>
-        )}
-      </div>
-    );
+  const onBuyOrAddCart = async (type: SkuActionType) => {
+    // sku 不符合购买条件
+    if (stepperError.current) {
+      onOverLimit(stepperError.current);
+      return;
+    }
+
+    if (props.customSkuValidator) {
+      if (
+        !(await props.customSkuValidator(type, { ...state.selectedSku, ...state.selectedProp }))
+      ) {
+        return;
+      }
+    } else {
+      const error = validateSku();
+      if (error) {
+        Toast(error);
+        return;
+      }
+    }
+
+    const data = getSkuData();
+    if (type === 'add-cart') {
+      onAddCart(data);
+    } else {
+      onBuyClicked(data);
+    }
   };
 
   const previewImage = (startPosition?: number) => {
@@ -316,7 +382,19 @@ const Sku: React.FC<SkuProps> = (props) => {
             </SkuRow>
           ))}
         </div>
-        {renderStepper()}
+        <SkuStepper
+          currentNum={state.selectedNum}
+          onChange={(currentValue) => updateState({ selectedNum: parseInt(`${currentValue}`, 10) })}
+          stock={stock}
+          quota={props.quota}
+          quotaUsed={props.quotaUsed}
+          startSaleNum={props.startSaleNum}
+          customStepperConfig={props.customStepperConfig}
+          stepperTitle={props.stepperTitle}
+          hideQuotaText={props.hideQuotaText}
+          onSkuStepperState={onStepperState}
+          onSkuOverLimit={onOverLimit}
+        />
       </div>
     );
   };
@@ -325,8 +403,16 @@ const Sku: React.FC<SkuProps> = (props) => {
     return (
       <div className={cls(bem('actions'))}>
         <ActionBar>
-          <ActionBar.Button type="warning" text="加入购物车" onClick={onAddCart} />
-          <ActionBar.Button type="danger" text="立即购买" onClick={onBuyClicked} />
+          <ActionBar.Button
+            type="warning"
+            text="加入购物车"
+            onClick={() => onBuyOrAddCart('add-cart')}
+          />
+          <ActionBar.Button
+            type="danger"
+            text="立即购买"
+            onClick={() => onBuyOrAddCart('buy-clicked')}
+          />
         </ActionBar>
       </div>
     );
@@ -349,11 +435,13 @@ const Sku: React.FC<SkuProps> = (props) => {
 
 // defaultProps defined if need
 Sku.defaultProps = {
-  stepperProps: {},
+  startSaleNum: 1,
+  stepperTitle: '购买数量',
   properties: [],
   bodyOffsetTop: 200,
   disableSoldoutSku: true,
   showHeaderImage: true,
+  customStepperConfig: {},
 };
 
 export default Sku;

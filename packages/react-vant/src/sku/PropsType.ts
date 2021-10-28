@@ -74,22 +74,35 @@ export type SkuFieldNames = {
   value?: string;
   children?: string;
 };
+
+export type SkuActionType = 'add-cart' | 'buy-clicked';
 export interface SkuProps extends BaseTypeProps {
   sku: any;
   properties?: any;
   goods?: any;
   goodsId?: number | string;
+  quota?: number;
+  quotaUsed?: number;
+  startSaleNum?: number;
+  stock?: number;
   disableSoldoutSku?: boolean;
   showHeaderImage?: boolean;
+  hideQuotaText?: boolean;
   lazyload?: boolean;
   fieldNames?: SkuFieldNames;
   stepperProps?: Omit<StepperProps, 'value' | 'onChange'>;
   stepperQuota?: React.ReactNode;
+  stepperTitle?: React.ReactNode;
+  customStepperConfig?: any;
   priceTag?: React.ReactNode;
   originPrice?: number | string;
   bodyOffsetTop?: number;
   hideStock?: boolean;
   hideSelectedText?: boolean;
+  customSkuValidator?: (
+    actionType: SkuActionType,
+    selectedSku: any,
+  ) => void | boolean | Promise<boolean>;
   stockRender?: (stock: number) => React.ReactNode;
   onAddCart?: (value: SkuValueType) => void;
   onBuyClicked?: (value: SkuValueType) => void;
