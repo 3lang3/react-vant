@@ -68,7 +68,7 @@ const Toast = (p: ToastProps): unknown => {
       if (unmountResult && container.parentNode) {
         container.parentNode.removeChild(container);
       }
-    }, [onClose, container]);
+    }, [container]);
 
     // close with animation
     const destroy = useCallback(() => {
@@ -164,4 +164,4 @@ Toast.resetDefaultOptions = (type?: ToastType) => {
 };
 
 export default Toast as ToastInstance;
-export type { ToastType, ToastPosition, ToastOptions } from './PropsType'
+export type { ToastType, ToastPosition, ToastOptions } from './PropsType';
