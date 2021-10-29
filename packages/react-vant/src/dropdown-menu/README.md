@@ -202,9 +202,9 @@ import type { DropdownMenuInstance, DropdownItemOption, DropdownMenuDirection } 
 
 ```js
 import { useRef } from 'react';
-import type { DropdownMenuInstance } from 'react-vant';
+import type { DropdownMenuInstance } from 'react-vant/es/dropdown-menu';
 
-const dropdownRef = useRef<DropdownMenuInstance>();
+const dropdownRef = useRef < DropdownMenuInstance > null;
 
 dropdownRef.current?.toggleItem(0);
 ```
