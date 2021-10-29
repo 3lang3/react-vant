@@ -112,7 +112,7 @@ module.exports = {
             ],
           },
           {
-            title: '业务组件',
+            title: '业务组件(beta)',
             items: [
               { path: 'area', title: 'Area 省市区选择' },
               { path: 'card', title: 'Card 卡片' },
