@@ -1,3 +1,8 @@
+/**
+ * rebuild swipe component
+ * 3lang3
+ * - rm swiperjs
+ */
 import React, {
   useRef,
   Children,
