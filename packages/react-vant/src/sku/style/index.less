@@ -1,9 +1,8 @@
-@import './var';
+@import './var.less';
 
-// Sku
-@sku-item-background-color: @background-color;
-@sku-icon-gray-color: @gray-4;
-@sku-upload-mask-color: rgba(50, 50, 51, 0.8);
+:root {
+  --rv-sku-item-background-color: @sku-item-background-color;
+}
 
 .@{rv-prefix}-sku {
   &__container {
@@ -130,7 +129,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: @sku-item-background-color;
+        background: var(--rv-sku-item-background-color);
         content: '';
       }
 

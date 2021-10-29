@@ -13,6 +13,7 @@ type SkuRowItemProps = {
   largeImageMode: boolean;
   disableSoldoutSku: boolean;
   skuList: any[];
+  previewIcon?: React.ReactNode;
   onSkuSelected?: (params: any) => void;
   onSkuPreviewImage?: (params: any) => void;
 };
@@ -90,13 +91,14 @@ const SkuRowItem: React.FC<SkuRowItemProps> = (props) => {
           props.skuValue?.name
         )}
       </div>
-      {props.largeImageMode && (
-        <Icon
-          name="expand-o"
-          className={cls(bem(`${classPrefix}-img-icon`))}
-          onClick={onPreviewImg}
-        />
-      )}
+      {props.largeImageMode &&
+        (props.previewIcon || (
+          <Icon
+            name="expand-o"
+            className={cls(bem(`${classPrefix}-img-icon`))}
+            onClick={onPreviewImg}
+          />
+        ))}
     </span>
   );
 };

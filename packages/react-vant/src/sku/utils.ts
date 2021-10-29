@@ -1,7 +1,7 @@
 import { UNSELECTED_SKU_VALUE_ID } from './constants';
 import { SelectedSkuData, SkuData } from './PropsType';
 
-type SelectedValueType = {
+export type SelectedValueType = {
   ks: string;
   imgUrl: string;
   position: number;

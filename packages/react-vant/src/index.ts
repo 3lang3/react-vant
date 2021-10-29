@@ -61,5 +61,5 @@ export { default as Lazyload } from './lazyload';
 export { default as Area } from './area';
 export { default as Card } from './card';
 export { default as SubmitBar } from './submit-bar';
-export { default as Coupon } from './coupon';
+export * from './coupon';
 export { default as Sku } from './sku';

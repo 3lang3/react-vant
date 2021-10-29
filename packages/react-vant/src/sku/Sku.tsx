@@ -1,8 +1,17 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback, useContext, useMemo, useRef } from 'react';
+import React, {
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import cls from 'classnames';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { SkuActionType, SkuProps } from './PropsType';
+import { SkuActionType, SkuInstance, SkuProps } from './PropsType';
 import ActionBar from '../action-bar';
 import { Image } from '../image';
 import { useSetState } from '../hooks';
@@ -16,6 +25,7 @@ import {
   getSkuComb,
   getSkuImgValue,
   isAllSelected,
+  SelectedValueType,
 } from './utils';
 import { LIMIT_TYPE, UNSELECTED_SKU_VALUE_ID } from './constants';
 import SkuRow from './components/SkuRow';
@@ -26,11 +36,12 @@ import Toast from '../toast';
 
 const { QUOTA_LIMIT } = LIMIT_TYPE;
 
-const Sku: React.FC<SkuProps> = (props) => {
+const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('sku', prefixCls);
 
-  const stepperError = useRef<any>();
+  const stepperError = useRef<boolean>(false);
+  const [visible, setVisible] = useState(false);
   const [state, updateState] = useSetState({
     selectedSku: {},
     selectedProp: {},
@@ -50,7 +61,7 @@ const Sku: React.FC<SkuProps> = (props) => {
 
   const imageList = useMemo(() => {
     const { goods } = props;
-    const rs = [goods?.picture];
+    const rs = [goods?.picture] as string[];
     if (sku.tree.length > 0) {
       sku.tree.forEach((treeItem) => {
         if (!treeItem.v) return;
@@ -66,6 +77,8 @@ const Sku: React.FC<SkuProps> = (props) => {
   }, [props.goods?.picture, sku.tree]);
 
   const hasSku = useMemo(() => !sku.none_sku, [sku.none_sku]);
+  const hasSkuOrAttr = useMemo(() => hasSku || properties.length > 0, [hasSku, properties]);
+
   const isSkuCombSelected = useMemo(() => {
     // SKU 未选完
     if (hasSku && !isAllSelected(tree, state.selectedSku)) {
@@ -94,7 +107,7 @@ const Sku: React.FC<SkuProps> = (props) => {
       } else {
         skuComb = {
           id: sku.collection_id,
-          price: Math.round(sku.price * 100),
+          price: Math.round(+sku.price * 100),
           stock_num: sku.stock_num,
         };
       }
@@ -160,7 +173,21 @@ const Sku: React.FC<SkuProps> = (props) => {
     if (props.stockRender) {
       return props.stockRender(stock);
     }
-    return `剩余 ${stock} 件`;
+    return (
+      <>
+        剩余
+        <span
+          className={cls(
+            bem('stock-num', {
+              highlight: stock < props.stockThreshold,
+            }),
+          )}
+        >
+          {stock}
+        </span>
+        件
+      </>
+    );
   }, [stock]);
 
   const onSelect = (skuValue) => {
@@ -303,19 +330,80 @@ const Sku: React.FC<SkuProps> = (props) => {
     }
   };
 
-  const previewImage = (startPosition?: number) => {
-    ImagePreview.open({ images: imageList, startPosition });
+  const show = (initialValue?: typeof state) => {
+    setVisible(true);
+    if (initialValue) {
+      updateState(initialValue);
+    }
+  };
+
+  const reset = () => {
+    updateState({
+      selectedSku: {},
+      selectedProp: {},
+      selectedNum: props.startSaleNum,
+    });
+  };
+
+  const onPopupClose = () => {
+    setVisible(false);
+    if (props.popupProps && props.popupProps.onClose) props.popupProps.onClose();
+  };
+
+  const onPopupClosed = () => {
+    if (props.resetOnHide) {
+      reset();
+    }
+    if (props.popupProps && props.popupProps.onClosed) props.popupProps.onClosed();
+  };
+
+  const onPreviewImage = (selectedValue?: SelectedValueType) => {
+    let index = 0;
+    let indexImage = imageList[0];
+    if (selectedValue && selectedValue.imgUrl) {
+      imageList.some((image, pos) => {
+        if (image === selectedValue.imgUrl) {
+          index = pos;
+          return true;
+        }
+        return false;
+      });
+      indexImage = selectedValue.imgUrl;
+    }
+    const params = {
+      ...selectedValue,
+      index,
+      imageList,
+      indexImage,
+    };
+
+    if (!props.previewOnClickImage) return;
+
+    ImagePreview.open({
+      images: imageList,
+      startPosition: index,
+      onClose: () => {
+        if (props.onClosePreview) props.onClosePreview(params);
+      },
+    });
+    if (props.onOpenPreview) {
+      props.onOpenPreview(params);
+    }
   };
 
   const renderHeaderInfo = () => {
     return (
       <>
-        <div className={cls(bem('goods-price'))}>
-          <span className={cls(bem('price-symbol'))}>￥</span>
-          <span className={cls(bem('price-num'))}>{price}</span>
-          {props.priceTag && <span className={cls(bem('price-tag'))}>{props.priceTag}</span>}
-        </div>
-        {props.originPrice && <div className={cls(bem('header-item'))}>{props.originPrice}</div>}
+        {props.skuHeaderPriceRender?.(price) || (
+          <div className={cls(bem('goods-price'))}>
+            <span className={cls(bem('price-symbol'))}>￥</span>
+            <span className={cls(bem('price-num'))}>{price}</span>
+            {props.priceTag && <span className={cls(bem('price-tag'))}>{props.priceTag}</span>}
+          </div>
+        )}
+        {props.skuHeaderOriginPrice && (
+          <div className={cls(bem('header-item'))}>{props.skuHeaderOriginPrice}</div>
+        )}
         {!props.hideStock && (
           <div className={cls(bem('header-item'))}>
             <span className={cls(bem('stock'))}>{stockContent}</span>
@@ -327,9 +415,9 @@ const Sku: React.FC<SkuProps> = (props) => {
   };
 
   const renderHeader = () => {
+    if (props.skuHeader) return props.skuHeader;
     const selectedValue = getSkuImgValue(sku, state.selectedSku);
-    const imgUrl = selectedValue ? selectedValue.imgUrl : props.goods.picture;
-    const imgUrlPostion = selectedValue ? selectedValue.position : 0;
+    const imgUrl = selectedValue ? selectedValue.imgUrl : (props.goods.picture as string);
     return (
       <div className={cls(bem('header'), BORDER_BOTTOM)}>
         {props.showHeaderImage && (
@@ -337,18 +425,30 @@ const Sku: React.FC<SkuProps> = (props) => {
             fit="cover"
             src={imgUrl}
             className={cls(bem('header__img-wrap'))}
-            onClick={() => previewImage(imgUrlPostion)}
-          />
+            onClick={() => onPreviewImage(selectedValue)}
+          >
+            {props.skuHeaderImageExtra}
+          </Image>
         )}
-        <div className={cls(bem('header__goods-info'))}>{renderHeaderInfo()}</div>
+        <div className={cls(bem('header__goods-info'))}>
+          {renderHeaderInfo()}
+          {props.skuHeaderExtra}
+        </div>
       </div>
     );
   };
 
-  const renderBody = () => {
+  const renderGroup = () => {
     return (
-      <div className={cls(bem('body'))} style={bodyStyle}>
-        <div className={cls(bem('group-container'))}>
+      props.skuGroup ||
+      (hasSkuOrAttr && (
+        <div
+          className={cls(
+            bem('group-container', {
+              'hide-soldout': !props.showSoldoutSku,
+            }),
+          )}
+        >
           {tree.map((skuTreeItem, i) => (
             <SkuRow key={i} skuRow={skuTreeItem}>
               {skuTreeItem.v.map((skuValue, idx) => (
@@ -360,8 +460,9 @@ const Sku: React.FC<SkuProps> = (props) => {
                   selectedSku={state.selectedSku}
                   disableSoldoutSku={props.disableSoldoutSku}
                   largeImageMode={skuTreeItem.largeImageMode}
+                  previewIcon={props.previewIcon}
                   onSkuSelected={onSelect}
-                  onSkuPreviewImage={() => previewImage(idx)}
+                  onSkuPreviewImage={(selectedValue) => onPreviewImage(selectedValue)}
                 />
               ))}
             </SkuRow>
@@ -382,65 +483,114 @@ const Sku: React.FC<SkuProps> = (props) => {
             </SkuRow>
           ))}
         </div>
-        <SkuStepper
-          currentNum={state.selectedNum}
-          onChange={(currentValue) => updateState({ selectedNum: parseInt(`${currentValue}`, 10) })}
-          stock={stock}
-          quota={props.quota}
-          quotaUsed={props.quotaUsed}
-          startSaleNum={props.startSaleNum}
-          customStepperConfig={props.customStepperConfig}
-          stepperTitle={props.stepperTitle}
-          hideQuotaText={props.hideQuotaText}
-          onSkuStepperState={onStepperState}
-          onSkuOverLimit={onOverLimit}
-        />
+      ))
+    );
+  };
+
+  const renderStepper = () =>
+    props.skuStepper || (
+      <SkuStepper
+        currentNum={state.selectedNum}
+        onChange={(currentValue) => {
+          updateState({ selectedNum: parseInt(`${currentValue}`, 10) });
+          if (props.onStepperChange) props.onStepperChange(currentValue);
+        }}
+        stock={stock}
+        quota={props.quota}
+        quotaUsed={props.quotaUsed}
+        startSaleNum={props.startSaleNum}
+        disableStepperInput={props.disableStepperInput}
+        customStepperConfig={props.customStepperConfig}
+        stepperTitle={props.stepperTitle}
+        hideQuotaText={props.hideQuotaText}
+        onSkuStepperState={onStepperState}
+        onSkuOverLimit={onOverLimit}
+      />
+    );
+
+  const renderBody = () => {
+    return (
+      <div className={cls(bem('body'))} style={bodyStyle}>
+        {props.skuBodyTop}
+        {renderGroup()}
+        {props.skuGroupExtra}
+        {renderStepper()}
       </div>
     );
   };
 
   const renderActions = () => {
     return (
-      <div className={cls(bem('actions'))}>
-        <ActionBar>
-          <ActionBar.Button
-            type="warning"
-            text="加入购物车"
-            onClick={() => onBuyOrAddCart('add-cart')}
-          />
-          <ActionBar.Button
-            type="danger"
-            text="立即购买"
-            onClick={() => onBuyOrAddCart('buy-clicked')}
-          />
-        </ActionBar>
-      </div>
+      props.skuActions || (
+        <div className={cls(bem('actions'))}>
+          <ActionBar>
+            {props.showAddCartBtn && (
+              <ActionBar.Button
+                type="warning"
+                text={props.addCartText || '加入购物车'}
+                onClick={() => onBuyOrAddCart('add-cart')}
+              />
+            )}
+            <ActionBar.Button
+              type="danger"
+              text={props.buyText || '立即购买'}
+              onClick={() => onBuyOrAddCart('buy-clicked')}
+            />
+          </ActionBar>
+        </div>
+      )
     );
   };
+
+  useEffect(() => {
+    if (props.initialSku) {
+      updateState(props.initialSku);
+    }
+  }, [JSON.stringify(props.initialSku)]);
+
+  useImperativeHandle(ref, () => ({
+    reset,
+    getSkuData,
+    show,
+    update: updateState,
+  }));
+
   return (
     <Popup
       round
-      visible
       closeable
       position="bottom"
-      className={cls(props.className, bem('container'))}
-      style={props.style}
+      {...props.popupProps}
+      visible={visible}
+      onClose={onPopupClose}
+      onClosed={onPopupClosed}
+      className={cls(props.popupProps?.className, bem('container'))}
     >
       {renderHeader()}
       {renderBody()}
+      {props.skuActionsTop}
       {renderActions()}
+      {props.skuActionsBottom}
     </Popup>
   );
-};
+});
 
 // defaultProps defined if need
 Sku.defaultProps = {
-  startSaleNum: 1,
   stepperTitle: '购买数量',
   properties: [],
-  bodyOffsetTop: 200,
+  showAddCartBtn: true,
   disableSoldoutSku: true,
   showHeaderImage: true,
+  previewOnClickImage: true,
+  showSoldoutSku: true,
+  resetOnHide: true,
+  safeAreaInsetBottom: true,
+  quota: 0,
+  quotaUsed: 0,
+  startSaleNum: 1,
+  stockThreshold: 50,
+  bodyOffsetTop: 200,
   customStepperConfig: {},
 };
 
