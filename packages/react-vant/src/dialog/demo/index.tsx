@@ -19,10 +19,13 @@ export default (): React.ReactNode => {
             Dialog.confirm({
               title: '标题',
               message: '代码是写出来给人看的，附带能在机器上运行',
-              onConfirm: () => console.log('onConfirm'),
-              onCancel: () => console.log('onCancel'),
-              onClosed: () => console.log('onClosed'),
             })
+              .then(() => {
+                console.log('confirm');
+              })
+              .catch(() => {
+                console.log('catch');
+              })
           }
         />
         <Cell

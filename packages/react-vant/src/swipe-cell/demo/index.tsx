@@ -69,9 +69,9 @@ export default (): React.ReactNode => {
             </Button>
           }
         >
-          <Flex className="demo-card" align="stretch">
-            <Image src="https://img.yzcdn.cn/vant/ipad.jpeg" className="demo-card__img" />
-            <Flex direction="column" justify="between" className="demo-card__content">
+          <Flex className="product-card" align="stretch">
+            <Image src="https://img.yzcdn.cn/vant/ipad.jpeg" className="product-card__img" />
+            <Flex direction="column" justify="between" className="product-card__content">
               <div>
                 <Typography.Title level={5}>商品标题</Typography.Title>
                 <Typography.Text type="secondary">这里是商品描述</Typography.Text>
