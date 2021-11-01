@@ -19,10 +19,11 @@ import useRefState from '../hooks/use-ref-state';
 import { bound } from '../utils/bound';
 import { devWarning } from '../utils/dev-log';
 import { noop } from '../utils';
+import { getRect } from '../hooks/use-rect';
 
-const PageIndicator = memo<PageIndicatorProps>(({ color = 'primary', ...props }) => {
+const PageIndicator = memo<PageIndicatorProps>(({ color = 'primary', vertical, ...props }) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('page-indicator', prefixCls);
+  const [bem] = createNamespace('indicator', prefixCls);
 
   const dots: React.ReactElement[] = [];
   for (let i = 0; i < props.total; i++) {
@@ -39,7 +40,7 @@ const PageIndicator = memo<PageIndicatorProps>(({ color = 'primary', ...props })
   }
 
   return (
-    <div className={cls(props.className, bem({ color }))} style={props.style}>
+    <div className={cls(props.className, bem({ color, vertical }))} style={props.style}>
       {dots}
     </div>
   );
@@ -49,9 +50,21 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop, autoplay } = props;
+  const { loop, autoplay, vertical } = props;
+
+  const axis = vertical ? 'y' : 'x';
+
+  const unit = vertical ? 'px' : '%';
 
   const trackRef = useRef<HTMLDivElement>(null);
+
+  const [root, setRoot] = useState<HTMLDivElement>(null);
+
+  const axisDistance = useMemo(() => {
+    if (!vertical) return 100;
+    const rect = getRect(root);
+    return rect.height;
+  }, [vertical, root]);
 
   const { validChildren, count } = useMemo(() => {
     let innerCount = 0;
@@ -74,40 +87,44 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const [dragging, setDragging, draggingRef] = useRefState(false);
 
-  const [{ x }, api] = useSpring(
+  const [sp, api] = useSpring(
     () => ({
-      x: bound(current, 0, count - 1) * 100,
+      [axis]: bound(current, 0, count - 1) * axisDistance,
       config: { tension: 200, friction: 30 },
       onRest: () => {
         if (draggingRef.current) return;
-        const rawX = x.get();
-        const totalWidth = 100 * count;
+        const rawX = sp[axis].get();
+        const totalWidth = axisDistance * count;
         const standardX = modulus(rawX, totalWidth);
         if (standardX === rawX) return;
         api.start({
-          x: standardX,
+          [axis]: standardX,
           immediate: true,
         });
       },
     }),
-    [count],
+    [axisDistance, count],
   );
 
   const bind = useDrag(
     (state) => {
-      const width = getWidth();
-      if (!width) return;
-      const [offsetX] = state.offset;
+      const distance = getTrackRect();
+      if (!distance) return;
+      const [offsetX, offsetY] = state.offset;
+      const offsetValue = vertical ? offsetY : offsetX;
+
       setDragging(true);
       if (!state.last) {
         api.start({
-          x: (offsetX * 100) / width,
+          [axis]: offsetValue,
           immediate: true,
         });
       } else {
         const index = Math.round(
-          (offsetX + Math.min(state.velocity[0] * 2000, width) * state.direction[0]) / width,
+          (offsetValue + Math.min(state.velocity[0] * 2000, distance) * state.direction[0]) /
+            distance,
         );
+
         swipeTo(index);
         window.setTimeout(() => {
           setDragging(false);
@@ -115,22 +132,23 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       }
     },
     {
-      // eslint-disable-next-line @typescript-eslint/no-shadow
-      transform: ([x, y]) => [-x, y],
+      transform: ([x, y]) => (vertical ? [x, -y] : [-x, y]),
       from: () => {
-        const width = getWidth();
-        return [(x.get() / 100) * width, 0];
+        const distance = getTrackRect();
+        return vertical
+          ? [0, (sp[axis].get() / axisDistance) * distance]
+          : [(sp[axis].get() / axisDistance) * distance, 0];
       },
       bounds: () => {
         if (loop) return {};
-        const width = getWidth();
+        const distance = getTrackRect();
         return {
-          left: 0,
-          right: (count - 1) * width,
+          [vertical ? 'top' : 'left']: 0,
+          [vertical ? 'bottom' : 'right']: (count - 1) * distance,
         };
       },
       rubberband: true,
-      axis: 'x',
+      axis,
       preventScroll: true,
       pointer: {
         touch: true,
@@ -138,10 +156,11 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     },
   );
 
-  function getWidth() {
+  function getTrackRect() {
     const track = trackRef.current;
     if (!track) return 0;
-    return track.offsetWidth;
+    const { offsetWidth, offsetHeight } = track;
+    return vertical ? offsetHeight : offsetWidth;
   }
 
   function swipeTo(index: number) {
@@ -150,24 +169,24 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       setCurrent(i);
       props.onChange?.(i);
       api.start({
-        x: index * 100,
+        [axis]: index * axisDistance,
       });
     } else {
       const i = bound(index, 0, count - 1);
       setCurrent(i);
       props.onChange?.(i);
       api.start({
-        x: i * 100,
+        [axis]: i * axisDistance,
       });
     }
   }
 
   function swipeNext() {
-    swipeTo(Math.round(x.get() / 100) + 1);
+    swipeTo(Math.round(sp[axis].get() / axisDistance) + 1);
   }
 
   function swipePrev() {
-    swipeTo(Math.round(x.get() / 100) - 1);
+    swipeTo(Math.round(sp[axis].get() / axisDistance) - 1);
   }
 
   useImperativeHandle(ref, () => ({
@@ -185,18 +204,20 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     return () => {
       window.clearInterval(interval);
     };
-  }, [autoplay, dragging]);
+  }, [autoplay, dragging, axisDistance]);
 
   if (count === 0) {
     devWarning('Swiper', '`Swiper` needs at least one child.');
   }
 
   return (
-    <div className={cls(props.className, bem())} style={props.style}>
+    <div ref={setRoot} className={cls(props.className, bem())} style={props.style}>
       <div
-        className={cls(bem('track'), {
-          'allow-touch-move': props.touchable,
-        })}
+        className={cls(
+          bem('track', {
+            'allow-touch-move': props.touchable,
+          }),
+        )}
         onClickCapture={(e) => {
           if (draggingRef.current) {
             e.stopPropagation();
@@ -204,23 +225,30 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
         }}
         {...(props.touchable ? bind() : {})}
       >
-        <div className={cls(bem('track-inner'))} ref={trackRef}>
+        <div
+          className={cls(
+            bem('track-inner', {
+              vertical,
+            }),
+          )}
+          ref={trackRef}
+        >
           {React.Children.map(validChildren, (child, index) => {
             return (
               <animated.div
                 className={cls(bem('slide'))}
                 style={{
                   // eslint-disable-next-line @typescript-eslint/no-shadow
-                  x: x.to((x) => {
-                    let position = -x + index * 100;
+                  [axis]: sp[axis].to((x) => {
+                    let position = -x + index * axisDistance;
                     if (loop) {
-                      const totalWidth = count * 100;
+                      const totalWidth = count * axisDistance;
                       const flagWidth = totalWidth / 2 - 10;
                       position = modulus(position + flagWidth, totalWidth) - flagWidth;
                     }
-                    return `${position}%`;
+                    return `${position}${unit}`;
                   }),
-                  left: `-${index * 100}%`,
+                  [vertical ? 'top' : 'left']: `-${index * axisDistance}${unit}`,
                 }}
               >
                 {child}
@@ -230,8 +258,13 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
         </div>
       </div>
       {props.indicator === undefined ? (
-        <div className={cls(bem('indicator'))}>
-          <PageIndicator {...props.indicatorProps} total={count} current={current} />
+        <div className={cls(bem('indicator', { vertical }))}>
+          <PageIndicator
+            {...props.indicatorProps}
+            vertical={vertical}
+            total={count}
+            current={current}
+          />
         </div>
       ) : (
         props.indicator(count, current)
@@ -244,8 +277,8 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 Swiper.defaultProps = {
   initialSwipe: 0,
   touchable: true,
-  autoplay: 5000,
   loop: true,
+  autoplay: 2000,
 };
 
 export default Swiper;

@@ -123,7 +123,7 @@ module.exports = {
           {
             title: '废弃',
             items: [
-              { path: 'swipe', title: 'Swipe 轮播(废弃)' },
+              { path: 'swipe', title: 'Swipe 轮播' },
               { path: 'theme', title: '定制主题' },
             ],
           },

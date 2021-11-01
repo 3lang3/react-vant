@@ -1,5 +1,9 @@
 # Swipe 轮播
 
+### 废弃提示
+
+本文档已废弃，React Vant 提供了更加轻量灵活的[Swiper](#/zh-CN/swiper) 组件，基于 Swiperjs 实现的**Swipe 组件将在下个大版本废弃**。
+
 ### 介绍
 
 用于循环播放一组图片或内容，采用[Swiper](https://swiperjs.com/react)实现。

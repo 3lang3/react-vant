@@ -1,13 +1,36 @@
 @import '../../styles/var.less';
 
 .demo-swiper {
-  &__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 120px;
-    color: #fff;
-    font-size: 48px;
-    user-select: none;
+  .@{rv-prefix}-swiper {
+    &__slide {
+      .@{rv-prefix}-swiper-item {
+        color: @white;
+        font-size: 20px;
+        line-height: 150px;
+        text-align: center;
+      }
+
+      &:nth-child(odd) {
+        .@{rv-prefix}-swiper-item {
+          background-color: @blue;
+        }
+      }
+
+      &:nth-child(even) {
+        .@{rv-prefix}-swiper-item {
+          background-color: lighten(@blue, 8%);
+        }
+      }
+    }
+
+    img {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 240px;
+      padding: 30px 60px;
+      background-color: @white;
+      pointer-events: none;
+    }
   }
 }

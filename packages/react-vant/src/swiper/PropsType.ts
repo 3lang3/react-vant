@@ -7,7 +7,7 @@ export type PageIndicatorProps = {
   color?: 'primary' | 'white';
   style?: CSSProperties;
   className?: string;
-};
+} & Pick<SwiperProps, 'vertical'>;
 
 export interface SwiperProps extends BaseTypeProps {
   /** 初始位置索引值 */

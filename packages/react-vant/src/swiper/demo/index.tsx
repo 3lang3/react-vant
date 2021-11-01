@@ -5,12 +5,9 @@ import Swiper from '..';
 import './style.less';
 
 const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac'];
-
 const items = colors.map((color, index) => (
   <Swiper.Item key={color}>
     <div
-      className="demo-swiper__content"
-      style={{ background: color }}
       onClick={() => {
         Toast.info(`你点击了卡片 ${index + 1}`);
       }}
@@ -26,6 +23,11 @@ export default (): React.ReactNode => {
     <DemoSection>
       <DemoBlock title="基础用法">
         <Swiper>{items}</Swiper>
+      </DemoBlock>
+      <DemoBlock title="纵向滚动">
+        <Swiper autoplay={false} vertical style={{ height: 150 }}>
+          {items}
+        </Swiper>
       </DemoBlock>
     </DemoSection>
   );
