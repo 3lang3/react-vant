@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { components } from 'site-mobile-demo';
-import { Popup, Toast } from 'react-vant';
-import { CouponList, CouponCell } from '..';
+import { Popup, Toast, CouponCell } from 'react-vant';
+import { CouponList } from '..';
 import './style.less';
 
 const data = {
