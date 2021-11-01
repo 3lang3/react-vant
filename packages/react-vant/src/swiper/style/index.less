@@ -1,0 +1,90 @@
+@import './var.less';
+
+.@{rv-prefix}-swiper {
+  --height: auto;
+  --width: 100%;
+  --slide-width: 100%;
+  --border-radius: 0;
+  --track-padding: 0;
+  --track-offset: 0;
+
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: var(--width);
+  height: var(--height);
+  overflow: hidden;
+  border-radius: var(--border-radius);
+
+  &__track {
+    width: 100%;
+    padding: var(--track-padding);
+    white-space: nowrap;
+    transform: translateX(var(--track-offset));
+    &-allow-touch-move {
+      cursor: grab;
+      touch-action: none;
+    }
+    &-inner {
+      position: relative;
+      display: flex;
+      flex-wrap: nowrap;
+      width: var(--slide-width);
+      overflow: visible;
+    }
+  }
+  &__slide {
+    position: relative;
+    display: block;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    white-space: unset;
+  }
+  &__indicator {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.@{rv-prefix}-swiper-item {
+  display: block;
+  width: 100%;
+  height: auto;
+  white-space: normal;
+}
+
+.@{rv-prefix}-page-indicator {
+  display: flex;
+  width: fit-content;
+
+  --dot-color: rgba(0, 0, 0, 0.2);
+  --active-dot-color: var(--rv-white);
+  --dot-size: 3px;
+  --active-dot-size: 13px;
+  --dot-border-radius: 1px;
+  --active-dot-border-radius: var(--dot-border-radius);
+  --dot-spacing: 3px;
+
+  &__dot {
+    display: block;
+    width: var(--dot-size);
+    height: var(--dot-size);
+    margin-right: var(--dot-spacing);
+    background: var(--dot-color);
+    border-radius: var(--dot-border-radius);
+    &:last-child {
+      margin-right: 0;
+    }
+    &--active {
+      width: var(--active-dot-size);
+      background: var(--active-dot-color);
+      border-radius: var(--active-dot-border-radius);
+    }
+  }
+  &--white {
+    --active-dot-color: var(--adm-color-white);
+  }
+}

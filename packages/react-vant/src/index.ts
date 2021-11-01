@@ -64,3 +64,4 @@ export { default as SubmitBar } from './submit-bar';
 export { default as CouponCell } from './coupon-cell';
 export { default as CouponList } from './coupon-list';
 export { default as Sku } from './sku';
+export { default as Swiper } from './swiper';
