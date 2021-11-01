@@ -43,6 +43,13 @@ export default (): React.ReactNode => {
             Toast('取消');
             setValue1('');
           }}
+          onClear={() => {
+            Toast('清除');
+            setValue1('');
+          }}
+          onClickInput={() => {
+            Toast('点击输入区域时触发	');
+          }}
         />
       </DemoBlock>
 
