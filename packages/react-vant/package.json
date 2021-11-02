@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "1.2.5",
+  "version": "1.2.9-alpha.1",
   "description": "React Mobile UI Components base on Vant UI",
   "repository": "https://github.com/3lang3/react-vant.git",
   "main": "lib/index.js",
@@ -41,20 +41,15 @@
     "@types/classnames": "^2.2.11",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
+    "@vant/area-data": "^1.1.3",
     "gh-pages": "^3.2.3",
     "rc-field-form": "^1.21.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "peerDependencies": {
-    "rc-field-form": "^1.21.2",
     "react": ">=16.14.0",
     "react-dom": ">=16.14.0"
-  },
-  "peerDependenciesMeta": {
-    "rc-field-form": {
-      "optional": true
-    }
   },
   "browserslist": [
     "Android >= 4.0",
@@ -64,6 +59,7 @@
     "@vant/icons": "^1.7.0",
     "@vant/popperjs": "^1.1.0",
     "classnames": "^2.2.6",
+    "rc-field-form": "^1.21.2",
     "react-transition-group": "^4.4.1",
     "swiper": "^6.8.1"
   }

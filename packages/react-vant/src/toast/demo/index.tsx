@@ -1,6 +1,5 @@
 /* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useState } from 'react';
+import React from 'react';
 import { Cell, Switch } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Toast from '..';
@@ -14,7 +13,9 @@ export default (): React.ReactNode => {
     const update = Toast.info({
       message: `还剩 ${remain + 1} 秒`,
       duration: 5000,
-      onClose: () => clearInterval(timer),
+      onClose: () => {
+        clearInterval(timer);
+      },
     });
     timer = setInterval(() => {
       update.config({ message: `还剩 ${remain--} 秒` });

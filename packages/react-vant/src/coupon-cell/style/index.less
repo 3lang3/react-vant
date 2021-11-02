@@ -1,0 +1,11 @@
+@import './var.less';
+
+:root {
+  --rv-coupon-cell-selected-text-color: @coupon-cell-selected-text-color;
+}
+
+.@{rv-prefix}-coupon-cell {
+  &__value--selected {
+    color: var(--rv-coupon-cell-selected-text-color);
+  }
+}
