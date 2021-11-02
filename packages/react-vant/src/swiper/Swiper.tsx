@@ -21,7 +21,7 @@ import { devWarning } from '../utils/dev-log';
 import { noop } from '../utils';
 import { getRect } from '../hooks/use-rect';
 
-const PageIndicator = memo<PageIndicatorProps>(({ color = 'primary', vertical, ...props }) => {
+const PageIndicator = memo<PageIndicatorProps>(({ vertical, ...props }) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('indicator', prefixCls);
 
@@ -40,7 +40,7 @@ const PageIndicator = memo<PageIndicatorProps>(({ color = 'primary', vertical, .
   }
 
   return (
-    <div className={cls(props.className, bem({ color, vertical }))} style={props.style}>
+    <div className={cls(props.className, bem({ vertical }))} style={props.style}>
       {dots}
     </div>
   );
@@ -50,7 +50,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop, autoplay, vertical } = props;
+  const { loop, autoplay, vertical, duration } = props;
 
   const trackRef = useRef<HTMLDivElement>(null);
   const [root, setRoot] = useState<HTMLDivElement>(null);
@@ -94,7 +94,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const [sp, api] = useSpring(
     () => ({
       [axis]: bound(current, 0, count - 1) * axisDistance,
-      config: { tension: 200, friction: 30 },
+      config: { tension: 200, friction: 30, duration },
       onRest: () => {
         if (draggingRef.current) return;
         const rawX = sp[axis].get();
@@ -212,6 +212,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   };
 
   useImperativeHandle(ref, () => ({
+    activeIndex: current,
     swipeTo,
     swipeNext,
     swipePrev,
