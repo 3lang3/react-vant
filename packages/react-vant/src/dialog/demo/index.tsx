@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Dialog, Cell, Toast } from 'react-vant';
+import { Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import Dialog from '..';
 
 import './style.less';
 

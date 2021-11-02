@@ -1,7 +1,6 @@
-import React, { isValidElement, useContext } from 'react';
+import React, { useContext } from 'react';
 import classnames from 'classnames';
 
-import Icon from '../icon';
 import Popup from '../popup';
 import Button from '../button';
 import ActionBar from '../action-bar';
@@ -23,8 +22,6 @@ const Dialog: React.FC<DialogProps> = (props) => {
     message,
     className,
     messageAlign,
-    closeIcon,
-    closeable,
     closeOnClickOverlay,
     onClickCloseIcon,
     ...others
@@ -126,40 +123,6 @@ const Dialog: React.FC<DialogProps> = (props) => {
     </ActionBar>
   );
 
-  const renderCloseIcon = () => {
-    if (!closeable) return null;
-    if (typeof props.closeIcon === 'string') {
-      return (
-        <Icon
-          name={props.closeIcon}
-          className={classnames(bem('close-icon'))}
-          onClick={() => {
-            if (onClickCloseIcon) {
-              onClickCloseIcon();
-            }
-            props.onClose?.();
-          }}
-        />
-      );
-    }
-    if (isValidElement(props.closeIcon)) {
-      return (
-        <div
-          className={classnames(bem('close-icon'))}
-          onClick={() => {
-            if (onClickCloseIcon) {
-              onClickCloseIcon();
-            }
-            props.onClose?.();
-          }}
-        >
-          {props.closeIcon}
-        </div>
-      );
-    }
-    return null;
-  };
-
   const renderFooter = () => {
     if (props.footer) return props.footer;
     return props.theme === 'round-button' ? renderRoundButtons() : renderButtons();
@@ -176,7 +139,6 @@ const Dialog: React.FC<DialogProps> = (props) => {
       onClose={props.onClose}
       onClosed={props.onClosed}
     >
-      {renderCloseIcon()}
       {renderTitle()}
       {renderContent()}
       {renderFooter()}
