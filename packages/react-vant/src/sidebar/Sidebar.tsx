@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
 
 import { SidebarProps } from './PropsType';
@@ -23,17 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
       props.onChange?.(value);
     }
   };
-  useEffect(() => {
-    console.log(children);
-    console.log(getActive());
-  }, []);
-  const getContent = () => {
-    console.log('11', children[getActive()]);
-    if (children[getActive()]) {
-      return children[getActive()].props.children;
-    }
-    return null;
-  };
+
   return (
     <div className={cls(className, bemWrap())}>
       <div style={style} className={cls(className, bem())}>
@@ -49,7 +39,15 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
             }),
           )}
       </div>
-      <div>{getContent()}</div>
+      {React.Children.toArray(children)
+        .filter(Boolean)
+        .map((child: React.ReactElement, index: number) => {
+          return (
+            <div key={child.key} style={{ display: index === getActive() ? '' : 'none' }}>
+              {child.props.children}
+            </div>
+          );
+        })}
     </div>
   );
 };
