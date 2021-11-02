@@ -239,6 +239,10 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     }
   }, [visible, rendered]);
 
+  useEffect(() => {
+    return unlockScroll;
+  }, []);
+
   useImperativeHandle(ref, () => ({
     popupRef,
   }));
