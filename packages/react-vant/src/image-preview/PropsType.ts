@@ -10,6 +10,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   loop?: boolean;
   overlay?: boolean;
   lazyload?: LazyImageType;
+  maxZoom?: number;
   closeable?: boolean;
   showIndicators?: boolean;
   showIndex?: boolean;
@@ -27,6 +28,14 @@ export interface ImagePreviewProps extends BaseTypeProps {
   closeIconPosition?: PopupCloseIconPosition;
   /** 弹出时的的父容器 */
   teleport?: HTMLElement | (() => HTMLElement);
+}
+
+export interface ImagePreviewItemProps {
+  lazyload: LazyImageType;
+  image: string;
+  maxZoom: number;
+  onTap: () => void;
+  onZoomChange?: (zoom: number) => void;
 }
 
 export type ImagePreviewStatic = {

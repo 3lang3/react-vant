@@ -52,6 +52,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const { loop, autoplay, vertical, duration } = props;
 
+  const lock = useRef<boolean>(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const [root, setRoot] = useState<HTMLDivElement>(null);
   const [current, setCurrent] = useState(props.initialSwipe);
@@ -112,6 +113,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const bind = useDrag(
     (state) => {
+      if (lock.current) return;
       const distance = getTrackRect();
       if (!distance) return;
       const [offsetX, offsetY] = state.offset;
@@ -216,6 +218,12 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     swipeTo,
     swipeNext,
     swipePrev,
+    lock: () => {
+      lock.current = true;
+    },
+    unlock: () => {
+      lock.current = false;
+    },
   }));
 
   useEffect(() => {

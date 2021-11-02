@@ -39,4 +39,6 @@ export type SwiperInstance = {
   swipeTo: (index: number) => void;
   swipeNext: () => void;
   swipePrev: () => void;
+  lock: () => void;
+  unlock: () => void;
 };

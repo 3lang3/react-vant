@@ -16,11 +16,7 @@ export default (): React.ReactNode => {
   return (
     <DemoSection>
       <DemoBlock card title="基础用法">
-        <Cell
-          title="预览图片"
-          isLink
-          onClick={() => ImagePreview.open({ images, lazyload: true })}
-        />
+        <Cell title="预览图片" isLink onClick={() => ImagePreview.open({ images })} />
       </DemoBlock>
       <DemoBlock card title="传入配置项">
         <Cell

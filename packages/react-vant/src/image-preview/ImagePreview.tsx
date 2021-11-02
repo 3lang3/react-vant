@@ -3,51 +3,56 @@ import cls from 'classnames';
 import { ImagePreviewProps } from './PropsType';
 import { pick } from '../utils';
 import Icon from '../icon';
-import Swipe from '../swipe';
-import Image from '../image';
+import Swiper from '../swiper';
+import type { SwiperInstance } from '../swiper';
 import Popup from '../popup';
+import ImagePreviewItem from './ImagePreviewItem';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('image-preview', prefixCls);
+
+  const swiperRef = useRef<SwiperInstance>(null);
   const [active, setActive] = useState(() => props.startPosition);
-  const mountedRef = useRef(false);
 
   const onSwipeChange = (idx: number) => {
-    if (active !== idx && mountedRef.current) {
+    if (active !== idx) {
       setActive(idx);
       props.onChange?.(idx);
     }
   };
 
   const renderImages = () => (
-    <Swipe
-      onAfterInit={() => {
-        mountedRef.current = true;
-      }}
-      loop={props.loop}
+    <Swiper
+      ref={swiperRef}
       className={cls(bem('swipe'))}
+      loop={props.loop}
       duration={props.swipeDuration}
       initialSwipe={active}
       onChange={onSwipeChange}
-      pagination={props.showIndicators}
+      indicator={props.showIndicators}
     >
       {props.images.map((image, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <Swipe.Item key={i}>
-          <Image
-            src={image}
-            fit="contain"
-            className={cls(bem('image'))}
+        <Swiper.Item className={cls(bem('item'))} key={image}>
+          <ImagePreviewItem
+            maxZoom={props.maxZoom}
+            image={image}
             lazyload={props.lazyload}
-            onClick={() => {
+            onTap={() => {
               props.onClose?.({ url: image, index: i });
             }}
+            onZoomChange={(zoom) => {
+              if (zoom !== 1) {
+                swiperRef.current?.lock();
+              } else {
+                swiperRef.current?.unlock();
+              }
+            }}
           />
-        </Swipe.Item>
+        </Swiper.Item>
       ))}
-    </Swipe>
+    </Swiper>
   );
 
   const renderClose = () => {
@@ -100,6 +105,7 @@ ImagePreview.defaultProps = {
   closeIcon: 'clear',
   closeIconPosition: 'top-right',
   showIndicators: false,
+  maxZoom: 3,
 };
 
 export default ImagePreview;
