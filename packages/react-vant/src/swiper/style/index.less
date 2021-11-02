@@ -1,6 +1,8 @@
 @import './var.less';
 
 :root {
+  --rv-swipe-slide-width: @swipe-slide-width;
+  --rv-swipe-border-radius: @swipe-border-radius;
   --rv-swipe-indicator-size: @swipe-indicator-size;
   --rv-swipe-indicator-margin: @swipe-indicator-margin;
   --rv-swipe-indicator-active-opacity: @swipe-indicator-active-opacity;
@@ -16,7 +18,7 @@
   width: 100%;
   height: auto;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: var(--rv-swipe-border-radius);
 
   &__track {
     width: 100%;
@@ -32,7 +34,7 @@
       position: relative;
       display: flex;
       flex-wrap: nowrap;
-      width: 100%;
+      width: var(--rv-swipe-slide-width);
       overflow: visible;
 
       &--vertical {

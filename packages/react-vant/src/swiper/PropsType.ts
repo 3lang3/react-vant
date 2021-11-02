@@ -25,7 +25,7 @@ export interface SwiperProps extends BaseTypeProps {
   /** 指示器属性 */
   indicatorProps?: Pick<PageIndicatorProps, 'color' | 'style' | 'className'>;
   /** 自定义指示器 */
-  indicator?: (total: number, current: number) => ReactNode;
+  indicator?: boolean | ((total: number, current: number) => ReactNode);
   children?: ReactElement | ReactElement[];
 }
 

@@ -52,13 +52,14 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const { loop, autoplay, vertical } = props;
 
-  const axis = vertical ? 'y' : 'x';
-
-  const unit = vertical ? 'px' : '%';
-
   const trackRef = useRef<HTMLDivElement>(null);
-
   const [root, setRoot] = useState<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(props.initialSwipe);
+  const [dragging, setDragging, draggingRef] = useRefState(false);
+
+  const axis = useMemo(() => (vertical ? 'y' : 'x'), [vertical]);
+
+  const unit = useMemo(() => (vertical ? 'px' : '%'), [vertical]);
 
   const axisDistance = useMemo(() => {
     if (!vertical) return 100;
@@ -83,9 +84,12 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     };
   }, [props.children]);
 
-  const [current, setCurrent] = useState(props.initialSwipe);
-
-  const [dragging, setDragging, draggingRef] = useRefState(false);
+  const getTrackRect = () => {
+    const track = trackRef.current;
+    if (!track) return 0;
+    const { offsetWidth } = track;
+    return vertical ? axisDistance : offsetWidth;
+  };
 
   const [sp, api] = useSpring(
     () => ({
@@ -112,11 +116,11 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       if (!distance) return;
       const [offsetX, offsetY] = state.offset;
       const offsetValue = vertical ? offsetY : offsetX;
-
+      const offsetAxisValue = vertical ? offsetValue : (offsetValue * axisDistance) / distance;
       setDragging(true);
       if (!state.last) {
         api.start({
-          [axis]: offsetValue,
+          [axis]: offsetAxisValue,
           immediate: true,
         });
       } else {
@@ -156,12 +160,30 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     },
   );
 
-  function getTrackRect() {
-    const track = trackRef.current;
-    if (!track) return 0;
-    const { offsetWidth, offsetHeight } = track;
-    return vertical ? offsetHeight : offsetWidth;
-  }
+  const renderIndicator = () => {
+    if (props.indicator === undefined || props.indicator === true) {
+      return (
+        <div className={cls(bem('indicator', { vertical }))}>
+          <PageIndicator
+            {...props.indicatorProps}
+            vertical={vertical}
+            total={count}
+            current={current}
+          />
+        </div>
+      );
+    }
+    if (typeof props.indicator === 'function') {
+      return props.indicator(count, current);
+    }
+    return null;
+  };
+
+  const onClickCapture = (e) => {
+    if (draggingRef.current) {
+      e.stopPropagation();
+    }
+  };
 
   function swipeTo(index: number) {
     if (loop) {
@@ -181,13 +203,13 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     }
   }
 
-  function swipeNext() {
+  const swipeNext = () => {
     swipeTo(Math.round(sp[axis].get() / axisDistance) + 1);
-  }
+  };
 
-  function swipePrev() {
+  const swipePrev = () => {
     swipeTo(Math.round(sp[axis].get() / axisDistance) - 1);
-  }
+  };
 
   useImperativeHandle(ref, () => ({
     swipeTo,
@@ -218,11 +240,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
             'allow-touch-move': props.touchable,
           }),
         )}
-        onClickCapture={(e) => {
-          if (draggingRef.current) {
-            e.stopPropagation();
-          }
-        }}
+        onClickCapture={onClickCapture}
         {...(props.touchable ? bind() : {})}
       >
         <div
@@ -238,7 +256,6 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
               <animated.div
                 className={cls(bem('slide'))}
                 style={{
-                  // eslint-disable-next-line @typescript-eslint/no-shadow
                   [axis]: sp[axis].to((x) => {
                     let position = -x + index * axisDistance;
                     if (loop) {
@@ -257,18 +274,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
           })}
         </div>
       </div>
-      {props.indicator === undefined ? (
-        <div className={cls(bem('indicator', { vertical }))}>
-          <PageIndicator
-            {...props.indicatorProps}
-            vertical={vertical}
-            total={count}
-            current={current}
-          />
-        </div>
-      ) : (
-        props.indicator(count, current)
-      )}
+      {renderIndicator()}
     </div>
   );
 });
@@ -278,7 +284,7 @@ Swiper.defaultProps = {
   initialSwipe: 0,
   touchable: true,
   loop: true,
-  autoplay: 2000,
+  autoplay: false,
 };
 
 export default Swiper;
