@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import cls from 'classnames';
 import { SidebarItemProps, SidebarProvide } from './PropsType';
 import Badge from '../badge';
@@ -28,13 +28,14 @@ const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = ({ children, ..
 
   const { dot, badge, title, disabled } = props;
   const selected = index === parent.getActive();
-
   return (
-    <a className={cls(bem({ select: selected, disabled }))} onClick={onClick}>
-      <Badge dot={dot} content={badge} className={cls(bem('text'))}>
-        {title}
-      </Badge>
-    </a>
+    <div>
+      <a className={cls(bem({ select: selected, disabled }))} onClick={onClick}>
+        <Badge dot={dot} content={badge} className={cls(bem('text'))}>
+          {title}
+        </Badge>
+      </a>
+    </div>
   );
 };
 
