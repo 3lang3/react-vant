@@ -1,6 +1,22 @@
 @import '../../styles/var.less';
 
-.demo-swiper {
+.demo-swiper,
+.demo-swipe-popup {
+  .p-default {
+    padding: 0 @padding-md;
+  }
+
+  .custom-indicator {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    padding: 2px 5px;
+    color: #fff;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 2px;
+  }
+
   .@{rv-prefix}-swiper {
     &__slide {
       .@{rv-prefix}-swiper-item {
