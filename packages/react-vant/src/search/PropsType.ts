@@ -23,6 +23,8 @@ export interface SearchProps extends FieldCommonProps, BaseTypeProps {
   onCancel?: () => void;
   /** 点击清除按钮后触发	 */
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  /** 点击输入区域时触发	 */
+  onClickInput?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export type SearchInstance = {
