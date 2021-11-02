@@ -7,7 +7,10 @@ import type { CellGroupProps } from '../cell/PropsType';
 import { FieldProps } from '../field/PropsType';
 
 export type FormLayout = 'vertical' | 'horizontal';
-export interface FormProps extends RcFormProps, Omit<CellGroupProps, 'title'>, BaseTypeProps {
+export interface FormProps
+  extends Omit<RcFormProps, 'style'>,
+    Omit<CellGroupProps, 'title'>,
+    BaseTypeProps {
   /** 表单布局 */
   layout?: FormLayout;
   /** 是否显示 label 后面的冒号 */

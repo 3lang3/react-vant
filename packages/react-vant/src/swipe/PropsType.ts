@@ -3,7 +3,7 @@ import { Swiper } from 'swiper/swiper-react';
 import SwiperClass from 'swiper/types/swiper-class';
 import { BaseTypeProps } from '../utils';
 
-export interface SwipeProps extends Omit<Swiper, 'onChange' | 'autoplay'>, BaseTypeProps {
+export interface SwipeProps extends Omit<Swiper, 'onChange' | 'autoplay' | 'style'>, BaseTypeProps {
   /** 是否为纵向滚动	 */
   vertical?: boolean;
   /** 动画时长，单位为 ms	*/
