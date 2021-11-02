@@ -133,13 +133,23 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const renderCloseIcon = () => {
     if (closeable) {
       const { closeIconPosition } = props;
+      if (typeof closeIcon === 'string') {
+        return (
+          <Icon
+            name={closeIcon}
+            className={classnames(bem('close-icon', closeIconPosition))}
+            classPrefix={props.iconPrefix}
+            onClick={onClickCloseIcon}
+          />
+        );
+      }
       return (
-        <Icon
-          name={closeIcon}
+        <div
           className={classnames(bem('close-icon', closeIconPosition))}
-          classPrefix={props.iconPrefix}
           onClick={onClickCloseIcon}
-        />
+        >
+          {closeIcon}
+        </div>
       );
     }
     return null;

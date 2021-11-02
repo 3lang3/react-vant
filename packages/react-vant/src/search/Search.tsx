@@ -1,4 +1,11 @@
-import React, { forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import classnames from 'classnames';
 import { SearchInstance, SearchProps } from './PropsType';
 import { preventDefault } from '../utils';
@@ -35,6 +42,15 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
       preventDefault(event.nativeEvent);
       props.onSearch?.(value);
     }
+  };
+
+  const onClear = (event: React.MouseEvent<HTMLDivElement>) => {
+    change('');
+    props.onClear?.(event);
+  };
+
+  const onClickInput = (event: React.MouseEvent<HTMLDivElement>) => {
+    props.onClickInput?.(event);
   };
 
   const renderLabel = () => {
@@ -102,6 +118,8 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
         onFocus={focus}
         onBlur={blur}
         onChange={change}
+        onClear={onClear}
+        onClickInput={onClickInput}
         {...fieldPropNames}
       />
     );
