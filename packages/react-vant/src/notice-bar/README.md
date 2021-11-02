@@ -60,16 +60,23 @@ import { NoticeBar } from 'react-vant';
 
 ### 垂直滚动
 
-搭配 NoticeBar 和 Swipe 组件可以实现垂直滚动的效果。
+搭配 NoticeBar 和 Swiper 组件可以实现垂直滚动的效果。
 
 ```jsx
-<NoticeBar leftIcon="info">
-  <Swipe autoplay={3000} vertical className="notice-swipe">
-    <Swipe.Item>内容 1</Swipe.Item>
-    <Swipe.Item>内容 2</Swipe.Item>
-    <Swipe.Item>内容 3</Swipe.Item>
-  </Swipe>
-</NoticeBar>
+import React from 'react';
+import { NoticeBar, Swiper } from 'react-vant';
+
+export default () => {
+  return (
+    <NoticeBar leftIcon="info">
+      <Swiper autoplay={3000} vertical className="notice-swipe">
+        <Swiper.Item>内容 1</Swiper.Item>
+        <Swiper.Item>内容 2</Swiper.Item>
+        <Swiper.Item>内容 3</Swiper.Item>
+      </Swiper>
+    </NoticeBar>
+  );
+};
 ```
 
 ```css
@@ -89,7 +96,7 @@ import { NoticeBar } from 'react-vant';
 | text                | 通知文本内容                             | _ReactNode_         | `''`      |
 | color               | 通知文本颜色                             | _string_            | `#f60`    |
 | background          | 滚动条背景                               | _string_            | `#fff7cc` |
-| leftIcon            | 左侧图标   | _string\|ReactNode_ | -         |
+| leftIcon            | 左侧图标                                 | _string\|ReactNode_ | -         |
 | rightIcon           | 自定义右侧图标                           |
 | _string\|ReactNode_ | -                                        |
 | delay               | 动画延迟时间 (s)                         | _number \| string_  | `1`       |
@@ -99,12 +106,11 @@ import { NoticeBar } from 'react-vant';
 
 ### Events
 
-| 事件名 | 说明                         | 回调参数       |
-| ------ | ---------------------------- | -------------- |
+| 事件名   | 说明                         | 回调参数       |
+| -------- | ---------------------------- | -------------- |
 | onClick  | 点击通知栏时触发             | _event: Event_ |
 | onClose  | 关闭通知栏时触发             | _event: Event_ |
 | onReplay | 每当滚动栏重新开始滚动时触发 | -              |
-
 
 ## 主题定制
 
@@ -112,14 +118,14 @@ import { NoticeBar } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-notice-bar-height | _40px_ | - |
-| --rv-notice-bar-padding | _0 var(--rv-padding-md)_ | - |
-| --rv-notice-bar-wrapable-padding | _var(--rv-padding-xs) var(--rv-padding-md)_ | - |
-| --rv-notice-bar-text-color | _var(--rv-orange-dark)_ | - |
-| --rv-notice-bar-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-notice-bar-line-height | _24px_ | - |
-| --rv-notice-bar-background-color | _var(--rv-orange-light)_ | - |
-| --rv-notice-bar-icon-size | _16px_ | - |
-| --rv-notice-bar-icon-min-width | _24px_ | - |
+| 名称                             | 默认值                                      | 描述 |
+| -------------------------------- | ------------------------------------------- | ---- |
+| --rv-notice-bar-height           | _40px_                                      | -    |
+| --rv-notice-bar-padding          | _0 var(--rv-padding-md)_                    | -    |
+| --rv-notice-bar-wrapable-padding | _var(--rv-padding-xs) var(--rv-padding-md)_ | -    |
+| --rv-notice-bar-text-color       | _var(--rv-orange-dark)_                     | -    |
+| --rv-notice-bar-font-size        | _var(--rv-font-size-md)_                    | -    |
+| --rv-notice-bar-line-height      | _24px_                                      | -    |
+| --rv-notice-bar-background-color | _var(--rv-orange-light)_                    | -    |
+| --rv-notice-bar-icon-size        | _16px_                                      | -    |
+| --rv-notice-bar-icon-min-width   | _24px_                                      | -    |

@@ -1,31 +1,31 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import classnames from 'classnames';
 
-import Swipe from '../swipe';
+import Swiper from '../swiper';
 
 import { TabsContentProps } from './PropsType';
-import { SwipeInstance } from '../swipe/PropsType';
+import { SwiperInstance } from '../swiper/PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const TabsContent: React.FC<TabsContentProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('tabs', prefixCls);
 
-  const swipeRef = useRef<SwipeInstance>();
+  const swipeRef = useRef<SwiperInstance>();
   const innerEffect = useRef(false);
   const { animated, swipeable, duration } = props;
 
   const renderChildren = () => {
     if (animated || swipeable) {
       return (
-        <Swipe
+        <Swiper
           ref={swipeRef}
           loop={false}
           autoplay={false}
-          allowTouchMove={swipeable}
+          touchable={swipeable}
           className={classnames(bem('track'))}
           duration={+duration}
-          showIndicators={false}
+          indicator={false}
           onChange={(idx) => {
             if (innerEffect.current) {
               innerEffect.current = false;
@@ -35,15 +35,14 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           }}
         >
           {React.Children.map(props.children, (child) => (
-            <Swipe.Item
-              role="tabpanel"
+            <Swiper.Item
               style={{ cursor: !swipeable ? 'auto' : undefined }}
               className={classnames(bem('pane-wrapper'))}
             >
               {child}
-            </Swipe.Item>
+            </Swiper.Item>
           ))}
-        </Swipe>
+        </Swiper>
       );
     }
 
@@ -54,7 +53,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
     if (!swipe) return;
     if (swipe.activeIndex !== index) {
       innerEffect.current = true;
-      swipe.slideTo(index, !props.inited ? 0 : +duration);
+      swipe.swipeTo(index);
     }
   };
 
