@@ -178,16 +178,16 @@ export default () => {
 
 ### Swipe Props
 
-| 参数           | 说明                    | 类型                                     | 默认值  |
-| -------------- | ----------------------- | ---------------------------------------- | ------- |
-| autoplay       | 自动轮播间隔，单位为 ms | _number \| boolean_                      | `false` |
-| duration       | 动画时长，单位为 ms     | _number_                                 | `300`   |
-| initialSwipe   | 初始位置索引值          | _number_                                 | `0`     |
-| loop           | 是否开启循环播放        | _boolean_                                | `true`  |
-| vertical       | 是否为纵向滚动          | _boolean_                                | `false` |
-| touchable      | 是否可以通过手势滑动    | _boolean_                                | `true`  |
-| indicator      | 自定义指示器            | _boolean\|(total, current) => ReactNode_ | -       |
-| indicatorProps | 指示器属性              | _IndicatorProps_                         | -       |
+| 参数           | 说明                    | 类型                                       | 默认值  |
+| -------------- | ----------------------- | ------------------------------------------ | ------- |
+| autoplay       | 自动轮播间隔，单位为 ms | _number \| boolean_                        | `false` |
+| duration       | 动画时长，单位为 ms     | _number_                                   | `300`   |
+| initialSwipe   | 初始位置索引值          | _number_                                   | `0`     |
+| loop           | 是否开启循环播放        | _boolean_                                  | `true`  |
+| vertical       | 是否为纵向滚动          | _boolean_                                  | `false` |
+| touchable      | 是否可以通过手势滑动    | _boolean_                                  | `true`  |
+| indicator      | 自定义指示器            | _boolean \| (total, current) => ReactNode_ | -       |
+| indicatorProps | 指示器属性              | _IndicatorProps_                           | -       |
 
 ### IndicatorProps 格式
 
