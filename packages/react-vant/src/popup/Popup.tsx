@@ -13,7 +13,6 @@ import { CSSTransition } from 'react-transition-group';
 
 import Icon from '../icon';
 import Overlay from '../overlay';
-import useLockScroll from '../hooks/use-lock-scroll';
 import useEventListener from '../hooks/use-event-listener';
 
 import { isDef } from '../utils';
@@ -59,7 +58,6 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const zIndex = useRef<number>(globalZIndex);
   const popupRef = useRef<HTMLDivElement>();
   const [animatedVisible, setAnimatedVisible] = useState(visible);
-  const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
   const [ssrCompatRender, rendered] = useSsrCompat();
 
   const style = useMemo(() => {
@@ -112,6 +110,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
       return (
         <Overlay
           visible={visible && rendered}
+          lockScroll={props.lockScroll}
           className={props.overlayClass}
           customStyle={props.overlayStyle}
           zIndex={zIndex.current}
@@ -198,7 +197,8 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 
   const renderTransition = () => {
     const { transition, destroyOnClose, forceRender } = props;
-    const name = position === 'center' ? 'rv-fade' : `rv-popup-slide-${position}`;
+    const name =
+      position === 'center' ? `${prefixCls}-fade` : `${prefixCls}-popup-slide-${position}`;
 
     return (
       <CSSTransition
@@ -232,16 +232,9 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   useEffect(() => {
     if (!rendered) return;
     if (visible) {
-      lockScroll();
       setAnimatedVisible(true);
-    } else {
-      unlockScroll();
     }
   }, [visible, rendered]);
-
-  useEffect(() => {
-    return unlockScroll;
-  }, []);
 
   useImperativeHandle(ref, () => ({
     popupRef,
