@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'packages/react-vant/docs/**'
+      - 'docs/**'
 
 jobs:
   build-and-deploy:
