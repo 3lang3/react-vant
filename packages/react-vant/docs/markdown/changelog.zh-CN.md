@@ -12,7 +12,7 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
-### [v1.3.0](https://github.com/3lang3/react-vant/compare/v0.5.10...v1.3.0)
+### v1.3.0
 
 `2021-11-03`
 
