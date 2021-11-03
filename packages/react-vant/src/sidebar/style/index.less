@@ -16,7 +16,9 @@
   --rv-sidebar-selected-border-color: @sidebar-selected-border-color;
   --rv-sidebar-selected-background-color: @sidebar-selected-background-color;
 }
-
+.@{rv-prefix}-wrap {
+  display: flex;
+}
 .@{rv-prefix}-sidebar {
   width: var(--rv-sidebar-width);
   overflow-y: auto;
@@ -77,5 +79,8 @@
     &:active {
       background-color: var(--rv-sidebar-background-color);
     }
+  }
+  &__content {
+    background-color: lightblue;
   }
 }
