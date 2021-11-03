@@ -46,7 +46,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props,
         zIndex: +props.zIndex + 1,
       };
     }
-    return {};
+    return { ...props.style };
   };
 
   const updateShowPopupIndex = (current: number) => {
@@ -183,7 +183,11 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props,
       value={{ props, value: innerValue, onChange: onInnerChange, close }}
     >
       <div ref={root} className={classnames(bem())}>
-        <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
+        <div
+          ref={barRef}
+          style={barStyle()}
+          className={classnames(bem('bar', { opened }), ...props.className)}
+        >
           {childrenRefs.map(renderTitle)}
         </div>
         {Children.toArray(props.children)
