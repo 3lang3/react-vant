@@ -9,14 +9,6 @@ const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = ({ children, ..
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('sidebar-item', prefixCls);
 
-  if (!parent) {
-    if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
-      console.error('[React Vant] <SidebarItem> must be a child component of <Sidebar>.');
-    }
-    return null;
-  }
-
   const onClick = () => {
     if (props.disabled) {
       return;
@@ -28,13 +20,14 @@ const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = ({ children, ..
 
   const { dot, badge, title, disabled } = props;
   const selected = index === parent.getActive();
-
   return (
-    <a className={cls(bem({ select: selected, disabled }))} onClick={onClick}>
-      <Badge dot={dot} content={badge} className={cls(bem('text'))}>
-        {title}
-      </Badge>
-    </a>
+    <div>
+      <a className={cls(bem({ select: selected, disabled }))} onClick={onClick}>
+        <Badge dot={dot} content={badge} className={cls(bem('text'))}>
+          {title}
+        </Badge>
+      </a>
+    </div>
   );
 };
 

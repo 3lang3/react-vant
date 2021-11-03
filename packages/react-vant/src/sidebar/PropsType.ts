@@ -18,7 +18,7 @@ export interface SidebarProps extends BaseTypeProps {
   defaultValue?: number;
   /** 切换导航项时触发	 */
   onChange?: (value: number) => void;
-  children?: React.ReactNode;
+  children?: React.ReactElement | React.ReactElement[];
 }
 
 export interface SidebarItemProps {
@@ -28,8 +28,13 @@ export interface SidebarItemProps {
   title?: React.ReactNode;
   /** 图标右上角徽标的内容	 */
   badge?: number | string;
-  /** v */
+  /** 是否禁用该项	 */
   disabled?: boolean;
+  /** 内容区域类名 */
+  contentClassName?: string;
+  /** 内容区域样式 */
+  contentStyle?: React.CSSProperties;
   /** 点击时触发	 */
   onClick?: (value: number) => void;
+  children?: React.ReactNode;
 }

@@ -21,6 +21,13 @@
   width: var(--rv-sidebar-width);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+
+  &__wrapper {
+    display: flex;
+  }
+  &__content {
+    flex: 1;
+  }
 }
 
 .@{rv-prefix}-sidebar-item {
@@ -77,5 +84,8 @@
     &:active {
       background-color: var(--rv-sidebar-background-color);
     }
+  }
+  &__content {
+    background-color: lightblue;
   }
 }
