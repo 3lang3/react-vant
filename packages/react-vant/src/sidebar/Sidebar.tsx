@@ -72,5 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
     </div>
   );
 };
-
+Sidebar.defaultProps = {
+  defaultValue: 0,
+};
 export default Sidebar;
