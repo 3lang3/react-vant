@@ -16,12 +16,7 @@ import { FIELD_KEY } from '../field/Field';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
 import { FormContext } from './FormContext';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-
-function devWarning(component: string, message: string): void {
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn(`[${component}] ${message}`);
-  }
-}
+import { devWarning } from '../utils/dev-log';
 
 const MemoInput = React.memo(
   ({ children, ...props }: MemoInputProps) =>

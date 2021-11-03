@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 
 export interface BaseTypeProps {
-  style?: CSSProperties;
+  style?: CSSProperties | any;
   className?: string;
 }
 

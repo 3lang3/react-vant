@@ -2,7 +2,9 @@ import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type DividerContentPosition = 'left' | 'center' | 'right';
-export interface DividerProps extends BaseTypeProps, React.HTMLAttributes<HTMLDivElement> {
+export interface DividerProps
+  extends BaseTypeProps,
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
   /** 是否使用虚线	 */
   dashed?: boolean;
   /**

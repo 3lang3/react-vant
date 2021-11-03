@@ -1,3 +1,8 @@
+/**
+ * rebuild swipe component
+ * 3lang3
+ * - rm swiperjs
+ */
 import React, {
   useRef,
   Children,
@@ -15,6 +20,7 @@ import { Swiper } from 'swiper/react';
 
 import { SwipeProps, SwipeInstance } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { devWarning } from '../utils/dev-log';
 
 SwiperCore.use([Autoplay, Pagination]);
 
@@ -25,6 +31,11 @@ const Swipe = forwardRef<SwipeInstance, SwipeProps>((props, ref) => {
   const { children, className, autoplay, ...parseProsp } = parseOptions(props);
   const internalSwipeRef = useRef<SwipeInstance>(null);
   useImperativeHandle(ref, () => internalSwipeRef.current, [internalSwipeRef.current]);
+
+  devWarning(
+    'Swipe',
+    '`Swipe` has been deprecated. For more information read this: https://3lang3.github.io/react-vant/#/zh-CN/swipe',
+  );
 
   return (
     <Swiper

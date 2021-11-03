@@ -4,7 +4,6 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "yarn build:cli && yarn build:fabric",
     "bootstrap": "lerna bootstrap",
     "start": "lerna exec --scope react-vant yarn start",
     "create-component": "lerna exec --scope react-vant yarn create-component",
