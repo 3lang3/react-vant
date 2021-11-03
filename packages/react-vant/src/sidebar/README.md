@@ -79,19 +79,19 @@ export default () => {
 ### 自定义内容区
 
 ```jsx
-const [active, setActive] = useState(0);
+import { useState } from 'react';
+import { Sidebar } from 'react-vant';
 
-<Sidebar
-  value={ac}
-  onChange={(v) => {
-    setAc(v);
-    Toast.info(`内容区 ${v + 1}`);
-  }}
->
-  <Sidebar.Item title="内容1">我是内容区1</Sidebar.Item>
-  <Sidebar.Item title="内容2">我是内容区2</Sidebar.Item>
-  <Sidebar.Item title="内容3">我是内容区3</Sidebar.Item>
-</Sidebar>;
+export default () => {
+  const [active, setActive] = useState(0);
+  return (
+    <Sidebar value={active} onChange={setActive}>
+      <Sidebar.Item title="内容1">我是内容区1</Sidebar.Item>
+      <Sidebar.Item title="内容2">我是内容区2</Sidebar.Item>
+      <Sidebar.Item title="内容3">我是内容区3</Sidebar.Item>
+    </Sidebar>
+  );
+};
 ```
 
 ## API
@@ -110,12 +110,14 @@ const [active, setActive] = useState(0);
 
 ### SidebarItem Props
 
-| 参数     | 说明                 | 类型                        | 默认值  |
-| -------- | -------------------- | --------------------------- | ------- |
-| title    | 内容                 | _string \| React.ReactNode_ | `''`    |
-| dot      | 是否显示右上角小红点 | _boolean_                   | `false` |
-| badge    | 图标右上角徽标的内容 | _number \| string_          | -       |
-| disabled | 是否禁用该项         | _boolean_                   | `false` |
+| 参数             | 说明                 | 类型                        | 默认值  |
+| ---------------- | -------------------- | --------------------------- | ------- |
+| title            | 内容                 | _string \| React.ReactNode_ | `''`    |
+| dot              | 是否显示右上角小红点 | _boolean_                   | `false` |
+| badge            | 图标右上角徽标的内容 | _number \| string_          | -       |
+| disabled         | 是否禁用该项         | _boolean_                   | `false` |
+| contentClassName | 内容区域类名         | _string_                    | -       |
+| contentStyle     | 内容区域样式         | _CSSProperties_             | -       |
 
 ### SidebarItem Events
 

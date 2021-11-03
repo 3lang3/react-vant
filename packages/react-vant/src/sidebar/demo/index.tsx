@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Toast } from 'react-vant';
+import { Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Sidebar from '..';
 import './style.less';
@@ -56,7 +56,7 @@ export default (): React.ReactNode => {
         >
           <Sidebar.Item title="内容1">我是内容区1</Sidebar.Item>
           <Sidebar.Item title="内容2">我是内容区2</Sidebar.Item>
-          {true && <Sidebar.Item title="内容3">我是内容区3</Sidebar.Item>}
+          <Sidebar.Item title="内容3">我是内容区3</Sidebar.Item>
         </Sidebar>
       </DemoBlock>
     </DemoSection>

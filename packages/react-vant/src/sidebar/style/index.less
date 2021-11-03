@@ -16,13 +16,18 @@
   --rv-sidebar-selected-border-color: @sidebar-selected-border-color;
   --rv-sidebar-selected-background-color: @sidebar-selected-background-color;
 }
-.@{rv-prefix}-wrap {
-  display: flex;
-}
+
 .@{rv-prefix}-sidebar {
   width: var(--rv-sidebar-width);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+
+  &__wrapper {
+    display: flex;
+  }
+  &__content {
+    flex: 1;
+  }
 }
 
 .@{rv-prefix}-sidebar-item {
