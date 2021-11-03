@@ -2,11 +2,16 @@
   "name": "react-vant",
   "version": "1.3.0",
   "description": "React Mobile UI Components base on Vant UI",
-  "repository": "https://github.com/3lang3/react-vant.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:3lang3/react-vant.git"
+  },
   "main": "lib/index.js",
   "module": "es/index.js",
   "style": "lib/index.css",
   "typings": "lib/index.d.ts",
+  "unpkg": "lib/react-vant.min.js",
+  "jsdelivr": "lib/react-vant.min.js",
   "files": [
     "lib",
     "es"
@@ -17,7 +22,7 @@
     "postcreate-component": "yarn prettier",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
     "build": "react-vant-cli build",
-    "release": "react-vant-cli release --tag dev",
+    "changelog": "react-vant-cli changelog",
     "build:site": "react-vant-cli build-site",
     "release:site": "npm run build:site && gh-pages -d site",
     "prepack": "yarn build",

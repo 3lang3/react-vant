@@ -23,6 +23,7 @@ module.exports = {
               { path: 'home', title: '介绍' },
               { path: 'quickstart', title: '快速上手' },
               { path: 'advanced-usage', title: '进阶用法' },
+              { path: 'changelog', title: '更新日志' },
               { path: 'contribution', title: '贡献指南' },
             ],
           },

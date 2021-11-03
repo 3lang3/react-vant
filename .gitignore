@@ -19,6 +19,7 @@ es
 lib
 site
 dist
+changelog.generated.md
 
 # log file
 .changelog

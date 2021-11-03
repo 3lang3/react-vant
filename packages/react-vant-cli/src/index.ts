@@ -7,22 +7,13 @@ import { test } from './commands/jest';
 import { lint } from './commands/lint';
 import { clean } from './commands/clean';
 import { release } from './commands/release';
+import { changelog } from './commands/changelog';
 import { buildSite } from './commands/build-site';
 import { commitLint } from './commands/commit-lint';
-import { create } from "./commands/create";
+import { create } from './commands/create';
 
 export const cliVersion: string = packageJson.version;
 
 process.env.REACT_VANT_CLI_VERSION = cliVersion;
 
-export {
-  dev,
-  create,
-  lint,
-  test,
-  clean,
-  build,
-  release,
-  buildSite,
-  commitLint,
-};
+export { dev, create, lint, test, clean, build, release, changelog, buildSite, commitLint };

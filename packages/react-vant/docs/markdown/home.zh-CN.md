@@ -28,6 +28,12 @@
 | [react-vant-cli](https://github.com/3lang3/react-vant/tree/main/packages/react-vant-cli) | 开箱即用的组件库搭建工具 |
 | ----- | ----- |
 
+### 链接
+
+- [意见反馈](https://github.com/3lang3/react-vant/issues)
+- [更新日志](#/zh-CN/changelog)
+- [码云镜像](https://lang3.gitee.io/react-vant/#/zh-CN/)
+
 ### 开源协议
 
 本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源

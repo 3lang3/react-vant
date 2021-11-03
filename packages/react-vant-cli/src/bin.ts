@@ -9,6 +9,7 @@ import {
   clean,
   build,
   release,
+  changelog,
   buildSite,
   commitLint,
   cliVersion,
@@ -54,6 +55,8 @@ program
   .action(release);
 
 program.command('build-site').description('Compile site in production mode').action(buildSite);
+
+program.command('changelog').description('Generate changelog').action(changelog);
 
 program.command('commit-lint').description('Lint commit message').action(commitLint);
 
