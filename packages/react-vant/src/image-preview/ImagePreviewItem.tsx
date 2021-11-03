@@ -20,12 +20,12 @@ const ImagePreviewItem: React.FC<ImagePreviewItemProps> = (props) => {
   const bind = useGesture(
     {
       onDrag: (state) => {
-        const [swipeX, swipeY] = state.swipe;
         if (state.tap && state.elapsedTime > 0) {
           // 判断点击时间>0是为了过滤掉非正常操作，例如用户长按选择图片之后的取消操作（也是一次点击）
           props.onTap();
           return;
         }
+        const [swipeX, swipeY] = state.swipe;
         const currentZoom = zoom.get();
         if (currentZoom <= 1 || swipeX !== 0 || swipeY !== 0) {
           api.start({
