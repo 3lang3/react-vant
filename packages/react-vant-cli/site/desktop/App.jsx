@@ -35,6 +35,8 @@ const App = () => {
     return getLangFromRoute(pathname);
   }, [pathname]);
 
+  const currentCompnentName = useMemo(() => pathname.replace(/\/.*\//, ''), [pathname]);
+
   const localeConfig = useMemo(() => {
     const { locales } = config.site;
     if (locales) {
@@ -57,8 +59,6 @@ const App = () => {
 
   // 更新标题
   const setTitle = () => {
-    const currentCompnentName = pathname.replace(/\/.*\//, '');
-
     let { title } = localeConfig;
 
     const navItems = localeConfig.nav.reduce((result, nav) => [...result, ...nav.items], []);
@@ -92,6 +92,7 @@ const App = () => {
       versions={versions}
       simulator={simulator}
       hideSimulator={hideSimulator}
+      currentCompnentName={currentCompnentName}
     >
       <Switch>
         {routes.map((route) =>
