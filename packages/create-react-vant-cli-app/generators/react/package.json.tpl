@@ -21,20 +21,16 @@
   },
   "author": "",
   "license": "MIT",
-    "peerDependencies": {
-      "react": ">=16.14.0",
-      "react-dom": ">=16.14.0"
-    },
+  "peerDependencies": {
+    "react": ">=16.14.0",
+    "react-dom": ">=16.14.0"
+  },
   "devDependencies": {
     "@react-vant/cli": "^1.1.12",
-    "@types/classnames": "^2.2.11",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
-  },
-  "dependencies": {
-    "classnames": "^2.2.6"
   },
   "lint-staged": {
      "*.md": "prettier --write",
