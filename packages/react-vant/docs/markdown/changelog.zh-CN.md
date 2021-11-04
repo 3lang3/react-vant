@@ -16,7 +16,7 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 `2021-11-04`
 
-### Features
+**Features**
 
 - 新增`useUnmountedRef`钩子，避免因组件卸载后更新状态而导致的内存泄漏 ([75e0b2c](https://github.com/3lang3/react-vant/commit/75e0b2cba68cf1c539c588e6a984454b8c9a2b66))
 
@@ -39,7 +39,7 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 - 新增 [Swiper](#/zh-CN/swiper) 轮播组件，用于替换 Swipe 组件 [#127](https://github.com/3lang3/react-vant/pull/127)
 
-**Feature**
+**Features**
 
 - Sidebar: 新增 Item `children`支持，提供自定义内容渲染 [#129](https://github.com/3lang3/react-vant/issues/129)
 - ImagePreview: 新增缩放功能 [#3339d78](https://github.com/3lang3/react-vant/commit/3339d78385c3f717ec63f8c14d3f7e8194e830ad)
