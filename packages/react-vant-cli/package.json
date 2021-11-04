@@ -1,6 +1,6 @@
 {
   "name": "@react-vant/cli",
-  "version": "1.1.14",
+  "version": "1.1.15-alpha.0",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
