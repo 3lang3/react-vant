@@ -16,7 +16,7 @@ const CSS_LOADERS = [
   'style-loader',
   'css-loader',
   {
-    loader: 'postcss-loader',
+    loader: require.resolve('postcss-loader'),
     options: {
       postcssOptions: {
         config: existsSync(POSTCSS_CONFIG_FILE) && POSTCSS_CONFIG_FILE,
