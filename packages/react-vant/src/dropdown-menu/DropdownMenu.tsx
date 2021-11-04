@@ -182,7 +182,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props,
     <DropdownMenuContext.Provider
       value={{ props, value: innerValue, onChange: onInnerChange, close }}
     >
-      <div ref={root} className={classnames(bem())}>
+      <div ref={root} className={classnames(bem(), ...props.className)} style={{ ...props.style }}>
         <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
           {childrenRefs.map(renderTitle)}
         </div>
