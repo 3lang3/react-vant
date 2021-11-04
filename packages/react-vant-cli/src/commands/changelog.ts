@@ -53,6 +53,8 @@ export async function changelog(): Promise<void> {
       {
         preset: 'angular',
         releaseCount: 2,
+        tagPrefix: 'react-vant@',
+        lernaPackage: true,
       },
       {
         mainTemplate,
