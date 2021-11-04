@@ -6,12 +6,18 @@
     "type": "git",
     "url": "git@github.com:3lang3/react-vant.git"
   },
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "style": "lib/index.css",
-  "typings": "lib/index.d.ts",
-  "unpkg": "lib/react-vant.min.js",
-  "jsdelivr": "lib/react-vant.min.js",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "typings": "./es/index.d.ts",
+  "unpkg": "./lib/react-vant.min.js",
+  "jsdelivr": "./lib/react-vant.min.js",
+  "sideEffects": [
+    "*.css",
+    "*.less",
+    "./es/index.js",
+    "./src/index.ts"
+  ],
   "files": [
     "lib",
     "es"
