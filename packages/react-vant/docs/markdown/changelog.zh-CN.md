@@ -12,6 +12,14 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.3.3
+
+`2021-11-04`
+
+**Bug Fixes**
+
+- package.json 新增 sideEffect 支持 tree-sharking [#145](https://github.com/3lang3/react-vant/issues/145) ([31a43ae](https://github.com/3lang3/react-vant/commit/31a43ae6352efd4b1ee03377eabd5195ae806fdb))
+
 ### v1.3.2
 
 `2021-11-04`
