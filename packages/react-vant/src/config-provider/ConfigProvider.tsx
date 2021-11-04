@@ -9,13 +9,13 @@ function kebabCase(str: string): string {
     .replace(/^-/, '');
 }
 
-function mapThemeVarsToCSSVars(themeVars: Record<string, string | number>) {
+function mapThemeVarsToCSSVars(themeVars: Record<string, string | number>, prefix: string) {
   const cssVars: Record<string, string | number> = {};
   Object.keys(themeVars).forEach((key) => {
-    if (key.toString().startsWith('--rv-')) {
+    if (key.toString().startsWith(`--${prefix}-`)) {
       cssVars[key] = themeVars[key];
     } else {
-      cssVars[`--rv-${kebabCase(key)}`] = themeVars[key];
+      cssVars[`--${prefix}-${kebabCase(key)}`] = themeVars[key];
     }
   });
   return cssVars;
@@ -31,7 +31,7 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
 }) => {
   const varStyle = useMemo<CSSProperties | undefined>(() => {
     if (themeVars) {
-      return { ...style, ...mapThemeVarsToCSSVars(themeVars) };
+      return { ...style, ...mapThemeVarsToCSSVars(themeVars, props.prefixCls) };
     }
     return style;
   }, [themeVars]);
@@ -51,6 +51,7 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
 
 ConfigProvider.defaultProps = {
   tag: 'div',
+  prefixCls: 'rv',
 };
 
 export default ConfigProvider;
