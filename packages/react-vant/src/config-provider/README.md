@@ -55,15 +55,14 @@ React Vant 组件通过丰富的 [CSS 变量](https://developer.mozilla.org/zh-C
 import { ConfigProvider, Field, Rate, Slider, Button } from 'react-vant';
 
 // themeVars 内的值会被转换成对应 CSS 变量
-// 比如 sliderBarHeight 会转换成 `--rv-slider-bar-height`
 const themeVars = {
-  rateIconFullColor: '#ffcc56',
-  sliderBarHeight: '4px',
-  sliderButtonWidth: '20px',
-  sliderButtonHeight: '20px',
-  sliderActiveBackgroundColor: '#951fff',
-  buttonPrimaryBorderColor: '#951fff',
-  buttonPrimaryBackgroundColor: '#951fff',
+  '--rv-rate-icon-full-color': '#ffcc56',
+  '--rv-slider-bae-height': '4px',
+  '--rv-slider-button-width': '20px',
+  '--rv-slider-button-height': '20px',
+  '--rv-slider-active-background-color': '#951fff',
+  '--rv-button-primary-border-color': '#951fff',
+  '--rv-button-primary-background-color': '#951fff',
 };
 
 export default () => {
