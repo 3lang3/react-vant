@@ -13,6 +13,7 @@ package-lock.json
 package-error.json
 yarn.lock
 yarn-error.json
+pnpm-lock.yaml
 
 # dist file
 es
