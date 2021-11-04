@@ -35,7 +35,7 @@
 
 ### 贡献者
 
-<a href="https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
+<a href="https://github.com/3lang3/react-vant/graphs/contributors">
   <img style="width: 420px" src="https://contrib.rocks/image?repo=3lang3/react-vant"/>
 </a>
 
