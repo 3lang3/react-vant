@@ -26,13 +26,20 @@
 | 项目 | 描述 |
 | --- | --- |
 | [react-vant-cli](https://github.com/3lang3/react-vant/tree/main/packages/react-vant-cli) | 开箱即用的组件库搭建工具 |
-| ----- | ----- |
 
 ### 链接
 
 - [意见反馈](https://github.com/3lang3/react-vant/issues)
 - [更新日志](#/zh-CN/changelog)
 - [码云镜像](https://lang3.gitee.io/react-vant/#/zh-CN/)
+
+### 贡献者
+
+<a href="https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
+  <img style="width: 420px" src="https://contrib.rocks/image?repo=3lang3/react-vant"/>
+</a>
+
+- 部分图形设计来自[BiscuitCoder](https://github.com/BiscuitCoder)
 
 ### 开源协议
 

@@ -63,7 +63,7 @@ ReactDOM.render(<App />, mountNode);
 
 参考[react-vant-nextjs](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
 
-#### vite集成
+#### vite 集成
 
 参考[react-vant-vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
 
@@ -78,6 +78,17 @@ React Vant 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0。
 修改代码请阅读我们的 [贡献指南](https://3lang3.github.io/react-vant/#/zh-CN/contribution)。
 
 使用过程中发现任何问题都可以提 [Issue](https://github.com/3lang3/react-vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/3lang3/react-vant/pulls)。
+
+## 贡献者
+
+<a href="https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
+  <img style="width: 420px" src="https://contrib.rocks/image?repo=3lang3/react-vant"/>
+</a>
+
+<br />
+<br />
+
+- 部分图形设计来自[BiscuitCoder](https://github.com/BiscuitCoder)
 
 > 欢迎加入我们的微信讨论组
 
