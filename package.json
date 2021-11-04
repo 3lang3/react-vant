@@ -25,7 +25,7 @@
     "@react-vant/fabric": "^1.0.0",
     "eslint": "^7.32.0",
     "husky": "4",
-    "lerna": "^3.22.1",
+    "lerna": "^4.0.0",
     "lerna-changelog": "^2.1.0",
     "lint-staged": "^11.1.2",
     "prettier": "^2.4.0",
@@ -45,5 +45,6 @@
   },
   "dependencies": {
     "@react-vant/cli": "^1.1.5"
-  }
+  },
+  "name": "react-vant"
 }
