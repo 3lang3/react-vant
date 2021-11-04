@@ -100,7 +100,6 @@
   },
   "devDependencies": {
     "@types/execa": "^2.0.0",
-    "@types/fs-extra": "^9.0.2",
     "@types/gulp-if": "^0.0.33",
     "@types/gulp-less": "^0.0.31",
     "@types/gulp-plumber": "^0.0.32",

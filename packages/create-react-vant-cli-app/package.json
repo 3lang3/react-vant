@@ -33,7 +33,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/fs-extra": "^8.1.0",
     "@types/yeoman-environment": "^2.3.3",
     "@types/yeoman-generator": "^3.1.4",
     "release-it": "^13.0.0",
