@@ -1,6 +1,6 @@
 import React from 'react';
 import { components } from 'site-mobile-demo';
-import Button from '..'
+import Button from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -87,16 +87,24 @@ export default (): React.ReactNode => {
         </Button>
       </DemoBlock>
       <DemoBlock title="自定义颜色">
-        <Button color="#7232dd">单色按钮</Button>
-        <Button color="#7232dd" plain>
-          单色按钮
-        </Button>
-        <Button color="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</Button>
+        <div className="demo-button-row">
+          <Button background="#7232dd">单色按钮</Button>
+          <Button color="#2377EB">字体颜色</Button>
+          <Button background="#7232dd" plain>
+            单色按钮
+          </Button>
+        </div>
+
+        <Button background="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</Button>
       </DemoBlock>
       <DemoBlock title="按钮组">
         <Button.Group>
-          <Button icon="arrow-left" block>上一步</Button>
-          <Button icon="replay" block>刷新</Button>
+          <Button icon="arrow-left" block>
+            上一步
+          </Button>
+          <Button icon="replay" block>
+            刷新
+          </Button>
           <Button icon="arrow" block>
             下一步
           </Button>

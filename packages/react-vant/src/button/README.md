@@ -116,9 +116,11 @@ import { Button } from 'react-vant';
 通过 `Button.Group` 将多个按钮并排显示。
 
 ```jsx
- <Button.Group>
+<Button.Group>
   <Button block>上一步</Button>
-  <Button block type="primary" >下一步</Button>
+  <Button block type="primary">
+    下一步
+  </Button>
 </Button.Group>
 ```
 
@@ -131,7 +133,8 @@ import { Button } from 'react-vant';
 | type | 类型，可选值为 `primary` `info` `warning` `danger` | _string_ | `default` |
 | size | 尺寸，可选值为 `large` `small` `mini` | _string_ | `normal` |
 | text | 按钮文字 | _string_ | - |
-| color | 按钮颜色，支持传入 `linear-gradient` 渐变色 | _string_ | - |
+| color | 按钮文本颜色 | _string_ | - |
+| background | 按钮背景颜色，支持传入 `linear-gradient` 渐变色 | _string_ | - |
 | icon | 左侧名称 | _string\|ReactNode_ | - |
 | iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | iconPosition | 图标展示位置，可选值为 `right` | _string_ | `left` |
@@ -163,47 +166,45 @@ import { Button } from 'react-vant';
 import type { ButtonType, ButtonSize } from 'react-vant';
 ```
 
-
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-button-mini-height | _24px_ | - |
-| --rv-button-mini-padding | _0 var(--rv-padding-base)_ | - |
-| --rv-button-mini-font-size | _var(--rv-font-size-xs)_ | - |
-| --rv-button-small-height | _32px_ | - |
-| --rv-button-small-padding | _0 var(--rv-padding-xs)_ | - |
-| --rv-button-small-font-size | _var(--rv-font-size-sm)_ | - |
-| --rv-button-normal-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-button-normal-padding | _0 15px_ | - |
-| --rv-button-large-height | _50px_ | - |
-| --rv-button-default-height | _44px_ | - |
-| --rv-button-default-line-height | _1.2_ | - |
-| --rv-button-default-font-size | _var(--rv-font-size-lg)_ | - |
-| --rv-button-default-color | _var(--rv-text-color)_ | - |
-| --rv-button-default-background-color | _var(--rv-white)_ | - |
-| --rv-button-default-border-color | _var(--rv-border-color)_ | - |
-| --rv-button-primary-color | _var(--rv-white)_ | - |
-| --rv-button-primary-background-color | _var(--rv-primary-color)_ | - |
-| --rv-button-primary-border-color | _var(--rv-primary-color)_ | - |
-| --rv-button-success-color | _var(--rv-white)_ | - |
-| --rv-button-success-background-color | _var(--rv-success-color)_ | - |
-| --rv-button-success-border-color | _var(--rv-success-color)_ | - |
-| --rv-button-danger-color | _var(--rv-white)_ | - |
-| --rv-button-danger-background-color | _var(--rv-danger-color)_ | - |
-| --rv-button-danger-border-color | _var(--rv-danger-color)_ | - |
-| --rv-button-warning-color | _var(--rv-white)_ | - |
-| --rv-button-warning-background-color | _var(--rv-orange)_ | - |
-| --rv-button-warning-border-color | _var(--rv-orange)_ | - |
-| --rv-button-border-width | _var(--rv-border-width-base)_ | - |
-| --rv-button-border-radius | _var(--rv-border-radius-sm)_ | - |
-| --rv-button-round-border-radius | _var(--rv-border-radius-max)_ | - |
-| --rv-button-plain-background-color | _var(--rv-white)_ | - |
-| --rv-button-disabled-opacity | _var(--rv-disabled-opacity)_ | - |
-| --rv-button-icon-size | _1.2em_ | - |
-| --rv-button-loading-icon-size | _20px_ | - |
+| 名称                                 | 默认值                        | 描述 |
+| ------------------------------------ | ----------------------------- | ---- |
+| --rv-button-mini-height              | _24px_                        | -    |
+| --rv-button-mini-padding             | _0 var(--rv-padding-base)_    | -    |
+| --rv-button-mini-font-size           | _var(--rv-font-size-xs)_      | -    |
+| --rv-button-small-height             | _32px_                        | -    |
+| --rv-button-small-padding            | _0 var(--rv-padding-xs)_      | -    |
+| --rv-button-small-font-size          | _var(--rv-font-size-sm)_      | -    |
+| --rv-button-normal-font-size         | _var(--rv-font-size-md)_      | -    |
+| --rv-button-normal-padding           | _0 15px_                      | -    |
+| --rv-button-large-height             | _50px_                        | -    |
+| --rv-button-default-height           | _44px_                        | -    |
+| --rv-button-default-line-height      | _1.2_                         | -    |
+| --rv-button-default-font-size        | _var(--rv-font-size-lg)_      | -    |
+| --rv-button-default-color            | _var(--rv-text-color)_        | -    |
+| --rv-button-default-background-color | _var(--rv-white)_             | -    |
+| --rv-button-default-border-color     | _var(--rv-border-color)_      | -    |
+| --rv-button-primary-color            | _var(--rv-white)_             | -    |
+| --rv-button-primary-background-color | _var(--rv-primary-color)_     | -    |
+| --rv-button-primary-border-color     | _var(--rv-primary-color)_     | -    |
+| --rv-button-success-color            | _var(--rv-white)_             | -    |
+| --rv-button-success-background-color | _var(--rv-success-color)_     | -    |
+| --rv-button-success-border-color     | _var(--rv-success-color)_     | -    |
+| --rv-button-danger-color             | _var(--rv-white)_             | -    |
+| --rv-button-danger-background-color  | _var(--rv-danger-color)_      | -    |
+| --rv-button-danger-border-color      | _var(--rv-danger-color)_      | -    |
+| --rv-button-warning-color            | _var(--rv-white)_             | -    |
+| --rv-button-warning-background-color | _var(--rv-orange)_            | -    |
+| --rv-button-warning-border-color     | _var(--rv-orange)_            | -    |
+| --rv-button-border-width             | _var(--rv-border-width-base)_ | -    |
+| --rv-button-border-radius            | _var(--rv-border-radius-sm)_  | -    |
+| --rv-button-round-border-radius      | _var(--rv-border-radius-max)_ | -    |
+| --rv-button-plain-background-color   | _var(--rv-white)_             | -    |
+| --rv-button-disabled-opacity         | _var(--rv-disabled-opacity)_  | -    |
+| --rv-button-icon-size                | _1.2em_                       | -    |
+| --rv-button-loading-icon-size        | _20px_                        | -    |

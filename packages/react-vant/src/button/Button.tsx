@@ -1,4 +1,4 @@
-import React, { isValidElement, useContext } from 'react';
+import React, { isValidElement, useContext, useEffect } from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import Loading from '../loading';
@@ -11,6 +11,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     tag,
     type,
     color,
+    background,
     plain,
     disabled,
     loading,
@@ -21,7 +22,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     iconPosition,
   } = props;
 
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('button', prefixCls);
 
   const classes = classnames(
@@ -46,20 +47,25 @@ const Button: React.FC<ButtonProps> = (props) => {
 
   const style: Record<string, string | number> = { ...props.style };
 
-  if (color) {
-    style.color = plain ? color : WHITE;
+  if (background) {
+    style.backgroundColor = plain ? WHITE : background;
+    style.color = plain ? background : WHITE;
 
     if (!plain) {
       // Use background instead of backgroundColor to make linear-gradient work
-      style.background = color;
+      style.background = background;
     }
 
     // hide border when color is linear-gradient
-    if (color.indexOf('gradient') !== -1) {
+    if (background.indexOf('gradient') !== -1) {
       style.border = 0;
     } else {
-      style.borderColor = color;
+      style.borderColor = background;
     }
+  }
+
+  if (color) {
+    style.color = color;
   }
 
   function onClick(event) {
