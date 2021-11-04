@@ -27,7 +27,7 @@ const option2 = [
 ];
 
 export default () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState({});
   return (
     <DropdownMenu value={value} onChange={setValue}>
       <DropdownMenu.Item name="value1" options={option1} />
@@ -141,7 +141,6 @@ export default () => {
 | 参数                | 说明                         | 类型               | 默认值    |
 | ------------------- | ---------------------------- | ------------------ | --------- |
 | disabled            | 是否禁用菜单                 | _boolean_          | false     |
-| placeholder         | 占位文本                     | _string_           | `请选择`  |
 | activeColor         | 菜单标题和选项的选中态颜色   | _string_           | `#ee0a24` |
 | direction           | 菜单展开方向，可选值为`up`   | _string_           | `down`    |
 | zIndex              | 菜单栏 z-index 层级          | _number \| string_ | `10`      |
@@ -152,14 +151,15 @@ export default () => {
 
 ### DropdownItem Props
 
-| 参数       | 说明                       | 类型                           | 默认值         |
-| ---------- | -------------------------- | ------------------------------ | -------------- |
-| name       | 当前选中项对应的 value key | _number \| string_             | -              |
-| title      | 菜单项标题                 | _ReactNode_                    | 当前选中项文字 |
-| options    | 选项数组                   | _Option[]_                     | `[]`           |
-| disabled   | 是否禁用菜单               | _boolean_                      | `false`        |
-| titleClass | 标题额外类名               | _string_                       | -              |
-| teleport   | 指定挂载的节点             | _HTMLElment () => HTMLElement_ | -              |
+| 参数        | 说明                       | 类型                           | 默认值         |
+| ----------- | -------------------------- | ------------------------------ | -------------- |
+| name        | 当前选中项对应的 value key | _number \| string_             | -              |
+| title       | 菜单项标题                 | _ReactNode_                    | 当前选中项文字 |
+| placeholder | 占位文本                   | _string_                       | `请选择`       |
+| options     | 选项数组                   | _Option[]_                     | `[]`           |
+| disabled    | 是否禁用菜单               | _boolean_                      | `false`        |
+| titleClass  | 标题额外类名               | _string_                       | -              |
+| teleport    | 指定挂载的节点             | _HTMLElment () => HTMLElement_ | -              |
 
 ### DropdownMenu Events
 

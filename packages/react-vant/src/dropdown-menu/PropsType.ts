@@ -23,8 +23,6 @@ interface DropdownMenuCommonProps extends BaseTypeProps {
   disabled?: boolean;
   /** 动画时长，单位毫秒，设置为 0 可以禁用动画	 */
   duration?: number | string;
-  /** 未选中时展示的文本 */
-  placeholder?: string;
   /** 关闭菜单栏时触发	 */
   onClose?: () => void;
   /** 打开菜单栏时触发	 */
@@ -64,6 +62,8 @@ export interface DropdownMenuItemProps extends DropdownMenuCommonProps, ItemPriv
   options?: DropdownMenuItemOption[];
   /** 菜单标识符 */
   name: string;
+  /** 未选中时展示的文本 */
+  placeholder?: string;
   children?: React.ReactNode;
 }
 
