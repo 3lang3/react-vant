@@ -16,7 +16,7 @@ const CSS_LOADERS = [
   'style-loader',
   'css-loader',
   {
-    loader: require.resolve('postcss-loader'),
+    loader: 'postcss-loader',
     options: {
       postcssOptions: {
         config: existsSync(POSTCSS_CONFIG_FILE) && POSTCSS_CONFIG_FILE,
@@ -29,7 +29,7 @@ const plugins = [
   new FriendlyErrorsPlugin({
     clearConsole: false,
     logLevel: 'WARNING',
-  })
+  }),
 ];
 
 const tsconfigPath = join(CWD, 'tsconfig.json');
@@ -42,7 +42,7 @@ if (existsSync(tsconfigPath)) {
           semantic: true,
           syntactic: true,
         },
-        mode: "write-references",
+        mode: 'write-references',
       },
       formatter: 'codeframe',
       logger: {
