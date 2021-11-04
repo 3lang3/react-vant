@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Tabs, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import List from '../index';
@@ -22,6 +22,7 @@ async function getData(throwError?) {
 export default (): React.ReactNode => {
   const { DemoSection } = components;
 
+  const unmountedRef = useRef<boolean>(false);
   const listRef = useRef<ListInstance>(null);
   const [list, setList] = useState<Array<number>>([]);
   const [count, setCount] = useState(0);
@@ -29,8 +30,10 @@ export default (): React.ReactNode => {
   const [refreshList, setRefreshList] = useState<Array<number>>([]);
 
   const [finished, setFinished] = useState<boolean>(false);
+
   const onLoad = async () => {
     const data = await getData();
+    if (unmountedRef.current) return;
     setList((v) => [...v, ...data]);
     if (list.length >= 30) {
       setFinished(true);
@@ -41,6 +44,7 @@ export default (): React.ReactNode => {
     // 异步更新数据
     setCount((v) => v + 1);
     const data = await getData(count === 1);
+    if (unmountedRef.current) return;
     setErrorList((v) => [...v, ...data]);
     if (list.length >= 30) {
       setFinished(true);
@@ -49,6 +53,7 @@ export default (): React.ReactNode => {
 
   const onLoadRefresh = async (isRefresh?) => {
     const data = await getData();
+    if (unmountedRef.current) return;
     setRefreshList((v) => {
       const newList = isRefresh ? data : [...v, ...data];
       if (newList.length >= 30) {
@@ -63,6 +68,12 @@ export default (): React.ReactNode => {
     await onLoadRefresh(1);
     listRef.current?.check();
   };
+
+  useEffect(() => {
+    return () => {
+      unmountedRef.current = true;
+    };
+  });
 
   return (
     <DemoSection>
