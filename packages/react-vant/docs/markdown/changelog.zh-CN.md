@@ -12,6 +12,14 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.3.2
+
+`2021-11-04`
+
+**Bug Fixes**
+
+- DropdownMenu: className 错误 ([dfb4dd8](https://github.com/3lang3/react-vant/commit/dfb4dd8a4b421476da13605e7365ddea95158e17))
+
 ### v1.3.1
 
 `2021-11-04`
