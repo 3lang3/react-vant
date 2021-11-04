@@ -55,9 +55,7 @@ const Header = (props) => {
             <img alt="vant" src={config.logo} />
             <span>{config.title}</span>
           </a>
-          {config.searchConfig && (
-            <SearchInput lang={lang} searchConfig={config.searchConfig} />
-          )}
+          {config.searchConfig && <SearchInput lang={lang} searchConfig={config.searchConfig} />}
           <ul className="vant-doc-header__top-nav">
             {config.links &&
               config.links.length &&
@@ -67,21 +65,19 @@ const Header = (props) => {
                     className="vant-doc-header__logo-link"
                     target="_blank"
                     href={item.url}
+                    title={item.alt}
                     rel="noreferrer"
                   >
-                    <img src={item.logo} />
+                    <img src={item.logo} alt={item.alt} />
                   </a>
                 </li>
               ))}
             {versions && (
               <li ref={versionRef} className="vant-doc-header__top-nav-item">
                 <span
-                  className={classnames(
-                    'vant-doc-header__cube vant-doc-header__version',
-                    {
-                      'vant-doc-header__version-multiple': versions.length > 1,
-                    }
-                  )}
+                  className={classnames('vant-doc-header__cube vant-doc-header__version', {
+                    'vant-doc-header__version-multiple': versions.length > 1,
+                  })}
                   onClick={toggleVersionPop}
                 >
                   v{versions[0].label}

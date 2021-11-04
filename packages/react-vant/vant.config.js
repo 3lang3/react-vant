@@ -12,6 +12,11 @@ module.exports = {
         langLabel: '中文',
         links: [
           {
+            logo: 'https://user-images.githubusercontent.com/7098719/140293692-8c3c109d-ae11-4038-82b2-074b52aca315.png',
+            url: 'https://github.com/mallfoundry/taroify/',
+            alt: 'taro版本',
+          },
+          {
             logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
             url: 'https://github.com/3lang3/react-vant',
           },
