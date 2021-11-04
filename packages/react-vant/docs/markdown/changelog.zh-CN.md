@@ -16,7 +16,13 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 `2021-11-04`
 
+### Features
+
+- 新增`useUnmountedRef`钩子，避免因组件卸载后更新状态而导致的内存泄漏 ([75e0b2c](https://github.com/3lang3/react-vant/commit/75e0b2cba68cf1c539c588e6a984454b8c9a2b66))
+
 **Bug Fixes**
+
+- List: 修复 demo 页面在卸载后报错的问题 [#143](https://github.com/3lang3/react-vant/issues/143) ([d1eee8a](https://github.com/3lang3/react-vant/commit/d1eee8aaeeec431ea5362167cddd8906d7c677b7))
 
 - ConfigProvider: 优化`themeVars`使用体验 [#138](https://github.com/3lang3/react-vant/issues/138) ([f771c7b](https://github.com/3lang3/react-vant/commit/f771c7b211bae6dd5b6447cc323bd07545d4101e))
 - ConfigProvider: `prefixCls` 矫正 ([083f3b8](https://github.com/3lang3/react-vant/commit/083f3b83ff0328a4eb5d4b639e6aee77702430e6))
