@@ -49,10 +49,9 @@ import { Typography } from 'react-vant';
 
 ### Typography.Title Props
 
-| 参数  | 说明                                  | 类型     | 默认值 |
-| ----- | ------------------------------------- | -------- | ------ |
+| 参数  | 说明                                 | 类型     | 默认值 |
+| ----- | ------------------------------------ | -------- | ------ |
 | level | 重要程度，可选值 `1` `2` `3` `4` `5` | _number_ | `4`    |
-
 
 ## 主题定制
 
@@ -60,16 +59,16 @@ import { Typography } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-typography-color | _var(--rv-text-color)_ | - |
-| --rv-typography-link-color | _var(--rv-primary-color)_ | - |
-| --rv-typography-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-typography-line-height | _var(--rv-line-height-md)_ | - |
-| --rv-typography-primary-color | _var(--rv-primary-color)_ | - |
-| --rv-typography-danger-color | _var(--rv-danger-color)_ | - |
-| --rv-typography-success-color | _var(--rv-success-color)_ | - |
-| --rv-typography-warning-color | _var(--rv-warning-color)_ | - |
-| --rv-typography-secondary-color | _var(--rv-gray-6)_ | - |
-| --rv-typography-disabled-color | _var(--rv-gray-5)_ | - |
-| --rv-typography-light-color | _var(--rv-white-color)_ | - |
+| 名称                            | 默认值                     | 描述 |
+| ------------------------------- | -------------------------- | ---- |
+| --rv-typography-color           | _var(--rv-text-color)_     | -    |
+| --rv-typography-link-color      | _var(--rv-primary-color)_  | -    |
+| --rv-typography-font-size       | _var(--rv-font-size-md)_   | -    |
+| --rv-typography-line-height     | _var(--rv-line-height-md)_ | -    |
+| --rv-typography-primary-color   | _var(--rv-primary-color)_  | -    |
+| --rv-typography-danger-color    | _var(--rv-danger-color)_   | -    |
+| --rv-typography-success-color   | _var(--rv-success-color)_  | -    |
+| --rv-typography-warning-color   | _var(--rv-warning-color)_  | -    |
+| --rv-typography-secondary-color | _var(--rv-gray-6)_         | -    |
+| --rv-typography-disabled-color  | _var(--rv-gray-5)_         | -    |
+| --rv-typography-light-color     | _var(--rv-white)_          | -    |
