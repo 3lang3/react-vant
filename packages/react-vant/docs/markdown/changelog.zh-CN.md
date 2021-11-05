@@ -12,6 +12,13 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.3.4
+
+`2021-11-05` **Bug Fixes**
+
+- 移除 package.json 的`sideEffects`修复，打包忽略样式文件的 bug ([099712d](https://github.com/3lang3/react-vant/commit/099712da6cd150f6f4d3c1b17b64112575d7fc02))
+- Typography: `type`为`light`时颜色丢失的问题 ([2f47ddc](https://github.com/3lang3/react-vant/commit/2f47ddcdbdae4d2fcd46afc8e4794bcfe51a124f))
+
 ### v1.3.3
 
 `2021-11-04`
