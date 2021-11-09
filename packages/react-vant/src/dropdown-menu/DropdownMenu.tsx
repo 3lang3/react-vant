@@ -21,12 +21,15 @@ import DropdownMenuContext from './DropdownMenuContext';
 import { useUpdateEffect } from '../hooks';
 import useClickAway from '../hooks/use-click-away';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import useMergedState from '../hooks/use-merged-state';
 
 const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('dropdown-menu', prefixCls);
-
-  const [innerValue = {}, setInnerValue] = useState(() => props.value);
+  const [innerValue = {}, setInnerValue] = useMergedState({
+    value: props.value,
+    defaultValue: props.defaultValue,
+  });
   const [childrenRefs, setChildrenRefs] = useRefs();
   const [showPopupIndex, setShowPopupIndex] = useState<number>(null);
   const showPopupIndexRef = useRef<number>();
@@ -206,6 +209,7 @@ DropdownMenu.defaultProps = {
   closeOnClickOutside: true,
   closeOnClickOverlay: true,
   direction: 'down' as const,
+  defaultValue: {},
 };
 
 export default DropdownMenu;

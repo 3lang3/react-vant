@@ -38,6 +38,8 @@ interface DropdownMenuCommonProps extends BaseTypeProps {
 export interface DropdownMenuProps extends DropdownMenuCommonProps {
   /** 当前选中项对应的 value	 */
   value?: Record<string, string | number>;
+  /** 默认值 */
+  defaultValue?: Record<string, string | number>;
   /** 点击选项导致 value 变化时触发		 */
   onChange?: (v: Record<string, string | number>) => void;
   /** 是否在点击外部元素后关闭菜单	 */

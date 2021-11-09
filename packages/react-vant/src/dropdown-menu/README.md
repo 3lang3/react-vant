@@ -140,6 +140,8 @@ export default () => {
 
 | 参数                | 说明                         | 类型               | 默认值    |
 | ------------------- | ---------------------------- | ------------------ | --------- |
+| value               | 下拉菜单值                   | _Record<any, any>_ | -         |
+| defaultValue        | 下拉菜单默认值               | _Record<any, any>_ | -         |
 | disabled            | 是否禁用菜单                 | _boolean_          | false     |
 | activeColor         | 菜单标题和选项的选中态颜色   | _string_           | `#ee0a24` |
 | direction           | 菜单展开方向，可选值为`up`   | _string_           | `down`    |
