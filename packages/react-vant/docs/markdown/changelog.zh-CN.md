@@ -12,9 +12,26 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.3.5
+
+`2021-11-09`
+
+**Bug Fixes**
+
+- DropdownMenu: 已经选中的状态下再次点击不会收起 [#146](https://github.com/3lang3/react-vant/issues/146) ([8bd349b](https://github.com/3lang3/react-vant/commit/8bd349b1c2bba31dcb51d8c55a464580194b8df2))
+- DropdownMenu: 默认值 [#146](https://github.com/3lang3/react-vant/issues/146) ([2d95b7c](https://github.com/3lang3/react-vant/commit/2d95b7cdc7e2ca21376c7930acb171cf47f21a03))
+- useRefState: 移除 useLayoutEffect 兼容 ssr [#144](https://github.com/3lang3/react-vant/issues/144) ([91d1f36](https://github.com/3lang3/react-vant/commit/91d1f36dfeed59cf650994215024072e4d83fa9d))
+
+**Features**
+
+- Cell: 修复`Cell.Group`没有挂在`style`和`className`的问题 [#147](https://github.com/3lang3/react-vant/issues/147) ([46130b1](https://github.com/3lang3/react-vant/commit/46130b1e0351bf227530adcf0eee33a1b2efacda))
+- Swiper: 手势滑动同方向无法正常滚动的问题 ([6a0b407](https://github.com/3lang3/react-vant/commit/6a0b407f7504d49db28ec399014916b06b8daf13))
+
 ### v1.3.4
 
-`2021-11-05` **Bug Fixes**
+`2021-11-05`
+
+**Bug Fixes**
 
 - 移除 package.json 的`sideEffects`修复，打包忽略样式文件的 bug ([099712d](https://github.com/3lang3/react-vant/commit/099712da6cd150f6f4d3c1b17b64112575d7fc02))
 - Typography: `type`为`light`时颜色丢失的问题 ([2f47ddc](https://github.com/3lang3/react-vant/commit/2f47ddcdbdae4d2fcd46afc8e4794bcfe51a124f))
