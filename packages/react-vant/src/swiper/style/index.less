@@ -20,6 +20,11 @@
   overflow: hidden;
   border-radius: var(--rv-swipe-border-radius);
 
+  &--vertical {
+    .@{rv-prefix}-swiper__track--allow-touch-move {
+      touch-action: pan-x;
+    }
+  }
   &__track {
     width: 100%;
     padding: 0;
@@ -27,7 +32,7 @@
 
     &--allow-touch-move {
       cursor: grab;
-      touch-action: none;
+      touch-action: pan-y;
     }
 
     &-inner {

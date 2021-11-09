@@ -155,7 +155,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       },
       rubberband: true,
       axis,
-      preventScroll: true,
+      preventScroll: !vertical,
       pointer: {
         touch: true,
       },
@@ -242,7 +242,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   }
 
   return (
-    <div ref={setRoot} className={cls(props.className, bem())} style={props.style}>
+    <div ref={setRoot} className={cls(props.className, bem({ vertical }))} style={props.style}>
       <div
         className={cls(
           bem('track', {
