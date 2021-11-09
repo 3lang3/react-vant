@@ -11,7 +11,7 @@ export type PageIndicatorProps = {
 export interface SwiperProps extends BaseTypeProps {
   /** 初始位置索引值 */
   initialSwipe?: number;
-  /** 是否允许手势滑动	 */
+  /** 是否允许手势滑动 */
   touchable?: boolean;
   /** 自动轮播间隔，单位为 ms	 */
   autoplay?: boolean | number;
