@@ -88,8 +88,8 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
     const onClick = () => {
       if (option.value !== currentValue) {
         parent.onChange({ [props.name]: option.value });
-        onClose();
       }
+      onClose();
     };
 
     return (
