@@ -5,13 +5,15 @@ import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CellGroup: React.FC<CellGroupProps> = (props) => {
-  const { title, border, inset } = props;
+  const { title, border, inset, className } = props;
 
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('cell-group', prefixCls);
 
   const renderGroup = () => (
-    <div className={classnames(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border })}>
+    <div
+      className={classnames(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border }, className)}
+    >
       {props.children}
     </div>
   );
