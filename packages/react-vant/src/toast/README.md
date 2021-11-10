@@ -163,7 +163,7 @@ Toast.resetDefaultOptions('loading');
 ### Options
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | type | 提示类型，可选值为 `loading` `success` `fail` `info` | _string_ | `info` |
 | position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
