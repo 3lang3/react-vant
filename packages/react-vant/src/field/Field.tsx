@@ -118,7 +118,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   };
 
   const renderInput = () => {
-    const { type, error, name, rows, value, placeholder, disabled, readonly, onClickInput } = props;
+    const { type, error, name, rows, value, placeholder, disabled, readonly } = props;
     const controlClass = bem('control', [
       getProp('inputAlign'),
       {
@@ -129,11 +129,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     ]);
 
     if (props.children) {
-      return (
-        <div className={classnames(controlClass)} onClick={onClickInput}>
-          {props.children}
-        </div>
-      );
+      return <div className={classnames(controlClass)}>{props.children}</div>;
     }
 
     const handleChange = (e) => {
@@ -214,7 +210,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           placeholder={placeholder || ''}
           onBlur={handleBulr}
           onFocus={handleFocus}
-          onClick={onClickInput}
           onChange={handleChange}
           onKeyPress={handleKeypress}
         />
@@ -249,7 +244,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
         placeholder={placeholder || ''}
         onBlur={handleBulr}
         onFocus={handleFocus}
-        onClick={onClickInput}
         onChange={handleChange}
         onKeyPress={handleKeypress}
       />
@@ -406,7 +400,9 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       )}
     >
       <div className={classnames(bem('body'))}>
-        {renderInput()}
+        <div className={classnames(bem('control-wrapper'))} onClick={props.onClickInput}>
+          {renderInput()}
+        </div>
         {showClear &&
           (typeof props.clearIcon === 'string' ? (
             <Icon
