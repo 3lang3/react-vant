@@ -70,8 +70,8 @@ import { Empty } from 'react-vant';
 | --- | --- | --- | --- |
 | image | 图片类型，可选值为 `error` `network` `search`，支持传入图片 URL | _string\|ReactNode_ | `default` |
 | description | 图片下方的描述文字 | _ReactNode_ | - |
-| className | 定义图片或文字样式 | _string_ | - |
-
+| className | 组件 class | _string_ | - |
+| style | 组件样式 | _CSSProperties_ | - |
 
 ## 主题定制
 
@@ -79,13 +79,13 @@ import { Empty } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                | 默认值                      | 描述 |
-| ----------------------------------- | --------------------------- | ---- |
+| 名称                               | 默认值                     | 描述 |
+| ---------------------------------- | -------------------------- | ---- |
 | --rv-empty-padding                 | _var(--rv-padding-xl) 0_   | -    |
-| --rv-empty-image-size              | _160px_                     | -    |
+| --rv-empty-image-size              | _160px_                    | -    |
 | --rv-empty-description-margin-top  | _var(--rv-padding-md)_     | -    |
-| --rv-empty-description-padding     | _0 60px_                    | -    |
+| --rv-empty-description-padding     | _0 60px_                   | -    |
 | --rv-empty-description-color       | _var(--rv-gray-6)_         | -    |
 | --rv-empty-description-font-size   | _var(--rv-font-size-md)_   | -    |
 | --rv-empty-description-line-height | _var(--rv-line-height-md)_ | -    |
-| --rv-empty-bottom-margin-top       | _24px_                      | -    |
+| --rv-empty-bottom-margin-top       | _24px_                     | -    |

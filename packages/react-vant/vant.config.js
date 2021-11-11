@@ -90,6 +90,7 @@ module.exports = {
               { path: 'collapse', title: 'Collapse 折叠面板' },
               { path: 'count-down', title: 'CountDown 倒计时' },
               { path: 'divider', title: 'Divider 分割线' },
+              { path: 'empty', title: 'Empty 空状态' },
               { path: 'image-preview', title: 'ImagePreview 图片预览' },
               { path: 'lazyload', title: 'Lazyload 懒加载' },
               { path: 'list', title: 'List 列表' },
