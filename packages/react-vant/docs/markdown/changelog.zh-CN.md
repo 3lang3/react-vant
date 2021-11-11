@@ -12,6 +12,16 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.3.6
+
+`2021-11-11`
+
+**Bug Fixes**
+
+- Field: 修复`disabled`时`onClickInput`失效的问题 [#149](https://github.com/3lang3/react-vant/issues/149) ([2d681ce](https://github.com/3lang3/react-vant/commit/2d681cea253323eb21dfda2a3086a068af1e647f))
+
+- 修复 package.json 中`sideEffect` 值错误，导致打包产物无 css 文件问题 [#145](https://github.com/3lang3/react-vant/issues/145) ([37a1bdb](https://github.com/3lang3/react-vant/commit/37a1bdb33b93b67a3d4e9e3baf8faa0ae2347368))
+
 ### v1.3.5
 
 `2021-11-09`
