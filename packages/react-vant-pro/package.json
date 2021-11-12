@@ -17,13 +17,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@ahooksjs/use-request": "^2.8.13",
     "@vant/icons": "1.x",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
-    "react-vant": "1.x",
     "react": ">=16.14.0",
-    "react-dom": ">=16.14.0"
+    "react-dom": ">=16.14.0",
+    "react-vant": "1.x"
   },
   "keywords": [
     "react-vant",
