@@ -1,0 +1,36 @@
+{
+  "name": "@react-vant/pro",
+  "version": "0.0.1",
+  "description": "@react-vant/pro components",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
+  "sideEffects": [
+    "*.less"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@vant/icons": "1.x",
+    "classnames": "^2.2.6"
+  },
+  "peerDependencies": {
+    "react-vant": "1.x",
+    "react": ">=16.14.0",
+    "react-dom": ">=16.14.0"
+  },
+  "keywords": [
+    "react-vant",
+    "react-vant-pro"
+  ],
+  "authors": [
+    "3lang3 <zhanghuang11211@gmail.com> (https://github.com/3lang3)"
+  ],
+  "license": "MIT"
+}
