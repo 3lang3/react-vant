@@ -23,11 +23,21 @@ export interface ProListProps<T, U extends ParamsType> extends Pick<ListProps, '
   /** @name 下拉刷新 */
   pullRefresh?: boolean | PullRefreshProps;
   /** @name 瀑布流布局 */
-  masonry?: boolean;
+  masonry?: boolean | MasonryProps;
   initialPage?: number;
   row?: (record: T, index: number) => React.ReactNode;
 }
 
 export type ProListInstance = {
   reload: () => void;
+};
+
+type BreakpointColsProps = number | { default: number; [key: number]: number };
+
+export type MasonryProps = {
+  breakpointCols?: BreakpointColsProps;
+  className?: string;
+  columnClassName?: string;
+  children: React.ReactNode;
+  columnAttrs?: React.HTMLAttributes<HTMLDivElement>;
 };

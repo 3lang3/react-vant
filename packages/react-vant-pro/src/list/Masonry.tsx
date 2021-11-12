@@ -1,16 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { MasonryProps } from './PropsType';
 
 const DEFAULT_COLUMNS = 2;
-
-type BreakpointColsProps = number | { default: number; [key: number]: number };
-
-export type MasonryCssProps = {
-  breakpointCols?: BreakpointColsProps;
-  className?: string;
-  columnClassName?: string;
-  children: React.ReactNode;
-  columnAttrs?: React.HTMLAttributes<HTMLDivElement>;
-};
 
 function getInitColumnCount(props) {
   let columnCount;
@@ -23,7 +14,7 @@ function getInitColumnCount(props) {
   return columnCount;
 }
 
-const Masonry = (props: MasonryCssProps): React.ReactNode => {
+const Masonry = (props: MasonryProps): JSX.Element => {
   const [columnCount, setColumnCount] = useState<number>(() => getInitColumnCount(props));
 
   const lastRecalculateAnimationFrameRef = useRef<number>(null);
