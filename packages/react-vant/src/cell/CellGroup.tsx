@@ -11,29 +11,22 @@ const CellGroup: React.FC<CellGroupProps> = (props) => {
   const [bem] = createNamespace('cell-group', prefixCls);
 
   const renderGroup = () => (
-    <div
-      className={classnames(
-        bem({ inset }),
-        { [BORDER_TOP_BOTTOM]: !inset && border },
-        props.className,
-      )}
-      style={{ ...props.style }}
-    >
+    <div className={classnames(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border })}>
       {props.children}
     </div>
   );
 
-  const renderTitle = () => <div className={classnames(bem('title'))}>{title}</div>;
+  const renderTitle = () => {
+    if (title) return <div className={classnames(bem('title'))}>{title}</div>;
+    return null;
+  };
 
-  if (title)
-    return (
-      <>
-        {renderTitle()}
-        {renderGroup()}
-      </>
-    );
-
-  return renderGroup();
+  return (
+    <div className={props.className} style={props.style}>
+      {renderTitle()}
+      {renderGroup()}
+    </div>
+  );
 };
 
 CellGroup.defaultProps = {
