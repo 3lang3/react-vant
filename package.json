@@ -22,12 +22,6 @@
     "release:site": "lerna exec --scope react-vant yarn release:site",
     "start": "lerna exec --scope react-vant yarn start"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "react-vant-cli commit-lint"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx,js,less}": "prettier --write",
     "*.{ts,tsx,js}": "eslint --fix",
@@ -35,17 +29,16 @@
     "package.json": "yarn sort-package-json"
   },
   "dependencies": {
-    "@react-vant/cli": "^1.1.5"
+    "@react-vant/cli": "1.1.17"
   },
   "devDependencies": {
-    "@react-vant/fabric": "^1.0.0",
+    "@react-vant/fabric": "1.0.4",
     "eslint": "7.32.0",
-    "husky": "4.3.8",
+    "husky": "7.0.4",
     "lerna": "4.0.0",
     "lerna-changelog": "2.2.0",
     "lint-staged": "11.2.6",
     "prettier": "2.4.1",
-    "pretty-quick": "3.1.1",
     "sort-package-json": "1.53.1",
     "stylelint": "13.13.1"
   }

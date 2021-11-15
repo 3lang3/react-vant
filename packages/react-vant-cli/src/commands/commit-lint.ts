@@ -1,12 +1,14 @@
 import { readFileSync } from 'fs-extra';
+import { join } from 'path';
 import { consola } from '../common/logger';
 
-const commitRE = /^(revert: )?(fix|feat|docs|perf|test|types|style|build|chore|refactor|breaking change)(\(.+\))?: .{1,50}/;
+const commitRE =
+  /^(revert: )?(fix|feat|docs|perf|test|types|style|build|chore|refactor|breaking change)(\(.+\))?: .{1,50}/;
 const mergeRE = /Merge /;
 
-export function commitLint() {
-  const gitParams = process.env.HUSKY_GIT_PARAMS as string;
-  const commitMsg = readFileSync(gitParams, 'utf-8').trim();
+export function commitLint(_, [path]) {
+  const gitCommitPath = join(__dirname, '../../../../', path);
+  const commitMsg = readFileSync(gitCommitPath, 'utf-8').trim();
 
   if (!commitRE.test(commitMsg) && !mergeRE.test(commitMsg)) {
     consola.error(`invalid commit message: "${commitMsg}".
