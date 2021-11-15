@@ -103,7 +103,7 @@
     "@types/gulp-if": "0.0.33",
     "@types/gulp-less": "0.0.31",
     "@types/gulp-plumber": "0.0.32",
-    "@types/jest": "^26.0.15",
+    "@types/jest": "26.0.24",
     "@types/lodash": "4.14.176",
     "@types/node": "14.17.33",
     "@types/postcss-load-config": "2.0.1",
