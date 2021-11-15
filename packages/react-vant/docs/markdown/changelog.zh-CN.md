@@ -12,6 +12,14 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.3.7
+
+`2021-11-15`
+
+**Bug Fixes**
+
+- Cell.Group: 修复 style 和 className 作用范围不包括 title 的问题 [#153](https://github.com/3lang3/react-vant/issues/153) ([5549afa](https://github.com/3lang3/react-vant/commit/5549afac3ffe420c4bff0e95bc3c06ef02c39b4c))
+
 ### v1.3.6
 
 `2021-11-11`
