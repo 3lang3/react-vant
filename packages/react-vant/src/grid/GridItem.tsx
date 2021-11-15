@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { addUnit } from '../utils';
 import { GridProps, GridItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
@@ -18,7 +18,7 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
   style,
   ...props
 }) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('grid-item', prefixCls);
   const { index, parent } = props;
   if (!parent) {

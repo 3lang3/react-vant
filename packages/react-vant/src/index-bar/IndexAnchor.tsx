@@ -9,7 +9,7 @@ import React, {
   useContext,
   useCallback,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import { getRect as getElementRect } from '../hooks/use-rect';
 import useHeight from '../hooks/use-height';
@@ -100,7 +100,7 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
     >
       <div
         style={anchorStyle as CSSProperties}
-        className={classnames(bem({ sticky }), { [BORDER_BOTTOM]: sticky })}
+        className={clsx(bem({ sticky }), { [BORDER_BOTTOM]: sticky })}
       >
         {props.children || props.index}
       </div>

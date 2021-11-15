@@ -1,5 +1,5 @@
 import React, { isValidElement, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Icon from '../icon';
 import { isDef } from '../utils';
 import { CellProps } from './PropsType';
@@ -13,7 +13,7 @@ const Cell: React.FC<CellProps> = (props) => {
     const showLabel = isDef(props.label);
 
     if (showLabel) {
-      return <div className={classnames(bem('label'), props.labelClass)}>{props.label}</div>;
+      return <div className={clsx(bem('label'), props.labelClass)}>{props.label}</div>;
     }
     return null;
   };
@@ -21,7 +21,7 @@ const Cell: React.FC<CellProps> = (props) => {
   const renderTitle = () => {
     if (isDef(props.title)) {
       return (
-        <div className={classnames(bem('title'), props.titleClass)} style={props.titleStyle}>
+        <div className={clsx(bem('title'), props.titleClass)} style={props.titleStyle}>
           {props.title}
           {renderLabel()}
         </div>
@@ -36,7 +36,7 @@ const Cell: React.FC<CellProps> = (props) => {
 
     if (hasValue) {
       return (
-        <div className={classnames(bem('value', { alone: !hasTitle }), props.valueClass)}>
+        <div className={clsx(bem('value', { alone: !hasTitle }), props.valueClass)}>
           {props.children ? props.children : <span>{props.value}</span>}
         </div>
       );
@@ -47,11 +47,7 @@ const Cell: React.FC<CellProps> = (props) => {
   const renderLeftIcon = () => {
     if (typeof props.icon === 'string') {
       return (
-        <Icon
-          name={props.icon}
-          className={classnames(bem('left-icon'))}
-          classPrefix={props.iconPrefix}
-        />
+        <Icon name={props.icon} className={clsx(bem('left-icon'))} classPrefix={props.iconPrefix} />
       );
     }
 
@@ -69,7 +65,7 @@ const Cell: React.FC<CellProps> = (props) => {
 
     if (props.isLink) {
       const name = props.arrowDirection ? `arrow-${props.arrowDirection}` : 'arrow';
-      return <Icon name={name} className={classnames(bem('right-icon'))} />;
+      return <Icon name={name} className={clsx(bem('right-icon'))} />;
     }
     return null;
   };
@@ -89,7 +85,7 @@ const Cell: React.FC<CellProps> = (props) => {
   return (
     <div
       style={style}
-      className={classnames(bem(classes), className)}
+      className={clsx(bem(classes), className)}
       role={clickable ? 'button' : undefined}
       onClick={onClick}
     >

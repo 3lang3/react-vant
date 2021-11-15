@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { Instance, createPopper, offsetModifier } from '@vant/popperjs';
 import { PopoverAction, PopoverInstance, PopoverProps } from './PropsType';
 import { extend, pick } from '../utils';

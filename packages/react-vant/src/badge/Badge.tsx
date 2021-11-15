@@ -1,5 +1,5 @@
 import React, { CSSProperties, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { BadgeProps } from './PropsType';
 import { isDef, addUnit } from '../utils';
 import { isNumeric } from '../utils/validate/number';
@@ -8,7 +8,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 const Badge: React.FC<BadgeProps> = (props) => {
   const { content, max, dot, showZero, tag } = props;
 
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('badge', prefixCls);
 
   const hasContent = () => {
@@ -52,7 +52,7 @@ const Badge: React.FC<BadgeProps> = (props) => {
       }
       return (
         <div
-          className={classnames(
+          className={clsx(
             {
               [props.className]: props.className && !props.children,
             },
@@ -71,7 +71,7 @@ const Badge: React.FC<BadgeProps> = (props) => {
     return React.createElement(
       tag,
       {
-        className: classnames(bem('wrapper'), props.className),
+        className: clsx(bem('wrapper'), props.className),
         onClick: props.onClick,
         onTouchStart: props.onTouchStart,
         style: props.style,

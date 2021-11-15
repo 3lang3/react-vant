@@ -1,5 +1,5 @@
 import React, { CSSProperties, useContext, useMemo, useRef, useState } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { SliderProps, SliderValue } from './PropsType';
 import { addUnit, range, addNumber, preventDefault, getSizeStyle, stopPropagation } from '../utils';
 import useTouch from '../hooks/use-touch';

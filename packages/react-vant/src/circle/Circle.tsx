@@ -1,5 +1,5 @@
 import React, { CSSProperties, useContext, useEffect, useMemo, useState } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { CircleProps, CircleStartPosition } from './PropsType';
 import { isObject, getSizeStyle } from '../utils';
 import { cancelRaf, raf } from '../utils/raf';
@@ -27,13 +27,13 @@ const ROTATE_ANGLE_MAP: Record<CircleStartPosition, number> = {
 };
 
 const Circle: React.FC<CircleProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('circle', prefixCls);
 
   // eslint-disable-next-line no-plusplus
   const id = `van-circle-${uid++}`;
 
-  const [currentRate, setCurrentRate] = useState(() => props.defaultRate || 0)
+  const [currentRate, setCurrentRate] = useState(() => props.defaultRate || 0);
 
   const [current] = useMergedState({
     defaultValue: props.defaultRate,
@@ -65,14 +65,14 @@ const Circle: React.FC<CircleProps> = (props) => {
       const now = Date.now();
       const progress = Math.min((now - startTime) / duration, 1);
       const rate = progress * (endRate - startRate) + startRate;
-      const crate = format(parseFloat(rate.toFixed(1)))
+      const crate = format(parseFloat(rate.toFixed(1)));
 
       setCurrentRate(crate);
 
       if (endRate > startRate ? rate < endRate : rate > endRate) {
         rafId = raf(animate);
       } else {
-        props.onChange?.(crate)
+        props.onChange?.(crate);
       }
     };
     if (props.speed) {
@@ -98,7 +98,7 @@ const Circle: React.FC<CircleProps> = (props) => {
       strokeDasharray: `${offset}px ${PERIMETER}px`,
     };
 
-    return <path d={path} style={style} className={classnames(bem('hover'))} stroke={color} />;
+    return <path d={path} style={style} className={clsx(bem('hover'))} stroke={color} />;
   };
 
   const renderLayer = () => {
@@ -108,7 +108,7 @@ const Circle: React.FC<CircleProps> = (props) => {
       strokeWidth: `${props.strokeWidth}px`,
     };
 
-    return <path className={classnames(bem('layer'))} style={style} d={path} />;
+    return <path className={clsx(bem('layer'))} style={style} d={path} />;
   };
 
   const renderGradient = () => {
@@ -134,14 +134,14 @@ const Circle: React.FC<CircleProps> = (props) => {
 
   const renderText = () => {
     if (props.text) {
-      return <div className={classnames(bem('text'))}>{props.text}</div>;
+      return <div className={clsx(bem('text'))}>{props.text}</div>;
     }
     return props.children;
   };
 
   return (
     <div
-      className={classnames(bem(), props.className)}
+      className={clsx(bem(), props.className)}
       style={{ ...props.style, ...getSizeStyle(props.size) }}
     >
       <svg viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`} style={svgStyle}>

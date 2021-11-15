@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import Image from '../../image';
 import Icon from '../../icon';
 import ConfigProviderContext from '../../config-provider/ConfigProviderContext';

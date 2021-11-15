@@ -9,7 +9,7 @@ import React, {
   forwardRef,
   useContext,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import Loading from '../loading';
 import Column from './PickerColumn';
@@ -233,7 +233,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
 
   const renderTitle = () => {
     if (props.title) {
-      return <div className={classnames(bem('title'), 'rv-ellipsis')}>{props.title}</div>;
+      return <div className={clsx(bem('title'), 'rv-ellipsis')}>{props.title}</div>;
     }
     return null;
   };
@@ -241,7 +241,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const renderCancel = () => {
     const text = props.cancelButtonText || '取消';
     return (
-      <button type="button" className={classnames(bem('cancel'))} onClick={cancel}>
+      <button type="button" className={clsx(bem('cancel'))} onClick={cancel}>
         {text}
       </button>
     );
@@ -250,7 +250,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const renderConfirm = () => {
     const text = props.confirmButtonText || '确认';
     return (
-      <button type="button" className={classnames(bem('confirm'))} onClick={confirm}>
+      <button type="button" className={clsx(bem('confirm'))} onClick={confirm}>
         {text}
       </button>
     );
@@ -259,7 +259,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const renderToolbar = () => {
     if (props.showToolbar) {
       return (
-        <div className={classnames(bem('toolbar'))}>
+        <div className={clsx(bem('toolbar'))}>
           {props.toolbar || (
             <>
               {renderCancel()}
@@ -302,10 +302,10 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
     };
 
     return (
-      <div ref={wrapper} className={classnames(bem('columns'))} style={columnsStyle}>
+      <div ref={wrapper} className={clsx(bem('columns'))} style={columnsStyle}>
         {renderColumnItems()}
-        <div className={classnames(bem('mask'))} style={maskStyle} />
-        <div className={classnames(BORDER_UNSET_TOP_BOTTOM, bem('frame'))} style={frameStyle} />
+        <div className={clsx(bem('mask'))} style={maskStyle} />
+        <div className={clsx(BORDER_UNSET_TOP_BOTTOM, bem('frame'))} style={frameStyle} />
       </div>
     );
   };
@@ -333,9 +333,9 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   }));
 
   return (
-    <div className={classnames(bem(), props.className)}>
+    <div className={clsx(bem(), props.className)}>
       {props.toolbarPosition === 'top' ? renderToolbar() : null}
-      {props.loading ? <Loading className={classnames(bem('loading'))} /> : null}
+      {props.loading ? <Loading className={clsx(bem('loading'))} /> : null}
       {props.columnsTop}
       {renderColumns()}
       {props.columnsBottom}

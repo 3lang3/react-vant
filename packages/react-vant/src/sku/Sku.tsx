@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SkuActionType, SkuInstance, SkuProps } from './PropsType';
 import ActionBar from '../action-bar';

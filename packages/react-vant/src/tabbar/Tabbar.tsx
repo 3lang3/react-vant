@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { TabbarProps } from './PropsType';
 import { getZIndexStyle } from '../utils';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
@@ -12,13 +12,16 @@ const Tabbar: React.FC<TabbarProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('tabbar', prefixCls);
 
-  const [current, setCurrent] = useMergedState({ value: props.value, defaultValue: props.defaultValue });
+  const [current, setCurrent] = useMergedState({
+    value: props.value,
+    defaultValue: props.defaultValue,
+  });
   const root = useRef<HTMLDivElement>();
   const height = useHeight(root);
 
   const renderPlaceholder = (renderContent) => {
     return (
-      <div className={classnames(bem('placeholder'))} style={{ height }}>
+      <div className={clsx(bem('placeholder'))} style={{ height }}>
         {renderContent()}
       </div>
     );
@@ -41,17 +44,19 @@ const Tabbar: React.FC<TabbarProps> = (props) => {
         <div
           ref={root}
           style={{ ...props.style, ...getZIndexStyle(zIndex) }}
-          className={classnames(props.className, bem({ fixed }), {
+          className={clsx(props.className, bem({ fixed }), {
             [BORDER_TOP_BOTTOM]: border,
             'rv-safe-area-bottom': enableSafeArea(),
           })}
         >
-          {React.Children.toArray(props.children).filter(Boolean).map((child: React.ReactElement, index) =>
-            React.cloneElement(child, {
-              setActive,
-              index,
-            }),
-          )}
+          {React.Children.toArray(props.children)
+            .filter(Boolean)
+            .map((child: React.ReactElement, index) =>
+              React.cloneElement(child, {
+                setActive,
+                index,
+              }),
+            )}
         </div>
       </TabbarContext.Provider>
     );
@@ -66,7 +71,7 @@ const Tabbar: React.FC<TabbarProps> = (props) => {
 Tabbar.defaultProps = {
   fixed: true,
   border: true,
-  defaultValue: 0
+  defaultValue: 0,
 };
 
 export default Tabbar;

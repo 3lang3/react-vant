@@ -10,7 +10,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { DropdownItemInstance, DropdownMenuInstance, DropdownMenuProps } from './PropsType';
 import { isDef } from '../utils';
 import useEventListener from '../hooks/use-event-listener';
@@ -122,7 +122,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props,
         key={index}
         role="button"
         tabIndex={disabled ? -1 : 0}
-        className={classnames(bem('item', { disabled }))}
+        className={clsx(bem('item', { disabled }))}
         onClick={() => {
           if (!disabled) {
             toggleItem(index);
@@ -130,7 +130,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props,
         }}
       >
         <span
-          className={classnames(
+          className={clsx(
             bem('title', {
               down: showPopup === (props.direction === 'down'),
               active: showPopup,
@@ -185,8 +185,8 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props,
     <DropdownMenuContext.Provider
       value={{ props, value: innerValue, onChange: onInnerChange, close }}
     >
-      <div ref={root} className={classnames(bem(), props.className)} style={{ ...props.style }}>
-        <div ref={barRef} style={barStyle()} className={classnames(bem('bar', { opened }))}>
+      <div ref={root} className={clsx(bem(), props.className)} style={{ ...props.style }}>
+        <div ref={barRef} style={barStyle()} className={clsx(bem('bar', { opened }))}>
           {childrenRefs.map(renderTitle)}
         </div>
         {Children.toArray(props.children)

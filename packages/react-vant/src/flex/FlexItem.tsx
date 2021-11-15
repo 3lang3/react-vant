@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import FlexContext from './FlexContext';
 import { FlexItemProps, FlexType } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const FlexItem: React.FC<FlexItemProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('flexitem', prefixCls);
   const { style, className, span, children, flex, ...others } = props;
 
-  const classes = classnames(bem([span?.toString()]), className);
+  const classes = clsx(bem([span?.toString()]), className);
 
   const parseFlex = (_flex: FlexType): string => {
     if (typeof _flex === 'number') {

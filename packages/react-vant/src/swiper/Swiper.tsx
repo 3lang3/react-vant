@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { useSpring, animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

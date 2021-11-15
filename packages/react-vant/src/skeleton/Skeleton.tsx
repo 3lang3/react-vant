@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { SkeletonProps } from './PropsType';
 import { addUnit, getSizeStyle } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

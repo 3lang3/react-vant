@@ -1,5 +1,5 @@
 import React, { useState, useContext, useMemo, forwardRef } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import TabsContext from './TabsContext';
 import { TabPaneProps } from './PropsType';
@@ -40,7 +40,7 @@ const TabPane = forwardRef<HTMLDivElement, TabPaneProps>((props, ref) => {
   const show = scrollspy || isActive;
 
   if (animated || swipeable) {
-    return <div className={classnames(bem('pane'))}>{props.children}</div>;
+    return <div className={clsx(bem('pane'))}>{props.children}</div>;
   }
 
   const shouldRender = inited || scrollspy || !lazyRender;
@@ -51,7 +51,7 @@ const TabPane = forwardRef<HTMLDivElement, TabPaneProps>((props, ref) => {
       ref={ref}
       style={{ display: show ? 'block' : 'none' }}
       role="tabpanel"
-      className={classnames(bem('pane'))}
+      className={clsx(bem('pane'))}
     >
       {Content}
     </div>

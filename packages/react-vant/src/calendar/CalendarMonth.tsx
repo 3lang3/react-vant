@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { CalendarDayItem, CalendarDayType, CalendarMonthProps } from './PropsType';
 import { addUnit, setScrollTop } from '../utils';
 import { compareDay, formatMonthTitle, getNextDay, getPrevDay } from './utils';
@@ -23,7 +23,7 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
   const [monthRef, setMonthRef] = useState<HTMLDivElement>();
   const height = useRef<number>(0);
 
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('calendar', prefixCls);
 
   useEffect(() => {

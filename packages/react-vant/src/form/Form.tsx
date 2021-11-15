@@ -1,5 +1,5 @@
 import React, { forwardRef, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import RcForm from 'rc-field-form';
 import type { FormInstance } from 'rc-field-form';
 import { FormProps } from './PropsType';
@@ -32,11 +32,11 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
         showValidateMessage,
       }}
     >
-      <RcForm className={classnames(bem(), className)} style={style} ref={ref} {...formProps}>
+      <RcForm className={clsx(bem(), className)} style={style} ref={ref} {...formProps}>
         <CellGroup border={border} inset={inset}>
           {children}
         </CellGroup>
-        {footer && <div className={classnames(bem('footer'))}>{footer}</div>}
+        {footer && <div className={clsx(bem('footer'))}>{footer}</div>}
       </RcForm>
     </FormContext.Provider>
   );

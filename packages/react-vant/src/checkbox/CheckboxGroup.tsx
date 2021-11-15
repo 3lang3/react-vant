@@ -1,5 +1,5 @@
 import React, { forwardRef, useContext, useImperativeHandle } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import useMergedState from '../hooks/use-merged-state';
 import CheckBoxContext from './CheckboxContext';
@@ -56,7 +56,7 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
 
   return (
     <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked }}>
-      <div className={classnames(bem([props.direction]))}>
+      <div className={clsx(bem([props.direction]))}>
         {React.Children.toArray(props.children)
           .filter(Boolean)
           .map((child: WithDisplayNameReactElement, index: number) => {

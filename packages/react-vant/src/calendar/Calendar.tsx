@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { CalendarDayItem, CalendarInstance, CalendarProps } from './PropsType';
 import { getScrollTop, pick } from '../utils';
 import {

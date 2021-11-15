@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, useState } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import ConfigProviderContext from '../../config-provider/ConfigProviderContext';
 import { LIMIT_TYPE } from '../constants';
 import { Stepper } from '../../stepper';

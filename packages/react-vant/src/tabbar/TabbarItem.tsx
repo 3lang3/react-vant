@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useContext, useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { TabbarItemProps } from './PropsType';
 import TabbarContext from './TabbarContext';
 import { Icon } from '../icon';
@@ -42,14 +42,14 @@ const TabbarItem: React.FC<TabbarItemProps> = (props) => {
 
   return (
     <div
-      className={classnames(props.className, bem({ active }))}
+      className={clsx(props.className, bem({ active }))}
       style={{ ...props.style, color }}
       onClick={onClick}
     >
-      <Badge {...props.badge} className={classnames(bem('icon'))}>
+      <Badge {...props.badge} className={clsx(bem('icon'))}>
         {renderIcon()}
       </Badge>
-      <div className={classnames(bem('text'))}>
+      <div className={clsx(bem('text'))}>
         {typeof props.children === 'function'
           ? (props.children as Function)(active)
           : props.children}

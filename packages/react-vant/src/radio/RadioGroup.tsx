@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 import React, { useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import useMergedState from '../hooks/use-merged-state';
 import RadioContext from './RadioContext';
 import { RadioGroupProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-
 
 const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -25,7 +24,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   return (
     <RadioContext.Provider value={{ parent: { props }, toggle, checked }}>
       <div
-        className={classnames(props.className, bem([props.direction]))}
+        className={clsx(props.className, bem([props.direction]))}
         style={props.style}
         role="radiogroup"
       >

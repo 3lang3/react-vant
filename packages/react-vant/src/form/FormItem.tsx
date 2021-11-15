@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { FC } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { Field as RcField } from 'rc-field-form';
 import FieldContext from 'rc-field-form/lib/FieldContext';
 import type { Meta } from 'rc-field-form/lib/interface';
@@ -47,10 +47,7 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
 
   const attrs = {
     ...fieldProps,
-    className: classnames(
-      bem({ vertical: itemLayout === 'vertical' && !isFieldChildren }),
-      className,
-    ),
+    className: clsx(bem({ vertical: itemLayout === 'vertical' && !isFieldChildren }), className),
     colon: itemColon,
     error,
     errorMessage,

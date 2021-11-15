@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { ReactElement, useContext, useRef, useState } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import CollapseContext from './CollapseContext';
 
@@ -25,7 +25,7 @@ function validateModelValue(
 }
 
 const Collapse: React.FC<CollapseProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('collapse', prefixCls);
 
   const innerEffect = useRef(false);
@@ -70,12 +70,14 @@ const Collapse: React.FC<CollapseProps> = (props) => {
 
   return (
     <CollapseContext.Provider value={{ isExpanded, toggle }}>
-      <div className={classnames(bem(), { [BORDER_TOP_BOTTOM]: props.border })}>
-        {React.Children.toArray(props.children).filter(Boolean).map((child: ReactElement, index: number) =>
-          React.cloneElement(child, {
-            index,
-          }),
-        )}
+      <div className={clsx(bem(), { [BORDER_TOP_BOTTOM]: props.border })}>
+        {React.Children.toArray(props.children)
+          .filter(Boolean)
+          .map((child: ReactElement, index: number) =>
+            React.cloneElement(child, {
+              index,
+            }),
+          )}
       </div>
     </CollapseContext.Provider>
   );

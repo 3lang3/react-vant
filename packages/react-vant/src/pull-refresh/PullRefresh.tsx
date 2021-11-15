@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useMemo, useRef } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { PullRefreshProps, PullRefreshStatus } from './PropsType';
 import { getScrollTop, preventDefault } from '../utils';
 
@@ -94,14 +94,14 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
 
     if (TEXT_STATUS.includes(status)) {
       nodes.push(
-        <div key="text" className={classnames(bem('text'))}>
+        <div key="text" className={clsx(bem('text'))}>
           {getStatusText()}
         </div>,
       );
     }
     if (status === 'loading') {
       nodes.push(
-        <Loading key="loading" className={classnames(bem('loading'))}>
+        <Loading key="loading" className={clsx(bem('loading'))}>
           {getStatusText()}
         </Loading>,
       );
@@ -204,16 +204,16 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
   );
 
   return (
-    <div ref={root} className={classnames(props.className, bem())} style={props.style}>
+    <div ref={root} className={clsx(props.className, bem())} style={props.style}>
       <div
         ref={track}
-        className={classnames(bem('track'))}
+        className={clsx(bem('track'))}
         style={trackStyle}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
         onTouchCancel={onTouchEnd}
       >
-        <div className={classnames(bem('head'))} style={getHeadStyle()}>
+        <div className={clsx(bem('head'))} style={getHeadStyle()}>
           {renderStatus()}
         </div>
         {props.children}

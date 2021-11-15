@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { CellGroupProps } from './PropsType';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -11,13 +11,13 @@ const CellGroup: React.FC<CellGroupProps> = (props) => {
   const [bem] = createNamespace('cell-group', prefixCls);
 
   const renderGroup = () => (
-    <div className={classnames(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border })}>
+    <div className={clsx(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border })}>
       {props.children}
     </div>
   );
 
   const renderTitle = () => {
-    if (title) return <div className={classnames(bem('title'))}>{title}</div>;
+    if (title) return <div className={clsx(bem('title'))}>{title}</div>;
     return null;
   };
 

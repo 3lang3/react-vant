@@ -1,6 +1,6 @@
 import React, { CSSProperties, TouchEvent, useContext, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { OverlayProps } from './PropsType';
 import { noop, preventDefault, isDef } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -34,7 +34,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
         ref={nodeRef}
         style={style}
         onClick={props.onClick}
-        className={classnames(bem(), props.className)}
+        className={clsx(bem(), props.className)}
         onTouchMove={props.lockScroll ? preventTouchMove : noop}
       >
         {props.children}
@@ -64,7 +64,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       unmountOnExit
       in={visible}
       timeout={duration}
-      classNames={`${prefixCls}-fade`}
+      clsx={`${prefixCls}-fade`}
     >
       {renderOverlay()}
     </CSSTransition>

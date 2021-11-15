@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle, isValidElement, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import Loading from '../loading';
 import { getRect } from '../hooks/use-rect';
@@ -12,7 +12,7 @@ import { useSetState, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const List = forwardRef<ListInstance, ListProps>((props, ref) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('list', prefixCls);
   const [state, updateState] = useSetState({
     loading: props.loading,
@@ -61,7 +61,7 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
 
   const renderFinishedText = () => {
     if (props.finished && props.finishedText) {
-      return <div className={classnames(bem('finished-text'))}>{props.finishedText}</div>;
+      return <div className={clsx(bem('finished-text'))}>{props.finishedText}</div>;
     }
     return null;
   };
@@ -74,7 +74,7 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
   const renderErrorText = () => {
     if (state.error && props.errorText) {
       return (
-        <div className={classnames(bem('error-text'))} onClick={clickErrorText}>
+        <div className={clsx(bem('error-text'))} onClick={clickErrorText}>
           {props.errorText}
         </div>
       );
@@ -85,11 +85,11 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
   const renderLoading = () => {
     if (state.loading && !props.finished) {
       return (
-        <div className={classnames(bem('loading'))}>
+        <div className={clsx(bem('loading'))}>
           {isValidElement(props.loadingText) ? (
             props.loadingText
           ) : (
-            <Loading className={classnames(bem('loading-icon'))} size={16}>
+            <Loading className={clsx(bem('loading-icon'))} size={16}>
               {props.loadingText}
             </Loading>
           )}
@@ -125,10 +125,10 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
     state,
   }));
 
-  const Placeholder = <div ref={placeholder} className={classnames(bem('placeholder'))} />;
+  const Placeholder = <div ref={placeholder} className={clsx(bem('placeholder'))} />;
 
   return (
-    <div ref={root} role="feed" className={classnames(bem())} aria-busy={state.loading}>
+    <div ref={root} role="feed" className={clsx(bem())} aria-busy={state.loading}>
       {props.direction === 'down' ? props.children : Placeholder}
       {renderLoading()}
       {renderFinishedText()}

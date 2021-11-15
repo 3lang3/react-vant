@@ -1,5 +1,5 @@
 import React, { forwardRef, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
@@ -19,8 +19,8 @@ const DateTimePicker = forwardRef<DateTimePickerInstance, DateTimePickerProps>((
   const isTimePicker = props.type === 'time';
 
   if (isTimePicker)
-    return <TimePicker ref={ref} className={classnames(bem())} {...(props as TimePickerProps)} />;
-  return <DatePicker ref={ref} className={classnames(bem())} {...(props as DatePickerProps)} />;
+    return <TimePicker ref={ref} className={clsx(bem())} {...(props as TimePickerProps)} />;
+  return <DatePicker ref={ref} className={clsx(bem())} {...(props as DatePickerProps)} />;
 });
 
 export default DateTimePicker;

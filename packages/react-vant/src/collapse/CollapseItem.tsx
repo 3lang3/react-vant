@@ -6,7 +6,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import Cell from '../cell';
 import CollapseContext from './CollapseContext';
@@ -85,7 +85,7 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props,
 
     return (
       <Cell
-        className={classnames(
+        className={clsx(
           bem('title', {
             disabled,
             expanded,
@@ -102,8 +102,8 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props,
   };
 
   const renderContent = lazyRender(() => (
-    <div ref={wrapperRef} className={classnames(bem('wrapper'))} onTransitionEnd={onTransitionEnd}>
-      <div ref={contentRef} className={classnames(bem('content'))}>
+    <div ref={wrapperRef} className={clsx(bem('wrapper'))} onTransitionEnd={onTransitionEnd}>
+      <div ref={contentRef} className={clsx(bem('content'))}>
         {props.children}
       </div>
     </div>
@@ -114,7 +114,7 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props,
   }));
 
   return (
-    <div className={classnames(bem({ border: index && props.border }))}>
+    <div className={clsx(bem({ border: index && props.border }))}>
       {renderTitle()}
       {renderContent()}
     </div>

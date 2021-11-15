@@ -1,5 +1,5 @@
 import React, { forwardRef, isValidElement, useContext, useImperativeHandle, useRef } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 // Utils
 import { isPromise, getSizeStyle, extend, pick } from '../utils';
 import { isOversize, filterFiles, readFileContent, toArray, isImageFile } from './utils';
