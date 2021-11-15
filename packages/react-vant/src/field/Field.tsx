@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useContext,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Icon from '../icon';
 import Cell from '../cell';
 import Dialog from '../dialog';
@@ -129,7 +129,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     ]);
 
     if (props.children) {
-      return <div className={classnames(controlClass)}>{props.children}</div>;
+      return <div className={clsx(controlClass)}>{props.children}</div>;
     }
 
     const handleChange = (e) => {
@@ -203,7 +203,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           ref={inputRef}
           name={name}
           rows={rows}
-          className={classnames(controlClass)}
+          className={clsx(controlClass)}
           value={value}
           disabled={disabled}
           readOnly={readonly}
@@ -238,7 +238,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
         inputMode={inputMode}
         ref={inputRef}
         name={name}
-        className={classnames(controlClass)}
+        className={clsx(controlClass)}
         disabled={disabled}
         readOnly={readonly}
         placeholder={placeholder || ''}
@@ -254,7 +254,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     const { leftIcon, onClickLeftIcon } = props;
     if (!leftIcon) return null;
     return (
-      <div className={classnames(bem('left-icon'))} onClick={onClickLeftIcon}>
+      <div className={clsx(bem('left-icon'))} onClick={onClickLeftIcon}>
         {typeof leftIcon !== 'string' ? (
           leftIcon
         ) : (
@@ -268,7 +268,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     const { rightIcon, iconPrefix, onClickRightIcon } = props;
     if (!rightIcon) return null;
     return (
-      <div className={classnames(bem('right-icon'))} onClick={onClickRightIcon}>
+      <div className={clsx(bem('right-icon'))} onClick={onClickRightIcon}>
         {typeof rightIcon === 'string' ? (
           <Icon name={rightIcon} classPrefix={iconPrefix} />
         ) : (
@@ -283,8 +283,8 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     if (showWordLimit && maxlength) {
       const count = (value ? `${value}` : '').length;
       return (
-        <div className={classnames(bem('word-limit'))}>
-          <span className={classnames(bem('word-num'))}>{count}</span>/{maxlength}
+        <div className={clsx(bem('word-limit'))}>
+          <span className={clsx(bem('word-num'))}>{count}</span>/{maxlength}
         </div>
       );
     }
@@ -297,14 +297,14 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
     if (message) {
       const errorMessageAlign = getProp('errorMessageAlign');
-      return <div className={classnames(bem('error-message', errorMessageAlign))}>{message}</div>;
+      return <div className={clsx(bem('error-message', errorMessageAlign))}>{message}</div>;
     }
     return null;
   };
 
   const renderIntro = () => {
     if (props.intro) {
-      return <div className={classnames(bem('intro'))}>{props.intro}</div>;
+      return <div className={clsx(bem('intro'))}>{props.intro}</div>;
     }
     return null;
   };
@@ -321,7 +321,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       }
 
       return (
-        <div className={classnames(bem('tooltip'))} onClick={() => Dialog.show(dialogProps)}>
+        <div className={clsx(bem('tooltip'))} onClick={() => Dialog.show(dialogProps)}>
           {icon}
         </div>
       );
@@ -385,11 +385,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       clickable={clickable}
       extra={props.extra}
       titleStyle={labelStyle()}
-      valueClass={classnames(bem('value'))}
-      titleClass={classnames(bem('label', labelAlign), labelClass)}
+      valueClass={clsx(bem('value'))}
+      titleClass={clsx(bem('label', labelAlign), labelClass)}
       arrowDirection={arrowDirection}
       onClick={props?.onClick}
-      className={classnames(
+      className={clsx(
         bem({
           error,
           disabled,
@@ -399,14 +399,14 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
         className,
       )}
     >
-      <div className={classnames(bem('body'))}>
-        <div className={classnames(bem('control-wrapper'))} onClick={props.onClickInput}>
+      <div className={clsx(bem('body'))}>
+        <div className={clsx(bem('control-wrapper'))} onClick={props.onClickInput}>
           {renderInput()}
         </div>
         {showClear &&
           (typeof props.clearIcon === 'string' ? (
             <Icon
-              className={classnames(bem('clear'))}
+              className={clsx(bem('clear'))}
               onTouchStart={handleClear}
               name={props.clearIcon}
               size={ICON_SIZE}
@@ -415,7 +415,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
             props.clearIcon
           ))}
         {renderRightIcon()}
-        {button && <div className={classnames(bem('button'))}>{button}</div>}
+        {button && <div className={clsx(bem('button'))}>{button}</div>}
       </div>
       {renderWordLimit()}
       {renderMessage()}

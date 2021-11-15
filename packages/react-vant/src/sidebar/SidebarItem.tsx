@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { SidebarItemProps, SidebarProvide } from './PropsType';
 import Badge from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

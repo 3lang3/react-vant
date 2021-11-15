@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { SearchInstance, SearchProps } from './PropsType';
 import { preventDefault } from '../utils';
 
@@ -55,7 +55,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
 
   const renderLabel = () => {
     if (props.label) {
-      return <div className={classnames(bem('label'))}>{props.label}</div>;
+      return <div className={clsx(bem('label'))}>{props.label}</div>;
     }
     return null;
   };
@@ -63,7 +63,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   const renderAction = () => {
     if (props.showAction) {
       return (
-        <div className={classnames(bem('action'))} role="button" tabIndex={0} onClick={onCancel}>
+        <div className={clsx(bem('action'))} role="button" tabIndex={0} onClick={onCancel}>
           {props.actionText}
         </div>
       );
@@ -109,7 +109,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     return (
       <Field
         ref={filedRef}
-        className={classnames(bem('field'))}
+        className={clsx(bem('field'))}
         type="search"
         rows={1}
         value={value || ''}
@@ -140,10 +140,10 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
 
   return (
     <div
-      className={classnames(props.className, bem({ 'show-action': props.showAction }))}
+      className={clsx(props.className, bem({ 'show-action': props.showAction }))}
       style={{ ...props.style, background: props.background }}
     >
-      <div className={classnames(bem('content', props.shape))}>
+      <div className={clsx(bem('content', props.shape))}>
         {renderLabel()}
         {renderField()}
       </div>

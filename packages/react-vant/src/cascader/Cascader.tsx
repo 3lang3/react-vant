@@ -1,6 +1,6 @@
 /* eslint-disable no-plusplus */
 import React, { isValidElement, useContext, useEffect, useState } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { CascaderOption, CascaderProps, CascaderTab } from './PropsType';
 import { extend } from '../utils';
 import { useSetState, useUpdateEffect } from '../hooks';
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 };
 
 const Cascader: React.FC<CascaderProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('cascader', prefixCls);
 
   const [internalValue, updateInternalValue] = useState(undefined);

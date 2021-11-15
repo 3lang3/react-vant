@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { TypographyBaseProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -24,7 +24,7 @@ const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = (
   const elli = ellipsis === true ? 1 : ellipsis;
   return (
     <div
-      className={classnames(
+      className={clsx(
         className,
         bem([
           type,

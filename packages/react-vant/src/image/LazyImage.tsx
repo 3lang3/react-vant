@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Image from './Image';
 import { Lazyload } from '../lazyload';
 import { LazyImageProps } from './PropsType';
@@ -9,8 +9,8 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { BEM } from '../utils/create/bem';
 
 export const getLazyImagePlaceholder = (bem: BEM): JSX.Element => (
-  <div className={classnames(bem('loading'))}>
-    <Icon name="photo" className={classnames(bem('loading-icon'))} />
+  <div className={clsx(bem('loading'))}>
+    <Icon name="photo" className={clsx(bem('loading-icon'))} />
   </div>
 );
 
@@ -27,7 +27,7 @@ const LazyImage: React.FC<LazyImageProps> = (props) => {
   if (lazyload) {
     const { className, style, height, width } = imageProps;
     const attrs = {
-      className: classnames(className, bem({ block: imageProps.block })),
+      className: clsx(className, bem({ block: imageProps.block })),
       style: { ...style, height, width },
     };
     return (

@@ -1,5 +1,5 @@
 import React, { CSSProperties, useRef, useMemo, useEffect, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { ImageProps } from './PropsType';
 import { isDef, addUnit } from '../utils';
 import Icon from '../icon';
@@ -61,7 +61,7 @@ const Image: React.FC<ImageProps> = (props) => {
       <Icon
         size={props.iconSize}
         name={loadingIcon}
-        className={classnames(bem('loading-icon'))}
+        className={clsx(bem('loading-icon'))}
         classPrefix={props.iconPrefix}
       />
     );
@@ -73,7 +73,7 @@ const Image: React.FC<ImageProps> = (props) => {
       <Icon
         size={props.iconSize}
         name={errorIcon}
-        className={classnames(bem('error-icon'))}
+        className={clsx(bem('error-icon'))}
         classPrefix={props.iconPrefix}
       />
     );
@@ -82,14 +82,14 @@ const Image: React.FC<ImageProps> = (props) => {
   const renderPlaceholder = () => {
     if (status.loading && showLoading) {
       return (
-        <div className={classnames(bem('loading'))} onClick={props.onClick}>
+        <div className={clsx(bem('loading'))} onClick={props.onClick}>
           {renderLoadingIcon()}
         </div>
       );
     }
     if (status.error && showError) {
       return (
-        <div className={classnames(bem('error'))} onClick={props.onClick}>
+        <div className={clsx(bem('error'))} onClick={props.onClick}>
           {renderErrorIcon()}
         </div>
       );
@@ -102,7 +102,7 @@ const Image: React.FC<ImageProps> = (props) => {
       return null;
     }
     const attrs = {
-      className: classnames(bem('img')),
+      className: clsx(bem('img')),
       style: {
         objectFit: fit,
       },
@@ -121,7 +121,7 @@ const Image: React.FC<ImageProps> = (props) => {
 
   return (
     <div
-      className={classnames(
+      className={clsx(
         props.className,
         bem({
           block,

@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { ProgressProps } from './PropsType';
 import { addUnit } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -26,7 +26,7 @@ const Progress: React.FC<ProgressProps> = (props) => {
       };
 
       return (
-        <span style={style} className={classnames(bem('pivot'))}>
+        <span style={style} className={clsx(bem('pivot'))}>
           {text}
         </span>
       );
@@ -45,8 +45,8 @@ const Progress: React.FC<ProgressProps> = (props) => {
   };
 
   return (
-    <div className={classnames(bem())} style={rootStyle}>
-      <span className={classnames(bem('portion'))} style={portionStyle} />
+    <div className={clsx(bem())} style={rootStyle}>
+      <span className={clsx(bem('portion'))} style={portionStyle} />
       {renderPivot()}
     </div>
   );

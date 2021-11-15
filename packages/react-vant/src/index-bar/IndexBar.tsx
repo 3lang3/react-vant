@@ -11,7 +11,7 @@ import React, {
   useState,
 } from 'react';
 import type { MouseEvent } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import useRefs from '../hooks/use-refs';
 import { getRect } from '../hooks/use-rect';
@@ -147,7 +147,7 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
       return (
         <span
           key={index}
-          className={classnames(bem('index', { active }))}
+          className={clsx(bem('index', { active }))}
           style={active ? highlightStyle : null}
           data-index={index}
         >
@@ -250,13 +250,13 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
 
   return (
     <IndexBarContext.Provider value={{ zIndex, highlightColor, sticky }}>
-      <div ref={root} className={classnames(bem(), props.className)} style={props.style}>
+      <div ref={root} className={clsx(bem(), props.className)} style={props.style}>
         {ssrCompatRender(() =>
           renderToContainer(
             props.teleport,
             <div
               ref={sidebar}
-              className={classnames(bem('sidebar'))}
+              className={clsx(bem('sidebar'))}
               style={sidebarStyle}
               onClick={onClickSidebar}
               onTouchStart={onTouchStart}

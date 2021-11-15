@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { StepsItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
 import Icon from '../icon';

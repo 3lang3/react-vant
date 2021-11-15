@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { LazyloadProps } from './PropsType';
 import { useInViewport } from '../hooks';

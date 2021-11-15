@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 
 import { SidebarItemProps, SidebarProps } from './PropsType';
 import useMergedState from '../hooks/use-merged-state';

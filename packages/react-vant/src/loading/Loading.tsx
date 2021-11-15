@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { addUnit, getSizeStyle } from '../utils';
 import { LoadingProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -7,27 +7,29 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 const SpinIcon = ({ bem }) => (
   <>
     {Array(12)
-    .fill(null)
-    // eslint-disable-next-line react/no-array-index-key
-    .map((_, index) => <i key={index} className={classnames(bem('line', String(index + 1)))} />)}
+      .fill(null)
+      // eslint-disable-next-line react/no-array-index-key
+      .map((_, index) => (
+        <i key={index} className={clsx(bem('line', String(index + 1)))} />
+      ))}
   </>
-)
+);
 
 const CircularIcon = ({ bem }) => (
-  <svg className={classnames(bem('circular'))} viewBox="25 25 50 50">
+  <svg className={clsx(bem('circular'))} viewBox="25 25 50 50">
     <circle cx="50" cy="50" r="20" fill="none" />
   </svg>
 );
 
 const BallIcon = ({ bem }) => (
-  <div className={classnames(bem('ball'))}>
+  <div className={clsx(bem('ball'))}>
     <div />
     <div />
     <div />
   </div>
 );
 
-const Icon = (bem) =>  ({
+const Icon = (bem) => ({
   spinner: <SpinIcon bem={bem} />,
   circular: <CircularIcon bem={bem} />,
   ball: <BallIcon bem={bem} />,
@@ -50,7 +52,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
     if (children) {
       return (
         <span
-          className={classnames(bem('text'))}
+          className={clsx(bem('text'))}
           style={{
             fontSize: addUnit(textSize),
             color: textColor ?? color,
@@ -64,8 +66,8 @@ const Loading: React.FC<LoadingProps> = (props) => {
   };
 
   return (
-    <div className={classnames(className, bem([type, { vertical }]))}>
-      <span className={classnames(bem('spinner', type))} style={spinnerStyle}>
+    <div className={clsx(className, bem([type, { vertical }]))}>
+      <span className={clsx(bem('spinner', type))} style={spinnerStyle}>
         {Icon(bem)[type]}
       </span>
       {renderText()}

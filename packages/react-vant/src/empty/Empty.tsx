@@ -1,5 +1,5 @@
 import React, { isValidElement, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { EmptyProps } from './PropsType';
 import { getSizeStyle } from '../utils';
 import { Network } from './Network';
@@ -8,7 +8,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 const PRESET_IMAGES = ['error', 'search', 'default'];
 
 const Empty: React.FC<EmptyProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('empty', prefixCls);
 
   const renderImage = () => {
@@ -31,21 +31,21 @@ const Empty: React.FC<EmptyProps> = (props) => {
 
   const renderDescription = () => {
     if (props.description) {
-      return <p className={classnames(bem('description'))}>{props.description}</p>;
+      return <p className={clsx(bem('description'))}>{props.description}</p>;
     }
     return null;
   };
 
   const renderBottom = () => {
     if (props.children) {
-      return <div className={classnames(bem('bottom'))}>{props.children}</div>;
+      return <div className={clsx(bem('bottom'))}>{props.children}</div>;
     }
     return null;
   };
 
   return (
-    <div className={classnames(props.className, bem())} style={props.style}>
-      <div className={classnames(bem('image'))} style={getSizeStyle(props.imageSize)}>
+    <div className={clsx(props.className, bem())} style={props.style}>
+      <div className={clsx(bem('image'))} style={getSizeStyle(props.imageSize)}>
         {renderImage()}
       </div>
       {renderDescription()}

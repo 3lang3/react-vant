@@ -1,5 +1,5 @@
 // Components
-import classnames from 'classnames';
+import clsx from 'clsx';
 import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
 import Cell from '../cell';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -98,11 +98,11 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
         key={option.value}
         icon={option.icon}
         title={option.text}
-        className={classnames(bem('option', { active }))}
+        className={clsx(bem('option', { active }))}
         style={{ color: active ? activeColor : '' }}
         onClick={onClick}
       >
-        {active && <Icon className={classnames(bem('icon'))} color={activeColor} name="success" />}
+        {active && <Icon className={clsx(bem('icon'))} color={activeColor} name="success" />}
       </Cell>
     );
   };
@@ -122,14 +122,14 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
     return (
       <div
         style={{ ...style, display: state.showWrapper ? 'block' : 'none' }}
-        className={classnames(bem([direction]))}
+        className={clsx(bem([direction]))}
         onClick={onClickWrapper}
       >
         <Popup
           {...attrs}
           teleport={null}
           visible={props.showPopup}
-          className={classnames(bem('content'))}
+          className={clsx(bem('content'))}
           position={direction === 'down' ? 'top' : 'bottom'}
           duration={state.transition ? +duration : 0}
           overlayStyle={{ position: 'absolute', ...overlayStyle }}

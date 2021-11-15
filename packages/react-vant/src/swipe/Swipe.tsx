@@ -12,7 +12,7 @@ import React, {
   useImperativeHandle,
   useContext,
 } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
 

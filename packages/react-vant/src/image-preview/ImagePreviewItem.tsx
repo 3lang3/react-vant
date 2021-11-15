@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { ImagePreviewItemProps } from './PropsType';

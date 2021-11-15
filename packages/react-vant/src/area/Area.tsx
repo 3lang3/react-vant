@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { AreaColumnOption, AreaColumnType, AreaInstance, AreaProps } from './PropsType';
 import Picker, { PickerInstance } from '../picker';
@@ -271,7 +271,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   return (
     <Picker
       ref={pickerRef}
-      className={classnames(bem())}
+      className={clsx(bem())}
       columns={columns}
       columnsFieldNames={{ text: 'name' }}
       onChange={onChange as any}

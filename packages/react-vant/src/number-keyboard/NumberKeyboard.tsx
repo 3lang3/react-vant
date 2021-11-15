@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, useRef } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { CSSTransition } from 'react-transition-group';
 import { getZIndexStyle, noop, stopPropagation } from '../utils';
 import { KeyType, KeyConfig, NumberKeyboardProps } from './PropsType';
@@ -190,7 +190,7 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
       nodeRef={root}
       in={props.visible}
       timeout={300}
-      classNames={props.transition ? 'rv-slide-up' : ''}
+      clsx={props.transition ? 'rv-slide-up' : ''}
       onExited={onAnimationEnd}
     >
       <div

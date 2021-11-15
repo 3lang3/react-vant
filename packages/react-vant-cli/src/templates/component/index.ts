@@ -12,7 +12,7 @@ export { ComponentPrompt } from './Prompt';
  */
 export const INDEX_CONTENT = (HLComponent: string, ComponentName: string) => `\
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { ${ComponentName}Props } from './PropsType';
 

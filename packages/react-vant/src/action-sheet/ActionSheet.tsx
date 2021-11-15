@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { ActionSheetProps, ActionSheetAction } from './PropsType';
 import { pick } from '../utils';
 import Icon from '../icon';
@@ -9,7 +9,7 @@ import { sharedPopupProps } from '../popup/Popup';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ActionSheet: React.FC<ActionSheetProps> = (props) => {
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('action-sheet', prefixCls);
 
   const onCancel = () => {
@@ -20,13 +20,13 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   const renderHeader = () => {
     if (!props.title) return null;
     return (
-      <div className={classnames(bem('header'))}>
+      <div className={clsx(bem('header'))}>
         {props.title}
         {props.closeable &&
           (typeof props.closeIcon === 'string' ? (
-            <Icon name={props.closeIcon} className={classnames(bem('close'))} onClick={onCancel} />
+            <Icon name={props.closeIcon} className={clsx(bem('close'))} onClick={onCancel} />
           ) : (
-            <div className={classnames(bem('close'))} onClick={onCancel}>
+            <div className={clsx(bem('close'))} onClick={onCancel}>
               {props.closeIcon}
             </div>
           ))}
@@ -37,13 +37,8 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   const renderCancel = () => {
     if (!props.cancelText) return null;
     return [
-      <div key="cancel-gap" className={classnames(bem('gap'))} />,
-      <button
-        key="cancel-btn"
-        type="button"
-        className={classnames(bem('cancel'))}
-        onClick={onCancel}
-      >
+      <div key="cancel-gap" className={clsx(bem('gap'))} />,
+      <button key="cancel-btn" type="button" className={clsx(bem('cancel'))} onClick={onCancel}>
         {props.cancelText}
       </button>,
     ];
@@ -53,14 +48,14 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     const { name, color, subname, loading, callback, disabled, className, style } = item;
 
     const Content = loading ? (
-      <Loading className={classnames(bem('loading-icon'))} />
+      <Loading className={clsx(bem('loading-icon'))} />
     ) : (
       [
-        <span key={`${index}-1`} className={classnames(bem('name'))}>
+        <span key={`${index}-1`} className={clsx(bem('name'))}>
           {name}
         </span>,
         subname && (
-          <div key={`${index}-2`} className={classnames(bem('subname'))}>
+          <div key={`${index}-2`} className={clsx(bem('subname'))}>
             {subname}
           </div>
         ),
@@ -89,7 +84,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
         key={index}
         type="button"
         style={{ color, ...style }}
-        className={classnames(bem('item', { loading, disabled }), className)}
+        className={clsx(bem('item', { loading, disabled }), className)}
         onClick={onClick}
       >
         {Content}
@@ -99,7 +94,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
 
   const renderDescription = () => {
     if (props.description) {
-      return <div className={classnames(bem('description'))}>{props.description}</div>;
+      return <div className={clsx(bem('description'))}>{props.description}</div>;
     }
     return null;
   };
@@ -114,7 +109,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   return (
     <Popup
       visible={props.visible}
-      className={classnames(bem())}
+      className={clsx(bem())}
       position="bottom"
       {...pick(props, sharedPopupProps)}
       onClose={onCancel}
@@ -122,7 +117,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     >
       {renderHeader()}
       {renderDescription()}
-      <div className={classnames(bem('content'))}>
+      <div className={clsx(bem('content'))}>
         {renderOptions()}
         {props.children}
       </div>

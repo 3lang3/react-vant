@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent, FormEvent, TouchEvent } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { StepperProps } from './PropsType';
 import { isNaN } from '../utils/validate/number';
 import { callInterceptor } from '../utils/interceptor';
@@ -215,13 +215,13 @@ const Stepper: React.FC<StepperProps> = (props) => {
   useEffect(() => check, [props.max, props.min, props.integer, props.decimalLength]);
 
   return (
-    <div className={classnames(props.className, bem([props.theme]))} style={props.style}>
+    <div className={clsx(props.className, bem([props.theme]))} style={props.style}>
       {props.showMinus && (
         <button
           type="button"
           aria-label="minus"
           style={buttonStyle}
-          className={classnames(bem('minus', { disabled: minusDisabled }))}
+          className={clsx(bem('minus', { disabled: minusDisabled }))}
           {...createListeners('minus')}
         />
       )}
@@ -230,7 +230,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
           ref={inputRef}
           type={props.integer ? 'tel' : 'text'}
           role="spinbutton"
-          className={classnames(bem('input'))}
+          className={clsx(bem('input'))}
           value={current || ''}
           style={inputStyle}
           disabled={props.disabled}
@@ -251,7 +251,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
           type="button"
           aria-label="add"
           style={buttonStyle}
-          className={classnames(bem('plus', { disabled: plusDisabled }))}
+          className={clsx(bem('plus', { disabled: plusDisabled }))}
           {...createListeners('plus')}
         />
       )}

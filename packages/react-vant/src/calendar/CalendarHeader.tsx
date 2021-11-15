@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { CalendarHeaderProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CalenderHeader: React.FC<CalendarHeaderProps> = (props) => {
-
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('calendar', prefixCls);
 
   const renderTitle = () => {

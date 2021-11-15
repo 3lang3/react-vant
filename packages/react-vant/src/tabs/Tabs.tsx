@@ -7,7 +7,7 @@ import React, {
   useState,
   useContext,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import useRefs from '../hooks/use-refs';
 import useScrollParent from '../hooks/use-scroll-parent';
@@ -300,7 +300,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     return (
       <div
         ref={setWrapRef}
-        className={classnames([
+        className={clsx([
           bem('wrap', { scrollable }),
           { [BORDER_TOP_BOTTOM]: type === 'line' && border },
         ])}
@@ -308,12 +308,12 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
         <div
           ref={navRef}
           role="tablist"
-          className={classnames(bem('nav', [type, { complete: scrollable }]))}
+          className={clsx(bem('nav', [type, { complete: scrollable }]))}
           style={navStyle}
         >
           {props.navRight}
           {renderNav()}
-          {type === 'line' && <div className={classnames(bem('line'))} style={state.lineStyle} />}
+          {type === 'line' && <div className={clsx(bem('line'))} style={state.lineStyle} />}
           {props.navRight}
         </div>
       </div>
@@ -376,7 +376,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   return (
     <TabsContext.Provider value={{ props, currentName, scrollIntoView, setLine }}>
-      <div ref={root} className={classnames(props.className, bem([props.type]))}>
+      <div ref={root} className={clsx(props.className, bem([props.type]))}>
         {props.sticky ? (
           <Sticky
             container={root}

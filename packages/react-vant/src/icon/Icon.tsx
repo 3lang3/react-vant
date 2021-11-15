@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { addUnit } from '../utils';
 import { IconProps } from './PropsType';
 import Badge from '../badge';
@@ -24,7 +24,7 @@ const Icon: React.FC<IconProps> = (props) => {
   return (
     <Badge
       tag={tag}
-      className={classnames(classPrefix, imageIcon ? '' : `${classPrefix}-${name}`, className, {
+      className={clsx(classPrefix, imageIcon ? '' : `${classPrefix}-${name}`, className, {
         [`${classPrefix}--spin`]: spin,
       })}
       style={{
@@ -37,7 +37,7 @@ const Icon: React.FC<IconProps> = (props) => {
       {...props.badge}
     >
       {props?.children}
-      {imageIcon && <img className={classnames('van-icon__image')} src={name} alt={name} />}
+      {imageIcon && <img className={clsx('van-icon__image')} src={name} alt={name} />}
     </Badge>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { PageItem, PaginationProps } from './PropsType';
 import { BORDER } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -88,7 +88,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
   const renderDesc = () => {
     if (props.mode !== 'multi') {
       return (
-        <li className={classnames(bem('page-desc'))}>
+        <li className={clsx(bem('page-desc'))}>
           {props.pageDesc ? props.pageDesc : `${props.value}/${count}`}
         </li>
       );
@@ -102,9 +102,9 @@ const Pagination: React.FC<PaginationProps> = (props) => {
   const { value } = props;
 
   return (
-    <ul className={classnames(bem({ simple }))}>
+    <ul className={clsx(bem({ simple }))}>
       <li
-        className={classnames(bem('item', { disabled: value === 1 }), bem('prev'), BORDER)}
+        className={clsx(bem('item', { disabled: value === 1 }), bem('prev'), BORDER)}
         onClick={onSelect(value - 1)}
       >
         {props.prevText}
@@ -113,7 +113,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
         <li
           // eslint-disable-next-line react/no-array-index-key
           key={index}
-          className={classnames(bem('item', { active: page.active }), bem('page'), BORDER)}
+          className={clsx(bem('item', { active: page.active }), bem('page'), BORDER)}
           onClick={onSelect(page.number)}
         >
           {props.pageRender ? props.pageRender(page) : page.text}
@@ -121,7 +121,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
       ))}
       {renderDesc()}
       <li
-        className={classnames(bem('item', { disabled: value === count }), bem('next'), BORDER)}
+        className={clsx(bem('item', { disabled: value === count }), bem('next'), BORDER)}
         onClick={onSelect(value + 1)}
       >
         {props.nextText}

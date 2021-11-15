@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { RateProps } from './PropsType';
 import { addUnit, preventDefault } from '../utils';
 import useTouch from '../hooks/use-touch';
@@ -157,7 +157,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
         ref={setItemRefs(index)}
         role="radio"
         style={style}
-        className={classnames(bem('item'))}
+        className={clsx(bem('item'))}
         tabIndex={0}
         aria-setsize={parseInt(count?.toString(), 10)}
         aria-posinset={score}
@@ -167,7 +167,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
         <Icon
           size={size}
           name={isFull ? icon : voidIcon}
-          className={classnames(bem('icon', { disabled, full: isFull }))}
+          className={clsx(bem('icon', { disabled, full: isFull }))}
           // eslint-disable-next-line no-nested-ternary
           color={disabled ? disabledColor : isFull ? color : voidColor}
           classPrefix={iconPrefix}
@@ -177,7 +177,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
             size={size}
             style={{ width: `${item.value}em` }}
             name={isVoid ? voidIcon : icon}
-            className={classnames(bem('icon', ['half', { disabled, full: !isVoid }]))}
+            className={clsx(bem('icon', ['half', { disabled, full: !isVoid }]))}
             // eslint-disable-next-line no-nested-ternary
             color={disabled ? disabledColor : isVoid ? voidColor : color}
             classPrefix={iconPrefix}
@@ -196,7 +196,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
     <div
       ref={root}
       role="radiogroup"
-      className={classnames(
+      className={clsx(
         bem({
           readonly: props.readonly,
           disabled: props.disabled,

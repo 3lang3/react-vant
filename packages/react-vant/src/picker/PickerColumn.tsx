@@ -8,7 +8,7 @@ import React, {
   forwardRef,
   useContext,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import useTouch from '../hooks/use-touch';
 
@@ -243,7 +243,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
         key: index,
         style: optionStyle,
         tabIndex: disabled ? -1 : 0,
-        className: classnames(
+        className: clsx(
           bem('item', {
             disabled,
             selected: index === state.index,
@@ -308,7 +308,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   return (
     <div
       ref={root}
-      className={classnames(bem(), props.className)}
+      className={clsx(bem(), props.className)}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -317,7 +317,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
       <ul
         ref={wrapper}
         style={wrapperStyle}
-        className={classnames(bem('wrapper'))}
+        className={clsx(bem('wrapper'))}
         onTransitionEnd={stopMomentum}
       >
         {renderOptions()}

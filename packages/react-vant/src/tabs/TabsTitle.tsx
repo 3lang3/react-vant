@@ -1,5 +1,5 @@
 import React, { useMemo, CSSProperties, forwardRef, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import { TabsTitleProps } from './PropsType';
 import { isDef } from '../utils';
@@ -39,7 +39,7 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
 
   const renderText = () => {
     const Text = (
-      <span className={classnames(bem('text', { ellipsis: !props.scrollable }))}>
+      <span className={clsx(bem('text', { ellipsis: !props.scrollable }))}>
         {(() => {
           if (typeof props.renderTitle === 'function') {
             return props.renderTitle(isActive);
@@ -63,7 +63,7 @@ const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      className={classnames([
+      className={clsx([
         bem({
           active: props.isActive,
           disabled: props.disabled,

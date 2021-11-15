@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useImperativeHandle, forwardRef, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import Icon from '../icon';
 
@@ -37,7 +37,7 @@ const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => 
       return props.leftIcon;
     }
     if (props.leftIcon) {
-      return <Icon className={classnames(bem('left-icon'))} name={props.leftIcon as string} />;
+      return <Icon className={clsx(bem('left-icon'))} name={props.leftIcon as string} />;
     }
     return null;
   };
@@ -68,9 +68,7 @@ const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => 
     }
     const name = getRightIconName();
     if (name) {
-      return (
-        <Icon name={name} className={classnames(bem('right-icon'))} onClick={onClickRightIcon} />
-      );
+      return <Icon name={name} className={clsx(bem('right-icon'))} onClick={onClickRightIcon} />;
     }
     return null;
   };
@@ -107,9 +105,9 @@ const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => 
     };
 
     return (
-      <div className={classnames(bem('wrap'))} ref={wrapRef}>
+      <div className={clsx(bem('wrap'))} ref={wrapRef}>
         <div
-          className={classnames(bem('content'), { 'rv-ellipsis': ellipsis })}
+          className={clsx(bem('content'), { 'rv-ellipsis': ellipsis })}
           ref={contentRef}
           style={style}
           onTransitionEnd={onTransitionEnd}
@@ -173,7 +171,7 @@ const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => 
     state.show && (
       <div
         role="alert"
-        className={classnames(bem({ wrapable }), props.className)}
+        className={clsx(bem({ wrapable }), props.className)}
         style={{ color, background, ...props.style }}
         onClick={props.onClick}
       >

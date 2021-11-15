@@ -1,16 +1,10 @@
 import React, { CSSProperties, useRef, useMemo, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
-import {
-  getScrollTop,
-  unitToPx,
-  isHidden,
-  getZIndexStyle,
-  extend,
-} from '../utils';
+import { getScrollTop, unitToPx, isHidden, getZIndexStyle, extend } from '../utils';
 import { StickyProps } from './PropsType';
 import { useSetState, useUpdateEffect, useVisibilityChange } from '../hooks';
 import { getRect } from '../hooks/use-rect';
@@ -120,7 +114,7 @@ const Sticky: React.FC<StickyProps> = (props) => {
 
   return (
     <div ref={root} style={rootStyle}>
-      <div className={classnames(bem({ fixed: state.fixed }))} style={stickyStyle}>
+      <div className={clsx(bem({ fixed: state.fixed }))} style={stickyStyle}>
         {props.children}
       </div>
     </div>

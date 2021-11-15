@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 // Utils
 import { isImageFile } from './utils';
 import { isDef, getSizeStyle, extend } from '../utils';

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import Swiper from '../swiper';
 
@@ -23,7 +23,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           loop={false}
           autoplay={false}
           touchable={swipeable}
-          className={classnames(bem('track'))}
+          className={clsx(bem('track'))}
           duration={+duration}
           indicator={false}
           onChange={(idx) => {
@@ -37,7 +37,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           {React.Children.map(props.children, (child) => (
             <Swiper.Item
               style={{ cursor: !swipeable ? 'auto' : undefined }}
-              className={classnames(bem('pane-wrapper'))}
+              className={clsx(bem('pane-wrapper'))}
             >
               {child}
             </Swiper.Item>
@@ -63,7 +63,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
 
   return (
     <div
-      className={classnames(
+      className={clsx(
         bem('content', {
           animated: animated || swipeable,
         }),

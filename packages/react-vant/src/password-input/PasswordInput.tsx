@@ -1,5 +1,12 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle, useMemo, useContext } from 'react';
-import classnames from 'classnames';
+import React, {
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useContext,
+} from 'react';
+import clsx from 'clsx';
 import { isFunction, formatNumber, isDef, addUnit } from '../utils';
 import { PasswordInputInstance, PasswordInputProps } from './PropsType';
 import { useSetState, useUpdateEffect } from '../hooks';
@@ -83,7 +90,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
       Points.push(
         <li
           key={i}
-          className={classnames(
+          className={clsx(
             {
               [BORDER_LEFT]: showBorder,
               [props.highlightClass]: props.highlightClass && char && !props.mask,
@@ -93,7 +100,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
           style={style}
         >
           {mask ? <i style={{ visibility: char ? 'visible' : 'hidden' }} /> : char}
-          {showCursor && <div className={classnames(bem('cursor'))} />}
+          {showCursor && <div className={clsx(bem('cursor'))} />}
         </li>,
       );
     }
@@ -133,7 +140,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   const info = props.errorInfo || props.info;
 
   return (
-    <div className={classnames(bem(), props.className)} style={props.style}>
+    <div className={clsx(bem(), props.className)} style={props.style}>
       <input
         ref={inputRef}
         type={state.inputType}
@@ -154,11 +161,11 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
         }}
         onBlur={() => updateState({ focused: false })}
       />
-      <ul className={classnames(bem('security'), { [BORDER_SURROUND]: !props.gutter })}>
+      <ul className={clsx(bem('security'), { [BORDER_SURROUND]: !props.gutter })}>
         {renderPoints()}
       </ul>
       {info ? (
-        <div className={classnames(bem(props.errorInfo ? 'error-info' : 'info'))}>{info}</div>
+        <div className={clsx(bem(props.errorInfo ? 'error-info' : 'info'))}>{info}</div>
       ) : null}
     </div>
   );

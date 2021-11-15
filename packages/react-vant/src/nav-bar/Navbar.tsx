@@ -1,5 +1,5 @@
 import React, { CSSProperties, isValidElement, MouseEvent, useContext, useRef } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import { NavBarProps } from './PropsType';
 import { BORDER_BOTTOM } from '../utils/constant';
@@ -30,11 +30,9 @@ const NavBar: React.FC<NavBarProps> = (props) => {
     }
 
     return [
-      props.leftArrow && (
-        <Icon key="arrow" className={classnames(bem('arrow'))} name="arrow-left" />
-      ),
+      props.leftArrow && <Icon key="arrow" className={clsx(bem('arrow'))} name="arrow-left" />,
       props.leftText && (
-        <span key="text" className={classnames(bem('text'))}>
+        <span key="text" className={clsx(bem('text'))}>
           {props.leftText}
         </span>
       ),
@@ -46,7 +44,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
       return props.rightText;
     }
 
-    return <span className={classnames(bem('text'))}>{props.rightText}</span>;
+    return <span className={clsx(bem('text'))}>{props.rightText}</span>;
   };
 
   const renderNavBar = () => {
@@ -64,7 +62,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
       <div
         ref={navBarRef}
         style={style}
-        className={classnames(
+        className={clsx(
           bem({ fixed, 'safe-area-inset-top': props.safeAreaInsetTop }),
           {
             [BORDER_BOTTOM]: border,
@@ -72,15 +70,15 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           props.className,
         )}
       >
-        <div className={classnames(bem('content'))}>
+        <div className={clsx(bem('content'))}>
           {hasLeft && (
-            <div className={classnames(bem('left'))} onClick={onClickLeft}>
+            <div className={clsx(bem('left'))} onClick={onClickLeft}>
               {renderLeft()}
             </div>
           )}
-          <div className={classnames(bem('title'), 'rv-ellipsis')}>{title}</div>
+          <div className={clsx(bem('title'), 'rv-ellipsis')}>{title}</div>
           {hasRight && (
-            <div className={classnames(bem('right'))} onClick={onClickRight}>
+            <div className={clsx(bem('right'))} onClick={onClickRight}>
               {renderRight()}
             </div>
           )}
@@ -93,7 +91,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
     if (props.fixed && props.placeholder) {
       return (
         <div
-          className={classnames(bem('placeholder'))}
+          className={clsx(bem('placeholder'))}
           style={{ height: navBarHeight ? `${navBarHeight}px` : undefined }}
         />
       );

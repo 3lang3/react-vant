@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { SwipeCellInstance, SwipeCellPosition, SwipeCellProps, SwipeCellSide } from './PropsType';
 import { isDef, preventDefault, range } from '../utils';
 import useTouch from '../hooks/use-touch';

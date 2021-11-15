@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import type { CSSProperties } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import useMergedState from '../hooks/use-merged-state';
 import Loading from '../loading';
@@ -43,7 +43,7 @@ const Swtich: React.FC<SwitchProps> = (props) => {
   const renderLoading = () => {
     if (props.loading) {
       const color = isChecked ? props.activeColor : props.inactiveColor;
-      return <Loading className={classnames(bem('loading'))} color={color} />;
+      return <Loading className={clsx(bem('loading'))} color={color} />;
     }
     return null;
   };
@@ -52,7 +52,7 @@ const Swtich: React.FC<SwitchProps> = (props) => {
     <div
       role="switch"
       tabIndex={0}
-      className={classnames(
+      className={clsx(
         props.className,
         bem({
           on: isChecked,
@@ -64,7 +64,7 @@ const Swtich: React.FC<SwitchProps> = (props) => {
       aria-checked={isChecked}
       onClick={onClick}
     >
-      <div className={classnames(bem('node'))}>{renderLoading()}</div>
+      <div className={clsx(bem('node'))}>{renderLoading()}</div>
     </div>
   );
 };

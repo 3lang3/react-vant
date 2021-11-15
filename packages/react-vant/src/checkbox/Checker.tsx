@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import type { MouseEvent } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import Icon from '../icon';
 import { CheckerProps } from './PropsType';
@@ -55,7 +55,7 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
     return (
       <div
         ref={iconRef}
-        className={classnames(bem('icon', [shape, { disabled, checked }]))}
+        className={clsx(bem('icon', [shape, { disabled, checked }]))}
         style={{ fontSize: addUnit(iconSize) }}
       >
         {props.iconRender ? (
@@ -81,7 +81,7 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
   return (
     <div
       role={props.role}
-      className={classnames(
+      className={clsx(
         props.bem([
           {
             disabled,

@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { CouponProps } from './PropsType';
 import { padZero } from '../utils';

@@ -1,5 +1,5 @@
 import React, { useMemo, MouseEvent, useRef, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
 
 import Icon from '../icon';
@@ -45,14 +45,14 @@ const Tag: React.FC<TagProps> = (props) => {
     }
 
     const CloseIcon = closeable && (
-      <Icon name="cross" className={classnames(bem('close'))} onClick={onClose} />
+      <Icon name="cross" className={clsx(bem('close'))} onClick={onClose} />
     );
 
     return (
       <span
         ref={nodeRef}
         style={{ ...getStyle, ...props.style }}
-        className={classnames(props.className, bem([classes, type]))}
+        className={clsx(props.className, bem([classes, type]))}
         onClick={props.onClick}
       >
         {props.children}
@@ -62,13 +62,7 @@ const Tag: React.FC<TagProps> = (props) => {
   };
 
   return (
-    <CSSTransition
-      nodeRef={nodeRef}
-      classNames="rv-fade"
-      in={props.show}
-      timeout={300}
-      unmountOnExit
-    >
+    <CSSTransition nodeRef={nodeRef} clsx="rv-fade" in={props.show} timeout={300} unmountOnExit>
       {renderTag()}
     </CSSTransition>
   );

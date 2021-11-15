@@ -1,6 +1,6 @@
 /* eslint-disable react/default-props-match-prop-types */
 import React, { useContext, useEffect } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import Icon from '../icon';
 import Popup from '../popup';
@@ -47,7 +47,7 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
         <Icon
           name={icon || (type === 'fail' ? 'cross' : type)}
           size={iconSize}
-          className={classnames(bem('icon'))}
+          className={clsx(bem('icon'))}
           classPrefix={iconPrefix}
         />
       ) : (
@@ -56,7 +56,7 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
     }
 
     if (type === 'loading') {
-      return <Loading className={classnames(bem('loading'))} type={loadingType} />;
+      return <Loading className={clsx(bem('loading'))} type={loadingType} />;
     }
 
     return null;
@@ -65,17 +65,14 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
   const renderMessage = () => {
     const { message } = props;
     if (isDef(message) && message !== '') {
-      return <div className={classnames(bem('info'))}>{message}</div>;
+      return <div className={clsx(bem('info'))}>{message}</div>;
     }
     return null;
   };
 
   return (
     <Popup
-      className={classnames([
-        bem([props.position, { [props.type]: !props.icon }]),
-        props.className,
-      ])}
+      className={clsx([bem([props.position, { [props.type]: !props.icon }]), props.className])}
       visible={props.visible}
       overlay={props.overlay}
       transition={props.transition}

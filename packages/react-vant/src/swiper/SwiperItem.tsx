@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SwiperItemProps } from './PropsType';
 

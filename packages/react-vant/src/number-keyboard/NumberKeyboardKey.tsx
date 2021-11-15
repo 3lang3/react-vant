@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { NumberKeyboardKeyProps } from './PropsType';
 import useTouch from '../hooks/use-touch';
 import Loading from '../loading';

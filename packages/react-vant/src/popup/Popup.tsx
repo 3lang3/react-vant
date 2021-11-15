@@ -8,7 +8,7 @@ import React, {
   useImperativeHandle,
   useContext,
 } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
 
 import Icon from '../icon';
@@ -136,17 +136,14 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         return (
           <Icon
             name={closeIcon}
-            className={classnames(bem('close-icon', closeIconPosition))}
+            className={clsx(bem('close-icon', closeIconPosition))}
             classPrefix={props.iconPrefix}
             onClick={onClickCloseIcon}
           />
         );
       }
       return (
-        <div
-          className={classnames(bem('close-icon', closeIconPosition))}
-          onClick={onClickCloseIcon}
-        >
+        <div className={clsx(bem('close-icon', closeIconPosition))} onClick={onClickCloseIcon}>
           {closeIcon}
         </div>
       );
@@ -156,14 +153,14 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 
   const renderTitle = () => {
     if (title) {
-      return <div className={classnames(bem('title'))}>{title}</div>;
+      return <div className={clsx(bem('title'))}>{title}</div>;
     }
     return null;
   };
 
   const renderDescrition = () => {
     if (descrition) {
-      return <div className={classnames(bem('descrition'))}>{descrition}</div>;
+      return <div className={clsx(bem('descrition'))}>{descrition}</div>;
     }
     return null;
   };
@@ -177,7 +174,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
           ...style,
           display: !visible && !animatedVisible ? 'none' : undefined,
         }}
-        className={classnames(
+        className={clsx(
           bem({
             round,
             [position]: position,
@@ -208,7 +205,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
          */
         nodeRef={popupRef}
         timeout={duration}
-        classNames={transition || name}
+        clsx={transition || name}
         mountOnEnter={!forceRender}
         unmountOnExit={destroyOnClose}
         onEnter={open}

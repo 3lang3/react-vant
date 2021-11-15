@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { ShareSheetOption, ShareSheetProps } from './PropsType';
 import { pick } from '../utils';
 import Popup from '../popup';

@@ -1,5 +1,5 @@
 import React, { isValidElement, useContext } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Icon from '../icon';
 import Loading from '../loading';
 import { ButtonProps } from './PropsType';
@@ -21,10 +21,10 @@ const Button: React.FC<ButtonProps> = (props) => {
     iconPosition,
   } = props;
 
-  const { prefixCls,  createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('button', prefixCls);
 
-  const classes = classnames(
+  const classes = clsx(
     className,
     bem([
       type,
@@ -73,7 +73,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       const { loadingSize = '20px', loadingType } = props;
       return (
         <Loading
-          className={classnames(bem('loading'))}
+          className={clsx(bem('loading'))}
           size={loadingSize}
           type={loadingType}
           color={type === 'default' ? undefined : ''}
@@ -89,9 +89,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     }
 
     if (typeof props.icon === 'string') {
-      return (
-        <Icon name={props.icon} className={classnames(bem('icon'))} classPrefix={iconPrefix} />
-      );
+      return <Icon name={props.icon} className={clsx(bem('icon'))} classPrefix={iconPrefix} />;
     }
 
     if (isValidElement(props.icon)) {
@@ -111,7 +109,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 
     if (text) {
       return (
-        <span key="text" className={classnames(bem('text'))}>
+        <span key="text" className={clsx(bem('text'))}>
           {text}
         </span>
       );
@@ -120,7 +118,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   };
 
   const renderContent = () => (
-    <div className={classnames(bem('content'))}>
+    <div className={clsx(bem('content'))}>
       {iconPosition === 'left' && renderIcon()}
       {renderText()}
       {iconPosition === 'right' && renderIcon()}

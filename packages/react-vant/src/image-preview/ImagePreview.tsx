@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import cls from 'classnames';
+import cls from 'clsx';
 import { ImagePreviewProps } from './PropsType';
 import { pick } from '../utils';
 import Icon from '../icon';
