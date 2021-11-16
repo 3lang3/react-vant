@@ -143,6 +143,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "whevether",
+      "name": "keep_wan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19300142?v=4",
+      "profile": "https://www.keep-wan.me",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
