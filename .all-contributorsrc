@@ -152,6 +152,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "mytheart",
+      "name": "zhangYin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42933010?v=4",
+      "profile": "https://blog.csdn.net/weixin_42755677",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
