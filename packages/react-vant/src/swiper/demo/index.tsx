@@ -55,11 +55,15 @@ export default (): React.ReactNode => {
         </Swiper>
       </DemoBlock>
       <DemoBlock title="自定义滑块大小">
-        <Swiper
-          style={{
-            '--rv-swipe-slide-width': '80%',
-          }}
-        >
+        <Swiper slideSize={80}>{items}</Swiper>
+      </DemoBlock>
+      <DemoBlock title="滑块居中">
+        <Swiper slideSize={80} trackOffset={10}>
+          {items}
+        </Swiper>
+      </DemoBlock>
+      <DemoBlock title="纵向滑块居中">
+        <Swiper style={{ height: 150 }} vertical slideSize={80} trackOffset={10}>
           {items}
         </Swiper>
       </DemoBlock>
