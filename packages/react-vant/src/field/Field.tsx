@@ -366,10 +366,12 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     labelAlign,
     className,
     labelClass,
+    valueClass,
     arrowDirection,
     autosize,
     disabled,
     button,
+    titleStyle,
     error,
   } = props;
 
@@ -384,8 +386,8 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       required={required}
       clickable={clickable}
       extra={props.extra}
-      titleStyle={labelStyle()}
-      valueClass={clsx(bem('value'))}
+      titleStyle={{ ...labelStyle(), ...titleStyle }}
+      valueClass={clsx(bem('value'), valueClass)}
       titleClass={clsx(bem('label', labelAlign), labelClass)}
       arrowDirection={arrowDirection}
       onClick={props?.onClick}
