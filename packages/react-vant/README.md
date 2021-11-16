@@ -28,7 +28,7 @@
 - 📖 提供完善的文档和组件示例
 - 🍭 支持主题定制，内置 700+ 个主题变量
 - 🍭 支持按需引入和 Tree Shaking
-- 🍭 [支持服务器端渲染](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
+- 🍭 支持服务器端渲染[SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
 - 🍭 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
 
 ## 安装
