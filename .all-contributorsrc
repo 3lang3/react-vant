@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "TinsFox",
+      "name": "TinsFox",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33956589?v=4",
+      "profile": "https://github.com/TinsFox",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "react-vant",
+  "projectOwner": "3lang3",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
