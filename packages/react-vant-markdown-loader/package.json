@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "front-matter": "^4.0.2",
-    "loader-utils": "^2.0.0",
+    "loader-utils": "^3.0.0",
     "markdown-it": "^12.0.0",
     "markdown-it-anchor": "^6.0.0",
     "prismjs": "^1.23.0",
