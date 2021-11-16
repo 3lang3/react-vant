@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0"
   },
   "dependencies": {
     "front-matter": "^4.0.2",
