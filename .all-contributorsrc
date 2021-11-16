@@ -24,6 +24,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "0x219",
+      "name": "Taoist Priest",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50414099?v=4",
+      "profile": "http://blog.0x219.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "projectName": "react-vant",
