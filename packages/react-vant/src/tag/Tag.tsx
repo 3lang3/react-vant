@@ -62,7 +62,13 @@ const Tag: React.FC<TagProps> = (props) => {
   };
 
   return (
-    <CSSTransition nodeRef={nodeRef} clsx="rv-fade" in={props.show} timeout={300} unmountOnExit>
+    <CSSTransition
+      nodeRef={nodeRef}
+      classNames="rv-fade"
+      in={props.show}
+      timeout={300}
+      unmountOnExit
+    >
       {renderTag()}
     </CSSTransition>
   );

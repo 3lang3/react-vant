@@ -190,7 +190,7 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
       nodeRef={root}
       in={props.visible}
       timeout={300}
-      clsx={props.transition ? 'rv-slide-up' : ''}
+      classNames={props.transition ? 'rv-slide-up' : ''}
       onExited={onAnimationEnd}
     >
       <div

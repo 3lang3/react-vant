@@ -205,7 +205,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
          */
         nodeRef={popupRef}
         timeout={duration}
-        clsx={transition || name}
+        classNames={transition || name}
         mountOnEnter={!forceRender}
         unmountOnExit={destroyOnClose}
         onEnter={open}

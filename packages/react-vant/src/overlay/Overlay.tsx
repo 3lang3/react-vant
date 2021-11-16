@@ -64,7 +64,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       unmountOnExit
       in={visible}
       timeout={duration}
-      clsx={`${prefixCls}-fade`}
+      classNames={`${prefixCls}-fade`}
     >
       {renderOverlay()}
     </CSSTransition>

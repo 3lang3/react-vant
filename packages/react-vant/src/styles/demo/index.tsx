@@ -38,7 +38,7 @@ export default (): React.ReactNode => {
         <Cell isLink title="Slide Right" onClick={() => animate('rv-slide-right')} />
       </DemoBlock>
 
-      <CSSTransition in={show} timeout={300} clsx={transition} unmountOnExit>
+      <CSSTransition in={show} timeout={300} classNames={transition} unmountOnExit>
         <div className="demo-animate-block" />
       </CSSTransition>
     </DemoSection>

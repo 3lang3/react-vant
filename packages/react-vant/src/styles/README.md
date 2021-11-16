@@ -62,27 +62,27 @@ import { CSSTransition } from 'react-transition-group';
 
 ```jsx
 <!-- 淡入 -->
-<CSSTransition in={visible} timeout={500} clsx="rv-fade" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-fade" unmountOnExit>
   <div>Fade</div>
 </CSSTransition>
 
 <!-- 上滑进入 -->
-<CSSTransition in={visible} timeout={500} clsx="rv-slide-up" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-up" unmountOnExit>
   <div>Slide Up</div>
 </CSSTransition>
 
 <!-- 下滑进入 -->
-<CSSTransition in={visible} timeout={500} clsx="rv-slide-down" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-down" unmountOnExit>
   <div>Slide Down</div>
 </CSSTransition>
 
 <!-- 左滑进入 -->
-<CSSTransition in={visible} timeout={500} clsx="rv-slide-left" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-left" unmountOnExit>
   <div>Slide Left</div>
 </CSSTransition>
 
 <!-- 右滑进入 -->
-<CSSTransition in={visible} timeout={500} clsx="rv-slide-right" unmountOnExit>
+<CSSTransition in={visible} timeout={500} classNames="rv-slide-right" unmountOnExit>
   <div>Slide Right</div>
 </CSSTransition>
 ```
