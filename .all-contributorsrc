@@ -11,13 +11,70 @@
   "commitConvention": "gitmoji",
   "contributors": [
     {
-      "login": "jakebolam",
-      "name": "Jake Bolam",
-      "avatar_url": "https://avatars.githubusercontent.com/u/3534236?v=4",
-      "profile": "https://jakebolam.com",
+      "login": "0x219",
+      "name": "0x219",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50414099?v=4",
+      "profile": "https://github.com/0x219",
       "contributions": [
-        "infra",
-        "test",
+        "code",
+        "doc",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "TinsFox",
+      "name": "TinsFox",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33956589?v=4",
+      "profile": "https://github.com/TinsFox",
+      "contributions": [
+        "code",
+        "doc",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "sethyuan",
+      "name": "Seth Yuan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3410293?v=4",
+      "profile": "https://github.com/sethyuan",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "union-mall",
+      "name": "union-mall",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82643376?v=4",
+      "profile": "https://github.com/union-mall",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tgioer",
+      "name": "Tang Zhi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18252854?v=4",
+      "profile": "https://github.com/tgioer",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "yuegongzi",
+      "name": "yuegongzi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13476544?v=4",
+      "profile": "https://github.com/yuegongzi",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "ovensi",
+      "name": "周神",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24306930?v=4",
+      "profile": "https://github.com/ovensi",
+      "contributions": [
         "code"
       ]
     },
@@ -28,6 +85,36 @@
       "profile": "https://github.com/BiscuitCoder",
       "contributions": [
         "design"
+      ]
+    },
+    {
+      "login": "renovate-bot",
+      "name": "WhiteSource Renovate",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25180681?v=4",
+      "profile": "https://renovate.whitesourcesoftware.com/",
+      "contributions": [
+        "doc",
+        "security",
+        "tool"
+      ]
+    },
+    {
+      "login": "allcontributors[bot]",
+      "name": "allcontributors[bot]",
+      "avatar_url": "https://avatars.githubusercontent.com/in/23186?v=4",
+      "profile": "https://github.com/apps/allcontributors",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "dependabot[bot]",
+      "name": "dependabot[bot]",
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "profile": "https://github.com/apps/dependabot",
+      "contributions": [
+        "doc",
+        "security"
       ]
     }
   ],

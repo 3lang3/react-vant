@@ -79,16 +79,6 @@ React Vant 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0。
 
 使用过程中发现任何问题都可以提 [Issue](https://github.com/3lang3/react-vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/3lang3/react-vant/pulls)。
 
-## 贡献者
-
-<a href="https://github.com/3lang3/react-vant/graphs/contributors">
-  <img style="width: 420px" src="https://contrib.rocks/image?repo=3lang3/react-vant"/>
-</a>
-<br />
-<br />
-
-- 部分图形设计来自[BiscuitCoder](https://github.com/BiscuitCoder)
-
 > 欢迎加入我们的微信讨论组
 
 <img src="https://user-images.githubusercontent.com/7098719/130221473-851855c7-1429-4a36-838d-4f7f95a48418.jpg" width="140">
@@ -108,8 +98,19 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://jakebolam.com"><img src="https://avatars.githubusercontent.com/u/3534236?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jake Bolam</b></sub></a><br /><a href="#infra-jakebolam" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/3lang3/react-vant/commits?author=jakebolam" title="Tests">⚠️</a> <a href="https://github.com/3lang3/react-vant/commits?author=jakebolam" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/0x219"><img src="https://avatars.githubusercontent.com/u/50414099?v=4?s=100" width="100px;" alt=""/><br /><sub><b>0x219</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=0x219" title="Code">💻</a> <a href="https://github.com/3lang3/react-vant/commits?author=0x219" title="Documentation">📖</a> <a href="#maintenance-0x219" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/TinsFox"><img src="https://avatars.githubusercontent.com/u/33956589?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TinsFox</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=TinsFox" title="Code">💻</a> <a href="https://github.com/3lang3/react-vant/commits?author=TinsFox" title="Documentation">📖</a> <a href="#maintenance-TinsFox" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/sethyuan"><img src="https://avatars.githubusercontent.com/u/3410293?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Seth Yuan</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=sethyuan" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/union-mall"><img src="https://avatars.githubusercontent.com/u/82643376?v=4?s=100" width="100px;" alt=""/><br /><sub><b>union-mall</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=union-mall" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/tgioer"><img src="https://avatars.githubusercontent.com/u/18252854?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tang Zhi</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=tgioer" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/yuegongzi"><img src="https://avatars.githubusercontent.com/u/13476544?v=4?s=100" width="100px;" alt=""/><br /><sub><b>yuegongzi</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=yuegongzi" title="Code">💻</a> <a href="https://github.com/3lang3/react-vant/commits?author=yuegongzi" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ovensi"><img src="https://avatars.githubusercontent.com/u/24306930?v=4?s=100" width="100px;" alt=""/><br /><sub><b>周神</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=ovensi" title="Code">💻</a></td>
+  </tr>
+  <tr>
     <td align="center"><a href="https://github.com/BiscuitCoder"><img src="https://avatars.githubusercontent.com/u/17230944?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BiscuitCoder</b></sub></a><br /><a href="#design-BiscuitCoder" title="Design">🎨</a></td>
+    <td align="center"><a href="https://renovate.whitesourcesoftware.com/"><img src="https://avatars.githubusercontent.com/u/25180681?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WhiteSource Renovate</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=renovate-bot" title="Documentation">📖</a> <a href="#security-renovate-bot" title="Security">🛡️</a> <a href="#tool-renovate-bot" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/apps/allcontributors"><img src="https://avatars.githubusercontent.com/in/23186?v=4?s=100" width="100px;" alt=""/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="#tool-allcontributors[bot]" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/apps/dependabot"><img src="https://avatars.githubusercontent.com/in/29110?v=4?s=100" width="100px;" alt=""/><br /><sub><b>dependabot[bot]</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=dependabot[bot]" title="Documentation">📖</a> <a href="#security-dependabot[bot]" title="Security">🛡️</a></td>
   </tr>
 </table>
 
