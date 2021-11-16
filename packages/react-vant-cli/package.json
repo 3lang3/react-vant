@@ -61,7 +61,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
-    "execa": "^4.1.0",
+    "execa": "^5.0.0",
     "fast-glob": "^3.2.4",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.3.3",
