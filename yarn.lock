@@ -2417,10 +2417,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/gulp-if@0.0.33":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@types/gulp-if/-/gulp-if-0.0.33.tgz#edece22b7925d9a6db5f9c8c0d7882aa776fb678"
-  integrity sha512-J5lzff21X7r1x/4hSzn02GgIUEyjCqYIXZ9GgGBLhbsD3RiBdqwnkFWgF16/0jO5rcVZ52Zp+6MQMQdvIsWuKg==
+"@types/gulp-if@0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/gulp-if/-/gulp-if-0.0.34.tgz#f8fa8e73d5179457cbd4769137f010c92c049b70"
+  integrity sha512-r2A04hHDC+ZWMRAm+3q6/UeC3ggvl+TZm9P1+2umnp4q9bOlBmUQnR178Io3c0DkZPQAwup8VNtOvmvaWCpP5w==
   dependencies:
     "@types/node" "*"
     "@types/vinyl" "*"
