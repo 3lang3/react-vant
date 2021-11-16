@@ -162,6 +162,15 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "feifanshijie",
+      "name": "Yann",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12168991?v=4",
+      "profile": "https://www.itworker.cn",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
