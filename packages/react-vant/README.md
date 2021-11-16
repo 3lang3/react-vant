@@ -113,6 +113,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/apps/dependabot"><img src="https://avatars.githubusercontent.com/in/29110?v=4?s=100" width="100px;" alt=""/><br /><sub><b>dependabot[bot]</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=dependabot[bot]" title="Documentation">📖</a> <a href="#security-dependabot[bot]" title="Security">🛡️</a></td>
     <td align="center"><a href="https://github.com/AdonLee"><img src="https://avatars.githubusercontent.com/u/5396468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cedong.Lee</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AAdonLee" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/hongmaoxiao/myblog/issues"><img src="https://avatars.githubusercontent.com/u/3943494?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xiaomao Feng</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Ahongmaoxiao" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/xiaojingyuaner"><img src="https://avatars.githubusercontent.com/u/24470322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xiaojingyuaner</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Axiaojingyuaner" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
