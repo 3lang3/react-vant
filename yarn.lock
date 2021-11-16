@@ -2425,10 +2425,10 @@
     "@types/node" "*"
     "@types/vinyl" "*"
 
-"@types/gulp-less@0.0.31":
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/@types/gulp-less/-/gulp-less-0.0.31.tgz#7e9df7543904179e800cc59863b755c0bdec2e36"
-  integrity sha512-WmbkvDEOSmUlW0Mm4R9TZGI5sNfnOahcot1zEmXH0wROZ2NsGNdg8xrttPeFw2wP/5SzrEis5Cf6ZwHblHRCLA==
+"@types/gulp-less@0.0.32":
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/@types/gulp-less/-/gulp-less-0.0.32.tgz#bc0fd59e6f09f0fad13949d172e100a97884b674"
+  integrity sha512-MPOpL7nL383jCkScWbShSUSTWA9r6lnBEc0VCClcaTPmE7vNn8BxgoEFPHB8Uv5hhoP69M1keB/Pv/jbD34XSg==
   dependencies:
     "@types/node" "*"
 
