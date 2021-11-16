@@ -111,6 +111,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://renovate.whitesourcesoftware.com/"><img src="https://avatars.githubusercontent.com/u/25180681?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WhiteSource Renovate</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=renovate-bot" title="Documentation">📖</a> <a href="#security-renovate-bot" title="Security">🛡️</a> <a href="#tool-renovate-bot" title="Tools">🔧</a></td>
     <td align="center"><a href="https://github.com/apps/allcontributors"><img src="https://avatars.githubusercontent.com/in/23186?v=4?s=100" width="100px;" alt=""/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="#tool-allcontributors[bot]" title="Tools">🔧</a></td>
     <td align="center"><a href="https://github.com/apps/dependabot"><img src="https://avatars.githubusercontent.com/in/29110?v=4?s=100" width="100px;" alt=""/><br /><sub><b>dependabot[bot]</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=dependabot[bot]" title="Documentation">📖</a> <a href="#security-dependabot[bot]" title="Security">🛡️</a></td>
+    <td align="center"><a href="https://github.com/AdonLee"><img src="https://avatars.githubusercontent.com/u/5396468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cedong.Lee</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AAdonLee" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
