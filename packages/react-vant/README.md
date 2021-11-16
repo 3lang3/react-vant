@@ -115,6 +115,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/hongmaoxiao/myblog/issues"><img src="https://avatars.githubusercontent.com/u/3943494?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xiaomao Feng</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Ahongmaoxiao" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/xiaojingyuaner"><img src="https://avatars.githubusercontent.com/u/24470322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xiaojingyuaner</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Axiaojingyuaner" title="Bug reports">🐛</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://www.keep-wan.me"><img src="https://avatars.githubusercontent.com/u/19300142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>keep_wan</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Awhevether" title="Bug reports">🐛</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
