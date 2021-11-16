@@ -1,5 +1,5 @@
 {
-  "files": ["./packages/react-vant/README.md"],
+  "files": ["packages/react-vant/README.md"],
   "imageSize": 100,
   "contributorsPerLine": 7,
   "contributorsSortAlphabetically": false,
