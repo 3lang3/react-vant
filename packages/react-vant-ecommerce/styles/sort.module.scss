@@ -1,0 +1,33 @@
+.GirdWrap {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+  grid-row-gap: 2px;
+  grid-column-gap: 2px;
+  justify-items: center;
+  align-items: center;
+}
+
+.Banner {
+  padding: 0 10px;
+}
+
+.SortLabelTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #323233;
+  line-height: 23px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.SortItem {
+  text-align: center;
+  margin-top: 21px;
+}
+
+.SortItemTitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: #646566;
+  line-height: 17px;
+}
