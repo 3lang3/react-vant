@@ -1,0 +1,14 @@
+{
+  "projectName": "react-vant",
+  "projectOwner": "3lang3",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "packages/react-vant/README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [],
+  "contributorsPerLine": 7
+}
