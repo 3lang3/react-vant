@@ -50,7 +50,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop, autoplay, vertical, duration } = props;
+  const { loop: outerLoop, autoplay, vertical, duration } = props;
 
   const lock = useRef<boolean>(false);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -84,6 +84,11 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       count: innerCount,
     };
   }, [props.children]);
+
+  const loop = useMemo(() => {
+    if (count <= 1) return false;
+    return outerLoop;
+  }, [count, outerLoop]);
 
   const getTrackRect = () => {
     const track = trackRef.current;
