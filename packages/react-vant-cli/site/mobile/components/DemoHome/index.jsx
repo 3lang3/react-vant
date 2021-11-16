@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { config } from 'site-mobile-shared';
 
 import DemoHomeNav from '../DemoHomeNav';
@@ -21,16 +21,14 @@ const DemoHome = (props) => {
   return (
     <div className="demo-home">
       <h1
-        className={classnames('demo-home__title', {
+        className={clsx('demo-home__title', {
           'demo-home__title--small': smallTitle,
         })}
       >
-        <img src={siteConfig.logo} alt=""/>
+        <img src={siteConfig.logo} alt="" />
         <span>{siteConfig.title}</span>
       </h1>
-      {siteConfig.description && (
-        <h2 className="demo-home__desc">{siteConfig.description}</h2>
-      )}
+      {siteConfig.description && <h2 className="demo-home__desc">{siteConfig.description}</h2>}
       {siteConfig.nav.map((group) => (
         <DemoHomeNav key={group.title} lang={lang} group={group} />
       ))}

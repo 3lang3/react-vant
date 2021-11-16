@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import { useLocation } from 'react-router-dom';
 
@@ -18,14 +18,10 @@ const DemoSection = (props) => {
     if (name) {
       return `demo-${decamelize(name)}`;
     }
-    return ''
+    return '';
   }, [pathname]);
 
-  return (
-    <section className={classnames('vant-doc-demo-section', demoName)}>
-      {children}
-    </section>
-  );
+  return <section className={clsx('vant-doc-demo-section', demoName)}>{children}</section>;
 };
 
 export default DemoSection;

@@ -1,6 +1,8 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable no-nested-ternary */
 import React, { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import './index.less';
 
@@ -31,13 +33,14 @@ const NavLink = (props) => {
     <>
       {item.path ? (
         <Link
-          className={classnames('vant-doc-navlink', {
+          className={clsx('vant-doc-navlink', {
             'vant-doc-navlink--active': active,
           })}
           to={path}
           dangerouslySetInnerHTML={{ __html: itemName }}
         />
       ) : item.link ? (
+        // eslint-disable-next-line jsx-a11y/control-has-associated-label
         <a href={item.link} dangerouslySetInnerHTML={{ __html: itemName }} />
       ) : (
         <a dangerouslySetInnerHTML={{ __html: itemName }} />

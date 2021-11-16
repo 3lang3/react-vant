@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useState } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 import './index.less';
 
@@ -26,16 +26,11 @@ const Simulator = (props) => {
 
   return (
     <div
-      className={classnames('vant-doc-simulator', {
+      className={clsx('vant-doc-simulator', {
         'vant-doc-simulator-fixed': scrollTop > 60,
       })}
     >
-      <iframe
-        title="vant-ui-iframe"
-        src={src}
-        style={simulatorStyle}
-        frameBorder="0"
-      />
+      <iframe title="vant-ui-iframe" src={src} style={simulatorStyle} frameBorder="0" />
     </div>
   );
 };

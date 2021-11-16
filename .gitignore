@@ -16,7 +16,7 @@ pnpm-lock.yaml
 # dist file
 es
 lib
-site
+packages/react-vant/site
 dist
 changelog.generated.md
 
