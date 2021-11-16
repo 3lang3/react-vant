@@ -104,7 +104,7 @@
     "@types/gulp-less": "0.0.31",
     "@types/gulp-plumber": "0.0.32",
     "@types/jest": "26.0.24",
-    "@types/lodash": "4.14.176",
+    "@types/lodash": "4.14.177",
     "@types/node": "14.17.33",
     "@types/postcss-load-config": "2.0.1",
     "@types/signale": "1.4.2",
