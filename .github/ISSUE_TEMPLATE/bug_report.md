@@ -1,31 +1,44 @@
 ---
-name: Bug报告
+name: "\U0001F41B Bug report"
 about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+title: "\U0001F41B [Component] xxxxx"
+labels: bug
+assignees: '0x219'
 ---
 
-**简述bug**
-对bug的清晰而简洁的描述。
+### 🐛 漏洞描述 (Bug description)
 
-**复现代码**
-提供复现代码片段，极大的提升开源工作效率。
+详细地描述 bug，让大家都能理解.
 
-- [react vant template](https://codesandbox.io/s/react-vant-template-eez7b)
-- [react vant nextjs template](https://codesandbox.io/s/react-vant-nextjs-template-uepyw)
+Describe the bug in detail for everyone to understand.
 
-**预期行为**
-预期行为描述。
+### 🐾 复现步骤 (Steps to reproduce)
 
-**截图**
-如果方便，请提供截屏图片
+清晰描述复现步骤（最好是 gif 或者视频），让大家轻松复现问题.
 
+Clearly describe the reproduction steps (gif or video is best), so that everyone can easily reproduce the problem.
 
-**设备信息:**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+### 🌈 想要的结果 (Desired result)
 
+描述你原本期望看到的结果.
+
+Describe what you expected to see.
+
+### 💻 复现示例 (Reproduce the code)
+
+提供可复现的代码，仓库，或线上示例.
+
+Provide reproducible code, warehouse, or online examples.
+
+### 📦 环境信息 (Environmental information)
+
+- Device: [e.g. iPhone6]
+- OS: [e.g. iOS8.1]
+- Browser [e.g. stock browser, safari]
+- Version [e.g. 22]
+
+### 🔖 其他 (Other)
+
+如其他信息可以贴在这里.
+
+If other information can be posted here.
