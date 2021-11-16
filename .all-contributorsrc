@@ -116,6 +116,15 @@
         "doc",
         "security"
       ]
+    },
+    {
+      "login": "AdonLee",
+      "name": "Cedong.Lee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5396468?v=4",
+      "profile": "https://github.com/AdonLee",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
