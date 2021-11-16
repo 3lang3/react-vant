@@ -2432,10 +2432,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/gulp-plumber@0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@types/gulp-plumber/-/gulp-plumber-0.0.32.tgz#81467e0af4592a86239220ba743718c81846fc6a"
-  integrity sha512-upPVrIjFivRIHS80b6ApIYafvyToiH/AoCR1r2b2ObKrbRY8C2bF+vFwQ72lSu6jLnLIKHkmAW5CWPXczUz3Wg==
+"@types/gulp-plumber@0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@types/gulp-plumber/-/gulp-plumber-0.0.33.tgz#dbff68278b294ab8048a63d93a9db96171fa0424"
+  integrity sha512-xVH6y+WLxGpAyKtbQpk7qPCqlV3Fou2ghCBQeJkqVzR5gBVLaQ2dfZ0HcvlUxziW68wgsXtTmFaCnLm/0sBG3A==
   dependencies:
     "@types/node" "*"
 

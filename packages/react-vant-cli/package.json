@@ -102,7 +102,7 @@
     "@types/execa": "2.0.0",
     "@types/gulp-if": "0.0.34",
     "@types/gulp-less": "0.0.31",
-    "@types/gulp-plumber": "0.0.32",
+    "@types/gulp-plumber": "0.0.33",
     "@types/jest": "26.0.24",
     "@types/lodash": "4.14.176",
     "@types/node": "14.17.33",
