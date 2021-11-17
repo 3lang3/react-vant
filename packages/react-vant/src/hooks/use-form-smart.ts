@@ -27,7 +27,7 @@ export type FormMethod = {
 };
 export type FormState = [Ref<unknown>, FormMethod];
 
-export function useFormSmart(option: FormOption = {}): FormState {
+export default function useFormSmart (option: FormOption = {}): FormState {
   const { value, sync } = option;
   const ref = useRef(null);
   const [once, setOnce] = useState<boolean>(false);
