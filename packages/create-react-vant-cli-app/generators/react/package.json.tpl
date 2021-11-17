@@ -10,8 +10,6 @@
   ],
   "scripts": {
     "start": "react-vant-cli dev",
-    "create-component": "react-vant-cli create-component",
-    "postcreate-component":"yarn prettier",
     "prettier":"npx prettier --write vant.config.js src/index.ts",
     "build": "react-vant-cli build",
     "release": "react-vant-cli release --tag dev",
