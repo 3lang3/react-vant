@@ -1,6 +1,6 @@
 {
   "name": "create-react-vant-cli-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Create React Vant Cli App",
   "main": "lib/index.js",
   "bin": {
