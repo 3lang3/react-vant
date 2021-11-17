@@ -52,6 +52,5 @@
       "tag": false,
       "commitMessage": "release: create-vant-cli-app ${version}"
     }
-  },
-  "gitHead": "bafda54018113e04be2bcf46d9bd6531033e6506"
+  }
 }

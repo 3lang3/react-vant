@@ -112,6 +112,5 @@
     "@types/vinyl-fs": "2.4.12",
     "@types/webpack": "4.41.32",
     "@types/webpack-dev-server": "3.11.6"
-  },
-  "gitHead": "bafda54018113e04be2bcf46d9bd6531033e6506"
+  }
 }
