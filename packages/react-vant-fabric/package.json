@@ -1,6 +1,6 @@
 {
   "name": "@react-vant/fabric",
-  "version": "1.0.5",
+  "version": "1.0.6-alpha.0",
   "description": "A collection of configuration files containing prettier, eslint, stylelint",
   "main": "dist/index.js",
   "files": [
