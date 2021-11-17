@@ -12,6 +12,23 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.3.8
+
+`2021-11-17`
+
+**Features**
+
+- Swiper: 新增`slideSize` `trackOffset` `stuckAtBoundary`属性 ([c6b5a34](https://github.com/3lang3/react-vant/commit/c6b5a348d54919d56affd86a7f7ef6e99d3e3b5a))
+
+**Bug Fixes**
+
+- Swiper: 修复只有一个Swiper.Item时`loop`行为错乱的问题 ([d9cbcc3](https://github.com/3lang3/react-vant/commit/d9cbcc3daab158ad40dcbb59d1bc572a48c75d48))
+- Field: 修复Props定义错误的问题 [#155](https://github.com/3lang3/react-vant/issues/155) ([4977ef4](https://github.com/3lang3/react-vant/commit/4977ef4cf598e1d5af5ab8a726e98e3850b807ec))
+
+**Performance**
+
+- 使用`clsx`替换`classnames`减小包尺寸 ([f20b148](https://github.com/3lang3/react-vant/commit/f20b14891481880e52cfd8bc1539df17a970e912))
+
 ### v1.3.7
 
 `2021-11-15`
