@@ -62,7 +62,7 @@ program.command('commit-lint').description('Lint commit message').action(commitL
 
 program
   .command('create-component')
-  .description('Create a component with template')
+  .description('Create a component with template in react-vant')
   .option('--component [componentName]', 'Component name')
   .action(create);
 
