@@ -1,4 +1,4 @@
-English | [简体中文](./README.zh-CN.md)
+[English](./README.md) | 简体中文
 
 <p align="center">
     <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="240" style="margin-bottom: 10px;">
@@ -6,7 +6,7 @@ English | [简体中文](./README.zh-CN.md)
 
 <h1 align="center">React Vant</h1>
 
-<p align="center">📱 A mobile component library based on the <strong>React</strong> framework according to <a href="https://github.com/youzan/vant">Vant</a>.</p>
+<p align="center">📱 一个参照<a href="https://github.com/youzan/vant">Vant</a>打造的 React 框架移动端组件库。</p>
 
 <p align="center">
   <a href="https://npmjs.org/package/react-vant" target="_blank" referrerpolicy="no-referrer">
@@ -25,39 +25,40 @@ English | [简体中文](./README.zh-CN.md)
 </p>
 
 <p align="center">
-  🔥 <a href="https://lang3.gitee.io/react-vant/">Documentation (Domestic)</a>
+  🔥 <a href="https://lang3.gitee.io/react-vant/">文档网站 (Domestic)</a>
   &nbsp;
-  🌈 <a href="https://3lang3.github.io/react-vant/">Documentation（GitHub）</a>
+  🌈 <a href="https://3lang3.github.io/react-vant/">文档网站（GitHub）</a>
 </p>
 
-## ✨ Feature
+## ✨ 特性
 
-- 🚀 The average component size is less than 1KB（min+gzip）.
-- 💎 60+ high-quality components, covering mainstream mobile scenes.
-- 💪 Written in TypeScript, providing a complete type definition.
-- 📝 Provide complete documentation and component examples.
-- 🎨 Support theme customization, built-in 700+ theme designers.
-- 😎 Support on-demand import and Tree Shaking.
-- ⚡️ Support [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite) and Parcel@2.
+- 🚀 组件平均体积小于 1KB（min+gzip）.
+- 💎 60+ 个高质量组件，覆盖移动端主流场景.
+- 💪 使用 TypeScript 编写，提供完整的类型定义.
+- 📝 提供完善的文档和组件示例.
+- 🎨 支持主题定制，内置 700+ 个主题变量.
+- 😎 支持按需引入和 Tree Shaking.
+- 🌝 支持服务器端渲染[SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
+- ⚡️ 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)和 Parcel@2.
 
-## 🖥 Environment Support
+## 🖥 环境支持
 
-- 🌵 Modern browsers
-- 🌝 Support [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
+- 🌵 现代浏览器
+- 🌝 支持 [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br> Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/a94987f29719142668cdf960b3f624ce1a3c6aa8/src/safari-ios/safari-ios.svg" alt="Safari for iOS" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Safari |
 | --- | --- | --- | --- |
 
-Support modern browsers and Chrome >= 51, iOS >= 10.0.
+支持现代浏览器和 Chrome >= 51，iOS >= 10.0。
 
-## 📱 Preview
+## 📱 预览
 
-Scan the QR code on your mobile phone to access the demo:
+手机扫描上的二维码访问演示：
 
 <img src="https://user-images.githubusercontent.com/7098719/132332336-20429085-18b7-4639-8022-a5e7098610ad.png" width="200" />
 
 <details>
-  <summary>View some screenshots.</summary>
+  <summary>查看部分截图</summary>
   <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/c6034f01-b534-4e01-9b43-d28259ea77ea.png" width="200" />
   <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/b8c56952-943b-4e8e-b4cb-274d5ac62f7b.png" width="200" />
   <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/20a5ea40-6470-4156-b244-a4cbd8cef9d2.png" width="200" />
@@ -69,9 +70,9 @@ Scan the QR code on your mobile phone to access the demo:
   <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/6e2800b6-1675-467d-be48-f5e876c19e0f.png" width="200" />
 </details>
 
-## 📦 Install
+## 📦 安装
 
-Recommended **pin** version:
+推荐 **锁定** 版本:
 
 ```bash
 # npm
@@ -81,11 +82,11 @@ npm i react-vant -S -E
 pnpm i react-vant -S -E
 ```
 
-## 🚀 Quick start
+## 🚀 快速开始
 
-The following are some code examples of react-vant:
+以下是 react-vant 的一些代码示例：
 
-#### Code Snippet:
+#### 代码片段:
 
 ```jsx
 import ReactDOM from 'react-dom';
@@ -99,26 +100,26 @@ function App() {
 ReactDOM.render(<App />, mountNode);
 ```
 
-#### Code Examples:
+#### 代码示例:
 
 - [Create React App](https://github.com/3lang3/react-vant-template/tree/main/template/create-react-app)
 - [Umi](https://github.com/3lang3/react-vant-template/tree/main/template/umi)
 - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
 - [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
 
-For more information, please refer to [QuickStart](https://3lang3.github.io/react-vant/#/zh-CN/).
+更多信息请参考[快速开始](https://3lang3.github.io/react-vant/#/zh-CN/).
 
-## 🤝 Contributing
+## 🤝 贡献
 
-Read our contributing guide and let's build a better react-vant together.
+阅读我们的贡献指南，让我们一起构建更好的 `react-vant`。
 
-We welcome all contributions. Please read our [CONTRIBUTING.md](https://3lang3.github.io/react-vant/#/zh-CN/contribution) first. You can submit any ideas as pull requests or as GitHub issues. :)
+我们欢迎所有贡献。 请先阅读我们的 [CONTRIBUTING.md](https://3lang3.github.io/react-vant/#/zh-CN/contribution)。 您可以将任何想法作为拉取请求或作为 GitHub 问题提交 😃。
 
-## 💭 Discuss
+## 💭 讨论
 
 <img alt="WechatIMG21.jpeg" src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/16/25/469b4c9c-32f2-49b5-b8c7-8c8abcb6f085.jpeg" width="200"  />
 
-## 👥 Contributors
+## 👥 贡献者
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -159,12 +160,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-## 🙏 Thanks
+## 🙏 鸣谢
 
 [Vant](https://github.com/youzan/vant) - Thanks to the Vant team for years of continuous maintenance, allowing me to stand on the shoulders of giants.
 
 [Zan Design](https://design.youzan.com/) - Thanks for the careful production of YouZan Design Experience Center.
 
-## 📜 License
+## 📜 许可证
 
 [MIT](./LICENSE) ⓒ 3lang3
