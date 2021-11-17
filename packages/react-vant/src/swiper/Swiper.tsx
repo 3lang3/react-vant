@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable no-plusplus */
 import React, {
   forwardRef,
@@ -119,7 +120,13 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const [{ position }, api] = useSpring(
     () => ({
       position: boundIndex(current) * 100,
-      config: { tension: 200, friction: 30, duration },
+      config: {
+        tension: 200,
+        friction: 30,
+        duration,
+        // eslint-disable-next-line no-cond-assign
+        easing: (t) => ((t *= 2) <= 1 ? t * t : --t * (2 - t) + 1) / 2,
+      },
       onRest: () => {
         if (draggingRef.current) return;
         const rawX = position.get();
