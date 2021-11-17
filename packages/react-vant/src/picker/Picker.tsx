@@ -215,11 +215,13 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const confirm = () => {
     refs.forEach((_ref) => _ref.stopMomentum());
     if (props.onConfirm) {
-      if (dataType === 'plain') {
-        props.onConfirm(getColumnValue(0), getColumnIndex(0));
-      } else {
-        props.onConfirm(getValues(), getIndexes());
-      }
+      setTimeout(() => {
+        if (dataType === 'plain') {
+          props.onConfirm(getColumnValue(0), getColumnIndex(0));
+        } else {
+          props.onConfirm(getValues(), getIndexes());
+        }
+      }, 0);
     }
   };
 
