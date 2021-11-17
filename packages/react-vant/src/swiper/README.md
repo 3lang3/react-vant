@@ -112,7 +112,7 @@ export default () => {
 
 ### 自定义滑块大小
 
-滑块默认宽度为 `100%`，可以通过 `style` 属性改变滑块宽度的 css 变量值。
+滑块默认宽度为 `100%`，可以通过 `slideSize` 属性改变滑块宽度。
 
 ```jsx
 import React from 'react';
@@ -120,12 +120,45 @@ import { Swiper } from 'react-vant';
 
 export default () => {
   return (
-    <Swiper
-      style={{
-        '--rv-swipe-slide-width': '80%',
-        '--rv-swipe-border-radius': '10px',
-      }}
-    >
+    <Swiper slideSize={80}>
+      <Swiper.Item>1</Swiper.Item>
+      <Swiper.Item>2</Swiper.Item>
+      <Swiper.Item>3</Swiper.Item>
+      <Swiper.Item>4</Swiper.Item>
+    </Swiper>
+  );
+};
+```
+
+### 滑块居中
+
+通过 `trackOffset` 改变滑块偏移量实现居中展示。
+
+```jsx
+import React from 'react';
+import { Swiper } from 'react-vant';
+
+export default () => {
+  return (
+    <Swiper slideSize={80} trackOffset={10}>
+      <Swiper.Item>1</Swiper.Item>
+      <Swiper.Item>2</Swiper.Item>
+      <Swiper.Item>3</Swiper.Item>
+      <Swiper.Item>4</Swiper.Item>
+    </Swiper>
+  );
+};
+```
+
+### 垂直滑块居中
+
+```jsx
+import React from 'react';
+import { Swiper } from 'react-vant';
+
+export default () => {
+  return (
+    <Swiper style={{ height: 150 }} vertical slideSize={80} trackOffset={10}>
       <Swiper.Item>1</Swiper.Item>
       <Swiper.Item>2</Swiper.Item>
       <Swiper.Item>3</Swiper.Item>
@@ -178,16 +211,19 @@ export default () => {
 
 ### Swipe Props
 
-| 参数           | 说明                    | 类型                                       | 默认值  |
-| -------------- | ----------------------- | ------------------------------------------ | ------- |
-| autoplay       | 自动轮播间隔，单位为 ms | _number \| boolean_                        | `false` |
-| duration       | 动画时长，单位为 ms     | _number_                                   | `300`   |
-| initialSwipe   | 初始位置索引值          | _number_                                   | `0`     |
-| loop           | 是否开启循环播放        | _boolean_                                  | `true`  |
-| vertical       | 是否为纵向滚动          | _boolean_                                  | `false` |
-| touchable      | 是否可以通过手势滑动    | _boolean_                                  | `true`  |
-| indicator      | 自定义指示器            | _boolean \| (total, current) => ReactNode_ | -       |
-| indicatorProps | 指示器属性              | _IndicatorProps_                           | -       |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| autoplay | 自动轮播间隔，单位为 ms | _number \| boolean_ | `false` |
+| duration | 动画时长，单位为 ms | _number_ | `300` |
+| initialSwipe | 初始位置索引值 | _number_ | `0` |
+| loop | 是否开启循环播放 | _boolean_ | `true` |
+| vertical | 是否为纵向滚动 | _boolean_ | `false` |
+| touchable | 是否可以通过手势滑动 | _boolean_ | `true` |
+| slideSize | 滑块的宽度百分比 | _number_ | `100` |
+| trackOffset | 滑块轨道整体的偏移量百分比 | _number_ | `0` |
+| stuckAtBoundary | 是否在边界两边卡住，避免出现空白，仅在非 `loop` 模式且 `slideSize` < 100 时生效 | _boolean_ | `false` |
+| indicator | 自定义指示器 | _boolean \| (total, current) => ReactNode_ | - |
+| indicatorProps | 指示器属性 | _IndicatorProps_ | - |
 
 ### IndicatorProps 格式
 
@@ -245,7 +281,8 @@ swipeRef.current?.swipeNext();
 
 | 名称                                           | 默认值                    | 描述 |
 | ---------------------------------------------- | ------------------------- | ---- |
-| --rv-swipe-slide-width                         | _100%_                    | -    |
+| --rv-swipe-slide-size                          | _100%_                    | -    |
+| --rv-swipe-track-offset                        | _0%_                      | -    |
 | --rv-swipe-border-radius                       | _0px_                     | -    |
 | --rv-swipe-indicator-size                      | _6px_                     | -    |
 | --rv-swipe-indicator-margin                    | _var(--rv-padding-sm)_    | -    |

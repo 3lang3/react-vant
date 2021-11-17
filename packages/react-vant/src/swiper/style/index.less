@@ -1,7 +1,8 @@
 @import './var.less';
 
 :root {
-  --rv-swipe-slide-width: @swipe-slide-width;
+  --rv-swipe-slide-size: @swipe-slide-size;
+  --rv-swipe-track-offset: @swipe-track-offset;
   --rv-swipe-border-radius: @swipe-border-radius;
   --rv-swipe-indicator-size: @swipe-indicator-size;
   --rv-swipe-indicator-margin: @swipe-indicator-margin;
@@ -24,11 +25,23 @@
     .@{rv-prefix}-swiper__track--allow-touch-move {
       touch-action: pan-x;
     }
+
+    .@{rv-prefix}-swiper__track {
+      transform: translateY(var(--rv-swipe-track-offset));
+
+      &-inner {
+        width: 100%;
+        height: var(--rv-swipe-slide-width, var(--rv-swipe-slide-size));
+      }
+    }
   }
+
   &__track {
     width: 100%;
+    height: 100%;
     padding: 0;
     white-space: nowrap;
+    transform: translateX(var(--rv-swipe-track-offset));
 
     &--allow-touch-move {
       cursor: grab;
@@ -39,12 +52,9 @@
       position: relative;
       display: flex;
       flex-wrap: nowrap;
-      width: var(--rv-swipe-slide-width);
+      width: var(--rv-swipe-slide-width, var(--rv-swipe-slide-size));
+      height: 100%;
       overflow: visible;
-
-      &--vertical {
-        flex-direction: column;
-      }
     }
   }
   &__slide {
@@ -73,9 +83,8 @@
 .@{rv-prefix}-swiper-item {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   white-space: normal;
-  user-select: none;
 }
 
 .@{rv-prefix}-indicator {
