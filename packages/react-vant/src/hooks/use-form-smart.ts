@@ -25,7 +25,7 @@ export type FormMethod = {
   getAll: () => Record<string, unknown>;
   clear: () => void;
 };
-export type FormState = [ref: Ref<unknown>, methods: FormMethod];
+export type FormState = [Ref<unknown>, FormMethod];
 
 export function useFormSmart(option: FormOption = {}): FormState {
   const { value, sync } = option;
