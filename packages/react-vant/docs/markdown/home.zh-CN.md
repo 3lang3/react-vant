@@ -4,14 +4,14 @@
 
 ### 特性
 
-- 提供 60 多个高质量组件，覆盖移动端各类场景
-- 性能极佳，组件平均体积不到 1kb（min+gzip）
-- 完善的文档和示例
-- 支持按需引入
-- 支持主题定制
-- 支持 TypeScript
-- 支持 [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
-- 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
+- 🚀 性能极佳，组件平均体积小于 1KB（min+gzip）
+- 🚀 60+ 个高质量组件，覆盖移动端主流场景
+- 💪 使用 TypeScript 编写，提供完整的类型定义
+- 📖 提供完善的文档和组件示例
+- 🍭 支持主题定制，内置 700+ 个主题变量
+- 🍭 支持按需引入和 Tree Shaking
+- 🍭 支持服务器端渲染[SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
+- 🍭 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
 
 ### 快速上手
 
@@ -39,7 +39,7 @@
   <img style="width: 420px" src="https://contrib.rocks/image?repo=3lang3/react-vant"/>
 </a>
 
-- 部分图形设计来自[BiscuitCoder](https://github.com/BiscuitCoder)
+- 部分图形设计来自[BiscuitCoder](https://biscuitcoder.github.io)
 
 ### 开源协议
 
