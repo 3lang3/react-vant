@@ -120,6 +120,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://blog.csdn.net/weixin_42755677"><img src="https://avatars.githubusercontent.com/u/42933010?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zhangYin</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Amytheart" title="Bug reports">🐛</a> <a href="#ideas-mytheart" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.itworker.cn"><img src="https://avatars.githubusercontent.com/u/12168991?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yann</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Afeifanshijie" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/feifaneric"><img src="https://avatars.githubusercontent.com/u/52685056?v=4?s=100" width="100px;" alt=""/><br /><sub><b>feifaneric</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Afeifaneric" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/FJHou"><img src="https://avatars.githubusercontent.com/u/22517598?v=4?s=100" width="100px;" alt=""/><br /><sub><b>FJHou</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AFJHou" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
