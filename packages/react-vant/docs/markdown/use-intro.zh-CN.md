@@ -1,8 +1,10 @@
-# 组合式 API
+# React Vant Hooks (Beta)
 
 ### 介绍
 
 React Vant 内置了一系列的 Hooks，可以直接使用这些 API 进行开发。
+
+> 在 beta 阶段我们有可能会在后续的新版本中发布 break change，建议使用 lockfile 锁定版本或手动锁定版本
 
 ### 示例
 
