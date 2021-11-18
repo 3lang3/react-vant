@@ -8,12 +8,12 @@ React Vant 内置了一系列的 Hooks，可以直接使用这些 API 进行开�
 
 ### 示例
 
-引入 `useWindowSize` 方法，即可获取到当前 Window 的宽度和高度。
+引入 `hooks.useWindowSize` 方法，即可获取到当前 Window 的宽度和高度。
 
 ```js
-import { useWindowSize } from 'react-vant';
+import { hooks } from 'react-vant';
 
-const { width, height } = useWindowSize();
+const { width, height } = hooks.useWindowSize();
 
 console.log(width); // 窗口宽度
 console.log(height); // 窗口高度

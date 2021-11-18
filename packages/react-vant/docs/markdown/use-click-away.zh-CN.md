@@ -29,12 +29,12 @@ export default () => {
 
 ```jsx
 import { useRef } from 'React';
-import { useClickAway } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
   const ref = useRef();
 
-  useClickAway(
+  hooks.useClickAway(
     ref,
     () => {
       console.log('click outside!');

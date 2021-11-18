@@ -10,13 +10,13 @@
 
 ```jsx
 import { useRef } from 'react';
-import { useScrollParent, useEventListener } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
   const root = useRef();
-  const scrollParent = useScrollParent(root);
+  const scrollParent = hooks.useScrollParent(root);
 
-  useEventListener(
+  hooks.useEventListener(
     'scroll',
     () => {
       console.log('scroll');

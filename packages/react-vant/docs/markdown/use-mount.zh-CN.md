@@ -12,10 +12,10 @@
 
 ```jsx
 import React, { useState } from 'react';
-import { useMount, Toast } from 'react-vant';
+import { hooks, Toast } from 'react-vant';
 
 const MyComponent = () => {
-  useMount(() => {
+  hooks.useMount(() => {
     Toast.info('mount');
   });
 

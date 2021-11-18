@@ -14,11 +14,11 @@
 
 ```jsx
 import React, { useRef } from 'react';
-import { useInViewport } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
   const ref = useRef();
-  const inViewPort = useInViewport(ref);
+  const inViewPort = hooks.useInViewport(ref);
   return (
     <div>
       <div ref={ref}>observer dom</div>

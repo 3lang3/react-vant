@@ -10,10 +10,10 @@
 
 ```js
 import React, { useEffect } from 'react';
-import { useWindowSize } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
-  const { width, height } = useWindowSize();
+  const { width, height } = hooks.useWindowSize();
 
   console.log(width); // -> 窗口宽度
   console.log(height); // -> 窗口高度

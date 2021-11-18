@@ -10,10 +10,10 @@
 
 ```jsx
 import React from 'react';
-import { useSetState } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
-  const [state, setState] = useSetState({
+  const [state, setState] = hooks.useSetState({
     hello: '',
     count: 0,
   });

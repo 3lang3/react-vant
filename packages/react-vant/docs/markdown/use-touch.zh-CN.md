@@ -14,10 +14,10 @@
 
 ```jsx
 import React from 'react';
-import { useTouch } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
-  const touch = useTouch(true);
+  const touch = hooks.useTouch(true);
 
   const onTouchStart = (event) => {
     touch.start(event);

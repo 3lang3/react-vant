@@ -10,10 +10,10 @@
 
 ```js
 import { useEffect } from 'react';
-import { usePageVisibility } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
-  const pageVisibility = usePageVisibility();
+  const pageVisibility = hooks.usePageVisibility();
 
   useEffect(() => {
     console.log('page visibility: ', value);

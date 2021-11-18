@@ -12,7 +12,7 @@
 
 ```jsx
 import React, { useEffect, useState } from 'react';
-import { useUpdateEffect } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
   const [count, setCount] = useState(0);
@@ -23,7 +23,7 @@ export default () => {
     setEffectCount((c) => c + 1);
   }, [count]);
 
-  useUpdateEffect(() => {
+  hooks.useUpdateEffect(() => {
     setUpdateEffectCount((c) => c + 1);
   }, [count]);
 

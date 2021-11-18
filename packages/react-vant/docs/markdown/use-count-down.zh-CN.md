@@ -11,10 +11,10 @@
 ### 基本用法
 
 ```jsx
-import { useCountDown } from 'react-vant';
+import { hooks } from 'react-vant';
 
 export default () => {
-  const { current } = useCountDown({
+  const { current } = hooks.useCountDown({
     // 倒计时 24 小时
     time: 24 * 60 * 60 * 1000,
     // 自动开始倒计时
