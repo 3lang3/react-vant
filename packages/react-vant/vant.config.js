@@ -147,6 +147,10 @@ module.exports = {
                 title: 'useEventListener',
               },
               {
+                path: 'use-form-smart',
+                title: 'useFormSmart',
+              },
+              {
                 path: 'use-in-viewport',
                 title: 'useInViewport',
               },
