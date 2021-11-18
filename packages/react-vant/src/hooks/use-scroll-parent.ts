@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { useState, useEffect } from 'react';
 import { inBrowser } from '../utils';
+import { BasicTarget, getTargetElement } from '../utils/dom/getTargetElement';
 
 type ScrollElement = Element | HTMLElement | Window;
 
@@ -34,12 +35,15 @@ export function getScrollParent(el: Element, root: ScrollElement = defaultRoot):
   return root;
 }
 
-function useScrollParent(el: { current: Element | undefined }): Element | Window {
+function useScrollParent(
+  el: BasicTarget<HTMLElement | Element | Window | Document>,
+): Element | Window {
   const [scrollParent, setScrollParent] = useState<Element | Window>();
 
   useEffect(() => {
     if (el) {
-      setScrollParent(getScrollParent(el.current));
+      const element = getTargetElement(el) as Element;
+      setScrollParent(getScrollParent(element));
     }
   }, []);
 

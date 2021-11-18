@@ -6,7 +6,7 @@ export type BasicTarget<T = HTMLElement> =
   | null
   | MutableRefObject<T | null | undefined>;
 
-type TargetElement = HTMLElement | Element | Document | Window;
+export type TargetElement = HTMLElement | Element | Document | Window;
 
 export function getTargetElement(
   target?: BasicTarget<TargetElement>,
