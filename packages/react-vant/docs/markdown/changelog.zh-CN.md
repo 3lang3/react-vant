@@ -12,6 +12,32 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### v1.4.0
+
+`2021-11-18`
+
+**Features**
+
+- Hooks 导出 ([7f109ab](https://github.com/3lang3/react-vant/commit/7f109abde5c76988ba90871f43d135c39fa8725b))
+  - useClickAway
+  - useCountDown
+  - useEventListener
+  - useInViewport
+  - useMount
+  - usePageVisibility
+  - useUpdateEffect
+  - useSetState
+  - useTouch
+  - useWindowSize
+
+**Bug Fixes**
+
+- Picker: 修复在惯性滚动没结束的情况下就点击确定无法选中预期的值的问题 [#240](https://github.com/3lang3/react-vant/issues/240) ([e112b8d](https://github.com/3lang3/react-vant/commit/e112b8d85e15f4313eaddb81910bb4715f10ccea))
+
+**Performance**
+
+- 优化 hooks 结构 ([73a979f](https://github.com/3lang3/react-vant/commit/73a979f4f55f40237296c4d1799900ff9f29a081))
+
 ### v1.3.8
 
 `2021-11-17`
@@ -22,8 +48,8 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 **Bug Fixes**
 
-- Swiper: 修复只有一个Swiper.Item时`loop`行为错乱的问题 ([d9cbcc3](https://github.com/3lang3/react-vant/commit/d9cbcc3daab158ad40dcbb59d1bc572a48c75d48))
-- Field: 修复Props定义错误的问题 [#155](https://github.com/3lang3/react-vant/issues/155) ([4977ef4](https://github.com/3lang3/react-vant/commit/4977ef4cf598e1d5af5ab8a726e98e3850b807ec))
+- Swiper: 修复只有一个 Swiper.Item 时`loop`行为错乱的问题 ([d9cbcc3](https://github.com/3lang3/react-vant/commit/d9cbcc3daab158ad40dcbb59d1bc572a48c75d48))
+- Field: 修复 Props 定义错误的问题 [#155](https://github.com/3lang3/react-vant/issues/155) ([4977ef4](https://github.com/3lang3/react-vant/commit/4977ef4cf598e1d5af5ab8a726e98e3850b807ec))
 
 **Performance**
 
