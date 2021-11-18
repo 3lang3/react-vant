@@ -139,8 +139,8 @@ import { Radio } from 'react-vant';
 ```jsx
 <Radio.Group value="1">
   <Cell.Group>
-    <Cell title="单选框1" icon="shop-o" rightIconSlot={() => <Radio name="1" />} />{' '}
-    <Cell title="单选框2" icon="shop-o" rightIconSlot={() => <Radio name="2" />} />
+    <Cell title="单选框1" icon="shop-o" rightIcon={() => <Radio name="1" />} />{' '}
+    <Cell title="单选框2" icon="shop-o" rightIcon={() => <Radio name="2" />} />
   </Cell.Group>
 </Radio.Group>
 ```
@@ -182,21 +182,20 @@ import { Radio } from 'react-vant';
 | -------- | ------------------------ | -------------- |
 | onChange | 当绑定值变化时触发的事件 | _name: string_ |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-radio-size | _20px_ | - |
-| --rv-radio-border-color | _var(--rv-gray-5)_ | - |
-| --rv-radio-transition-duration | _var(--rv-animation-duration-fast)_ | - |
-| --rv-radio-label-margin | _var(--rv-padding-xs)_ | - |
-| --rv-radio-label-color | _var(--rv-text-color)_ | - |
-| --rv-radio-checked-icon-color | _var(--rv-primary-color)_ | - |
-| --rv-radio-disabled-icon-color | _var(--rv-gray-5)_ | - |
-| --rv-radio-disabled-label-color | _var(--rv-gray-5)_ | - |
-| --rv-radio-disabled-background-color | _var(--rv-border-color)_ | - |
+| 名称                                 | 默认值                              | 描述 |
+| ------------------------------------ | ----------------------------------- | ---- |
+| --rv-radio-size                      | _20px_                              | -    |
+| --rv-radio-border-color              | _var(--rv-gray-5)_                  | -    |
+| --rv-radio-transition-duration       | _var(--rv-animation-duration-fast)_ | -    |
+| --rv-radio-label-margin              | _var(--rv-padding-xs)_              | -    |
+| --rv-radio-label-color               | _var(--rv-text-color)_              | -    |
+| --rv-radio-checked-icon-color        | _var(--rv-primary-color)_           | -    |
+| --rv-radio-disabled-icon-color       | _var(--rv-gray-5)_                  | -    |
+| --rv-radio-disabled-label-color      | _var(--rv-gray-5)_                  | -    |
+| --rv-radio-disabled-background-color | _var(--rv-border-color)_            | -    |
