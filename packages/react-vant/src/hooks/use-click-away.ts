@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { useEffect, useRef, MutableRefObject } from 'react';
 
 export type BasicTarget<T = HTMLElement> =

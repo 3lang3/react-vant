@@ -128,6 +128,23 @@ module.exports = {
             ],
           },
           {
+            title: 'Hooks API',
+            items: [
+              {
+                path: 'use-intro',
+                title: '介绍',
+              },
+              {
+                path: 'use-click-away',
+                title: 'useClickAway',
+              },
+              {
+                path: 'use-count-down',
+                title: 'useCountDown',
+              },
+            ],
+          },
+          {
             title: '废弃',
             items: [
               { path: 'swipe', title: 'Swipe 轮播' },
