@@ -1,12 +1,42 @@
-export { default as useClickAway } from './use-click-away';
-export { default as useCountDown } from './use-count-down';
-export { default as useEventListener } from './use-event-listener';
-export { default as useSetState } from './use-set-state';
-export { default as useUpdateEffect } from './use-update-effect';
-export { default as useMount } from './use-mount';
-export { default as usePageVisibility } from './use-page-visibility';
-export { default as useVisibilityChange } from './use-visibility-change';
-export { default as useInViewport } from './use-in-viewport';
-export { default as useTouch } from './use-touch';
-export { default as useScrollParent } from './use-scroll-parent';
-export { default as useWindowSize } from './use-window-size';
+import useClickAway from './use-click-away';
+import useCountDown from './use-count-down';
+import useEventListener from './use-event-listener';
+import useSetState from './use-set-state';
+import useUpdateEffect from './use-update-effect';
+import useMount from './use-mount';
+import usePageVisibility from './use-page-visibility';
+import useVisibilityChange from './use-visibility-change';
+import useInViewport from './use-in-viewport';
+import useTouch from './use-touch';
+import useScrollParent from './use-scroll-parent';
+import useWindowSize from './use-window-size';
+
+export {
+  useClickAway,
+  useCountDown,
+  useEventListener,
+  useSetState,
+  useUpdateEffect,
+  useMount,
+  usePageVisibility,
+  useVisibilityChange,
+  useInViewport,
+  useTouch,
+  useScrollParent,
+  useWindowSize,
+};
+
+export default {
+  useClickAway,
+  useCountDown,
+  useEventListener,
+  useSetState,
+  useUpdateEffect,
+  useMount,
+  usePageVisibility,
+  useVisibilityChange,
+  useInViewport,
+  useTouch,
+  useScrollParent,
+  useWindowSize,
+};

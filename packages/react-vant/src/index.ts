@@ -1,4 +1,4 @@
-export * from './hooks';
+export * as hooks from './hooks';
 export { default as Button } from './button';
 export { default as Badge } from './badge';
 export { default as Field } from './field';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Toast, Button, Popup, Field, useSetState } from 'react-vant';
+import { Toast, Button, Popup, Field, hooks } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Cascader from '..';
 import './style.less';
@@ -129,7 +129,7 @@ const options = [
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
-  const [state, set] = useSetState({
+  const [state, set] = hooks.useSetState({
     v1: false,
     t1: '',
     v2: false,

@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Toast, Cell, useSetState } from 'react-vant';
+import { Toast, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Calendar from '..';
+import hooks from '../../hooks';
 import './style.less';
 
 const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
@@ -32,7 +33,7 @@ const formatter = (day) => {
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
-  const [state, set] = useSetState({
+  const [state, set] = hooks.useSetState({
     v1: false,
     t1: '',
     v2: false,
