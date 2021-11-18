@@ -334,7 +334,7 @@ type CustomItemProps = {
 } & FormItemProps;
 
 function PickerItem(props) {
-  const { value, onChange, ...fieldProps } = props;
+  const { value, onChange, name, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
 
   const onShow = () => {
@@ -351,8 +351,8 @@ function PickerItem(props) {
   const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '宿迁', '泰州', '无锡'];
   return (
     <>
-      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
-      <Popup position="bottom" round visible={visible} onCancel={onCancel}>
+      <Field isLink readonly name={name as string} {...fieldProps} value={value} onClick={onShow} />
+      <Popup position="bottom" round visible={visible} onClose={onCancel}>
         <Picker title="选择城市" columns={columns} onConfirm={onConfirm} onCancel={onCancel} />
       </Popup>
     </>
@@ -408,7 +408,7 @@ function DatetimePickerItem(props) {
   return (
     <>
       <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
-      <Popup position="bottom" round visible={visible} onCancel={onCancel}>
+      <Popup position="bottom" round visible={visible} onClose={onCancel}>
         <DatetimePicker
           title="选择年月日"
           type="date"

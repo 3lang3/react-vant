@@ -280,7 +280,7 @@ function PickerItem(props: CustomItemProps) {
   return (
     <>
       <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
-      <Popup position="bottom" round visible={visible} onCancel={onCancel}>
+      <Popup position="bottom" round visible={visible} onClose={onCancel}>
         <Picker title="选择城市" columns={columns} onConfirm={onConfirm} onCancel={onCancel} />
       </Popup>
     </>
@@ -304,7 +304,7 @@ function DatetimePickerItem(props: CustomItemProps) {
   return (
     <>
       <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
-      <Popup position="bottom" round visible={visible} onCancel={onCancel}>
+      <Popup position="bottom" round visible={visible} onClose={onCancel}>
         <DatetimePicker
           title="选择年月日"
           type="date"
