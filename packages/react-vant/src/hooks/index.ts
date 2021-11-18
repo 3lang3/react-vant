@@ -1,6 +1,12 @@
+export { default as useClickAway } from './use-click-away';
 export { default as useCountDown } from './use-count-down';
+export { default as useEventListener } from './use-event-listener';
 export { default as useSetState } from './use-set-state';
 export { default as useUpdateEffect } from './use-update-effect';
 export { default as useMount } from './use-mount';
+export { default as usePageVisibility } from './use-page-visibility';
 export { default as useVisibilityChange } from './use-visibility-change';
 export { default as useInViewport } from './use-in-viewport';
+export { default as useTouch } from './use-touch';
+export { default as useScrollParent } from './use-scroll-parent';
+export { default as useWindowSize } from './use-window-size';

@@ -128,7 +128,7 @@ module.exports = {
             ],
           },
           {
-            title: 'Hooks API(beta)',
+            title: 'Hooks (beta)',
             items: [
               {
                 path: 'use-intro',
@@ -143,8 +143,40 @@ module.exports = {
                 title: 'useCountDown',
               },
               {
+                path: 'use-event-listener',
+                title: 'useEventListener',
+              },
+              {
+                path: 'use-in-viewport',
+                title: 'useInViewport',
+              },
+              {
+                path: 'use-mount',
+                title: 'useMount',
+              },
+              {
+                path: 'use-page-visibility',
+                title: 'usePageVisibility',
+              },
+              {
+                path: 'use-update-effect',
+                title: 'useUpdateEffect',
+              },
+              {
                 path: 'use-set-state',
                 title: 'useSetState',
+              },
+              {
+                path: 'use-touch',
+                title: 'useTouch',
+              },
+              {
+                path: 'use-scroll-parent',
+                title: 'useScrollParent',
+              },
+              {
+                path: 'use-window-size',
+                title: 'useWindowSize',
               },
             ],
           },

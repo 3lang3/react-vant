@@ -2,7 +2,7 @@
 
 ### 介绍
 
-管理 object 类型 state 的 Hooks，同时支持返回 state 最新状态。
+管理 `object` 类型 state 的 Hooks，同时支持返回 state 最新状态。
 
 ## 代码演示
 
@@ -58,8 +58,14 @@ export default () => {
 
 ### 类型定义
 
+用法与 class 组件的 this.setState 基本一致
+
 ```js
 function useSetState<T extends object>(
   initialState: T = {} as T
-): [T, (patch: Partial<T> | ((prevState: T) => Partial<T>)) => void, React.MutableRefObject<T>]
+): [
+  T,
+  (patch: Partial<T> | ((prevState: T) => Partial<T>)) => void,
+  React.MutableRefObject<T>
+]
 ```
