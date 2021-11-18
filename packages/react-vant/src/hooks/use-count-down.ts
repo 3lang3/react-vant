@@ -1,7 +1,34 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { inBrowser } from '../utils';
 import { cancelRaf, raf } from '../utils/raf';
-import { CurrentTime, UseCountDownOptions } from './PropsType';
+
+export type CurrentTime = {
+  /** 剩余总时间,单位毫秒 */
+  total: number;
+  /** 剩余天数	 */
+  days: number;
+  /** 剩余小时	 */
+  hours: number;
+  /** 剩余分钟	 */
+  minutes: number;
+  /** 剩余秒数	 */
+  seconds: number;
+  /** 剩余毫秒	 */
+  milliseconds: number;
+};
+
+export type UseCountDownOptions = {
+  /** 倒计时时长，单位毫秒 */
+  time: number;
+  /** 是否开启毫秒级渲染 */
+  millisecond?: boolean;
+  /** 是否自动开始倒计时 */
+  autostart?: boolean;
+  /** 倒计时改变时触发的回调函数 */
+  onChange?: (current: CurrentTime) => void;
+  /** 倒计时结束时触发的回调函数 */
+  onFinish?: () => void;
+};
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -29,12 +56,10 @@ function isSameSecond(time1: number, time2: number): boolean {
   return Math.floor(time1 / 1000) === Math.floor(time2 / 1000);
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function useCountDown(options: UseCountDownOptions) {
+export default function useCountDown(options: UseCountDownOptions) {
   const rafId = useRef(0);
   const endTime = useRef(0);
   const counting = useRef(false);
-  // const deactivated = useRef(false);
 
   const [remain, updateRemain] = useState(() => options.time);
   const current = useMemo(() => parseTime(remain), [remain]);
@@ -111,10 +136,16 @@ export function useCountDown(options: UseCountDownOptions) {
     updateRemain(totalTime);
   };
 
+  useEffect(() => {
+    if (options.autostart) {
+      start();
+    }
+  }, []);
+
   return {
     start,
     pause,
     reset,
     current,
-  };
+  } as const;
 }

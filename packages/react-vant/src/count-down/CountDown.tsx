@@ -2,7 +2,7 @@ import React, { forwardRef, useContext, useEffect, useImperativeHandle, useMemo 
 import cls from 'clsx';
 import { CountDownProps, CountDownInstance } from './PropsType';
 import { noop } from '../utils';
-import { useCountDown } from './useCountDown';
+import useCountDown from '../hooks/use-count-down';
 import { parseFormat } from './utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 

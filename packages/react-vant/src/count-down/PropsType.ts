@@ -1,28 +1,7 @@
+import { CurrentTime } from '../hooks/use-count-down';
 import { BaseTypeProps } from '../utils';
 
-export type CurrentTime = {
-  /** 剩余总时间（单位毫秒）	 */
-  total: number;
-  /** 剩余天数	 */
-  days: number;
-  /** 剩余小时	 */
-  hours: number;
-  /** 剩余分钟	 */
-  minutes: number;
-  /** 剩余秒数	 */
-  seconds: number;
-  /** 剩余毫秒	 */
-  milliseconds: number;
-};
-
-export type CountDownCurrentTime = CurrentTime
-
-export type UseCountDownOptions = {
-  time: number;
-  millisecond?: boolean;
-  onChange?: (current: CurrentTime) => void;
-  onFinish?: () => void;
-};
+export type CountDownCurrentTime = CurrentTime;
 
 export type CountDownInstance = {
   /** 开始倒计时	 */

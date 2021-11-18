@@ -1,5 +1,5 @@
+import { CurrentTime } from '../hooks/use-count-down';
 import { padZero } from '../utils';
-import { CurrentTime } from './PropsType';
 
 export function parseFormat(format: string, currentTime: CurrentTime): string {
   const { days } = currentTime;
