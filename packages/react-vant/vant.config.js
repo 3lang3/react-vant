@@ -128,7 +128,7 @@ module.exports = {
             ],
           },
           {
-            title: 'Hooks API',
+            title: 'Hooks API(beta)',
             items: [
               {
                 path: 'use-intro',

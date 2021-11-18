@@ -195,7 +195,7 @@ export default (): React.ReactNode => {
             <DatetimePickerItem placeholder="选择时间" />
           </Form.Item>
           <Form.Item name="calendar" label="日历" customField>
-            <CalendarItem placeholder="选择时间" />
+            <CalendarItem placeholder="选择日期" />
           </Form.Item>
         </Form>
       </DemoBlock>
@@ -311,6 +311,7 @@ function DatetimePickerItem(props: CustomItemProps) {
           minDate={new Date(2020, 0, 1)}
           maxDate={new Date(2025, 10, 1)}
           value={value}
+          onCancel={onCancel}
           onConfirm={onConfirm}
         />
       </Popup>
