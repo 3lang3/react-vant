@@ -1,6 +1,7 @@
 import useClickAway from './use-click-away';
 import useCountDown from './use-count-down';
 import useEventListener from './use-event-listener';
+import useFormSmart from './use-form-smart';
 import useSetState from './use-set-state';
 import useUpdateEffect from './use-update-effect';
 import useMount from './use-mount';
@@ -15,6 +16,7 @@ export {
   useClickAway,
   useCountDown,
   useEventListener,
+  useFormSmart,
   useSetState,
   useUpdateEffect,
   useMount,
@@ -30,6 +32,7 @@ export default {
   useClickAway,
   useCountDown,
   useEventListener,
+  useFormSmart,
   useSetState,
   useUpdateEffect,
   useMount,

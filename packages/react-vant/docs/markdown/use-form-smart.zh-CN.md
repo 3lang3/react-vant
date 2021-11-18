@@ -12,7 +12,7 @@
 
 ```jsx
 import React, { useCallback, useState } from 'react';
-import { Field, Form, useFormSmart } from 'react-vant';
+import { Field, Form, hooks } from 'react-vant';
 
 function useRequest() {
   const [data, setData] = useState({});
@@ -30,7 +30,7 @@ function useRequest() {
 
 export default () => {
   const [data, run] = useRequest(); //模拟请求
-  const [ref, { set, get, getAll, clear, submit }] = useFormSmart({ value: data });
+  const [ref, { set, get, getAll, clear, submit }] = hooks.useFormSmart({ value: data });
   // 当有数据返回且不为空时,会自动设置表单
   return (
     <div>
@@ -58,11 +58,11 @@ export default () => {
 > 某些场景下需要将每次变化的数据都设置到表单中,useFormSmart 提供了绑定功能
 
 ```jsx
-import { Field, Form, useFormSmart } from 'react-vant';
+import { Field, Form, hooks } from 'react-vant';
 
 export default () => {
   const [data, run] = useRequest(); //模拟请求
-  const [ref] = useFormSmart({ value: data, sync: true });
+  const [ref] = hooks.useFormSmart({ value: data, sync: true });
   // 当有数据返回且不为空时,会自动设置表单
   return (
     <div>
@@ -84,7 +84,7 @@ export default () => {
 
 ### 类型定义
 
-```ts
+```js
 export type FormOption = {
   /**
    * initialValues

@@ -163,20 +163,20 @@ module.exports = {
                 title: 'usePageVisibility',
               },
               {
-                path: 'use-update-effect',
-                title: 'useUpdateEffect',
-              },
-              {
                 path: 'use-set-state',
                 title: 'useSetState',
+              },
+              {
+                path: 'use-scroll-parent',
+                title: 'useScrollParent',
               },
               {
                 path: 'use-touch',
                 title: 'useTouch',
               },
               {
-                path: 'use-scroll-parent',
-                title: 'useScrollParent',
+                path: 'use-update-effect',
+                title: 'useUpdateEffect',
               },
               {
                 path: 'use-window-size',
