@@ -142,6 +142,10 @@ module.exports = {
                 path: 'use-count-down',
                 title: 'useCountDown',
               },
+              {
+                path: 'use-set-state',
+                title: 'useSetState',
+              },
             ],
           },
           {
