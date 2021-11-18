@@ -4,6 +4,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/object-curly-spacing': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-param-reassign': 'off',
