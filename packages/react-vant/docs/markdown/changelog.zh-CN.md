@@ -12,6 +12,18 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+## 1.4.1
+
+`2021-11-18`
+
+**Features**
+
+- 新增 useFormSmart 导出 ([db2f5ef](https://github.com/3lang3/react-vant/commit/db2f5ef36f45fa3f74ea83128df22931f1a5d3c3))
+
+**Bug Fixes**
+
+- hooks: 修复 hooks 导出不兼容 babel-plugin-import 的问题 ([bb81503](https://github.com/3lang3/react-vant/commit/bb81503e9f8765a482548bf4c2844fbeda787923))
+
 ### v1.4.0
 
 `2021-11-18`
