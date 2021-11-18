@@ -73,7 +73,7 @@ export default (): React.ReactNode => {
     return () => {
       unmountedRef.current = true;
     };
-  });
+  }, []);
 
   return (
     <DemoSection>
