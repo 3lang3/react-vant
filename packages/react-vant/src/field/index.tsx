@@ -1,4 +1,5 @@
 import Field from './Field';
+import './style/index.less';
 
 export default Field;
 export { Field };

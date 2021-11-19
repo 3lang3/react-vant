@@ -1,5 +1,6 @@
 import Steps from './Steps';
 import StepsItem from './StepsItem';
+import './style/index.less';
 
 const StepsNamespace = Object.assign(Steps, { Item: StepsItem });
 

@@ -1,4 +1,5 @@
 import Circle from './Circle';
+import './style/index.less';
 
 export default Circle;
 export { Circle };

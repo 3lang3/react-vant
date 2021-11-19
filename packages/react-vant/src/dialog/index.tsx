@@ -8,6 +8,7 @@ import { AlertDialogProps, DialogProps, DialogStatic } from './PropsType';
 
 import BaseDialog from './Dialog';
 import { resolveContainer } from '../utils/dom/getContainer';
+import './style/index.less';
 
 const Dialog = BaseDialog as DialogStatic;
 

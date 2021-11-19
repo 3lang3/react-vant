@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "react-vant": ["src/index.tsx"],
+      "react-vant": ["src/index.ts"],
       "react-vant/es/*": ["src/*"]
     }
   },

@@ -8,6 +8,7 @@ import { CloseParams, ImagePreviewProps, ImagePreviewStatic } from './PropsType'
 
 import BaseImagePreview from './ImagePreview';
 import { resolveContainer } from '../utils/dom/getContainer';
+import './style/index.less';
 
 const ImagePreview = BaseImagePreview as ImagePreviewStatic;
 

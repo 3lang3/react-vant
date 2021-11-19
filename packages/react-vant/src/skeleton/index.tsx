@@ -1,4 +1,5 @@
 import Skeleton from './Skeleton';
+import './style/index.less';
 
 export default Skeleton;
 export { Skeleton };

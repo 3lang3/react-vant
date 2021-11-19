@@ -1,4 +1,5 @@
 import ActionSheet from './ActionSheet';
+import './style/index.less';
 
 export default ActionSheet;
 export { ActionSheet };

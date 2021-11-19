@@ -16,23 +16,14 @@ type DemoItem = {
   component: string;
 };
 
-function genInstall() {
-  return `import './package-style';`;
-}
-
 function genImports(demos: DemoItem[]) {
   return demos
-    .map(
-      (item) =>
-        `import ${item.name} from '${removeExt(normalizePath(item.path))}';`
-    )
+    .map((item) => `import ${item.name} from '${removeExt(normalizePath(item.path))}';`)
     .join('\n');
 }
 
 function genExports(demos: DemoItem[]) {
-  return `export const demos = {\n  ${demos
-    .map((item) => item.name)
-    .join(',\n  ')}\n};`;
+  return `export const demos = {\n  ${demos.map((item) => item.name).join(',\n  ')}\n};`;
 }
 
 function genConfig(demos: DemoItem[]) {
@@ -41,9 +32,7 @@ function genConfig(demos: DemoItem[]) {
 
   function demoFilter(nav: any[]) {
     return nav.filter((group) => {
-      group.items = group.items.filter((item: any) =>
-        demoNames.includes(item.path)
-      );
+      group.items = group.items.filter((item: any) => demoNames.includes(item.path));
       return group.items.length;
     });
   }
@@ -71,7 +60,7 @@ function genCode(components: string[]) {
     }))
     .filter((item) => existsSync(item.path));
 
-  return `${genInstall()}
+  return `
  ${genImports(demos)}
  ${genExports(demos)}
  ${genConfig(demos)}

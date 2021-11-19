@@ -9,6 +9,7 @@ import { NotifyOptions, NotifyProps, NotifyStatic } from './PropsType';
 import Notify from './Notify';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from '../toast/lock-click';
+import './style/index.less';
 
 const NotifyNamespace = {} as NotifyStatic;
 

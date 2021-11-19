@@ -7,12 +7,7 @@ import { existsSync } from 'fs';
 import { getComponents, replaceExt } from '../common';
 import { CSS_LANG, getCssBaseFile } from '../common/css';
 import { checkStyleExists } from './gen-style-deps-map';
-import {
-  ES_DIR,
-  SRC_DIR,
-  LIB_DIR,
-  STYLE_DEPS_JSON_FILE,
-} from '../common/constant';
+import { ES_DIR, SRC_DIR, LIB_DIR, STYLE_DEPS_JSON_FILE } from '../common/constant';
 
 function getDeps(component: string): string[] {
   const styleDepsJson = require(STYLE_DEPS_JSON_FILE);
@@ -35,10 +30,7 @@ function getPath(component: string, ext = '.css') {
 }
 
 function getRelativePath(component: string, style: string, ext: string) {
-  const relativePath = relative(
-    join(ES_DIR, `${component}/style`),
-    getPath(style, ext)
-  );
+  const relativePath = relative(join(ES_DIR, `${component}/style`), getPath(style, ext));
   if (!existsSync(relativePath) && relativePath.indexOf('/') === -1) {
     return `./${relativePath}`;
   }
@@ -83,9 +75,7 @@ function genEntry(params: {
   });
 }
 
-export function genComponentStyle(
-  options: { cache: boolean } = { cache: true }
-) {
+export function genComponentStyle(options: { cache: boolean } = { cache: true }) {
   if (!options.cache) {
     delete require.cache[STYLE_DEPS_JSON_FILE];
   }
@@ -94,18 +84,18 @@ export function genComponentStyle(
   const baseFile = getCssBaseFile();
 
   components.forEach((component) => {
-    // genEntry({
-    //   baseFile,
-    //   component,
-    //   filename: 'index.js',
-    //   ext: `.${CSS_LANG}`,
-    // });
+    genEntry({
+      baseFile,
+      component,
+      filename: 'index.js',
+      ext: '.css',
+    });
 
     if (CSS_LANG !== 'css') {
       genEntry({
         baseFile,
         component,
-        filename: 'index.js',
+        filename: `${CSS_LANG}.js`,
         ext: `.${CSS_LANG}`,
       });
     }
