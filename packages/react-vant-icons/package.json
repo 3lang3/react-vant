@@ -1,10 +1,10 @@
 {
   "name": "@react-vant/icons",
   "version": "0.0.0",
-  "description": "react vant icon lib",
+  "description": "react vant icons",
   "scripts": {
-    "export": "node ./build/export.js",
-    "build": "npm run export && gulp --gulpfile ./build/build-iconfont.js",
+    "export": "node ./build/export.js && npx @svgr/cli -d assets assets",
+    "build": "gulp",
     "prepack": "npm run build"
   },
   "main": "./src/config.js",
@@ -19,8 +19,11 @@
   "devDependencies": {
     "fast-glob": "^3.2.2",
     "fs-extra": "^9.0.1",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "node-sketch": "^0.14.1",
     "shelljs": "^0.8.4",
-    "svgo": "1.2.2"
+    "svgo": "1.2.2",
+    "typescript": "^4.5.2"
   }
 }
