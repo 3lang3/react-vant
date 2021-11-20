@@ -1,15 +1,35 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
+const babel = require('gulp-babel');
+const del = require('del');
 
-gulp.task('default', () => {
+function clean() {
+  return del(['./lib/**', './es/**']);
+}
+
+function buildES() {
   return gulp
-    .src('assets/svg/*.tsx')
+    .src('src/icons/*.tsx')
     .pipe(
       ts({
-        noImplicitAny: true,
+        moduleResolution: 'node',
+        target: 'esnext',
         jsx: 'react',
         declaration: true,
       }),
     )
     .pipe(gulp.dest('es/'));
-});
+}
+
+function buildCJS() {
+  return gulp
+    .src(['es/**/*.js'])
+    .pipe(
+      babel({
+        plugins: ['@babel/plugin-transform-modules-commonjs'],
+      }),
+    )
+    .pipe(gulp.dest('lib/'));
+}
+
+exports.default = gulp.series(clean, buildES, buildCJS);

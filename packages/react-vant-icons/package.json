@@ -3,13 +3,21 @@
   "version": "0.0.0",
   "description": "react vant icons",
   "scripts": {
-    "export": "node ./build/export.js && npx @svgr/cli -d assets assets",
+    "export": "node ./scripts/export.js && npx @svgr/cli -d src/icons src/svg",
     "build": "gulp",
     "prepack": "npm run build"
   },
-  "main": "./src/config.js",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "typings": "./es/index.d.ts",
+  "jsdelivr": "./lib/index.js",
+  "unpkg": "./lib/index.js",
+  "sideEffects": [],
   "files": [
-    "src"
+    "es/",
+    "lib/",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public",
@@ -24,6 +32,11 @@
     "node-sketch": "^0.14.1",
     "shelljs": "^0.8.4",
     "svgo": "1.2.2",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "del": "^5.1.0",
+    "gulp-babel": "^8.0.0"
   }
 }

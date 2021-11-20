@@ -1,7 +1,0 @@
-{
-  icon: true,
-  typescript: true,
-  svgProps: {
-    viewBox: "0 0 48 48"
-  }
-}
