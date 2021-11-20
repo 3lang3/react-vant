@@ -80,3 +80,10 @@ export function unitToPx(value: string | number): number {
 
   return parseFloat(value);
 }
+
+export function kebabCase(str: string): string {
+  return str
+    .replace(/([A-Z])/g, '-$1')
+    .toLowerCase()
+    .replace(/^-/, '');
+}

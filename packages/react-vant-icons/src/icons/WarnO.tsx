@@ -2,7 +2,13 @@ import * as React from 'react';
 
 function SvgWarnO(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 1000 1000"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <g fill="#323233" fillRule="evenodd">
         <path
           d="M497.455 222.233l-330.788 607.96h661.576l-330.788-607.96zm48.8-26.552l330.788 607.96c14.664 26.952 4.703 60.688-22.248 75.352a55.556 55.556 0 01-26.552 6.755H166.667c-30.683 0-55.556-24.873-55.556-55.555a55.556 55.556 0 016.756-26.552l330.788-607.96c14.664-26.951 48.4-36.912 75.351-22.248a55.556 55.556 0 0122.249 22.248z"

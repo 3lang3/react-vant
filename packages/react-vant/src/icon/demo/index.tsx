@@ -1,7 +1,8 @@
 import React from 'react';
-import icons from '@vant/icons';
-import { Flex, Icon, Tabs, Toast } from 'react-vant';
+import { Flex, Icon, Badge, Tabs, Toast } from 'react-vant';
+import * as Icons from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
+import icons from './config';
 import './style.less';
 
 const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/font_2763890_w471tfudy4d.js');
@@ -33,23 +34,25 @@ function copyToClipboard(str: string) {
   }
 }
 
+function camelize(str) {
+  return str
+    .split('-')
+    .map((el) => el.replace(/^\S/, (s) => s.toUpperCase()))
+    .join('');
+}
+
+function getTypeIcons(type) {
+  return icons[type].map((icon) => {
+    const name = camelize(icon);
+    const component = Icons[name];
+    return { name, component };
+  });
+}
+
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
-  const copy = (icon: string, option: Record<string, unknown> = {}) => {
-    let tag = `<Icon name="${icon}"`;
-    if ('dot' in option) {
-      tag = `${tag} ${option.dot ? 'dot' : ''}`;
-    }
-    if ('badge' in option) {
-      tag = `${tag} badge="${option.badge}"`;
-    }
-    if ('color' in option) {
-      tag = `${tag} color="${option.color}"`;
-    }
-    if ('size' in option) {
-      tag = `${tag} size="${option.size}"`;
-    }
-    tag = `${tag} />`;
+  const copy = (icon: string) => {
+    const tag = `<${icon}  />`;
     copyToClipboard(tag);
 
     Toast({
@@ -66,7 +69,7 @@ export default (): React.ReactNode => {
           <DemoBlock title="基础用法">
             <Flex>
               <Flex.Item span={6}>
-                <Icon color="red" name="chat-o" />
+                <Icons.ChatO />
               </Flex.Item>
               <Flex.Item span={6}>
                 <Icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
@@ -76,33 +79,39 @@ export default (): React.ReactNode => {
           <DemoBlock title="徽标提示">
             <Flex>
               <Flex.Item span={6}>
-                <Icon name="chat-o" badge={{ dot: true }} />
+                <Badge dot>
+                  <Icons.ChatO />
+                </Badge>
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="chat-o" badge={{ content: 9 }} />
+                <Badge content={9}>
+                  <Icons.ChatO />
+                </Badge>
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="chat-o" badge={{ content: '99+' }} />
+                <Badge content="99+">
+                  <Icons.ChatO />
+                </Badge>
               </Flex.Item>
             </Flex>
           </DemoBlock>
           <DemoBlock title="图标颜色">
             <Flex>
               <Flex.Item span={6}>
-                <Icon name="cart-o" color="#f44336" />
+                <Icons.ChatO color="#f44336" />
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="fire-o" color="#999" />
+                <Icons.FireO color="#999" />
               </Flex.Item>
             </Flex>
           </DemoBlock>
           <DemoBlock title="图标大小">
             <Flex>
               <Flex.Item span={6}>
-                <Icon name="close" size="40" />
+                <Icons.Close />
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icon name="close" size="3rem" />
+                <Icons.Close />
               </Flex.Item>
             </Flex>
           </DemoBlock>
@@ -129,30 +138,30 @@ export default (): React.ReactNode => {
         </Tabs.TabPane>
         <Tabs.TabPane title="基础图标">
           <Flex wrap="wrap">
-            {icons.basic.map((icon) => (
-              <Flex.Item onClick={() => copy(icon)} key={icon} span={6}>
-                <Icon name={icon} />
-                <span>{icon}</span>
+            {getTypeIcons('basic').map((item) => (
+              <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
+                <item.component />
+                <span>{item.name}</span>
               </Flex.Item>
             ))}
           </Flex>
         </Tabs.TabPane>
         <Tabs.TabPane title="线框风格">
           <Flex wrap="wrap">
-            {icons.outline.map((icon) => (
-              <Flex.Item onClick={() => copy(icon)} key={icon} span={6}>
-                <Icon name={icon} />
-                <span>{icon}</span>
+            {getTypeIcons('outline').map((item) => (
+              <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
+                <item.component />
+                <span>{item.name}</span>
               </Flex.Item>
             ))}
           </Flex>
         </Tabs.TabPane>
         <Tabs.TabPane title="实底风格">
           <Flex wrap="wrap">
-            {icons.filled.map((icon) => (
-              <Flex.Item onClick={() => copy(icon)} key={icon} span={6}>
-                <Icon name={icon} />
-                <span>{icon}</span>
+            {getTypeIcons('filled').map((item) => (
+              <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
+                <item.component />
+                <span>{item.name}</span>
               </Flex.Item>
             ))}
           </Flex>

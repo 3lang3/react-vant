@@ -2,12 +2,22 @@
 
 ### 介绍
 
-基于字体的图标集，可以通过 `Icon` 组件使用，也可以在其他组件中通过`icon`属性引用
+语义化的矢量图形。使用图标组件，你需要安装 `@react-vant/icons` 图标组件包：
+
+> 从 2.0 开始，react-vant 不再内置 Icon 组件，请使用独立的包 @react-vant/icons。
+
+```bash
+npm install --save @react-vant/icons
+# or
+yarn add @react-vant/icons
+```
 
 ### 引入
 
+主流的构建工具会自动做 Tree-Shaking，所以最终被打包进来的只有你用到的那些图标，不必担心包体积问题。
+
 ```js
-import { Icon } from 'react-vant';
+import { Add } from '@react-vant/icons';
 ```
 
 ## 代码演示
@@ -16,7 +26,7 @@ import { Icon } from 'react-vant';
 
 `Icon` 的 `name` 属性支持传入图标名称或图片链接，所有可用的图标名称见右侧示例。
 
-```jsx
+```js
 <Icon name="chat-o" />
 <Icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
 ```

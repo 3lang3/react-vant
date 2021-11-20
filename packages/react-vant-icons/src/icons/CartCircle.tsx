@@ -2,7 +2,13 @@ import * as React from 'react';
 
 function SvgCartCircle(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 1000 1000"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <g transform="translate(55 55)" fill="#323233" fillRule="nonzero">
         <path d="M445 833.889c214.777 0 388.889-174.112 388.889-388.889 0-214.777-174.112-388.889-388.889-388.889C230.223 56.111 56.111 230.223 56.111 445c0 214.777 174.112 388.889 388.889 388.889zm0 55.555C199.54 889.444.556 690.46.556 445S199.54.556 445 .556 889.444 199.54 889.444 445 690.46 889.444 445 889.444z" />
         <path d="M222.778 278.333h469.676c15.34 0 27.777 12.437 27.777 27.778 0 2.889-.45 5.76-1.335 8.51l-53.64 166.667a27.778 27.778 0 01-26.443 19.268H222.778V278.333z" />

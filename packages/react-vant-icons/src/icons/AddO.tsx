@@ -2,7 +2,13 @@ import * as React from 'react';
 
 function SvgAddO(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 1000 1000"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <g fill="#323233" fillRule="evenodd">
         <path d="M472.222 472.442V277.998c0-15.341 12.437-27.778 27.778-27.778h.143c15.262.08 27.57 12.516 27.49 27.777l-1.009 194.445h195.598c15.341 0 27.778 12.437 27.778 27.778s-12.437 27.778-27.778 27.778H526.336l-1.017 195.743c-.076 14.646-11.97 26.48-26.617 26.48-14.624 0-26.48-11.856-26.48-26.48V527.997H277.778c-15.341 0-27.778-12.437-27.778-27.778s12.437-27.778 27.778-27.778h194.444z" />
         <path

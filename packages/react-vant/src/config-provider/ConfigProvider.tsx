@@ -1,13 +1,7 @@
 import React, { CSSProperties, useMemo } from 'react';
+import { kebabCase } from '../utils';
 import ConfigProviderContext, { INITIAL_STATE } from './ConfigProviderContext';
 import { ConfigProviderProps } from './PropsType';
-
-function kebabCase(str: string): string {
-  return str
-    .replace(/([A-Z])/g, '-$1')
-    .toLowerCase()
-    .replace(/^-/, '');
-}
 
 function mapThemeVarsToCSSVars(themeVars: Record<string, string | number>, prefix: string) {
   const cssVars: Record<string, string | number> = {};

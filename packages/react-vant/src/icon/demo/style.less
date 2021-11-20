@@ -1,7 +1,6 @@
 @import '../../styles/var.less';
 
 .demo-icon {
-  font-size: 0;
   &-list {
     box-sizing: border-box;
     min-height: calc(100vh - 65px);
@@ -13,9 +12,11 @@
   .rv-flexitem {
     display: inline-block;
     float: none;
+    margin: 16px 0;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+
     span {
       display: block;
       height: 36px;
@@ -29,8 +30,8 @@
       background-color: @active-color;
     }
   }
-  .van-icon {
-    margin: 16px 0 16px;
+  .van-icon,
+  svg {
     color: @text-color;
     font-size: 32px;
   }

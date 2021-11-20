@@ -2,7 +2,13 @@ import * as React from 'react';
 
 function SvgDelete(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 1000 1000"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <g fill="none" fillRule="evenodd">
         <path
           d="M141 434.955c0 .025-.02.045-.045.045h-9.91a.045.045 0 01-.045-.045V425h10v9.955zM142.5 424h-13a.5.5 0 000 1h.5v9.955c0 .577.468 1.045 1.045 1.045h9.91c.577 0 1.045-.468 1.045-1.045V425h.5a.5.5 0 000-1zm-4 9a.5.5 0 00.5-.5v-5a.5.5 0 00-1 0v5a.5.5 0 00.5.5m-5 0a.5.5 0 00.5-.5v-5a.5.5 0 00-1 0v5a.5.5 0 00.5.5m2.5 0a.5.5 0 00.5-.5v-5a.5.5 0 00-1 0v5a.5.5 0 00.5.5m-3.5-10h7a.5.5 0 000-1h-7a.5.5 0 000 1"
