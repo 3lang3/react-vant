@@ -1,10 +1,10 @@
 import React, { CSSProperties, isValidElement, MouseEvent, useContext, useRef } from 'react';
 import clsx from 'clsx';
+import { ArrowLeft } from '@react-vant/icons';
 
 import { NavBarProps } from './PropsType';
 import { BORDER_BOTTOM } from '../utils/constant';
 
-import Icon from '../icon';
 import useHeight from '../hooks/use-height';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -30,7 +30,11 @@ const NavBar: React.FC<NavBarProps> = (props) => {
     }
 
     return [
-      props.leftArrow && <Icon key="arrow" className={clsx(bem('arrow'))} name="arrow-left" />,
+      props.leftArrow &&
+        React.cloneElement(props.leftArrow as React.ReactElement, {
+          key: 'arroe',
+          className: clsx(bem('arrow')),
+        }),
       props.leftText && (
         <span key="text" className={clsx(bem('text'))}>
           {props.leftText}
@@ -109,6 +113,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
 
 NavBar.defaultProps = {
   border: true,
+  leftArrow: <ArrowLeft />,
 };
 
 export default NavBar;

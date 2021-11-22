@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import { Button, Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import { ShopO } from '@react-vant/icons';
 import { CheckboxGroupInstance } from '../PropsType';
 import Checkbox from '..';
 import './style.less';
@@ -125,14 +126,14 @@ export default (): React.ReactNode => {
             <Cell
               clickable
               title="单选框1"
-              icon="shop-o"
+              icon={<ShopO />}
               onClick={() => toggle('a')}
               rightIcon={<Checkbox name="a" />}
             />
             <Cell
               clickable
               title="单选框2"
-              icon="shop-o"
+              icon={<ShopO />}
               onClick={() => toggle('b')}
               rightIcon={<Checkbox name="b" />}
             />

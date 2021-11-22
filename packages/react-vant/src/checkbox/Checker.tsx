@@ -1,8 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import type { MouseEvent } from 'react';
 import clsx from 'clsx';
-
-import Icon from '../icon';
+import { Success } from '@react-vant/icons';
 import { CheckerProps } from './PropsType';
 import { addUnit } from '../utils';
 
@@ -58,11 +57,7 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
         className={clsx(bem('icon', [shape, { disabled, checked }]))}
         style={{ fontSize: addUnit(iconSize) }}
       >
-        {props.iconRender ? (
-          props.iconRender({ checked, disabled })
-        ) : (
-          <Icon name="success" style={iconStyle} />
-        )}
+        {props.iconRender ? props.iconRender({ checked, disabled }) : <Success style={iconStyle} />}
       </div>
     );
   };

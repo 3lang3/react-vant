@@ -52,7 +52,12 @@ export default (): React.ReactNode => {
             <div className="text">默认提示</div>
           </Flex.Item>
           <Flex.Item span={8}>
-            <Image width="100%" height="27vw" src="x" errorIcon={<div>加载失败</div>} />
+            <Image
+              width="100%"
+              height="27vw"
+              src="x"
+              errorIcon={<div style={{ fontSize: 14 }}>加载失败</div>}
+            />
             <div className="text">自定义提示</div>
           </Flex.Item>
         </Flex>

@@ -38,7 +38,7 @@ export default () => {
 可以通过 `activeIcon` 和 `activeColor` 属性设置激活状态下的图标和颜色。
 
 ```jsx
-<Steps active={active} activeIcon="success" activeColor="#38f">
+<Steps active={active} activeIcon={<Success />} activeColor="#38f">
   <Steps.Item>买家下单</Steps.Item>
   <Steps.Item>商家接单</Steps.Item>
   <Steps.Item>买家提货</Steps.Item>
@@ -75,12 +75,11 @@ export default () => {
 | --- | --- | --- | --- |
 | active | 当前步骤对应的索引值 | _number \| string_ | `0` |
 | direction | 步骤条方向，可选值为 `vertical` | _string_ | `horizontal` |
-| activeIcon | 当前步骤对应的底部图标，可选值见 [Icon 组件](#/zh-CN/icon)，支持自定义 | _string \| React.ReactNode_ | `checked` |
-| inactiveIcon | 非当前步骤对应的底部图标，可选值见 [Icon 组件](#/zh-CN/icon)，支持自定义 | _string \| React.ReactNode_ | - |
-| finishIcon | 已完成步骤对应的底部图标，优先级高于 `inactive-icon`，可选值见 [Icon 组件](#/zh-CN/icon)，支持自定义 | _string \| React.ReactNode_ | - |
+| activeIcon | 当前步骤对应的底部图标 | _ReactNode_ | `<Checked />` |
+| inactiveIcon | 非当前步骤对应的底部图标 | _ReactNode_ | - |
+| finishIcon | 已完成步骤对应的底部图标，优先级高于 `inactiveIcon` | _ReactNode_ | - |
 | activeColor | 当前步骤和已完成步骤的颜色 | _string_ | `#07c160` |
 | inactiveColor | 未激活步骤的颜色 | _string_ | `#969799` |
-| iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
 ### Steps Events
 
@@ -94,8 +93,8 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                  | 默认值                     | 描述 |
-| ------------------------------------- | -------------------------- | ---- |
+| 名称                                 | 默认值                    | 描述 |
+| ------------------------------------ | ------------------------- | ---- |
 | --rv-step-text-color                 | _var(--rv-gray-6)_        | -    |
 | --rv-step-active-color               | _var(--rv-success-color)_ | -    |
 | --rv-step-process-text-color         | _var(--rv-text-color)_    | -    |
@@ -103,8 +102,8 @@ export default () => {
 | --rv-step-line-color                 | _var(--rv-border-color)_  | -    |
 | --rv-step-finish-line-color          | _var(--rv-success-color)_ | -    |
 | --rv-step-finish-text-color          | _var(--rv-text-color)_    | -    |
-| --rv-step-icon-size                  | _12px_                     | -    |
-| --rv-step-circle-size                | _5px_                      | -    |
+| --rv-step-icon-size                  | _12px_                    | -    |
+| --rv-step-circle-size                | _5px_                     | -    |
 | --rv-step-circle-color               | _var(--rv-gray-6)_        | -    |
 | --rv-step-horizontal-title-font-size | _var(--rv-font-size-sm)_  | -    |
 | --rv-steps-background-color          | _var(--rv-white)_         | -    |

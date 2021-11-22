@@ -1,3 +1,4 @@
+import { FriendsO, HomeO, Search, SettingO } from '@react-vant/icons';
 import React, { useState } from 'react';
 import { Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -16,10 +17,10 @@ export default (): React.ReactNode => {
     <DemoSection className="demo-badge">
       <DemoBlock title="基础用法">
         <Tabbar>
-          <Tabbar.Item icon="home-o">标签</Tabbar.Item>
-          <Tabbar.Item icon="search">标签</Tabbar.Item>
-          <Tabbar.Item icon="friends-o">标签</Tabbar.Item>
-          <Tabbar.Item icon="setting-o">标签</Tabbar.Item>
+          <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
         </Tabbar>
       </DemoBlock>
       <DemoBlock title="通过名称匹配">
@@ -29,30 +30,30 @@ export default (): React.ReactNode => {
             setName(v as string);
           }}
         >
-          <Tabbar.Item name="home" icon="home-o">
+          <Tabbar.Item name="home" icon={<HomeO />}>
             标签
           </Tabbar.Item>
-          <Tabbar.Item name="search" icon="search">
+          <Tabbar.Item name="search" icon={<Search />}>
             标签
           </Tabbar.Item>
-          <Tabbar.Item name="firends" icon="friends-o">
+          <Tabbar.Item name="firends" icon={<FriendsO />}>
             标签
           </Tabbar.Item>
-          <Tabbar.Item name="setting" icon="setting-o">
+          <Tabbar.Item name="setting" icon={<SettingO />}>
             标签
           </Tabbar.Item>
         </Tabbar>
       </DemoBlock>
       <DemoBlock title="徽标提示">
         <Tabbar>
-          <Tabbar.Item icon="home-o">标签</Tabbar.Item>
-          <Tabbar.Item badge={{ dot: true }} icon="search">
+          <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
+          <Tabbar.Item badge={{ dot: true }} icon={<Search />}>
             标签
           </Tabbar.Item>
-          <Tabbar.Item badge={{ content: 5 }} icon="friends-o">
+          <Tabbar.Item badge={{ content: 5 }} icon={<FriendsO />}>
             标签
           </Tabbar.Item>
-          <Tabbar.Item badge={{ content: 20 }} icon="setting-o">
+          <Tabbar.Item badge={{ content: 20 }} icon={<SettingO />}>
             标签
           </Tabbar.Item>
         </Tabbar>
@@ -62,24 +63,24 @@ export default (): React.ReactNode => {
           <Tabbar.Item icon={(ac) => <img alt="" src={ac ? icon.active : icon.inactive} />}>
             标签
           </Tabbar.Item>
-          <Tabbar.Item icon="friends-o">标签</Tabbar.Item>
-          <Tabbar.Item icon="setting-o">标签</Tabbar.Item>
+          <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
         </Tabbar>
       </DemoBlock>
       <DemoBlock title="自定义颜色">
         <Tabbar activeColor="#f44336" inactiveColor="#000">
-          <Tabbar.Item icon="home-o">标签</Tabbar.Item>
-          <Tabbar.Item icon="search">标签</Tabbar.Item>
-          <Tabbar.Item icon="friends-o">标签</Tabbar.Item>
-          <Tabbar.Item icon="setting-o">标签</Tabbar.Item>
+          <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
         </Tabbar>
       </DemoBlock>
       <DemoBlock title="监听切换事件">
         <Tabbar onChange={(v) => Toast.info(`标签${+v + 1}`)}>
-          <Tabbar.Item icon="home-o">标签</Tabbar.Item>
-          <Tabbar.Item icon="search">标签</Tabbar.Item>
-          <Tabbar.Item icon="friends-o">标签</Tabbar.Item>
-          <Tabbar.Item icon="setting-o">标签</Tabbar.Item>
+          <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
+          <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
         </Tabbar>
       </DemoBlock>
     </DemoSection>

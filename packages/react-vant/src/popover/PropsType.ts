@@ -21,7 +21,7 @@ export type PopoverAction = {
   /** 选项文字	 */
   text: string;
   /** 文字左侧的图标，支持传入图标名称或图片链接	 */
-  icon?: string;
+  icon?: React.ReactNode;
   /** 选项文字颜色	 */
   color?: string;
   /** 是否为禁用状态	 */
@@ -35,8 +35,6 @@ export interface PopoverProps extends BaseTypeProps {
   overlay?: boolean;
   /** 动画时长，单位毫秒，设置为 0 可以禁用动画	 */
   duration?: number;
-  /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
-  iconPrefix?: string;
   /** 自定义遮罩层类名	 */
   overlayClass?: string;
   /** 自定义遮罩层样式	 */

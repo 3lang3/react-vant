@@ -11,9 +11,10 @@ export type NoticeBarInstance = {
 export interface NoticeBarProps extends BaseTypeProps {
   /** 通知栏模式 */
   mode?: NoticeBarMode;
-  /** 左侧图标名称或图片链接	 */
-  leftIcon?: string | React.ReactNode;
-  rightIcon?: string | React.ReactNode;
+  /** 左侧图标 */
+  leftIcon?: React.ReactNode;
+  /** 右侧图标 */
+  rightIcon?: React.ReactNode;
   /** 滚动条背景	 */
   background?: string;
   /** 通知文本颜色	 */

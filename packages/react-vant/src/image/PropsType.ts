@@ -22,8 +22,6 @@ export interface ImageProps extends BaseTypeProps {
   radius?: number | string;
   /** 加载图标和失败图标的大小	 */
   iconSize?: number | string;
-  /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
-  iconPrefix?: string;
   /**
    * 是否展示图片加载失败提示
    * @default true
@@ -38,12 +36,12 @@ export interface ImageProps extends BaseTypeProps {
    * 失败时提示的图标名称或图片链接
    * @default 'photo-fail'
    */
-  errorIcon?: string | React.ReactNode;
+  errorIcon?: React.ReactNode;
   /**
    * 加载时提示的图标名称或图片链接
    * @default 'photo'
    */
-  loadingIcon?: string | React.ReactNode;
+  loadingIcon?: React.ReactNode;
   /** 图片加载完毕时触发	 */
   onLoad?: (e: React.MouseEvent<HTMLImageElement>) => void;
   /** 图片加载失败时触发	 */

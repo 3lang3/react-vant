@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import React, { useContext } from 'react';
 import cls from 'clsx';
+import { Close, Cross, Description } from '@react-vant/icons';
 // Utils
 import { isImageFile } from './utils';
 import { isDef, getSizeStyle, extend } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 // Components
-import Icon from '../icon';
 import Image from '../image';
 import Loading from '../loading';
 import { UploaderPrviewItemProps } from './PropsType';
@@ -22,7 +22,7 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) =>
     if (status === 'uploading' || status === 'failed') {
       const MaskIcon =
         status === 'failed' ? (
-          <Icon name="close" className={cls(bem('mask-icon'))} />
+          <Close className={cls(bem('mask-icon'))} />
         ) : (
           <Loading className={cls(bem('loading'))} />
         );
@@ -57,7 +57,7 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) =>
     if (props.deletable && props.item.status !== 'uploading') {
       return (
         <div className={cls(bem('preview-delete'))} onClick={onDelete}>
-          <Icon name="cross" className={cls(bem('preview-delete-icon'))} />
+          <Cross className={cls(bem('preview-delete-icon'))} />
         </div>
       );
     }
@@ -96,7 +96,7 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) =>
 
     return (
       <div className={cls(bem('file'))} style={getSizeStyle(props.previewSize)}>
-        <Icon className={cls(bem('file-icon'))} name="description" />
+        <Description className={cls(bem('file-icon'))} />
         <div className={cls(bem('file-name'), 'rv-ellipsis')}>
           {item.file ? item.file.name : item.url}
         </div>

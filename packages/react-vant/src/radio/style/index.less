@@ -38,7 +38,7 @@
     line-height: 1em;
     cursor: pointer;
 
-    .van-icon {
+    .@{rv-prefix}-icon {
       display: block;
       box-sizing: border-box;
       width: 1.25em;
@@ -53,13 +53,13 @@
     }
 
     &--round {
-      .van-icon {
+      .@{rv-prefix}-icon {
         border-radius: 100%;
       }
     }
 
     &--checked {
-      .van-icon {
+      .@{rv-prefix}-icon {
         color: var(--rv-white);
         background-color: var(--rv-radio-checked-icon-color);
         border-color: var(--rv-radio-checked-icon-color);
@@ -69,14 +69,14 @@
     &--disabled {
       cursor: not-allowed;
 
-      .van-icon {
+      .@{rv-prefix}-icon {
         background-color: var(--rv-radio-disabled-background-color);
         border-color: var(--rv-radio-disabled-icon-color);
       }
     }
 
     &--disabled&--checked {
-      .van-icon {
+      .@{rv-prefix}-icon {
         color: var(--rv-radio-disabled-icon-color);
       }
     }

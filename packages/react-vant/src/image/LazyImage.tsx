@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import clsx from 'clsx';
+import { Photo, PhotoFail } from '@react-vant/icons';
 import Image from './Image';
 import { Lazyload } from '../lazyload';
 import { LazyImageProps } from './PropsType';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
-import { Icon } from '../icon';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { BEM } from '../utils/create/bem';
 
 export const getLazyImagePlaceholder = (bem: BEM): JSX.Element => (
   <div className={clsx(bem('loading'))}>
-    <Icon name="photo" className={clsx(bem('loading-icon'))} />
+    <Photo className={clsx(bem('loading-icon'))} />
   </div>
 );
 
@@ -41,8 +41,8 @@ const LazyImage: React.FC<LazyImageProps> = (props) => {
 
 LazyImage.defaultProps = {
   fit: 'fill',
-  errorIcon: 'photo-fail',
-  loadingIcon: 'photo',
+  errorIcon: <PhotoFail />,
+  loadingIcon: <Photo />,
   showError: true,
   showLoading: true,
   block: true,

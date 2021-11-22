@@ -1,8 +1,7 @@
 import React, { useMemo, MouseEvent, useRef, useContext } from 'react';
 import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
-
-import Icon from '../icon';
+import { Cross } from '@react-vant/icons';
 import { TagProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -44,9 +43,7 @@ const Tag: React.FC<TagProps> = (props) => {
       classes[size] = size;
     }
 
-    const CloseIcon = closeable && (
-      <Icon name="cross" className={clsx(bem('close'))} onClick={onClose} />
-    );
+    const CloseIcon = closeable && <Cross className={clsx(bem('close'))} onClick={onClose} />;
 
     return (
       <span

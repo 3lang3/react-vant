@@ -3,7 +3,6 @@ import React, { useContext, useMemo } from 'react';
 import clsx from 'clsx';
 import { TabbarItemProps } from './PropsType';
 import TabbarContext from './TabbarContext';
-import { Icon } from '../icon';
 import { Badge } from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -29,11 +28,11 @@ const TabbarItem: React.FC<TabbarItemProps> = (props) => {
   };
 
   const renderIcon = () => {
-    if (typeof props.icon === 'string') {
-      return <Icon name={props.icon} classPrefix={props.iconPrefix} />;
-    }
     if (typeof props.icon === 'function') {
       return props.icon(active);
+    }
+    if (props.icon) {
+      return props.icon;
     }
     return null;
   };

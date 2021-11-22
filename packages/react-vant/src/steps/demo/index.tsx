@@ -1,3 +1,4 @@
+import { Success } from '@react-vant/icons';
 import React, { useState } from 'react';
 import { Button } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -20,7 +21,7 @@ export default (): React.ReactNode => {
         </Steps>
       </DemoBlock>
       <DemoBlock title="自定义样式">
-        <Steps active={active} activeIcon="success" activeColor="#38f">
+        <Steps active={active} activeIcon={<Success />} activeColor="#38f">
           <Steps.Item>买家下单</Steps.Item>
           <Steps.Item>商家接单</Steps.Item>
           <Steps.Item>买家提货</Steps.Item>

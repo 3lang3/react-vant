@@ -14,10 +14,13 @@ import { NoticeBar } from 'react-vant';
 
 ### 基础用法
 
-通过 `text` 属性设置通知栏的内容，通过 `leftRcon` 属性设置通知栏左侧的图标。
+通过 `text` 属性设置通知栏的内容，通过 `leftIcon` 属性设置通知栏左侧的图标。
 
 ```jsx
-<NoticeBar leftIcon="speaker-s" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+<NoticeBar
+  leftIcon={<SpeakerS />}
+  text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+/>
 ```
 
 ### 滚动播放
@@ -53,7 +56,7 @@ import { NoticeBar } from 'react-vant';
 通过 `color` 属性设置文本颜色，通过 `background` 属性设置背景色。
 
 ```jsx
-<NoticeBar color="#1989fa" background="#ecf9ff" leftIcon="info">
+<NoticeBar color="#1989fa" background="#ecf9ff" leftIcon={<InfoO />}>
   技术是开发它的人的共同灵魂。
 </NoticeBar>
 ```
@@ -68,7 +71,7 @@ import { NoticeBar, Swiper } from 'react-vant';
 
 export default () => {
   return (
-    <NoticeBar leftIcon="info">
+    <NoticeBar leftIcon={<InfoO />}>
       <Swiper autoplay={3000} vertical className="notice-swipe">
         <Swiper.Item>内容 1</Swiper.Item>
         <Swiper.Item>内容 2</Swiper.Item>
@@ -90,19 +93,19 @@ export default () => {
 
 ### Props
 
-| 参数                | 说明                                     | 类型                | 默认值    |
-| ------------------- | ---------------------------------------- | ------------------- | --------- |
-| mode                | 通知栏模式，可选值为 `closeable` `link`  | _string_            | `''`      |
-| text                | 通知文本内容                             | _ReactNode_         | `''`      |
-| color               | 通知文本颜色                             | _string_            | `#f60`    |
-| background          | 滚动条背景                               | _string_            | `#fff7cc` |
-| leftIcon            | 左侧图标                                 | _string\|ReactNode_ | -         |
-| rightIcon           | 自定义右侧图标                           |
-| _string\|ReactNode_ | -                                        |
-| delay               | 动画延迟时间 (s)                         | _number \| string_  | `1`       |
-| speed               | 滚动速率 (px/s)                          | _number \| string_  | `60`      |
-| scrollable          | 是否开启滚动播放，内容长度溢出时默认开启 | _boolean_           | -         |
-| wrapable            | 是否开启文本换行，只在禁用滚动时生效     | _boolean_           | `false`   |
+| 参数        | 说明                                     | 类型               | 默认值    |
+| ----------- | ---------------------------------------- | ------------------ | --------- |
+| mode        | 通知栏模式，可选值为 `closeable` `link`  | _string_           | `''`      |
+| text        | 通知文本内容                             | _ReactNode_        | `''`      |
+| color       | 通知文本颜色                             | _string_           | `#f60`    |
+| background  | 滚动条背景                               | _string_           | `#fff7cc` |
+| leftIcon    | 左侧图标                                 | _ReactNode_        | -         |
+| rightIcon   | 自定义右侧图标                           |
+| _ReactNode_ | -                                        |
+| delay       | 动画延迟时间 (s)                         | _number \| string_ | `1`       |
+| speed       | 滚动速率 (px/s)                          | _number \| string_ | `60`      |
+| scrollable  | 是否开启滚动播放，内容长度溢出时默认开启 | _boolean_          | -         |
+| wrapable    | 是否开启文本换行，只在禁用滚动时生效     | _boolean_          | `false`   |
 
 ### Events
 

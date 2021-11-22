@@ -13,7 +13,7 @@ export interface SubmitBarProps extends BaseTypeProps {
   suffixLabel?: string;
   /** 金额（单位分）	 */
   price?: number | string;
-  /** 提示文案左侧的图标名称或图片链接或者自定义内容 */
+  /** 提示文案左侧的图标 */
   tipIcon?: React.ReactNode;
   /** 是否显示将按钮显示为加载中状态	 */
   loading?: boolean;

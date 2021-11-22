@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import cls from 'clsx';
-
+import { Checked } from '@react-vant/icons';
 import { StepsProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -27,7 +27,7 @@ const Steps: React.FC<StepsProps> = ({ children, className, style, ...props }) =
 Steps.defaultProps = {
   active: 0,
   direction: 'horizontal',
-  activeIcon: 'checked',
+  activeIcon: <Checked />,
 };
 
 export default Steps;

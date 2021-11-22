@@ -74,12 +74,18 @@
   line-height: 0;
   text-align: center;
   text-transform: none;
-  vertical-align: -0.125 em;
+  vertical-align: -0.125em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   &--spin {
     display: inline-block;
     animation: van-spin 1.5s infinite linear;
+  }
+  svg {
+    display: inline-block;
+  }
+  > * {
+    line-height: 1;
   }
 }

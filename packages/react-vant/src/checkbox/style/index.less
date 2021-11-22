@@ -38,7 +38,7 @@
     line-height: 1em;
     cursor: pointer;
 
-    .van-icon {
+    .@{rv-prefix}-icon {
       display: block;
       box-sizing: border-box;
       width: 1.25em;
@@ -50,16 +50,21 @@
       border: 1px solid var(--rv-checkbox-border-color);
       transition-duration: var(--rv-checkbox-transition-duration);
       transition-property: color, border-color, background-color;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     &--round {
-      .van-icon {
+      .@{rv-prefix}-icon {
         border-radius: 100%;
       }
     }
 
     &--checked {
-      .van-icon {
+      .@{rv-prefix}-icon {
         color: var(--rv-white);
         background-color: var(--rv-checkbox-checked-icon-color);
         border-color: var(--rv-checkbox-checked-icon-color);
@@ -69,14 +74,14 @@
     &--disabled {
       cursor: not-allowed;
 
-      .van-icon {
+      .@{rv-prefix}-icon {
         background-color: var(--rv-checkbox-disabled-background-color);
         border-color: var(--rv-checkbox-disabled-icon-color);
       }
     }
 
     &--disabled&--checked {
-      .van-icon {
+      .@{rv-prefix}-icon {
         color: var(--rv-checkbox-disabled-icon-color);
       }
     }

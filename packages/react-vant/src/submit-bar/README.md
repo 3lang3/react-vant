@@ -32,7 +32,7 @@ export default () => {
   price="3050"
   buttonText="提交订单"
   tip="你的收货地址不支持同城送, 我们已为你推荐快递"
-  tipIcon="info-o"
+  tipIcon={<InfoO />}
   onSubmit={onSubmit}
 />
 ```
@@ -88,7 +88,7 @@ export default () => {
 | buttonType | 按钮类型 | _[ButtonType](/#/zh-CN/button)_ | `danger` |
 | buttonColor | 自定义按钮颜色 | _string_ | - |
 | tip | 在订单栏上方的提示文案 | _string\|ReactNode_ | - |
-| tipIcon | 提示文案左侧的[图标名称](#/zh-CN/icon)或图片链接 | _string\|ReactNode_ | - |
+| tipIcon | 提示文案左侧的[图标](#/zh-CN/icon) | _ReactNode_ | - |
 | currency | 货币符号 | _string_ | `¥` |
 | disabled | 是否禁用按钮 | _boolean_ | `false` |
 | loading | 是否显示将按钮显示为加载中状态 | _boolean_ | `false` |

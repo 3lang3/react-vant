@@ -1,11 +1,11 @@
 // Components
+import { Success } from '@react-vant/icons';
 import clsx from 'clsx';
 import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
 import Cell from '../cell';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useSetState } from '../hooks';
 import useSsrCompat from '../hooks/use-ssr-compat';
-import Icon from '../icon';
 import Popup from '../popup';
 import { getZIndexStyle, pick } from '../utils';
 import { renderToContainer } from '../utils/dom/renderToContainer';
@@ -102,7 +102,7 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
         style={{ color: active ? activeColor : '' }}
         onClick={onClick}
       >
-        {active && <Icon className={clsx(bem('icon'))} color={activeColor} name="success" />}
+        {active && <Success className={clsx(bem('icon'))} color={activeColor} />}
       </Cell>
     );
   };

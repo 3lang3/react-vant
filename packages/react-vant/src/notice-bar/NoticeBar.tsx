@@ -1,11 +1,8 @@
 import React, { useRef, useEffect, useImperativeHandle, forwardRef, useContext } from 'react';
 import clsx from 'clsx';
-
-import Icon from '../icon';
-
+import { Arrow, Cross } from '@react-vant/icons';
 import { getRect } from '../hooks/use-rect';
 import useEventListener from '../hooks/use-event-listener';
-
 import { NoticeBarInstance, NoticeBarProps } from './PropsType';
 import { isDef, noop } from '../utils';
 import { raf, doubleRaf } from '../utils/raf';
@@ -33,23 +30,22 @@ const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => 
   const startTimer = useRef(null);
 
   const renderLeftIcon = () => {
-    if (typeof props.leftIcon !== 'string' && React.isValidElement(props.leftIcon)) {
-      return props.leftIcon;
-    }
     if (props.leftIcon) {
-      return <Icon className={clsx(bem('left-icon'))} name={props.leftIcon as string} />;
+      return React.cloneElement(props.leftIcon as React.ReactElement, {
+        className: clsx(bem('left-icon')),
+      });
     }
     return null;
   };
 
-  const getRightIconName = () => {
+  const getRightIcon = () => {
     if (props.mode === 'closeable') {
-      return 'cross';
+      return <Cross />;
     }
     if (props.mode === 'link') {
-      return 'arrow';
+      return <Arrow />;
     }
-    return '';
+    return null;
   };
 
   const onClickRightIcon = (event) => {
@@ -66,9 +62,12 @@ const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => 
     if (props.rightIcon) {
       return props.rightIcon;
     }
-    const name = getRightIconName();
-    if (name) {
-      return <Icon name={name} className={clsx(bem('right-icon'))} onClick={onClickRightIcon} />;
+    const finalRightIcon = props.rightIcon || getRightIcon();
+    if (finalRightIcon) {
+      return React.cloneElement(finalRightIcon as React.ReactElement, {
+        className: clsx(bem('right-icon')),
+        onClick: onClickRightIcon,
+      });
     }
     return null;
   };

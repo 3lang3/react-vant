@@ -1,18 +1,19 @@
 /* eslint-disable no-console */
 import React, { useRef, useState } from 'react';
+import { AddO, MoreO, MusicO } from '@react-vant/icons';
 import { Toast, Button, Grid, Popup, Picker, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { PopoverInstance, PopoverPlacement } from '../PropsType';
-import Popover from '..'
+import Popover from '..';
 import './style.less';
 
 const actions = [{ text: '选项一' }, { text: '选项二' }, { text: '选项三' }];
 const popupActions = [{ text: '选项一' }, { text: '选项二' }];
 
 const iconActions = [
-  { text: '选项一', icon: 'add-o' },
-  { text: '选项二', icon: 'music-o' },
-  { text: '选项三', icon: 'more-o' },
+  { text: '选项一', icon: <AddO /> },
+  { text: '选项二', icon: <MusicO /> },
+  { text: '选项三', icon: <MoreO /> },
 ];
 
 const disabledActions = [

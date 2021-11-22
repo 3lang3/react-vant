@@ -1,4 +1,5 @@
 import React from 'react';
+import { InfoO, VolumeO } from '@react-vant/icons';
 import { Swiper } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
@@ -10,7 +11,7 @@ export default (): React.ReactNode => {
     <DemoSection>
       <DemoBlock title="基础用法">
         <NoticeBar
-          leftIcon="volume-o"
+          leftIcon={<VolumeO />}
           text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
         />
       </DemoBlock>
@@ -26,14 +27,14 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="自定义样式">
         <NoticeBar
-          leftIcon="info-o"
+          leftIcon={<InfoO />}
           background="rgb(236, 249, 255)"
           color="rgb(25, 137, 250)"
           text="技术是开发它的人的共同灵魂。"
         />
       </DemoBlock>
       <DemoBlock title="垂直滚动">
-        <NoticeBar leftIcon="volume-o">
+        <NoticeBar leftIcon={<VolumeO />}>
           <Swiper autoplay={3000} indicator={false} vertical className="notice-swipe">
             <Swiper.Item>内容 1</Swiper.Item>
             <Swiper.Item>内容 2</Swiper.Item>

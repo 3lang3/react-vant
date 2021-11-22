@@ -2,7 +2,6 @@ import React, { CSSProperties, useRef, useMemo, useEffect, useContext } from 're
 import clsx from 'clsx';
 import { ImageProps } from './PropsType';
 import { isDef, addUnit } from '../utils';
-import Icon from '../icon';
 import { useSetState } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -56,27 +55,22 @@ const Image: React.FC<ImageProps> = (props) => {
   };
 
   const renderLoadingIcon = () => {
-    if (typeof loadingIcon !== 'string') return loadingIcon;
-    return (
-      <Icon
-        size={props.iconSize}
-        name={loadingIcon}
-        className={clsx(bem('loading-icon'))}
-        classPrefix={props.iconPrefix}
-      />
-    );
+    if (loadingIcon)
+      return React.cloneElement(loadingIcon as React.ReactElement, {
+        className: clsx(bem('loading-icon')),
+        fontSize: props.iconSize,
+      });
+    return null;
   };
 
   const renderErrorIcon = () => {
-    if (typeof errorIcon !== 'string') return errorIcon;
-    return (
-      <Icon
-        size={props.iconSize}
-        name={errorIcon}
-        className={clsx(bem('error-icon'))}
-        classPrefix={props.iconPrefix}
-      />
-    );
+    if (errorIcon) {
+      return React.cloneElement(errorIcon as React.ReactElement, {
+        className: clsx(bem('error-icon')),
+        fontSize: props.iconSize,
+      });
+    }
+    return null;
   };
 
   const renderPlaceholder = () => {

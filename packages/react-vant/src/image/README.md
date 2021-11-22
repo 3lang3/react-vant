@@ -49,7 +49,10 @@ import { Image } from 'react-vant';
 `Image` 组件提供了默认的加载失败提示，支持通过 `errorIcon` 自定义内容。
 
 ```jsx
-<Image src="https://img.yzcdn.cn/vant/cat.jpeg" errorIcon={<div>加载失败</div>} />
+<Image
+  src="https://img.yzcdn.cn/vant/cat.jpeg"
+  errorIcon={<div style={{ fontSize: 14 }}>加载失败</div>}
+/>
 ```
 
 ## API
@@ -68,12 +71,11 @@ import { Image } from 'react-vant';
 | lazyload | 是否开启懒加载 | _boolean\|[Lazyload Props](/#/zh-CN/lazyload)_ | `false` |
 | showError | 是否展示图片加载失败提示 | _boolean_ | `true` |
 | showLoading | 是否展示图片加载中提示 | _boolean_ | `true` |
-| errorIcon | 失败时提示的图标 | _string\|ReactNode_ | `photo-fail` |
-| loadingIcon | 加载时提示的图标 | _string\|ReactNode_ | `photo` |
+| errorIcon | 失败时提示的图标 | _ReactNode_ | `<PhotoFail />` |
+| loadingIcon | 加载时提示的图标 | _ReactNode_ | `<Photo />` |
 | iconSize | 加载图标和失败图标的大小 | _number \| string_ | `32px` |
-| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
-### 图片填充模式 
+### 图片填充模式
 
 | 名称       | 含义                                                   |
 | ---------- | ------------------------------------------------------ |

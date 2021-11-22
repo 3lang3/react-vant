@@ -14,8 +14,8 @@ export interface NavBarProps extends BaseTypeProps {
   leftText?: React.ReactNode;
   /** 右侧文案	 */
   rightText?: React.ReactNode;
-  /** 是否显示左侧箭头	 */
-  leftArrow?: boolean;
+  /** 自定义左侧箭头	 */
+  leftArrow?: boolean | React.ReactNode;
   /** 是否开启顶部安全区适配	 */
   safeAreaInsetTop?: boolean;
   /** 是否显示下边框	 */

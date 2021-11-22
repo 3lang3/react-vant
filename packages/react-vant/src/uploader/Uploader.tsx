@@ -1,5 +1,6 @@
-import React, { forwardRef, isValidElement, useContext, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'react';
 import cls from 'clsx';
+import { Photograph } from '@react-vant/icons';
 // Utils
 import { isPromise, getSizeStyle, extend, pick } from '../utils';
 import { isOversize, filterFiles, readFileContent, toArray, isImageFile } from './utils';
@@ -8,7 +9,6 @@ import { UploaderFileListItem, UploaderInstance, UploaderProps } from './PropsTy
 import { UploaderPreviewItem } from './UploaderPreviewItem';
 // Components
 import ImagePreview from '../image-preview';
-import Icon from '../icon';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
@@ -195,12 +195,10 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
   };
 
   const renderUploadIcon = () => {
-    if (typeof props.uploadIcon === 'string') {
-      return <Icon name={props.uploadIcon} className={cls(bem('upload-icon'))} />;
-    }
-
-    if (isValidElement(props.uploadIcon)) {
-      return props.uploadIcon;
+    if (props.uploadIcon) {
+      return React.cloneElement(props.uploadIcon as React.ReactElement, {
+        className: cls(bem('upload-icon')),
+      });
     }
 
     return null;
@@ -279,7 +277,7 @@ Uploader.defaultProps = {
   value: [],
   imageFit: 'cover',
   resultType: 'dataUrl',
-  uploadIcon: 'photograph',
+  uploadIcon: <Photograph />,
 };
 
 export default Uploader;

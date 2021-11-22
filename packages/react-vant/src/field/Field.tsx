@@ -8,9 +8,8 @@ import React, {
   useMemo,
   useContext,
 } from 'react';
-import { Clear } from '@react-vant/icons';
+import { Clear, QuestionO } from '@react-vant/icons';
 import clsx from 'clsx';
-import Icon from '../icon';
 import Cell from '../cell';
 import Dialog from '../dialog';
 import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
@@ -305,7 +304,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   const renderTooltip = () => {
     const { tooltip } = props;
     if (tooltip) {
-      let icon = (<Icon name="question-o" />) as React.ReactNode;
+      let icon = (<QuestionO />) as React.ReactNode;
       let dialogProps = { message: tooltip };
       if (!(React.isValidElement(tooltip) || typeof tooltip === 'string')) {
         const { icon: customIcon, ...customDialogProps } = tooltip as FieldTooltipProps;

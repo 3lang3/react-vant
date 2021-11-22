@@ -11,7 +11,6 @@ import { Instance, createPopper, offsetModifier } from '@vant/popperjs';
 import { PopoverAction, PopoverInstance, PopoverProps } from './PropsType';
 import { extend, pick } from '../utils';
 import { PopupInstanceType } from '../popup/PropsType';
-import Icon from '../icon';
 import { BORDER_BOTTOM } from '../utils/constant';
 import useClickAway from '../hooks/use-click-away';
 import Popup from '../popup';
@@ -109,9 +108,11 @@ const Popover = forwardRef<PopoverInstance, PopoverProps>(
           style={{ color }}
           onClick={() => onClickAction(action, index)}
         >
-          {icon && (
-            <Icon name={icon} classPrefix={props.iconPrefix} className={cls(bem('action-icon'))} />
-          )}
+          {icon
+            ? React.cloneElement(icon as React.ReactElement, {
+                className: cls(bem('action-icon')),
+              })
+            : null}
           <div className={cls(bem('action-text'), BORDER_BOTTOM)}>{text}</div>
         </div>
       );

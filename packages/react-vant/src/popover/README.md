@@ -75,13 +75,13 @@ bottom-end    # 底部右侧位置
 
 ### 展示图标
 
-在 `actions` 数组中，可以通过 `icon` 字段来定义选项的图标，支持传入[图标名称](#/zh-CN/icon)或图片链接。
+在 `actions` 数组中，可以通过 `icon` 字段来定义选项的图标。
 
 ```jsx
 const actions = [
-  { text: '选项一', icon: 'add-o' },
-  { text: '选项二', icon: 'music-o' },
-  { text: '选项三', icon: 'more-o' },
+  { text: '选项一', icon: <AddO /> },
+  { text: '选项二', icon: <MusicO /> },
+  { text: '选项三', icon: <MoreO /> },
 ];
 
 <Popover
@@ -117,7 +117,7 @@ const actions = [
 <Popover ref={popover} placement="top-start" reference={<Button type="primary">自定义内容</Button>}>
   <Grid square border={false} columnNum={3} style={{ width: 240 }}>
     {Array.from({ length: 6 }, (_, i) => (
-      <Grid.Item onClick={() => popover.current?.hide()} key={i} icon="photo-o" text="文字" />
+      <Grid.Item onClick={() => popover.current?.hide()} key={i} icon={<PhotoO />} text="文字" />
     ))}
   </Grid>
 </Popover>
@@ -141,7 +141,6 @@ const actions = [
 | closeOnClickAction | 是否在点击选项后关闭 | _boolean_ | `true` |
 | closeOnClickOutside | 是否在点击外部元素后关闭菜单 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭菜单 | _boolean_ | `true` |
-| iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | children | 自定义菜单内容 | _React.ReactNode_ | - |
 | reference | 触发 Popover 显示的元素内容 | _React.ReactNode_ | - |
 | teleport | 指定挂载的节点 | _Element\|() => Element_ | - |
@@ -150,23 +149,23 @@ const actions = [
 
 `actions` 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象可以包含以下值：
 
-| 键名 | 说明 | 类型 |
-| --- | --- | --- |
-| text | 选项文字 | _string_ |
-| icon | 文字左侧的图标，支持传入[图标名称](#/zh-CN/icon)或图片链接 | _string_ |
-| color | 选项文字颜色 | _string_ |
-| disabled | 是否为禁用状态 | _boolean_ |
-| className | 为对应选项添加额外的类名 | _string_ |
+| 键名      | 说明                     | 类型        |
+| --------- | ------------------------ | ----------- |
+| text      | 选项文字                 | _string_    |
+| icon      | 文字左侧的图标           | _ReactNode_ |
+| color     | 选项文字颜色             | _string_    |
+| disabled  | 是否为禁用状态           | _boolean_   |
+| className | 为对应选项添加额外的类名 | _string_    |
 
 ### Events
 
-| 事件名   | 说明           | 回调参数                        |
-| -------- | -------------- | ------------------------------- |
-| onSelect | 点击选项时触发 | _action: Action, index: number_ |
-| onOpen          | 打开菜单时触发           | -                               |
-| onClose         | 关闭菜单时触发           | -                               |
-| onOpened        | 打开菜单且动画结束后触发 | -                               |
-| onClosed        | 关闭菜单且动画结束后触发 | -                               |
+| 事件名         | 说明                     | 回调参数                        |
+| -------------- | ------------------------ | ------------------------------- |
+| onSelect       | 点击选项时触发           | _action: Action, index: number_ |
+| onOpen         | 打开菜单时触发           | -                               |
+| onClose        | 关闭菜单时触发           | -                               |
+| onOpened       | 打开菜单且动画结束后触发 | -                               |
+| onClosed       | 关闭菜单且动画结束后触发 | -                               |
 | onClickOverlay | 点击遮罩层时触发         | _event: MouseEvent_             |
 
 ### 方法
@@ -178,29 +177,27 @@ const actions = [
 | show   | 显示 popover | -    | -      |
 | hide   | 关闭 popover | -    | -      |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-popover-arrow-size | _6px_ | - |
-| --rv-popover-border-radius | _var(--rv-border-radius-lg)_ | - |
-| --rv-popover-action-width | _128px_ | - |
-| --rv-popover-action-height | _44px_ | - |
-| --rv-popover-action-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-popover-action-line-height | _var(--rv-line-height-md)_ | - |
-| --rv-popover-action-icon-size | _20px_ | - |
-| --rv-popover-light-text-color | _var(--rv-text-color)_ | - |
-| --rv-popover-light-background-color | _var(--rv-white)_ | - |
-| --rv-popover-light-action-disabled-text-color | _var(--rv-gray-5)_ | - |
-| --rv-popover-dark-text-color | _var(--rv-white)_ | - |
-| --rv-popover-dark-background-color | _#4a4a4a_ | - |
-| --rv-popover-dark-action-disabled-text-color | _var(--rv-gray-6)_ | - |
-
+| 名称                                          | 默认值                       | 描述 |
+| --------------------------------------------- | ---------------------------- | ---- |
+| --rv-popover-arrow-size                       | _6px_                        | -    |
+| --rv-popover-border-radius                    | _var(--rv-border-radius-lg)_ | -    |
+| --rv-popover-action-width                     | _128px_                      | -    |
+| --rv-popover-action-height                    | _44px_                       | -    |
+| --rv-popover-action-font-size                 | _var(--rv-font-size-md)_     | -    |
+| --rv-popover-action-line-height               | _var(--rv-line-height-md)_   | -    |
+| --rv-popover-action-icon-size                 | _20px_                       | -    |
+| --rv-popover-light-text-color                 | _var(--rv-text-color)_       | -    |
+| --rv-popover-light-background-color           | _var(--rv-white)_            | -    |
+| --rv-popover-light-action-disabled-text-color | _var(--rv-gray-5)_           | -    |
+| --rv-popover-dark-text-color                  | _var(--rv-white)_            | -    |
+| --rv-popover-dark-background-color            | _#4a4a4a_                    | -    |
+| --rv-popover-dark-action-disabled-text-color  | _var(--rv-gray-6)_           | -    |
 
 ## 常见问题
 

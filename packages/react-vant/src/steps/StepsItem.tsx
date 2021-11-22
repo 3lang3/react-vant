@@ -2,7 +2,6 @@ import React, { useContext, useMemo } from 'react';
 import cls from 'clsx';
 import { StepsItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
-import Icon from '../icon';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
@@ -49,46 +48,29 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
   };
 
   const renderCircle = () => {
-    const { iconPrefix, finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;
+    const { finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;
 
     if (isActive()) {
-      if (React.isValidElement(parentProps.activeIcon)) {
-        return parentProps.activeIcon;
+      if (activeIcon) {
+        return React.cloneElement(activeIcon as React.ReactElement, {
+          className: cls(bem('icon', 'active')),
+          color: activeColor,
+        });
       }
-
-      return (
-        <Icon
-          className={cls(bem('icon', 'active'))}
-          name={activeIcon as string}
-          color={activeColor}
-          classPrefix={iconPrefix}
-        />
-      );
     }
 
-    if (getStatus() === 'finish' && (finishIcon || React.isValidElement(parentProps.finishIcon))) {
-      if (React.isValidElement(parentProps.finishIcon)) {
-        return parentProps.finishIcon;
-      }
-
-      return (
-        <Icon
-          className={cls(bem('icon', 'finish'))}
-          name={finishIcon as string}
-          color={activeColor}
-          classPrefix={iconPrefix}
-        />
-      );
-    }
-
-    if (React.isValidElement(parentProps.inactiveIcon)) {
-      return parentProps.inactiveIcon;
+    if (getStatus() === 'finish' && finishIcon) {
+      return React.cloneElement(finishIcon as React.ReactElement, {
+        className: cls(bem('icon', 'finish')),
+        color: activeColor,
+      });
     }
 
     if (inactiveIcon) {
-      return (
-        <Icon className={cls(bem('icon'))} name={inactiveIcon as string} classPrefix={iconPrefix} />
-      );
+      return React.cloneElement(inactiveIcon as React.ReactElement, {
+        className: cls(bem('icon')),
+        color: activeColor,
+      });
     }
 
     return <i className={cls(bem('circle'))} style={lineStyle} />;

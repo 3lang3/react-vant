@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SubmitBarProps } from './PropsType';
-import { Icon } from '../icon';
 import { Button } from '../button';
 
 const SubmitBar: React.FC<SubmitBarProps> = (props) => {
@@ -36,11 +35,10 @@ const SubmitBar: React.FC<SubmitBarProps> = (props) => {
     if (tip) {
       return (
         <div className={cls(bem('tip'))}>
-          {typeof tipIcon === 'string' ? (
-            <Icon className={cls(bem('tip-icon'))} name={tipIcon} />
-          ) : (
-            tipIcon
-          )}
+          {tipIcon &&
+            React.cloneElement(tipIcon as React.ReactElement, {
+              className: cls(bem('tip-icon')),
+            })}
           {tip && <span className={cls(bem('tip-text'))}>{tip}</span>}
         </div>
       );

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
+import { InfoO } from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
 import { Checkbox } from 'react-vant';
 import { SubmitBar } from '..';
@@ -17,7 +18,7 @@ export default (): React.ReactNode => {
           disabled
           price="3050"
           tip="你的收货地址不支持同城送, 我们已为你推荐快递"
-          tipIcon="info-o"
+          tipIcon={<InfoO />}
           buttonText="提交订单"
           onSubmit={() => console.log('submit')}
         />
