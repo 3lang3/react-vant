@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgMapMarked = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgMapMarked.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgMapMarked.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgMapMarked;

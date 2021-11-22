@@ -17,9 +17,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgThumbCircleO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgThumbCircleO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgThumbCircleO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgThumbCircleO;

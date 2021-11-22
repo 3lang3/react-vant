@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgBookmark = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgBookmark.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgBookmark.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgBookmark;

@@ -58,7 +58,7 @@
   ],
   "dependencies": {
     "@react-spring/web": "^9.3.0",
-    "@react-vant/icons": "^0.0.0",
+    "@react-vant/icons": "^0.0.2",
     "@use-gesture/react": "^10.1.1",
     "@vant/icons": "^1.7.0",
     "@vant/popperjs": "^1.1.0",

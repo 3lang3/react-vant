@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgEllipsis = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgEllipsis.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgEllipsis.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgEllipsis;

@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgHotO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgHotO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgHotO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgHotO;

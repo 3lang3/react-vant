@@ -21,9 +21,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgCart = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgCart.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgCart.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgCart;

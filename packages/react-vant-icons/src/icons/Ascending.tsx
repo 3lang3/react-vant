@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgAscending = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgAscending.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgAscending.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgAscending;

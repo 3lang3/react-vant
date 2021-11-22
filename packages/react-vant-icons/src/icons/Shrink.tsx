@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgShrink = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgShrink.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgShrink.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgShrink;

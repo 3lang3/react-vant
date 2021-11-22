@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgBars = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgBars.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgBars.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgBars;

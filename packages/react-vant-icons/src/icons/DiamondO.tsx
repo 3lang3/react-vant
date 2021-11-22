@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgDiamondO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgDiamondO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgDiamondO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgDiamondO;

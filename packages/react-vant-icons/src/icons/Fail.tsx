@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgFail = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgFail.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgFail.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgFail;

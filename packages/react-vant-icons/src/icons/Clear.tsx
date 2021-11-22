@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgClear = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgClear.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgClear.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgClear;

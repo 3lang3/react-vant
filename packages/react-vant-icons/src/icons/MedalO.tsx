@@ -17,9 +17,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgMedalO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgMedalO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgMedalO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgMedalO;

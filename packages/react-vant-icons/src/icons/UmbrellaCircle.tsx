@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgUmbrellaCircle = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgUmbrellaCircle.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgUmbrellaCircle.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgUmbrellaCircle;

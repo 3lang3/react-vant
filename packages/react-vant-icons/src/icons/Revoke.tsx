@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgRevoke = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgRevoke.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgRevoke.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgRevoke;

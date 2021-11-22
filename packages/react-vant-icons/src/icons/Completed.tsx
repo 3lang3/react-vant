@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgCompleted = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgCompleted.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgCompleted.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgCompleted;

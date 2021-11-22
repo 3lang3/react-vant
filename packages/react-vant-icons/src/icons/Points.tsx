@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgPoints = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgPoints.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgPoints.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgPoints;

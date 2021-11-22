@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgEye = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgEye.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgEye.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgEye;

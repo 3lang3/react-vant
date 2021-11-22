@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgBackTop = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgBackTop.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgBackTop.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgBackTop;

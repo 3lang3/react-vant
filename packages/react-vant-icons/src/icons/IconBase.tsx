@@ -8,9 +8,12 @@ function kebabCase(str: string): string {
     .replace(/^-/, '');
 }
 
-export interface IconBaseProps extends React.HTMLProps<HTMLSpanElement> {
+export interface IconBaseProps extends React.SVGProps<SVGSVGElement> {
+  /** 是否开启旋转动画	 */
   spin?: boolean;
+  /** 图标旋转角度 */
   rotate?: number;
+  /** 自定义图标名 */
   name?: string;
 }
 
@@ -42,9 +45,8 @@ const IconBase: React.FC<IconBaseProps> = ({
         spin ? 'rv-icon--spin' : '',
       ].join(' ')}
       style={{ ...style, ...svgStyle }}
-      {...props}
     >
-      {children}
+      {React.cloneElement(children as React.ReactElement, props)}
     </span>
   );
 };

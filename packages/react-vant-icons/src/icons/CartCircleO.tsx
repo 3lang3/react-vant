@@ -19,9 +19,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgCartCircleO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgCartCircleO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgCartCircleO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgCartCircleO;

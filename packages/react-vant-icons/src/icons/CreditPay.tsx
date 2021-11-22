@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgCreditPay = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgCreditPay.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgCreditPay.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgCreditPay;

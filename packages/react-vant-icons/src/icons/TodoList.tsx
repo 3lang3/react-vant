@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgTodoList = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgTodoList.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgTodoList.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgTodoList;

@@ -21,9 +21,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgInfoO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgInfoO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgInfoO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgInfoO;

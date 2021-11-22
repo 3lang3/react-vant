@@ -17,9 +17,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgDeleteO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgDeleteO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgDeleteO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgDeleteO;

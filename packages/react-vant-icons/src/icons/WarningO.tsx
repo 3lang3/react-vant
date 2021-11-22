@@ -20,9 +20,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgWarningO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgWarningO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgWarningO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgWarningO;

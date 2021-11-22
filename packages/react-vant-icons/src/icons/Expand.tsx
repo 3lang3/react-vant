@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgExpand = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgExpand.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgExpand.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgExpand;

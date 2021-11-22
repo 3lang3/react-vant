@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgMusic = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgMusic.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgMusic.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgMusic;

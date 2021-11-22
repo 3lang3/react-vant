@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgEnlarge = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgEnlarge.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgEnlarge.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgEnlarge;

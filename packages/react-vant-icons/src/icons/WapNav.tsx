@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgWapNav = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgWapNav.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgWapNav.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgWapNav;

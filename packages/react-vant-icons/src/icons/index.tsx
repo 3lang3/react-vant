@@ -238,3 +238,4 @@ export { default as WeappNav } from './WeappNav';
 export { default as WechatPay } from './WechatPay';
 export { default as Wechat } from './Wechat';
 export { default as YouzanShield } from './YouzanShield';
+export { default as createFromIconfontCN } from './createFromIconfontCN';

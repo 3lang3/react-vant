@@ -17,9 +17,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgInvitation = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgInvitation.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgInvitation.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgInvitation;

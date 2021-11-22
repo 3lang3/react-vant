@@ -1,11 +1,11 @@
 import React from 'react';
-import { Flex, Icon, Badge, Tabs, Toast } from 'react-vant';
+import { Flex, Badge, Tabs, Toast } from 'react-vant';
 import * as Icons from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
 import icons from './config';
 import './style.less';
 
-const IconFont = Icon.createFromIconfontCN('//at.alicdn.com/t/font_2763890_w471tfudy4d.js');
+const IconFont = Icons.createFromIconfontCN('//at.alicdn.com/t/font_1619071_dqiwns2g0d.js');
 
 // from https://30secondsofcode.org
 function copyToClipboard(str: string) {
@@ -71,9 +71,6 @@ export default (): React.ReactNode => {
               <Flex.Item span={6}>
                 <Icons.ChatO />
               </Flex.Item>
-              <Flex.Item span={6}>
-                <Icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-              </Flex.Item>
             </Flex>
           </DemoBlock>
           <DemoBlock title="徽标提示">
@@ -101,37 +98,40 @@ export default (): React.ReactNode => {
                 <Icons.ChatO color="#f44336" />
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icons.FireO color="#999" />
+                <Icons.FireO color="#3f45ff" />
               </Flex.Item>
             </Flex>
           </DemoBlock>
           <DemoBlock title="图标大小">
             <Flex>
               <Flex.Item span={6}>
-                <Icons.Close />
+                <Icons.Close fontSize={40} />
               </Flex.Item>
               <Flex.Item span={6}>
-                <Icons.Close />
+                <Icons.Close fontSize="3rem" />
               </Flex.Item>
             </Flex>
           </DemoBlock>
           <DemoBlock title="自定义图标">
             <Flex>
               <Flex.Item span={6}>
-                <IconFont name="cuIcon-classify" color="#f44336" />
+                <IconFont name="icon-weunblock" />
               </Flex.Item>
               <Flex.Item span={6}>
-                <IconFont name="cuIcon-classify_fill" color="green" />
+                <IconFont name="icon-1111" />
               </Flex.Item>
             </Flex>
           </DemoBlock>
           <DemoBlock title="图标旋转">
             <Flex>
               <Flex.Item span={6}>
-                <Icon name="clock-o" spin />
+                <Icons.ClockO spin />
               </Flex.Item>
               <Flex.Item span={6}>
-                <IconFont spin name="cuIcon-classify_fill" />
+                <Icons.FireO spin />
+              </Flex.Item>
+              <Flex.Item span={6}>
+                <IconFont name="icon-weunblock" spin />
               </Flex.Item>
             </Flex>
           </DemoBlock>
@@ -141,7 +141,7 @@ export default (): React.ReactNode => {
             {getTypeIcons('basic').map((item) => (
               <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
                 <item.component />
-                <span>{item.name}</span>
+                <div className="icon-name">{item.name}</div>
               </Flex.Item>
             ))}
           </Flex>
@@ -151,7 +151,7 @@ export default (): React.ReactNode => {
             {getTypeIcons('outline').map((item) => (
               <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
                 <item.component />
-                <span>{item.name}</span>
+                <div className="icon-name">{item.name}</div>
               </Flex.Item>
             ))}
           </Flex>
@@ -161,7 +161,7 @@ export default (): React.ReactNode => {
             {getTypeIcons('filled').map((item) => (
               <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
                 <item.component />
-                <span>{item.name}</span>
+                <div className="icon-name">{item.name}</div>
               </Flex.Item>
             ))}
           </Flex>

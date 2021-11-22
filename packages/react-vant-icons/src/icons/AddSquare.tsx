@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgAddSquare = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgAddSquare.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgAddSquare.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgAddSquare;

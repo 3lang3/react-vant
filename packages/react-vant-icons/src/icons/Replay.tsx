@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgReplay = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgReplay.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgReplay.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgReplay;

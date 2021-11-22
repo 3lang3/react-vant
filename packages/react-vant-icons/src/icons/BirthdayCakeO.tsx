@@ -24,9 +24,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgBirthdayCakeO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgBirthdayCakeO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgBirthdayCakeO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgBirthdayCakeO;

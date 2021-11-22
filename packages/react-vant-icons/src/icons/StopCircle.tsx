@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgStopCircle = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgStopCircle.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgStopCircle.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgStopCircle;

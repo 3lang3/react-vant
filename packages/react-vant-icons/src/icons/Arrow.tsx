@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgArrow = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgArrow.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgArrow.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgArrow;

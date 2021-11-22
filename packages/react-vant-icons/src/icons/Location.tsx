@@ -19,9 +19,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgLocation = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgLocation.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgLocation.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgLocation;

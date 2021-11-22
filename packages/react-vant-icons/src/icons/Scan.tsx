@@ -16,9 +16,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgScan = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgScan.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgScan.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgScan;

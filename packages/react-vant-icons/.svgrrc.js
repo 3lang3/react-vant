@@ -30,7 +30,7 @@ module.exports = {
   const SvgIcon = (${props}: React.SVGProps<SVGSVGElement>) => ${jsx};
 
   const ${componentName} = (props: Omit<IconBaseProps, 'name'>) => {
-    <IconBase name={${componentName}.name} {...props}><SvgIcon /></IconBase>
+    return <IconBase name={${componentName}.name} {...props}><SvgIcon /></IconBase>
   }
 
 ${exports};

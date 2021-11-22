@@ -20,9 +20,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgSendGiftO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgSendGiftO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgSendGiftO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgSendGiftO;

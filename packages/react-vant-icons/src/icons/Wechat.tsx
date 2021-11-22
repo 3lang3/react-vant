@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgWechat = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgWechat.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgWechat.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgWechat;

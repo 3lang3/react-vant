@@ -1,5 +1,17 @@
 @import './var.less';
 
+@keyframes rv-spin {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
 @keyframes rv-slide-up-enter {
   from {
     transform: translate3d(0, 100%, 0);

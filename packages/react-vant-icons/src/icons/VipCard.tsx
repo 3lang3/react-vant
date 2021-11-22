@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgVipCard = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgVipCard.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgVipCard.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgVipCard;

@@ -20,9 +20,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgClusterO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgClusterO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgClusterO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgClusterO;

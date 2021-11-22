@@ -16,9 +16,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgVolumeO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgVolumeO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgVolumeO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgVolumeO;

@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgUnderway = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgUnderway.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgUnderway.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgUnderway;

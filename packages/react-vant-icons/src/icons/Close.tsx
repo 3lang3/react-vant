@@ -20,9 +20,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgClose = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgClose.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgClose.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgClose;

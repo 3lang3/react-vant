@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgYouzanShield = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgYouzanShield.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgYouzanShield.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgYouzanShield;

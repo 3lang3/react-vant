@@ -16,9 +16,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgContact = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgContact.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgContact.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgContact;

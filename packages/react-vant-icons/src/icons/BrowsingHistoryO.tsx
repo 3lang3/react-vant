@@ -20,9 +20,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgBrowsingHistoryO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgBrowsingHistoryO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgBrowsingHistoryO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgBrowsingHistoryO;

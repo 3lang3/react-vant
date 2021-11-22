@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgLock = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgLock.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgLock.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgLock;

@@ -18,9 +18,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgQrInvalid = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgQrInvalid.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgQrInvalid.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgQrInvalid;

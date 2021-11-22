@@ -20,9 +20,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgCashOnDeliver = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgCashOnDeliver.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgCashOnDeliver.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgCashOnDeliver;

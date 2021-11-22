@@ -20,9 +20,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgQr = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgQr.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgQr.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgQr;

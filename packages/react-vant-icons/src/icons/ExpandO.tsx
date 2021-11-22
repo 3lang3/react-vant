@@ -33,9 +33,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgExpandO = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgExpandO.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgExpandO.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgExpandO;

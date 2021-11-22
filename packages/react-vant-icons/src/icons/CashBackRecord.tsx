@@ -33,9 +33,11 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const SvgCashBackRecord = (props: Omit<IconBaseProps, 'name'>) => {
-  <IconBase name={SvgCashBackRecord.name} {...props}>
-    <SvgIcon />
-  </IconBase>;
+  return (
+    <IconBase name={SvgCashBackRecord.name} {...props}>
+      <SvgIcon />
+    </IconBase>
+  );
 };
 
 export default SvgCashBackRecord;
