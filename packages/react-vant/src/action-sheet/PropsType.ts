@@ -29,8 +29,8 @@ export interface ActionSheetProps extends BaseTypeProps, SharedPopupProps {
   cancelText?: React.ReactNode;
   /** 选项上方的描述信息	 */
   description?: React.ReactNode;
-  /** 关闭图标名称或图片链接 */
-  closeIcon?: string | React.ReactNode;
+  /** 自定义关闭图标 */
+  closeIcon?: React.ReactNode;
   /** 是否在点击选项后关闭	 */
   closeOnClickAction?: boolean;
   /** 点击选项时触发，禁用或加载状态下不会触发	 */

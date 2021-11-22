@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
+import { Cross } from '@react-vant/icons';
 import clsx from 'clsx';
 import { ActionSheetProps, ActionSheetAction } from './PropsType';
 import { pick } from '../utils';
-import Icon from '../icon';
 import Loading from '../loading';
 import Popup from '../popup';
 import { sharedPopupProps } from '../popup/Popup';
@@ -23,8 +23,8 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       <div className={clsx(bem('header'))}>
         {props.title}
         {props.closeable &&
-          (typeof props.closeIcon === 'string' ? (
-            <Icon name={props.closeIcon} className={clsx(bem('close'))} onClick={onCancel} />
+          (!props.closeIcon ? (
+            <Cross className={clsx(bem('close'))} onClick={onCancel} />
           ) : (
             <div className={clsx(bem('close'))} onClick={onCancel}>
               {props.closeIcon}
@@ -127,7 +127,6 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
 };
 
 ActionSheet.defaultProps = {
-  closeIcon: 'cross',
   closeable: true,
   safeAreaInsetBottom: true,
   round: true,
