@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import React, { useReducer } from 'react';
-import { Cell } from 'react-vant';
+import React, { useState, useReducer } from 'react';
+import { Button, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
-import Popup from '..'
+import Popup from '..';
 import './style.less';
 
 const initialState = {
@@ -45,6 +45,8 @@ function reducer(state, action) {
 
 export default (): React.ReactNode => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [outerPopupVisible, setOuterPopupVisible] = useState(false);
+  const [innerPopupVisible, setInnerPopupVisible] = useState(false);
   const { DemoBlock, DemoSection } = components;
 
   return (
@@ -59,215 +61,27 @@ export default (): React.ReactNode => {
             })
           }
         />
-      </DemoBlock>
-      <DemoBlock card title="弹出位置">
-        <Cell
-          title="顶部弹出"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showTop',
-            })
-          }
-        />
-        <Cell
-          title="底部弹出"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showBottom',
-            })
-          }
-        />
-        <Cell
-          title="左侧弹出"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showLeft',
-            })
-          }
-        />
-        <Cell
-          title="右侧弹出"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showRight',
-            })
-          }
-        />
-      </DemoBlock>
-      <DemoBlock card title="关闭图标">
-        <Cell
-          title="关闭图标"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showCloseIcon',
-            })
-          }
-        />
-        <Cell
-          title="自定义关闭图标"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showCustomCloseIcon',
-            })
-          }
-        />
-        <Cell
-          title="图标位置"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showCustomIconPosition',
-            })
-          }
-        />
-      </DemoBlock>
-      <DemoBlock card title="圆角弹窗">
-        <Cell
-          title="圆角弹窗"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showRoundCorner',
-            })
-          }
-        />
-      </DemoBlock>
-      <DemoBlock card title="标题弹框">
-        <Cell
-          title="标题弹框"
-          isLink
-          onClick={() =>
-            dispatch({
-              type: 'showTitle',
-            })
-          }
-        />
+        <Button onClick={() => setOuterPopupVisible(true)}>Show Outer Popup</Button>
       </DemoBlock>
       <Popup
-        visible={state.showBasic}
-        onClose={() => {
-          dispatch({
-            type: 'showBasic',
-          });
-          console.log('close');
-        }}
-        onClickOverlay={() => console.log('click overlay')}
-        onClick={() => console.log('click')}
-        onClosed={() => console.log('closed')}
-        onOpen={() => console.log('open')}
-        onOpened={() => console.log('opened')}
+        title="Outer popup"
+        visible={outerPopupVisible}
+        position="bottom"
+        style={{ height: '80%' }}
+        onClose={() => setOuterPopupVisible(false)}
       >
-        <div style={{ padding: '30px 50px' }}>内容</div>
+        <Button onClick={() => setInnerPopupVisible(true)}>Show Inner Popup</Button>
+
+        <Popup
+          title="Inner popup"
+          visible={innerPopupVisible}
+          position="bottom"
+          onClose={() => setInnerPopupVisible(false)}
+          style={{ height: '60%' }}
+        >
+          asasaaas
+        </Popup>
       </Popup>
-      <Popup
-        visible={state.showTop}
-        style={{ height: '30%' }}
-        position="top"
-        onClose={() =>
-          dispatch({
-            type: 'showTop',
-          })
-        }
-      />
-      <Popup
-        visible={state.showBottom}
-        style={{ height: '30%' }}
-        position="bottom"
-        onClose={() =>
-          dispatch({
-            type: 'showBottom',
-          })
-        }
-      />
-      <Popup
-        visible={state.showLeft}
-        style={{ width: '30%', height: '100%' }}
-        position="left"
-        onClose={() =>
-          dispatch({
-            type: 'showLeft',
-          })
-        }
-      />
-      <Popup
-        visible={state.showRight}
-        style={{ width: '30%', height: '100%' }}
-        position="right"
-        onClose={() =>
-          dispatch({
-            type: 'showRight',
-          })
-        }
-      />
-      <Popup
-        visible={state.showCloseIcon}
-        closeable
-        style={{ height: '30%' }}
-        position="bottom"
-        onClose={() =>
-          dispatch({
-            type: 'showCloseIcon',
-          })
-        }
-      />
-      <Popup
-        visible={state.showCustomCloseIcon}
-        closeable
-        style={{ height: '30%' }}
-        position="bottom"
-        closeIcon="close"
-        onClose={() =>
-          dispatch({
-            type: 'showCustomCloseIcon',
-          })
-        }
-      />
-      <Popup
-        visible={state.showCustomIconPosition}
-        closeable
-        style={{ height: '30%' }}
-        position="bottom"
-        closeIcon="close"
-        closeIconPosition="top-left"
-        onClose={() =>
-          dispatch({
-            type: 'showCustomIconPosition',
-          })
-        }
-      />
-      <Popup
-        visible={state.showRoundCorner}
-        closeable
-        style={{ height: '30%' }}
-        position="bottom"
-        closeIcon="close"
-        round
-        onClose={() =>
-          dispatch({
-            type: 'showRoundCorner',
-          })
-        }
-      />
-      <Popup
-        visible={state.showTitle}
-        closeable
-        title="标题"
-        descrition="这是一段很长很长的描述这是一段很长很长的描述这是一段很长很长的描述这是一段很长很长的描述"
-        style={{ height: '30%' }}
-        position="bottom"
-        round
-        onClose={() =>
-          dispatch({
-            type: 'showTitle',
-          })
-        }
-      />
     </DemoSection>
   );
 };
