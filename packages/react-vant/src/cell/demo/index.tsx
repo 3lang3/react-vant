@@ -1,3 +1,4 @@
+import { LocationO, ShopO } from '@react-vant/icons';
 import React from 'react';
 import { Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -18,7 +19,7 @@ export default (): React.ReactNode => {
         <Cell title="单元格" value="内容" label="描述信息" size="large" />
       </DemoBlock>
       <DemoBlock title="展示图标">
-        <Cell title="单元格" icon="location-o" />
+        <Cell title="单元格" icon={<LocationO />} />
       </DemoBlock>
       <DemoBlock title="只设置value">
         <Cell value="内容" />
@@ -43,7 +44,7 @@ export default (): React.ReactNode => {
         </Cell.Group>
       </DemoBlock>
       <DemoBlock title="自定义内容">
-        <Cell title="单元格" icon="shop-o">
+        <Cell title="单元格" icon={<ShopO />}>
           <div>自定义内容</div>
         </Cell>
       </DemoBlock>

@@ -1,6 +1,6 @@
-import React, { isValidElement, useContext } from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
-import Icon from '../icon';
+import { Arrow, ArrowDown, ArrowLeft, ArrowUp } from '@react-vant/icons';
 import { isDef } from '../utils';
 import { CellProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -45,16 +45,11 @@ const Cell: React.FC<CellProps> = (props) => {
   };
 
   const renderLeftIcon = () => {
-    if (typeof props.icon === 'string') {
-      return (
-        <Icon name={props.icon} className={clsx(bem('left-icon'))} classPrefix={props.iconPrefix} />
-      );
+    if (props.icon) {
+      return React.cloneElement(props.icon as React.ReactElement, {
+        className: clsx(bem('left-icon')),
+      });
     }
-
-    if (isValidElement(props.icon)) {
-      return props.icon;
-    }
-
     return null;
   };
 
@@ -64,8 +59,11 @@ const Cell: React.FC<CellProps> = (props) => {
     }
 
     if (props.isLink) {
-      const name = props.arrowDirection ? `arrow-${props.arrowDirection}` : 'arrow';
-      return <Icon name={name} className={clsx(bem('right-icon'))} />;
+      const className = clsx(bem('right-icon'));
+      if (props.arrowDirection === 'left') return <ArrowLeft className={className} />;
+      if (props.arrowDirection === 'up') return <ArrowUp className={className} />;
+      if (props.arrowDirection === 'down') return <ArrowDown className={className} />;
+      return <Arrow className={className} />;
     }
     return null;
   };

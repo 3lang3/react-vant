@@ -258,7 +258,7 @@ export default () => {
 | placeholder | 未选中时的提示文案 | _string_ | `请选择` |
 | activeColor | 选中状态的高亮颜色 | _string_ | `#ee0a24` |
 | closeable | 是否显示关闭图标 | _boolean_ | `true` |
-| closeIcon | 关闭图标 | _string\|ReactNode_ | `cross` |
+| closeIcon | 关闭图标 | _ReactNode_ | `<Cross />` |
 | fieldNames | 自定义 `options` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', children: 'children' }` |
 
 ### Option 数据结构
@@ -283,28 +283,25 @@ export default () => {
 | onClose    | 点击关闭图标时触发     | -                                      |
 | onClickTab | 点击标签时触发         | _tabIndex: number, title: string_      |
 
-
-
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                   | 默认值                    | 描述 |
-| -------------------------------------- | ------------------------- | ---- |
-| --rv-cascader-header-height           | _48px_                    | -    |
+| 名称                                  | 默认值                   | 描述 |
+| ------------------------------------- | ------------------------ | ---- |
+| --rv-cascader-header-height           | _48px_                   | -    |
 | --rv-cascader-header-padding          | _0 var(--rv-padding-md)_ | -    |
 | --rv-cascader-title-font-size         | _var(--rv-font-size-lg)_ | -    |
-| --rv-cascader-title-line-height       | _20px_                    | -    |
-| --rv-cascader-close-icon-size         | _22px_                    | -    |
+| --rv-cascader-title-line-height       | _20px_                   | -    |
+| --rv-cascader-close-icon-size         | _22px_                   | -    |
 | --rv-cascader-close-icon-color        | _var(--rv-gray-5)_       | -    |
 | --rv-cascader-close-icon-active-color | _var(--rv-gray-6)_       | -    |
-| --rv-cascader-selected-icon-size      | _18px_                    | -    |
-| --rv-cascader-tabs-height             | _48px_                    | -    |
+| --rv-cascader-selected-icon-size      | _18px_                   | -    |
+| --rv-cascader-tabs-height             | _48px_                   | -    |
 | --rv-cascader-active-color            | _var(--rv-danger-color)_ | -    |
-| --rv-cascader-options-height          | _384px_                   | -    |
+| --rv-cascader-options-height          | _384px_                  | -    |
 | --rv-cascader-option-disabled-color   | _van(--rv-gray-5)_       | -    |
 | --rv-cascader-tab-color               | _var(--rv-text-color)_   | -    |
 | --rv-cascader-unselected-tab-color    | _var(--rv-gray-6)_       | -    |

@@ -21,8 +21,6 @@ export interface CellProps extends BaseTypeProps {
   required?: boolean;
   /** 是否开启点击反馈	 */
   clickable?: boolean;
-  /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
-  iconPrefix?: string;
   /** 左侧标题额外样式	 */
   titleStyle?: CSSProperties;
   /** 左侧标题额外类名	 */
@@ -35,8 +33,8 @@ export interface CellProps extends BaseTypeProps {
   arrowDirection?: CellArrowDirection;
   /** 是否显示内边框	 */
   border?: boolean;
-  /** 左侧图标名称或图片链接 */
-  icon?: string | React.ReactNode;
+  /** 自定义左侧图标 */
+  icon?: React.ReactNode;
   /** 右侧自定义图标 */
   rightIcon?: React.ReactNode;
   /** 自定义单元格最右侧的额外内容 */
