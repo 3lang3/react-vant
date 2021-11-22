@@ -87,7 +87,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     }
 
     if (props.icon) {
-      return <div className={clsx(bem('icon'))}>{props.icon}</div>;
+      return React.cloneElement(props.icon as React.ReactElement, {
+        className: clsx(bem('icon')),
+      });
     }
 
     return null;

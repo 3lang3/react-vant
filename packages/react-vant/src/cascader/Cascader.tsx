@@ -1,10 +1,10 @@
 /* eslint-disable no-plusplus */
-import React, { isValidElement, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import cls from 'clsx';
+import { Cross, Success } from '@react-vant/icons';
 import { CascaderOption, CascaderProps, CascaderTab } from './PropsType';
 import { extend } from '../utils';
 import { useSetState, useUpdateEffect } from '../hooks';
-import Icon from '../icon';
 import Tabs from '../tabs';
 import { TabsClickTabEventParams } from '../tabs/PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -175,13 +175,13 @@ const Cascader: React.FC<CascaderProps> = (props) => {
 
   const renderCloseIcon = () => {
     if (!props.closeable) return null;
-    if (typeof props.closeIcon === 'string') {
-      return <Icon name={props.closeIcon} className={cls(bem('close-icon'))} onClick={onClose} />;
+    if (props.closeIcon) {
+      return React.cloneElement(props.closeIcon as React.ReactElement, {
+        className: cls(bem('close-icon')),
+        onClick: onClose,
+      });
     }
-    if (isValidElement(props.closeIcon)) {
-      return props.closeIcon;
-    }
-    return null;
+    return <Cross className={cls(bem('close-icon'))} onClick={onClose} />;
   };
 
   const renderHeader = () => (
@@ -217,7 +217,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         onClick={() => onSelect(option, tabIndex)}
       >
         {Text}
-        {selected ? <Icon name="success" className={cls(bem('selected-icon'))} /> : null}
+        {selected ? <Success className={cls(bem('selected-icon'))} /> : null}
       </li>
     );
   };
@@ -302,7 +302,6 @@ Cascader.defaultProps = {
   closeable: true,
   swipeable: true,
   options: [],
-  closeIcon: 'cross',
 };
 
 export default Cascader;
