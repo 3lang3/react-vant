@@ -310,6 +310,7 @@ const fieldRef = useRef < FieldInstance > null;
 | --rv-field-label-color               | _var(--rv-gray-7)_       | -    |
 | --rv-field-label-margin-right        | _var(--rv-padding-sm)_   | -    |
 | --rv-field-input-text-color          | _var(--rv-text-color)_   | -    |
+| --rv-field-input-background-color    | transparent_   | -    |
 | --rv-field-input-error-text-color    | _var(--rv-danger-color)_ | -    |
 | --rv-field-input-disabled-text-color | _var(--rv-gray-5)_       | -    |
 | --rv-field-placeholder-text-color    | _var(--rv-gray-5)_       | -    |
