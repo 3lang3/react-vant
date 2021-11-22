@@ -2236,6 +2236,11 @@
     "@react-spring/shared" "~9.3.0"
     "@react-spring/types" "~9.3.0"
 
+"@react-vant/icons@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@react-vant/icons/-/icons-0.0.0.tgz#58ede5a97964fe94adab1ceccc860d3e90f8fbde"
+  integrity sha512-W99iUgFF0bbYD+bZounFdBIvoRp/8SR04qrrt49aaTfW2ONbPvFdpehfG+gvfTQcJxPLF5jA0QBonSqU1F3/rw==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"

@@ -79,7 +79,6 @@ export { default as Down } from './Down';
 export { default as EcardPay } from './EcardPay';
 export { default as Edit } from './Edit';
 export { default as Ellipsis } from './Ellipsis';
-export { default as Empty } from './Empty';
 export { default as Enlarge } from './Enlarge';
 export { default as EnvelopO } from './EnvelopO';
 export { default as Exchange } from './Exchange';

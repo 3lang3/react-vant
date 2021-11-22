@@ -16,6 +16,7 @@ function buildES() {
         target: 'esnext',
         jsx: 'react',
         declaration: true,
+        allowSyntheticDefaultImports: true,
       }),
     )
     .pipe(gulp.dest('es/'));
