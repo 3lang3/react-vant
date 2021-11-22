@@ -8,6 +8,7 @@ import React, {
   useMemo,
   useContext,
 } from 'react';
+import { Clear } from '@react-vant/icons';
 import clsx from 'clsx';
 import Icon from '../icon';
 import Cell from '../cell';
@@ -255,25 +256,17 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     if (!leftIcon) return null;
     return (
       <div className={clsx(bem('left-icon'))} onClick={onClickLeftIcon}>
-        {typeof leftIcon !== 'string' ? (
-          leftIcon
-        ) : (
-          <Icon name={leftIcon} classPrefix={props.iconPrefix} />
-        )}
+        {leftIcon}
       </div>
     );
   };
 
   const renderRightIcon = () => {
-    const { rightIcon, iconPrefix, onClickRightIcon } = props;
+    const { rightIcon, onClickRightIcon } = props;
     if (!rightIcon) return null;
     return (
       <div className={clsx(bem('right-icon'))} onClick={onClickRightIcon}>
-        {typeof rightIcon === 'string' ? (
-          <Icon name={rightIcon} classPrefix={iconPrefix} />
-        ) : (
-          rightIcon
-        )}
+        {rightIcon}
       </div>
     );
   };
@@ -406,16 +399,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           {renderInput()}
         </div>
         {showClear &&
-          (typeof props.clearIcon === 'string' ? (
-            <Icon
-              className={clsx(bem('clear'))}
-              onTouchStart={handleClear}
-              name={props.clearIcon}
-              size={ICON_SIZE}
-            />
-          ) : (
-            props.clearIcon
-          ))}
+          React.cloneElement(props.clearIcon as React.ReactElement, {
+            className: clsx(bem('clear')),
+            onTouchStart: handleClear,
+            size: ICON_SIZE,
+          })}
         {renderRightIcon()}
         {button && <div className={clsx(bem('button'))}>{button}</div>}
       </div>
@@ -427,7 +415,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 });
 
 Field.defaultProps = {
-  clearIcon: 'clear',
+  clearIcon: <Clear />,
   clearTrigger: 'focus',
   formatTrigger: 'onChange',
 };

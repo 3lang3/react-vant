@@ -48,15 +48,15 @@ export interface FieldCommonProps {
   /** 是否启用清除图标，点击清除图标后会清空输入框	 */
   clearable?: boolean;
   /** 清除图标名称或图片链接	 */
-  clearIcon?: string | React.ReactNode;
+  clearIcon?: React.ReactNode;
   /** 是否将输入内容标红	 */
   error?: boolean;
   /** 底部错误提示文案，为空时不展示 */
   errorMessage?: React.ReactNode;
   /** 左侧图标名称或图片链接	 */
-  leftIcon?: string | React.ReactNode;
+  leftIcon?: React.ReactNode;
   /** 右侧图标名称或图片链接	 */
-  rightIcon?: string | React.ReactNode;
+  rightIcon?: React.ReactNode;
   /** 输入内容格式化函数 */
   formatter?: (val: string | number) => string;
   /**

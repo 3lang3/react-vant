@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { ShopO, WarningO } from '@react-vant/icons';
 import React, { useState, useEffect, useRef } from 'react';
 import { Cell, Button, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -83,8 +84,8 @@ export default (): React.ReactNode => {
           <Field
             value={value3}
             label="文本"
-            leftIcon="shop-o"
-            rightIcon="warning-o"
+            leftIcon={<ShopO />}
+            rightIcon={<WarningO />}
             placeholder="显示图标"
             onClickLeftIcon={() => Toast.info('左侧图标点击')}
             onClickRightIcon={() => Toast.info('右侧图标点击')}
@@ -94,7 +95,7 @@ export default (): React.ReactNode => {
             value={value4}
             clearable
             label="文本"
-            leftIcon="shop-o"
+            leftIcon={<ShopO />}
             placeholder="显示清除图标"
             onBlur={() => {
               console.log('onBlur');

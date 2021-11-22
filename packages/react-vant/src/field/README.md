@@ -72,8 +72,8 @@ const [password, setPasswrod] = useState('');
   <Field
     value={value3}
     label="文本"
-    leftIcon="smile-o"
-    rightIcon="warning-o"
+    leftIcon={<SmileO />}
+    rightIcon={<WarningO />}
     placeholder="显示图标"
     onChange={setValue3}
   />
@@ -81,7 +81,7 @@ const [password, setPasswrod] = useState('');
     value={value4}
     clearable
     label="文本"
-    leftIcon="music-o"
+    leftIcon={<MusicO />}
     placeholder="显示清除图标"
     onChange={setValue4}
   />
@@ -233,7 +233,7 @@ const formatter = (value) => value.replace(/\d/g, '');
 | required | 是否显示表单必填星号 | _boolean_ | `false` |
 | center | 是否使内容垂直居中 | _boolean_ | `false` |
 | clearable | 是否启用清除图标，点击清除图标后会清空输入框 | _boolean_ | `false` |
-| clearIcon | 清除图标名称或图片链接 | _string_ | `clear` |
+| clearIcon | 清除图标名称或图片链接 | _ReactNode_ | `<Clear />` |
 | clickable | 是否开启点击反馈 | _boolean_ | `false` |
 | isLink | 是否展示右侧箭头并开启点击反馈 | _boolean_ | `false` |
 | autofocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
@@ -249,9 +249,8 @@ const formatter = (value) => value.replace(/\d/g, '');
 | inputAlign | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | errorMessageAlign | 错误提示文案对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | autosize | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 { maxHeight: 100, minHeight: 50 }，<br>单位为`px` | _boolean \| object_ | `false` |
-| leftIcon | 左侧图标 | _string\|ReactNode_ | - |
-| rightIcon | 右侧图标 | _string\|ReactNode_ | - |
-| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
+| leftIcon | 左侧图标 | _ReactNode_ | - |
+| rightIcon | 右侧图标 | _ReactNode_ | - |
 | button | 自定义输入框尾部按钮 | _ReactNode_ | - |
 
 ### Events
