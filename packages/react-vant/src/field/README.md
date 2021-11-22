@@ -252,12 +252,7 @@ const formatter = (value) => value.replace(/\d/g, '');
 | leftIcon | 左侧图标 | _string\|ReactNode_ | - |
 | rightIcon | 右侧图标 | _string\|ReactNode_ | - |
 | iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
-
-#### TODO
-
-| 参数  | 说明                                                             | 类型     | 默认值 |
-| ----- | ---------------------------------------------------------------- | -------- | ------ |
-| rules | 表单校验规则，详见 [Form 组件](#/zh-CN/form#rule-shu-ju-jie-gou) | _Rule[]_ | -      |
+| button | 自定义输入框尾部按钮 | _ReactNode_ | - |
 
 ### Events
 

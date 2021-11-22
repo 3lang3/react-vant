@@ -139,8 +139,8 @@ import { Radio } from 'react-vant';
 ```jsx
 <Radio.Group value="1">
   <Cell.Group>
-    <Cell title="单选框1" icon="shop-o" rightIcon={() => <Radio name="1" />} />{' '}
-    <Cell title="单选框2" icon="shop-o" rightIcon={() => <Radio name="2" />} />
+    <Cell title="单选框1" icon="shop-o" rightIcon={<Radio name="1" />} />{' '}
+    <Cell title="单选框2" icon="shop-o" rightIcon={<Radio name="2" />} />
   </Cell.Group>
 </Radio.Group>
 ```
