@@ -23,13 +23,10 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       <div className={clsx(bem('header'))}>
         {props.title}
         {props.closeable &&
-          (!props.closeIcon ? (
-            <Cross className={clsx(bem('close'))} onClick={onCancel} />
-          ) : (
-            <div className={clsx(bem('close'))} onClick={onCancel}>
-              {props.closeIcon}
-            </div>
-          ))}
+          React.cloneElement(props.closeIcon as React.ReactElement, {
+            className: clsx(bem('clear')),
+            onClick: onCancel,
+          })}
       </div>
     );
   };
@@ -133,6 +130,7 @@ ActionSheet.defaultProps = {
   lockScroll: true,
   overlay: true,
   closeOnClickOverlay: true,
+  closeIcon: <Cross />,
 };
 
 export default ActionSheet;
