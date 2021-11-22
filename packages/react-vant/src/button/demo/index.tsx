@@ -1,6 +1,7 @@
+import { ArrowLeft, Plus, Replay, Arrow } from '@react-vant/icons';
 import React from 'react';
 import { components } from 'site-mobile-demo';
-import Button from '..'
+import Button from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -54,11 +55,8 @@ export default (): React.ReactNode => {
         </Button>
       </DemoBlock>
       <DemoBlock title="图标按钮">
-        <Button icon="plus" type="primary" />
-        <Button icon="plus" iconPosition="left" type="primary">
-          按钮
-        </Button>
-        <Button icon="https://img.yzcdn.cn/vant/user-active.png" plain type="primary">
+        <Button icon={<Plus />} type="primary" />
+        <Button icon={<Plus />} iconPosition="left" type="primary">
           按钮
         </Button>
       </DemoBlock>
@@ -95,9 +93,13 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="按钮组">
         <Button.Group>
-          <Button icon="arrow-left" block>上一步</Button>
-          <Button icon="replay" block>刷新</Button>
-          <Button icon="arrow" block>
+          <Button icon={<ArrowLeft />} block>
+            上一步
+          </Button>
+          <Button icon={<Replay />} block>
+            刷新
+          </Button>
+          <Button icon={<Arrow />} block>
             下一步
           </Button>
         </Button.Group>

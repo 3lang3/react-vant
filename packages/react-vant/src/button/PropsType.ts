@@ -20,8 +20,8 @@ export interface ButtonProps extends BaseTypeProps {
    * 业务内建议使用children代替
    * */
   text?: string;
-  /** 左侧图标名称或图片链接 */
-  icon?: string | React.ReactNode;
+  /** 左侧图标 */
+  icon?: React.ReactNode;
   /** 按钮颜色，支持传入 linear-gradient 渐变色 */
   color?: string;
   /** 是否为块级元素(全宽)	 */
@@ -42,8 +42,6 @@ export interface ButtonProps extends BaseTypeProps {
   disabled?: boolean;
   /** 原生 button 标签的 type 属性	 */
   nativeType?: string;
-  /** 图标类名前缀，同 Icon 组件的 classPrefix 属性	 */
-  iconPrefix?: string;
   /** 图标展示位置，可选值为 `right` */
   iconPosition?: ButtonIconPosition;
   /** 加载图标大小	 */

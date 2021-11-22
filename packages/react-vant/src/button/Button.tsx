@@ -1,6 +1,5 @@
-import React, { isValidElement, useContext } from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
-import Icon from '../icon';
 import Loading from '../loading';
 import { ButtonProps } from './PropsType';
 import { BORDER_SURROUND, WHITE } from '../utils/constant';
@@ -16,7 +15,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     loading,
     hairline,
     className,
-    iconPrefix,
     loadingText,
     iconPosition,
   } = props;
@@ -88,12 +86,8 @@ const Button: React.FC<ButtonProps> = (props) => {
       return renderLoadingIcon();
     }
 
-    if (typeof props.icon === 'string') {
-      return <Icon name={props.icon} className={clsx(bem('icon'))} classPrefix={iconPrefix} />;
-    }
-
-    if (isValidElement(props.icon)) {
-      return props.icon;
+    if (props.icon) {
+      return <div className={clsx(bem('icon'))}>{props.icon}</div>;
     }
 
     return null;

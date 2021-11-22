@@ -116,7 +116,8 @@
       color: var(--rv-button-primary-background-color);
     }
 
-    &.@{rv-prefix}-button--success, &.@{rv-prefix}-button--info {
+    &.@{rv-prefix}-button--success,
+    &.@{rv-prefix}-button--info {
       color: var(--rv-button-success-background-color);
     }
 
@@ -231,6 +232,10 @@
   &__icon {
     font-size: var(--rv-button-icon-size);
     line-height: inherit;
+
+    .@{rv-prefix}-icon {
+      display: block;
+    }
   }
 
   &__icon + &__text,

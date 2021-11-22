@@ -45,7 +45,7 @@ describe('Button', () => {
   });
 
   it('should change icon class prefix when using icon-prefix prop', () => {
-    const wrapper = mount(<Button icon="success" iconPrefix="my-icon" />);
+    const wrapper = mount(<Button icon="success" />);
     expect(wrapper.html()).toMatchSnapshot();
   });
 });
