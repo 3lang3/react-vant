@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { inBrowser } from '../utils';
 import { cancelRaf, raf } from '../utils/raf';
 
@@ -62,7 +62,10 @@ export default function useCountDown(options: UseCountDownOptions) {
   const counting = useRef(false);
 
   const [remain, updateRemain] = useState(() => options.time);
+  const remainRef = useRef(0);
   const current = useMemo(() => parseTime(remain), [remain]);
+
+  remainRef.current = remain;
 
   const pause = () => {
     counting.current = false;
@@ -72,6 +75,7 @@ export default function useCountDown(options: UseCountDownOptions) {
   const getCurrentRemain = () => Math.max(endTime.current - Date.now(), 0);
 
   const setRemain = (value: number) => {
+    remainRef.current = value;
     updateRemain(value);
     options.onChange?.(current);
 
@@ -87,7 +91,7 @@ export default function useCountDown(options: UseCountDownOptions) {
       if (counting.current) {
         setRemain(getCurrentRemain());
 
-        if (remain > 0) {
+        if (remainRef.current > 0) {
           microTick();
         }
       }
@@ -99,10 +103,10 @@ export default function useCountDown(options: UseCountDownOptions) {
       // in case of call reset immediately after finish
       if (counting.current) {
         const remainRemain = getCurrentRemain();
-        if (!isSameSecond(remainRemain, remain) || remainRemain === 0) {
+        if (!isSameSecond(remainRemain, remainRef.current) || remainRemain === 0) {
           setRemain(remainRemain);
         }
-        if (remain > 0) {
+        if (remainRef.current > 0) {
           macroTick();
         }
       }
@@ -125,7 +129,7 @@ export default function useCountDown(options: UseCountDownOptions) {
 
   const start = () => {
     if (!counting.current) {
-      endTime.current = Date.now() + remain;
+      endTime.current = Date.now() + remainRef.current;
       counting.current = true;
       tick();
     }
@@ -133,6 +137,7 @@ export default function useCountDown(options: UseCountDownOptions) {
 
   const reset = (totalTime: number = options.time) => {
     pause();
+    remainRef.current = totalTime;
     updateRemain(totalTime);
   };
 
