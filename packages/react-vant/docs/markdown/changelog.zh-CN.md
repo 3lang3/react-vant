@@ -12,7 +12,20 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
-## 1.4.1
+### 1.4.2
+
+`2021-11-23`
+
+**Features**
+
+- Field: 新增 css 变量 `field-input-background-color` ([9fe0e87](https://github.com/3lang3/react-vant/commit/9fe0e8719485100060f2c3e80d1dca52dcf6e07a))
+
+**Bug Fixes**
+
+- Overlay: 错误执行`unlockScroll`的问题 ([554a2ad](https://github.com/3lang3/react-vant/commit/554a2ad6ec5d68a68f5f792fde73a581298a3450)) [#252](https://github.com/3lang3/react-vant/issues/252)
+- useDountDown: `current`引用非最新值导致`reset`行为错误的问题 ([efeb6f8](https://github.com/3lang3/react-vant/commit/efeb6f899ec45990a871a0f3a0686969c39a6716))
+
+### 1.4.1
 
 `2021-11-18`
 
