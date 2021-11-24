@@ -1,7 +1,7 @@
 import React from 'react';
-import { Icon } from 'react-vant';
+import { QuestionO } from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
-import Collapse from '..'
+import Collapse from '..';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -26,7 +26,7 @@ export default (): React.ReactNode => {
           <Collapse.Item
             title={
               <div>
-                标题1 <Icon name="question-o" />
+                标题1 <QuestionO />
               </div>
             }
             name="1"

@@ -1,10 +1,10 @@
 import React, { useRef, useContext, useMemo } from 'react';
+import { Star, StarO } from '@react-vant/icons';
 import clsx from 'clsx';
 import { RateProps } from './PropsType';
 import { addUnit, preventDefault } from '../utils';
 import useTouch from '../hooks/use-touch';
 import useRefs from '../hooks/use-refs';
-import Icon from '../icon';
 import useMergedState from '../hooks/use-merged-state';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import useEventListener from '../hooks/use-event-listener';
@@ -121,18 +121,8 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
   };
 
   const renderStar = (item: RateListItem, index: number) => {
-    const {
-      icon,
-      size,
-      color,
-      gutter,
-      voidIcon,
-      disabled,
-      voidColor,
-      allowHalf,
-      iconPrefix,
-      disabledColor,
-    } = props;
+    const { icon, size, color, gutter, voidIcon, disabled, voidColor, allowHalf, disabledColor } =
+      props;
     const score = index + 1;
     const isFull = item.status === 'full';
     const isVoid = item.status === 'void';
@@ -164,25 +154,20 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
         aria-checked={!isVoid}
         onClick={onClickItem}
       >
-        <Icon
-          size={size}
-          name={isFull ? icon : voidIcon}
-          className={clsx(bem('icon', { disabled, full: isFull }))}
+        {React.cloneElement((isFull ? icon : voidIcon) as React.ReactElement, {
+          className: clsx(bem('icon', { disabled, full: isFull })),
           // eslint-disable-next-line no-nested-ternary
-          color={disabled ? disabledColor : isFull ? color : voidColor}
-          classPrefix={iconPrefix}
-        />
-        {renderHalf && (
-          <Icon
-            size={size}
-            style={{ width: `${item.value}em` }}
-            name={isVoid ? voidIcon : icon}
-            className={clsx(bem('icon', ['half', { disabled, full: !isVoid }]))}
+          color: disabled ? disabledColor : isFull ? color : voidColor,
+          fontSize: size,
+        })}
+        {renderHalf &&
+          React.cloneElement((isVoid ? voidIcon : icon) as React.ReactElement, {
+            className: clsx(bem('icon', ['half', { disabled, full: !isVoid }])),
             // eslint-disable-next-line no-nested-ternary
-            color={disabled ? disabledColor : isVoid ? voidColor : color}
-            classPrefix={iconPrefix}
-          />
-        )}
+            color: disabled ? disabledColor : isVoid ? voidColor : color,
+            fontSize: size,
+            style: { width: `${item.value}em` },
+          })}
       </div>
     );
   };
@@ -214,8 +199,8 @@ Rate.defaultProps = {
   size: 20,
   count: 5,
   gutter: 4,
-  icon: 'star',
-  voidIcon: 'star-o',
+  icon: <Star />,
+  voidIcon: <StarO />,
   touchable: true,
 };
 

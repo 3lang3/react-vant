@@ -10,7 +10,6 @@ import BaseToast from './Toast';
 import './style/index.less';
 
 const defaultOptions: ToastProps = {
-  icon: '',
   message: '',
   className: '',
   type: 'info',

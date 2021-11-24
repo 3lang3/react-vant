@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
+import { Bell, Close } from '@react-vant/icons';
 import React, { useState } from 'react';
-import { Cell, Icon, Flex } from 'react-vant';
+import { Cell, Flex } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Notify from '..';
 import './style.less';
@@ -56,10 +57,10 @@ export default (): React.ReactNode => {
           <Flex style={{ width: '100%' }} align="center" justify="between">
             <div />
             <div>
-              <Icon name="bell" style={{ marginRight: 4 }} />
+              <Bell style={{ marginRight: 4 }} />
               <span>通知内容</span>
             </div>
-            <Icon name="close" onClick={() => setVisible(false)} />
+            <Close onClick={() => setVisible(false)} />
           </Flex>
         </Notify>
       </DemoBlock>

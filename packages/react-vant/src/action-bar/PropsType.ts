@@ -12,13 +12,7 @@ export interface ActionBarIconProps extends BaseTypeProps {
   /** 按钮文字	 */
   text?: React.ReactNode;
   /** 图标 */
-  icon?: string | React.ReactNode;
-  /** 图标颜色 */
-  color?: string;
-  /** 图标额外类名	 */
-  iconClass?: string;
-  /** 图标类名前缀，等同于 Icon 组件的 class-prefix 属性	 */
-  iconPrefix?: string;
+  icon?: React.ReactNode;
   /** 图标右上角徽标的内容	 */
   badge?: BadgeSettingProps;
   onClick?: (event: React.MouseEvent) => void;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface RateProps extends BaseTypeProps {
@@ -29,7 +30,6 @@ export interface RateProps extends BaseTypeProps {
    * @default true
    */
   touchable?: boolean;
-  iconPrefix?: string;
   /** 禁用时的颜色	 */
   disabledColor?: string;
   /** 当前分值 */
@@ -42,12 +42,12 @@ export interface RateProps extends BaseTypeProps {
    * 选中时的图标名称或图片链接
    * @default 'star'
    */
-  icon?: string;
+  icon?: React.ReactNode;
   /**
    * 未选中时的图标名称或图片链接
    * @default 'star-o'
    */
-  voidIcon?: string;
+  voidIcon?: React.ReactNode;
   /**
    * 图标总数
    * @default 5

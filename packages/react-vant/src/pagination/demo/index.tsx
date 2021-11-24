@@ -1,5 +1,5 @@
+import { Arrow, ArrowLeft } from '@react-vant/icons';
 import React, { useState } from 'react';
-import { Icon } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Pagination from '..';
 import './style.less';
@@ -33,8 +33,8 @@ export default (): React.ReactNode => {
           onChange={setPage4}
           totalItems={125}
           showPageSize={5}
-          prevText={<Icon name="arrow-left" />}
-          nextText={<Icon name="arrow" />}
+          prevText={<ArrowLeft />}
+          nextText={<Arrow />}
           pageRender={({ text }) => `${text} 😀`}
         />
       </DemoBlock>

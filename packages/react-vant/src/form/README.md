@@ -542,7 +542,7 @@ export default () => {
                   >
                     <Field
                       placeholder="请输入用户年龄"
-                      rightIcon={<Icon name="delete" onClick={() => remove(idx)} />}
+                      rightIcon={<Delete onClick={() => remove(idx)} />}
                     />
                   </Form.Item>
                 </div>

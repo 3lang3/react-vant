@@ -140,7 +140,9 @@ export default (): React.ReactNode => {
           <Flex wrap="wrap">
             {getTypeIcons('basic').map((item) => (
               <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
-                <item.component />
+                <div className="icon-box">
+                  <item.component />
+                </div>
                 <div className="icon-name">{item.name}</div>
               </Flex.Item>
             ))}
@@ -150,7 +152,9 @@ export default (): React.ReactNode => {
           <Flex wrap="wrap">
             {getTypeIcons('outline').map((item) => (
               <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
-                <item.component />
+                <div className="icon-box">
+                  <item.component />
+                </div>
                 <div className="icon-name">{item.name}</div>
               </Flex.Item>
             ))}
@@ -160,7 +164,9 @@ export default (): React.ReactNode => {
           <Flex wrap="wrap">
             {getTypeIcons('filled').map((item) => (
               <Flex.Item onClick={() => copy(item.name)} key={item.name} span={6}>
-                <item.component />
+                <div className="icon-box">
+                  <item.component />
+                </div>
                 <div className="icon-name">{item.name}</div>
               </Flex.Item>
             ))}

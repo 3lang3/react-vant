@@ -15,8 +15,8 @@ import {
   Uploader,
   DatetimePicker,
   Calendar,
-  Icon,
 } from 'react-vant';
+import { Delete } from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
 
 import Form, { FormItemProps } from '..';
@@ -235,7 +235,7 @@ export default (): React.ReactNode => {
                       >
                         <Field
                           placeholder="请输入用户年龄"
-                          rightIcon={<Icon name="delete" onClick={() => remove(idx)} />}
+                          rightIcon={<Delete onClick={() => remove(idx)} />}
                         />
                       </Form.Item>
                     </div>

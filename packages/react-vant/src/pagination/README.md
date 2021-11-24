@@ -52,8 +52,8 @@ export default () => {
   onChange={setPage4}
   totalItems={125}
   showPageSize={5}
-  prevText={<Icon name="arrow-left" />}
-  nextText={<Icon name="arrow" />}
+  prevText={<ArrowLeft />}
+  nextText={<Arrow />}
   pageRender={({ text }) => `😀${text}`}
 />
 ```
@@ -95,11 +95,11 @@ import type { PaginationMode } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                            | 默认值                        | 描述 |
-| ----------------------------------------------- | ----------------------------- | ---- |
-| --rv-pagination-height                         | _40px_                        | -    |
+| 名称                                           | 默认值                       | 描述 |
+| ---------------------------------------------- | ---------------------------- | ---- |
+| --rv-pagination-height                         | _40px_                       | -    |
 | --rv-pagination-font-size                      | _var(--rv-font-size-md)_     | -    |
-| --rv-pagination-item-width                     | _36px_                        | -    |
+| --rv-pagination-item-width                     | _36px_                       | -    |
 | --rv-pagination-item-default-color             | _var(--rv-primary-color)_    | -    |
 | --rv-pagination-item-disabled-color            | _var(--rv-gray-7)_           | -    |
 | --rv-pagination-item-disabled-background-color | _var(--rv-background-color)_ | -    |

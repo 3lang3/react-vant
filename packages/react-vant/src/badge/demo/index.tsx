@@ -1,6 +1,7 @@
 import React from 'react';
-import { Badge, Icon } from 'react-vant';
+import { Badge } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import { Success, Cross, Down } from '@react-vant/icons';
 import './style.less';
 
 export default (): React.ReactNode => {
@@ -44,13 +45,13 @@ export default (): React.ReactNode => {
         </Badge>
       </DemoBlock>
       <DemoBlock title="自定义徽标内容">
-        <Badge content={<Icon name="success" className="badge-icon" />}>
+        <Badge content={<Success className="badge-icon" />}>
           <div className="child" />
         </Badge>
-        <Badge content={<Icon name="cross" className="badge-icon" />}>
+        <Badge content={<Cross className="badge-icon" />}>
           <div className="child" />
         </Badge>
-        <Badge content={<Icon name="down" className="badge-icon" />}>
+        <Badge content={<Down className="badge-icon" />}>
           <div className="child" />
         </Badge>
       </DemoBlock>

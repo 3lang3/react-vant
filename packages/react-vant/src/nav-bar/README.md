@@ -32,7 +32,7 @@ import { NavBar } from 'react-vant';
 <NavBar
   title="标题"
   leftArrow
-  rightText={<Icon name="search" size={24} />}
+  rightText={<Search fontSize={24} />}
   onClickLeft={() => Toast.info('返回')}
   onClickRight={() => Toast.info('按钮')}
 />

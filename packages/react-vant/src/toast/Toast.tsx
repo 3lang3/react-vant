@@ -1,8 +1,8 @@
 /* eslint-disable react/default-props-match-prop-types */
 import React, { useContext, useEffect } from 'react';
 import clsx from 'clsx';
+import { Cross, Success } from '@react-vant/icons';
 
-import Icon from '../icon';
 import Popup from '../popup';
 import Loading from '../loading';
 
@@ -40,19 +40,14 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
   }, [props.visible, props.forbidClick]);
 
   const renderIcon = () => {
-    const { icon, type, iconPrefix, iconSize, loadingType } = props;
+    const { icon, type, iconSize, loadingType } = props;
     const hasIcon = icon || type === 'success' || type === 'fail';
     if (hasIcon) {
-      return typeof icon === 'string' ? (
-        <Icon
-          name={icon || (type === 'fail' ? 'cross' : type)}
-          size={iconSize}
-          className={clsx(bem('icon'))}
-          classPrefix={iconPrefix}
-        />
-      ) : (
-        icon
-      );
+      const buildInIcon = type === 'fail' ? <Cross /> : <Success />;
+      return React.cloneElement((icon || buildInIcon) as React.ReactElement, {
+        className: clsx(bem('icon')),
+        fontSize: iconSize,
+      });
     }
 
     if (type === 'loading') {

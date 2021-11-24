@@ -1,7 +1,6 @@
-import React, { isValidElement, useContext } from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import { ActionBarIconProps } from './PropsType';
-import { Icon } from '../icon';
 import Badge from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -10,20 +9,8 @@ const ActionBarIcon: React.FC<ActionBarIconProps> = (props) => {
   const [bem] = createNamespace('action-bar-icon', prefixCls);
 
   const renderIcon = () => {
-    const { badge, icon, color, iconClass, iconPrefix } = props;
-    if (typeof icon === 'string') {
-      return (
-        <Icon
-          tag="div"
-          name={icon}
-          badge={badge}
-          color={color}
-          className={clsx(bem('icon'), iconClass)}
-          classPrefix={iconPrefix}
-        />
-      );
-    }
-    if (isValidElement(icon)) {
+    const { badge, icon } = props;
+    if (icon) {
       return (
         <Badge {...badge} className={clsx(bem('icon'))}>
           {icon}

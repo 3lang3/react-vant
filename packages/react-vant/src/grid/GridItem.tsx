@@ -4,7 +4,6 @@ import { addUnit } from '../utils';
 import { GridProps, GridItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
 import Badge from '../badge';
-import Icon from '../icon';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 type InternalProps = {
@@ -66,20 +65,7 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
   }, [parent.gutter, parent.columnNum, props.contentStyle]);
 
   const renderIcon = () => {
-    if (typeof props.icon === 'string') {
-      return (
-        <Icon
-          badge={props.badge}
-          name={props.icon as string}
-          size={parent.iconSize}
-          className={cls(bem('icon'))}
-          classPrefix={props.iconPrefix}
-          color={props.iconColor}
-        />
-      );
-    }
-
-    if (React.isValidElement(props.icon)) {
+    if (props.icon) {
       return <Badge {...props.badge}>{props.icon}</Badge>;
     }
 

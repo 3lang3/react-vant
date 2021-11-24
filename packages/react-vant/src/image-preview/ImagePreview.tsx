@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from 'react';
 import cls from 'clsx';
+import { Clear } from '@react-vant/icons';
 import { ImagePreviewProps } from './PropsType';
 import { pick } from '../utils';
-import Icon from '../icon';
 import Swiper from '../swiper';
 import type { SwiperInstance } from '../swiper';
 import Popup from '../popup';
@@ -57,13 +57,10 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
 
   const renderClose = () => {
     if (props.closeable) {
-      return (
-        <Icon
-          name={props.closeIcon}
-          className={cls(bem('close-icon', props.closeIconPosition))}
-          onClick={() => props.onClose?.()}
-        />
-      );
+      return React.cloneElement(props.closeIcon as React.ReactElement, {
+        className: cls(bem('close-icon', props.closeIconPosition)),
+        onClick: props.onClose?.(),
+      });
     }
     return null;
   };
@@ -102,7 +99,7 @@ ImagePreview.defaultProps = {
   images: [],
   swipeDuration: 300,
   startPosition: 0,
-  closeIcon: 'clear',
+  closeIcon: <Clear />,
   closeIconPosition: 'top-right',
   showIndicators: false,
   maxZoom: 3,

@@ -24,7 +24,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   images?: string[];
   swipeDuration?: number;
   startPosition?: number;
-  closeIcon?: string;
+  closeIcon?: React.ReactNode;
   closeIconPosition?: PopupCloseIconPosition;
   /** 弹出时的的父容器 */
   teleport?: HTMLElement | (() => HTMLElement);

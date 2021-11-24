@@ -58,12 +58,12 @@ timer = setInterval(() => {
 
 ### 自定义图标
 
-通过 `icon` 选项可以自定义图标，支持传入[图标名称](#/zh-CN/icon)、图片链接或者自定义组件通过`loadingType` 属性可以自定义加载图标类型。
+通过 `icon` 选项可以自定义图标，通过`loadingType` 属性可以自定义加载图标类型。
 
 ```js
 Toast({
   message: '自定义图标',
-  icon: 'like-o',
+  icon: <FireO />,
 });
 
 Toast({
@@ -73,7 +73,7 @@ Toast({
 
 Toast({
   message: '自定义图片',
-  icon: 'https://img01.yzcdn.cn/vant/logo.png',
+  icon: <Image width={36} src="https://img01.yzcdn.cn/vant/logo.png" />,
 });
 
 Toast.loading({
@@ -163,11 +163,11 @@ Toast.resetDefaultOptions('loading');
 ### Options
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | type | 提示类型，可选值为 `loading` `success` `fail` `info` | _string_ | `info` |
 | position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
-| icon | 自定义图标 | _string\|ReactNode_ | - |
+| icon | 自定义图标 | _ReactNode_ | - |
 | iconSize | 图标大小，如 `20px` `2em`，默认单位为 `px` | _number \| string_ | `36px` |
 | iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | forbidClick | 是否禁止背景点击 | _boolean_ | `false` |

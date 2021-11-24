@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { CartO, ChatO, Star } from '@react-vant/icons';
 import React from 'react';
 import { components } from 'site-mobile-demo';
 import ActionBar from '..';
@@ -55,19 +56,17 @@ export default (): React.ReactNode => {
       <DemoBlock title="自定义图标颜色">
         <ActionBar>
           <ActionBar.Icon
-            icon="chat-o"
-            color="#ee0a24"
+            icon={<ChatO color="ee0a24" />}
             text="客服"
             onClick={() => console.log('chat click')}
           />
           <ActionBar.Icon
-            icon="cart-o"
+            icon={<CartO />}
             text="购物车"
             onClick={() => console.log('cart click')}
           />
           <ActionBar.Icon
-            icon="star"
-            color="#ff5000"
+            icon={<Star color="#ff5000" />}
             text="店铺"
             onClick={() => console.log('shop click')}
           />
@@ -85,16 +84,8 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="自定义按钮颜色">
         <ActionBar>
-          <ActionBar.Icon
-            icon="chat-o"
-            text="客服"
-            onClick={() => console.log('chat click')}
-          />
-          <ActionBar.Icon
-            icon="cart-o"
-            text="购物车"
-            onClick={() => console.log('cart click')}
-          />
+          <ActionBar.Icon icon="chat-o" text="客服" onClick={() => console.log('chat click')} />
+          <ActionBar.Icon icon="cart-o" text="购物车" onClick={() => console.log('cart click')} />
           <ActionBar.Button
             color="#be99ff"
             type="warning"

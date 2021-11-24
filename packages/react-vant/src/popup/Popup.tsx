@@ -10,8 +10,8 @@ import React, {
 } from 'react';
 import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
+import { Cross } from '@react-vant/icons';
 
-import Icon from '../icon';
 import Overlay from '../overlay';
 import useEventListener from '../hooks/use-event-listener';
 
@@ -132,21 +132,14 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const renderCloseIcon = () => {
     if (closeable) {
       const { closeIconPosition } = props;
-      if (typeof closeIcon === 'string') {
+      if (closeIcon) {
         return (
-          <Icon
-            name={closeIcon}
-            className={clsx(bem('close-icon', closeIconPosition))}
-            classPrefix={props.iconPrefix}
-            onClick={onClickCloseIcon}
-          />
+          <div className={clsx(bem('close-icon', closeIconPosition))} onClick={onClickCloseIcon}>
+            {closeIcon}
+          </div>
         );
       }
-      return (
-        <div className={clsx(bem('close-icon', closeIconPosition))} onClick={onClickCloseIcon}>
-          {closeIcon}
-        </div>
-      );
+      return null;
     }
     return null;
   };
@@ -253,7 +246,7 @@ Popup.defaultProps = {
   overlay: true,
   lockScroll: true,
   position: 'center',
-  closeIcon: 'cross',
+  closeIcon: <Cross />,
   closeIconPosition: 'top-right',
   closeOnClickOverlay: true,
   teleport: () => document.body,

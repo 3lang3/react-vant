@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { Fire } from '@react-vant/icons';
 import React, { useReducer } from 'react';
 import { Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -221,7 +222,7 @@ export default (): React.ReactNode => {
         closeable
         style={{ height: '30%' }}
         position="bottom"
-        closeIcon="close"
+        closeIcon={<Fire />}
         onClose={() =>
           dispatch({
             type: 'showCustomCloseIcon',
@@ -233,7 +234,6 @@ export default (): React.ReactNode => {
         closeable
         style={{ height: '30%' }}
         position="bottom"
-        closeIcon="close"
         closeIconPosition="top-left"
         onClose={() =>
           dispatch({
@@ -246,7 +246,6 @@ export default (): React.ReactNode => {
         closeable
         style={{ height: '30%' }}
         position="bottom"
-        closeIcon="close"
         round
         onClose={() =>
           dispatch({

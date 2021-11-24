@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
+import { FireO } from '@react-vant/icons';
 import React from 'react';
-import { Cell, Switch } from 'react-vant';
+import { Cell, Image, Switch } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Toast from '..';
 
@@ -49,7 +50,7 @@ export default (): React.ReactNode => {
           onClick={() =>
             Toast({
               message: '自定义图标',
-              icon: 'fire-o',
+              icon: <FireO />,
             })
           }
         />
@@ -60,7 +61,7 @@ export default (): React.ReactNode => {
           onClick={() =>
             Toast({
               message: '自定义图片',
-              icon: 'https://img01.yzcdn.cn/vant/logo.png',
+              icon: <Image width={36} src="https://img01.yzcdn.cn/vant/logo.png" />,
             })
           }
         />

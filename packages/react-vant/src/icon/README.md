@@ -134,19 +134,19 @@ export default () => {
 
 ### 方法
 
-| 方法名               | 说明             | 参数    | 返回值    |
-| -------------------- | ---------------- | ------- | --------- | ----------- |
-| createFromIconfontCN | 自定义 font 图标 | `string | string[]` | _Icon 组件_ |
+| 方法名               | 说明             | 参数                 | 返回值      |
+| -------------------- | ---------------- | -------------------- | ----------- |
+| createFromIconfontCN | 自定义 font 图标 | `string \| string[]` | _Icon 组件_ |
 
 ### Props
 
-| 参数     | 说明                                      | 类型               | 默认值    |
-| -------- | ----------------------------------------- | ------------------ | --------- |
-| name     | 自定义图标名称                            | _string_           | -         |
-| color    | 图标颜色                                  | _string_           | `inherit` |
-| fontSize | 图标大小，如 `20px` `2em`，默认单位为`px` | _number \| string_ | `inherit` |
-| spin     | 是否开启旋转动画                          | _boolean_          | `false`   |
-| rotate   | 图标旋转角度                              | _number_           | `false`   |
+| 参数     | 说明                      | 类型               | 默认值    |
+| -------- | ------------------------- | ------------------ | --------- |
+| name     | 自定义图标名称            | _string_           | -         |
+| color    | 图标颜色                  | _string_           | `inherit` |
+| fontSize | 图标大小，如 `20px` `2em` | _number \| string_ | `inherit` |
+| spin     | 是否开启旋转动画          | _boolean_          | `false`   |
+| rotate   | 图标旋转角度              | _number_           | `false`   |
 
 ### Events
 

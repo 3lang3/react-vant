@@ -1,7 +1,8 @@
 import React, { useContext, useMemo } from 'react';
 import cls from 'clsx';
+import { ExpandO } from '@react-vant/icons';
+
 import Image from '../../image';
-import Icon from '../../icon';
 import ConfigProviderContext from '../../config-provider/ConfigProviderContext';
 import { isSkuChoosable } from '../utils';
 
@@ -93,11 +94,7 @@ const SkuRowItem: React.FC<SkuRowItemProps> = (props) => {
       </div>
       {props.largeImageMode &&
         (props.previewIcon || (
-          <Icon
-            name="expand-o"
-            className={cls(bem(`${classPrefix}-img-icon`))}
-            onClick={onPreviewImg}
-          />
+          <ExpandO className={cls(bem(`${classPrefix}-img-icon`))} onClick={onPreviewImg} />
         ))}
     </span>
   );
