@@ -31,8 +31,10 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   };
 
   const picker = useRef<PickerInstance>(null);
-  const currentDateRef = useRef<string>(formatValue(props.value));
-  const [currentDate, setCurrentDate] = useState(() => currentDateRef.current);
+  const [currentDate, setCurrentDate] = useState(() => formatValue(props.value));
+  const currentDateRef = useRef<string>();
+
+  currentDateRef.current = currentDate;
 
   const ranges = useMemo(
     () => [
