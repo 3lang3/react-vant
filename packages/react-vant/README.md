@@ -150,6 +150,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/feifaneric"><img src="https://avatars.githubusercontent.com/u/52685056?v=4?s=100" width="100px;" alt=""/><br /><sub><b>feifaneric</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Afeifaneric" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/FJHou"><img src="https://avatars.githubusercontent.com/u/22517598?v=4?s=100" width="100px;" alt=""/><br /><sub><b>FJHou</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AFJHou" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://wangbaoqi.gitbook.io/front/"><img src="https://avatars.githubusercontent.com/u/11024545?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nate Wang</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AWangbaoqi" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Wal1e"><img src="https://avatars.githubusercontent.com/u/20591468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>rook1e</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AWal1e" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
