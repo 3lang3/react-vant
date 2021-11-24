@@ -1,5 +1,4 @@
 /* eslint-disable no-plusplus */
-/* eslint-disable react/no-array-index-key */
 import React, {
   useEffect,
   useMemo,
@@ -21,6 +20,7 @@ import { PickerProps, PickerInstance, PickerObjectColumn } from './PropsType';
 import { unitToPx, preventDefault, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { raf } from '../utils/raf';
 
 const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -215,13 +215,13 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const confirm = () => {
     refs.forEach((_ref) => _ref.stopMomentum());
     if (props.onConfirm) {
-      setTimeout(() => {
+      raf(() => {
         if (dataType === 'plain') {
           props.onConfirm(getColumnValue(0), getColumnIndex(0));
         } else {
           props.onConfirm(getValues(), getIndexes());
         }
-      }, 0);
+      });
     }
   };
 
@@ -278,6 +278,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const renderColumnItems = () =>
     formattedColumns.map((item, columnIndex) => (
       <Column
+        // eslint-disable-next-line react/no-array-index-key
         key={columnIndex}
         optionRender={props.optionRender}
         ref={setRefs(columnIndex)}
@@ -313,7 +314,9 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   };
 
   useEffect(() => {
-    format();
+    if (JSON.stringify(props.columns) !== JSON.stringify(formattedColumns)) {
+      format();
+    }
   }, [props.columns]);
 
   useEventListener('touchmove', preventDefault, {

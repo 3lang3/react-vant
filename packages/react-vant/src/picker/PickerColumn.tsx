@@ -12,11 +12,12 @@ import clsx from 'clsx';
 
 import useTouch from '../hooks/use-touch';
 
-import { PickerColumnProps, Column, PickerOption } from './PropsType';
+import { PickerColumnProps, PickerOption } from './PropsType';
 import { isObject, range } from '../utils';
 import { deepClone } from '../utils/deep-clone';
 import { useSetState, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { raf } from '../utils/raf';
 
 const DEFAULT_DURATION = 200;
 
@@ -91,9 +92,9 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
         updateState({ index });
 
         if (emitChange && props.onChange) {
-          setTimeout(() => {
+          raf(() => {
             props.onChange(index);
-          }, 0);
+          });
         }
       }
     };
@@ -107,9 +108,9 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     updateState({ offset });
   };
 
-  const setOptions = (options: Column) => {
+  const setOptions = (options: PickerOption[]) => {
     if (JSON.stringify(options) !== JSON.stringify(state.options)) {
-      updateState({ options });
+      updateState({ options: deepClone(options) });
       setIndex(props.defaultIndex);
     }
   };
@@ -287,7 +288,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   }, [defaultIndex]);
 
   useUpdateEffect(() => {
-    setOptions(deepClone(initialOptions));
+    setOptions(initialOptions);
   }, [initialOptions]);
 
   useImperativeHandle(ref, () => ({
@@ -298,12 +299,6 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     setOptions,
     stopMomentum,
   }));
-
-  const wrapperStyle = {
-    transform: `translate3d(0, ${state.offset + baseOffset}px, 0)`,
-    transitionDuration: `${state.duration}ms`,
-    transitionProperty: state.duration ? 'all' : 'none',
-  };
 
   return (
     <div
@@ -316,7 +311,11 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     >
       <ul
         ref={wrapper}
-        style={wrapperStyle}
+        style={{
+          transform: `translate3d(0, ${state.offset + baseOffset}px, 0)`,
+          transitionDuration: `${state.duration}ms`,
+          transitionProperty: state.duration ? 'all' : 'none',
+        }}
         className={clsx(bem('wrapper'))}
         onTransitionEnd={stopMomentum}
       >

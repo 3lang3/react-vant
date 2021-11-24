@@ -11,7 +11,7 @@ import Picker, { PickerInstance } from '../picker';
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';
 import { getMonthEndDay, getTrueValue, getDaysBetweenDate, format, times } from './utils';
-import { doubleRaf } from '../utils/raf';
+import { raf } from '../utils/raf';
 import { isDate } from '../utils/validate/date';
 import { padZero } from '../utils';
 import { useUpdateEffect } from '../hooks';
@@ -173,7 +173,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
       }
     });
 
-    doubleRaf(() => {
+    raf(() => {
       picker.current?.setValues(values);
     });
   };

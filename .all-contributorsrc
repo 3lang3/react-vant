@@ -189,6 +189,24 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Wangbaoqi",
+      "name": "Nate Wang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11024545?v=4",
+      "profile": "https://wangbaoqi.gitbook.io/front/",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Wal1e",
+      "name": "rook1e",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20591468?v=4",
+      "profile": "https://github.com/Wal1e",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

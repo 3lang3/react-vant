@@ -9,10 +9,10 @@ import useLockScroll from '../hooks/use-lock-scroll';
 const Overlay: React.FC<OverlayProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('overlay', prefixCls);
-
   const nodeRef = useRef(null);
   const { visible, duration } = props;
   const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
+  const innerLockRef = useRef(false);
 
   const preventTouchMove = (event: TouchEvent) => {
     preventDefault(event, true);
@@ -46,8 +46,11 @@ const Overlay: React.FC<OverlayProps> = (props) => {
     if (!props.lockScroll) return;
     if (visible) {
       lockScroll();
-    } else {
+      innerLockRef.current = true;
+    }
+    if (!visible && innerLockRef.current) {
       unlockScroll();
+      innerLockRef.current = false;
     }
   }, [visible]);
 

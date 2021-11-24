@@ -50,7 +50,7 @@ export type ToastOptions = Omit<ToastProps, 'type'> | string;
 export type ToastReturnType = {
   /** 动态更新方法 */
   config: React.Dispatch<React.SetStateAction<ToastProps>>;
-  /** 清楚单例toast */
+  /** 清除单例toast */
   clear: () => void;
 };
 export interface ToastInstance {

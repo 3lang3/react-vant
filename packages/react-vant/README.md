@@ -39,11 +39,10 @@ English | [简体中文](./README.zh-CN.md)
 - 🎨 Support theme customization, built-in 700+ theme designers.
 - 😎 Support on-demand import and Tree Shaking.
 - ⚡️ Support [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite) and Parcel@2.
-
-## 🖥 Environment Support
-
 - 🌵 Modern browsers
 - 🌝 Support [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
+
+## 🖥 Environment Support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br> Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/a94987f29719142668cdf960b3f624ce1a3c6aa8/src/safari-ios/safari-ios.svg" alt="Safari for iOS" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Safari |
 | --- | --- | --- | --- |
@@ -150,6 +149,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.itworker.cn"><img src="https://avatars.githubusercontent.com/u/12168991?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yann</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Afeifanshijie" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/feifaneric"><img src="https://avatars.githubusercontent.com/u/52685056?v=4?s=100" width="100px;" alt=""/><br /><sub><b>feifaneric</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Afeifaneric" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/FJHou"><img src="https://avatars.githubusercontent.com/u/22517598?v=4?s=100" width="100px;" alt=""/><br /><sub><b>FJHou</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AFJHou" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://wangbaoqi.gitbook.io/front/"><img src="https://avatars.githubusercontent.com/u/11024545?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nate Wang</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AWangbaoqi" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Wal1e"><img src="https://avatars.githubusercontent.com/u/20591468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>rook1e</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AWal1e" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
