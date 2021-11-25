@@ -115,7 +115,7 @@ We welcome all contributions. Please read our [CONTRIBUTING.md](https://3lang3.g
 
 ## 💭 Discuss
 
-<img src="../../screenshots/wechat.jpeg" width="200"  />
+<img src="https://user-images.githubusercontent.com/7098719/143408499-6e838945-9fc3-4b4d-bf8f-f262f4937c33.jpg" width="200"  />
 
 ## 👥 Contributors
 

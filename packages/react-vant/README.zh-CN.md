@@ -117,7 +117,7 @@ ReactDOM.render(<App />, mountNode);
 
 ## 💭 讨论
 
-<img alt="WechatIMG21.jpeg" src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/16/25/469b4c9c-32f2-49b5-b8c7-8c8abcb6f085.jpeg" width="200"  />
+<img alt="WechatIMG21.jpeg" src="https://user-images.githubusercontent.com/7098719/143408499-6e838945-9fc3-4b4d-bf8f-f262f4937c33.jpg" width="200"  />
 
 ## 👥 贡献者
 
