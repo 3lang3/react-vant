@@ -115,7 +115,7 @@ We welcome all contributions. Please read our [CONTRIBUTING.md](https://3lang3.g
 
 ## 💭 Discuss
 
-<img alt="WechatIMG21.jpeg" src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/16/25/469b4c9c-32f2-49b5-b8c7-8c8abcb6f085.jpeg" width="200"  />
+<img alt="WechatIMG21.jpeg" src="../../screenshots/wechat.jpeg" width="200"  />
 
 ## 👥 Contributors
 
