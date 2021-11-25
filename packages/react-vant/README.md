@@ -1,4 +1,4 @@
-English | [简体中文](./README.zh-CN.md)
+English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages/react-vant/README.zh-CN.md)
 
 <p align="center">
     <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="240" style="margin-bottom: 10px;">
