@@ -115,7 +115,7 @@ We welcome all contributions. Please read our [CONTRIBUTING.md](https://3lang3.g
 
 ## 💭 Discuss
 
-![Kiku](../../screenshots/wechat.jpeg | width=200)
+<img src="../../screenshots/wechat.jpeg" width="200"  />
 
 ## 👥 Contributors
 
