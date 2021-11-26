@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, { useEffect, useState } from 'react';
-
 import ReactDOM from 'react-dom';
+import { Cross } from '@react-vant/icons';
 
 import { noop } from '../utils';
 import { AlertDialogProps, DialogProps, DialogStatic } from './PropsType';
@@ -17,7 +17,7 @@ Dialog.show = (props: DialogProps) => {
   const defaultOptions = {
     overlay: true,
     closeable: false,
-    closeIcon: 'cross',
+    closeIcon: <Cross />,
     lockScroll: true,
     transition: 'rv-dialog-bounce',
     showConfirmButton: true,

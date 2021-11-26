@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Cell, Toast } from 'react-vant';
+import { Close } from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
 import Dialog from '..';
 
@@ -134,7 +135,7 @@ export default (): React.ReactNode => {
             Dialog.alert({
               title: '标题',
               closeable: true,
-              closeIcon: 'close',
+              closeIcon: <Close />,
               theme: 'round-button',
               message: '代码是写出来给人看的，附带能在机器上运行',
             })

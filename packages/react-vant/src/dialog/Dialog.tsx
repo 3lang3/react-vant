@@ -147,7 +147,6 @@ const Dialog: React.FC<DialogProps> = (props) => {
 };
 
 Dialog.defaultProps = {
-  closeIcon: 'cross',
   transition: 'rv-dialog-bounce',
   showConfirmButton: true,
   closeOnPopstate: true,
