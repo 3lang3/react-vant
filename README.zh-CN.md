@@ -1,1 +1,0 @@
-./packages/react-vant/README.zh-CN.md

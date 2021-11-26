@@ -55,7 +55,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
     props;
   const opened = useRef(false);
-  const zIndex = useRef<number>(globalZIndex);
+  const zIndex = useRef<number>(props.zIndex ?? globalZIndex);
   const popupRef = useRef<HTMLDivElement>();
   const [animatedVisible, setAnimatedVisible] = useState(visible);
   const [ssrCompatRender, rendered] = useSsrCompat();

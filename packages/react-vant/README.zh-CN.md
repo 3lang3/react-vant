@@ -1,4 +1,4 @@
-[English](./README.md) | 简体中文
+[English](https://github.com/3lang3/react-vant) | 简体中文
 
 <p align="center">
     <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="240" style="margin-bottom: 10px;">
@@ -40,11 +40,10 @@
 - 😎 支持按需引入和 Tree Shaking.
 - 🌝 支持服务器端渲染[SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
 - ⚡️ 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)和 Parcel@2.
-
-## 🖥 环境支持
-
 - 🌵 现代浏览器
 - 🌝 支持 [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
+
+## 🖥 环境支持
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br> Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/a94987f29719142668cdf960b3f624ce1a3c6aa8/src/safari-ios/safari-ios.svg" alt="Safari for iOS" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Safari |
 | --- | --- | --- | --- |
@@ -117,7 +116,7 @@ ReactDOM.render(<App />, mountNode);
 
 ## 💭 讨论
 
-<img alt="WechatIMG21.jpeg" src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/16/25/469b4c9c-32f2-49b5-b8c7-8c8abcb6f085.jpeg" width="200"  />
+<img alt="WechatIMG21.jpeg" src="https://user-images.githubusercontent.com/7098719/143408499-6e838945-9fc3-4b4d-bf8f-f262f4937c33.jpg" width="200"  />
 
 ## 👥 贡献者
 

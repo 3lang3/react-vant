@@ -1,4 +1,4 @@
-English | [简体中文](./README.zh-CN.md)
+English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages/react-vant/README.zh-CN.md)
 
 <p align="center">
     <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="240" style="margin-bottom: 10px;">
@@ -115,7 +115,7 @@ We welcome all contributions. Please read our [CONTRIBUTING.md](https://3lang3.g
 
 ## 💭 Discuss
 
-<img alt="WechatIMG21.jpeg" src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/16/25/469b4c9c-32f2-49b5-b8c7-8c8abcb6f085.jpeg" width="200"  />
+<img src="https://user-images.githubusercontent.com/7098719/143408499-6e838945-9fc3-4b4d-bf8f-f262f4937c33.jpg" width="200"  />
 
 ## 👥 Contributors
 

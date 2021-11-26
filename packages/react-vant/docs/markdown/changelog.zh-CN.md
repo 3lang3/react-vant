@@ -12,6 +12,24 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.3
+
+`2021-11-25`
+
+**Bug Fixes**
+
+- Datetimepicker: type 为`time`时选择后会回到最初的 value 值 [#256](https://github.com/3lang3/react-vant/issues/256) ([e72bfd7](https://github.com/3lang3/react-vant/commit/e72bfd7a69d312f36451a80b121cda8267742e4b))
+- Badge
+
+**Performance**
+
+- DatePicker: 优化 columns 更新时的动画效果 ([225b67c](https://github.com/3lang3/react-vant/commit/225b67c34b42c643e4a856d385f7e63f65e1ed13))
+- Picker: 使用`raf`代替部分`setTimeout` ([022709a](https://github.com/3lang3/react-vant/commit/022709a14913d2579c20018d817abe08bb094cbb))
+
+**Types**
+
+- Badge: 更新`offset`类型 ([d468e85](https://github.com/3lang3/react-vant/commit/d468e85ccbdba2ac44ffb21389edbe3eebdc35a2))
+
 ### 1.4.2
 
 `2021-11-23`
