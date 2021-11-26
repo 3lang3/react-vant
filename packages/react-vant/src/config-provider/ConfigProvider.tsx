@@ -25,7 +25,7 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
 }) => {
   const varStyle = useMemo<CSSProperties | undefined>(() => {
     if (themeVars) {
-      return { ...style, ...mapThemeVarsToCSSVars(themeVars, props.prefixCls) };
+      return { ...style, ...mapThemeVarsToCSSVars(themeVars, 'rv') };
     }
     return style;
   }, [themeVars]);
@@ -45,7 +45,6 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
 
 ConfigProvider.defaultProps = {
   tag: 'div',
-  prefixCls: 'rv',
 };
 
 export default ConfigProvider;
