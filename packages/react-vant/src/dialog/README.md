@@ -171,6 +171,7 @@ const [show, setShow] = useState(false);
 | overlay | 是否展示遮罩层 | _boolean_ | `true` |
 | overlayClass | 自定义遮罩层类名 | _string_ | - |
 | overlayStyle | 自定义遮罩层样式 | _object_ | - |
+| closeable | 是否展示关闭图标 | _boolean_ | `false` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭弹窗 | _boolean_ | `false` |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
