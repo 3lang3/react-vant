@@ -1,5 +1,8 @@
-import { render, FileManager } from 'less';
-import { readFileSync } from 'fs-extra';
+import less from 'less';
+import fse from 'fs-extra';
+
+const { readFileSync } = fse;
+const { render, FileManager } = less;
 
 // less plugin to resolve tilde
 class TildeResolver extends FileManager {

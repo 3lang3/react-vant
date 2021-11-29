@@ -1,7 +1,7 @@
 import { emptyDir } from 'fs-extra';
-import { setNodeEnv, setBuildTarget } from '../common';
-import { compileSite } from '../compiler/compile-site';
-import { DOC_DIST_DIR } from '../common/constant';
+import { setNodeEnv, setBuildTarget } from '../common/index.js';
+import { compileSite } from '../compiler/compile-site.js';
+import { DOC_DIST_DIR } from '../common/constant.js';
 
 export async function buildSite() {
   setNodeEnv('production');

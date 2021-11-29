@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-module.exports = {
+export default {
   name: 'react-vant',
   build: { css: { preprocessor: 'less' }, site: { publicPath: './' } },
   site: {

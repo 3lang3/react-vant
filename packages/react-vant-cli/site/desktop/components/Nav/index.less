@@ -6,16 +6,16 @@
   bottom: 0;
   left: 0;
   z-index: 1;
-  min-width: @zf-doc-nav-width;
-  max-width: @zf-doc-nav-width;
+  min-width: @van-doc-nav-width;
+  max-width: @van-doc-nav-width;
   padding: 24px 0 72px;
   overflow-y: auto;
   background-color: #fff;
   box-shadow: 0 8px 12px #ebedf0;
 
-  @media (min-width: @zf-doc-row-max-width) {
+  @media (min-width: @van-doc-row-max-width) {
     left: 50%;
-    margin-left: -(@zf-doc-row-max-width / 2);
+    margin-left: -(@van-doc-row-max-width / 2);
   }
   &::-webkit-scrollbar {
     width: 6px;
@@ -34,7 +34,7 @@
     padding-left: 6px;
   }
   &__title {
-    padding: 8px 0 8px @zf-doc-padding;
+    padding: 8px 0 8px @van-doc-padding;
     color: #455a64;
     font-weight: 600;
     font-size: 15px;
@@ -44,7 +44,7 @@
     a {
       display: block;
       margin: 8px 0;
-      padding: 8px 0 8px @zf-doc-padding;
+      padding: 8px 0 8px @van-doc-padding;
       color: #455a64;
       font-size: 14px;
       line-height: 20px;
@@ -52,7 +52,7 @@
 
       &:hover,
       &.active {
-        color: @zf-doc-green;
+        color: @van-doc-green;
       }
 
       &.active {

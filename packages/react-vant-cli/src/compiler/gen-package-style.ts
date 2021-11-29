@@ -1,8 +1,11 @@
 import { join } from 'path';
-import { existsSync } from 'fs-extra';
-import { smartOutputFile, normalizePath } from '../common';
-import { CSS_LANG, getCssBaseFile } from '../common/css';
-import { SRC_DIR, STYLE_DEPS_JSON_FILE } from '../common/constant';
+import fse from 'fs-extra';
+import { createRequire } from 'module';
+import { smartOutputFile, normalizePath } from '../common/index.js';
+import { CSS_LANG, getCssBaseFile } from '../common/css.js';
+import { SRC_DIR, STYLE_DEPS_JSON_FILE } from '../common/constant.js';
+
+const { existsSync } = fse;
 
 type Options = {
   outputPath: string;
@@ -10,6 +13,7 @@ type Options = {
 };
 
 export function genPackageStyle(options: Options) {
+  const require = createRequire(import.meta.url);
   const styleDepsJson = require(STYLE_DEPS_JSON_FILE);
   const ext = `.${CSS_LANG}`;
 

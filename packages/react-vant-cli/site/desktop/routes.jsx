@@ -2,6 +2,20 @@ import { config, documents } from 'site-desktop-shared';
 import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';
 
+function markdownCardWrapper(htmlCode) {
+  const group = htmlCode.replace(/<h3/g, ':::<h3').replace(/<h2/g, ':::<h2').split(':::');
+
+  return group
+    .map((fragment) => {
+      if (fragment.indexOf('<h3') !== -1) {
+        return `<div class="van-doc-card">${fragment}</div>`;
+      }
+
+      return fragment;
+    })
+    .join('');
+}
+
 const { locales, defaultLang } = config.site;
 setDefaultLang(defaultLang);
 
@@ -48,15 +62,19 @@ const getRoutes = () => {
   names.forEach((name) => {
     const { component, lang } = parseName(name);
 
+    let { html } = documents[name];
+
+    html = markdownCardWrapper(html);
+
     if (component === 'home') {
-      addHomeRoute(documents[name], lang);
+      addHomeRoute(() => <section dangerouslySetInnerHTML={{ __html: html }} />, lang);
     }
 
     if (lang) {
       routes.push({
         name: `${lang}/${component}`,
         path: `/${lang}/${component}`,
-        component: documents[name],
+        component: () => <section dangerouslySetInnerHTML={{ __html: html }} />,
         state: {
           lang,
           name: component,
@@ -66,7 +84,7 @@ const getRoutes = () => {
       routes.push({
         name: `${component}`,
         path: `/${component}`,
-        component: documents[name],
+        component: () => <section dangerouslySetInnerHTML={{ __html: html }} />,
         meta: {
           name: component,
         },

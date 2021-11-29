@@ -2,12 +2,14 @@
  * Build style entry of all components
  */
 import { sep, join, relative } from 'path';
-import { outputFileSync } from 'fs-extra';
+import fse from 'fs-extra';
 import { existsSync } from 'fs';
-import { getComponents, replaceExt } from '../common';
-import { CSS_LANG, getCssBaseFile } from '../common/css';
-import { checkStyleExists } from './gen-style-deps-map';
-import { ES_DIR, SRC_DIR, LIB_DIR, STYLE_DEPS_JSON_FILE } from '../common/constant';
+import { getComponents, replaceExt } from '../common/index.js';
+import { CSS_LANG, getCssBaseFile } from '../common/css.js';
+import { checkStyleExists } from './gen-style-deps-map.js';
+import { ES_DIR, SRC_DIR, LIB_DIR, STYLE_DEPS_JSON_FILE } from '../common/constant.js';
+
+const { outputFileSync } = fse;
 
 function getDeps(component: string): string[] {
   const styleDepsJson = require(STYLE_DEPS_JSON_FILE);

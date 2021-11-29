@@ -1,75 +1,43 @@
 import chalk from 'chalk';
-import address from 'address';
-import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import { get } from 'lodash';
-import { getPort } from 'portfinder';
-import { GREEN } from '../common/constant';
-import { getSiteDevConfig } from '../config/webpack.site.dev';
-import { getSitePrdConfig } from '../config/webpack.site.prd';
+import { createRequire } from 'module';
+import { createServer, build } from 'vite';
+import { getViteConfigForSiteDev, getViteConfigForSiteProd } from '../config/vite.site.js';
+import { mergeCustomViteConfig } from '../common/index.js';
+import { genSiteMobileShared } from './gen-site-mobile-shared.js';
+import { genSiteDesktopShared } from './gen-site-desktop-shared.js';
+import { genStyleDepsMap } from './gen-style-deps-map.js';
+import { genDemoMobileShared } from './gen-demo-mobile-shared.js';
 
-function logServerInfo(port: number) {
-  const local = `http://localhost:${port}/`;
-  const network = `http://${address.ip()}:${port}/`;
-
-  console.log('\n  Site running at:\n');
-  console.log(`  ${chalk.bold('Local')}:    ${chalk.hex(GREEN)(local)} `);
-  console.log(`  ${chalk.bold('Network')}:  ${chalk.hex(GREEN)(network)}`);
-}
-
-function runDevServer(
-  port: number,
-  config: ReturnType<typeof getSiteDevConfig>
-) {
-  const server = new WebpackDevServer(webpack(config), config.devServer);
-
-  // this is a hack to disable wds status log
-  (server as any).showStatus = function servers() {};
-
-  const host = get(config.devServer, 'host', 'localhost');
-  server.listen(port, host, (err?: Error) => {
-    if (err) {
-      console.log(err);
-    }
-  });
-}
-
-function watch() {
-  const config = getSiteDevConfig();
-
-  getPort(
-    {
-      port: config.devServer!.port,
-    },
-    (err, port) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-
-      logServerInfo(port);
-      runDevServer(port, config);
-    }
-  );
-}
-
-function build() {
+export async function genSiteEntry(): Promise<void> {
   return new Promise((resolve, reject) => {
-    const config = getSitePrdConfig();
-    webpack(config, (err, stats) => {
-      if (err || stats.hasErrors()) {
-        reject();
-      } else {
-        resolve(1);
-      }
-    });
+    genStyleDepsMap()
+      .then(() => {
+        genDemoMobileShared();
+        genSiteMobileShared();
+        genSiteDesktopShared();
+        resolve();
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
   });
 }
 
 export async function compileSite(production = false) {
+  await genSiteEntry();
   if (production) {
-    await build();
+    const config = mergeCustomViteConfig(getViteConfigForSiteProd());
+    await build(config);
   } else {
-    watch();
+    const config = mergeCustomViteConfig(getViteConfigForSiteDev());
+    const server = await createServer(config);
+    await server.listen();
+
+    const require = createRequire(import.meta.url);
+    const { version } = require('vite/package.json');
+    const viteInfo = chalk.cyan(`vite v${version}`);
+    console.log(`\n  ${viteInfo}${chalk.green(` dev server running at:\n`)}`);
+    server.printUrls();
   }
 }

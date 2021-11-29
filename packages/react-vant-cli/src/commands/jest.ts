@@ -1,6 +1,8 @@
-import { runCLI } from 'jest';
-import { setNodeEnv } from '../common';
-import { ROOT, JEST_CONFIG_FILE } from '../common/constant';
+import jest from 'jest';
+import { setNodeEnv } from '../common/index.js';
+import { ROOT, JEST_CONFIG_FILE } from '../common/constant.js';
+
+const { runCLI } = jest;
 
 export function test(command: any) {
   setNodeEnv('test');

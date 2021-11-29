@@ -6,7 +6,7 @@ import vfs from 'vinyl-fs';
 import through2 from 'through2';
 import signale from 'signale';
 import chalk from 'chalk';
-import lodash from 'lodash';
+import lodash from 'lodash-es';
 import slash from 'slash2';
 import gulpIf from 'gulp-if';
 import chokidar from 'chokidar';
@@ -50,10 +50,7 @@ export default async function Compile(options: ICompileOpts) {
     }
 
     function isComponent(path: string) {
-      return (
-        /\/index.(t|j)sx?$/.test(path) &&
-        components.some((o) => path.indexOf(o) !== -1)
-      );
+      return /\/index.(t|j)sx?$/.test(path) && components.some((o) => path.indexOf(o) !== -1);
     }
 
     return vfs
@@ -71,8 +68,8 @@ export default async function Compile(options: ICompileOpts) {
             const source = await compileLess(file.path);
             const css = await compileCss(source);
             writeFileSync(replaceExt(file.path, '.css'), css);
-          })
-        )
+          }),
+        ),
       )
       .pipe(
         gulpIf(
@@ -88,8 +85,8 @@ export default async function Compile(options: ICompileOpts) {
               console.log(e);
               cb(null);
             }
-          })
-        )
+          }),
+        ),
       )
       .pipe(
         gulpIf(
@@ -99,8 +96,8 @@ export default async function Compile(options: ICompileOpts) {
             const paths = slash(file.path).split('/');
             const target = paths[paths.length - 2];
             genComponentStyle(target);
-          })
-        )
+          }),
+        ),
       )
       .pipe(vfs.dest(targetPath));
   }
@@ -116,12 +113,7 @@ export default async function Compile(options: ICompileOpts) {
     createStream(patterns).on('end', () => {
       if (watch) {
         console.log(
-          chalk.magenta(
-            `Start watching ${slash(SRC_DIR).replace(
-              `${ROOT}/`,
-              ''
-            )} directory...`
-          )
+          chalk.magenta(`Start watching ${slash(SRC_DIR).replace(`${ROOT}/`, '')} directory...`),
         );
         const watcher = chokidar.watch(SRC_DIR, {
           ignoreInitial: true,
@@ -137,12 +129,7 @@ export default async function Compile(options: ICompileOpts) {
         const debouncedCompileFiles = lodash.debounce(compileFiles, 1000);
         watcher.on('all', (event, fullPath) => {
           const relPath = fullPath.replace(SRC_DIR, '');
-          console.log(
-            `[${event}] ${slash(join(SRC_DIR, relPath)).replace(
-              `${ROOT}/`,
-              ''
-            )}`
-          );
+          console.log(`[${event}] ${slash(join(SRC_DIR, relPath)).replace(`${ROOT}/`, '')}`);
           if (!existsSync(fullPath)) return;
           if (statSync(fullPath).isFile()) {
             if (!files.includes(fullPath)) files.push(fullPath);

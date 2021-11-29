@@ -1,20 +1,23 @@
 import glob from 'fast-glob';
 import { join, parse } from 'path';
-import { existsSync, readdirSync } from 'fs-extra';
+import fse from 'fs-extra';
+
 import {
   pascalize,
   removeExt,
   getVantConfig,
   smartOutputFile,
   normalizePath,
-} from '../common';
+} from '../common/index.js';
 import {
   SRC_DIR,
   DOCS_DIR,
   getPackageJson,
   ZHPFE_CONFIG_FILE,
   SITE_DESKTOP_SHARED_FILE,
-} from '../common/constant';
+} from '../common/constant.js';
+
+const { existsSync, readdirSync } = fse;
 
 type DocumentItem = {
   name: string;
@@ -63,15 +66,13 @@ function resolveDocuments(components: string[]): DocumentItem[] {
     });
   }
 
-  const staticDocs = glob
-    .sync(normalizePath(join(DOCS_DIR, '**/*.md')))
-    .map((path) => {
-      const pairs = parse(path).name.split('.');
-      return {
-        name: formatName(pairs[0], pairs[1] || defaultLang),
-        path,
-      };
-    });
+  const staticDocs = glob.sync(normalizePath(join(DOCS_DIR, '**/*.md'))).map((path) => {
+    const pairs = parse(path).name.split('.');
+    return {
+      name: formatName(pairs[0], pairs[1] || defaultLang),
+      path,
+    };
+  });
 
   return [...staticDocs, ...docs.filter((item) => existsSync(item.path))];
 }
@@ -93,7 +94,7 @@ function genExportVersion() {
 // ps: 这里需要使用 loader 转译 markdown
 function genImportDocuments(items: DocumentItem[]) {
   return items
-    .map((item) => `import ${item.name} from '${normalizePath(item.path)}';`)
+    .map((item) => `import * as ${item.name} from '${normalizePath(item.path)}';`)
     .join('\n');
 }
 
@@ -107,7 +108,6 @@ function genExportDocuments(items: DocumentItem[]) {
 export function genSiteDesktopShared() {
   const dirs = readdirSync(SRC_DIR);
   const documents = resolveDocuments(dirs);
-
   const code = `${genImportConfig()}
 ${genImportDocuments(documents)}
 ${genExportConfig()}

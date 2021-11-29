@@ -1,7 +1,10 @@
-import { readFileSync } from 'fs-extra';
-import { consola } from '../common/logger';
+import fse from 'fs-extra';
+import { consola } from '../common/logger.js';
 
-const commitRE = /^(revert: )?(fix|feat|docs|perf|test|types|style|build|chore|refactor|breaking change)(\(.+\))?: .{1,50}/;
+const { readFileSync } = fse;
+
+const commitRE =
+  /^(revert: )?(fix|feat|docs|perf|test|types|style|build|chore|refactor|breaking change)(\(.+\))?: .{1,50}/;
 const mergeRE = /Merge /;
 
 export function commitLint() {

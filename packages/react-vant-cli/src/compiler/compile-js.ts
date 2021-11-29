@@ -1,12 +1,15 @@
 import { transform, transformAsync } from '@babel/core';
 import chalk from 'chalk';
+import { createRequire } from 'module';
 import { readFileSync } from 'fs';
-import { outputFileSync, removeSync } from 'fs-extra';
-import { replaceExt } from '../common';
+import fse from 'fs-extra';
+import { replaceExt } from '../common/index.js';
+import { consola } from '../common/logger.js';
 
-import { consola } from '../common/logger';
+const { outputFileSync, removeSync } = fse;
 
 function getDefaultJsCompileOpts(type, filePath) {
+  const require = createRequire(import.meta.url);
   return {
     filename: filePath,
     presets: [
@@ -38,7 +41,7 @@ function getDefaultJsCompileOpts(type, filePath) {
           version: require('@babel/runtime/package.json').version,
         },
       ],
-      require.resolve('../babel-transform-less-to-css'),
+      require.resolve('../../cjs/babel-transform-less-to-css.cjs'),
     ],
   };
 }

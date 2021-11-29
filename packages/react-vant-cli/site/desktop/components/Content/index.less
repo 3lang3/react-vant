@@ -4,22 +4,22 @@
   position: relative;
   flex: 1;
   padding: 0 0 75px;
-  .card {
+  .van-doc-card {
     margin-bottom: 24px;
     padding: 24px;
     background-color: #fff;
-    border-radius: @zf-doc-border-radius;
+    border-radius: @van-doc-border-radius;
     box-shadow: 0 8px 12px #ebedf0;
   }
   a {
     margin: 0 1px;
-    color: @zf-doc-blue;
+    color: @van-doc-blue;
     -webkit-font-smoothing: auto;
     &:hover {
-      color: darken(@zf-doc-blue, 10%);
+      color: darken(@van-doc-blue, 10%);
     }
     &:active {
-      color: darken(@zf-doc-blue, 20%);
+      color: darken(@van-doc-blue, 20%);
     }
   }
   h1,
@@ -28,7 +28,7 @@
   h4,
   h5,
   h6 {
-    color: @zf-doc-black;
+    color: @van-doc-black;
     font-weight: normal;
     line-height: 1.5;
     &[id] {
@@ -60,14 +60,14 @@
     font-size: 15px;
   }
   p {
-    color: @zf-doc-text-color;
+    color: @van-doc-text-color;
     font-size: 15px;
     line-height: 26px;
   }
   table {
     width: 100%;
     margin-top: 12px;
-    color: @zf-doc-text-color;
+    color: @van-doc-text-color;
     font-size: 14px;
     line-height: 1.5;
     border-collapse: collapse;
@@ -84,17 +84,17 @@
     }
     td {
       padding: 8px;
-      border-top: 1px solid @zf-doc-code-background-color;
+      border-top: 1px solid @van-doc-code-background-color;
       &:first-child {
         padding-left: 0;
         // version tag
         code {
           margin: 0;
           padding: 2px 6px;
-          color: @zf-doc-blue;
+          color: @van-doc-blue;
           font-weight: 600;
           font-size: 11px;
-          background-color: fade(@zf-doc-blue, 10%);
+          background-color: fade(@van-doc-blue, 10%);
           border-radius: 20px;
         }
       }
@@ -103,9 +103,9 @@
       }
     }
     em {
-      color: @zf-doc-green;
+      color: @van-doc-green;
       font-size: 14px;
-      font-family: @zf-doc-code-font-family;
+      font-family: @van-doc-code-font-family;
       font-style: normal;
       -webkit-font-smoothing: auto;
     }
@@ -115,7 +115,7 @@
     position: relative;
     margin: 5px 0 5px 10px;
     padding-left: 15px;
-    color: @zf-doc-text-color;
+    color: @van-doc-text-color;
     font-size: 15px;
     line-height: 26px;
     &::before {
@@ -126,7 +126,7 @@
       width: 6px;
       height: 6px;
       margin-top: 10px;
-      border: 1px solid @zf-doc-dark-grey;
+      border: 1px solid @van-doc-dark-grey;
       border-radius: 50%;
       content: '';
     }
@@ -146,7 +146,7 @@
     font-family: inherit;
     font-weight: 600;
     word-break: keep-all;
-    background-color: @zf-doc-background-color;
+    background-color: @van-doc-background-color;
     border-radius: 4px;
     -webkit-font-smoothing: antialiased;
   }
@@ -161,12 +161,12 @@
     margin: 16px 0 0;
     padding: 16px;
     background-color: #ecf9ff;
-    border-radius: @zf-doc-border-radius;
+    border-radius: @van-doc-border-radius;
   }
   img {
     width: 100%;
     margin: 16px 0;
-    border-radius: @zf-doc-border-radius;
+    border-radius: @van-doc-border-radius;
   }
   &--changelog {
     strong {

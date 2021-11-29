@@ -1,8 +1,8 @@
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 import { existsSync } from 'fs';
 import { join, isAbsolute } from 'path';
-import { getVantConfig } from '.';
-import { STYLE_DIR, SRC_DIR } from './constant';
+import { getVantConfig } from './index.js';
+import { STYLE_DIR, SRC_DIR } from './constant.js';
 
 type CSSLANG = 'css' | 'less' | 'scss';
 
@@ -38,7 +38,5 @@ const IMPORT_STYLE_RE = /import\s+?(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g;
 
 // "import 'a.less';" => "import 'a.css';"
 export function replaceCssImport(code: string) {
-  return code.replace(IMPORT_STYLE_RE, (str) =>
-    str.replace(`.${CSS_LANG}`, '.css')
-  );
+  return code.replace(IMPORT_STYLE_RE, (str) => str.replace(`.${CSS_LANG}`, '.css'));
 }

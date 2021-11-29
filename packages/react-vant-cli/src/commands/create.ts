@@ -1,8 +1,8 @@
 import inquirer from 'inquirer';
 import { existsSync, outputFileSync, readFileSync } from 'fs-extra';
-import { kebabCase, getComponents, smartOutputFile } from '../common';
-import { CONFIG_FILE_NAME, nav, ROOT, ZHPFE_CONFIG_FILE } from '../common/constant';
-import { consola, ora } from '../common/logger';
+import { kebabCase, getComponents, smartOutputFile } from '../common/index.js';
+import { CONFIG_FILE_NAME, nav, ROOT, ZHPFE_CONFIG_FILE } from '../common/constant.js';
+import { consola, ora } from '../common/logger.js';
 import {
   DEMO_INDEX_CONTENT,
   DEMO_STYLE_CONTENT,
@@ -18,14 +18,14 @@ import {
   REGISTER_SRC_PATH,
   REGISTER_SRC_CONTENT,
   configContent,
-} from '../templates/component';
-import { EXPORT_PATH, EXPORT_CONTENT } from '../templates/component/Export';
+} from '../templates/component/index.js';
+import { EXPORT_PATH, EXPORT_CONTENT } from '../templates/component/Export.js';
 import {
   STYLE_INDEX_CONTENT,
   STYLE_INDEX_LESS_PATH,
   STYLE_VAR_CONTENT,
   STYLE_VAR_LESS_PATH,
-} from '../templates/component/style';
+} from '../templates/component/style.js';
 // 中横线组件名,路径
 let HLComponent = '';
 // 组件驼峰命名

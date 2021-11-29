@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "moduleResolution": "Node",
+    "target": "ES2019",
     "outDir": "./lib",
-    "module": "commonjs",
+    "module": "ESNext",
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"]
   },
-  "include": ["src/**/*", "site"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

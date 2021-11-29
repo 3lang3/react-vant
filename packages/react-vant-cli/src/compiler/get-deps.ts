@@ -1,12 +1,16 @@
+/* eslint-disable no-plusplus */
 import { join } from 'path';
-import { readFileSync, existsSync } from 'fs-extra';
-import { SCRIPT_EXTS } from '../common/constant';
+import fse from 'fs-extra';
+import { SCRIPT_EXTS } from '../common/constant.js';
+
+const { readFileSync, existsSync } = fse;
 
 let depsMap: Record<string, string[]> = {};
 let existsCache: Record<string, boolean> = {};
 
 // https://regexr.com/47jlq
-const IMPORT_RE = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g;
+const IMPORT_RE =
+  /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/g;
 
 function matchImports(code: string): string[] {
   return code.match(IMPORT_RE) || [];

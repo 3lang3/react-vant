@@ -1,13 +1,10 @@
+import fse from 'fs-extra';
 import { sep, join } from 'path';
-import { lstatSync, existsSync, readdirSync, readFileSync, outputFileSync } from 'fs-extra';
-import merge from 'webpack-merge';
-import {
-  SRC_DIR,
-  getVantConfig,
-  ROOT_WEBPACK_CONFIG_FILE,
-  ROOT_POSTCSS_CONFIG_FILE,
-} from './constant';
-import { WebpackConfig } from './types';
+import { get } from 'lodash-es';
+import type { InlineConfig } from 'vite';
+import { SRC_DIR, getVantConfig, ROOT_POSTCSS_CONFIG_FILE } from './constant.js';
+
+const { lstatSync, existsSync, readdirSync, readFileSync, outputFileSync } = fse;
 
 export const EXT_REGEXP = /\.\w+$/;
 export const DEMO_REGEXP = new RegExp(`\\${sep}demo$`);
@@ -100,22 +97,6 @@ export function normalizePath(path: string): string {
   return path.replace(/\\/g, '/');
 }
 
-export function getWebpackConfig(defaultConfig: WebpackConfig) {
-  if (existsSync(ROOT_WEBPACK_CONFIG_FILE)) {
-    const config = require(ROOT_WEBPACK_CONFIG_FILE);
-
-    // 如果是函数形式，可能并不仅仅是添加额外的处理流程，而是在原有流程上进行修改
-    // 比如修改markdown-loader,添加options.enableMetaData
-    if (typeof config === 'function') {
-      return merge(defaultConfig, config(defaultConfig));
-    }
-
-    return merge(defaultConfig, config);
-  }
-
-  return defaultConfig;
-}
-
 export function getPostcssConfig() {
   if (existsSync(ROOT_POSTCSS_CONFIG_FILE)) {
     return require(ROOT_POSTCSS_CONFIG_FILE);
@@ -167,6 +148,16 @@ export function kebabCase(str: string): string {
     .replace(/([A-Z])/g, '-$1')
     .toLowerCase()
     .replace(/^-/, '');
+}
+
+export function mergeCustomViteConfig(config: InlineConfig) {
+  const vantConfig = getVantConfig();
+  const configureVite = get(vantConfig, 'build.configureVite');
+
+  if (configureVite) {
+    return configureVite(config);
+  }
+  return config;
 }
 
 export { getVantConfig };

@@ -1,14 +1,10 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
-import { join } from 'path';
-import { existsSync } from 'fs-extra';
-import {
-  ROOT,
-  SRC_DIR,
-  JEST_SETUP_FILE,
-  JEST_FILE_MOCK_FILE,
-  JEST_STYLE_MOCK_FILE,
-} from '../common/constant';
+const { join } = require('path');
+const { existsSync } = require('fs');
+const { ROOT } = require('./shared.cjs');
+
+const JEST_SETUP_FILE = join(__dirname, 'jest.setup.cjs');
+const JEST_FILE_MOCK_FILE = join(__dirname, 'jest.file-mock.cjs');
+const JEST_STYLE_MOCK_FILE = join(__dirname, 'jest.style-mock.cjs');
 
 const DEFAULT_CONFIG = {
   setupFilesAfterEnv: [JEST_SETUP_FILE],
@@ -17,9 +13,8 @@ const DEFAULT_CONFIG = {
   },
   moduleNameMapper: {
     '\\.(css|less|scss)$': JEST_STYLE_MOCK_FILE,
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': JEST_FILE_MOCK_FILE,
-    'site-mobile-demo$': join(ROOT, 'tests/shared/demoWrapper'),
-    '^react-vant$': SRC_DIR,
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      JEST_FILE_MOCK_FILE,
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'md'],
   testPathIgnorePatterns: ['/node_modules/', '_site', 'site'],

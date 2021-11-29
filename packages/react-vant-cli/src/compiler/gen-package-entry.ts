@@ -1,16 +1,7 @@
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 import { join } from 'path';
-import {
-  pascalize,
-  getComponents,
-  smartOutputFile,
-  normalizePath,
-} from '../common';
-import {
-  SRC_DIR,
-  getPackageJson,
-  getVantConfig,
-} from '../common/constant';
+import { pascalize, getComponents, smartOutputFile, normalizePath } from '../common/index.js';
+import { SRC_DIR, getPackageJson, getVantConfig } from '../common/constant.js';
 
 type PathResolver = (path: string) => string;
 
@@ -22,11 +13,7 @@ function getPathByName(name: string, pathResolver?: PathResolver) {
   return normalizePath(path);
 }
 
-function genImports(
-  names: string[],
-  pathResolver?: PathResolver,
-  namedExport?: boolean
-): string {
+function genImports(names: string[], pathResolver?: PathResolver, namedExport?: boolean): string {
   return names
     .map((name) => {
       const pascalName = pascalize(name);
@@ -38,11 +25,7 @@ function genImports(
     .join('\n');
 }
 
-function genExports(
-  names: string[],
-  pathResolver?: PathResolver,
-  namedExport?: boolean
-): string {
+function genExports(names: string[], pathResolver?: PathResolver, namedExport?: boolean): string {
   if (namedExport) {
     const exports = names
       .map((name) => `export * from '${getPathByName(name, pathResolver)}';`)

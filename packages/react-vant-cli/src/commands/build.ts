@@ -1,8 +1,8 @@
 import execa from 'execa';
 import chokidar from 'chokidar';
 import { join, relative } from 'path';
-import { remove, copy, readdirSync, existsSync } from 'fs-extra';
-import { ora, consola, slimPath } from '../common/logger';
+import fse from 'fs-extra';
+import { ora, consola, slimPath } from '../common/logger.js';
 import {
   isAsset,
   isDemoDir,
@@ -13,17 +13,19 @@ import {
   setBuildTarget,
   setModuleEnv,
   setNodeEnv,
-} from '../common';
-import { clean } from './clean';
-import { LIB_DIR, ES_DIR, SRC_DIR } from '../common/constant';
-import { genStyleDepsMap } from '../compiler/gen-style-deps-map';
-import { genPackageEntry } from '../compiler/gen-package-entry';
-import { genPackageStyle } from '../compiler/gen-package-style';
-import { CSS_LANG } from '../common/css';
-import { compileJsPath } from '../compiler/compile-js';
-import { compilePackage } from '../compiler/compile-package';
-import { compileStyle } from '../compiler/compile-style';
-import { installDependencies } from '../common/manager';
+} from '../common/index.js';
+import { clean } from './clean.js';
+import { LIB_DIR, ES_DIR, SRC_DIR } from '../common/constant.js';
+import { genStyleDepsMap } from '../compiler/gen-style-deps-map.js';
+import { genPackageEntry } from '../compiler/gen-package-entry.js';
+import { genPackageStyle } from '../compiler/gen-package-style.js';
+import { CSS_LANG } from '../common/css.js';
+import { compileJsPath } from '../compiler/compile-js.js';
+import { compilePackage } from '../compiler/compile-package.js';
+import { compileStyle } from '../compiler/compile-style.js';
+import { installDependencies } from '../common/manager.js';
+
+const { remove, copy, readdir, existsSync } = fse;
 
 async function compileFile(filePath: string) {
   if (isScript(filePath)) {
@@ -41,8 +43,34 @@ async function compileFile(filePath: string) {
   return Promise.resolve();
 }
 
+/**
+ * Pre-compile
+ * 1. Remove unneeded dirs
+ * 2. compile sfc into scripts/styles
+ */
+async function preCompileDir(dir: string) {
+  const files = await readdir(dir);
+
+  await Promise.all(
+    files.map((filename) => {
+      const filePath = join(dir, filename);
+
+      if (isDemoDir(filePath) || isTestDir(filePath)) {
+        return remove(filePath);
+      }
+      if (isDir(filePath)) {
+        return preCompileDir(filePath);
+      }
+      if (isScript(filePath)) {
+        return compileJsPath(filePath);
+      }
+      return Promise.resolve();
+    }),
+  );
+}
+
 async function compileDir(dir: string) {
-  const files = readdirSync(dir);
+  const files = await readdir(dir);
 
   await Promise.all(
     files.map((filename) => {
@@ -59,6 +87,7 @@ async function compileDir(dir: string) {
       return compileFile(filePath);
     }),
   );
+
   await Promise.all(
     files.map((filename) => {
       const filePath = join(dir, filename);
@@ -103,6 +132,8 @@ async function buildPackageStyleEntry() {
 }
 
 async function buildTypeDeclarations() {
+  // await Promise.all([preCompileDir(ES_DIR), preCompileDir(LIB_DIR)]);
+
   const tsConfig = join(process.cwd(), 'tsconfig.declaration.json');
 
   if (existsSync(tsConfig)) {

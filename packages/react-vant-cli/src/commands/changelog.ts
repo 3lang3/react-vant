@@ -1,8 +1,12 @@
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import conventionalChangelog from 'conventional-changelog';
-import { createWriteStream, readFileSync } from 'fs-extra';
-import { ROOT } from '../common/constant';
-import { ora, slimPath } from '../common/logger';
+import fse from 'fs-extra';
+import { ROOT } from '../common/constant.js';
+import { ora, slimPath } from '../common/logger.js';
+
+const { createWriteStream, readFileSync } = fse;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const DIST_FILE = join(ROOT, './changelog.generated.md');
 const MAIN_TEMPLATE = join(__dirname, '../../template/changelog-main.hbs');

@@ -1,16 +1,8 @@
-import webpack from 'webpack';
-import { getPackageConfig } from '../config/webpack.package';
+import { build } from 'vite';
+import { mergeCustomViteConfig } from '../common/index.js';
+import { getViteConfigForPackage } from '../config/vite.package.js';
 
-export async function compilePackage(isMinify: boolean) {
-  return new Promise<void>((resolve, reject) => {
-    const config = getPackageConfig(isMinify);
-
-    webpack(config, (err, stats) => {
-      if (err || (stats?.hasErrors())) {
-        reject(err || stats?.toString());
-      } else {
-        resolve();
-      }
-    });
-  });
+export async function compilePackage(minify: boolean): ReturnType<typeof build> {
+  const config = mergeCustomViteConfig(getViteConfigForPackage(minify));
+  return build(config);
 }
