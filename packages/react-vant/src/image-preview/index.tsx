@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, { useEffect, useState } from 'react';
-
+import { Clear } from '@react-vant/icons';
 import ReactDOM from 'react-dom';
-
 import { noop } from '../utils';
 import { CloseParams, ImagePreviewProps, ImagePreviewStatic } from './PropsType';
-
 import BaseImagePreview from './ImagePreview';
 import { resolveContainer } from '../utils/dom/getContainer';
 import './style/index.less';
@@ -18,7 +16,7 @@ const defaultConfig: ImagePreviewProps = {
   className: '',
   showIndex: true,
   closeable: false,
-  closeIcon: 'clear',
+  closeIcon: <Clear />,
   startPosition: 0,
   swipeDuration: 300,
   closeOnPopstate: true,

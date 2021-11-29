@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Flex, Button, Cell, Dialog, Image, Typography, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
+import { Arrow, ArrowLeft, Cross } from '@react-vant/icons';
 import { SwipeCellInstance } from '../PropsType';
 import SwipeCell from '..';
 import './style.less';
@@ -123,13 +124,13 @@ export default (): React.ReactNode => {
         </SwipeCell>
         <br />
         <Flex justify="around">
-          <Button icon="arrow-left" onClick={() => ref.current.open('left')}>
+          <Button icon={<ArrowLeft />} onClick={() => ref.current.open('left')}>
             左滑打开
           </Button>
-          <Button icon="arrow" onClick={() => ref.current.open('right')}>
+          <Button icon={<Arrow />} onClick={() => ref.current.open('right')}>
             右滑打开
           </Button>
-          <Button icon="cross" onClick={() => ref.current.close()}>
+          <Button icon={<Cross />} onClick={() => ref.current.close()}>
             关闭
           </Button>
         </Flex>

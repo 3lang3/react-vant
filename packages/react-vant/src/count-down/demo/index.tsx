@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { CountDown, Toast } from 'react-vant';
+import { PauseCircleO, PlayCircleO, Replay } from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
 import { CountDownInstance } from '../PropsType';
 import Grid from '../../grid';
@@ -45,9 +46,9 @@ export default (): React.ReactNode => {
         />
         <br />
         <Grid columnNum={3}>
-          <Grid.Item icon="play-circle-o" text="开始" onClick={() => ref.current.start()} />
-          <Grid.Item icon="pause-circle-o" text="暂停" onClick={() => ref.current.pause()} />
-          <Grid.Item icon="replay" text="重置" onClick={() => ref.current.reset()} />
+          <Grid.Item icon={<PlayCircleO />} text="开始" onClick={() => ref.current.start()} />
+          <Grid.Item icon={<PauseCircleO />} text="暂停" onClick={() => ref.current.pause()} />
+          <Grid.Item icon={<Replay />} text="重置" onClick={() => ref.current.reset()} />
         </Grid>
       </DemoBlock>
     </DemoSection>

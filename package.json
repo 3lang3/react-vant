@@ -17,7 +17,6 @@
     "changelog": "lerna exec --scope react-vant yarn changelog",
     "clean": "lerna clean -y",
     "create-component": "lerna exec --scope react-vant yarn create-component",
-    "prepare": "yarn build:cli && yarn build:fabric",
     "publish": "lerna publish",
     "release:site": "lerna exec --scope react-vant yarn release:site",
     "start": "lerna exec --scope react-vant yarn start"

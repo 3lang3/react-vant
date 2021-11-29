@@ -45,6 +45,7 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
 
 ConfigProvider.defaultProps = {
   tag: 'div',
+  themeVars: {},
 };
 
 export default ConfigProvider;

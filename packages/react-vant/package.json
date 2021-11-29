@@ -49,7 +49,7 @@
     "prettier": "npx prettier --write vant.config.js src/index.ts",
     "release:site": "npm run build:site && gh-pages -d site",
     "start": "react-vant-cli dev",
-    "test": "react-vant-cli test --coverage",
+    "test": "react-vant-cli test",
     "test:coverage": "open tests/coverage/index.html"
   },
   "browserslist": [

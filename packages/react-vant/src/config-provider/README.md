@@ -89,52 +89,6 @@ export default () => {
 
 > 注意：ConfigProvider 仅影响它的子组件的样式，不影响全局 root 节点。
 
-### 通过 ConfigProvider 替换 Icon
-
-`ConfigProvider` 组件提供了替换 Icon 的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `iconPrefix` 属性来修改图标的类名前缀。
-
-```css
-/* 引入第三方或自定义的字体图标样式 */
-@font-face {
-  font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1619071_dqiwns2g0d.ttf') format('truetype');
-}
-
-.iconfont {
-  font-family: 'iconfont' !important;
-  font-style: normal;
-}
-
-.iconfont-1111::before {
-  content: '\e782';
-}
-.iconfont-emojifill::before {
-  content: '\e78d';
-}
-.iconfont-emojilight::before {
-  content: '\e7a1';
-}
-```
-
-```jsx
-import { ConfigProvider, Field, Rate, Button } from 'react-vant';
-
-export default () => {
-  return (
-    <ConfigProvider iconPrefix="iconfont">
-      <Field label="评分">
-        <Rate icon="emojifill" voidIcon="emojilight" />
-      </Field>
-      <div style={{ margin: 16 }}>
-        <Button icon="1111" block round type="primary">
-          提交
-        </Button>
-      </div>
-    </ConfigProvider>
-  );
-};
-```
-
 ### 基础变量
 
 React Vant 中的 CSS 变量分为 **基础变量** 和 **组件变量**。组件变量会继承基础变量，因此在修改基础变量后，会影响所有相关的组件。
@@ -229,9 +183,7 @@ React Vant 中的 CSS 变量分为 **基础变量** 和 **组件变量**。组�
 
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| themeVars | 自定义主题变量 | _object_ | - |
-| prefixCls | 设置统一样式前缀。注意：需要配合 less 变量 [@rv-prefix]() 使用 | _string_ | `rv` |
-| iconPrefix | 所有图标的类名前缀，等同于 Icon 组件的 [classPrefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
-| tag | `ConfigProdiver`对应的 HTML 节点标签名 | _string_ | `div` |
+| 参数      | 说明                                   | 类型     | 默认值 |
+| --------- | -------------------------------------- | -------- | ------ |
+| themeVars | 自定义主题变量                         | _object_ | -      |
+| tag       | `ConfigProdiver`对应的 HTML 节点标签名 | _string_ | `div`  |

@@ -49,18 +49,6 @@ export default (): React.ReactNode => {
           </div>
         </ConfigProvider>
       </DemoBlock>
-      <DemoBlock title="Icon替换">
-        <ConfigProvider iconPrefix="iconfont">
-          <Field label="评分">
-            <Rate icon="emojifill" voidIcon="emojilight" />
-          </Field>
-          <div style={{ margin: 16 }}>
-            <Button icon="1111" block round type="primary">
-              提交
-            </Button>
-          </div>
-        </ConfigProvider>
-      </DemoBlock>
     </DemoSection>
   );
 };

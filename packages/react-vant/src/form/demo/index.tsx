@@ -16,7 +16,7 @@ import {
   DatetimePicker,
   Calendar,
 } from 'react-vant';
-import { Delete } from '@react-vant/icons';
+import { AddO, Delete } from '@react-vant/icons';
 import { components } from 'site-mobile-demo';
 
 import Form, { FormItemProps } from '..';
@@ -242,7 +242,7 @@ export default (): React.ReactNode => {
                   </div>
                 ))}
                 <div style={{ padding: 10 }}>
-                  <Button round block plain icon="add-o" size="small" onClick={() => add()}>
+                  <Button round block plain icon={<AddO />} size="small" onClick={() => add()}>
                     新增用户
                   </Button>
                 </div>

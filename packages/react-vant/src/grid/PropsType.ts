@@ -30,8 +30,8 @@ export interface GridItemProps extends BaseTypeProps {
   badge?: BadgeSettingProps;
   /** 文字 */
   text?: string | React.ReactNode;
-  /** 图标名称或图片链接	 */
-  icon?: string | React.ReactNode;
+  /** 图标 */
+  icon?: React.ReactNode;
   /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
   iconPrefix?: string;
   /** 图标颜色，等同于 Icon 组件的 color 属性	 */

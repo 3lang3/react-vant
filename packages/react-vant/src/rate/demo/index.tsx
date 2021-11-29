@@ -1,3 +1,4 @@
+import { Fire, FireO } from '@react-vant/icons';
 import React, { useState } from 'react';
 import { components } from 'site-mobile-demo';
 import Rate from '..';
@@ -16,12 +17,12 @@ export default (): React.ReactNode => {
         <Rate value={value} onChange={onChange} />
       </DemoBlock>
       <DemoBlock title="自定义图标">
-        <Rate icon="fire" voidIcon="fire-o" value={value} onChange={onChange} />
+        <Rate icon={<Fire />} voidIcon={<FireO />} value={value} onChange={onChange} />
       </DemoBlock>
       <DemoBlock title="自定义样式">
         <Rate
-          icon="fire"
-          voidIcon="fire-o"
+          icon={<Fire />}
+          voidIcon={<FireO />}
           color="#ffd21e"
           voidColor="#000"
           value={value}

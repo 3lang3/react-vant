@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import clsx from 'clsx';
+import { Search as SearchIco } from '@react-vant/icons';
 import { SearchInstance, SearchProps } from './PropsType';
 import { preventDefault } from '../utils';
 
@@ -154,7 +155,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
 
 Search.defaultProps = {
   shape: 'square',
-  leftIcon: 'search',
+  leftIcon: <SearchIco />,
   actionText: '取消',
   inputAlign: 'left',
 } as const;

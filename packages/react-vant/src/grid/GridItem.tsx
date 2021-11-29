@@ -66,7 +66,15 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
 
   const renderIcon = () => {
     if (props.icon) {
-      return <Badge {...props.badge}>{props.icon}</Badge>;
+      return (
+        <Badge {...props.badge}>
+          {React.cloneElement(props.icon as React.ReactElement, {
+            className: cls(bem('icon')),
+            color: props.iconColor,
+            fontSize: parent.iconSize,
+          })}
+        </Badge>
+      );
     }
 
     return null;

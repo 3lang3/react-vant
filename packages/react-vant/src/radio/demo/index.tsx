@@ -1,3 +1,4 @@
+import { ShopO } from '@react-vant/icons';
 import React, { useState } from 'react';
 import { Cell, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
@@ -110,14 +111,14 @@ export default (): React.ReactNode => {
             <Cell
               clickable
               title="单选框1"
-              icon="shop-o"
+              icon={<ShopO />}
               onClick={() => setCellValue('1')}
               rightIcon={<Radio name="1" />}
             />
             <Cell
               clickable
               title="单选框2"
-              icon="shop-o"
+              icon={<ShopO />}
               onClick={() => setCellValue('2')}
               rightIcon={<Radio name="2" />}
             />

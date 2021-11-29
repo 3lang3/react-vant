@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useRef, useState } from 'react';
-import { AddO, MoreO, MusicO } from '@react-vant/icons';
+import { AddO, MoreO, MusicO, PhotoO } from '@react-vant/icons';
 import { Toast, Button, Grid, Popup, Picker, Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import { PopoverInstance, PopoverPlacement } from '../PropsType';
@@ -106,7 +106,7 @@ export default (): React.ReactNode => {
               <Grid.Item
                 onClick={() => popover1.current?.hide()}
                 key={i}
-                icon="photo-o"
+                icon={<PhotoO />}
                 text="文字"
               />
             ))}

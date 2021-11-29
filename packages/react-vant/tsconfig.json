@@ -11,10 +11,10 @@
     "pretty": true,
     "baseUrl": "./",
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "react-vant": ["src/index.ts"],
-      "react-vant/es/*": ["src/*"]
+      "react-vant": ["src/index.ts"]
     }
   },
   "exclude": ["node_modules", "lib", "es"]
