@@ -31,13 +31,12 @@ export const ES_DIR = join(ROOT, 'es');
 export const LIB_DIR = join(ROOT, 'lib');
 export const DOCS_DIR = join(ROOT, 'docs');
 export const DOC_DIST_DIR = join(ROOT, 'site');
-export const ZHPFE_CONFIG_FILE = join(ROOT, CONFIG_FILE_NAME);
 export const PACKAGE_JSON_FILE = join(ROOT, 'package.json');
 export const ROOT_WEBPACK_CONFIG_FILE = join(ROOT, 'webpack.config.js');
 export const ROOT_POSTCSS_CONFIG_FILE = join(ROOT, 'postcss.config.js');
 export const CACHE_DIR = join(ROOT, 'node_modules/.cache');
 export const SITE_DIST_DIR = join(ROOT, 'site');
-export const VANT_CONFIG_FILE = join(ROOT, 'vant.config.mjs');
+export const VANT_CONFIG_FILE = join(ROOT, CONFIG_FILE_NAME);
 
 // Relative paths
 export const CJS_DIR = join(__dirname, '..', '..', 'cjs');
@@ -115,7 +114,7 @@ function ComponentClassification(): {
 } {
   let ComponentClassificationArray = [];
   let navArray = [];
-  if (existsSync(ZHPFE_CONFIG_FILE)) {
+  if (existsSync(VANT_CONFIG_FILE)) {
     const config = vantConfig;
     const { nav } = config.site.locales['zh-CN'];
     navArray = nav;

@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import { existsSync, outputFileSync, readFileSync } from 'fs-extra';
 import { kebabCase, getComponents, smartOutputFile } from '../common/index.js';
-import { CONFIG_FILE_NAME, nav, ROOT, ZHPFE_CONFIG_FILE } from '../common/constant.js';
+import { CONFIG_FILE_NAME, nav, ROOT, VANT_CONFIG_FILE } from '../common/constant.js';
 import { consola, ora } from '../common/logger.js';
 import {
   DEMO_INDEX_CONTENT,
@@ -116,7 +116,7 @@ async function registerComponent(classification: string, aliasName: string) {
     outputFileSync(REGISTER_SRC_PATH, content);
   }
   // 注册文档
-  const config = require(ZHPFE_CONFIG_FILE);
+  const config = require(VANT_CONFIG_FILE);
   // 这段插入的代码好像可以优化一下
   const newConfig = nav.find((component) => component.title === classification);
   newConfig.items.push({

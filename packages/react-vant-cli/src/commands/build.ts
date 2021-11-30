@@ -21,7 +21,7 @@ import { genPackageEntry } from '../compiler/gen-package-entry.js';
 import { genPackageStyle } from '../compiler/gen-package-style.js';
 import { CSS_LANG } from '../common/css.js';
 import { compileJsPath } from '../compiler/compile-js.js';
-import { compilePackage } from '../compiler/compile-package.js';
+import { compileBundles } from '../compiler/compile-bundles.js';
 import { compileStyle } from '../compiler/compile-style.js';
 import { installDependencies } from '../common/manager.js';
 
@@ -157,8 +157,7 @@ async function buildCJSOutputs() {
 
 async function buildBundledOutputs() {
   setModuleEnv('esmodule');
-  await compilePackage(false);
-  await compilePackage(true);
+  await compileBundles();
 }
 
 const tasks = [

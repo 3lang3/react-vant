@@ -73,7 +73,6 @@ export function getViteConfigForSiteDev(): InlineConfig {
     plugins: [
       react(),
       mdPlugin.default({
-        // wrapperClasses: 'van-doc-markdown-body',
         mode: [Mode.HTML],
         markdownIt: new MarkdownIt({
           html: true,

@@ -1,9 +1,12 @@
-/* eslint-disable no-param-reassign */
 export default {
   name: 'react-vant',
   build: { css: { preprocessor: 'less' }, site: { publicPath: './' } },
   site: {
     defaultLang: 'zh-CN',
+    versions: [{ label: 'v1', link: '/v1/' }],
+    htmlMeta: {
+      'docsearch:version': 'v3',
+    },
     locales: {
       'zh-CN': {
         title: 'React Vant',
@@ -182,6 +185,13 @@ export default {
                 path: 'use-window-size',
                 title: 'useWindowSize',
               },
+            ],
+          },
+          {
+            title: '废弃',
+            items: [
+              { path: 'swipe', title: 'Swipe 轮播' },
+              { path: 'theme', title: '定制主题' },
             ],
           },
         ],

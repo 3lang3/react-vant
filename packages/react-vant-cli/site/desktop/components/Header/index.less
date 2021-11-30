@@ -45,11 +45,11 @@
     transition: 0.3s ease-in-out;
   }
   &__version {
-    &-multiple::after {
-      padding-right: 20px;
+    padding-right: 20px;
+    &::after {
       position: absolute;
-      top: 7px;
-      right: 7px;
+      top: 10px;
+      right: 9px;
       width: 5px;
       height: 5px;
       color: #001938;
@@ -60,7 +60,7 @@
     }
     &-pop {
       position: absolute;
-      top: 30px;
+      top: 34px;
       right: 0;
       left: 0;
       z-index: 99;
@@ -68,7 +68,7 @@
       line-height: 36px;
       text-align: left;
       background-color: #fff;
-      border-radius: @van-doc-border-radius;
+      border-radius: 8px;
       box-shadow: 0 4px 12px #ebedf0;
       transform-origin: top;
       transition: 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);

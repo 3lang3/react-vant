@@ -79,7 +79,7 @@ const App = () => {
   // 文档版本数据
   const versions = React.useMemo(() => {
     if (config.site.versions) {
-      return [{ label: packageVersion }, ...localeConfig.site.versions];
+      return config.site.versions;
     }
     return [{ label: packageVersion }];
   }, []);

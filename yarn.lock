@@ -2240,6 +2240,18 @@
     "@react-spring/shared" "~9.3.0"
     "@react-spring/types" "~9.3.0"
 
+"@react-vant/markdown-loader@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@react-vant/markdown-loader/-/markdown-loader-1.0.4.tgz#329fb7e59689b9aa69f8adeabd49cdd0f8a7bc7e"
+  integrity sha512-Ij4RShcZZghzQ4PuxF8Kc2n/kqfdW3+9qnBuUXBgCFpzaCcYYrXfSBXd0jr02itCrTxuKGUcdzRcJZWYLkoYKg==
+  dependencies:
+    front-matter "^4.0.2"
+    loader-utils "^2.0.0"
+    markdown-it "^12.0.0"
+    markdown-it-anchor "^6.0.0"
+    prismjs "^1.23.0"
+    transliteration "^2.1.11"
+
 "@rollup/pluginutils@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.1.tgz#1d4da86dd4eded15656a57d933fda2b9a08d47ec"
@@ -2591,11 +2603,6 @@
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.4.2.tgz#4c62fae93eb479660c3bd93f9d24d561597a8281"
   integrity sha512-ekoj4qOQYp7CvjX8ZDBgN86w3MqQhLE1hczEJbEIjgFEumDy+na/4AJAbLXfgEWFNB2pKadM5rPFtuSGMWK7xA==
-
-"@types/prismjs@1.16.6":
-  version "1.16.6"
-  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.6.tgz#377054f72f671b36dbe78c517ce2b279d83ecc40"
-  integrity sha512-dTvnamRITNqNkqhlBd235kZl3KfVJQQoT5jkXeiWSBK7i4/TLKBNLV0S1wOt8gy4E2TY722KLtdmv2xc6+Wevg==
 
 "@types/prop-types@*":
   version "15.7.4"
@@ -7308,16 +7315,6 @@ graceful-fs@^4.0.0, graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
 
-gray-matter@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/gray-matter/-/gray-matter-4.0.3.tgz#e893c064825de73ea1f5f7d88c7a9f7274288798"
-  integrity sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==
-  dependencies:
-    js-yaml "^3.13.1"
-    kind-of "^6.0.2"
-    section-matter "^1.0.0"
-    strip-bom-string "^1.0.0"
-
 grouped-queue@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/grouped-queue/-/grouped-queue-1.1.0.tgz#63e3f9ca90af952269d1d40879e41221eacc74cb"
@@ -9780,7 +9777,7 @@ markdown-it-anchor@^6.0.0:
   resolved "https://registry.yarnpkg.com/markdown-it-anchor/-/markdown-it-anchor-6.0.1.tgz#f54b78757d0b61455faf8ced775b39498bd6d6f9"
   integrity sha512-8qX4r5R6AtXla9HKCouEQ40inw69O5jR4VUXlZySsBLxIXlsJ3Yi9JV6JWPU4ZdA8jWTGDDJjJYNLwQ0W4jCag==
 
-markdown-it@^12.0.0, markdown-it@^12.2.0:
+markdown-it@^12.0.0:
   version "12.2.0"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-12.2.0.tgz#091f720fd5db206f80de7a8d1f1a7035fd0d38db"
   integrity sha512-Wjws+uCrVQRqOoJvze4HCqkKl1AsSh95iFAeQDwnyfxM09divCBSXlDR1uTvyUP3Grzpn4Ru8GeCxYPM8vkCQg==
@@ -12794,14 +12791,6 @@ scoped-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/scoped-regex/-/scoped-regex-1.0.0.tgz#a346bb1acd4207ae70bd7c0c7ca9e566b6baddb8"
   integrity sha1-o0a7Gs1CB65wvXwMfKnlZra63bg=
 
-section-matter@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/section-matter/-/section-matter-1.0.0.tgz#e9041953506780ec01d59f292a19c7b850b84167"
-  integrity sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==
-  dependencies:
-    extend-shallow "^2.0.1"
-    kind-of "^6.0.0"
-
 semver-compare@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/semver-compare/-/semver-compare-1.0.0.tgz#0dee216a1c941ab37e9efb1788f6afc5ff5537fc"
@@ -13449,11 +13438,6 @@ strip-bom-stream@^2.0.0:
   dependencies:
     first-chunk-stream "^2.0.0"
     strip-bom "^2.0.0"
-
-strip-bom-string@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/strip-bom-string/-/strip-bom-string-1.0.0.tgz#e5211e9224369fbb81d633a2f00044dc8cedad92"
-  integrity sha1-5SEekiQ2n7uB1jOi8ABE3IztrZI=
 
 strip-bom@^2.0.0:
   version "2.0.0"
@@ -14818,16 +14802,6 @@ vite-plugin-markdown@^2.0.2:
     front-matter "^4.0.0"
     htmlparser2 "^6.0.0"
     markdown-it "^12.0.0"
-
-vite-plugin-md@^0.11.4:
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/vite-plugin-md/-/vite-plugin-md-0.11.4.tgz#65ce8b88ebaf6377cd42389e1699041526432bd3"
-  integrity sha512-t24rdVSB72k8xeLcuMhwl0ku5hvsQkt7NfVNG1LEaTOykbXTgwcGD8OUTmryOsGGhCw2DuCZJvTs+qK07J7Gug==
-  dependencies:
-    "@rollup/pluginutils" "^4.1.1"
-    "@types/markdown-it" "^12.2.3"
-    gray-matter "^4.0.3"
-    markdown-it "^12.2.0"
 
 vite@^2.6.13:
   version "2.6.14"

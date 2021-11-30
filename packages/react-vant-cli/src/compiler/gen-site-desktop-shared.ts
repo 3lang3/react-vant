@@ -13,7 +13,7 @@ import {
   SRC_DIR,
   DOCS_DIR,
   getPackageJson,
-  ZHPFE_CONFIG_FILE,
+  VANT_CONFIG_FILE,
   SITE_DESKTOP_SHARED_FILE,
 } from '../common/constant.js';
 
@@ -79,7 +79,7 @@ function resolveDocuments(components: string[]): DocumentItem[] {
 
 // config.js
 function genImportConfig() {
-  return `import config from '${removeExt(normalizePath(ZHPFE_CONFIG_FILE))}';`;
+  return `import config from '${removeExt(normalizePath(VANT_CONFIG_FILE))}';`;
 }
 
 function genExportConfig() {

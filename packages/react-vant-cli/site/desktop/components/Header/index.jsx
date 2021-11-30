@@ -1,6 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
+import { packageVersion } from 'site-desktop-shared';
 
 import SearchInput from '../SearchInput';
 import './index.less';
@@ -35,7 +36,7 @@ const Header = (props) => {
 
   const toggleVersionPop = () => {
     // eslint-disable-next-line react/no-this-in-sfc
-    const val = !this.showVersionPop;
+    const val = !showVersionPop;
     const action = val ? 'add' : 'remove';
     document.body[`${action}EventListener`]('click', checkHideVersionPop);
     setShowVersionPop(val);
@@ -75,13 +76,11 @@ const Header = (props) => {
             {versions && (
               <li ref={versionRef} className="vant-doc-header__top-nav-item">
                 <span
-                  className={clsx('vant-doc-header__cube vant-doc-header__version', {
-                    'vant-doc-header__version-multiple': versions.length > 1,
-                  })}
+                  className={clsx('vant-doc-header__cube vant-doc-header__version')}
                   onClick={toggleVersionPop}
                 >
-                  v{versions[0].label}
-                  {/* <transition name="vant-doc-dropdown">
+                  {packageVersion}
+                  <div name="vant-doc-dropdown">
                     {showVersionPop && (
                       <div className="vant-doc-header__version-pop">
                         {versions.map((item) => (
@@ -95,7 +94,7 @@ const Header = (props) => {
                         ))}
                       </div>
                     )}
-                  </transition> */}
+                  </div>
                 </span>
               </li>
             )}
