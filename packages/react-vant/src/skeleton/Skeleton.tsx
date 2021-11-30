@@ -14,7 +14,7 @@ const Skeleton: React.FC<SkeletonProps> = ({ children, className, style, ...prop
   const getRowWidth = (index: number) => {
     const { rowWidth } = props;
 
-    if (rowWidth === DEFAULT_ROW_WIDTH && index === +props.row - 1) {
+    if (rowWidth === DEFAULT_ROW_WIDTH && index === +props.row - 1 && index !== 0) {
       return DEFAULT_LAST_ROW_WIDTH;
     }
 

@@ -171,6 +171,7 @@ const [show, setShow] = useState(false);
 | overlay | 是否展示遮罩层 | _boolean_ | `true` |
 | overlayClass | 自定义遮罩层类名 | _string_ | - |
 | overlayStyle | 自定义遮罩层样式 | _object_ | - |
+| closeable | 是否展示关闭图标 | _boolean_ | `false` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭弹窗 | _boolean_ | `false` |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
@@ -188,24 +189,24 @@ const [show, setShow] = useState(false);
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-dialog-width | _320px_ | - |
-| --rv-dialog-small-screen-width | _90%_ | - |
-| --rv-dialog-font-size | _var(--rv-font-size-lg)_ | - |
-| --rv-dialog-transition | _var(--rv-animation-duration-base)_ | - |
-| --rv-dialog-border-radius | _16px_ | - |
-| --rv-dialog-background-color | _var(--rv-white)_ | - |
-| --rv-dialog-header-font-weight | _var(--rv-font-weight-bold)_ | - |
-| --rv-dialog-header-line-height | _24px_ | - |
-| --rv-dialog-header-padding-top | _26px_ | - |
-| --rv-dialog-header-isolated-padding | _var(--rv-padding-lg) 0_ | - |
-| --rv-dialog-message-padding | _var(--rv-padding-lg)_ | - |
-| --rv-dialog-message-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-dialog-message-line-height | _var(--rv-line-height-md)_ | - |
-| --rv-dialog-message-max-height | _60vh_ | - |
-| --rv-dialog-has-title-message-text-color | _var(--rv-gray-7)_ | - |
-| --rv-dialog-has-title-message-padding-top | _var(--rv-padding-xs)_ | - |
-| --rv-dialog-button-height | _48px_ | - |
-| --rv-dialog-round-button-height | _36px_ | - |
-| --rv-dialog-confirm-button-text-color | _var(--rv-danger-color)_ | - |
+| 名称                                      | 默认值                              | 描述 |
+| ----------------------------------------- | ----------------------------------- | ---- |
+| --rv-dialog-width                         | _320px_                             | -    |
+| --rv-dialog-small-screen-width            | _90%_                               | -    |
+| --rv-dialog-font-size                     | _var(--rv-font-size-lg)_            | -    |
+| --rv-dialog-transition                    | _var(--rv-animation-duration-base)_ | -    |
+| --rv-dialog-border-radius                 | _16px_                              | -    |
+| --rv-dialog-background-color              | _var(--rv-white)_                   | -    |
+| --rv-dialog-header-font-weight            | _var(--rv-font-weight-bold)_        | -    |
+| --rv-dialog-header-line-height            | _24px_                              | -    |
+| --rv-dialog-header-padding-top            | _26px_                              | -    |
+| --rv-dialog-header-isolated-padding       | _var(--rv-padding-lg) 0_            | -    |
+| --rv-dialog-message-padding               | _var(--rv-padding-lg)_              | -    |
+| --rv-dialog-message-font-size             | _var(--rv-font-size-md)_            | -    |
+| --rv-dialog-message-line-height           | _var(--rv-line-height-md)_          | -    |
+| --rv-dialog-message-max-height            | _60vh_                              | -    |
+| --rv-dialog-has-title-message-text-color  | _var(--rv-gray-7)_                  | -    |
+| --rv-dialog-has-title-message-padding-top | _var(--rv-padding-xs)_              | -    |
+| --rv-dialog-button-height                 | _48px_                              | -    |
+| --rv-dialog-round-button-height           | _36px_                              | -    |
+| --rv-dialog-confirm-button-text-color     | _var(--rv-danger-color)_            | -    |
