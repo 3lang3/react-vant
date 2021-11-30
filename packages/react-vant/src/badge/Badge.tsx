@@ -40,7 +40,7 @@ const Badge: React.FC<BadgeProps> = (props) => {
 
         if (props.children) {
           style.top = addUnit(y);
-          style.right = `-${addUnit(x)}`;
+          style.right = addUnit(x);
         } else {
           style.marginTop = addUnit(y);
           style.marginLeft = addUnit(x);
