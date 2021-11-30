@@ -14,6 +14,7 @@ import Picker, { PickerInstance } from '../picker';
 import { useMount, useSetState, useUpdateEffect } from '../hooks';
 import { deepClone } from '../utils/deep-clone';
 import { pick } from '../utils';
+import { raf } from '../utils/raf';
 
 const EMPTY_CODE = '000000';
 
@@ -255,9 +256,9 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   }, [props.areaList, props.columnsNum]);
 
   useEffect(() => {
-    setTimeout(() => {
+    raf(() => {
       setValues();
-    }, 0);
+    });
   }, [props.columnsNum]);
 
   useImperativeHandle(ref, () => ({

@@ -1,11 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import type { Dispatch, SetStateAction, MutableRefObject } from 'react';
+import { isFunction } from '../utils';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default function useRefState<T>(initialState: T | (() => T)) {
+type StateType<T> = T | (() => T);
+
+export default function useRefState<T>(
+  initialState: StateType<T>,
+): [T, Dispatch<SetStateAction<T>>, MutableRefObject<T>] {
   const [state, setState] = useState<T>(initialState);
-  const ref = useRef<T>(state);
-  useEffect(() => {
-    ref.current = state;
-  }, [state]);
-  return [state, setState, ref] as const;
+  const ref = useRef(state);
+  const setRafState = useCallback(
+    (patch) => {
+      setState((prevState) => {
+        // eslint-disable-next-line no-return-assign
+        return (ref.current = isFunction(patch) ? patch(prevState) : patch);
+      });
+    },
+    [state],
+  );
+  return [state, setRafState, ref];
 }
