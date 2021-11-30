@@ -12,6 +12,21 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.4
+
+`2021-11-30`
+
+**Bug Fixes**
+
+- Area: 修复无法选中正确值的问题 ([0526e69](https://github.com/3lang3/react-vant/commit/0526e6911ea0eb9dddc145bae3ef62636f463fd0))
+- Badge: 修复无法设置 X 轴正数的问题 ([a14401a](https://github.com/3lang3/react-vant/commit/a14401a4e3b64a8d1bac1ab5eee604eca15086de))
+- Popup: `visible`默认为`true`时, zIndex 自定义失败的问题 ([5b85978](https://github.com/3lang3/react-vant/commit/5b85978597e313d8b47760a8f829a4c26f649914))
+- Skeleton: 数量为 1 时不处理宽度为 60% ([44d0dd2](https://github.com/3lang3/react-vant/commit/44d0dd212b289fa447211a233539fee2d69afff0))
+
+**Performance**
+
+- useRefState: 优化内部 ref 更新时机 ([0526e69](https://github.com/3lang3/react-vant/commit/0526e6911ea0eb9dddc145bae3ef62636f463fd0))
+
 ### 1.4.3
 
 `2021-11-25`
