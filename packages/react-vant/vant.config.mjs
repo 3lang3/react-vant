@@ -1,6 +1,9 @@
 export default {
   name: 'react-vant',
-  build: { css: { preprocessor: 'less' }, site: { publicPath: './' } },
+  build: {
+    css: { preprocessor: 'less' },
+    site: { publicPath: './' },
+  },
   site: {
     defaultLang: 'zh-CN',
     versions: [{ label: 'v1', link: '/v1/' }],

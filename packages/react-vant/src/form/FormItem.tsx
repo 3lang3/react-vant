@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 import React, { FC } from 'react';
 import clsx from 'clsx';
-import { Field as RcField } from 'rc-field-form';
-import FieldContext from 'rc-field-form/lib/FieldContext';
+import { Field as RcField, FieldContext } from 'rc-field-form';
 import type { Meta } from 'rc-field-form/lib/interface';
 import Field from '../field';
 import type {

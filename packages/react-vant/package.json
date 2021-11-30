@@ -27,6 +27,7 @@
   "sideEffects": [
     "es/**/style/*",
     "lib/**/style/*",
+    "*.css",
     "*.less"
   ],
   "main": "./lib/index.js",
