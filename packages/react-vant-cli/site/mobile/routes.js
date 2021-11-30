@@ -84,4 +84,5 @@ function getRoutes() {
   return routes;
 }
 
-export default getRoutes();
+const routes = getRoutes();
+export default routes;

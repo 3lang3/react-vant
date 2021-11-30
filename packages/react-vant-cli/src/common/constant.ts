@@ -30,7 +30,6 @@ export const ROOT = findRootDir(CWD);
 export const ES_DIR = join(ROOT, 'es');
 export const LIB_DIR = join(ROOT, 'lib');
 export const DOCS_DIR = join(ROOT, 'docs');
-export const DOC_DIST_DIR = join(ROOT, 'site');
 export const PACKAGE_JSON_FILE = join(ROOT, 'package.json');
 export const ROOT_WEBPACK_CONFIG_FILE = join(ROOT, 'webpack.config.js');
 export const ROOT_POSTCSS_CONFIG_FILE = join(ROOT, 'postcss.config.js');
@@ -40,13 +39,12 @@ export const VANT_CONFIG_FILE = join(ROOT, CONFIG_FILE_NAME);
 
 // Relative paths
 export const CJS_DIR = join(__dirname, '..', '..', 'cjs');
-export const DIST_DIR = join(__dirname, '../../dist');
-export const SITE_DIR = join(__dirname, '../../site');
-export const CONFIG_DIR = join(__dirname, '../config');
+export const DIST_DIR = join(__dirname, '..', '..', 'dist');
+export const CONFIG_DIR = join(__dirname, '..', 'config');
 export const SITE_SRC_DIR = join(__dirname, '..', '..', 'site');
 
 // Site files
-export const SITE_MOBILE_COMPONENTS = join(SITE_DIR, 'mobile', 'components');
+export const SITE_MOBILE_COMPONENTS = join(SITE_SRC_DIR, 'mobile', 'components');
 
 // Dist files
 export const PACKAGE_ENTRY_FILE = join(DIST_DIR, 'package-entry.js');
