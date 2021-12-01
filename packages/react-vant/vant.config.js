@@ -17,7 +17,7 @@ module.exports = {
             alt: 'taro版本',
           },
           {
-            logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
+            logo: 'https://raw.githubusercontent.com/3lang3/react-vant/main/screenshots/github.svg',
             url: 'https://github.com/3lang3/react-vant',
           },
         ],
