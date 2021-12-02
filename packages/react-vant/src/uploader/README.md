@@ -127,9 +127,9 @@ export default () => {
 
 export default () => {
   // 返回 boolean
-  const beforeRead = (file) => {
+  const beforeRead = (file: File | File[]) => {
     const files = Array.isArray(file) ? file : [file];
-    return files.some(f => {
+    return !files.some(f => {
       if (f.type !== 'image/jpeg') {
         Toast('请上传 jpg 格式图片');
         return true;

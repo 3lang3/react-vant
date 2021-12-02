@@ -14,7 +14,7 @@ const Image: React.FC<ImageProps> = (props) => {
   const { fit, errorIcon, loadingIcon, showError, showLoading, block } = props;
 
   const style = useMemo(() => {
-    const internalStyle: CSSProperties = {};
+    const internalStyle: CSSProperties = { ...props.style };
 
     if (isDef(props.width)) {
       internalStyle.width = addUnit(props.width);
@@ -30,7 +30,7 @@ const Image: React.FC<ImageProps> = (props) => {
     }
 
     return internalStyle;
-  }, []);
+  }, [props.style]);
 
   useEffect(() => {
     const payload = { error: false, loading: true } as typeof status;
