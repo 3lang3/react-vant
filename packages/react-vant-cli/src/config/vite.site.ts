@@ -16,7 +16,6 @@ import {
   SITE_DESKTOP_SHARED_FILE,
   SITE_SRC_DIR,
   SRC_DIR,
-  getPackageJson,
 } from '../common/constant.js';
 
 function highlight(str: string, lang: string) {
@@ -63,8 +62,6 @@ function getHTMLMeta(vantConfig: any) {
 export function getViteConfigForSiteDev(): InlineConfig {
   setBuildTarget('site');
 
-  const dependencies = getPackageJson().dependencies || {};
-  const externals = Object.keys(dependencies);
   const vantConfig = getVantConfig();
   const siteConfig = getSiteConfig(vantConfig);
   const title = getTitle(siteConfig);
@@ -72,6 +69,7 @@ export function getViteConfigForSiteDev(): InlineConfig {
   const enableVConsole = isDev() && get(vantConfig, 'site.enableVConsole');
 
   return {
+    base: './',
     root: SITE_SRC_DIR,
     plugins: [
       react(),
@@ -96,9 +94,6 @@ export function getViteConfigForSiteDev(): InlineConfig {
         },
       }),
     ],
-    optimizeDeps: {
-      include: externals,
-    },
     resolve: {
       alias: {
         [vantConfig.name]: SRC_DIR,
@@ -108,6 +103,7 @@ export function getViteConfigForSiteDev(): InlineConfig {
       },
     },
     server: {
+      force: true,
       host: '0.0.0.0',
       port: 4000,
     },

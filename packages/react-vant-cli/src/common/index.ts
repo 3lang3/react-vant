@@ -16,7 +16,7 @@ export const TYPESCRIPT_REGEXP = /\.(ts||tsx)$/;
 export const ENTRY_EXTS = ['js', 'ts', 'tsx', 'jsx'];
 
 export function removeExt(path: string) {
-  return path.replace('.js', '');
+  return path.replace('.tsx', '');
 }
 
 export function replaceExt(path: string, ext: string) {
