@@ -65,7 +65,9 @@ const Cell: React.FC<CellProps> = (props) => {
 
     if (props.isLink) {
       const name = props.arrowDirection ? `arrow-${props.arrowDirection}` : 'arrow';
-      return <Icon name={name} className={clsx(bem('right-icon'))} />;
+      return (
+        <Icon name={name === 'arrow-right' ? 'arrow' : name} className={clsx(bem('right-icon'))} />
+      );
     }
     return null;
   };
