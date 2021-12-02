@@ -1,6 +1,8 @@
 export default {
   name: 'react-vant',
   build: {
+    srcDir: 'src',
+    namedExport: true,
     css: { preprocessor: 'less' },
     site: { publicPath: './' },
   },
