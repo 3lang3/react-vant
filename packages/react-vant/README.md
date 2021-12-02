@@ -153,7 +153,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Wal1e"><img src="https://avatars.githubusercontent.com/u/20591468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>rook1e</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AWal1e" title="Bug reports">🐛</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/chinieer"><img src="https://avatars.githubusercontent.com/u/5187043?v=4?s=100" width="100px;" alt=""/><br /><sub><b>chinieer</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=chinieer" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/chinieer"><img src="https://avatars.githubusercontent.com/u/5187043?v=4?s=100" width="100px;" alt=""/><br /><sub><b>chinieer</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=chinieer" title="Documentation">📖</a> <a href="#ideas-chinieer" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
