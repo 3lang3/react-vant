@@ -23,7 +23,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { raf } from '../utils/raf';
 
 const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('picker', prefixCls);
 
   const [refs, setRefs] = useRefs();
@@ -241,7 +241,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   };
 
   const renderCancel = () => {
-    const text = props.cancelButtonText || '取消';
+    const text = props.cancelButtonText || locale.cancel;
     return (
       <button type="button" className={clsx(bem('cancel'))} onClick={cancel}>
         {text}
@@ -250,7 +250,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   };
 
   const renderConfirm = () => {
-    const text = props.confirmButtonText || '确认';
+    const text = props.confirmButtonText || locale.confirm;
     return (
       <button type="button" className={clsx(bem('confirm'))} onClick={confirm}>
         {text}

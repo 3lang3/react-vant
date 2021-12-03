@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 };
 
 const Cascader: React.FC<CascaderProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('cascader', prefixCls);
 
   const [internalValue, updateInternalValue] = useState(undefined);
@@ -234,7 +234,9 @@ const Cascader: React.FC<CascaderProps> = (props) => {
 
   const renderTab = (tab: CascaderTab, tabIndex: number) => {
     const { options, selectedOption } = tab;
-    const title = selectedOption ? selectedOption[textKey] : props.placeholder || '请选择';
+    const title = selectedOption
+      ? selectedOption[textKey]
+      : props.placeholder || locale.vanCascader.select;
     return (
       <Tabs.TabPane
         key={tabIndex}

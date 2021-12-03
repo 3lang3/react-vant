@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 
-export function formatMonthTitle(date: Date) {
-  return `${date.getFullYear()}年${date.getMonth() + 1}月`;
+export function formatMonthTitle(date: Date): [number, number] {
+  return [date.getFullYear(), date.getMonth() + 1];
 }
 
 export function compareMonth(date1: Date, date2: Date) {

@@ -171,14 +171,14 @@ export default () => {
 | --rv-coupon-border-radius               | _var(--rv-border-radius-lg)_                  | -    |
 | --rv-coupon-box-shadow                  | _0 0 4px rgba(0, 0, 0, 0.1)_                  | -    |
 | --rv-coupon-head-width                  | _96px_                                        | -    |
-| --rv-coupon-amount-color                | _var(--rv-danger-color)_                      | -    |
+| --rv-coupon-amount-color                | _var(--rv-primary-color)_                     | -    |
 | --rv-coupon-amount-font-size            | _30px_                                        | -    |
 | --rv-coupon-currency-font-size          | _40%_                                         | -    |
 | --rv-coupon-name-font-size              | _var(--rv-font-size-md)_                      | -    |
 | --rv-coupon-disabled-text-color         | _var(--rv-gray-6)_                            | -    |
 | --rv-coupon-description-padding         | _var(--rv-padding-xs) var(--rv-padding-md)_   | -    |
 | --rv-coupon-description-border-color    | _var(--rv-border-color)_                      | -    |
-| --rv-coupon-corner-checkbox-icon-color  | _var(--rv-danger-color)_                      | -    |
+| --rv-coupon-corner-checkbox-icon-color  | _var(--rv-primary-color)_                     | -    |
 | --rv-coupon-list-background-color       | _var(--rv-background-color)_                  | -    |
 | --rv-coupon-list-field-padding          | _5px 0 5px var(--rv-padding-md)_              | -    |
 | --rv-coupon-list-exchange-button-height | _32px_                                        | -    |

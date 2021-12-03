@@ -38,6 +38,7 @@ export default {
               { path: 'advanced-usage', title: '进阶用法' },
               { path: 'changelog', title: '更新日志' },
               { path: 'contribution', title: '贡献指南' },
+              { path: 'locale', title: '国际化' },
             ],
           },
           { title: '布局组件', items: [{ path: 'flex', title: 'Flex 布局' }] },

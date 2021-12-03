@@ -24,7 +24,7 @@ function getIconURL(icon: string) {
 }
 
 const ShareSheet: React.FC<ShareSheetProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('share-sheet', prefixCls);
 
   const onCancel = () => {
@@ -82,7 +82,7 @@ const ShareSheet: React.FC<ShareSheetProps> = (props) => {
   };
 
   const renderCancelButton = () => {
-    const { cancelText } = props;
+    const { cancelText = locale.cancel } = props;
     if (cancelText) {
       return (
         <button type="button" className={cls(bem('cancel'))} onClick={onCancel}>
@@ -118,7 +118,6 @@ const ShareSheet: React.FC<ShareSheetProps> = (props) => {
 };
 
 ShareSheet.defaultProps = {
-  cancelText: '取消',
   options: [],
   closeOnPopstate: true,
   safeAreaInsetBottom: true,

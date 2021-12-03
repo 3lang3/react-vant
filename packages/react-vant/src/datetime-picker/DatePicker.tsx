@@ -10,7 +10,7 @@ import React, {
 import Picker, { PickerInstance } from '../picker';
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';
-import { getMonthEndDay, getTrueValue, getDaysBetweenDate, format, times } from './utils';
+import { getMonthEndDay, getTrueValue, times } from './utils';
 import { raf } from '../utils/raf';
 import { isDate } from '../utils/validate/date';
 import { padZero } from '../utils';
@@ -126,13 +126,6 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   const originColumns = useMemo(
     () =>
       ranges.map(({ type, range: rangeArr }) => {
-        if (type === 'week') {
-          return {
-            type,
-            values: getDaysBetweenDate(props.minDate, props.maxDate),
-          };
-        }
-
         // 根据范围获取每列的值
         let values = times(rangeArr[1] - rangeArr[0] + 1, (index: number) => {
           return padZero(rangeArr[0] + index);
@@ -165,11 +158,9 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
           return formatter('hour', padZero(currentDate.getHours()));
         case 'minute':
           return formatter('minute', padZero(currentDate.getMinutes()));
-        case 'week':
-          return format(currentDate);
         default:
           // no default
-          return null;
+          return '';
       }
     });
 

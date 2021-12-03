@@ -1,53 +1,43 @@
 # ConfigProvider 全局配置
 
+### 介绍
+
+为组件提供统一的全局化配置。
+
 ### 引入
+
+ConfigProvider 使用 React 的 context 特性，只需在应用外围包裹一次即可全局生效。
+
+```jsx
+import { ConfigProvider } from 'react-vant';
+
+// ...
+export default () => (
+  <ConfigProvider locale={...} themeVars={...}>
+    <App />
+  </ConfigProvider>
+);
+```
+
+### 语言切换
+
+使用 `locale` 属性切换语言。
 
 ```js
 import { ConfigProvider } from 'react-vant';
+// 引入英文语言包
+import enUS from 'react-vant/es/locale/lang/en-US';
+
+export default () => {
+  return (
+    <ConfigProvider locale={enUS}>
+      <App />
+    </ConfigProvider>
+  );
+};
 ```
 
-## 定制主题
-
-### 介绍
-
-React Vant 组件通过丰富的 [CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties) 来组织样式，通过覆盖这些 CSS 变量，可以实现**定制主题、动态切换主题**等效果。
-
-#### 示例
-
-以 Button 组件为例，查看组件的样式，可以看到 `.rv-button--primary` 类名上存在以下变量：
-
-```css
-.rv-button--primary {
-  color: var(--rv-button-primary-color);
-  background-color: var(--rv-button-primary-background-color);
-}
-```
-
-这些变量的默认值被定义在 `root` 节点上，HTML 文档的任何节点都可以访问到这些变量：
-
-```css
-:root {
-  --rv-white: #fff;
-  --rv-blue: #3f45ff;
-  --rv-button-primary-color: var(--rv-white);
-  --rv-button-primary-background-color: var(--rv-primary-color);
-}
-```
-
-### 自定义 CSS 变量
-
-#### 通过 CSS 覆盖
-
-你可以直接在代码中覆盖这些 CSS 变量，Button 组件的样式会随之发生改变：
-
-```css
-/* 添加这段样式后，Primary Button 会变成红色 */
-:root {
-  --rv-button-primary-background-color: red;
-}
-```
-
-#### 通过 ConfigProvider 定制主题
+### 定制主题
 
 `ConfigProvider` 组件提供了覆盖 CSS 变量的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `themeVars` 属性来配置一些主题变量。
 
@@ -89,13 +79,52 @@ export default () => {
 
 > 注意：ConfigProvider 仅影响它的子组件的样式，不影响全局 root 节点。
 
+### 关于主题
+
+React Vant 组件通过丰富的 [CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties) 来组织样式，通过覆盖这些 CSS 变量，可以实现**定制主题、动态切换主题**等效果。
+
+#### 示例
+
+以 Button 组件为例，查看组件的样式，可以看到 `.rv-button--primary` 类名上存在以下变量：
+
+```css
+.rv-button--primary {
+  color: var(--rv-button-primary-color);
+  background-color: var(--rv-button-primary-background-color);
+}
+```
+
+这些变量的默认值被定义在 `root` 节点上，HTML 文档的任何节点都可以访问到这些变量：
+
+```css
+:root {
+  --rv-white: #fff;
+  --rv-blue: #3f45ff;
+  --rv-button-primary-color: var(--rv-white);
+  --rv-button-primary-background-color: var(--rv-primary-color);
+}
+```
+
+### 自定义 CSS 变量
+
+#### 通过 CSS 覆盖
+
+你可以直接在代码中覆盖这些 CSS 变量，Button 组件的样式会随之发生改变：
+
+```css
+/* 添加这段样式后，Primary Button 会变成红色 */
+:root {
+  --rv-button-primary-background-color: red;
+}
+```
+
 ### 基础变量
 
 React Vant 中的 CSS 变量分为 **基础变量** 和 **组件变量**。组件变量会继承基础变量，因此在修改基础变量后，会影响所有相关的组件。
 
 #### 修改变量
 
-由于 CSS 变量继承机制的原因， 两者的修改方式有一定差异：
+由于 CSS 变量继承机制的原因，两者的修改方式有一定差异：
 
 - 基础变量只能通过 `root 选择器` 修改，不能通过 `ConfigProvider 组件` 修改。
 - 组件变量可以通过 `root 选择器` 和 `ConfigProvider 组件` 修改。
@@ -186,4 +215,5 @@ React Vant 中的 CSS 变量分为 **基础变量** 和 **组件变量**。组�
 | 参数      | 说明                                   | 类型     | 默认值 |
 | --------- | -------------------------------------- | -------- | ------ |
 | themeVars | 自定义主题变量                         | _object_ | -      |
+| locale    | 自定义语言                             | _object_ | `zhCN` |
 | tag       | `ConfigProdiver`对应的 HTML 节点标签名 | _string_ | `div`  |

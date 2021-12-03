@@ -9,7 +9,7 @@ import { Field } from '../field';
 import Coupon from './Coupon';
 
 const CouponList: React.FC<CouponListProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('coupon-list', prefixCls);
 
   const innerEffect = useRef(false);
@@ -47,7 +47,7 @@ const CouponList: React.FC<CouponListProps> = (props) => {
   const renderEmpty = () => (
     <div className={cls(bem('empty'))}>
       <img alt="empty" src={props.emptyImage} />
-      <p>暂无优惠券</p>
+      <p>{locale.noCoupon}</p>
     </div>
   );
 
@@ -61,14 +61,14 @@ const CouponList: React.FC<CouponListProps> = (props) => {
             clearable
             border={false}
             className={cls(bem('field'))}
-            placeholder={props.inputPlaceholder || '请输入优惠码'}
+            placeholder={props.inputPlaceholder || locale.vanCouponList.placeholder}
             maxlength={20}
           />
           <Button
             plain
-            type="danger"
+            type="primary"
             className={cls(bem('exchange'))}
-            text={props.exchangeButtonText || '兑换'}
+            text={props.exchangeButtonText || locale.vanCouponList.exchange}
             loading={props.exchangeButtonLoading}
             disabled={buttonDisabled}
             onClick={onExchange}
@@ -82,7 +82,7 @@ const CouponList: React.FC<CouponListProps> = (props) => {
   const renderCouponTab = () => {
     const { coupons } = props;
     const count = props.showCount ? ` (${coupons.length})` : '';
-    const title = (props.enabledTitle || '可用') + count;
+    const title = (props.enabledTitle || locale.vanCouponList.enable) + count;
 
     return (
       <Tabs.TabPane title={title}>
@@ -113,7 +113,7 @@ const CouponList: React.FC<CouponListProps> = (props) => {
   const renderDisabledTab = () => {
     const { disabledCoupons } = props;
     const count = props.showCount ? ` (${disabledCoupons.length})` : '';
-    const title = (props.disabledTitle || '不可用') + count;
+    const title = (props.disabledTitle || locale.vanCouponList.disabled) + count;
 
     return (
       <Tabs.TabPane title={title}>
@@ -147,8 +147,6 @@ const CouponList: React.FC<CouponListProps> = (props) => {
     <div className={cls(bem(), props.className)} style={props.style}>
       {renderExchangeBar()}
       <Tabs
-        titleActiveColor="#f44336"
-        color="#f44336"
         active={state.tab}
         border={false}
         {...props.tabsProps}
@@ -162,9 +160,9 @@ const CouponList: React.FC<CouponListProps> = (props) => {
           v-show={props.showCloseButton}
           round
           block
-          type="danger"
+          type="primary"
           className={cls(bem('close'))}
-          text={props.closeButtonText || '不使用优惠券'}
+          text={props.closeButtonText || locale.vanCouponList.close}
           onClick={() => props.onChange?.(-1)}
         />
       </div>

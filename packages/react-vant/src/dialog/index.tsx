@@ -126,7 +126,6 @@ Dialog.confirm = (props: DialogProps): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     Dialog.show({
       // 强制显示 OK Btn
-      confirmButtonText: '确认',
       showCancelButton: true,
       ...props,
       onCancel: (e) => {

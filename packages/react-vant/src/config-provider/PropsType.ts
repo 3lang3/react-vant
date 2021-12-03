@@ -1,3 +1,4 @@
+import { Locale } from 'src/locale/lang/base';
 import { BaseTypeProps } from '../utils';
 
 export interface Theme {
@@ -10,5 +11,6 @@ export interface Theme {
 
 export interface ConfigProviderProps extends BaseTypeProps {
   themeVars?: Record<string, string | number>;
+  locale?: Locale;
   tag?: keyof HTMLElementTagNameMap;
 }

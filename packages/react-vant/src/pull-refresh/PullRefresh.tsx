@@ -15,7 +15,7 @@ const DEFAULT_HEAD_HEIGHT = 50;
 const TEXT_STATUS = ['pulling', 'loosing', 'success'];
 
 const PullRefresh: React.FC<PullRefreshProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('pull-refresh', prefixCls);
 
   const { disabled, animationDuration } = props;
@@ -80,7 +80,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
     if (state.status === 'normal') {
       return '';
     }
-    return props[`${state.status}Text`];
+    return props[`${state.status}Text`] || locale.vanPullRefresh[state.status];
   };
 
   const renderStatus = () => {
@@ -226,9 +226,6 @@ PullRefresh.defaultProps = {
   headHeight: 50,
   animationDuration: 300,
   successDuration: 500,
-  pullingText: '下拉即可刷新...',
-  loosingText: '释放即可刷新...',
-  loadingText: '加载中...',
 };
 
 export default PullRefresh;

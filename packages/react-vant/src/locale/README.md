@@ -1,0 +1,78 @@
+# 国际化
+
+### 介绍
+
+React Vant 采用中文作为默认语言，同时支持多语言切换。
+
+## 使用方法
+
+### 多语言切换
+
+React Vant 通过 ConfigProvider 组件实现多语言支持，使用 `locale` 属性切换语言。
+
+```jsx
+import { ConfigProvider } from 'react-vant';
+// 引入英文语言包
+import enUS from 'react-vant/es/locale/lang/en-US';
+
+export default () => {
+  return (
+    <ConfigProvider locale={enUS}>
+      {...}
+    </ConfigProvider>
+  )
+}
+```
+
+### 覆盖语言包
+
+通过 `mergeLocale` 方法可以实现语言的修改和扩展，示例如下：
+
+```jsx
+import { ConfigProvider } from 'react-vant';
+import { enUS, mergeLocale } from 'react-vant/es/locale';
+
+const customEnUS = mergeLocale(enUS, {
+   vanCalendar: {
+    // 覆盖calender标题
+    title: 'Custom Title'
+  }
+})
+
+export default () => {
+  return (
+    <ConfigProvider locale={customEnUS}>
+      {...}
+    </ConfigProvider>
+  )
+}
+```
+
+### 语言包
+
+目前支持的语言:
+
+| 语言           | 文件名 |
+| -------------- | ------ |
+| 英语           | en-US  |
+| 法语           | fr-FR  |
+| 日语           | ja-JP  |
+| 简体中文       | zh-CN  |
+| 繁體中文（港） | zh-HK  |
+| 繁體中文（台） | zh-TW  |
+
+> 在 [这里](https://github.com/3lang3/react-vant/tree/main/packages/react-vant/src/locale/lang) 查看所有的语言包源文件。
+
+## 常见问题
+
+### 业务代码如何实现国际化？
+
+可以使用 [react-i18n](https://github.com/i18next/react-i18next) 来实现。
+
+### 以 CDN 形式引入时，如何使用语言包？
+
+目前没有提供 CDN 形式的语言包，可以手动拷贝语言包的内容来使用。
+
+### 语言包中不包含 Sku 组件？
+
+语言包中默认不包含 Sku 业务组件的语言配置，因此如果有 Sku 组件的国际化需求，请自行配置国际化文案。

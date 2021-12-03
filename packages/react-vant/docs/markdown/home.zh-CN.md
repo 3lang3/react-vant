@@ -8,6 +8,7 @@
 - 🚀 60+ 个高质量组件，覆盖移动端主流场景
 - 💪 使用 TypeScript 编写，提供完整的类型定义
 - 📖 提供完善的文档和组件示例
+- 🌍 支持国际化和语言包定制
 - 🍭 支持主题定制，内置 700+ 个主题变量
 - 🍭 支持按需引入和 Tree Shaking
 - 🍭 支持服务器端渲染[SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)

@@ -5,7 +5,7 @@ import { SubmitBarProps } from './PropsType';
 import { Button } from '../button';
 
 const SubmitBar: React.FC<SubmitBarProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('submit-bar', prefixCls);
 
   const renderText = () => {
@@ -17,7 +17,7 @@ const SubmitBar: React.FC<SubmitBarProps> = (props) => {
 
       return (
         <div className={cls(bem('text'))} style={{ textAlign }}>
-          <span>{label || '合计：'}</span>
+          <span>{label || locale.vanSubmitBar.label}</span>
           <span className={cls(bem('price'))}>
             {currency}
             <span className={cls(bem('price-integer'))}>{pricePair[0]}</span>

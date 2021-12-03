@@ -11,7 +11,7 @@ import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Dialog: React.FC<DialogProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('dialog', prefixCls);
 
   const {
@@ -73,7 +73,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       {props.showCancelButton && (
         <Button
           size="large"
-          text={props.cancelButtonText || '取消'}
+          text={props.cancelButtonText || locale.cancel}
           className={clsx(bem('cancel'))}
           style={{ color: props.cancelButtonColor }}
           loading={props.cancelProps?.loading}
@@ -84,7 +84,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       {props.showConfirmButton && (
         <Button
           size="large"
-          text={props.confirmButtonText || '确认'}
+          text={props.confirmButtonText || locale.confirm}
           className={clsx(bem('confirm'), { [BORDER_LEFT]: props.showCancelButton })}
           round={theme === 'round-button'}
           style={{ color: props.confirmButtonColor }}
@@ -101,7 +101,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       {props.showCancelButton && (
         <ActionBar.Button
           type="warning"
-          text={props.cancelButtonText || '取消'}
+          text={props.cancelButtonText || locale.cancel}
           className={clsx(bem('cancel'))}
           color={props.cancelButtonColor}
           loading={props.cancelProps?.loading}
@@ -112,7 +112,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       {props.showConfirmButton && (
         <ActionBar.Button
           type="danger"
-          text={props.confirmButtonText || '确认'}
+          text={props.confirmButtonText || locale.confirm}
           className={clsx(bem('confirm'))}
           color={props.confirmButtonColor}
           loading={props.confirmProps?.loading}

@@ -12,7 +12,7 @@ import { useSetState, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const List = forwardRef<ListInstance, ListProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('list', prefixCls);
   const [state, updateState] = useSetState({
     loading: props.loading,
@@ -90,7 +90,7 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
             props.loadingText
           ) : (
             <Loading className={clsx(bem('loading-icon'))} size={16}>
-              {props.loadingText}
+              {props.loadingText || locale.loading}
             </Loading>
           )}
         </div>
@@ -143,8 +143,6 @@ List.defaultProps = {
   direction: 'down',
   immediateCheck: true,
   autoCheck: true,
-  loadingText: '加载中...',
-  finishedText: '没有更多了',
 };
 
 export default List;
