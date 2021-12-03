@@ -35,7 +35,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Calendar = forwardRef<CalendarInstance, CalendarProps>(
   ({ className, style, ...props }, ref) => {
-    const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+    const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
     const [bem] = createNamespace('calendar', prefixCls);
 
     const limitDateRange = (date: Date, minDate = props.minDate, maxDate = props.maxDate) => {
@@ -229,7 +229,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
 
       if (maxRange && calcDateNum(date) > maxRange) {
         if (showRangePrompt) {
-          Toast.info(rangePrompt || `选择天数不能超过 ${maxRange} 天`);
+          Toast.info(rangePrompt || locale.vanCalendar.rangePrompt(+maxRange));
         }
         props.onOverRange?.();
         return false;
@@ -379,7 +379,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
             nativeType="button"
             onClick={onConfirm}
           >
-            {text || '确定'}
+            {text || locale.vanCalendar.confirm}
           </Button>
         );
       }

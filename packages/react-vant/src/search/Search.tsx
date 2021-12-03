@@ -16,7 +16,7 @@ import Field, { FieldInstance } from '../field';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('search', prefixCls);
 
   const filedRef = useRef<FieldInstance>();
@@ -32,7 +32,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   };
 
   const onCancel = () => {
-    if (typeof props.actionText === 'string') {
+    if (!props.actionText) {
       change('');
       props.onCancel?.();
     }
@@ -65,7 +65,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     if (props.showAction) {
       return (
         <div className={clsx(bem('action'))} role="button" tabIndex={0} onClick={onCancel}>
-          {props.actionText}
+          {props.actionText || locale.cancel}
         </div>
       );
     }
@@ -156,7 +156,6 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
 Search.defaultProps = {
   shape: 'square',
   leftIcon: <SearchIco />,
-  actionText: '取消',
   inputAlign: 'left',
 } as const;
 

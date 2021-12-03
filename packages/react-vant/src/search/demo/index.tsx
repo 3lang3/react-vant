@@ -31,7 +31,6 @@ export default (): React.ReactNode => {
           value={value1}
           placeholder="请输入搜索关键词"
           showAction
-          actionText="取消"
           onChange={(val) => {
             setValue1(val);
           }}

@@ -9,7 +9,7 @@ function makePage(number: number, text: string | number, active?: boolean): Page
 }
 
 const Pagination: React.FC<PaginationProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('pagination', prefixCls);
 
   const count = useMemo(() => {
@@ -107,7 +107,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
         className={clsx(bem('item', { disabled: value === 1 }), bem('prev'), BORDER)}
         onClick={onSelect(value - 1)}
       >
-        {props.prevText}
+        {props.prevText || locale.vanPagination.prev}
       </li>
       {pages.map((page, index) => (
         <li
@@ -124,7 +124,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
         className={clsx(bem('item', { disabled: value === count }), bem('next'), BORDER)}
         onClick={onSelect(value + 1)}
       >
-        {props.nextText}
+        {props.nextText || locale.vanPagination.next}
       </li>
     </ul>
   );
@@ -136,8 +136,6 @@ Pagination.defaultProps = {
   totalItems: 0,
   itemsPerPage: 10,
   showPageSize: 5,
-  prevText: '上一页',
-  nextText: '下一页',
 };
 
 export default Pagination;

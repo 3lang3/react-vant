@@ -20,7 +20,7 @@ function formatAmount(amount: number) {
 }
 
 const Coupon: React.FC<CouponProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('coupon', prefixCls);
 
   const validPeriod = useMemo(() => {
@@ -49,7 +49,7 @@ const Coupon: React.FC<CouponProps> = (props) => {
     }
 
     if (coupon.discount) {
-      return `${formatDiscount(coupon.discount)}折`;
+      return locale.vanCoupon.discount(+formatDiscount(coupon.discount));
     }
 
     return '';
@@ -57,7 +57,7 @@ const Coupon: React.FC<CouponProps> = (props) => {
 
   const conditionMessage = useMemo(() => {
     const condition = formatAmount(props.coupon.originCondition || 0);
-    return condition === '0' ? '无使用门槛' : `满${condition}元可用`;
+    return condition === '0' ? locale.vanCoupon.unlimited : locale.vanCoupon.condition(+condition);
   }, [props.coupon.originCondition]);
 
   const { chosen, coupon, disabled } = props;

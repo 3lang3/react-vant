@@ -23,7 +23,7 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
   const [monthRef, setMonthRef] = useState<HTMLDivElement>();
   const height = useRef<number>(0);
 
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('calendar', prefixCls);
 
   useEffect(() => {
@@ -32,7 +32,10 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
     }
   }, [monthRef]);
 
-  const title = useMemo(() => formatMonthTitle(props.date), [props.date]);
+  const title = useMemo(
+    () => locale.vanCalendar.monthTitle(...formatMonthTitle(props.date)),
+    [props.date],
+  );
   const rowHeight = useMemo(() => addUnit(props.rowHeight), [props.rowHeight]);
   const offset = useMemo(() => {
     const realDay = props.date.getDay();
@@ -145,13 +148,13 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
   const getBottomInfo = (dayType: CalendarDayType) => {
     if (props.type === 'range') {
       if (dayType === 'start') {
-        return '开始';
+        return locale.vanCalendar.start;
       }
       if (dayType === 'end') {
-        return '结束';
+        return locale.vanCalendar.end;
       }
       if (dayType === 'start-end') {
-        return '开始/结束';
+        return locale.vanCalendar.startEnd;
       }
     }
     return null;
