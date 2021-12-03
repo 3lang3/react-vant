@@ -16,6 +16,7 @@ function buildES() {
         target: 'esnext',
         jsx: 'react',
         declaration: true,
+        skipLibCheck: true,
         allowSyntheticDefaultImports: true,
       }),
     )
