@@ -32,6 +32,8 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
     showValidateMessage,
     colon,
     layout,
+    labelAlign,
+    inputAlign,
     ...fieldProps
   } = props;
   const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
@@ -40,6 +42,8 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
   const itemLayout = layout ?? context.layout;
   const itemColon = colon ?? context.colon;
   const itemShowValidateMessage = showValidateMessage ?? context.showValidateMessage;
+  const itemLabelAlign = labelAlign ?? context.labelAlign;
+  const itemInputAlign = inputAlign ?? context.inputAlign;
 
   const error = meta && meta.errors.length > 0;
   const errorMessage = itemShowValidateMessage && error ? meta.errors[0] : null;
@@ -50,6 +54,8 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
     colon: itemColon,
     error,
     errorMessage,
+    labelAlign: itemLabelAlign,
+    inputAlign: itemInputAlign,
   };
 
   if (isFieldChildren) return React.cloneElement(children as React.ReactElement, attrs);
@@ -82,6 +88,8 @@ const FormItem: FC<FormItemProps> = (props) => {
     labelAlign,
     labelClass,
     showValidateMessage,
+    inputAlign,
+    errorMessageAlign,
     ...fieldProps
   } = props;
 
@@ -120,6 +128,8 @@ const FormItem: FC<FormItemProps> = (props) => {
         labelWidth={labelWidth}
         labelAlign={labelAlign}
         labelClass={labelClass}
+        inputAlign={inputAlign}
+        errorMessageAlign={errorMessageAlign}
         showValidateMessage={showValidateMessage}
         onClick={onClick}
       >

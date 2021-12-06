@@ -1,0 +1,78 @@
+name: 🐛 Bug Report
+description: Something is wrong with React Vant.
+title: '🐛 [Bug]: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing!
+
+        Do you need some help?
+        ======================
+        The issue tracker is meant for feature requests and bug reports only. This isn't the best place for
+        support or usage questions. Questions here don't have as much visibility as they do elsewhere. Before
+        you ask a question, here are some resources to get help first:
+
+        - Read the docs: https://3lang3.github.io/react-vant/#/zh-CN/home
+        - Explore examples: https://3lang3.github.io/react-vant/mobile.html
+        - Ask in GitHub Discussions: https://github.com/3lang3/react-vant/discussions
+        - Ask in WeChat: add this WeChat, we will invite you to the WeChat discussion group later
+        <img src="https://user-images.githubusercontent.com/33956589/144778828-97660d67-69a1-4eee-8ef1-3c7f91ab48b9.png" width = "200" height = "200" alt="WeChat" align=center />
+
+
+        ### Test Case Starter:
+        - [react template](https://codesandbox.io/s/react-vant-template-eez7b)
+        - [nextjs template](https://codesandbox.io/s/react-vant-nextjs-template-uepyw)
+
+        ### Code Example:
+
+        - [Create React App](https://github.com/3lang3/react-vant-template/tree/main/template/create-react-app)
+        - [Umi](https://github.com/3lang3/react-vant-template/tree/main/template/umi)
+        - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
+        - [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
+
+  - type: checkboxes
+    id: packages
+    attributes:
+      label: Which React Vant packages are impacted?
+      options:
+        - label: '`react-vant` (React Vant core)'
+        - label: '`@react-vant/cli`'
+        - label: '`create-react-vant-cli-app`'
+  - type: input
+    attributes:
+      label: What version of React Vant are you using?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: What version of Node are you using? Minimum supported version is 12.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual Behavior
+      description: A concise description of what you're experiencing.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Context
+      description: In what environment are you using React Vant?
+  - type: markdown
+    attributes:
+      value: 'Thanks for completing our form!'

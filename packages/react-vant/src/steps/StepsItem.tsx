@@ -48,7 +48,11 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
   };
 
   const renderCircle = () => {
-    const { finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;
+    const { activeColor } = parentProps;
+
+    const finishIcon = props.finishIcon ?? parentProps.finishIcon;
+    const activeIcon = props.activeIcon ?? parentProps.activeIcon;
+    const inactiveIcon = props.inactiveIcon ?? parentProps.inactiveIcon;
 
     if (isActive()) {
       if (activeIcon) {

@@ -27,4 +27,10 @@ export interface StepsItemProps extends BaseTypeProps {
   parent?: StepsProps;
   /** @private */
   index?: number;
+  /** 已完成步骤对应的底部图标，优先级高于 inactiveIcon */
+  finishIcon?: React.ReactNode;
+  /** 非当前步骤对应的底部图标，可选值见 Icon 组件	 */
+  inactiveIcon?: React.ReactNode;
+  /** 当前步骤对应的底部图标，可选值见 Icon 组件 */
+  activeIcon?: React.ReactNode;
 }

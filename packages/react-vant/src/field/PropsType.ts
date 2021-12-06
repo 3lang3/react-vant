@@ -38,6 +38,7 @@ export interface FieldCommonProps {
   placeholder?: string;
   /** 输入的最大字符数	 */
   maxlength?: number;
+  /** 输入框对齐方式，可选值为 `center` `right` */
   inputAlign?: FieldTextAlign;
   /** 是否禁用输入框	 */
   disabled?: boolean;

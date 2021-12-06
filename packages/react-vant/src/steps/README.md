@@ -81,6 +81,14 @@ export default () => {
 | activeColor | 当前步骤和已完成步骤的颜色 | _string_ | `#07c160` |
 | inactiveColor | 未激活步骤的颜色 | _string_ | `#969799` |
 
+### Steps.Item Props
+
+| 参数         | 说明                 | 类型        | 默认值 |
+| ------------ | -------------------- | ----------- | ------ |
+| activeIcon   | 支持自定义激活图标   | _ReactNode_ | -      |
+| inactiveIcon | 支持自定义非激活图标 | _ReactNode_ | -      |
+| finishIcon   | 支持自定义已完成图标 | _ReactNode_ | -      |
+
 ### Steps Events
 
 | 事件名      | 说明                       | 回调参数        |

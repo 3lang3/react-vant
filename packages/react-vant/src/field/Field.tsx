@@ -296,7 +296,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
   const renderIntro = () => {
     if (props.intro) {
-      return <div className={clsx(bem('intro'))}>{props.intro}</div>;
+      return <div className={clsx(bem('intro', getProp('inputAlign')))}>{props.intro}</div>;
     }
     return null;
   };

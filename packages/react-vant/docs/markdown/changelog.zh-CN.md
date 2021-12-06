@@ -12,6 +12,21 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.5
+
+`2021-12-6`
+
+**Bug Fixes**
+
+- Cell: 修复 `arrowDirection` 为 `right` 时向右箭头消失的问题 [#268](https://github.com/3lang3/react-vant/issues/268) ([0e12b8c](https://github.com/3lang3/react-vant/commit/0e12b8c471e224f72bc7464f6e1d55378a81f920))
+- Image: 修复 `style` 未生效的问题 [#261](https://github.com/3lang3/react-vant/issues/261) ([cb12462](https://github.com/3lang3/react-vant/commit/cb124629415e5d641e094f07672a26c9dc226b68))
+
+**Features**
+
+- Calendar: 新增`weekdays`和`formatMonthTitle`支持星期文案和月标题自定义 [#263](https://github.com/3lang3/react-vant/issues/263) ([88a7623](https://github.com/3lang3/react-vant/commit/88a76237292ebbe57dd4dd655f6f0646c4016612))
+- Field: 支持自定义 placeholder 样式的字体大小 ([46ca35e](https://github.com/3lang3/react-vant/commit/46ca35e7af66859fb9184972f43a4989bf6c3503))
+- Steps: `Steps.Item`各个状态 icon 支持自定义 [#274](https://github.com/3lang3/react-vant/issues/274) ([b425afa](https://github.com/3lang3/react-vant/commit/b425afa78f7547f4b0b5d993805e398e4998a9ea))
+
 ### 1.4.4
 
 `2021-11-30`

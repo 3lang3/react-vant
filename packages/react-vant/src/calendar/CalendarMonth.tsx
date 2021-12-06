@@ -32,10 +32,11 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
     }
   }, [monthRef]);
 
-  const title = useMemo(
-    () => locale.vanCalendar.monthTitle(...formatMonthTitle(props.date)),
-    [props.date],
-  );
+  const title = useMemo(() => {
+    return props.formatMonthTitle
+      ? props.formatMonthTitle(props.date)
+      : locale.vanCalendar.monthTitle(...formatMonthTitle(props.date));
+  }, [props.date, props.formatMonthTitle]);
   const rowHeight = useMemo(() => addUnit(props.rowHeight), [props.rowHeight]);
   const offset = useMemo(() => {
     const realDay = props.date.getDay();

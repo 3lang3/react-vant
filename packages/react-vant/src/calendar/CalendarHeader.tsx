@@ -31,8 +31,11 @@ const CalenderHeader: React.FC<CalendarHeaderProps> = (props) => {
   };
 
   const renderWeekDays = () => {
-    const { firstDayOfWeek } = props;
-    const { weekdays } = locale.vanCalendar;
+    const { weekdays: customWeekdays, firstDayOfWeek } = props;
+    const defaultWeekdays = locale.vanCalendar.weekdays;
+    const weekdays = customWeekdays
+      ? defaultWeekdays.map((wk, i) => customWeekdays[i] || wk)
+      : defaultWeekdays;
     const renderWeekDaysContent = [
       ...weekdays.slice(firstDayOfWeek, 7),
       ...weekdays.slice(0, firstDayOfWeek),
