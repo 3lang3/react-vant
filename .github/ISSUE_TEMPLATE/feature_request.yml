@@ -1,0 +1,33 @@
+name: ✨ Feature Request
+description: I want to add something to React Vant.
+title: '✨ [Feature]: '
+labels:
+  - feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing!
+
+        Do you need some help?
+        ======================
+        The issue tracker is meant for feature requests and bug reports only. This isn't the best place for
+        support or usage questions. Questions here don't have as much visibility as they do elsewhere. Before
+        you ask a question, here are some resources to get help first:
+
+        - Read the docs: https://3lang3.github.io/react-vant/#/zh-CN/home
+        - Explore examples: https://3lang3.github.io/react-vant/mobile.html
+        - Ask in GitHub Discussions: https://github.com/3lang3/react-vant/discussions
+        - Ask in WeChat: add this WeChat, we will invite you to the WeChat discussion group later
+        <img src="https://user-images.githubusercontent.com/33956589/144778828-97660d67-69a1-4eee-8ef1-3c7f91ab48b9.png" width = "200" height = "200" alt="WeChat" align=center />
+
+  - type: textarea
+    attributes:
+      label: What is the new or updated feature that you are suggesting?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Why should this feature be included?
+    validations:
+      required: true
