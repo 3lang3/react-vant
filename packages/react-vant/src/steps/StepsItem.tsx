@@ -49,11 +49,15 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
   };
 
   const renderCircle = () => {
-    const { iconPrefix, finishIcon, activeIcon, activeColor, inactiveIcon } = parentProps;
+    const { iconPrefix, activeColor } = parentProps;
+
+    const finishIcon = props.finishIcon ?? parentProps.finishIcon;
+    const activeIcon = props.activeIcon ?? parentProps.activeIcon;
+    const inactiveIcon = props.inactiveIcon ?? parentProps.inactiveIcon;
 
     if (isActive()) {
-      if (React.isValidElement(parentProps.activeIcon)) {
-        return parentProps.activeIcon;
+      if (React.isValidElement(activeIcon)) {
+        return activeIcon;
       }
 
       return (
@@ -66,9 +70,9 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
       );
     }
 
-    if (getStatus() === 'finish' && (finishIcon || React.isValidElement(parentProps.finishIcon))) {
-      if (React.isValidElement(parentProps.finishIcon)) {
-        return parentProps.finishIcon;
+    if (getStatus() === 'finish' && (finishIcon || React.isValidElement(finishIcon))) {
+      if (React.isValidElement(finishIcon)) {
+        return finishIcon;
       }
 
       return (
@@ -81,8 +85,8 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
       );
     }
 
-    if (React.isValidElement(parentProps.inactiveIcon)) {
-      return parentProps.inactiveIcon;
+    if (React.isValidElement(inactiveIcon)) {
+      return inactiveIcon;
     }
 
     if (inactiveIcon) {

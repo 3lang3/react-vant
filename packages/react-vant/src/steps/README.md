@@ -82,6 +82,14 @@ export default () => {
 | inactiveColor | 未激活步骤的颜色 | _string_ | `#969799` |
 | iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
+### Steps.Item Props
+
+| 参数         | 说明                 | 类型        | 默认值 |
+| ------------ | -------------------- | ----------- | ------ |
+| activeIcon   | 支持自定义激活图标   | _ReactNode_ | -      |
+| inactiveIcon | 支持自定义非激活图标 | _ReactNode_ | -      |
+| finishIcon   | 支持自定义已完成图标 | _ReactNode_ | -      |
+
 ### Steps Events
 
 | 事件名      | 说明                       | 回调参数        |
@@ -94,8 +102,8 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                  | 默认值                     | 描述 |
-| ------------------------------------- | -------------------------- | ---- |
+| 名称                                 | 默认值                    | 描述 |
+| ------------------------------------ | ------------------------- | ---- |
 | --rv-step-text-color                 | _var(--rv-gray-6)_        | -    |
 | --rv-step-active-color               | _var(--rv-success-color)_ | -    |
 | --rv-step-process-text-color         | _var(--rv-text-color)_    | -    |
@@ -103,8 +111,8 @@ export default () => {
 | --rv-step-line-color                 | _var(--rv-border-color)_  | -    |
 | --rv-step-finish-line-color          | _var(--rv-success-color)_ | -    |
 | --rv-step-finish-text-color          | _var(--rv-text-color)_    | -    |
-| --rv-step-icon-size                  | _12px_                     | -    |
-| --rv-step-circle-size                | _5px_                      | -    |
+| --rv-step-icon-size                  | _12px_                    | -    |
+| --rv-step-circle-size                | _5px_                     | -    |
 | --rv-step-circle-color               | _var(--rv-gray-6)_        | -    |
 | --rv-step-horizontal-title-font-size | _var(--rv-font-size-sm)_  | -    |
 | --rv-steps-background-color          | _var(--rv-white)_         | -    |
