@@ -37,6 +37,10 @@ export default {
               { path: 'quickstart', title: '快速上手' },
               { path: 'advanced-usage', title: '进阶用法' },
               { path: 'changelog', title: '更新日志' },
+              {
+                path: 'migrate-from-v1',
+                title: '从 v1 升级',
+              },
               { path: 'contribution', title: '贡献指南' },
               { path: 'locale', title: '国际化' },
             ],
@@ -191,13 +195,6 @@ export default {
                 path: 'use-window-size',
                 title: 'useWindowSize',
               },
-            ],
-          },
-          {
-            title: '废弃',
-            items: [
-              { path: 'swipe', title: 'Swipe 轮播' },
-              { path: 'theme', title: '定制主题' },
             ],
           },
         ],
