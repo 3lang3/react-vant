@@ -65,6 +65,7 @@ export default (): React.ReactNode => {
       <DemoBlock card title="基础用法">
         <Cell title="选择单个日期" value={state.t1} isLink onClick={() => set({ v1: true })} />
         <Calendar
+          subtitle={<div>subtitle123</div>}
           visible={state.v1}
           onClose={() => set({ v1: false })}
           onConfirm={(v) => {
