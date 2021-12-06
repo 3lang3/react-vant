@@ -32,7 +32,10 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
     }
   }, [monthRef]);
 
-  const title = useMemo(() => formatMonthTitle(props.date), [props.date]);
+  const title = useMemo(() => {
+    const formatterFn = props.formatMonthTitle || formatMonthTitle;
+    return formatterFn(props.date);
+  }, [props.date]);
   const rowHeight = useMemo(() => addUnit(props.rowHeight), [props.rowHeight]);
   const offset = useMemo(() => {
     const realDay = props.date.getDay();

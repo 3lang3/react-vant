@@ -45,6 +45,7 @@ export type CalendarMonthInstance = {
 export interface CalendarHeaderProps extends BaseTypeProps {
   title?: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
+  weekdays?: React.ReactNode[];
   showTitle?: boolean;
   showSubtitle?: boolean;
   firstDayOfWeek?: number;
@@ -68,6 +69,7 @@ export interface CalendarMonthProps extends BaseTypeProps {
   showMark?: boolean;
   rowHeight?: number | string;
   formatter?: (item: CalendarDayItem) => CalendarDayItem;
+  formatMonthTitle?: (date: Date) => React.ReactNode;
   currentDate?: Date | Date[];
   allowSameDay?: boolean;
   showSubtitle?: boolean;
@@ -86,6 +88,8 @@ export interface CalendarProps extends BaseTypeProps {
   visible?: boolean;
   title?: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
+  /** 自定义星期文案 */
+  weekdays?: React.ReactNode[];
   color?: string;
   round?: boolean;
   readonly?: boolean;
@@ -93,6 +97,8 @@ export interface CalendarProps extends BaseTypeProps {
   showMark?: boolean;
   showTitle?: boolean;
   formatter?: (item: CalendarDayItem) => CalendarDayItem;
+  /** 自定义月标题 */
+  formatMonthTitle?: (date: Date) => React.ReactNode;
   rowHeight?: number | string;
   confirmText?: string;
   rangePrompt?: string;
