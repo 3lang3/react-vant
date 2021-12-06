@@ -7,10 +7,7 @@ import type { CellGroupProps } from '../cell/PropsType';
 import { FieldProps } from '../field/PropsType';
 
 export type FormLayout = 'vertical' | 'horizontal';
-export interface FormProps
-  extends Omit<RcFormProps, 'style'>,
-    Omit<CellGroupProps, 'title'>,
-    BaseTypeProps {
+export type FormProps = {
   /** 表单布局 */
   layout?: FormLayout;
   /** 是否显示 label 后面的冒号 */
@@ -19,7 +16,10 @@ export interface FormProps
   footer?: React.ReactNode;
   /** 是否显示验证信息 */
   showValidateMessage?: boolean;
-}
+} & Omit<RcFormProps, 'style'> &
+  Omit<CellGroupProps, 'title'> &
+  BaseTypeProps &
+  Pick<FieldProps, 'labelAlign' | 'inputAlign'>;
 
 export type RenderChildren<Values = unknown> = (form: RcFormInstance<Values>) => React.ReactNode;
 type ChildrenType<Values = unknown> = RenderChildren<Values> | React.ReactNode;
@@ -45,6 +45,8 @@ export type FormItemProps = RcFieldProps &
     | 'labelAlign'
     | 'labelClass'
     | 'onClick'
+    | 'inputAlign'
+    | 'errorMessageAlign'
   > & {
     label?: string;
     required?: boolean;
@@ -69,6 +71,8 @@ export type FormItemLayoutProps = Pick<
   | 'labelAlign'
   | 'labelClass'
   | 'showValidateMessage'
+  | 'inputAlign'
+  | 'errorMessageAlign'
 > & {
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;

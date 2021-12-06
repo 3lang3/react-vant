@@ -20,6 +20,8 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     border,
     inset,
     colon,
+    labelAlign,
+    inputAlign,
     showValidateMessage,
     ...formProps
   } = props;
@@ -30,6 +32,8 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
         layout,
         colon,
         showValidateMessage,
+        inputAlign,
+        labelAlign,
       }}
     >
       <RcForm className={clsx(bem(), className)} style={style} ref={ref} {...formProps}>
