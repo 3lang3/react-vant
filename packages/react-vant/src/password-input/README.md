@@ -125,3 +125,4 @@ const onSubmit = (val: string) => {
 | --rv-password-input-cursor-width | _1px_ | - |
 | --rv-password-input-cursor-height | _40%_ | - |
 | --rv-password-input-cursor-animation-duration | _1s_ | - |
+| --rv-password-input-item-border-radius | _0px_ | - |
