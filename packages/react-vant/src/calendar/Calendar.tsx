@@ -354,6 +354,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
             'allowSameDay',
             'topInfoRender',
             'bottomInfoRender',
+            'formatMonthTitle',
           ])}
           onClick={onClickDay}
         />
@@ -395,6 +396,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     const renderCalendar = () => (
       <div className={cls(className, bem())} style={style}>
         <CalendarHeader
+          weekdays={props.weekdays}
           title={props.title}
           subtitle={props.subtitle || state.subtitle}
           showTitle={props.showTitle}

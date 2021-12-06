@@ -58,6 +58,8 @@ export default (): React.ReactNode => {
     t11: '',
     v12: false,
     t12: '',
+    v13: false,
+    t13: '',
   });
 
   return (
@@ -65,7 +67,6 @@ export default (): React.ReactNode => {
       <DemoBlock card title="基础用法">
         <Cell title="选择单个日期" value={state.t1} isLink onClick={() => set({ v1: true })} />
         <Calendar
-          subtitle={<div>subtitle123</div>}
           visible={state.v1}
           onClose={() => set({ v1: false })}
           onConfirm={(v) => {
@@ -161,6 +162,22 @@ export default (): React.ReactNode => {
           onClose={() => set({ v9: false })}
           onConfirm={(v) => {
             set({ v9: false, t9: `${formatDate(v[0])} - ${formatDate(v[1])}` });
+          }}
+        />
+
+        <Cell
+          title="自定义星期文案/月标题"
+          value={state.t13}
+          isLink
+          onClick={() => set({ v13: true })}
+        />
+        <Calendar
+          formatMonthTitle={(date) => `${date.getFullYear()}🥑${date.getMonth() + 1}🍪`}
+          weekdays={['🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓']}
+          visible={state.v13}
+          onClose={() => set({ v13: false })}
+          onConfirm={(v) => {
+            set({ v13: false, t13: formatDate(v) });
           }}
         />
 
