@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type LoadingType = 'circular' | 'spinner';
@@ -22,6 +22,6 @@ export interface NavBarProps extends BaseTypeProps {
   border?: boolean;
   /** 固定在顶部时，是否在标签位置生成一个等高的占位元素 */
   placeholder?: boolean;
-  onClickLeft?: (e: MouseEvent) => void;
-  onClickRight?: (e: MouseEvent) => void;
+  onClickLeft?: (e: React.MouseEvent) => void;
+  onClickRight?: (e: React.MouseEvent) => void;
 }

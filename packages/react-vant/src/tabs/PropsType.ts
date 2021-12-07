@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { StickyProps } from '../sticky/PropsType';
 import { BaseTypeProps } from '../utils';
 
@@ -7,7 +7,7 @@ type ScrollspyConfig = {
   autoFocusLast?: boolean;
   /** 触底偏移量 */
   reachBottomThreshold?: number;
-}
+};
 
 export interface TabsProps extends BaseTypeProps {
   /** 标签主题色	 */
@@ -116,7 +116,7 @@ export interface TabPaneProps {
   /** 标题 */
   title?: string;
   /** 自定义标题样式	 */
-  titleStyle?: CSSProperties;
+  titleStyle?: React.CSSProperties;
   /** 自定义标题类名	 */
   titleClass?: string;
   /** 是否禁用标签	 */

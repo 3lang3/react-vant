@@ -1,3 +1,4 @@
+import React from 'react';
 import { SharedPopupProps } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
 

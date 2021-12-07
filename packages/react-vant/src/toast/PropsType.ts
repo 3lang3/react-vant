@@ -1,3 +1,4 @@
+import React from 'react';
 import { LoadingType } from '../loading/PropsType';
 import { BaseTypeProps } from '../utils';
 

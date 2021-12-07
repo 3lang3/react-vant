@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React from 'react';
 import { CellProps } from '../cell/PropsType';
 import { BaseTypeProps } from '../utils';
 
@@ -24,9 +24,9 @@ export interface CollapseItemProps extends CellProps {
   readonly?: boolean;
   /** @private */
   index?: number;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export type CollapseItemInstance = {
   toggle: (expand: boolean) => void;
-}
+};

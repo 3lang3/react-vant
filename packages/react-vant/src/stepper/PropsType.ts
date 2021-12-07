@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type StepperTheme = 'default' | 'round';
@@ -54,9 +54,9 @@ export interface StepperProps extends BaseTypeProps {
   /** 点击减少按钮时触发	 */
   onMinus?: () => void;
   /** 输入框聚焦时触发	 */
-  onFocus?: (event: FormEvent) => void;
+  onFocus?: (event: React.FormEvent) => void;
   /** 输入框失焦时触发	 */
-  onBlur?: (event: FormEvent) => void;
+  onBlur?: (event: React.FormEvent) => void;
   /** 点击不可用的按钮时触发	 */
   onOverlimit?: (actinType: string) => void;
 }

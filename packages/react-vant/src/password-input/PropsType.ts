@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export interface PasswordInputProps extends BaseTypeProps {
