@@ -68,9 +68,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   const handleChange = (e) => {
     const val = e.target.value;
     innerEffect.current = true;
-    formatValue(val, (v: string) => {
-      if (isFunction(props.onChange)) props.onChange(v);
-    });
+    formatValue(val, props?.onChange);
   };
 
   const renderPoints = () => {
@@ -119,7 +117,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   useEffect(() => {
     if (state.code.length >= props.length) {
       inputRef?.current?.blur?.();
-      props.onSubmit(state.code);
+      props?.onSubmit(state.code);
     }
   }, [state.code]);
 
@@ -157,7 +155,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
         onChange={handleChange}
         onFocus={() => {
           updateState({ focused: true });
-          if (isFunction(props.onFocus)) props.onFocus();
+          props?.onFocus();
         }}
         onBlur={() => updateState({ focused: false })}
       />

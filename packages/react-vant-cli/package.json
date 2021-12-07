@@ -57,7 +57,7 @@
     "chokidar": "^3.4.3",
     "clean-css": "^4.2.3",
     "clsx": "1.1.1",
-    "commander": "^6.1.0",
+    "commander": "^8.3.0",
     "consola": "^2.15.0",
     "conventional-changelog": "^3.1.24",
     "css-loader": "^4.3.0",
