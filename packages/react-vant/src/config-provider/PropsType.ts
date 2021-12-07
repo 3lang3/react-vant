@@ -1,4 +1,4 @@
-import { Locale } from 'src/locale/lang/base';
+import type { Locale } from '../locale/lang/base';
 import { BaseTypeProps } from '../utils';
 
 export interface Theme {

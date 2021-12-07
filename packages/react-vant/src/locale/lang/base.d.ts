@@ -72,4 +72,5 @@ export declare const base: {
     add: string;
   };
 };
+
 export declare type Locale = Partial<typeof base>;
