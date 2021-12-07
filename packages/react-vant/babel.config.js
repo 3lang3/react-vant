@@ -1,3 +1,10 @@
 module.exports = {
-  // presets: [require.resolve('@react-vant/cli/preset.cjs')],
+  presets: [
+    [
+      '@react-vant/cli/preset.cjs',
+      {
+        loose: process.env.BUILD_TARGET === 'package',
+      },
+    ],
+  ],
 };

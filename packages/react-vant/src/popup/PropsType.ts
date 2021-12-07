@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { BaseTypeProps, TeleportType } from '../utils';
 
 export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | '';
@@ -19,7 +19,7 @@ export interface SharedPopupProps {
   /** 自定义遮罩层类名 */
   overlayClass?: string;
   /** 自定义遮罩层样式 */
-  overlayStyle?: CSSProperties;
+  overlayStyle?: React.CSSProperties;
   /** 关闭时销毁 Popup 里的子元素 */
   destroyOnClose?: boolean;
   /** 强制渲染 Popup */

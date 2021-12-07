@@ -20,13 +20,8 @@ module.exports = function (api, options) {
       require.resolve('@babel/preset-react'),
     ],
     plugins: [
-      [
-        require.resolve('@babel/plugin-transform-runtime'),
-        {
-          corejs: false,
-          useESModules,
-        },
-      ],
+      require.resolve('babel-plugin-transform-async-to-promises'),
+      require.resolve('./babel-transform-less-to-css.cjs'),
     ],
   };
 };

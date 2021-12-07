@@ -1,4 +1,3 @@
-import type { CSSProperties, MouseEvent } from 'react';
 import React from 'react';
 import { BaseTypeProps } from '../utils';
 
@@ -22,7 +21,7 @@ export interface CellProps extends BaseTypeProps {
   /** 是否开启点击反馈	 */
   clickable?: boolean;
   /** 左侧标题额外样式	 */
-  titleStyle?: CSSProperties;
+  titleStyle?: React.CSSProperties;
   /** 左侧标题额外类名	 */
   titleClass?: string;
   /** 右侧内容额外类名	 */
@@ -39,7 +38,7 @@ export interface CellProps extends BaseTypeProps {
   rightIcon?: React.ReactNode;
   /** 自定义单元格最右侧的额外内容 */
   extra?: React.ReactNode;
-  onClick?: (e: MouseEvent<HTMLDivElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export interface CellGroupProps extends BaseTypeProps {

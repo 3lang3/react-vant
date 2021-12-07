@@ -11,7 +11,7 @@
 node_modules
 package-error.json
 yarn-error.json
-pnpm-lock.yaml
+yarn.lock
 
 # dist file
 es

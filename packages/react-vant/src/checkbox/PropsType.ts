@@ -1,4 +1,3 @@
-import type { MouseEvent } from 'react';
 import React from 'react';
 import { BaseTypeProps } from '../utils';
 
@@ -66,7 +65,7 @@ export interface CheckerProps<T> extends BaseTypeProps {
   /** 切换选择状态时触发 */
   onToggle?: () => void;
   /** 点击时触发 */
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (event: React.MouseEvent) => void;
   /** 当绑定值变化时触发的事件	 */
   onChange?: (checked: boolean) => void;
   children?: React.ReactNode;

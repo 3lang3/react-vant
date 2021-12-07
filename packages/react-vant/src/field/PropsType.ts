@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 import { CellProps } from '../cell/PropsType';
 import { DialogProps } from '../dialog/PropsType';

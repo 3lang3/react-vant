@@ -16,8 +16,8 @@ function getDefaultJsCompileOpts(type, filePath) {
       [
         require.resolve('@babel/preset-env'),
         {
-          targets: { browsers: ['last 2 versions', 'IE 10'] },
-          modules: type === 'esmodule' ? false : 'auto',
+          loose: true,
+          modules: false,
         },
       ],
       [require.resolve('@babel/preset-typescript')],
@@ -34,13 +34,6 @@ function getDefaultJsCompileOpts(type, filePath) {
             ],
           ]
         : []),
-      [
-        require.resolve('@babel/plugin-transform-runtime'),
-        {
-          useESModules: type === 'esmodule',
-          version: require('@babel/runtime/package.json').version,
-        },
-      ],
       require.resolve('../../cjs/babel-transform-less-to-css.cjs'),
     ],
   };
@@ -58,7 +51,7 @@ export function compileJs(options: IBabelOpts) {
   return transform(file.contents, getDefaultJsCompileOpts(type, file.path)).code;
 }
 
-export async function compileJsPath(filePath: string): Promise<void> {
+export async function compileScript(filePath: string): Promise<void> {
   return new Promise((resolve, reject) => {
     if (filePath.includes('.d.ts')) {
       resolve();
@@ -68,7 +61,7 @@ export async function compileJsPath(filePath: string): Promise<void> {
     const code = readFileSync(filePath, 'utf-8');
     const type = process.env.BABEL_MODULE;
 
-    transformAsync(code, getDefaultJsCompileOpts(type, filePath))
+    transformAsync(code, { filename: filePath })
       .then((result) => {
         if (result) {
           const jsFilePath = replaceExt(filePath, '.js');

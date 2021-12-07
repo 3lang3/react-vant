@@ -15,6 +15,8 @@ export interface IconBaseProps extends React.SVGProps<SVGSVGElement> {
   rotate?: number;
   /** 自定义图标名 */
   name?: string;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const IconBase: React.FC<IconBaseProps> = ({

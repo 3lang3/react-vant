@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type TagSize = '' | 'mini' | 'medium' | 'large';

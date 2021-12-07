@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import React from 'react';
 import { BaseTypeProps } from '../utils';
 

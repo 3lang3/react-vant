@@ -1,6 +1,7 @@
 export default {
   name: 'react-vant',
   build: {
+    packageManager: 'pnpm',
     srcDir: 'src',
     namedExport: true,
     css: { preprocessor: 'less' },
