@@ -16,6 +16,7 @@
   --rv-password-input-cursor-width: @password-input-cursor-width;
   --rv-password-input-cursor-height: @password-input-cursor-height;
   --rv-password-input-cursor-animation-duration: @password-input-cursor-animation-duration;
+  --rv-password-input-item-border-radius: @password-input-item-border-radius;
 }
 
 .@{rv-prefix}-password-input {
@@ -82,6 +83,7 @@
       font-size: var(--rv-password-input-font-size);
       line-height: 1.2;
       background-color: var(--rv-password-input-background-color);
+      border-radius: var(--rv-password-input-item-border-radius);
     }
 
     i {
@@ -105,8 +107,7 @@
     height: var(--rv-password-input-cursor-height);
     background-color: var(--rv-password-input-cursor-color);
     transform: translate(-50%, -50%);
-    animation: var(--rv-password-input-cursor-animation-duration)
-      rv-cursor-flicker infinite;
+    animation: var(--rv-password-input-cursor-animation-duration) rv-cursor-flicker infinite;
   }
 }
 
