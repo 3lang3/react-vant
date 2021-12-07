@@ -1,6 +1,6 @@
 {
   "name": "@react-vant/cli",
-  "version": "1.1.20",
+  "version": "2.0.0-alpha.0",
   "description": "",
   "type": "module",
   "main": "lib/index.js",
@@ -104,12 +104,12 @@
     "@types/gulp-plumber": "0.0.33",
     "@types/jest": "26.0.24",
     "@types/lodash": "4.14.177",
+    "@types/lodash-es": "^4.17.5",
+    "@types/markdown-it": "^12.2.3",
     "@types/node": "16.11.7",
     "@types/postcss-load-config": "2.0.1",
     "@types/signale": "1.4.2",
     "@types/through2": "2.0.36",
-    "@types/vinyl-fs": "2.4.12",
-    "@types/lodash-es": "^4.17.5",
-    "@types/markdown-it": "^12.2.3"
+    "@types/vinyl-fs": "2.4.12"
   }
 }
