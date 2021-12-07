@@ -92,7 +92,7 @@ async function compileDir(dir: string) {
     files.map((filename) => {
       const filePath = join(dir, filename);
 
-      if (/\.less/.test(filePath)) {
+      if (/\.(less|md)/.test(filePath)) {
         return remove(filePath);
       }
 

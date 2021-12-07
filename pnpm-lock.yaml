@@ -126,12 +126,13 @@ importers:
       autoprefixer: 9.8.8
       babel-loader: ^8.2.1
       babel-plugin-import: ^1.13.1
+      babel-plugin-transform-async-to-promises: ^0.8.16
       cache-loader: ^4.1.0
       chalk: ^4.1.0
       chokidar: ^3.4.3
       clean-css: ^4.2.3
       clsx: 1.1.1
-      commander: ^6.1.0
+      commander: ^8.3.0
       consola: ^2.15.0
       conventional-changelog: ^3.1.24
       css-loader: ^4.3.0
@@ -189,12 +190,13 @@ importers:
       autoprefixer: 9.8.8
       babel-loader: 8.2.3_@babel+core@7.16.0
       babel-plugin-import: 1.13.3
+      babel-plugin-transform-async-to-promises: 0.8.16
       cache-loader: 4.1.0
       chalk: 4.1.2
       chokidar: 3.5.2
       clean-css: 4.2.4
       clsx: 1.1.1
-      commander: 6.2.1
+      commander: 8.3.0
       consola: 2.15.3
       conventional-changelog: 3.1.24
       css-loader: 4.3.0
@@ -339,8 +341,8 @@ packages:
       slash: 2.0.0
       source-map: 0.5.7
     optionalDependencies:
-      '@nicolo-ribaudo/chokidar-2': 2.1.8-no-fsevents.3
-      chokidar: 3.5.2
+      '@nicolo-ribaudo/chokidar-2': registry.npmjs.org/@nicolo-ribaudo/chokidar-2/2.1.8-no-fsevents.3
+      chokidar: registry.npmjs.org/chokidar/3.5.2
     dev: true
 
   /@babel/code-frame/7.12.11:
@@ -3181,15 +3183,6 @@ packages:
       glob-to-regexp: 0.3.0
     dev: false
 
-  /@nicolo-ribaudo/chokidar-2/2.1.8-no-fsevents.3:
-    resolution:
-      {
-        integrity: sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==,
-      }
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /@nodelib/fs.scandir/2.1.5:
     resolution:
       {
@@ -5235,6 +5228,13 @@ packages:
       - supports-color
     dev: false
 
+  /babel-plugin-transform-async-to-promises/0.8.16:
+    resolution:
+      {
+        integrity: sha512-mm0UMekJVOTuIlkGIEH1fpnExyTIIJ2/L5ixTTI1zAVdMpbG7Em3LiS92p0TCWKiMkHhYYinz/zn2D/BPPJaxA==,
+      }
+    dev: false
+
   /babel-preset-current-node-syntax/1.0.1_@babel+core@7.16.0:
     resolution:
       {
@@ -5907,7 +5907,7 @@ packages:
       readdirp: 2.2.1
       upath: 1.2.0
     optionalDependencies:
-      fsevents: 1.2.13
+      fsevents: registry.npmjs.org/fsevents/1.2.13
     dev: true
 
   /chokidar/3.5.2:
@@ -5926,6 +5926,7 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
 
   /chownr/1.1.4:
     resolution:
@@ -6294,30 +6295,24 @@ packages:
     resolution:
       {
         integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==,
+        registry: https://registry.yarnpkg.com/,
       }
 
   /commander/4.1.1:
     resolution:
       {
         integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==,
+        registry: https://registry.yarnpkg.com/,
       }
     engines: { node: '>= 6' }
-
-  /commander/6.2.1:
-    resolution:
-      {
-        integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==,
-      }
-    engines: { node: '>= 6' }
-    dev: false
 
   /commander/8.3.0:
     resolution:
       {
         integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==,
+        registry: https://registry.yarnpkg.com/,
       }
     engines: { node: '>= 12' }
-    dev: true
 
   /commondir/1.0.1:
     resolution: { integrity: sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs= }
@@ -7639,17 +7634,6 @@ packages:
       }
     engines: { node: '>= 4' }
     dev: false
-
-  /encoding/0.1.13:
-    resolution:
-      {
-        integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==,
-      }
-    requiresBuild: true
-    dependencies:
-      iconv-lite: 0.6.3
-    dev: true
-    optional: true
 
   /end-of-stream/1.4.4:
     resolution:
@@ -9264,21 +9248,6 @@ packages:
   /fs.realpath/1.0.0:
     resolution: { integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8= }
 
-  /fsevents/1.2.13:
-    resolution:
-      {
-        integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==,
-      }
-    engines: { node: '>= 4.0' }
-    os: [darwin]
-    deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
-    requiresBuild: true
-    dependencies:
-      bindings: 1.5.0
-      nan: 2.15.0
-    dev: true
-    optional: true
-
   /fsevents/2.3.2:
     resolution:
       {
@@ -9287,6 +9256,7 @@ packages:
     engines: { node: ^8.16.0 || ^10.6.0 || >=11.0.0 }
     os: [darwin]
     requiresBuild: true
+    dev: false
     optional: true
 
   /function-bind/1.1.1:
@@ -12124,7 +12094,7 @@ packages:
   /jsonfile/4.0.0:
     resolution: { integrity: sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss= }
     optionalDependencies:
-      graceful-fs: 4.2.8
+      graceful-fs: registry.npmjs.org/graceful-fs/4.2.8
 
   /jsonfile/6.1.0:
     resolution:
@@ -12824,6 +12794,7 @@ packages:
         integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==,
       }
     engines: { node: '>=6' }
+    requiresBuild: true
     dependencies:
       pify: 4.0.1
       semver: 5.7.1
@@ -13359,7 +13330,7 @@ packages:
       minipass-sized: 1.0.3
       minizlib: 2.1.2
     optionalDependencies:
-      encoding: 0.1.13
+      encoding: registry.npmjs.org/encoding/0.1.13
     dev: true
 
   /minipass-flush/1.0.5:
@@ -19032,7 +19003,7 @@ packages:
     resolution: { integrity: sha1-sQTZ5ECf+jJfqt1SBkLQo7SIs2U= }
     engines: { node: '>=4' }
     dependencies:
-      graceful-fs: 4.2.8
+      graceful-fs: registry.npmjs.org/graceful-fs/4.2.8
       pify: 2.3.0
       strip-bom-buf: 1.0.0
       strip-bom-stream: 2.0.0
@@ -19740,8 +19711,8 @@ packages:
       text-table: 0.2.0
       through2: 3.0.2
     optionalDependencies:
-      grouped-queue: 1.1.0
-      yeoman-environment: 2.10.3
+      grouped-queue: registry.npmjs.org/grouped-queue/1.1.0
+      yeoman-environment: registry.npmjs.org/yeoman-environment/2.10.3
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -19767,3 +19738,148 @@ packages:
       {
         integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==,
       }
+
+  registry.npmjs.org/@nicolo-ribaudo/chokidar-2/2.1.8-no-fsevents.3:
+    resolution:
+      {
+        integrity: sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8-no-fsevents.3.tgz,
+      }
+    name: '@nicolo-ribaudo/chokidar-2'
+    version: 2.1.8-no-fsevents.3
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/chokidar/3.5.2:
+    resolution:
+      {
+        integrity: sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/chokidar/-/chokidar-3.5.2.tgz,
+      }
+    name: chokidar
+    version: 3.5.2
+    engines: { node: '>= 8.10.0' }
+    requiresBuild: true
+    dependencies:
+      anymatch: 3.1.2
+      braces: 3.0.2
+      glob-parent: 5.1.2
+      is-binary-path: 2.1.0
+      is-glob: 4.0.3
+      normalize-path: 3.0.0
+      readdirp: 3.6.0
+    optionalDependencies:
+      fsevents: registry.npmjs.org/fsevents/2.3.2
+    dev: true
+    optional: true
+
+  registry.npmjs.org/encoding/0.1.13:
+    resolution:
+      {
+        integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/encoding/-/encoding-0.1.13.tgz,
+      }
+    name: encoding
+    version: 0.1.13
+    requiresBuild: true
+    dependencies:
+      iconv-lite: 0.6.3
+    dev: true
+    optional: true
+
+  registry.npmjs.org/fsevents/1.2.13:
+    resolution:
+      {
+        integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/fsevents/-/fsevents-1.2.13.tgz,
+      }
+    name: fsevents
+    version: 1.2.13
+    engines: { node: '>= 4.0' }
+    os: [darwin]
+    deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
+    requiresBuild: true
+    dependencies:
+      bindings: 1.5.0
+      nan: 2.15.0
+    dev: true
+    optional: true
+
+  registry.npmjs.org/fsevents/2.3.2:
+    resolution:
+      {
+        integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz,
+      }
+    name: fsevents
+    version: 2.3.2
+    engines: { node: ^8.16.0 || ^10.6.0 || >=11.0.0 }
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/graceful-fs/4.2.8:
+    resolution:
+      {
+        integrity: sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.8.tgz,
+      }
+    name: graceful-fs
+    version: 4.2.8
+
+  registry.npmjs.org/grouped-queue/1.1.0:
+    resolution:
+      {
+        integrity: sha512-rZOFKfCqLhsu5VqjBjEWiwrYqJR07KxIkH4mLZlNlGDfntbb4FbMyGFP14TlvRPrU9S3Hnn/sgxbC5ZeN0no3Q==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/grouped-queue/-/grouped-queue-1.1.0.tgz,
+      }
+    name: grouped-queue
+    version: 1.1.0
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+    optional: true
+
+  registry.npmjs.org/yeoman-environment/2.10.3:
+    resolution:
+      {
+        integrity: sha512-pLIhhU9z/G+kjOXmJ2bPFm3nejfbH+f1fjYRSOteEXDBrv1EoJE/e+kuHixSXfCYfTkxjYsvRaDX+1QykLCnpQ==,
+        registry: https://registry.yarnpkg.com/,
+        tarball: https://registry.npmjs.org/yeoman-environment/-/yeoman-environment-2.10.3.tgz,
+      }
+    name: yeoman-environment
+    version: 2.10.3
+    requiresBuild: true
+    dependencies:
+      chalk: 2.4.2
+      debug: 3.2.7
+      diff: 3.5.0
+      escape-string-regexp: 1.0.5
+      execa: 4.1.0
+      globby: 8.0.2
+      grouped-queue: registry.npmjs.org/grouped-queue/1.1.0
+      inquirer: 7.3.3
+      is-scoped: 1.0.0
+      lodash: 4.17.21
+      log-symbols: 2.2.0
+      mem-fs: 1.2.0
+      mem-fs-editor: 6.0.0
+      npm-api: 1.0.1_debug@3.2.7
+      semver: 7.3.5
+      strip-ansi: 4.0.0
+      text-table: 0.2.0
+      untildify: 3.0.3
+      yeoman-generator: 4.13.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+    optional: true
