@@ -61,7 +61,7 @@ export default () => {
 | 繁體中文（港） | zh-HK  |
 | 繁體中文（台） | zh-TW  |
 
-> 在 [这里](https://github.com/3lang3/react-vant/tree/main/packages/react-vant/src/locale/lang) 查看所有的语言包源文件。
+> 在 [这里](https://github.com/3lang3/react-vant/tree/next/packages/react-vant/src/locale/lang) 查看所有的语言包源文件。
 
 ## 常见问题
 

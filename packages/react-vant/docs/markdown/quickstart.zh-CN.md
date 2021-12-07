@@ -6,10 +6,10 @@
 
 ```bash
 # 通过 npm 安装
-npm i react-vant
+npm i react-vant@next
 
 # 通过 yarn 安装
-yarn add react-vant
+yarn add react-vant@next
 ```
 
 ### 引入
@@ -20,7 +20,7 @@ yarn add react-vant
 import { Button } from 'react-vant';
 ```
 
-### 模版
+### 模版(todo)
 
 #### 在 create-react-app 中使用
 
