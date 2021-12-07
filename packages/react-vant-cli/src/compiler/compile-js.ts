@@ -38,7 +38,6 @@ function getDefaultJsCompileOpts(type, filePath) {
         require.resolve('@babel/plugin-transform-runtime'),
         {
           useESModules: type === 'esmodule',
-          version: require('@babel/runtime/package.json').version,
         },
       ],
       require.resolve('../../cjs/babel-transform-less-to-css.cjs'),
@@ -58,7 +57,7 @@ export function compileJs(options: IBabelOpts) {
   return transform(file.contents, getDefaultJsCompileOpts(type, file.path)).code;
 }
 
-export async function compileJsPath(filePath: string): Promise<void> {
+export async function compileScript(filePath: string): Promise<void> {
   return new Promise((resolve, reject) => {
     if (filePath.includes('.d.ts')) {
       resolve();

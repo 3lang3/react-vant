@@ -20,7 +20,7 @@ import { genStyleDepsMap } from '../compiler/gen-style-deps-map.js';
 import { genPackageEntry } from '../compiler/gen-package-entry.js';
 import { genPackageStyle } from '../compiler/gen-package-style.js';
 import { CSS_LANG } from '../common/css.js';
-import { compileJsPath } from '../compiler/compile-js.js';
+import { compileScript } from '../compiler/compile-js.js';
 import { compileBundles } from '../compiler/compile-bundles.js';
 import { compileStyle } from '../compiler/compile-style.js';
 import { installDependencies } from '../common/manager.js';
@@ -29,7 +29,7 @@ const { remove, copy, readdir, existsSync } = fse;
 
 async function compileFile(filePath: string) {
   if (isScript(filePath)) {
-    return compileJsPath(filePath);
+    return compileScript(filePath);
   }
 
   if (isStyle(filePath)) {
@@ -62,7 +62,7 @@ async function preCompileDir(dir: string) {
         return preCompileDir(filePath);
       }
       if (isScript(filePath)) {
-        return compileJsPath(filePath);
+        return compileScript(filePath);
       }
       return Promise.resolve();
     }),
