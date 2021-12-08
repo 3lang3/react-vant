@@ -12,6 +12,18 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.7
+
+`2021-12-08`
+
+**Bug Fixes**
+
+- PasswordInput: 修复不传`onFocus`事件导致触发报错的问题 ([055fec1](https://github.com/3lang3/react-vant/commit/055fec1691d6941896f77e8af870e9e36361761c))
+
+**Features**
+
+- Card: 新增`decimal`允许控制价格小数是否显示 ([5383526](https://github.com/3lang3/react-vant/commit/538352646f9b0437b4e143e1490f55bd40ca6313))
+
 ### 1.4.6
 
 `2021-12-07`
