@@ -5,6 +5,7 @@
   "scripts": {
     "export": "node ./scripts/export.js && npx @svgr/cli -d src/icons src/svg",
     "build": "gulp",
+    "prepare": "pnpm build",
     "prepack": "npm run build"
   },
   "main": "./lib/index.js",
