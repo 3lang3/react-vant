@@ -76,23 +76,24 @@ import { Card } from 'react-vant';
 
 ### Props
 
-| 参数        | 说明                         | 类型                           | 默认值  |
-| ----------- | ---------------------------- | ------------------------------ | ------- |
-| thumb       | 左侧图片 URL，或自定义内容   | _string \|ReactNode_           | -       |
-| title       | 标题                         | _ReactNode_                    | -       |
-| desc        | 描述                         | _ReactNode_                    | -       |
-| tag         | 图片角标                     | _ReactNode_                    | -       |
-| num         | 商品数量                     | _number \| string \|ReactNode_ | -       |
-| price       | 商品价格                     | _number \| string \|ReactNode_ | -       |
-| originPrice | 商品划线原价                 | _number \| string \|ReactNode_ | -       |
-| centered    | 内容是否垂直居中             | _boolean_                      | `false` |
-| currency    | 货币符号                     | _string_                       | `¥`     |
-| thumbLink   | 点击左侧图片后跳转的链接地址 | _string_                       | -       |
-| lazyload    | 是否开启图片懒加载           | _boolean_                      | `false` |
-| priceTop    | 自定义价格上方区域           | _ReactNode_                    | -       |
-| bottom      | 自定义价格下方区域           | _ReactNode_                    | -       |
-| tags        | 自定义描述下方标签区域       | _ReactNode_                    | -       |
-| footer      | 自定义右下角内容             | _ReactNode_                    | -       |
+| 参数        | 说明                         | 类型                       | 默认值      |
+| ----------- | ---------------------------- | -------------------------- | ----------- | --- |
+| thumb       | 左侧图片 URL，或自定义内容   | _string\| React.ReactNode_ | -           |
+| title       | 标题                         | _ReactNode_                | -           |
+| desc        | 描述                         | _ReactNode_                | -           |
+| tag         | 图片角标                     | _ReactNode_                | -           |
+| num         | 商品数量                     | _number \| string_         | _ReactNode_ | -   |
+| price       | 商品价格                     | _number \| string_         | _ReactNode_ | -   |
+| decimal     | 补全价格两位小数             | _boolean_                  | `true`      |
+| originPrice | 商品划线原价                 | _number\| string_          | _ReactNode_ | -   |
+| centered    | 内容是否垂直居中             | _boolean_                  | `false`     |
+| currency    | 货币符号                     | _string_                   | `¥`         |
+| thumbLink   | 点击左侧图片后跳转的链接地址 | _string_                   | -           |
+| lazyload    | 是否开启图片懒加载           | _boolean_                  | `false`     |
+| priceTop    | 自定义价格上方区域           | _ReactNode_                | -           |
+| bottom      | 自定义价格下方区域           | _ReactNode_                | -           |
+| tags        | 自定义描述下方标签区域       | _ReactNode_                | -           |
+| footer      | 自定义右下角内容             | _ReactNode_                | -           |
 
 ### Events
 

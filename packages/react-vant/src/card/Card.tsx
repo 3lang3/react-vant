@@ -73,8 +73,12 @@ const Card: React.FC<CardProps> = (props) => {
       return (
         <div>
           <span className={cls(bem('price-currency'))}>{props.currency}</span>
-          <span className={cls(bem('price-integer'))}>{priceArr[0]}</span>.
-          <span className={cls(bem('price-decimal'))}>{priceArr[1]}</span>
+          <span className={cls(bem('price-integer'))}>{priceArr[0]}</span>
+          {props.decimal && (
+            <>
+              .<span className={cls(bem('price-decimal'))}>{priceArr[1] || '00'}</span>
+            </>
+          )}
         </div>
       );
     }
@@ -138,6 +142,7 @@ const Card: React.FC<CardProps> = (props) => {
 // defaultProps defined if need
 Card.defaultProps = {
   currency: '¥',
+  decimal: true,
 };
 
 export default Card;
