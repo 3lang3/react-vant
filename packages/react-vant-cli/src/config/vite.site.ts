@@ -102,8 +102,10 @@ export function getViteConfigForSiteDev(): InlineConfig {
         'site-desktop-shared': SITE_DESKTOP_SHARED_FILE,
       },
     },
+    optimizeDeps: {
+      entries: [join(SITE_SRC_DIR, '*.html')],
+    },
     server: {
-      force: true,
       host: '0.0.0.0',
       port: 4000,
     },
