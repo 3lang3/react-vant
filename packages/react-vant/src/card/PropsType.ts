@@ -22,6 +22,8 @@ export interface CardProps extends BaseTypeProps {
   title?: React.ReactNode;
   /** 商品价格支持自定义 */
   price?: React.ReactNode;
+  /** 补全价格两位小数 */
+  decimal?: boolean;
   /** 内容是否垂直居中	 */
   centered?: boolean;
   /** 是否开启图片懒加载 */
