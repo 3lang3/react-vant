@@ -19,8 +19,9 @@ type DemoItem = {
 };
 
 function genImports(demos: DemoItem[]) {
+  const vantConfig = getVantConfig();
   return demos
-    .map((item) => `import ${item.name} from '${removeExt(normalizePath(item.path))}';`)
+    .map((item) => `import ${item.name} from '${join(vantConfig.name, item.path)}';`)
     .join('\n');
 }
 
@@ -58,9 +59,9 @@ function genCode(components: string[]) {
     .map((component) => ({
       component,
       name: pascalize(component),
-      path: join(SRC_DIR, component, 'demo/index.tsx'),
+      path: join(component, 'demo/index.tsx'),
     }))
-    .filter((item) => existsSync(item.path));
+    .filter((item) => existsSync(join(SRC_DIR, item.path)));
 
   return `
  ${genImports(demos)}
