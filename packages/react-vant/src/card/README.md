@@ -2,7 +2,7 @@
 
 ### 介绍
 
-商品卡片，用于展示商品的图片、价格等信息。
+最基础的卡片容器，可承载文字、列表、图片、段落。
 
 ```js
 import { Card } from 'react-vant';
@@ -18,16 +18,9 @@ import { Card } from 'react-vant';
 
 export default () => {
   return (
-    <Card
-      title="标题"
-      extra="额外内容"
-      footer={
-        <Button type="primary" size="small" block>
-          查看详情
-        </Button>
-      }
-    >
-      Body
+    <Card round>
+      <Card.Header>卡片标题</Card.Header>
+      <Card.Body>This is the card content</Card.Body>
     </Card>
   );
 };

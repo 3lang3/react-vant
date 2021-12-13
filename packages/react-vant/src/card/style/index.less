@@ -17,12 +17,16 @@
 .@{rv-prefix}-card {
   position: relative;
   box-sizing: border-box;
+  overflow: hidden;
   color: var(--rv-card-color);
   font-size: var(--rv-card-size);
   background-color: var(--rv-card-background-color);
-  border-radius: var(--rv-card-radius);
 
-  &__header {
+  &--round {
+    border-radius: var(--rv-card-radius);
+  }
+
+  &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,11 +40,39 @@
     }
   }
 
-  &__body {
+  &-body {
     padding: var(--rv-card-padding);
+
+    & + .@{rv-prefix}-card-cover {
+      margin-top: var(--rv-padding-sm);
+    }
+
+    .@{rv-prefix}-card-cover + & {
+      margin-top: var(--rv-padding-sm);
+    }
+
+    &:first-child {
+      padding-top: var(--rv-padding-sm);
+    }
+    &:last-child {
+      padding-bottom: var(--rv-padding-sm);
+    }
   }
 
-  &__footer {
+  &-footer {
     padding: var(--rv-card-footer-padding);
+    text-align: right;
+
+    & > * {
+      margin-left: var(--rv-padding-sm);
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &-cover {
+    width: 100%;
   }
 }
