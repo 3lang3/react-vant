@@ -25,6 +25,10 @@ export interface SearchProps extends FieldCommonProps, BaseTypeProps {
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   /** 点击输入区域时触发	 */
   onClickInput?: (e: React.MouseEvent<HTMLDivElement>) => void;
+
+  onFocus?: (e: React.MouseEvent) => void;
+
+  onBlur?: (e: React.MouseEvent) => void;
 }
 
 export type SearchInstance = {
