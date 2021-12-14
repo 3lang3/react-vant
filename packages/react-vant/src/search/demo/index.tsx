@@ -20,6 +20,8 @@ export default (): React.ReactNode => {
             console.log('onChange----', val);
             setValue0(val);
           }}
+          onFocus={() => console.log('focus')}
+          onBlur={() => console.log('blur')}
           onSearch={(val) => {
             console.log('onSearch', val);
           }}

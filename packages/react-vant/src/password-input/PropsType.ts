@@ -27,7 +27,8 @@ export interface PasswordInputProps extends BaseTypeProps {
   /** 密码提交事件(位数满了自动提交) */
   onSubmit?: (v: string) => void;
   /** 输入框聚焦时触发 */
-  onFocus?: () => void;
+  onFocus?: (e: React.FocusEvent) => void;
+  onBlur?: (e: React.FocusEvent) => void;
 }
 
 export type PasswordInputInstance = {

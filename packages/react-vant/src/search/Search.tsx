@@ -23,35 +23,41 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   const innerEffect = useRef<boolean>(false);
   const [value, setValue] = useState(() => props.value);
 
-  const blur = () => filedRef.current?.blur();
-  const focus = () => filedRef.current?.focus();
+  const blur = () => {
+    filedRef.current?.blur();
+  };
+
+  const focus = () => {
+    filedRef.current?.focus();
+  };
+
   const change = (v) => {
     innerEffect.current = true;
-    props.onChange?.(v);
+    props?.onChange?.(v);
     setValue(v);
   };
 
   const onCancel = () => {
     if (!props.actionText) {
       change('');
-      props.onCancel?.();
+      props?.onCancel?.();
     }
   };
 
   const onKeypress = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       preventDefault(event.nativeEvent);
-      props.onSearch?.(value);
+      props?.onSearch?.(value);
     }
   };
 
   const onClear = (event: React.MouseEvent<HTMLDivElement>) => {
     change('');
-    props.onClear?.(event);
+    props?.onClear?.(event);
   };
 
   const onClickInput = (event: React.MouseEvent<HTMLDivElement>) => {
-    props.onClickInput?.(event);
+    props?.onClickInput?.(event);
   };
 
   const renderLabel = () => {
@@ -116,8 +122,8 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
         value={value || ''}
         border={false}
         onKeypress={onKeypress}
-        onFocus={focus}
-        onBlur={blur}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
         onChange={change}
         onClear={onClear}
         onClickInput={onClickInput}
