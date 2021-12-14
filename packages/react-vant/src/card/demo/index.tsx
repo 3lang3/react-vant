@@ -26,7 +26,7 @@ export default (): React.ReactNode => {
           <Card.Header>卡片标题</Card.Header>
           <Card.Body>卡片内容区域</Card.Body>
           <Card.Footer>
-            <Button type="primary" block size="mini">
+            <Button type="primary" round block size="mini">
               查看更多 <Arrow />
             </Button>
           </Card.Footer>
@@ -75,6 +75,26 @@ export default (): React.ReactNode => {
           <Card.Cover onClick={() => Toast.info('点击了Cover区域')}>
             <Image src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/274faa127009547.61390144590a7.png" />
           </Card.Cover>
+        </Card>
+      </DemoBlock>
+      <DemoBlock title="展示边框">
+        <Card round>
+          <Card.Header border>卡片标题</Card.Header>
+          <Card.Body
+            style={{
+              height: '30vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            卡片内容区域
+          </Card.Body>
+          <Card.Footer border>
+            <Button type="primary" round block size="mini">
+              查看更多 <Arrow />
+            </Button>
+          </Card.Footer>
         </Card>
       </DemoBlock>
       <DemoBlock title="自定义卡片样式">
