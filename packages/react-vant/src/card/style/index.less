@@ -1,11 +1,12 @@
 @import './var.less';
 
 :root {
-  --rv-card-padding: @card-padding;
   --rv-card-size: @card-size;
   --rv-card-color: @card-color;
   --rv-card-background-color: @card-background-color;
   --rv-card-radius: @card-radius;
+
+  --rv-card-body-padding: @card-padding;
 
   --rv-card-header-padding: @card-header-padding;
   --rv-card-header-size: @card-header-size;
@@ -31,8 +32,8 @@
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    font-size: var(--rv-card-title-size);
-    color: var(--rv-card-color);
+    font-size: var(--rv-card-header-size);
+    color: var(--rv-card-header-color);
     padding: var(--rv-card-header-padding);
 
     &__extra {
@@ -41,7 +42,7 @@
   }
 
   &-body {
-    padding: var(--rv-card-padding);
+    padding: var(--rv-card-body-padding);
 
     & + .@{rv-prefix}-card-cover {
       margin-top: var(--rv-padding-sm);

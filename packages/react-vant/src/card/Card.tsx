@@ -8,7 +8,7 @@ import {
   CardFooterProps,
   CardCoverProps,
 } from './PropsType';
-import { BORDER_BOTTOM, BORDER_TOP, SHADOW } from '../utils/constant';
+import { BORDER_BOTTOM, BORDER_TOP } from '../utils/constant';
 
 export const CardHeader: React.FC<CardHeaderProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -63,14 +63,10 @@ const Card: React.FC<CardProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('card', prefixCls);
 
-  const { className, style, round, shadow, children } = props;
+  const { className, style, round, children } = props;
 
   return (
-    <div
-      className={cls(bem({ round }), className, shadow && `${SHADOW}--${+shadow}`)}
-      style={style}
-      onClick={props.onClick}
-    >
+    <div className={cls(bem({ round }), className)} style={style} onClick={props.onClick}>
       {children}
     </div>
   );

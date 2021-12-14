@@ -5,7 +5,7 @@
 商品卡片，用于展示商品的图片、价格等信息。
 
 ```js
-import { Card } from 'react-vant';
+import { ProductCard } from 'react-vant';
 ```
 
 ## 代码演示
@@ -13,7 +13,7 @@ import { Card } from 'react-vant';
 ### 基础用法
 
 ```jsx
-<Card
+<ProductCard
   num="2"
   price="2.00"
   desc="描述信息"
@@ -27,7 +27,7 @@ import { Card } from 'react-vant';
 通过 `originPrice` 设置商品原价，通过 `tag` 设置商品左上角标签。
 
 ```jsx
-<Card
+<ProductCard
   num="2"
   tag="标签"
   price="2.00"
@@ -40,10 +40,10 @@ import { Card } from 'react-vant';
 
 ### 自定义内容
 
-`Card` 组件提供了多个插槽，可以灵活地自定义内容。
+`ProductCard` 组件提供了多个插槽，可以灵活地自定义内容。
 
 ```jsx
-<Card
+<ProductCard
   num="2"
   price="2.00"
   desc="描述信息"
