@@ -8,7 +8,9 @@
 
 #### API 调整
 
-- 移除了 Swipe 组件。
+- 移除了 `Swipe` 组件。
+- `Card` 组件改名为 `ProductCard`
+- 重写 `Card` 组件
 
 #### 废弃组件
 
