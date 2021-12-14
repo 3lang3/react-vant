@@ -100,6 +100,7 @@ export default {
             title: '展示组件',
             items: [
               { path: 'badge', title: 'Badge 徽标' },
+              { path: 'card', title: 'Card 卡片' },
               { path: 'circle', title: 'Circle 环形进度条' },
               { path: 'collapse', title: 'Collapse 折叠面板' },
               { path: 'count-down', title: 'CountDown 倒计时' },
@@ -135,7 +136,7 @@ export default {
             title: '业务组件',
             items: [
               { path: 'area', title: 'Area 省市区选择' },
-              { path: 'card', title: 'Card 卡片' },
+              { path: 'product-card', title: 'ProductCard 商品卡片' },
               { path: 'coupon-list', title: 'Coupon 优惠券' },
               { path: 'submit-bar', title: 'SubmitBar 提交订单栏' },
               { path: 'sku', title: 'Sku 商品规格' },

@@ -1,10 +1,20 @@
 @import '../../styles/var.less';
 
 .demo-card {
-  background: #fff;
+  .vant-doc-demo-block {
+    padding: 0 @padding-md;
+  }
 
   .vant-doc-demo-block__title {
-    padding-left: @padding-md;
+    padding-left: 0;
+  }
+
+  .rv-card {
+    margin-bottom: @padding-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &-row {

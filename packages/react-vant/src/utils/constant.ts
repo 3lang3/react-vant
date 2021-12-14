@@ -16,5 +16,8 @@ export const BORDER_SURROUND = `${BORDER}--surround`;
 export const BORDER_TOP_BOTTOM = `${BORDER}--top-bottom`;
 export const BORDER_UNSET_TOP_BOTTOM = `${BORDER}-unset--top-bottom`;
 
+// shadow
+export const SHADOW = 'rv-shadow';
+
 // component type key
 export const COMPONENT_TYPE_KEY = '__REACT_VANT_COMPONENT';

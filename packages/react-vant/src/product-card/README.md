@@ -2,7 +2,7 @@
 
 ### 介绍
 
-最基础的卡片容器，可承载文字、列表、图片、段落。
+商品卡片，用于展示商品的图片、价格等信息。
 
 ```js
 import { Card } from 'react-vant';
@@ -13,17 +13,13 @@ import { Card } from 'react-vant';
 ### 基础用法
 
 ```jsx
-import React from 'react';
-import { Card } from 'react-vant';
-
-export default () => {
-  return (
-    <Card round>
-      <Card.Header>卡片标题</Card.Header>
-      <Card.Body>This is the card content</Card.Body>
-    </Card>
-  );
-};
+<Card
+  num="2"
+  price="2.00"
+  desc="描述信息"
+  title="商品标题"
+  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+/>
 ```
 
 ### 营销信息
@@ -112,21 +108,21 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                              | 默认值                                      | 描述 |
-| --------------------------------- | ------------------------------------------- | ---- |
-| --rv-card-padding                 | _var(--rv-padding-xs) var(--rv-padding-md)_ | -    |
-| --rv-card-font-size               | _var(--rv-font-size-sm)_                    | -    |
-| --rv-card-text-color              | _var(--rv-text-color)_                      | -    |
-| --rv-card-background-color        | _var(--rv-background-color-light)_          | -    |
-| --rv-card-thumb-size              | _88px_                                      | -    |
-| --rv-card-thumb-border-radius     | _var(--rv-border-radius-lg)_                | -    |
-| --rv-card-title-line-height       | _16px_                                      | -    |
-| --rv-card-desc-color              | _var(--rv-gray-7)_                          | -    |
-| --rv-card-desc-line-height        | _var(--rv-line-height-md)_                  | -    |
-| --rv-card-price-color             | _var(--rv-gray-8)_                          | -    |
-| --rv-card-origin-price-color      | _var(--rv-gray-6)_                          | -    |
-| --rv-card-num-color               | _var(--rv-gray-6)_                          | -    |
-| --rv-card-origin-price-font-size  | _var(--rv-font-size-xs)_                    | -    |
-| --rv-card-price-font-size         | _var(--rv-font-size-sm)_                    | -    |
-| --rv-card-price-integer-font-size | _var(--rv-font-size-lg)_                    | -    |
-| --rv-card-price-font-family       | _var(--rv-price-integer-font-family)_       | -    |
+| 名称                                      | 默认值                                      | 描述 |
+| ----------------------------------------- | ------------------------------------------- | ---- |
+| --rv-product-card-padding                 | _var(--rv-padding-xs) var(--rv-padding-md)_ | -    |
+| --rv-product-card-font-size               | _var(--rv-font-size-sm)_                    | -    |
+| --rv-product-card-text-color              | _var(--rv-text-color)_                      | -    |
+| --rv-product-card-background-color        | _var(--rv-background-color-light)_          | -    |
+| --rv-product-card-thumb-size              | _88px_                                      | -    |
+| --rv-product-card-thumb-border-radius     | _var(--rv-border-radius-lg)_                | -    |
+| --rv-product-card-title-line-height       | _16px_                                      | -    |
+| --rv-product-card-desc-color              | _var(--rv-gray-7)_                          | -    |
+| --rv-product-card-desc-line-height        | _var(--rv-line-height-md)_                  | -    |
+| --rv-product-card-price-color             | _var(--rv-gray-8)_                          | -    |
+| --rv-product-card-origin-price-color      | _var(--rv-gray-6)_                          | -    |
+| --rv-product-card-num-color               | _var(--rv-gray-6)_                          | -    |
+| --rv-product-card-origin-price-font-size  | _var(--rv-font-size-xs)_                    | -    |
+| --rv-product-card-price-font-size         | _var(--rv-font-size-sm)_                    | -    |
+| --rv-product-card-price-integer-font-size | _var(--rv-font-size-lg)_                    | -    |
+| --rv-product-card-price-font-family       | _var(--rv-price-integer-font-family)_       | -    |

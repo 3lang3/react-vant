@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import clsx from 'clsx';
 import Loading from '../loading';
 import { ButtonProps } from './PropsType';
-import { BORDER_SURROUND, WHITE } from '../utils/constant';
+import { BORDER_SURROUND, SHADOW, WHITE } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -35,11 +35,10 @@ const Button: React.FC<ButtonProps> = (props) => {
         block: props.block,
         round: props.round,
         square: props.square,
-        shadow: props.shadow,
-        [`shadow-${+props.shadow}`]: props.shadow,
       },
     ]),
     { [BORDER_SURROUND]: hairline },
+    props.shadow && `${SHADOW}--${+props.shadow}`,
   );
 
   const style: Record<string, string | number> = { ...props.style };
