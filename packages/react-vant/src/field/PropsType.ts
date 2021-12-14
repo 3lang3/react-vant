@@ -119,8 +119,8 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onFocus?: (e: React.MouseEvent) => void;
-  onBlur?: (e: React.MouseEvent) => void;
+  onFocus?: (e: React.FocusEvent) => void;
+  onBlur?: (e: React.FocusEvent) => void;
   onKeypress?: (e: React.KeyboardEvent) => void;
   onClickInput?: (e: React.MouseEvent) => void;
   onClickLeftIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
