@@ -12,6 +12,22 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.8
+
+`2021-12-14`
+
+**Bug Fixes**
+
+- Calendar: 日期`onClick`事件修复 ([2371086](https://github.com/3lang3/react-vant/commit/2371086aa0c4671d48058f6e6cc3cc45a122ec34))
+- Field: 修复清除按钮在自定义的情况不垂直居中的问题 ([8aa7b82](https://github.com/3lang3/react-vant/commit/8aa7b82f1e026a0b5ee9e9ee75bc5ae5b4cb5c46))
+- PasswordInput: onFocus 事件修复 ([8c021e7](https://github.com/3lang3/react-vant/commit/8c021e73edc9e54bae8846842f1dd94663a107df))
+- Field: `onFocus`,`onBlur`事件参数类型修复 ([bb5c689](https://github.com/3lang3/react-vant/commit/bb5c68959eeaefc8e9a385f85b3612a0b03a1345))
+
+**Features**
+
+- PasswordInput: 新增 `onBlur` 事件 ([83072f9](https://github.com/3lang3/react-vant/commit/83072f9fab75ed11b0101f13f59c4ee09cd159f7))
+- Search: 新增`onBlur`, `onFocus`事件。 ([4358a9d](https://github.com/3lang3/react-vant/commit/4358a9df70a65db6be600776fd89b2232bc95d6f))
+
 ### 1.4.7
 
 `2021-12-08`
