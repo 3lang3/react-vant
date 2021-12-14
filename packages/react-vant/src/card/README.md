@@ -18,115 +18,145 @@ import { Card } from 'react-vant';
 
 export default () => {
   return (
-    <Card round>
+    <Card>
       <Card.Header>卡片标题</Card.Header>
-      <Card.Body>This is the card content</Card.Body>
+      <Card.Body>卡片内容区域</Card.Body>
     </Card>
   );
 };
 ```
 
-### 营销信息
-
-通过 `originPrice` 设置商品原价，通过 `tag` 设置商品左上角标签。
+### 圆角卡片
 
 ```jsx
-<Card
-  num="2"
-  tag="标签"
-  price="2.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-  originPrice="10.00"
-/>
+import React from 'react';
+import { Card } from 'react-vant';
+
+export default () => {
+  return (
+    <Card round>
+      <Card.Header>圆角卡片</Card.Header>
+      <Card.Body>卡片内容区域</Card.Body>
+    </Card>
+  );
+};
 ```
 
-### 自定义内容
+### 底部内容
 
-`Card` 组件提供了多个插槽，可以灵活地自定义内容。
+通过 `Card.Footer` 设置底部内容。
 
 ```jsx
-<Card
-  num="2"
-  price="2.00"
-  desc="描述信息"
-  title="商品名称"
-  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-  tags={
-    <>
-      <Tag plain type="danger" style={{ marginRight: 5 }}>
-        标签
-      </Tag>
-      <Tag plain type="danger">
-        标签
-      </Tag>
-    </>
-  }
-  footer={
-    <>
-      <Button size="mini" round plain style={{ marginRight: 2 }}>
-        标签1
-      </Button>
-      <Button size="mini" round plain>
-        标签2
-      </Button>
-    </>
-  }
-/>
+import React from 'react';
+import { Card, Button } from 'react-vant';
+import { Arrow } from '@react-vant/icons';
+
+export default () => {
+  return (
+    <Card round>
+      <Card.Header>卡片标题</Card.Header>
+      <Card.Body>卡片内容区域</Card.Body>
+      <Card.Footer>
+        <Button type="primary" block size="mini">
+          查看更多 <Arrow />
+        </Button>
+      </Card.Footer>
+    </Card>
+  );
+};
+```
+
+### 封面展示
+
+```jsx
+import React from 'react';
+import { Card, Image, Button } from 'react-vant';
+import { Arrow, Like } from '@react-vant/icons';
+
+export default () => {
+  return (
+    <Card round>
+      <Card.Cover>
+        <Image src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/baa20698931623.5ee79b6a8ec2b.jpg" />
+      </Card.Cover>
+      <Card.Header extra={<Arrow />}>自定义标题</Card.Header>
+      <Card.Body>卡片内容区域</Card.Body>
+      <Card.Footer>
+        <Button round size="small">
+          更多
+        </Button>
+        <Button
+          icon={<Like />}
+          round
+          color="linear-gradient(to right, #ff6034, #ee0a24)"
+          size="small"
+        >
+          Like
+        </Button>
+      </Card.Footer>
+    </Card>
+  );
+};
 ```
 
 ## API
 
-### Props
+### Card Props
 
-| 参数        | 说明                         | 类型                       | 默认值      |
-| ----------- | ---------------------------- | -------------------------- | ----------- | --- |
-| thumb       | 左侧图片 URL，或自定义内容   | _string\| React.ReactNode_ | -           |
-| title       | 标题                         | _ReactNode_                | -           |
-| desc        | 描述                         | _ReactNode_                | -           |
-| tag         | 图片角标                     | _ReactNode_                | -           |
-| num         | 商品数量                     | _number \| string_         | _ReactNode_ | -   |
-| price       | 商品价格                     | _number \| string_         | _ReactNode_ | -   |
-| decimal     | 补全价格两位小数             | _boolean_                  | `true`      |
-| originPrice | 商品划线原价                 | _number\| string_          | _ReactNode_ | -   |
-| centered    | 内容是否垂直居中             | _boolean_                  | `false`     |
-| currency    | 货币符号                     | _string_                   | `¥`         |
-| thumbLink   | 点击左侧图片后跳转的链接地址 | _string_                   | -           |
-| lazyload    | 是否开启图片懒加载           | _boolean_                  | `false`     |
-| priceTop    | 自定义价格上方区域           | _ReactNode_                | -           |
-| bottom      | 自定义价格下方区域           | _ReactNode_                | -           |
-| tags        | 自定义描述下方标签区域       | _ReactNode_                | -           |
-| footer      | 自定义右下角内容             | _ReactNode_                | -           |
+| 参数      | 说明         | 类型                      | 默认值  |
+| --------- | ------------ | ------------------------- | ------- |
+| round     | 开启圆角     | _boolean_                 | `false` |
+| className | css 类名     | _string_                  | -       |
+| style     | css 样式     | _CSSProperties_           | -       |
+| onClick   | 卡片点击事件 | _(e: MouseEvent) => void_ | -       |
 
-### Events
+### Card.Header Props
 
-| 事件名       | 说明                 | 回调参数            |
-| ------------ | -------------------- | ------------------- |
-| onClick      | 点击时触发           | _event: MouseEvent_ |
-| onClickThumb | 点击自定义图片时触发 | _event: MouseEvent_ |
+| 参数      | 说明           | 类型                      | 默认值 |
+| --------- | -------------- | ------------------------- | ------ |
+| extra     | 右侧内容       | _ReactNode_               | -      |
+| border    | 是否显示下边框 | _boolean_                 | -      |
+| className | css 类名       | _string_                  | -      |
+| style     | css 样式       | _CSSProperties_           | -      |
+| onClick   | 点击事件       | _(e: MouseEvent) => void_ | -      |
 
-## 主题定制
+### Card.Body Props
+
+| 参数      | 说明     | 类型                      | 默认值 |
+| --------- | -------- | ------------------------- | ------ |
+| className | css 类名 | _string_                  | -      |
+| style     | css 样式 | _CSSProperties_           | -      |
+| onClick   | 点击事件 | _(e: MouseEvent) => void_ | -      |
+
+### Card.Footer Props
+
+| 参数      | 说明           | 类型                      | 默认值 |
+| --------- | -------------- | ------------------------- | ------ |
+| border    | 是否显示下边框 | _boolean_                 | -      |
+| className | css 类名       | _string_                  | -      |
+| style     | css 样式       | _CSSProperties_           | -      |
+| onClick   | 点击事件       | _(e: MouseEvent) => void_ | -      |
+
+### Card.Cover Props
+
+| 参数      | 说明     | 类型                      | 默认值 |
+| --------- | -------- | ------------------------- | ------ |
+| className | css 类名 | _string_                  | -      |
+| style     | css 样式 | _CSSProperties_           | -      |
+| onClick   | 点击事件 | _(e: MouseEvent) => void_ | -      |
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                              | 默认值                                      | 描述 |
-| --------------------------------- | ------------------------------------------- | ---- |
-| --rv-card-padding                 | _var(--rv-padding-xs) var(--rv-padding-md)_ | -    |
-| --rv-card-font-size               | _var(--rv-font-size-sm)_                    | -    |
-| --rv-card-text-color              | _var(--rv-text-color)_                      | -    |
-| --rv-card-background-color        | _var(--rv-background-color-light)_          | -    |
-| --rv-card-thumb-size              | _88px_                                      | -    |
-| --rv-card-thumb-border-radius     | _var(--rv-border-radius-lg)_                | -    |
-| --rv-card-title-line-height       | _16px_                                      | -    |
-| --rv-card-desc-color              | _var(--rv-gray-7)_                          | -    |
-| --rv-card-desc-line-height        | _var(--rv-line-height-md)_                  | -    |
-| --rv-card-price-color             | _var(--rv-gray-8)_                          | -    |
-| --rv-card-origin-price-color      | _var(--rv-gray-6)_                          | -    |
-| --rv-card-num-color               | _var(--rv-gray-6)_                          | -    |
-| --rv-card-origin-price-font-size  | _var(--rv-font-size-xs)_                    | -    |
-| --rv-card-price-font-size         | _var(--rv-font-size-sm)_                    | -    |
-| --rv-card-price-integer-font-size | _var(--rv-font-size-lg)_                    | -    |
-| --rv-card-price-font-family       | _var(--rv-price-integer-font-family)_       | -    |
+| 名称                       | 默认值                                      | 描述 |
+| -------------------------- | ------------------------------------------- | ---- |
+| --rv-card-size             | _var(--rv-font-size-md)_                    | -    |
+| --rv-card-color            | _var(--rv-text-color)_                      | -    |
+| --rv-card-background-color | _var(--rv-white)_                           | -    |
+| --rv-card-radius           | _var(--rv-border-radius-lg)_                | -    |
+| --rv-card-body-padding     | _0 var(--rv-padding-md)_                    | -    |
+| --rv-card-header-padding   | _var(--rv-padding-sm) var(--rv-padding-md)_ | -    |
+| --rv-card-header-size      | _var(--rv-font-size-lg)_                    | -    |
+| --rv-card-header-color     | _var(--rv-black)_                           | -    |
+| --rv-card-footer-padding   | _var(--rv-padding-sm) var(--rv-padding-md)_ | -    |
