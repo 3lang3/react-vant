@@ -44,7 +44,7 @@ const CalenderDay: React.FC<CalendarDayProps> = (props) => {
 
   const onClick = () => {
     if (props.item.type !== 'disabled') {
-      props?.onClick(props.item);
+      props.onClick?.(props.item);
     }
   };
 
