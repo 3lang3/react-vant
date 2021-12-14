@@ -32,8 +32,6 @@ export interface GridItemProps extends BaseTypeProps {
   text?: string | React.ReactNode;
   /** 图标 */
   icon?: React.ReactNode;
-  /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
-  iconPrefix?: string;
   /** 图标颜色，等同于 Icon 组件的 color 属性	 */
   iconColor?: string;
   className?: string;

@@ -61,8 +61,6 @@ export interface PopupProps extends BaseTypeProps, SharedPopupProps {
   visible?: boolean;
   /** 关闭图标 */
   closeIcon?: React.ReactNode;
-  /** 图标类名前缀，等同于 Icon 组件的 classPrefix 属性	 */
-  iconPrefix?: string;
   /** 弹出位置 */
   position?: PopupPosition;
   /** 关闭图标位置 */

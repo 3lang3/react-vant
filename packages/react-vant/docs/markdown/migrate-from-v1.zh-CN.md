@@ -6,16 +6,16 @@
 
 ### Breaking Change
 
-#### API 调整
-
-- 移除了 `Swipe` 组件。
-- `Card` 组件改名为 `ProductCard`
-- 重写 `Card` 组件
-
 #### 废弃组件
 
-- 移除了 Swipe 组件。
-- 移除了 Icon 组件。
+- 移除了 `Swipe` 组件
+- 移除了 `Icon` 组件
+- 重写 `Card` 组件, 原 `Card` 组件改名为 `ProductCard`
+
+#### API 调整
+
+- 组件 `icon` 属性类型从 `string|ReactNode` 调准为 `ReactNode`
+- 组件 `iconPrefix` `iconClass` 属性移除
 
 ### 图标升级
 

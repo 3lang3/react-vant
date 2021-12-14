@@ -100,7 +100,7 @@ import { Grid } from 'react-vant';
 ```jsx
 <Grid columnNum={2}>
   <Grid.Item icon="home-o" text="文字" badge={{ dot: true }} />
-  <Grid.Item icon="search" text="文字" badge={{ content: "99+" }} />
+  <Grid.Item icon="search" text="文字" badge={{ content: '99+' }} />
 </Grid>
 ```
 
@@ -126,8 +126,7 @@ import { Grid } from 'react-vant';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | text | 文字 | _string_ | - |
-| icon | 图标 | _string \| React.ReactNode_ | - |
-| iconPrefix | 图标类名前缀，等同于 Icon 组件的 [classPrefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
+| icon | 图标 | _React.ReactNode_ | - |
 | iconColor | 图标颜色，等同于 Icon 组件的 [color 属性](#/zh-CN/icon#props) | _string_ | - |
 | badge | 图标右上角徽标的内容 | _BadgeProps_ | - |
 | className | 类名 | _string_ | - |
@@ -140,7 +139,6 @@ import { Grid } from 'react-vant';
 | 事件名  | 说明           | 回调参数            |
 | ------- | -------------- | ------------------- |
 | onClick | 点击格子时触发 | _event: MouseEvent_ |
-
 
 ### 类型定义
 
@@ -156,11 +154,11 @@ import type { GridDirection } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-grid-item-content-padding | _var(--rv-padding-md) var(--rv-padding-xs)_ | - |
-| --rv-grid-item-content-background-color | _var(--rv-white)_ | - |
-| --rv-grid-item-content-active-color | _var(--rv-active-color)_ | - |
-| --rv-grid-item-icon-size | _28px_ | - |
-| --rv-grid-item-text-color | _var(--rv-gray-7)_ | - |
-| --rv-grid-item-text-font-size | _var(--rv-font-size-sm)_ | - |
+| 名称                                    | 默认值                                      | 描述 |
+| --------------------------------------- | ------------------------------------------- | ---- |
+| --rv-grid-item-content-padding          | _var(--rv-padding-md) var(--rv-padding-xs)_ | -    |
+| --rv-grid-item-content-background-color | _var(--rv-white)_                           | -    |
+| --rv-grid-item-content-active-color     | _var(--rv-active-color)_                    | -    |
+| --rv-grid-item-icon-size                | _28px_                                      | -    |
+| --rv-grid-item-text-color               | _var(--rv-gray-7)_                          | -    |
+| --rv-grid-item-text-font-size           | _var(--rv-font-size-sm)_                    | -    |

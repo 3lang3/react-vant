@@ -169,7 +169,6 @@ Toast.resetDefaultOptions('loading');
 | message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
 | icon | 自定义图标 | _ReactNode_ | - |
 | iconSize | 图标大小，如 `20px` `2em`，默认单位为 `px` | _number \| string_ | `36px` |
-| iconPrefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
 | closeOnClick | 是否在点击后关闭 | _boolean_ | `false` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
