@@ -32,12 +32,12 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   const cursorIndex = useMemo(() => codeArr.length, [codeArr.length]);
 
   const focus = () => {
-    inputRef?.current?.focus();
+    inputRef.current?.focus();
     updateState({ focused: true });
   };
 
   const blur = () => {
-    inputRef?.current?.blur();
+    inputRef.current?.blur();
     updateState({ focused: false });
   };
 
@@ -68,7 +68,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   const handleChange = (e) => {
     const val = e.target.value;
     innerEffect.current = true;
-    formatValue(val, props?.onChange);
+    formatValue(val, props.onChange);
   };
 
   const renderPoints = () => {
@@ -153,11 +153,14 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
         autoFocus={props.autoFocus}
         spellCheck="false"
         onChange={handleChange}
-        onFocus={() => {
+        onFocus={(e) => {
           updateState({ focused: true });
-          props?.onFocus?.();
+          props.onFocus?.(e);
         }}
-        onBlur={() => updateState({ focused: false })}
+        onBlur={(e) => {
+          updateState({ focused: false });
+          props.onBlur?.(e);
+        }}
       />
       <ul className={clsx(bem('security'), { [BORDER_SURROUND]: !props.gutter })}>
         {renderPoints()}
