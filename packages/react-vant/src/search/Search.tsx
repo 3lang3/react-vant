@@ -22,15 +22,13 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   const innerEffect = useRef<boolean>(false);
   const [value, setValue] = useState(() => props.value);
 
-  const onBlur = () => {
-    props?.onBlur?.();
+  const blur = () => {
     filedRef.current?.blur();
-  }
+  };
 
-  const onFocus = () => {
-    props?.onFocus?.();
+  const focus = () => {
     filedRef.current?.focus();
-  }
+  };
 
   const change = (v) => {
     innerEffect.current = true;
@@ -123,8 +121,8 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
         value={value || ''}
         border={false}
         onKeypress={onKeypress}
-        onFocus={focus}
-        onBlur={blur}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
         onChange={change}
         onClear={onClear}
         onClickInput={onClickInput}
