@@ -5,7 +5,9 @@ import { inBrowser } from '../utils';
 import { BasicTarget, getTargetElement, TargetElement } from '../utils/dom/getTargetElement';
 
 // https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#使用_passive_改善的滚屏性能
-let supportsPassive = false;
+// eslint-disable-next-line import/no-mutable-exports
+export let supportsPassive = false;
+
 if (inBrowser) {
   try {
     const opts = {};

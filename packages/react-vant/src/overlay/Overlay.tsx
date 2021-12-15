@@ -1,4 +1,4 @@
-import React, { CSSProperties, useContext, useEffect, useRef } from 'react';
+import React, { CSSProperties, useContext, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import clsx from 'clsx';
 import { OverlayProps } from './PropsType';
@@ -11,8 +11,6 @@ const Overlay: React.FC<OverlayProps> = (props) => {
   const [bem] = createNamespace('overlay', prefixCls);
   const nodeRef = useRef(null);
   const { visible, duration } = props;
-  const [lockScroll, unlockScroll] = useLockScroll(() => props.lockScroll);
-  const innerLockRef = useRef(false);
 
   const renderOverlay = () => {
     const style: CSSProperties = {
@@ -38,23 +36,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
     );
   };
 
-  useEffect(() => {
-    if (!props.lockScroll) return;
-    if (visible) {
-      lockScroll();
-      innerLockRef.current = true;
-    }
-    if (!visible && innerLockRef.current) {
-      unlockScroll();
-      innerLockRef.current = false;
-    }
-  }, [visible]);
-
-  useEffect(() => {
-    return () => {
-      if (props.lockScroll) unlockScroll();
-    };
-  }, []);
+  useLockScroll(nodeRef, visible && props.lockScroll);
 
   return (
     <CSSTransition
