@@ -171,6 +171,7 @@ export default () => {
 | 参数      | 说明         | 类型                      | 默认值  |
 | --------- | ------------ | ------------------------- | ------- |
 | round     | 开启圆角     | _boolean_                 | `false` |
+| border    | 显示边框     | _boolean_                 | `false` |
 | className | css 类名     | _string_                  | -       |
 | style     | css 样式     | _CSSProperties_           | -       |
 | onClick   | 卡片点击事件 | _(e: MouseEvent) => void_ | -       |

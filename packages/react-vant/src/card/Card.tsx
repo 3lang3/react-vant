@@ -63,10 +63,10 @@ const Card: React.FC<CardProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('card', prefixCls);
 
-  const { className, style, round, children } = props;
+  const { className, style, round, border, children } = props;
 
   return (
-    <div className={cls(bem({ round }), className)} style={style} onClick={props.onClick}>
+    <div className={cls(bem({ round, border }), className)} style={style} onClick={props.onClick}>
       {children}
     </div>
   );

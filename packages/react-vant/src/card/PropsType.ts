@@ -4,6 +4,8 @@ import { BaseTypeProps } from '../utils';
 export interface CardProps extends BaseTypeProps {
   /** 圆角卡片 */
   round?: boolean;
+  /** 是否显示边框 */
+  border?: boolean;
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent) => void;
 }
