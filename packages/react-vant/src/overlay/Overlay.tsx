@@ -21,6 +21,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
   const renderOverlay = () => {
     const style: CSSProperties = {
       zIndex: props.zIndex !== undefined ? +props.zIndex : undefined,
+      touchAction: props.lockScroll && 'none',
       ...props.style,
       ...props.customStyle,
     };
