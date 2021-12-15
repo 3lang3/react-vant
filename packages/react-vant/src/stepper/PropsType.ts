@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import React from 'react';
 import { BaseTypeProps } from '../utils';
 
 export type StepperTheme = 'default' | 'round';
@@ -12,7 +12,7 @@ export interface StepperProps extends BaseTypeProps {
   /** 是否允许输入的值为空	 */
   allowEmpty?: boolean;
   /** 当前输入的值	 */
-  value?: number;
+  value?: number | string;
   /** 输入框宽度，默认单位为 px	 */
   inputWidth?: number | string;
   /** 按钮大小以及输入框高度，默认单位为 px	 */
@@ -48,15 +48,15 @@ export interface StepperProps extends BaseTypeProps {
   /** 是否开启长按手势	 */
   longPress?: boolean;
   /** 当绑定值变化时触发的事件	 */
-  onChange?: (val: number, detail?: { name: string }) => void;
+  onChange?: (val: number | string, detail?: { name: string }) => void;
   /** 点击增加按钮时触发	 */
-  onPlus?: () => void;
+  onPlus?: (event: React.MouseEvent, val: number | string) => void;
   /** 点击减少按钮时触发	 */
-  onMinus?: () => void;
+  onMinus?: (event: React.MouseEvent, val: number | string) => void;
   /** 输入框聚焦时触发	 */
-  onFocus?: (event: FormEvent) => void;
+  onFocus?: (event: React.FormEvent) => void;
   /** 输入框失焦时触发	 */
-  onBlur?: (event: FormEvent) => void;
+  onBlur?: (event: React.FormEvent) => void;
   /** 点击不可用的按钮时触发	 */
   onOverlimit?: (actinType: string) => void;
 }

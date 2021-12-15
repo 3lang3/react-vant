@@ -80,7 +80,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
   const innerChange = (value: number | string) => {
     innerEffectRef.current = true;
     setCurrent(value);
-    props.onChange?.(+value);
+    props.onChange?.(value);
   };
   const check = () => {
     const value = format(current);
@@ -103,17 +103,22 @@ const Stepper: React.FC<StepperProps> = (props) => {
     }
   };
 
-  const onChange = () => {
-    if ((actionType === 'plus' && plusDisabled) || (actionType === 'minus' && minusDisabled)) {
+  const onChange = (e?: MouseEvent) => {
+    const isMinus = actionType === 'minus';
+    if ((actionType === 'plus' && plusDisabled) || (isMinus && minusDisabled)) {
       props.onOverlimit?.(actionType);
       return;
     }
 
-    const diff = actionType === 'minus' ? -props.step : +props.step;
+    const diff = isMinus ? -props.step : +props.step;
     const value = format(add(+preValue.current || +current, diff));
     setValue(value);
     preValue.current = value;
-    props[`on${actionType.replace(/^\S/, (s) => s.toUpperCase())}`]?.(actionType);
+    if (isMinus) {
+      props.onMinus?.(e, value);
+    } else {
+      props.onPlus?.(e, value);
+    }
   };
 
   const onInput = (event: FormEvent) => {
@@ -194,7 +199,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
       // disable double tap scrolling on mobile safari
       event.preventDefault();
       actionType = type;
-      onChange();
+      onChange(event);
     },
     onTouchStart: () => {
       actionType = type;
@@ -231,7 +236,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
           type={props.integer ? 'tel' : 'text'}
           role="spinbutton"
           className={clsx(bem('input'))}
-          value={current || ''}
+          value={current ?? ''}
           style={inputStyle}
           disabled={props.disabled}
           readOnly={props.disableInput}

@@ -217,6 +217,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "GangYHu",
+      "name": "GangYHu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26001209?v=4",
+      "profile": "https://github.com/GangYHu",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
