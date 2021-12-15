@@ -9,28 +9,39 @@ let timer;
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
 
-  const [value1, setValue1] = useState(1);
-  const [value2, setValue2] = useState(1);
-  const [value3, setValue3] = useState(1);
-  const [value4, setValue4] = useState(1);
-  const [value5, setValue5] = useState(1);
-  const [value6, setValue6] = useState(1);
-  const [value7, setValue7] = useState(1);
-  const [value8, setValue8] = useState(1);
+  const [value1, setValue1] = useState<string | number>(1);
+  const [value9, setValue9] = useState<string | number>(0);
+  const [value2, setValue2] = useState<string | number>(1);
+  const [value3, setValue3] = useState<string | number>(1);
+  const [value4, setValue4] = useState<string | number>(1);
+  const [value5, setValue5] = useState<string | number>(1);
+  const [value6, setValue6] = useState<string | number>(1);
+  const [value7, setValue7] = useState<string | number>(1);
+  const [value8, setValue8] = useState<string | number>(1);
   return (
     <DemoSection className="demo-stepper">
       <DemoBlock card>
         <Cell title="基础用法" center>
           <Stepper
+            min={0}
             value={value1}
             onMinus={() => console.log('minus')}
             onPlus={() => console.log('plus')}
-            onFocus={(e) => console.log(e, 'focus')}
-            onBlur={(e) => console.log(e, 'blur')}
+            onFocus={() => console.log('focus')}
+            onBlur={() => console.log('blur')}
             onOverlimit={() => console.log('overlimit')}
             onChange={(v) => {
-              console.log('change');
+              console.log('change', v, typeof v);
               setValue1(v);
+            }}
+          />
+        </Cell>
+        <Cell title="设置最小值" center>
+          <Stepper
+            min={0}
+            value={value9}
+            onChange={(v) => {
+              setValue9(v);
             }}
           />
         </Cell>

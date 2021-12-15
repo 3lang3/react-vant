@@ -14,10 +14,16 @@ import { Stepper } from 'react-vant';
 
 ### 基础用法
 
-通过 `value` 绑定输入值，可以通过 `change` 事件监听到输入值的变化。
+通过 `value` 绑定输入值，可以通过 `onChange` 事件监听到输入值的变化。
 
 ```jsx
-<Stepper value={value} onChange={val = setValue(val)}/>
+import React, { useState } from 'react';
+import Stepper from 'react-vant';
+
+export default () => {
+  const [value, setValue] = (useState < string) | (number > 1);
+  return <Stepper value={value} onChange={(val = setValue(val))} />;
+};
 ```
 
 ### 步长设置
@@ -25,7 +31,7 @@ import { Stepper } from 'react-vant';
 通过 `step` 属性设置每次点击增加或减少按钮时变化的值，默认为 `1`。
 
 ```jsx
-<Stepper value={value} step="2" onChange={val = setValue(val)}/>
+<Stepper value={value} step="2" onChange={(val = setValue(val))} />
 ```
 
 ### 限制输入范围
@@ -33,7 +39,7 @@ import { Stepper } from 'react-vant';
 通过 `min` 和 `max` 属性限制输入值的范围。
 
 ```jsx
-<Stepper value={value} min="5" max="8" onChange={val = setValue(val)}/>
+<Stepper value={value} min="5" max="8" onChange={(val = setValue(val))} />
 ```
 
 ### 限制输入整数
@@ -41,7 +47,7 @@ import { Stepper } from 'react-vant';
 设置 `integer` 属性后，输入框将限制只能输入整数。
 
 ```jsx
-<Stepper value={value} integer onChange={val = setValue(val)}/>
+<Stepper value={value} integer onChange={(val = setValue(val))} />
 ```
 
 ### 禁用状态
@@ -49,7 +55,7 @@ import { Stepper } from 'react-vant';
 通过设置 `disabled` 属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
 
 ```jsx
-<Stepper value={value} disabled onChange={val => setValue(val)}/>
+<Stepper value={value} disabled onChange={(val) => setValue(val)} />
 ```
 
 ### 禁用输入框
@@ -57,7 +63,7 @@ import { Stepper } from 'react-vant';
 通过设置 `disableInput` 属性来禁用输入框，此时按钮仍然可以点击。
 
 ```jsx
-<Stepper value={value} disableInput onChange={val = setValue(val)}/>
+<Stepper value={value} disableInput onChange={(val = setValue(val))} />
 ```
 
 ### 固定小数位数
@@ -65,7 +71,7 @@ import { Stepper } from 'react-vant';
 通过设置 `decimalLength` 属性可以保留固定的小数位数。
 
 ```jsx
-<Stepper value={value} step="0.2" decimalLength="1" onChange={val = setValue(val)}/>
+<Stepper value={value} step="0.2" decimalLength="1" onChange={(val = setValue(val))} />
 ```
 
 ### 自定义大小
@@ -73,7 +79,7 @@ import { Stepper } from 'react-vant';
 通过 `inputWidth` 属性设置输入框宽度，通过 `buttonSize` 属性设置按钮大小和输入框高度。
 
 ```jsx
-<Stepper value={value} inputWidth="40px" buttonSize="32px" onChange={val = setValue(val)} />
+<Stepper value={value} inputWidth="40px" buttonSize="32px" onChange={(val = setValue(val))} />
 ```
 
 ### 异步变更
@@ -108,10 +114,10 @@ import { Stepper } from 'react-vant';
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 当前输入的值 | _number_ | - |
+| value | 当前输入的值 | _number\|string_ | - |
 | min | 最小值 | _number \| string_ | `1` |
 | max | 最大值 | _number \| string_ | - |
-| defaultValue | 初始值，当 value 为空时生效 | _number_ | `1` |
+| defaultValue | 初始值，当 value 为空时生效 | _number\|string_ | `1` |
 | step | 步长，每次点击时改变的值 | _number \| string_ | `1` |
 | name | 标识符，可以在 `change` 事件回调参数中获取 | _number \| string_ | - |
 | inputWidth | 输入框宽度，默认单位为 `px` | _number \| string_ | `32px` |
@@ -133,15 +139,14 @@ import { Stepper } from 'react-vant';
 
 ### Events
 
-| 事件名    | 说明                     | 回调参数                                  |
-| --------- | ------------------------ | ----------------------------------------- |
+| 事件名      | 说明                     | 回调参数                                  |
+| ----------- | ------------------------ | ----------------------------------------- |
 | onChange    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
 | onOverlimit | 点击不可用的按钮时触发   | -                                         |
 | onPlus      | 点击增加按钮时触发       | -                                         |
 | onMinus     | 点击减少按钮时触发       | -                                         |
 | onFocus     | 输入框聚焦时触发         | _event: Event_                            |
 | onBlur      | 输入框失焦时触发         | _event: Event_                            |
-
 
 ### 类型定义
 
@@ -157,19 +162,19 @@ import type { StepperTheme } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-stepper-active-color | _#e8e8e8_ | - |
-| --rv-stepper-background-color | _var(--rv-active-color)_ | - |
-| --rv-stepper-button-icon-color | _var(--rv-text-color)_ | - |
-| --rv-stepper-button-disabled-color | _var(--rv-background-color)_ | - |
-| --rv-stepper-button-disabled-icon-color | _var(--rv-gray-5)_ | - |
-| --rv-stepper-button-round-theme-color | _var(--rv-danger-color)_ | - |
-| --rv-stepper-input-width | _32px_ | - |
-| --rv-stepper-input-height | _28px_ | - |
-| --rv-stepper-input-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-stepper-input-line-height | _normal_ | - |
-| --rv-stepper-input-text-color | _var(--rv-text-color)_ | - |
-| --rv-stepper-input-disabled-text-color | _var(--rv-gray-5)_ | - |
-| --rv-stepper-input-disabled-background-color | _var(--rv-active-color)_ | - |
-| --rv-stepper-border-radius | _var(--rv-border-radius-md)_ | - |
+| 名称                                         | 默认值                       | 描述 |
+| -------------------------------------------- | ---------------------------- | ---- |
+| --rv-stepper-active-color                    | _#e8e8e8_                    | -    |
+| --rv-stepper-background-color                | _var(--rv-active-color)_     | -    |
+| --rv-stepper-button-icon-color               | _var(--rv-text-color)_       | -    |
+| --rv-stepper-button-disabled-color           | _var(--rv-background-color)_ | -    |
+| --rv-stepper-button-disabled-icon-color      | _var(--rv-gray-5)_           | -    |
+| --rv-stepper-button-round-theme-color        | _var(--rv-danger-color)_     | -    |
+| --rv-stepper-input-width                     | _32px_                       | -    |
+| --rv-stepper-input-height                    | _28px_                       | -    |
+| --rv-stepper-input-font-size                 | _var(--rv-font-size-md)_     | -    |
+| --rv-stepper-input-line-height               | _normal_                     | -    |
+| --rv-stepper-input-text-color                | _var(--rv-text-color)_       | -    |
+| --rv-stepper-input-disabled-text-color       | _var(--rv-gray-5)_           | -    |
+| --rv-stepper-input-disabled-background-color | _var(--rv-active-color)_     | -    |
+| --rv-stepper-border-radius                   | _var(--rv-border-radius-md)_ | -    |
