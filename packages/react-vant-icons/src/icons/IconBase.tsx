@@ -36,21 +36,19 @@ const IconBase: React.FC<IconBaseProps> = ({
     : undefined;
 
   const kebabCaseName = name ? kebabCase(name) : undefined;
-  return (
-    <span
-      role="img"
-      aria-label={kebabCaseName}
-      className={[
-        'rv-icon',
-        kebabCaseName ? `rv-icon-${kebabCaseName}` : '',
-        className,
-        spin ? 'rv-icon--spin' : '',
-      ].join(' ')}
-      style={{ ...style, ...svgStyle }}
-    >
-      {React.cloneElement(children as React.ReactElement, props)}
-    </span>
-  );
+
+  const attrs = {
+    'aria-label': kebabCaseName,
+    className: [
+      'rv-icon',
+      kebabCaseName ? `rv-icon-${kebabCaseName}` : '',
+      className,
+      spin ? 'rv-icon--spin' : '',
+    ].join(' '),
+    style: { ...style, ...svgStyle },
+    ...props,
+  };
+  return React.cloneElement(children as React.ReactElement, attrs);
 };
 
 export default IconBase;
