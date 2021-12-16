@@ -1,6 +1,6 @@
 {
   "name": "@react-vant/icons",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "react vant icons",
   "scripts": {
     "export": "node ./scripts/export.js && npx @svgr/cli -d src/icons src/svg",
@@ -29,6 +29,7 @@
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
     "del": "^5.1.0",
     "fast-glob": "^3.2.2",
     "fs-extra": "^9.0.1",

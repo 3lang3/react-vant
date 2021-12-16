@@ -6,7 +6,7 @@
     "build:site": "pnpm build:site --dir ./packages/react-vant",
     "release:site": "pnpm release:site --dir ./packages/react-vant",
     "changelog": "lerna exec --scope react-vant yarn changelog",
-    "dev": "pnpm start --dir ./packages/react-vant"
+    "dev": "pnpm dev --dir ./packages/react-vant"
   },
   "husky": {
     "hooks": {

@@ -2,15 +2,8 @@ module.exports = {
   icon: true,
   typescript: true,
   svgProps: {
-    viewBox: '0 0 1000 1000',
-  },
-  replaceAttrValues: {
-    '#323233': 'currentColor',
-    '#000': 'currentColor',
-    '#333': 'currentColor',
-    '#121212': 'currentColor',
-    '#464647': 'currentColor',
-    '#251714': 'currentColor',
+    viewBox: '0 0 1024 1024',
+    fill: 'currentColor',
   },
   outDir: './src/icons',
   template: function (

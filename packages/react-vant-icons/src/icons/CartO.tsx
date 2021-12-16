@@ -5,11 +5,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="1em"
     height="1em"
-    viewBox="0 0 1000 1000"
+    viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
     {...props}
   >
-    <g fill="currentColor" transform="translate(0 111.111)" fillRule="evenodd">
+    <g transform="translate(0 111.111)" fillRule="evenodd">
       <circle cx={333.333} cy={722.222} r={55.556} />
       <circle cx={722.222} cy={722.222} r={55.556} />
       <path

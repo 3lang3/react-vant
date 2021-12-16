@@ -5,11 +5,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="1em"
     height="1em"
-    viewBox="0 0 1000 1000"
+    viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
     {...props}
   >
-    <g fill="currentColor" fillRule="evenodd">
+    <g fillRule="evenodd">
       <path
         d="M166.667 166.667v666.666h666.666V166.667H166.667zm0-55.556h666.666c30.683 0 55.556 24.873 55.556 55.556v666.666c0 30.683-24.873 55.556-55.556 55.556H166.667c-30.683 0-55.556-24.873-55.556-55.556V166.667c0-30.683 24.873-55.556 55.556-55.556z"
         fillRule="nonzero"

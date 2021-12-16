@@ -292,6 +292,7 @@ importers:
       '@babel/cli': ^7.15.7
       '@babel/core': ^7.15.5
       '@babel/plugin-transform-modules-commonjs': ^7.15.4
+      '@svgr/babel-plugin-remove-jsx-attribute': ^6.0.0
       del: ^5.1.0
       fast-glob: ^3.2.2
       fs-extra: ^9.0.1
@@ -306,6 +307,7 @@ importers:
       '@babel/cli': 7.16.0_@babel+core@7.16.0
       '@babel/core': 7.16.0
       '@babel/plugin-transform-modules-commonjs': 7.16.0_@babel+core@7.16.0
+      '@svgr/babel-plugin-remove-jsx-attribute': 6.0.0_@babel+core@7.16.0
       del: 5.1.0
       fast-glob: 3.2.7
       fs-extra: 9.1.0
@@ -2661,6 +2663,18 @@ packages:
       unist-util-find-all-after: 3.0.2
     transitivePeerDependencies:
       - supports-color
+
+  /@svgr/babel-plugin-remove-jsx-attribute/6.0.0_@babel+core@7.16.0:
+    resolution:
+      {
+        integrity: sha512-aVdtfx9jlaaxc3unA6l+M9YRnKIZjOhQPthLKqmTXC8UVkBLDRGwPKo+r8n3VZN8B34+yVajzPTZ+ptTSuZZCw==,
+      }
+    engines: { node: '>=10' }
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.16.0
+    dev: true
 
   /@szmarczak/http-timer/1.1.2:
     resolution:
