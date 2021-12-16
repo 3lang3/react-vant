@@ -26,14 +26,17 @@ const IconBase: React.FC<IconBaseProps> = ({
   spin,
   rotate,
   children,
+  color,
   ...props
 }) => {
-  const svgStyle = rotate
-    ? {
-        msTransform: `rotate(${rotate}deg)`,
-        transform: `rotate(${rotate}deg)`,
-      }
-    : undefined;
+  const svgStyle = {} as React.CSSProperties;
+  if (rotate) {
+    svgStyle.msTransform = `rotate(${rotate}deg)`;
+    svgStyle.transform = `rotate(${rotate}deg)`;
+  }
+  if (color) {
+    svgStyle.color = color;
+  }
 
   const kebabCaseName = name ? kebabCase(name) : undefined;
 
@@ -44,7 +47,9 @@ const IconBase: React.FC<IconBaseProps> = ({
       kebabCaseName ? `rv-icon-${kebabCaseName}` : '',
       className,
       spin ? 'rv-icon--spin' : '',
-    ].join(' '),
+    ]
+      .join(' ')
+      .trim(),
     style: { ...style, ...svgStyle },
     ...props,
   };
