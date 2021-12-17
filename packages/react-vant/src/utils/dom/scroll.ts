@@ -21,7 +21,7 @@ export function getRootScrollTop(): number {
 
 export function setRootScrollTop(value: number): void {
   setScrollTop(window, value);
-  setScrollTop(document.body, value);
+  // setScrollTop(document.body, value);
 }
 
 // get distance from element top to page top or scroller top
