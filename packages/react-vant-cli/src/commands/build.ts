@@ -1,4 +1,7 @@
 import execa from 'execa';
+import gulp from 'gulp';
+import postcss from 'gulp-postcss';
+import postcssMultiple from 'postcss-px-multiple';
 import chokidar from 'chokidar';
 import { join, relative } from 'path';
 import fse from 'fs-extra';
@@ -15,7 +18,7 @@ import {
   setNodeEnv,
 } from '../common/index.js';
 import { clean } from './clean.js';
-import { LIB_DIR, ES_DIR, SRC_DIR } from '../common/constant.js';
+import { LIB_DIR, ES_DIR, SRC_DIR, HD_2X_DIR } from '../common/constant.js';
 import { genStyleDepsMap } from '../compiler/gen-style-deps-map.js';
 import { genPackageEntry } from '../compiler/gen-package-entry.js';
 import { genPackageStyle } from '../compiler/gen-package-style.js';
@@ -160,6 +163,20 @@ async function buildBundledOutputs() {
   await compileBundles();
 }
 
+async function build2xResouces() {
+  await copy(ES_DIR, join(HD_2X_DIR, 'es'));
+  await copy(ES_DIR, join(HD_2X_DIR, 'lib'));
+  const pxMultiplePlugin = postcssMultiple({ times: 2 });
+  gulp
+    .src(join(HD_2X_DIR, '**/*.css'), {
+      base: HD_2X_DIR,
+    })
+    .pipe(postcss([pxMultiplePlugin]))
+    .pipe(gulp.dest(HD_2X_DIR), {
+      overwrite: true,
+    });
+}
+
 const tasks = [
   {
     text: 'Copy Source Code',
@@ -192,6 +209,10 @@ const tasks = [
   {
     text: 'Build Bundled Outputs',
     task: buildBundledOutputs,
+  },
+  {
+    text: 'Build 2x resources',
+    task: build2xResouces,
   },
 ];
 
