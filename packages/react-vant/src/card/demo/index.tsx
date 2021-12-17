@@ -11,9 +11,7 @@ export default (): React.ReactNode => {
     <DemoSection>
       <DemoBlock title="基础用法">
         <Card>
-          <Card.Header>
-            <Like color="red" /> 基础用法
-          </Card.Header>
+          <Card.Header>基础用法</Card.Header>
           <Card.Body>卡片内容区域</Card.Body>
         </Card>
       </DemoBlock>

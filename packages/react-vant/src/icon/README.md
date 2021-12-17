@@ -143,7 +143,7 @@ export default () => {
 | 参数     | 说明                      | 类型               | 默认值    |
 | -------- | ------------------------- | ------------------ | --------- |
 | name     | 自定义图标名称            | _string_           | -         |
-| color    | 图标颜色                  | _string_           | `inherit` |
+| color    | svg 的 `color` 属性       | _string_           | `inherit` |
 | fontSize | 图标大小，如 `20px` `2em` | _number \| string_ | `inherit` |
 | spin     | 是否开启旋转动画          | _boolean_          | `false`   |
 | rotate   | 图标旋转角度              | _number_           | `false`   |

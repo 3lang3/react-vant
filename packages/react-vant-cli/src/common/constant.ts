@@ -29,6 +29,7 @@ export const CWD = process.cwd();
 export const ROOT = findRootDir(CWD);
 export const ES_DIR = join(ROOT, 'es');
 export const LIB_DIR = join(ROOT, 'lib');
+export const HD_2X_DIR = join(ROOT, '2x');
 export const DOCS_DIR = join(ROOT, 'docs');
 export const PACKAGE_JSON_FILE = join(ROOT, 'package.json');
 export const ROOT_WEBPACK_CONFIG_FILE = join(ROOT, 'webpack.config.js');
