@@ -18,7 +18,7 @@ import {
   setNodeEnv,
 } from '../common/index.js';
 import { clean } from './clean.js';
-import { LIB_DIR, ES_DIR, SRC_DIR, HD_2X_DIR } from '../common/constant.js';
+import { LIB_DIR, ES_DIR, SRC_DIR, HD_2X_DIR, PACKAGE_JSON_FILE } from '../common/constant.js';
 import { genStyleDepsMap } from '../compiler/gen-style-deps-map.js';
 import { genPackageEntry } from '../compiler/gen-package-entry.js';
 import { genPackageStyle } from '../compiler/gen-package-style.js';
@@ -166,6 +166,7 @@ async function buildBundledOutputs() {
 async function build2xResouces() {
   await copy(ES_DIR, join(HD_2X_DIR, 'es'));
   await copy(ES_DIR, join(HD_2X_DIR, 'lib'));
+  await copy(PACKAGE_JSON_FILE, join(HD_2X_DIR, 'package.json'));
   const pxMultiplePlugin = postcssMultiple({ times: 2 });
   gulp
     .src(join(HD_2X_DIR, '**/*.css'), {

@@ -16,6 +16,7 @@ yarn.lock
 # dist file
 es
 lib
+2x
 packages/react-vant/site
 dist
 changelog.generated.md
