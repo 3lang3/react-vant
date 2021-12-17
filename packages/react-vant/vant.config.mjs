@@ -44,6 +44,7 @@ export default {
               },
               { path: 'contribution', title: '贡献指南' },
               { path: 'locale', title: '国际化' },
+              { path: 'hd', title: '高清适配' },
             ],
           },
           { title: '布局组件', items: [{ path: 'flex', title: 'Flex 布局' }] },

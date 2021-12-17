@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-alpha.10",
   "description": "React Mobile UI Components base on Vant UI",
   "keywords": [
     "ui",
@@ -40,7 +40,8 @@
   "typings": "./es/index.d.ts",
   "files": [
     "lib",
-    "es"
+    "es",
+    "2x"
   ],
   "scripts": {
     "build": "react-vant-cli build",
