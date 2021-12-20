@@ -12,6 +12,21 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.9
+
+`2021-12-17`
+
+**Bug Fixes**
+
+- Stepper: 值为 0 时显示不正确的问题 ([#283](https://github.com/3lang3/react-vant/issues/283))
+- IndexBar: 点击 `Anchor` 时 `stickyOffsetTop` 值计算错误的问题 ([#284](https://github.com/3lang3/react-vant/issues/288))
+- Overlay: 修复 `lockScroll` 在 `ios` 下失效的问题 ([09a8a71](https://github.com/3lang3/react-vant/commit/09a8a715ce7699facbfadc50ef50dc645355ea85)) [#284](https://github.com/3lang3/react-vant/issues/284)
+- Overlay: 移除多余的`onTouchMove`事件 ([64c0dea](https://github.com/3lang3/react-vant/commit/64c0dea6914beef59ac91867dad7c9f6c71c94a2))
+
+**Features**
+
+- Stepper: `onMinus` `onPlus` 事件新增`event`和`value`参数 ([#285](https://github.com/3lang3/react-vant/pull/285))
+
 ### 1.4.8
 
 `2021-12-14`
