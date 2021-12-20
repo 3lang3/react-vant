@@ -169,7 +169,8 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
       refs[index].root.current.scrollIntoView();
 
       if (props.sticky && props.stickyOffsetTop) {
-        setRootScrollTop(getRootScrollTop() - props.stickyOffsetTop);
+        setScrollTop(scrollParent, getScrollTop(scrollParent) - props.stickyOffsetTop)
+        // setRootScrollTop(getRootScrollTop() - props.stickyOffsetTop);
       }
 
       if (props.onSelect && typeof props.onSelect === 'function') {
