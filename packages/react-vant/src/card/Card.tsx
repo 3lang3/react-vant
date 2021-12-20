@@ -40,7 +40,9 @@ export const CardFooter: React.FC<CardFooterProps> = (props) => {
   const [bem] = createNamespace('card-footer', prefixCls);
   return (
     <div
-      className={cls(props.className, bem(), { [BORDER_TOP]: props.border })}
+      className={cls(props.className, bem({ compact: props.compact }), {
+        [BORDER_TOP]: props.border,
+      })}
       style={props.style}
       onClick={props.onClick}
     >

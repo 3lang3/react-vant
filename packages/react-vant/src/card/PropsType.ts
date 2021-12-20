@@ -28,6 +28,8 @@ export interface CardFooterProps extends BaseTypeProps {
   children?: React.ReactNode;
   /** 显示上边框 */
   border?: boolean;
+  /** 不需要内边距 */
+  compact?: boolean;
   onClick?: (event: React.MouseEvent) => void;
 }
 

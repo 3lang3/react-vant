@@ -199,6 +199,7 @@ export default () => {
 | 参数      | 说明           | 类型                      | 默认值 |
 | --------- | -------------- | ------------------------- | ------ |
 | border    | 是否显示下边框 | _boolean_                 | -      |
+| compact   | 不需要内边距   | _boolean_                 | -      |
 | className | css 类名       | _string_                  | -      |
 | style     | css 样式       | _CSSProperties_           | -      |
 | onClick   | 点击事件       | _(e: MouseEvent) => void_ | -      |
