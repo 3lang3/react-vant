@@ -20,6 +20,7 @@ import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
 import IndexBarContext from './IndexBarContext';
+import PopupContext from '../popup/PopupContext';
 
 import { IndexBarInstance, IndexBarProps } from './PropsType';
 import {
@@ -29,6 +30,7 @@ import {
   preventDefault,
   setRootScrollTop,
   getRootScrollTop,
+  setScrollTop,
 } from '../utils';
 import { useMount } from '../hooks';
 import { renderToContainer } from '../utils/dom/renderToContainer';
@@ -38,6 +40,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
 
 const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
+  const popupContext = useContext(PopupContext);
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('index-bar', prefixCls);
   const { children, sticky, zIndex, highlightColor } = props;
@@ -169,7 +172,11 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
       refs[index].root.current.scrollIntoView();
 
       if (props.sticky && props.stickyOffsetTop) {
-        setRootScrollTop(getRootScrollTop() - props.stickyOffsetTop);
+        if (popupContext.visible) {
+          setScrollTop(scrollParent, getScrollTop(scrollParent) - props.stickyOffsetTop);
+        } else {
+          setRootScrollTop(getRootScrollTop() - props.stickyOffsetTop);
+        }
       }
 
       if (props.onSelect && typeof props.onSelect === 'function') {
