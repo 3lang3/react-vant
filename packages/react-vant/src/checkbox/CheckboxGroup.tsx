@@ -60,7 +60,7 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
         {React.Children.toArray(props.children)
           .filter(Boolean)
           .map((child: WithDisplayNameReactElement, index: number) => {
-            if (child.type.displayName !== 'Checkbox') return child;
+            if (child.type?.displayName !== 'Checkbox') return child;
             return React.cloneElement(child, { ref: setChildrenRefs(index) });
           })}
       </div>
