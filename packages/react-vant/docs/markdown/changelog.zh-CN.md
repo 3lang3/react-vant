@@ -12,6 +12,15 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.10
+
+`2021-12-24`
+
+**Bug Fixes**
+
+- Checkbox: `Checkbox.Group` children 为非预期类型时报错的问题 ([2a7b619](https://github.com/3lang3/react-vant/commit/2a7b619035168d5ca4742d982ba63787d0a49a72))
+- IndexBar: 被 Popup 组件包裹时在 ios 浏览器 `stickyOffsetTop` 计算错误的问题 ([35379d6](https://github.com/3lang3/react-vant/commit/35379d6afa5217904fa07565510ea1789294d8db))
+
 ### 1.4.9
 
 `2021-12-17`
