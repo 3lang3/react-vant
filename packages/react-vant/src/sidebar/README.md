@@ -98,9 +98,13 @@ export default () => {
 
 ### Sidebar Props
 
-| 参数  | 说明             | 类型               | 默认值 |
-| ----- | ---------------- | ------------------ | ------ |
-| value | 当前导航项的索引 | _number \| string_ | `0`    |
+| 参数         | 说明              | 类型               | 默认值 |
+| ------------ | ----------------- | ------------------ | ------ |
+| className    | 自定义类名        | _string_           | -      |
+| style        | 自定义样式        | _CSSProperties_    | -      |
+| sidebarClass | 左侧 sidebar 类名 | _string_           | -      |
+| sidebarStyle | 左侧 sidebar 样式 | _CSSProperties_    | -      |
+| value        | 当前导航项的索引  | _number \| string_ | `0`    |
 
 ### Sidebar Events
 
