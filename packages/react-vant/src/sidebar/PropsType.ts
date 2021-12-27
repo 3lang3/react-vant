@@ -16,10 +16,10 @@ export interface SidebarProps extends BaseTypeProps {
   value?: number;
   /** 默认索引 */
   defaultValue?: number;
-  /** 左侧sidebar类名 */
-  sidebarClass?: string;
-  /** 左侧sidebar 样式 */
-  sidebarStyle?: React.CSSProperties;
+  /** 左侧容器类名 */
+  sideClassName?: string;
+  /** 左侧容器样式 */
+  sideStyle?: React.CSSProperties;
   /** 切换导航项时触发	 */
   onChange?: (value: number) => void;
   children?: React.ReactElement | React.ReactElement[];

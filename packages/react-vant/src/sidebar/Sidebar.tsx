@@ -44,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
 
   return (
     <div className={cls(className, bem('wrapper'))} style={style}>
-      <div className={cls(props.sidebarClass, bem())} style={props.sidebarStyle}>
+      <div className={cls(props.sideClassName, bem())} style={props.sideStyle}>
         {validChildren.map((child: React.ReactElement, index: number) =>
           React.cloneElement(child, {
             index,
