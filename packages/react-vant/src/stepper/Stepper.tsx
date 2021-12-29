@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import type { MouseEvent, FormEvent, TouchEvent } from 'react';
 import clsx from 'clsx';
 import { StepperProps } from './PropsType';
@@ -7,6 +7,7 @@ import { callInterceptor } from '../utils/interceptor';
 import { addUnit, getSizeStyle, isDef, formatNumber, resetScroll, preventDefault } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
+import useRefState from '../hooks/use-ref-state';
 
 const LONG_PRESS_INTERVAL = 200;
 const LONG_PRESS_START_TIME = 600;
@@ -25,25 +26,28 @@ const Stepper: React.FC<StepperProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('stepper', prefixCls);
 
-  const format = (value: string | number) => {
-    const { min, max, allowEmpty, decimalLength } = props;
+  const format = useCallback(
+    (value: string | number) => {
+      const { min, max, allowEmpty, decimalLength } = props;
 
-    if (allowEmpty && value === '') {
+      if (allowEmpty && value === '') {
+        return value;
+      }
+
+      value = formatNumber(String(value), !props.integer);
+      value = value === '' ? 0 : +value;
+      value = isNaN(value) ? +min : value;
+      value = Math.max(Math.min(+max, value), +min);
+
+      // format decimal
+      if (isDef(decimalLength)) {
+        value = value.toFixed(+decimalLength);
+      }
+
       return value;
-    }
-
-    value = formatNumber(String(value), !props.integer);
-    value = value === '' ? 0 : +value;
-    value = isNaN(value) ? +min : value;
-    value = Math.max(Math.min(+max, value), +min);
-
-    // format decimal
-    if (isDef(decimalLength)) {
-      value = value.toFixed(+decimalLength);
-    }
-
-    return value;
-  };
+    },
+    [props],
+  );
 
   const getInitialValue = () => {
     const defaultValue = props.value ?? props.defaultValue;
@@ -54,17 +58,16 @@ const Stepper: React.FC<StepperProps> = (props) => {
   let actionType: 'plus' | 'minus';
   const inputRef = useRef(null);
   const innerEffectRef = useRef(false);
-  const preValue = useRef(getInitialValue());
-  const [current, setCurrent] = useState(() => preValue.current);
+  const [current, setCurrent, currentRef] = useRefState(() => getInitialValue());
 
   const minusDisabled = useMemo(
     () => props.disabled || props.disableMinus || current <= +props.min,
-    [props.disabled, props.disableMinus, current],
+    [props.disabled, props.disableMinus, props.min, current],
   );
 
   const plusDisabled = useMemo(
     () => props.disabled || props.disablePlus || current >= +props.max,
-    [props.disabled, props.disablePlus, current],
+    [props.disabled, props.disablePlus, props.max, current],
   );
 
   const inputStyle = useMemo(
@@ -77,17 +80,20 @@ const Stepper: React.FC<StepperProps> = (props) => {
 
   const buttonStyle = useMemo(() => getSizeStyle(props.buttonSize), [props.buttonSize]);
 
-  const innerChange = (value: number | string) => {
-    innerEffectRef.current = true;
-    setCurrent(value);
-    props.onChange?.(value);
-  };
-  const check = () => {
+  const innerChange = useCallback(
+    (value: number | string) => {
+      innerEffectRef.current = true;
+      setCurrent(value);
+      props.onChange?.(value);
+    },
+    [props, setCurrent],
+  );
+  const check = useCallback(() => {
     const value = format(current);
     if (!equal(value, current)) {
       innerChange(value);
     }
-  };
+  }, [current, format, innerChange]);
 
   const setValue = (value: string | number) => {
     if (props.beforeChange) {
@@ -111,9 +117,8 @@ const Stepper: React.FC<StepperProps> = (props) => {
     }
 
     const diff = isMinus ? -props.step : +props.step;
-    const value = format(add(+preValue.current || +current, diff));
+    const value = format(add(+currentRef.current, diff));
     setValue(value);
-    preValue.current = value;
     if (isMinus) {
       props.onMinus?.(e, value);
     } else {
@@ -138,19 +143,19 @@ const Stepper: React.FC<StepperProps> = (props) => {
     setValue(isNumeric ? +formatted : formatted);
   };
 
-  const onFocus = (event: FormEvent) => {
-    // readonly not work in lagacy mobile safari
-    if (props.disableInput && inputRef.current) {
-      inputRef.current.blur();
-    } else {
-      props.onFocus?.(event);
-    }
-  };
+  const onFocus = useCallback(
+    (event: FormEvent) => {
+      // readonly not work in lagacy mobile safari
+      if (props.disableInput && inputRef.current) {
+        inputRef.current.blur();
+      } else {
+        props.onFocus?.(event);
+      }
+    },
+    [props],
+  );
 
   const onBlur = (event: FormEvent) => {
-    const input = event.target as HTMLInputElement;
-    const value = format(input.value);
-    preValue.current = value;
     props.onBlur?.(event);
     resetScroll();
   };
@@ -215,9 +220,9 @@ const Stepper: React.FC<StepperProps> = (props) => {
       return;
     }
     setCurrent(props.value);
-  }, [props.value]);
+  }, [props.value, setCurrent]);
 
-  useEffect(() => check, [props.max, props.min, props.integer, props.decimalLength]);
+  useEffect(() => check, [check, props.max, props.min, props.integer, props.decimalLength]);
 
   return (
     <div className={clsx(props.className, bem([props.theme]))} style={props.style}>
