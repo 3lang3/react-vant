@@ -13,5 +13,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'react/default-props-match-prop-types': 'off',
     'react/require-default-props': 'off',
+    'react-hooks/exhaustive-deps': 'warn', // Checks deps of Hooks
   },
 };
