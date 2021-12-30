@@ -23,7 +23,7 @@ export interface BadgeProps extends BaseTypeProps {
   /** badge指定渲染为html元素
    * @default div
    */
-  tag?: HtmlTagType;
+  tag?: string;
   onClick?: (e: React.MouseEvent) => void;
   onTouchStart?: (e: React.MouseEvent) => void;
 }

@@ -12,6 +12,15 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.11
+
+`2021-12-30`
+
+**Bug Fixes**
+
+- 移除 `React.createElement` 调用, 解决 vite 构建差异 ([3dc95cf](https://github.com/3lang3/react-vant/commit/3dc95cf74e430860e89882d3ecddb4949e4a20f7))
+- Stepper: 修复 value 重置后计算错误的问题 ([2f8c4df](https://github.com/3lang3/react-vant/commit/2f8c4df31c1660255bf3a87e7e37c096b60c29cd))
+
 ### 1.4.10
 
 `2021-12-24`
