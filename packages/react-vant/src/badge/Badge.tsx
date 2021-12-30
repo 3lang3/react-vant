@@ -6,10 +6,12 @@ import { isNumeric } from '../utils/validate/number';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Badge: React.FC<BadgeProps> = (props) => {
-  const { content, max, dot, showZero, tag } = props;
+  const { content, max, dot, showZero, tag = 'div' } = props;
 
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('badge', prefixCls);
+
+  const TagElement = tag as React.ElementType;
 
   const hasContent = () => {
     if (props.content) {
@@ -68,16 +70,16 @@ const Badge: React.FC<BadgeProps> = (props) => {
   };
 
   if (props.children) {
-    return React.createElement(
-      tag,
-      {
-        className: clsx(bem('wrapper'), props.className),
-        onClick: props.onClick,
-        onTouchStart: props.onTouchStart,
-        style: props.style,
-      },
-      props.children,
-      renderBadge(),
+    return (
+      <TagElement
+        className={clsx(bem('wrapper'), props.className)}
+        style={props.style}
+        onClick={props.onClick}
+        onTouchStart={props.onTouchStart}
+      >
+        {props.children}
+        {renderBadge()}
+      </TagElement>
     );
   }
 

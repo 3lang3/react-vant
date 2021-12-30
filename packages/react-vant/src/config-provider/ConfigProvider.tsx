@@ -25,10 +25,12 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
   className,
   style,
   themeVars,
-  tag,
+  tag = 'div',
   children,
   ...props
 }) => {
+  const TagElement = tag as React.ElementType;
+
   const varStyle = useMemo<CSSProperties | undefined>(() => {
     if (themeVars) {
       return { ...style, ...mapThemeVarsToCSSVars(themeVars, props.prefixCls) };
@@ -37,20 +39,14 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
   }, [themeVars]);
   return (
     <ConfigProviderContext.Provider value={{ ...INITIAL_STATE, ...props }}>
-      {React.createElement(
-        tag,
-        {
-          className,
-          style: varStyle,
-        },
-        children,
-      )}
+      <TagElement className={className} style={varStyle}>
+        {children}
+      </TagElement>
     </ConfigProviderContext.Provider>
   );
 };
 
 ConfigProvider.defaultProps = {
-  tag: 'div',
   prefixCls: 'rv',
 };
 

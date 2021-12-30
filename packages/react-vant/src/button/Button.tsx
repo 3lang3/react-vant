@@ -8,7 +8,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Button: React.FC<ButtonProps> = (props) => {
   const {
-    tag,
+    tag = 'button',
     type,
     color,
     plain,
@@ -20,6 +20,8 @@ const Button: React.FC<ButtonProps> = (props) => {
     loadingText,
     iconPosition,
   } = props;
+
+  const TagElement = tag as React.ElementType;
 
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('button', prefixCls);
@@ -62,11 +64,11 @@ const Button: React.FC<ButtonProps> = (props) => {
     }
   }
 
-  function onClick(event) {
+  const onClick = (event) => {
     if (!loading && !disabled && props.onClick) {
       props.onClick(event);
     }
-  }
+  };
 
   const renderLoadingIcon = () => {
     if (loading) {
@@ -125,23 +127,16 @@ const Button: React.FC<ButtonProps> = (props) => {
     </div>
   );
 
-  return React.createElement(
-    tag,
-    {
-      style,
-      className: classes,
-      type: props.nativeType,
-      disabled,
-      onClick,
-    },
-    renderContent(),
+  return (
+    <TagElement className={classes} style={style} type={props.nativeType} onClick={onClick}>
+      {renderContent()}
+    </TagElement>
   );
 };
 
 Button.defaultProps = {
   size: 'normal',
   type: 'default',
-  tag: 'button',
   iconPosition: 'left',
 };
 
