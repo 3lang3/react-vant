@@ -128,7 +128,13 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
   const Placeholder = <div ref={placeholder} className={clsx(bem('placeholder'))} />;
 
   return (
-    <div ref={root} role="feed" className={clsx(bem())} aria-busy={state.loading}>
+    <div
+      ref={root}
+      role="feed"
+      className={clsx(bem(), props.className)}
+      style={props.style}
+      aria-busy={state.loading}
+    >
       {props.direction === 'down' ? props.children : Placeholder}
       {renderLoading()}
       {renderFinishedText()}
