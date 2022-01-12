@@ -47,6 +47,8 @@ export interface StepperProps extends BaseTypeProps {
   showInput?: boolean;
   /** 是否开启长按手势	 */
   longPress?: boolean;
+  /** 输入框点击事件 */
+  onClick?: (event: React.MouseEvent) => void;
   /** 当绑定值变化时触发的事件	 */
   onChange?: (val: number | string, detail?: { name: string }) => void;
   /** 点击增加按钮时触发	 */

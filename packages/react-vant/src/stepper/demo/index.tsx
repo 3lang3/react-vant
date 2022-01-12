@@ -34,6 +34,7 @@ export default (): React.ReactNode => {
               console.log('change', v, typeof v);
               setValue1(v);
             }}
+            onClick={(e) => console.log('click', e)}
           />
         </Cell>
         <Cell title="设置最小值" center>

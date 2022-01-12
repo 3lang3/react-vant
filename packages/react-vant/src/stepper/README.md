@@ -141,6 +141,7 @@ export default () => {
 
 | 事件名      | 说明                     | 回调参数                                  |
 | ----------- | ------------------------ | ----------------------------------------- |
+| onClick     | 点击输入框时触发         | _event: Event_                            |
 | onChange    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
 | onOverlimit | 点击不可用的按钮时触发   | -                                         |
 | onPlus      | 点击增加按钮时触发       | -                                         |

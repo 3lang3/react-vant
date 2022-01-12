@@ -254,6 +254,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
           onBlur={onBlur}
           onFocus={onFocus}
           onMouseDown={onMousedown}
+          onClick={props.onClick}
         />
       )}
       {props.showPlus && (
