@@ -1,6 +1,7 @@
 import { config, documents } from 'site-desktop-shared';
 import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';
+import MdPreviewer from './components/MdPreviewer';
 
 function markdownCardWrapper(htmlCode) {
   const group = htmlCode.replace(/<h3/g, ':::<h3').replace(/<h2/g, ':::<h2').split(':::');
@@ -62,34 +63,36 @@ const getRoutes = () => {
   names.forEach((name) => {
     const { component, lang } = parseName(name);
 
-    let { html } = documents[name];
+    let { MdContent } = documents[name];
+    console.log(MdContent);
 
-    html = markdownCardWrapper(html);
+    const previewer = (props) => <MdPreviewer {...props} />;
+    const PreviewerComp = <MdContent previewer={previewer} />;
 
     if (component === 'home') {
-      addHomeRoute(() => <section dangerouslySetInnerHTML={{ __html: html }} />, lang);
+      addHomeRoute(() => <PreviewerComp />, lang);
     }
 
-    if (lang) {
-      routes.push({
-        name: `${lang}/${component}`,
-        path: `/${lang}/${component}`,
-        component: () => <section dangerouslySetInnerHTML={{ __html: html }} />,
-        state: {
-          lang,
-          name: component,
-        },
-      });
-    } else {
-      routes.push({
-        name: `${component}`,
-        path: `/${component}`,
-        component: () => <section dangerouslySetInnerHTML={{ __html: html }} />,
-        meta: {
-          name: component,
-        },
-      });
-    }
+    // if (lang) {
+    //   routes.push({
+    //     name: `${lang}/${component}`,
+    //     path: `/${lang}/${component}`,
+    //     component: () => <PreviewerComp />,
+    //     state: {
+    //       lang,
+    //       name: component,
+    //     },
+    //   });
+    // } else {
+    //   routes.push({
+    //     name: `${component}`,
+    //     path: `/${component}`,
+    //     component: () => <PreviewerComp />,
+    //     meta: {
+    //       name: component,
+    //     },
+    //   });
+    // }
   });
 
   if (locales) {
