@@ -116,7 +116,8 @@
       color: var(--rv-button-primary-background-color);
     }
 
-    &.@{rv-prefix}-button--success, &.@{rv-prefix}-button--info {
+    &.@{rv-prefix}-button--success,
+    &.@{rv-prefix}-button--info {
       color: var(--rv-button-success-background-color);
     }
 
@@ -226,6 +227,10 @@
     &::before {
       content: ' ';
     }
+  }
+
+  &__text {
+    width: 100%;
   }
 
   &__icon {
