@@ -67,6 +67,18 @@ import { Tabs } from 'react-vant';
 </Tabs>
 ```
 
+### 对齐方式
+
+设置 `align` 属性即可改变标签栏对齐方式。
+
+```jsx
+<Tabs align="start">
+  <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
+  <Tabs.TabPane title="标签2">内容2</Tabs.TabPane>
+  <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
+</Tabs>
+```
+
 ### 样式风格
 
 `Tab` 支持两种样式风格：`line` 和`card`，默认为 `line` 样式，可以通过 `type` 属性切换样式风格。

@@ -48,7 +48,7 @@ export default (): React.ReactNode => {
       </DemoBlock>
       <DemoBlock title="对齐方式">
         <Tabs align="start" onClickTab={(tab) => console.log(tab)}>
-          {[1].map((item) => (
+          {[1, 2, 3].map((item) => (
             <Tabs.TabPane key={item} title={`标签${item}`}>
               内容 {item}
             </Tabs.TabPane>
