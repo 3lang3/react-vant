@@ -16,124 +16,67 @@ import { Button } from 'react-vant';
 
 按钮支持 `default`、`primary`、`info`、`warning`、`danger` 五种类型，默认为 `default`。
 
-```jsx
-<Button type="primary">主要按钮</Button>
-<Button type="info">信息按钮</Button>
-<Button type="default">默认按钮</Button>
-<Button type="warning">警告按钮</Button>
-<Button type="danger">危险按钮</Button>
-```
+<code src="./demo/type.tsx" title="按钮类型"></code>
 
 ### 朴素按钮
 
 通过 `plain` 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
 
-```jsx
-<Button plain type="primary">朴素按钮</Button>
-<Button plain type="primary">朴素按钮</Button>
-```
+<code src="./demo/plain.tsx" title="朴素按钮"></code>
 
 ### 细边框
 
 设置 `hairline` 属性可以展示 0.5px 的细边框。
 
-```jsx
-<Button plain hairline type="primary">细边框按钮</Button>
-<Button plain hairline type="primary">细边框按钮</Button>
-```
+<code src="./demo/hairline.tsx" title="细边框"></code>
 
 ### 禁用状态
 
 通过 `disabled` 属性来禁用按钮，禁用状态下按钮不可点击。
 
-```jsx
-<Button disabled type="primary">禁用状态</Button>
-<Button disabled type="primary">禁用状态</Button>
-```
+<code src="./demo/disabled.tsx" title="禁用状态"></code>
 
 ### 加载状态
 
 通过 `loading` 属性设置按钮为加载状态，加载状态下默认会隐藏按钮文字，可以通过 `loadingText` 设置加载状态下的文字。
 
-```jsx
-<Button loading type="primary" />
-<Button loading type="primary" loadingType="spinner" />
-<Button loading type="primary" loadingText="加载中..." />
-```
+<code src="./demo/loading.tsx" title="加载状态"></code>
 
 ### 按钮形状
 
 通过 `square` 设置方形按钮，通过 `round` 设置圆形按钮。
 
-```jsx
-<Button type="primary" square>方形按钮</Button>
-<Button type="primary" round>圆形按钮</Button>
-```
+<code src="./demo/shape.tsx" title="按钮形状"></code>
 
 ### 图标按钮
 
 通过 `icon` 属性设置按钮图标，支持 Icon 组件里的所有图标。
 
-```jsx
-import React from 'react';
-import { Button } from 'react-vant';
-import { Plus } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <>
-      <Button icon={<Plus />} type="primary" />
-      <Button icon={<Plus />} type="primary">
-        按钮
-      </Button>
-    </>
-  );
-};
-```
+<code src="./demo/icon.tsx" title="图标按钮"></code>
 
 ### 按钮尺寸
 
 支持 `large`、`normal`、`small`、`mini` 四种尺寸，默认为 `normal`。
 
-```jsx
-<Button type="primary" size="large">大号按钮</Button>
-<Button type="primary" size="normal">普通按钮</Button>
-<Button type="primary" size="small">小型按钮</Button>
-<Button type="primary" size="mini">迷你按钮</Button>
-```
+<code src="./demo/size.tsx" title="按钮尺寸"></code>
 
 ### 块级元素
 
 按钮在默认情况下为行内块级元素，通过 `block` 属性可以将按钮的元素类型设置为块级元素。
 
-```jsx
-<Button type="primary" block>
-  块级元素
-</Button>
-```
+<code src="./demo/block.tsx" title="块级元素"></code>
 
 ### 自定义颜色
 
 通过 `color` 属性可以自定义按钮的颜色。
 
-```jsx
-<Button color="#7232dd">单色按钮</Button>
-<Button color="#7232dd" plain>单色按钮</Button>
-<Button color="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</Button>
-```
+<code src="./demo/color.tsx" title="自定义颜色"></code>
 
 ### 按钮组
 
 通过 `Button.Group` 将多个按钮并排显示。
 
-```jsx
-<Button.Group>
-  <Button block>上一步</Button>
-  <Button block type="primary">
-    下一步
-  </Button>
-</Button.Group>
-```
+<code src="./demo/group.tsx" title="按钮组"></code>
 
 ## API
 

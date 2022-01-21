@@ -1,34 +1,19 @@
-@import '../../styles/var.less';
-
 .demo-button {
   .rv-button {
-    &--large {
-      margin-bottom: @padding-md;
-    }
-
-    &--small,
-    &--normal:not(:last-child) {
-      margin-right: @padding-md;
-    }
+    margin: 0 16px 12px 0;
   }
+
   .rv-button-group {
-    display: flex;
     .rv-button {
-      &--normal:not(:last-child) {
-        margin-right: 0;
-      }
+      margin: 0;
     }
   }
 
   .vant-doc-demo-block {
-    padding: 0 @padding-md;
+    padding: 0 16px;
   }
 
   .vant-doc-demo-block__title {
     padding-left: 0;
-  }
-
-  &-row {
-    margin-bottom: @padding-sm;
   }
 }

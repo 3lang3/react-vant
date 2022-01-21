@@ -16,7 +16,7 @@ import { SwipeCell } from 'react-vant';
 
 `SwipeCell` 组件提供了 `leftAction` 和 `rightRight` 两个属性，用于定义两侧滑动区域的内容。
 
-```jsx
+```html
 <SwipeCell
   leftAction={
     <Button square type="primary">
@@ -42,7 +42,7 @@ import { SwipeCell } from 'react-vant';
 
 `SwipeCell` 可以嵌套任意内容，比如嵌套一个商品卡片。
 
-```jsx
+```html
 <SwipeCell
   rightAction={
     <Button style={{ height: '100%' }} square type="danger">
@@ -91,7 +91,7 @@ import { SwipeCell } from 'react-vant';
 
 通过传入 `beforeClose` 回调函数，可以自定义两侧滑动内容关闭时的行为。
 
-```jsx
+```html
 export default () => {
   const beforeClose = ({ position }) => {
     switch (position) {
@@ -131,7 +131,7 @@ export default () => {
 
 通过 `ref` 获取 SwipeCell 实例的类型定义。
 
-```jsx
+```html
 import { useRef } from 'react';
 import { SwipeCell, Cell, Button, Flex } from 'react-vant';
 import type { SwipeCellInstance } from 'react-vant';

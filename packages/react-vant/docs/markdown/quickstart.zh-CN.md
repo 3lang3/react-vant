@@ -16,7 +16,7 @@ yarn add react-vant@next
 
 直接引入组件即可，react-vant 会自动为你加载 css 样式文件：
 
-```jsx
+```js
 import { Button } from 'react-vant';
 ```
 
@@ -42,13 +42,13 @@ import { Button } from 'react-vant';
 
 如果你的环境不支持 Tree Shaking，那么你可以手动引入部分组件：
 
-```jsx
+```js
 import Button from 'react-vant/es/button';
 ```
 
 需要注意的是，在手动按需加载时，你还需要在入口文件中引入 global 文件来加载 react-vant 的全局性逻辑和样式：
 
-```jsx
+```js
 import 'react-vant/es/styles';
 ```
 

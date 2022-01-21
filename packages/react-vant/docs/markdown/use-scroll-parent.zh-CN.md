@@ -9,6 +9,9 @@
 ### 基本用法
 
 ```jsx
+/**
+ * inline: true
+ */
 import { useRef } from 'react';
 import { hooks } from 'react-vant';
 

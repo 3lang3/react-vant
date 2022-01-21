@@ -16,9 +16,9 @@ import { Sticky } from 'react-vant';
 
 将内容包裹在 `Sticky` 组件内即可。
 
-```jsx
+```html
 <Sticky>
-  <Button type="primary">基础用法</Button>
+  <button type="primary">基础用法</button>
 </Sticky>
 ```
 
@@ -26,9 +26,9 @@ import { Sticky } from 'react-vant';
 
 通过 `offsetTop` 属性可以设置组件在吸顶时与顶部的距离。
 
-```jsx
-<Sticky offsetTop={50}>
-  <Button type="info">吸顶距离</Button>
+```html
+<Sticky offsetTop="{50}">
+  <button type="info">吸顶距离</button>
 </Sticky>
 ```
 
@@ -40,7 +40,7 @@ import { Sticky } from 'react-vant';
 const container = useRef(null);
 ```
 
-```jsx
+```html
 <div ref={container} style={{ height: '150px', backgroundColor: '#fff' }}>
   <Sticky container={container}>
     <Button type="warning" style={{ marginLeft: '215px' }}>
@@ -54,9 +54,9 @@ const container = useRef(null);
 
 将 `position` 设置为 `bottom` 可以让组件吸附在底部。通过 `offsetBottom` 属性可以设置组件在吸底时与底部的距离。
 
-```jsx
-<Sticky position="bottom" offsetBottom={50}>
-  <Button type="info">吸底距离</Button>
+```html
+<Sticky position="bottom" offsetBottom="{50}">
+  <button type="info">吸底距离</button>
 </Sticky>
 ```
 
@@ -93,6 +93,6 @@ import type { StickyPosition } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                 | 默认值 | 描述 |
-| -------------------- | ------ | ---- |
+| 名称                | 默认值 | 描述 |
+| ------------------- | ------ | ---- |
 | --rv-sticky-z-index | _99_   | -    |

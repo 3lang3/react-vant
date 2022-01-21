@@ -16,15 +16,11 @@ import { List } from 'react-vant';
 
 List 组件滚动到底部时，会触发 `onLoad` 事件，此时可以发起异步操作并更新数据，若数据已全部加载完毕，则直接将 `finished` 设置成 `true` 即可。
 
-> 和 vant 不同的是，react-vant 根据onLoad在组件内部维护了loading和error状态。
+> 和 vant 不同的是，react-vant 根据 onLoad 在组件内部维护了 loading 和 error 状态。
 
-```jsx
-<List finished={finished} onLoad={onLoad}>
-  {list.length
-    ? list.map((item) => {
-        return <Cell key={item} title={item} />;
-      })
-    : null}
+```html
+<List finished="{finished}" onLoad="{onLoad}">
+  {list.length ? list.map((item) => { return <Cell key="{item}" title="{item}" />; }) : null}
 </List>
 ```
 
@@ -57,13 +53,10 @@ const onLoad = async () => {
 
 若 onLoad 抛出错误，即可显示错误提示，用户点击错误提示后会重新触发 onLoad 事件。
 
-```jsx
-<List errorText="请求失败，点击重新加载" onLoad={onLoadError}>
-  {errorList.length
-    ? errorList.map((item) => {
-        return <Cell key={item} title={item} />;
-      })
-    : null}
+```html
+<List errorText="请求失败，点击重新加载" onLoad="{onLoadError}">
+  {errorList.length ? errorList.map((item) => { return <Cell key="{item}" title="{item}" />; }) :
+  null}
 </List>
 ```
 
@@ -88,20 +81,16 @@ const onLoadError = async () => {
 
 List 组件可以与 [PullRefresh](#/zh-CN/pull-refresh) 组件结合使用，实现下拉刷新的效果。
 
-```jsx
-<PullRefresh onRefresh={onRefresh}>
-  <List ref={listRef} finished={finished} onLoad={onLoadRefresh}>
-    {list.length
-      ? list.map((item) => {
-          return <Cell key={item} title={item} />;
-        })
-      : null}
+```html
+<PullRefresh onRefresh="{onRefresh}">
+  <List ref="{listRef}" finished="{finished}" onLoad="{onLoadRefresh}">
+    {list.length ? list.map((item) => { return <Cell key="{item}" title="{item}" />; }) : null}
   </List>
 </PullRefresh>
 ```
 
 ```js
-const listRef = useState<ListInstance >(null);
+const listRef = useState < ListInstance > null;
 const [finished, setFinished] = useState(false);
 const [refreshList, setRefreshList] = useState([]);
 
@@ -138,23 +127,21 @@ const onRefresh = async () => {
 | finishedText | 加载完成后的提示文案 | _ReactNode_ | - |
 | errorText | 加载失败后的提示文案 | _ReactNode_ | - |
 | immediateCheck | 是否在初始化时立即执行滚动位置检查 | _boolean_ | `true` |
-| autoCheck `v1.0.1` | 是否在onLoad执行后再次检查滚动位置 | _boolean_ | `true` |
+| autoCheck `v1.0.1` | 是否在 onLoad 执行后再次检查滚动位置 | _boolean_ | `true` |
 
 ### Events
 
-| 事件名 | 说明                               | 类型 | 回调参数 |
-| ------ | ---------------------------------- | -------| -------- |
+| 事件名 | 说明                               | 类型                      | 回调参数 |
+| ------ | ---------------------------------- | ------------------------- | -------- |
 | onLoad | 滚动条与底部距离小于 offset 时触发 | _() => (Promise \| void)_ | -        |
 
 ### 方法
 
 通过 ref 可以获取到 List 实例并调用实例方法
 
-| 方法名 | 说明                                                   | 参数 | 返回值 |
-| ------ | ------------------------------------------------------ | ---- | ------ |
+| 方法名 | 说明                                                     | 参数 | 返回值 |
+| ------ | -------------------------------------------------------- | ---- | ------ |
 | check  | 检查当前的滚动位置，若已滚动至底部，则会触发 onLoad 事件 | -    | -      |
-
-
 
 ## 主题定制
 
@@ -162,14 +149,12 @@ const onRefresh = async () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                         | 默认值                    | 描述 |
-| ---------------------------- | ------------------------- | ---- |
+| 名称                        | 默认值                   | 描述 |
+| --------------------------- | ------------------------ | ---- |
 | --rv-list-text-color        | _var(--rv-gray-6)_       | -    |
 | --rv-list-text-font-size    | _var(--rv-font-size-md)_ | -    |
-| --rv-list-text-line-height  | _50px_                    | -    |
-| --rv-list-loading-icon-size | _16px_                    | -    |
-
-
+| --rv-list-text-line-height  | _50px_                   | -    |
+| --rv-list-loading-icon-size | _16px_                   | -    |
 
 ## 常见问题
 

@@ -16,28 +16,23 @@ import { Step, Steps } from 'react-vant';
 
 `active` 属性表示当前步骤的索引，从 0 起计。
 
-```jsx
-import { useState } from 'react';
-import { Steps } from 'react-vant';
-
-export default () => {
-  const [active, setActive] = useState(0);
-  return (
-    <Steps active={active}>
-      <Steps.Item>买家下单</Steps.Item>
-      <Steps.Item>商家接单</Steps.Item>
-      <Steps.Item>买家提货</Steps.Item>
-      <Steps.Item>交易完成</Steps.Item>
-    </Steps>
-  );
-};
+```html
+import { useState } from 'react'; import { Steps } from 'react-vant'; export default () => { const
+[active, setActive] = useState(0); return (
+<Steps active="{active}">
+  <Steps.Item>买家下单</Steps.Item>
+  <Steps.Item>商家接单</Steps.Item>
+  <Steps.Item>买家提货</Steps.Item>
+  <Steps.Item>交易完成</Steps.Item>
+</Steps>
+); };
 ```
 
 ### 自定义样式
 
 可以通过 `activeIcon` 和 `activeColor` 属性设置激活状态下的图标和颜色。
 
-```jsx
+```html
 <Steps active={active} activeIcon={<Success />} activeColor="#38f">
   <Steps.Item>买家下单</Steps.Item>
   <Steps.Item>商家接单</Steps.Item>
@@ -50,8 +45,8 @@ export default () => {
 
 可以通过设置 `direction` 属性来改变步骤条的显示方向。
 
-```jsx
-<Steps direction="vertical" active={0}>
+```html
+<Steps direction="vertical" active="{0}">
   <Steps.Item>
     <h3>【城市】物流状态1</h3>
     <p>2016-07-12 12:40</p>

@@ -14,13 +14,13 @@ import { Empty } from 'react-vant';
 
 ### 基础用法
 
-```jsx
+```html
 <Empty description="描述文字" />
 ```
 
 ### 图片类型
 
-```jsx
+```html
 <Empty image="error" description="描述文字" />
 <Empty image="network" description="描述文字" />
 <Empty image="search" description="描述文字" />
@@ -30,7 +30,7 @@ import { Empty } from 'react-vant';
 
 需要自定义图片时，可以在 image 属性中传入任意图片 URL。
 
-```jsx
+```html
 <Empty
   className="custom-image"
   image="https://img.yzcdn.cn/vant/custom-empty-image.png"
@@ -49,9 +49,9 @@ import { Empty } from 'react-vant';
 
 通过 children 可以在 Empty 组件的下方插入内容。
 
-```jsx
+```html
 <Empty description="描述文字">
-  <Button round type="primary" className="bottom-button">按钮</Button>
+  <button round type="primary" className="bottom-button">按钮</button>
 </Empty>
 
 <style>

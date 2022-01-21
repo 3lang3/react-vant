@@ -20,17 +20,11 @@ import { Collapse } from 'react-vant';
 const initExpanded = ['1'];
 ```
 
-```jsx
-<Collapse initExpanded={initExpanded}>
-  <Collapse.Item title="标题1" name="1">
-    内容
-  </Collapse.Item>
-  <Collapse.Item title="标题2" name="2">
-    内容
-  </Collapse.Item>
-  <Collapse.Item title="标题3" name="3">
-    内容
-  </Collapse.Item>
+```html
+<Collapse initExpanded="{initExpanded}">
+  <Collapse.Item title="标题1" name="1"> 内容 </Collapse.Item>
+  <Collapse.Item title="标题2" name="2"> 内容 </Collapse.Item>
+  <Collapse.Item title="标题3" name="3"> 内容 </Collapse.Item>
 </Collapse>
 ```
 
@@ -38,17 +32,11 @@ const initExpanded = ['1'];
 
 通过 `accordion` 可以设置为手风琴模式，最多展开一个面板，此时 `initExpanded` 为字符串格式。
 
-```jsx
+```html
 <Collapse initExpanded="1" accordion>
-  <Collapse.Item title="标题1" name="1">
-    内容
-  </Collapse.Item>
-  <Collapse.Item title="标题2" name="2">
-    内容
-  </Collapse.Item>
-  <Collapse.Item title="标题3" name="3">
-    内容
-  </Collapse.Item>
+  <Collapse.Item title="标题1" name="1"> 内容 </Collapse.Item>
+  <Collapse.Item title="标题2" name="2"> 内容 </Collapse.Item>
+  <Collapse.Item title="标题3" name="3"> 内容 </Collapse.Item>
 </Collapse>
 ```
 
@@ -56,17 +44,11 @@ const initExpanded = ['1'];
 
 通过 `disabled` 属性来禁用单个面板。
 
-```jsx
+```html
 <Collapse initExpanded="initExpanded">
-  <Collapse.Item title="标题1" name="1">
-    内容
-  </Collapse.Item>
-  <Collapse.Item title="标题2" name="2" disabled>
-    内容
-  </Collapse.Item>
-  <Collapse.Item title="标题3" name="3" disabled>
-    内容
-  </Collapse.Item>
+  <Collapse.Item title="标题1" name="1"> 内容 </Collapse.Item>
+  <Collapse.Item title="标题2" name="2" disabled> 内容 </Collapse.Item>
+  <Collapse.Item title="标题3" name="3" disabled> 内容 </Collapse.Item>
 </Collapse>
 ```
 
@@ -74,7 +56,7 @@ const initExpanded = ['1'];
 
 通过 `title` 插槽可以自定义标题栏的内容。
 
-```jsx
+```html
 <Collapse initExpanded="initExpanded">
   <Collapse.Item
     name="1"

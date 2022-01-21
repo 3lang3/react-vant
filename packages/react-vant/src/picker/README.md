@@ -28,84 +28,39 @@ import { Picker, Toast } from 'react-vant';
 const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '宿迁', '泰州', '无锡'];
 ```
 
-```jsx
-<Picker
-  columns={columns}
-  title="标题"
-  onChange={(value: string, index: number) => Toast(`当前值：${value}, 当前索引：${index}`)}
-  onCancel={() => Toast.info('点击取消按钮')}
-  onConfirm={() => Toast.info('点击确认按钮')}
-/>
+```html
+<Picker columns={columns} title="标题" onChange={(value: string, index: number) =>
+Toast(`当前值：${value}, 当前索引：${index}`)} onCancel={() => Toast.info('点击取消按钮')}
+onConfirm={() => Toast.info('点击确认按钮')} />
 ```
 
 ### 默认选中项
 
 单列选择时，可以通过 `defaultIndex` 属性设置初始选中项的索引。
 
-```jsx
-<Picker
-  columns={columns}
-  defaultIndex={2}
-  onChange={(value: string, index: number) => Toast(`当前值：${value}, 当前索引：${index}`)}
-/>
+```html
+<Picker columns={columns} defaultIndex={2} onChange={(value: string, index: number) =>
+Toast(`当前值：${value}, 当前索引：${index}`)} />
 ```
 
 ### 多列选择
 
 `columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](#/zh-CN/picker#column-shu-ju-jie-gou)。
 
-```jsx
-<Picker
-  columns={[
-    {
-      values: ['周一', '周二', '周三', '周四', '周五'],
-      defaultIndex: 2,
-    },
-    // 第二列
-    {
-      values: ['上午', '下午', '晚上'],
-      defaultIndex: 1,
-    },
-  ]}
-/>
+```html
+<Picker columns={[ { values: ['周一', '周二', '周三', '周四', '周五'], defaultIndex: 2, }, // 第二列
+{ values: ['上午', '下午', '晚上'], defaultIndex: 1, }, ]} />
 ```
 
 ### 级联选择
 
 使用 `columns` 的 `children` 字段可以实现选项级联的效果。
 
-```jsx
-<Picker
-  title="标题"
-  columns={[
-    {
-      text: '江苏',
-      children: [
-        {
-          text: '苏州',
-          children: [{ text: '姑苏区' }, { text: '吴中区' }],
-        },
-        {
-          text: '扬州',
-          children: [{ text: '广陵区' }, { text: '邗江区' }],
-        },
-      ],
-    },
-    {
-      text: '浙江',
-      children: [
-        {
-          text: '杭州',
-          children: [{ text: '西湖区' }, { text: '余杭区' }],
-        },
-        {
-          text: '温州',
-          children: [{ text: '鹿城区' }, { text: '瓯海区' }],
-        },
-      ],
-    },
-  ]}
-/>
+```html
+<Picker title="标题" columns={[ { text: '江苏', children: [ { text: '苏州', children: [{ text:
+'姑苏区' }, { text: '吴中区' }], }, { text: '扬州', children: [{ text: '广陵区' }, { text: '邗江区'
+}], }, ], }, { text: '浙江', children: [ { text: '杭州', children: [{ text: '西湖区' }, { text:
+'余杭区' }], }, { text: '温州', children: [{ text: '鹿城区' }, { text: '瓯海区' }], }, ], }, ]} />
 ```
 
 > 级联选择的数据嵌套深度需要保持一致，如果部分选项没有子选项，可以使用空字符串进行占位
@@ -114,7 +69,7 @@ const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '�
 
 选项可以为对象结构，通过设置 `disabled` 来禁用该选项。
 
-```jsx
+```html
 <Picker columns={[{ text: '南京', disabled: true }, { text: '苏州' }, { text: '扬州' }]} />
 ```
 
@@ -130,35 +85,19 @@ const cities = {
 };
 ```
 
-```jsx
-<Picker
-  ref={picker}
-  columns={[{ values: Object.keys(cities) }, { values: cities['浙江'], defaultIndex: 2 }]}
-  onChange={(values: string[]) => {
-    picker.current.setColumnValues(1, cities[values[0]]);
-  }}
-/>
+```html
+<Picker ref={picker} columns={[{ values: Object.keys(cities) }, { values: cities['浙江'],
+defaultIndex: 2 }]} onChange={(values: string[]) => { picker.current.setColumnValues(1,
+cities[values[0]]); }} />
 ```
 
 ### 加载状态
 
 若选择器数据是异步获取的，可以通过 `loading` 属性显示加载提示。
 
-```jsx
-<Picker
-  loading
-  columns={[
-    {
-      values: ['周一', '周二', '周三', '周四', '周五'],
-      defaultIndex: 2,
-    },
-    // 第二列
-    {
-      values: ['上午', '下午', '晚上'],
-      defaultIndex: 1,
-    },
-  ]}
-/>
+```html
+<Picker loading columns={[ { values: ['周一', '周二', '周三', '周四', '周五'], defaultIndex: 2, },
+// 第二列 { values: ['上午', '下午', '晚上'], defaultIndex: 1, }, ]} />
 ```
 
 ### 搭配弹出层使用
@@ -170,7 +109,7 @@ const [fieldValue, setFieldValue] = useState('');
 const [showPicker, setShowPicker] = useState(false);
 ```
 
-```jsx
+```html
 <Field
   readonly
   clickable
@@ -198,40 +137,13 @@ const [showPicker, setShowPicker] = useState(false);
 
 ### 自定义 Columns 的结构
 
-```jsx
-const columns = [
-  {
-    cityName: '浙江',
-    cities: [
-      {
-        cityName: '杭州',
-        cities: [{ cityName: '西湖区' }, { cityName: '余杭区' }],
-      },
-      {
-        cityName: '温州',
-        cities: [{ cityName: '鹿城区' }, { cityName: '瓯海区' }],
-      },
-    ],
-  },
-  {
-    cityName: '福建',
-    cities: [
-      {
-        cityName: '福州',
-        cities: [{ cityName: '鼓楼区' }, { cityName: '台江区' }],
-      },
-      {
-        cityName: '厦门',
-        cities: [{ cityName: '思明区' }, { cityName: '海沧区' }],
-      },
-    ],
-  },
-];
-const columnsFieldNames = {
-  text: 'cityName',
-  children: 'cities',
-};
-<Picker title="标题" columnsFieldNames={columnsFieldNames} columns={columns} />;
+```html
+const columns = [ { cityName: '浙江', cities: [ { cityName: '杭州', cities: [{ cityName: '西湖区' },
+{ cityName: '余杭区' }], }, { cityName: '温州', cities: [{ cityName: '鹿城区' }, { cityName:
+'瓯海区' }], }, ], }, { cityName: '福建', cities: [ { cityName: '福州', cities: [{ cityName:
+'鼓楼区' }, { cityName: '台江区' }], }, { cityName: '厦门', cities: [{ cityName: '思明区' }, {
+cityName: '海沧区' }], }, ], }, ]; const columnsFieldNames = { text: 'cityName', children: 'cities',
+}; <Picker title="标题" columnsFieldNames="{columnsFieldNames}" columns="{columns}" />;
 ```
 
 ## API
@@ -249,7 +161,7 @@ const columnsFieldNames = {
 | toolbarPosition | 顶部栏位置，可选值为 `bottom` | _string_ | `top` |
 | columnsTop | 自定义选项上方内容 | _ReactNode_ | - |
 | columnsBottom | 自定义选项下方内容 | _ReactNode_ | - |
-| optionRender | 自定义选项内容	 | _(option: string \| object) => ReactNode_ | - |
+| optionRender | 自定义选项内容 | _(option: string \| object) => ReactNode_ | - |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
 | showToolbar | 是否显示顶部栏 | _boolean_ | `true` |
 | defaultIndex | 单列选择时，默认选中项的索引 | _number \| string_ | `0` |
@@ -300,15 +212,10 @@ const columnsFieldNames = {
 
 通过 `PickerInstance` 获取 Picker 实例的类型定义。
 
-```jsx
-import { useRef } from 'react';
-import type { PickerInstance } from 'react-vant';
-
-const pickerRef = useRef<PickerInstance>();
-
-pickerRef.current?.confirm();
+```html
+import { useRef } from 'react'; import type { PickerInstance } from 'react-vant'; const pickerRef =
+useRef<PickerInstance>(); pickerRef.current?.confirm();</PickerInstance>
 ```
-
 
 ## 主题定制
 
@@ -316,10 +223,10 @@ pickerRef.current?.confirm();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                 | 默认值                       | 描述 |
-| ------------------------------------ | ---------------------------- | ---- |
+| 名称                                | 默认值                      | 描述 |
+| ----------------------------------- | --------------------------- | ---- |
 | --rv-picker-background-color        | _var(--rv-white)_           | -    |
-| --rv-picker-toolbar-height          | _44px_                       | -    |
+| --rv-picker-toolbar-height          | _44px_                      | -    |
 | --rv-picker-title-font-size         | _var(--rv-font-size-lg)_    | -    |
 | --rv-picker-title-line-height       | _var(--rv-line-height-md)_  | -    |
 | --rv-picker-action-padding          | _0 var(--rv-padding-md)_    | -    |
@@ -329,10 +236,9 @@ pickerRef.current?.confirm();
 | --rv-picker-option-padding          | _0 var(--rv-padding-base)_  | -    |
 | --rv-picker-option-font-size        | _var(--rv-font-size-lg)_    | -    |
 | --rv-picker-option-text-color       | _var(--rv-black)_           | -    |
-| --rv-picker-option-disabled-opacity | _0.3_                        | -    |
+| --rv-picker-option-disabled-opacity | _0.3_                       | -    |
 | --rv-picker-loading-icon-color      | _var(--rv-primary-color)_   | -    |
-| --rv-picker-loading-mask-color      | _rgba(255, 255, 255, 0.9)_   | -    |
-
+| --rv-picker-loading-mask-color      | _rgba(255, 255, 255, 0.9)_  | -    |
 
 ## 常见问题
 

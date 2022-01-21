@@ -8,14 +8,11 @@
 
 ConfigProvider 使用 React 的 context 特性，只需在应用外围包裹一次即可全局生效。
 
-```jsx
-import { ConfigProvider } from 'react-vant';
-
-// ...
-export default () => (
-  <ConfigProvider locale={...} themeVars={...}>
-    <App />
-  </ConfigProvider>
+```html
+import { ConfigProvider } from 'react-vant'; // ... export default () => (
+<ConfigProvider locale="{...}" themeVars="{...}">
+  <App />
+</ConfigProvider>
 );
 ```
 
@@ -23,59 +20,13 @@ export default () => (
 
 使用 `locale` 属性切换语言。
 
-```js
-import { ConfigProvider } from 'react-vant';
-// 引入英文语言包
-import enUS from 'react-vant/es/locale/lang/en-US';
-
-export default () => {
-  return (
-    <ConfigProvider locale={enUS}>
-      <App />
-    </ConfigProvider>
-  );
-};
-```
+<code title="语言切换" src="./demo/locale.tsx"></code>
 
 ### 定制主题
 
 `ConfigProvider` 组件提供了覆盖 CSS 变量的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `themeVars` 属性来配置一些主题变量。
 
-```jsx
-import { ConfigProvider, Field, Rate, Slider, Button } from 'react-vant';
-
-// themeVars 内的值会被转换成对应 CSS 变量
-const themeVars = {
-  '--rv-rate-icon-full-color': '#ffcc56',
-  '--rv-slider-bae-height': '4px',
-  '--rv-slider-button-width': '20px',
-  '--rv-slider-button-height': '20px',
-  '--rv-slider-active-background-color': '#951fff',
-  '--rv-button-primary-border-color': '#951fff',
-  '--rv-button-primary-background-color': '#951fff',
-};
-
-export default () => {
-  const [rate, updateRate] = useState(4);
-  const [slider, updateSlider] = useState(50);
-
-  return (
-    <ConfigProvider themeVars={themeVars}>
-      <Field label="评分">
-        <Rate value={rate} onChange={updateRate} />
-      </Field>
-      <Field label="滑块">
-        <Slider value={slider} onChange={updateSlider} />
-      </Field>
-      <div style={{ margin: 16 }}>
-        <Button block round type="primary">
-          提交
-        </Button>
-      </div>
-    </ConfigProvider>
-  );
-};
-```
+<code title="定制主题" src="./demo/base.tsx"></code>
 
 > 注意：ConfigProvider 仅影响它的子组件的样式，不影响全局 root 节点。
 

@@ -14,7 +14,7 @@ import { Typography } from 'react-vant';
 
 ### 基础用法
 
-```jsx
+```html
 <Typography.Text>这是一条文本</Typography.Text>
 <Typography.Title>这是一条标题</Typography.Title>
 <Typography.Link>这是一条链接</Typography.Link>
@@ -24,7 +24,7 @@ import { Typography } from 'react-vant';
 
 设置 `type` 属性后，文本会展示不同的 ui 状态。
 
-```jsx
+```html
 <Typography.Text type="danger">这是一条文本</Typography.Text>
 <Typography.Text type="primary">这是一条文本</Typography.Text>
 <Typography.Text type="warning">这是一条文本</Typography.Text>

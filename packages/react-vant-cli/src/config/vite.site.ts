@@ -8,7 +8,7 @@ import type { InlineConfig } from 'vite';
 import MarkdownIt from 'markdown-it';
 import markdownItAnchor from 'markdown-it-anchor';
 import { slugify } from 'transliteration';
-import mdoc from 'vite-plugin-react-mdoc'
+import mdoc from 'vite-plugin-react-mdoc';
 import { setBuildTarget, getVantConfig, isDev } from '../common/index.js';
 import {
   SITE_DIST_DIR,
@@ -17,6 +17,7 @@ import {
   SITE_DESKTOP_SHARED_FILE,
   SITE_SRC_DIR,
   SRC_DIR,
+  ROOT,
 } from '../common/constant.js';
 
 function highlight(str: string, lang: string) {
@@ -74,7 +75,7 @@ export function getViteConfigForSiteDev(): InlineConfig {
     root: SITE_SRC_DIR,
     plugins: [
       react(),
-      mdoc['default'](),
+      mdoc['default']({ root: ROOT }),
       // mdPlugin.default({
       //   mode: [Mode.HTML],
       //   markdownIt: new MarkdownIt({
@@ -108,8 +109,8 @@ export function getViteConfigForSiteDev(): InlineConfig {
       entries: [join(SITE_SRC_DIR, '*.html')],
     },
     server: {
-      host: '0.0.0.0',
       port: 4000,
+      https: true,
     },
   };
 }

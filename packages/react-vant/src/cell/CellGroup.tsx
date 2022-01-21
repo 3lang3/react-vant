@@ -5,8 +5,8 @@ import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const CellGroup: React.FC<CellGroupProps> = (props) => {
-  const { title, border, inset } = props;
-
+  const { title, border, inset: insetP, card } = props;
+  const inset = card || insetP;
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('cell-group', prefixCls);
 

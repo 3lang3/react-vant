@@ -38,7 +38,7 @@ export interface ListProps extends BaseTypeProps {
    * @default true
    * @import 请确保onLoad在执行数次后, List会铺满页面
    * @example
-   * ```jsx
+   * ```html
    * // 这样会无限触发onLoad事件
    * <List
    *  onLoad={() => null}

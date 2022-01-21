@@ -46,6 +46,11 @@ export interface CellGroupProps extends BaseTypeProps {
   title?: React.ReactNode;
   /** 是否显示外边框	 */
   border?: boolean;
-  /** 是否展示为圆角卡片风格 */
+  /**
+   * 是否展示为圆角卡片风格
+   * @deprecated
+   */
   inset?: boolean;
+  /** 是否展示为圆角卡片风格 */
+  card?: boolean;
 }

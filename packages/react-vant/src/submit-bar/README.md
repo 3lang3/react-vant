@@ -12,44 +12,39 @@ import { SubmitBar } from 'react-vant';
 
 ### 基础用法
 
-```jsx
-import React from 'react';
-import { SubmitBar, Toast } from 'react-vant';
-
-export default () => {
-  const onSubmit = () => Toast('点击按钮');
-  return <SubmitBar price="3050" buttonText="提交订单" onSubmit={onSubmit} />;
-};
+```html
+import React from 'react'; import { SubmitBar, Toast } from 'react-vant'; export default () => {
+const onSubmit = () => Toast('点击按钮'); return
+<SubmitBar price="3050" buttonText="提交订单" onSubmit="{onSubmit}" />; };
 ```
 
 ### 禁用状态
 
 禁用状态下不会触发 `onSubmit` 事件。
 
-```jsx
+```html
 <SubmitBar
   disabled
   price="3050"
   buttonText="提交订单"
   tip="你的收货地址不支持同城送, 我们已为你推荐快递"
-  tipIcon={<InfoO />}
-  onSubmit={onSubmit}
-/>
+  tipIcon="{<InfoO"
+/>} onSubmit={onSubmit} />
 ```
 
 ### 加载状态
 
 加载状态下不会触发 `onSubmit` 事件。
 
-```jsx
-<SubmitBar loading price="3050" buttonText="提交订单" onSubmit={onSubmit} />
+```html
+<SubmitBar loading price="3050" buttonText="提交订单" onSubmit="{onSubmit}" />
 ```
 
 ### 高级用法
 
 自定义内容。
 
-```jsx
+```html
 import React from 'react';
 import { SubmitBar, Checkbox, Toast } from 'react-vant';
 

@@ -3,97 +3,90 @@
 ### Install
 
 ```js
-import { Button } from 'react-vant'
+import { Button } from 'react-vant';
 ```
 
 ## Usage
 
 ### Type
 
-```jsx
-<Button type="primary">Primary</Button>
-<Button type="success">Success</Button>
-<Button type="default">Default</Button>
-<Button type="danger">Danger</Button>
-<Button type="warning">Warning</Button>
+```html
+<button type="primary">Primary</button>
+<button type="success">Success</button>
+<button type="default">Default</button>
+<button type="danger">Danger</button>
+<button type="warning">Warning</button>
 ```
 
 ### Plain
 
-```jsx
-<Button plain type="primary">Primary</Button>
-<Button plain type="primary">Danger</Button>
+```html
+<button plain type="primary">Primary</button> <button plain type="primary">Danger</button>
 ```
 
 ### Hairline
 
-```jsx
-<Button plain hairline type="primary">Hairline</Button>
-<Button plain hairline type="primary">Hairline</Button>
+```html
+<button plain hairline type="primary">Hairline</button>
+<button plain hairline type="primary">Hairline</button>
 ```
 
 ### Disabled
 
-```jsx
-<Button disabled type="primary">Diabled</Button>
-<Button disabled type="primary">Diabled</Button>
+```html
+<button disabled type="primary">Diabled</button> <button disabled type="primary">Diabled</button>
 ```
 
 ### Loading
 
-```jsx
-<Button loading type="primary" />
-<Button loading type="primary" loading-type="spinner" />
-<Button loading type="primary" loading-text="Loading..." />
+```html
+<button loading type="primary" />
+<button loading type="primary" loading-type="spinner" />
+<button loading type="primary" loading-text="Loading..." />
 ```
 
 ### Shape
 
-```jsx
-<Button square type="primary">Square</Button>
-<Button round type="primary">Round</Button>
+```html
+<button square type="primary">Square</button> <button round type="primary">Round</button>
 ```
 
 ### Icon
 
-```jsx
-<Button icon="plus" type="primary" />
-<Button icon="plus" type="primary">Button</Button>
-<Button icon="https://img.yzcdn.cn/vant/user-active.png" type="primary">
-  Button
-</Button>
+```html
+<button icon="plus" type="primary" />
+<button icon="plus" type="primary">Button</button>
+<button icon="https://img.yzcdn.cn/vant/user-active.png" type="primary">Button</button>
 ```
 
 ### Size
 
-```jsx
-<Button type="primary" size="large">Large</Button>
-<Button type="primary" size="normal">Normal</Button>
-<Button type="primary" size="small">Small</Button>
-<Button type="primary" size="mini">Mini</Button>
+```html
+<button type="primary" size="large">Large</button>
+<button type="primary" size="normal">Normal</button>
+<button type="primary" size="small">Small</button>
+<button type="primary" size="mini">Mini</button>
 ```
 
 ### Block Element
 
-```jsx
-<Button type="primary" block>Block Element</Button>
+```html
+<button type="primary" block>Block Element</button>
 ```
 
 ### Route
 
-```jsx
-<Button type="primary" url="/vant/mobile.html">URL</Button>
-<Button type="primary" to="index">Vue Router</Button>
+```html
+<button type="primary" url="/vant/mobile.html">URL</button>
+<button type="primary" to="index">Vue Router</button>
 ```
 
 ### Custom Color
 
-```jsx
-<Button color="#7232dd">Pure</Button>
-<Button color="#7232dd" plain>Pure</Button>
-<Button color="linear-gradient(to right, #ff6034, #ee0a24)">
-  Gradient
-</Button>
+```html
+<button color="#7232dd">Pure</button>
+<button color="#7232dd" plain>Pure</button>
+<button color="linear-gradient(to right, #ff6034, #ee0a24)">Gradient</button>
 ```
 
 ## API
@@ -126,10 +119,10 @@ import { Button } from 'react-vant'
 
 ### Events
 
-| Event | Description | Arguments |
-| --- | --- | --- |
-| click | Triggered when click button and not disabled or loading | _event: Event_ |
-| touchstart | Triggered when touch start | _event: TouchEvent_ |
+| Event      | Description                                             | Arguments           |
+| ---------- | ------------------------------------------------------- | ------------------- |
+| click      | Triggered when click button and not disabled or loading | _event: Event_      |
+| touchstart | Triggered when touch start                              | _event: TouchEvent_ |
 
 ### Slots
 

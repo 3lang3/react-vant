@@ -1,7 +1,9 @@
-import { demos, config } from 'site-mobile-shared';
+import { demos } from 'site-mobile-shared';
+import { config, documents } from 'site-desktop-shared';
 import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';
 import DemoHome from './components/DemoHome';
+import DemoPage from './components/DemoPage';
 
 const { locales, defaultLang } = config.site;
 
@@ -19,7 +21,7 @@ export function getLangFromRoute(pathname) {
 
 function getRoutes() {
   const routes = [];
-  const names = Object.keys(demos);
+  const names = Object.keys(documents);
   const langs = locales ? Object.keys(locales) : [];
 
   if (langs.length) {
@@ -41,16 +43,19 @@ function getRoutes() {
   }
 
   names.forEach((name) => {
-    const component = decamelize(name);
+    const componentName = name.split('_')[0];
+    const component = decamelize(componentName);
+    let { MdDemos } = documents[name];
+    let childrenDemo = demos[componentName];
 
     if (langs.length) {
       langs.forEach((lang) => {
         routes.push({
           name: `${lang}/${component}`,
           path: `/${lang}/${component}`,
-          component: demos[name],
+          component: () => <DemoPage blocks={MdDemos} children={childrenDemo} />,
           meta: {
-            name,
+            name: componentName,
             lang,
           },
         });
@@ -59,9 +64,9 @@ function getRoutes() {
       routes.push({
         name,
         path: `/${component}`,
-        component: demos[name],
+        component: () => <DemoPage blocks={MdDemos} children={childrenDemo} />,
         meta: {
-          name,
+          name: componentName,
         },
       });
     }

@@ -14,7 +14,7 @@ import { IndexBar } from 'react-vant';
 
 点击索引栏时，会自动跳转到对应的 `IndexAnchor` 锚点位置。
 
-```jsx
+```html
 <IndexBar>
   <IndexBar.Anchor index="A" />
   <Cell title="文本" />
@@ -32,8 +32,8 @@ import { IndexBar } from 'react-vant';
 
 可以通过 `indexList` 属性自定义展示的索引字符列表。
 
-```jsx
-<IndexBar indexList={indexList}>
+```html
+<IndexBar indexList="{indexList}">
   <IndexBar.Anchor index="1">标题1</IndexBar.Anchor>
   <Cell title="文本" />
   <Cell title="文本" />

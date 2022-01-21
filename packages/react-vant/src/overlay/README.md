@@ -14,7 +14,7 @@ import { Overlay } from 'react-vant';
 
 ### 基础用法
 
-```jsx
+```html
 const [show, setShow] = useState(false);
 
 <Button type="primary" onClick={() => setShow(true)}>显示遮罩层</Button>
@@ -25,7 +25,7 @@ const [show, setShow] = useState(false);
 
 通过默认插槽可以在遮罩层上嵌入任意内容。
 
-```jsx
+```html
 const [showEmbedded, setShowEmbedded] = useState(false);
 
 <Button type="primary" onClick={() => setShowEmbedded(true)}>嵌入内容</Button>
@@ -55,14 +55,13 @@ const [showEmbedded, setShowEmbedded] = useState(false);
 | ------- | ---------- | -------------- |
 | onClick | 点击时触发 | _event: Event_ |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                           | 默认值               | 描述 |
-| ------------------------------ | -------------------- | ---- |
+| 名称                          | 默认值               | 描述 |
+| ----------------------------- | -------------------- | ---- |
 | --rv-overlay-z-index          | _1_                  | -    |
 | --rv-overlay-background-color | _rgba(0, 0, 0, 0.7)_ | -    |

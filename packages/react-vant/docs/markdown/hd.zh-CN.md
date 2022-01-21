@@ -4,7 +4,7 @@
 
 你可以把项目中对 react-vant 的 import 替换为 react-vant/2x，这样加载的就是 2 倍大小版本的组件了，例如：
 
-```jsx
+```js
 import { Button } from 'react-vant';
 // ⬇️
 import { Button } from 'react-vant/2x';

@@ -16,7 +16,7 @@ import { ActionSheet } from 'react-vant';
 
 动作面板通过 `actions` 属性来定义选项，`actions` 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象格式见文档下方表格。
 
-```jsx
+```html
 const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
 
 export default () => {
@@ -33,7 +33,7 @@ export default () => {
 
 设置 `cancelText` 属性后，会在底部展示取消按钮，点击后关闭当前面板并触发 `onCancel` 事件。
 
-```jsx
+```html
 const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
 
 export default () => {
@@ -55,7 +55,7 @@ export default () => {
 
 通过 `description` 可以在菜单顶部显示描述信息，通过选项的 `subname` 属性可以在选项文字的右侧展示描述信息。
 
-```jsx
+```html
 const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三', subname: '描述信息' }];
 
 export default () => {
@@ -78,7 +78,7 @@ export default () => {
 
 可以通过 `loading` 和 `disabled` 将选项设置为加载状态或禁用状态，或者通过`color`设置选项的颜色
 
-```jsx
+```html
 const actions = [
   { name: '选项一', color: '#ee0a24' },
   { name: '选项二', disabled: true },
@@ -104,7 +104,7 @@ export default () => {
 
 通过插槽可以自定义面板的展示内容，同时可以使用`title`属性展示标题栏
 
-```jsx
+```html
 export default () => {
   return (
     <>

@@ -16,32 +16,23 @@ import { PullRefresh } from 'react-vant';
 
 下拉刷新时会触发 `onRefresh` 事件，在事件的回调函数中可以进行同步或异步操作，操作完成后表示加载完成。
 
-> 和 vant 不同的是，react-vant 根据onRefresh在组件内部维护了loading状态。
+> 和 vant 不同的是，react-vant 根据 onRefresh 在组件内部维护了 loading 状态。
 
-
-```jsx
-export default () => {
-  const onRefresh = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 1000);
-    });
-  };
-  return (
-    <PullRefresh onRefresh={onRefresh}>
-      <p>下拉刷新</p>
-    </PullRefresh>
-  );
-};
+```html
+export default () => { const onRefresh = () => { return new Promise((resolve) => { setTimeout(() =>
+{ resolve(true); }, 1000); }); }; return (
+<PullRefresh onRefresh="{onRefresh}">
+  <p>下拉刷新</p>
+</PullRefresh>
+); };
 ```
 
 ### 成功提示
 
 通过 `successText` 可以设置刷新成功后的顶部提示文案。
 
-```jsx
-<PullRefresh successText="刷新成功" onRefresh={onRefresh}>
+```html
+<PullRefresh successText="刷新成功" onRefresh="{onRefresh}">
   <p>下拉刷新</p>
 </PullRefresh>
 ```
@@ -50,7 +41,7 @@ export default () => {
 
 通过插槽可以自定义下拉刷新过程中的提示内容。
 
-```jsx
+```html
 <PullRefresh
   headHeight={80}
   pullingText={({ distance }) => (
@@ -95,8 +86,8 @@ export default () => {
 
 ### Events
 
-| 事件名    | 说明           | 类型                     | 回调参数 |
-| --------- | -------------- | ------------------------ | -------- |
+| 事件名    | 说明           | 类型                    | 回调参数 |
+| --------- | -------------- | ----------------------- | -------- |
 | onRefresh | 下拉刷新时触发 | _() => (Promise\|void)_ | -        |
 
 ## 主题定制
@@ -105,13 +96,12 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                 | 默认值                    | 描述 |
-| ------------------------------------ | ------------------------- | ---- |
-| --rv-pull-refresh-head-height       | _50px_                    | -    |
+| 名称                                | 默认值                   | 描述 |
+| ----------------------------------- | ------------------------ | ---- |
+| --rv-pull-refresh-head-height       | _50px_                   | -    |
 | --rv-pull-refresh-head-font-size    | _var(--rv-font-size-md)_ | -    |
 | --rv-pull-refresh-head-text-color   | _var(--rv-gray-6)_       | -    |
-| --rv-pull-refresh-loading-icon-size | _16px_                    | -    |
-
+| --rv-pull-refresh-loading-icon-size | _16px_                   | -    |
 
 ## 常见问题
 
@@ -119,6 +109,6 @@ export default () => {
 
 默认情况下，下拉区域的高度是和内容高度保持一致的，如果需要让下拉区域始终为全屏，可以给 PullRefresh 设置一个与屏幕大小相等的最小高度：
 
-```jsx
+```html
 <PullRefresh style="min-height: 100vh;" />
 ```

@@ -14,67 +14,40 @@ import { PasswordInput } from 'react-vant';
 
 ### 基础用法
 
-```jsx
-const onSubmit = (val: string) => {
-  Dialog.alert({
-    message: val,
-  });
-};
-<PasswordInput value="12a" length={4} type="text" onSubmit={onSubmit} />;
+```html
+const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
+<PasswordInput value="12a" length="{4}" type="text" onSubmit="{onSubmit}" />;
 ```
 
 ### 限制长度
 
-```jsx
-const onSubmit = (val: string) => {
-  Dialog.alert({
-    message: val,
-  });
-};
-<PasswordInput type="text" length={6} onSubmit={onSubmit} />;
+```html
+const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
+<PasswordInput type="text" length="{6}" onSubmit="{onSubmit}" />;
 ```
 
 ### 只允许数字
 
-```jsx
-const onSubmit = (val: string) => {
-  Dialog.alert({
-    message: val,
-  });
-};
-<PasswordInput type="number" value="" mask={false} length={4} onSubmit={onSubmit} />;
+```html
+const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
+<PasswordInput type="number" value="" mask="{false}" length="{4}" onSubmit="{onSubmit}" />;
 ```
 
 ### 自定义规则
 
 > 如果设置的初始值不符合规则, 将不会展示
 
-```jsx
-const onSubmit = (val: string) => {
-  Dialog.alert({
-    message: val,
-  });
-};
-<PasswordInput
-  value="124"
-  mask={false}
-  length={4}
-  validator={(val: string) => {
-    return /^[0-3]{0,4}$/.test(val);
-  }}
-  onSubmit={onSubmit}
-/>;
+```html
+const onSubmit = (val: string) => { Dialog.alert({ message: val, }); }; <PasswordInput value="124"
+mask={false} length={4} validator={(val: string) => { return /^[0-3]{0,4}$/.test(val); }}
+onSubmit={onSubmit} />;
 ```
 
 ### 自动聚焦
 
-```jsx
-const onSubmit = (val: string) => {
-  Dialog.alert({
-    message: val,
-  });
-};
-<PasswordInput length={4} autoFocus onSubmit={onSubmit} />;
+```html
+const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
+<PasswordInput length="{4}" autoFocus onSubmit="{onSubmit}" />;
 ```
 
 ## API

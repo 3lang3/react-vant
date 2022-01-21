@@ -16,7 +16,7 @@ import { NumberKeyboard } from 'react-vant';
 
 数字键盘提供了 `onInput`、`onDelete`、`onBlur` 事件，分别对应输入内容、删除内容和失去焦点的动作。
 
-```jsx
+```html
 import { useState } from 'react';
 import { NumberKeyboard, Cell, Toast } from 'react-vant';
 
@@ -47,7 +47,7 @@ export default () => {
 
 将 theme 属性设置为 `custom` 来展示键盘的右侧栏，常用于输入金额的场景。
 
-```jsx
+```html
 <NumberKeyboard theme="custom" extraKey="." closeButtonText="完成" />
 ```
 
@@ -55,7 +55,7 @@ export default () => {
 
 通过 `extraKey` 属性可以设置左下角按键内容，比如需要输入身份证号时，可以将 `extraKey` 设置为 `X`。
 
-```jsx
+```html
 <NumberKeyboard extraKey="X" closeButtonText="完成" />
 ```
 
@@ -63,7 +63,7 @@ export default () => {
 
 通过 `title` 属性可以设置键盘标题。
 
-```jsx
+```html
 <NumberKeyboard title="键盘标题" extraKey="X" closeButtonText="完成" />
 ```
 
@@ -71,7 +71,7 @@ export default () => {
 
 当 theme 为 `custom` 时，支持以数组的形式配置两个 `extraKey`。
 
-```jsx
+```html
 <NumberKeyboard theme="custom" extraKey={['00', '.']} closeButtonText="完成" />
 ```
 
@@ -79,7 +79,7 @@ export default () => {
 
 通过 `randomKeyOrder` 属性可以随机排序数字键盘，常用于安全等级较高的场景。
 
-```jsx
+```html
 <NumberKeyboard randomKeyOrder />
 ```
 
@@ -87,7 +87,7 @@ export default () => {
 
 可以通过 `value` 绑定键盘当前输入值，并通过 `maxlength` 属性来限制输入长度。
 
-```jsx
+```html
 import { useState } from 'react';
 import { NumberKeyboard, Field } from 'react-vant';
 
@@ -150,7 +150,6 @@ export default () => {
 | onShow   | 键盘完全弹出时触发             | -             |
 | onHide   | 键盘完全收起时触发             | -             |
 
-
 ### 类型定义
 
 组件导出以下类型定义：
@@ -165,24 +164,23 @@ import type { NumberKeyboardTheme } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-number-keyboard-background-color | _var(--rv-gray-2)_ | - |
-| --rv-number-keyboard-key-height | _48px_ | - |
-| --rv-number-keyboard-key-font-size | _28px_ | - |
-| --rv-number-keyboard-key-active-color | _var(--rv-gray-3)_ | - |
-| --rv-number-keyboard-key-background-color | _van(--rv-white)_ | - |
-| --rv-number-keyboard-delete-font-size | _var(--rv-font-size-lg)_ | - |
-| --rv-number-keyboard-title-color | _var(--rv-gray-7)_ | - |
-| --rv-number-keyboard-title-height | _34px_ | - |
-| --rv-number-keyboard-title-font-size | _var(--rv-font-size-lg)_ | - |
-| --rv-number-keyboard-close-padding | _0 var(--rv-padding-md)_ | - |
-| --rv-number-keyboard-close-color | _var(--rv-text-link-color)_ | - |
-| --rv-number-keyboard-close-font-size | _var(--rv-font-size-md)_ | - |
-| --rv-number-keyboard-button-text-color | _var(--rv-white)_ | - |
-| --rv-number-keyboard-button-background-color | _var(--rv-primary-color)_ | - |
-| --rv-number-keyboard-z-index | _100_ | - |
-
+| 名称                                         | 默认值                      | 描述 |
+| -------------------------------------------- | --------------------------- | ---- |
+| --rv-number-keyboard-background-color        | _var(--rv-gray-2)_          | -    |
+| --rv-number-keyboard-key-height              | _48px_                      | -    |
+| --rv-number-keyboard-key-font-size           | _28px_                      | -    |
+| --rv-number-keyboard-key-active-color        | _var(--rv-gray-3)_          | -    |
+| --rv-number-keyboard-key-background-color    | _van(--rv-white)_           | -    |
+| --rv-number-keyboard-delete-font-size        | _var(--rv-font-size-lg)_    | -    |
+| --rv-number-keyboard-title-color             | _var(--rv-gray-7)_          | -    |
+| --rv-number-keyboard-title-height            | _34px_                      | -    |
+| --rv-number-keyboard-title-font-size         | _var(--rv-font-size-lg)_    | -    |
+| --rv-number-keyboard-close-padding           | _0 var(--rv-padding-md)_    | -    |
+| --rv-number-keyboard-close-color             | _var(--rv-text-link-color)_ | -    |
+| --rv-number-keyboard-close-font-size         | _var(--rv-font-size-md)_    | -    |
+| --rv-number-keyboard-button-text-color       | _var(--rv-white)_           | -    |
+| --rv-number-keyboard-button-background-color | _var(--rv-primary-color)_   | -    |
+| --rv-number-keyboard-z-index                 | _100_                       | -    |
 
 ## 常见问题
 

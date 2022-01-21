@@ -16,7 +16,7 @@ import { Loading } from 'react-vant';
 
 通过 `type` 属性可以设置加载图标的类型，默认为 `circular`，可选值为 `spinner` 和 `ball`。
 
-```jsx
+```html
 <Loading />
 
 <Loading type="spinner" />
@@ -28,7 +28,7 @@ import { Loading } from 'react-vant';
 
 通过 `color` 属性设置加载图标的颜色。
 
-```jsx
+```html
 <Loading color="#1989fa" />
 
 <Loading type="spinner" color="#1989fa" />
@@ -38,7 +38,7 @@ import { Loading } from 'react-vant';
 
 通过 `size` 属性设置加载图标的大小，默认单位为 `px`。
 
-```jsx
+```html
 <Loading size="24" />
 
 <Loading type="spinner" size="24px" />
@@ -48,7 +48,7 @@ import { Loading } from 'react-vant';
 
 可以使用默认插槽在图标的右侧插入加载文案。
 
-```jsx
+```html
 <Loading size="24px">加载中...</Loading>
 ```
 
@@ -56,10 +56,8 @@ import { Loading } from 'react-vant';
 
 设置 `vertical` 属性后，图标和文案会垂直排列。
 
-```jsx
-<Loading size="24px" vertical>
-  加载中...
-</Loading>
+```html
+<Loading size="24px" vertical> 加载中... </Loading>
 ```
 
 ## API
@@ -89,10 +87,10 @@ import type { LoadingType } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                     | 默认值                    | 描述 |
-| ---------------------------------------- | ------------------------- | ---- |
+| 名称                                    | 默认值                   | 描述 |
+| --------------------------------------- | ------------------------ | ---- |
 | --rv-loading-text-color                 | _var(--rv-gray-6)_       | -    |
 | --rv-loading-text-font-size             | _var(--rv-font-size-md)_ | -    |
 | --rv-loading-spinner-color              | _var(--rv-gray-5)_       | -    |
-| --rv-loading-spinner-size               | _30px_                    | -    |
-| --rv-loading-spinner-animation-duration | _0.8s_                    | -    |
+| --rv-loading-spinner-size               | _30px_                   | -    |
+| --rv-loading-spinner-animation-duration | _0.8s_                   | -    |

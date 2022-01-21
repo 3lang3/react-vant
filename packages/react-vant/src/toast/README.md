@@ -12,92 +12,27 @@ import { Toast } from 'react-vant';
 
 ## 代码演示
 
-### 文字提示
+### 基础用法
 
-```js
-Toast('提示内容');
-Toast.info({ message: '提示内容' });
-```
-
-### 加载提示
-
-使用 `Toast.loading` 方法展示加载提示，通过 `forbidClick` 属性可以禁用背景点击。
-
-```js
-Toast.loading({
-  message: '加载中...',
-  forbidClick: true,
-});
-```
-
-### 成功/失败提示
-
-使用 `Toast.success` 方法展示成功提示，使用 `Toast.fail` 方法展示失败提示。
-
-```js
-Toast.success('成功文案');
-Toast.fail('失败文案');
-```
+<code title="基础用法" src="./demo/base.tsx"></code>
 
 ### 动态更新提示
 
 执行 Toast 方法时会返回对应的 Toast 实例，通过修改实例上的 message 属性可以实现动态更新提示的效果。
 
-```jsx
-let remain = 4;
-let timer;
-const update = Toast.info({
-  message: `还剩 ${remain + 1} 秒`,
-  duration: 5000,
-  onClose: () => clearInterval(timer),
-});
-timer = setInterval(() => {
-  update.config({ message: `还剩 ${remain--} 秒` });
-}, 1000);
-```
+<code title="动态更新提示" src="./demo/dynic.tsx"></code>
 
 ### 自定义图标
 
 通过 `icon` 选项可以自定义图标，通过`loadingType` 属性可以自定义加载图标类型。
 
-```js
-Toast({
-  message: '自定义图标',
-  icon: <FireO />,
-});
-
-Toast({
-  message: '自定义组件图标',
-  icon: <CustomIcon />,
-});
-
-Toast({
-  message: '自定义图片',
-  icon: <Image width={36} src="https://img01.yzcdn.cn/vant/logo.png" />,
-});
-
-Toast.loading({
-  message: '加载中...',
-  forbidClick: true,
-  loadingType: 'spinner',
-});
-```
+<code title="自定义图标" src="./demo/icon.tsx"></code>
 
 ### 自定义位置
 
 Toast 默认渲染在屏幕正中位置，通过 `position` 属性可以控制 Toast 展示的位置。
 
-```js
-Toast({
-  message: '顶部展示',
-  position: 'top',
-});
-
-Toast({
-  message: '底部展示',
-  position: 'bottom',
-});
-```
+<code title="自定义位置" src="./demo/position.tsx"></code>
 
 ### 动态更新提示
 
@@ -120,15 +55,7 @@ timer = setInterval(() => {
 
 Toast 默认采用单例模式，即同一时间只会存在一个 Toast，如果需要在同一时间弹出多个 Toast，可以参考下面的示例：
 
-```js
-Toast.allowMultiple();
-
-const toast1 = Toast.info('第一个 Toast');
-const toast2 = Toast.success('第二个 Toast');
-
-toast1.clear();
-toast2.clear();
-```
+<code title="单例模式" src="./demo/multiple.tsx"></code>
 
 ### 修改默认配置
 

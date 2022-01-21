@@ -14,7 +14,7 @@ import { CouponCell, CouponList } from 'react-vant';
 
 ### 基础用法
 
-```jsx
+```html
 import { useState } from 'react'
 import { CouponList, CouponCell, Toast } from 'react-vant'
 

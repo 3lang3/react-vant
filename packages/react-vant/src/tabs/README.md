@@ -12,7 +12,7 @@ import { Tabs } from 'react-vant';
 
 通过 `active` 绑定当前激活标签对应的索引值，默认情况下启用第一个标签。
 
-```jsx
+```html
 <Tabs active="active">
   <Tabs.TabPane title="标签 1">内容 1</Tabs.TabPane>
   <Tabs.TabPane title="标签 2">内容 2</Tabs.TabPane>
@@ -25,17 +25,11 @@ import { Tabs } from 'react-vant';
 
 在标签指定 `name` 属性的情况下，`active` 的值为当前标签的 `name`（此时无法通过索引值来匹配标签）。
 
-```jsx
+```html
 <Tabs active="b">
-  <Tabs.TabPane title="标签 1" name="a">
-    内容 1
-  </Tabs.TabPane>
-  <Tabs.TabPane title="标签 2" name="b">
-    内容 2
-  </Tabs.TabPane>
-  <Tabs.TabPane title="标签 3" name="c">
-    内容 3
-  </Tabs.TabPane>
+  <Tabs.TabPane title="标签 1" name="a"> 内容 1 </Tabs.TabPane>
+  <Tabs.TabPane title="标签 2" name="b"> 内容 2 </Tabs.TabPane>
+  <Tabs.TabPane title="标签 3" name="c"> 内容 3 </Tabs.TabPane>
 </Tabs>
 ```
 
@@ -43,12 +37,10 @@ import { Tabs } from 'react-vant';
 
 标签数量超过 5 个时，标签栏可以在水平方向上滚动，切换时会自动将当前标签居中。
 
-```jsx
+```html
 <Tabs>
   {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-    <Tabs.TabPane key={item} title={`标签${item}`}>
-      内容 {item}
-    </Tabs.TabPane>
+  <Tabs.TabPane key="{item}" title="{`标签${item}`}"> 内容 {item} </Tabs.TabPane>
   ))}
 </Tabs>
 ```
@@ -57,12 +49,10 @@ import { Tabs } from 'react-vant';
 
 设置 `disabled` 属性即可禁用标签，如果需要监听禁用标签的点击事件，可以在 `Tabs` 上监听`disabled` 事件。
 
-```jsx
+```html
 <Tabs>
   <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
-  <Tabs.TabPane title="标签2" disabled>
-    内容2
-  </Tabs.TabPane>
+  <Tabs.TabPane title="标签2" disabled> 内容2 </Tabs.TabPane>
   <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
 </Tabs>
 ```
@@ -71,7 +61,7 @@ import { Tabs } from 'react-vant';
 
 `Tab` 支持两种样式风格：`line` 和`card`，默认为 `line` 样式，可以通过 `type` 属性切换样式风格。
 
-```jsx
+```html
 <Tabs type="card">
   <Tabs.TabPane title="标签 1">内容 1</Tabs.TabPane>
   <Tabs.TabPane title="标签 2">内容 2</Tabs.TabPane>
@@ -83,7 +73,7 @@ import { Tabs } from 'react-vant';
 
 可以在 `Tabs` 上绑定 `onClick` 事件，事件传参为标签对应的标识符和标题。
 
-```jsx
+```html
 <Tabs onClick={(name, title) => Toast(title)}>
   <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
   <Tabs.TabPane title="标签2">内容2</Tabs.TabPane>
@@ -94,7 +84,7 @@ import { Tabs } from 'react-vant';
 
 通过 `sticky` 属性可以开启粘性布局，粘性布局下，标签页滚动到顶部时会自动吸顶。
 
-```jsx
+```html
 <Tabs active={2} sticky>
   {[1, 2, 3, 4].map((item) => (
     <Tabs.TabPane key={item} title={`标签${item}`}>
@@ -108,12 +98,10 @@ import { Tabs } from 'react-vant';
 
 通过 `scrollspy` 和 `sticky` 属性可以开启滚动导航模式，该模式下，内容将会平铺展示。
 
-```jsx
+```html
 <Tabs sticky scrollspy>
   {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-    <Tabs.TabPane key={item} title={`标签${item}`}>
-      内容 {item}
-    </Tabs.TabPane>
+  <Tabs.TabPane key="{item}" title="{`标签${item}`}"> 内容 {item} </Tabs.TabPane>
   ))}
 </Tabs>
 ```

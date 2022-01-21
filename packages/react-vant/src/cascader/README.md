@@ -16,7 +16,7 @@ import { Cascader } from 'react-vant';
 
 级联选择组件可以搭配 Field 和 Popup 组件使用，示例如下：
 
-```jsx
+```html
 import { Field, Popup, Cascader, useSetState } from 'react-vant';
 
 // 选项列表，children 代表子选项，支持多级嵌套
@@ -72,15 +72,15 @@ export default () => {
 
 通过 `activeColor` 属性来设置选中状态的高亮颜色。
 
-```jsx
-<Cascader title="请选择所在地区" activeColor="#f44336" options={options} />
+```html
+<Cascader title="请选择所在地区" activeColor="#f44336" options="{options}" />
 ```
 
 ### 异步加载选项
 
 可以监听 `onChange` 事件并动态设置 `options`，实现异步加载选项。
 
-```jsx
+```html
 import { useState } from 'react'
 import { Toast, Field, Popup, Cascader, useSetState } from 'react-vant';
 
@@ -140,29 +140,11 @@ export default () => {
 
 通过 `fieldNames` 属性可以自定义 `options` 里的字段名称。
 
-```jsx
-const options = [
-  {
-    name: '浙江省',
-    code: '330000',
-    items: [{ name: '杭州市', code: '330100' }],
-  },
-  {
-    name: '江苏省',
-    code: '320000',
-    items: [{ name: '南京市', code: '320100' }],
-  },
-];
-
-<Cascader
-  title="请选择所在地区"
-  options={options}
-  fieldNames={{
-    text: 'name',
-    value: 'code',
-    children: 'items',
-  }}
-/>;
+```html
+const options = [ { name: '浙江省', code: '330000', items: [{ name: '杭州市', code: '330100' }], },
+{ name: '江苏省', code: '320000', items: [{ name: '南京市', code: '320100' }], }, ]; <Cascader
+title="请选择所在地区" options={options} fieldNames={{ text: 'name', value: 'code', children:
+'items', }} />;
 ```
 
 ### 受控组件
@@ -171,7 +153,7 @@ const options = [
 
 > 此处 options 数据和右侧 demo 数据不一致，完整数据请看 [options](https://github.com/3lang3/react-vant/blob/main/src/cascader/demo/index.tsx#L7-L128)
 
-```jsx
+```html
 import { useState } from 'react';
 import { Cascader, Button, Popup, Field } from 'react-vant';
 

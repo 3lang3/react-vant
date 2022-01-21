@@ -11,6 +11,9 @@
 使用上与 useEffect 完全相同，只是它忽略了首次渲染，且只在依赖项更新时运行。
 
 ```jsx
+/**
+ * inline: true
+ */
 import React, { useEffect, useState } from 'react';
 import { hooks } from 'react-vant';
 

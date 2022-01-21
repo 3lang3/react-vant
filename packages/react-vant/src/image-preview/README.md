@@ -10,18 +10,10 @@
 
 直接传入图片数组，即可展示图片预览。
 
-```jsx
-import { ImagePreview } from 'react-vant';
-
-ImagePreview.open({
-  images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
-    'https://img.yzcdn.cn/vant/apple-3.jpg',
-  ],
-  // 开启懒加载
-  lazyload: true,
-});
+```html
+import { ImagePreview } from 'react-vant'; ImagePreview.open({ images: [
+'https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg',
+'https://img.yzcdn.cn/vant/apple-3.jpg', ], // 开启懒加载 lazyload: true, });
 ```
 
 ### 指定初始位置
@@ -96,7 +88,7 @@ setTimeout(() => {
 
 如果需要在图片预览内嵌入组件或其他自定义内容，可以使用组件调用的方式。
 
-```jsx
+```html
 import { ImagePreview, Button } from 'react-vant';
 
 export default () => {

@@ -11,6 +11,9 @@
 ### 基本用法
 
 ```jsx
+/**
+ * inline: true
+ */
 import { hooks } from 'react-vant';
 
 export default () => {
@@ -39,6 +42,9 @@ export default () => {
 倒计时默认每秒渲染一次，设置 millisecond 选项可以开启毫秒级渲染。
 
 ```jsx
+/**
+ * inline: true
+ */
 import { useCountDown } from 'react-vant';
 
 export default () => {

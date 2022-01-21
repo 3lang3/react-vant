@@ -87,15 +87,9 @@ pnpm i react-vant -S -E
 
 #### 代码片段:
 
-```jsx
-import ReactDOM from 'react-dom';
-import { Button } from 'react-vant';
-import 'react-vant/lib/index.css';
-
-function App() {
-  return <Button>Default Button</Button>;
-}
-
+```html
+import ReactDOM from 'react-dom'; import { Button } from 'react-vant'; import
+'react-vant/lib/index.css'; function App() { return <button>Default Button</button>; }
 ReactDOM.render(<App />, mountNode);
 ```
 

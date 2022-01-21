@@ -12,7 +12,7 @@ import { ProductCard } from 'react-vant';
 
 ### 基础用法
 
-```jsx
+```html
 <ProductCard
   num="2"
   price="2.00"
@@ -26,7 +26,7 @@ import { ProductCard } from 'react-vant';
 
 通过 `originPrice` 设置商品原价，通过 `tag` 设置商品左上角标签。
 
-```jsx
+```html
 <ProductCard
   num="2"
   tag="标签"
@@ -42,7 +42,7 @@ import { ProductCard } from 'react-vant';
 
 `ProductCard` 组件提供了多个插槽，可以灵活地自定义内容。
 
-```jsx
+```html
 <ProductCard
   num="2"
   price="2.00"

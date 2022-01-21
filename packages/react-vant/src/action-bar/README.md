@@ -14,64 +14,48 @@ import { ActionBar } from 'react-vant';
 
 ### 基础用法
 
-```jsx
-import React from 'react';
-import { ActionBar } from 'react-vant';
-import { ChatO, CartO, ShopO } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <ActionBar>
-      <ActionBar.Icon icon={<ChatO />} text="客服" />
-      <ActionBar.Icon icon={<CartO />} text="购物车" />
-      <ActionBar.Icon icon={<ShopO />} text="店铺" />
-      <ActionBar.Button type="danger" text="立即购买" />
-    </ActionBar>
-  );
-};
+```html
+import React from 'react'; import { ActionBar } from 'react-vant'; import { ChatO, CartO, ShopO }
+from '@react-vant/icons'; export default () => { return (
+<ActionBar>
+  <ActionBar.Icon icon="{<ChatO" />} text="客服" /> <ActionBar.Icon icon="{<CartO" />} text="购物车"
+  /> <ActionBar.Icon icon="{<ShopO" />} text="店铺" />
+  <ActionBar.Button type="danger" text="立即购买" />
+</ActionBar>
+); };
 ```
 
 ### 徽标提示
 
 在 ActionBar.Icon 组件上可以设置 `badge` 属性。
 
-```jsx
-import React from 'react';
-import { ActionBar } from 'react-vant';
-import { ChatO, CartO, ShopO } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <ActionBar>
-      <ActionBar.Icon icon={<ChatO />} badge={{ dot: true }} text="客服" />
-      <ActionBar.Icon icon={<CartO />} badge={{ content: 5 }} text="购物车" />
-      <ActionBar.Icon icon={<ShopO />} badge={{ content: 12 }} text="店铺" />
-      <ActionBar.Button type="warning" text="加入购物车" />
-      <ActionBar.Button type="danger" text="立即购买" />
-    </ActionBar>
-  );
-};
+```html
+import React from 'react'; import { ActionBar } from 'react-vant'; import { ChatO, CartO, ShopO }
+from '@react-vant/icons'; export default () => { return (
+<ActionBar>
+  <ActionBar.Icon icon="{<ChatO" />} badge={{ dot: true }} text="客服" />
+  <ActionBar.Icon icon="{<CartO" />} badge={{ content: 5 }} text="购物车" />
+  <ActionBar.Icon icon="{<ShopO" />} badge={{ content: 12 }} text="店铺" />
+  <ActionBar.Button type="warning" text="加入购物车" />
+  <ActionBar.Button type="danger" text="立即购买" />
+</ActionBar>
+); };
 ```
 
 ### 自定义按钮颜色
 
 通过 ActionBarButton 的 `color` 属性可以自定义按钮的颜色，支持传入 `linear-gradient` 渐变色。
 
-```jsx
-import React from 'react';
-import { ActionBar } from 'react-vant';
-import { ChatO, CartO } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <ActionBar>
-      <ActionBar.Icon icon={<ChatO />} text="客服" />
-      <ActionBar.Icon icon={<CartO />} text="购物车" />
-      <ActionBar.Button color="#be99ff" type="warning" text="加入购物车" />
-      <ActionBar.Button color="#7232dd" type="danger" text="立即购买" />
-    </ActionBar>
-  );
-};
+```html
+import React from 'react'; import { ActionBar } from 'react-vant'; import { ChatO, CartO } from
+'@react-vant/icons'; export default () => { return (
+<ActionBar>
+  <ActionBar.Icon icon="{<ChatO" />} text="客服" /> <ActionBar.Icon icon="{<CartO" />} text="购物车"
+  />
+  <ActionBar.Button color="#be99ff" type="warning" text="加入购物车" />
+  <ActionBar.Button color="#7232dd" type="danger" text="立即购买" />
+</ActionBar>
+); };
 ```
 
 ## API

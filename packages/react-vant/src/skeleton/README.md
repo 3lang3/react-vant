@@ -16,7 +16,7 @@ import { Skeleton } from 'react-vant';
 
 通过 `title` 属性显示标题占位图，通过 `row` 属性配置占位段落行数。
 
-```jsx
+```html
 <Skeleton title />
 ```
 
@@ -24,7 +24,7 @@ import { Skeleton } from 'react-vant';
 
 通过 `avatar` 属性显示头像占位图。
 
-```jsx
+```html
 <Skeleton avatar />
 ```
 
@@ -32,15 +32,15 @@ import { Skeleton } from 'react-vant';
 
 通过 `rowHeight` 属性显示头像占位图。
 
-```jsx
-<Skeleton rowHeight={10} />
+```html
+<Skeleton rowHeight="{10}" />
 ```
 
 ### 展示子组件
 
 将 `loading` 属性设置成 `false` 表示内容加载完成，此时会隐藏占位图，并显示 `Skeleton` 的子组件。
 
-```jsx
+```html
 import { useState } from 'react';
 import { Flex, Typography, Switch, Skeleton } from 'react-vant';
 
@@ -86,19 +86,18 @@ export default () => {
 | className | 类名 | _string_ | - |
 | style | style | _React.CSSProperties_ | - |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                                   | 默认值                    | 描述 |
-| -------------------------------------- | ------------------------- | ---- |
-| --rv-skeleton-row-height              | _16px_                    | -    |
+| 名称                                  | 默认值                   | 描述 |
+| ------------------------------------- | ------------------------ | ---- |
+| --rv-skeleton-row-height              | _16px_                   | -    |
 | --rv-skeleton-row-background-color    | _var(--rv-active-color)_ | -    |
 | --rv-skeleton-row-margin-top          | _var(--rv-padding-sm)_   | -    |
-| --rv-skeleton-title-width             | _40%_                     | -    |
-| --rv-skeleton-avatar-size             | _32px_                    | -    |
+| --rv-skeleton-title-width             | _40%_                    | -    |
+| --rv-skeleton-avatar-size             | _32px_                   | -    |
 | --rv-skeleton-avatar-background-color | _var(--rv-active-color)_ | -    |
-| --rv-skeleton-animation-duration      | _1.2s_                    | -    |
+| --rv-skeleton-animation-duration      | _1.2s_                   | -    |

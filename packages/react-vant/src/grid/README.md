@@ -18,7 +18,7 @@ import { Grid } from 'react-vant';
 
 通过 `icon` 属性设置格子内的图标，`text` 属性设置文字内容。
 
-```jsx
+```html
 <Grid>
   <Grid.Item icon="photo-o" text="文字" />
   <Grid.Item icon="photo-o" text="文字" />
@@ -31,10 +31,10 @@ import { Grid } from 'react-vant';
 
 默认一行展示四个格子，可以通过 `columnNum` 自定义列数。
 
-```jsx
-<Grid columnNum={3}>
+```html
+<Grid columnNum="{3}">
   {Array.from({ length: 6 }, (_, i) => (
-    <Grid.Item key={i} icon="photo-o" text="文字" />
+  <Grid.Item key="{i}" icon="photo-o" text="文字" />
   ))}
 </Grid>
 ```
@@ -43,16 +43,16 @@ import { Grid } from 'react-vant';
 
 通过插槽可以自定义格子展示的内容。
 
-```jsx
-<Grid border={false} columnNum={3}>
+```html
+<Grid border="{false}" columnNum="{3}">
   <Grid.Item>
-    <Image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+    <image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
   </Grid.Item>
   <Grid.Item>
-    <Image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
+    <image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
   </Grid.Item>
   <Grid.Item>
-    <Image src="https://img.yzcdn.cn/vant/apple-3.jpg" />
+    <image src="https://img.yzcdn.cn/vant/apple-3.jpg" />
   </Grid.Item>
 </Grid>
 ```
@@ -61,10 +61,10 @@ import { Grid } from 'react-vant';
 
 设置 `square` 属性后，格子的高度会和宽度保持一致。
 
-```jsx
+```html
 <Grid square>
   {Array.from({ length: 8 }, (_, i) => (
-    <Grid.Item key={i} icon="photo-o" text="文字" />
+  <Grid.Item key="{i}" icon="photo-o" text="文字" />
   ))}
 </Grid>
 ```
@@ -73,10 +73,10 @@ import { Grid } from 'react-vant';
 
 通过 `gutter` 属性设置格子之间的距离。
 
-```jsx
-<Grid gutter={10}>
+```html
+<Grid gutter="{10}">
   {Array.from({ length: 8 }, (_, i) => (
-    <Grid.Item key={i} icon="photo-o" text="文字" />
+  <Grid.Item key="{i}" icon="photo-o" text="文字" />
   ))}
 </Grid>
 ```
@@ -85,8 +85,8 @@ import { Grid } from 'react-vant';
 
 将 `direction` 属性设置为 `horizontal`，可以让宫格的内容呈横向排列。
 
-```jsx
-<Grid direction="horizontal" columnNum={3}>
+```html
+<Grid direction="horizontal" columnNum="{3}">
   <Grid.Item icon="photo-o" text="文字" />
   <Grid.Item icon="photo-o" text="文字" />
   <Grid.Item icon="photo-o" text="文字" />
@@ -97,10 +97,10 @@ import { Grid } from 'react-vant';
 
 设置 `dot` 属性后，会在图标右上角展示一个小红点。设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
-```jsx
-<Grid columnNum={2}>
-  <Grid.Item icon="home-o" text="文字" badge={{ dot: true }} />
-  <Grid.Item icon="search" text="文字" badge={{ content: '99+' }} />
+```html
+<Grid columnNum="{2}">
+  <Grid.Item icon="home-o" text="文字" badge={{ dot: true }} /> <Grid.Item icon="search" text="文字"
+  badge={{ content: '99+' }} />
 </Grid>
 ```
 

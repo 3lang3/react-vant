@@ -16,31 +16,26 @@ import { Sidebar, SidebarItem } from 'react-vant';
 
 通过 `value` 绑定当前选中项的索引。
 
-```jsx
-import { useState } from 'react';
-import { Sidebar } from 'react-vant';
-
-export default () => {
-  const [active, setActive] = useState(0);
-  return (
-    <Sidebar value={active} onChange={setActive}>
-      <Sidebar.Item title="标签名称" />
-      <Sidebar.Item title="标签名称" />
-      <Sidebar.Item title="标签名称" />
-    </Sidebar>
-  );
-};
+```html
+import { useState } from 'react'; import { Sidebar } from 'react-vant'; export default () => { const
+[active, setActive] = useState(0); return (
+<Sidebar value="{active}" onChange="{setActive}">
+  <Sidebar.Item title="标签名称" />
+  <Sidebar.Item title="标签名称" />
+  <Sidebar.Item title="标签名称" />
+</Sidebar>
+); };
 ```
 
 ### 徽标提示
 
 设置 `dot` 属性后，会在右上角展示一个小红点；设置 `badge` 属性后，会在右上角展示相应的徽标。
 
-```jsx
+```html
 <Sidebar>
   <Sidebar.Item title="标签名" dot />
-  <Sidebar.Item title="标签名" badge={5} />
-  <Sidebar.Item title="标签名" badge={20} />
+  <Sidebar.Item title="标签名" badge="{5}" />
+  <Sidebar.Item title="标签名" badge="{20}" />
 </Sidebar>
 ```
 
@@ -48,7 +43,7 @@ export default () => {
 
 通过 `disabled` 属性禁用选项。
 
-```jsx
+```html
 <Sidebar>
   <Sidebar.Item title="标签名" />
   <Sidebar.Item title="标签名" disabled />
@@ -60,38 +55,28 @@ export default () => {
 
 设置 `onChange` 方法来监听切换导航项时的事件。
 
-```jsx
-import { useState } from 'react';
-import { Sidebar } from 'react-vant';
-
-export default () => {
-  const [active, setActive] = useState(0);
-  return (
-    <Sidebar value={active} onChange={setActive}>
-      <Sidebar.Item title="标签名称" />
-      <Sidebar.Item title="标签名称" />
-      <Sidebar.Item title="标签名称" />
-    </Sidebar>
-  );
-};
+```html
+import { useState } from 'react'; import { Sidebar } from 'react-vant'; export default () => { const
+[active, setActive] = useState(0); return (
+<Sidebar value="{active}" onChange="{setActive}">
+  <Sidebar.Item title="标签名称" />
+  <Sidebar.Item title="标签名称" />
+  <Sidebar.Item title="标签名称" />
+</Sidebar>
+); };
 ```
 
 ### 自定义内容区
 
-```jsx
-import { useState } from 'react';
-import { Sidebar } from 'react-vant';
-
-export default () => {
-  const [active, setActive] = useState(0);
-  return (
-    <Sidebar value={active} onChange={setActive}>
-      <Sidebar.Item title="内容1">我是内容区1</Sidebar.Item>
-      <Sidebar.Item title="内容2">我是内容区2</Sidebar.Item>
-      <Sidebar.Item title="内容3">我是内容区3</Sidebar.Item>
-    </Sidebar>
-  );
-};
+```html
+import { useState } from 'react'; import { Sidebar } from 'react-vant'; export default () => { const
+[active, setActive] = useState(0); return (
+<Sidebar value="{active}" onChange="{setActive}">
+  <Sidebar.Item title="内容1">我是内容区1</Sidebar.Item>
+  <Sidebar.Item title="内容2">我是内容区2</Sidebar.Item>
+  <Sidebar.Item title="内容3">我是内容区3</Sidebar.Item>
+</Sidebar>
+); };
 ```
 
 ## API

@@ -12,67 +12,50 @@ import { Card } from 'react-vant';
 
 ### 基础用法
 
-```jsx
-import React from 'react';
-import { Card } from 'react-vant';
-
-export default () => {
-  return (
-    <Card>
-      <Card.Header>卡片标题</Card.Header>
-      <Card.Body>卡片内容区域</Card.Body>
-    </Card>
-  );
-};
+```html
+import React from 'react'; import { Card } from 'react-vant'; export default () => { return (
+<Card>
+  <Card.Header>卡片标题</Card.Header>
+  <Card.Body>卡片内容区域</Card.Body>
+</Card>
+); };
 ```
 
 ### 圆角卡片
 
 `round`属性开启圆角样式
 
-```jsx
-import React from 'react';
-import { Card } from 'react-vant';
-
-export default () => {
-  return (
-    <Card round>
-      <Card.Header>圆角卡片</Card.Header>
-      <Card.Body>卡片内容区域</Card.Body>
-    </Card>
-  );
-};
+```html
+import React from 'react'; import { Card } from 'react-vant'; export default () => { return (
+<Card round>
+  <Card.Header>圆角卡片</Card.Header>
+  <Card.Body>卡片内容区域</Card.Body>
+</Card>
+); };
 ```
 
 ### 底部内容
 
 通过 `Card.Footer` 设置底部内容。
 
-```jsx
-import React from 'react';
-import { Card, Button } from 'react-vant';
-import { Arrow } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <Card round>
-      <Card.Header>卡片标题</Card.Header>
-      <Card.Body>卡片内容区域</Card.Body>
-      <Card.Footer>
-        <Button type="primary" round block size="mini">
-          查看更多 <Arrow />
-        </Button>
-      </Card.Footer>
-    </Card>
-  );
-};
+```html
+import React from 'react'; import { Card, Button } from 'react-vant'; import { Arrow } from
+'@react-vant/icons'; export default () => { return (
+<Card round>
+  <Card.Header>卡片标题</Card.Header>
+  <Card.Body>卡片内容区域</Card.Body>
+  <Card.Footer>
+    <button type="primary" round block size="mini">查看更多 <Arrow /></button>
+  </Card.Footer>
+</Card>
+); };
 ```
 
 ### 封面展示
 
 使用 `Card.Cover` 可以方便的展示封面，随意调整位置
 
-```jsx
+```html
 import React from 'react';
 import { Card, Image, Button } from 'react-vant';
 import { Arrow, Like } from '@react-vant/icons';
@@ -107,7 +90,7 @@ export default () => {
 
 `Card.Header` 和 `Card.Footer` 的 `border` 属性可以展示对应边框
 
-```jsx
+```html
 import React from 'react';
 import { Card, Button } from 'react-vant';
 import { Arrow } from '@react-vant/icons';
@@ -138,7 +121,7 @@ export default () => {
 
 ### 自定义卡片样式
 
-```jsx
+```html
 import React from 'react';
 import { Card } from 'react-vant';
 

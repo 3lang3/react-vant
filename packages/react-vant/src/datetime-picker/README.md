@@ -16,12 +16,19 @@ import { DatetimePicker } from 'react-vant';
 
 DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为 `date` 表示选择年月日。通过 minDate 和 maxDate 属性可以确定可选的时间范围。
 
-```jsx
+```html
 <DatetimePicker
   type="date"
-  minDate={new Date(2020, 0, 1)}
-  maxDate={new Date(2025, 10, 1)}
-  value={new Date()}
+  minDate="{new"
+  Date(2020,
+  0,
+  1)}
+  maxDate="{new"
+  Date(2025,
+  10,
+  1)}
+  value="{new"
+  Date()}
 />
 ```
 
@@ -29,51 +36,27 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 将 type 设置为 `year-month` 即可选择年份和月份。通过传入 `formatter` 函数，可以对选项文字进行格式化处理。
 
-```jsx
-<DatetimePicker
-  type="year-month"
-  minDate={new Date(2020, 0, 1)}
-  maxDate={new Date(2025, 10, 1)}
-  value={new Date()}
-  formatter={(type: string, val: string) => {
-    if (type === 'year') {
-      return `${val}年`;
-    }
-    if (type === 'month') {
-      return `${val}月`;
-    }
-    return val;
-  }}
-/>
+```html
+<DatetimePicker type="year-month" minDate={new Date(2020, 0, 1)} maxDate={new Date(2025, 10, 1)}
+value={new Date()} formatter={(type: string, val: string) => { if (type === 'year') { return
+`${val}年`; } if (type === 'month') { return `${val}月`; } return val; }} />
 ```
 
 ### 选择月日
 
 将 type 设置为 `month-day` 即可选择月份和日期。
 
-```jsx
-<DatetimePicker
-  type="month-day"
-  minDate={new Date(2020, 0, 1)}
-  maxDate={new Date(2025, 10, 1)}
-  value={new Date()}
-  formatter={(type: string, val: string) => {
-    if (type === 'month') {
-      return `${val}月`;
-    }
-    if (type === 'day') {
-      return `${val}日`;
-    }
-    return val;
-  }}
-/>
+```html
+<DatetimePicker type="month-day" minDate={new Date(2020, 0, 1)} maxDate={new Date(2025, 10, 1)}
+value={new Date()} formatter={(type: string, val: string) => { if (type === 'month') { return
+`${val}月`; } if (type === 'day') { return `${val}日`; } return val; }} />
 ```
 
 ### 选择时间
 
 将 type 设置为 `time` 即可选择时间（小时和分钟）。
 
-```jsx
+```html
 <DatetimePicker type="time" minHour="10" maxHour="20" value="12:00" />
 ```
 
@@ -81,12 +64,19 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 将 type 设置为 `datetime` 即可选择完整时间，包括年月日和小时、分钟。
 
-```jsx
+```html
 <DatetimePicker
   type="datetime"
-  minDate={new Date(2020, 0, 1)}
-  maxDate={new Date(2025, 10, 1)}
-  value={new Date()}
+  minDate="{new"
+  Date(2020,
+  0,
+  1)}
+  maxDate="{new"
+  Date(2025,
+  10,
+  1)}
+  value="{new"
+  Date()}
 />
 ```
 
@@ -94,12 +84,19 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 将 type 设置为 `datehour` 即可选择日期和小时，包括年月日和小时。
 
-```jsx
+```html
 <DatetimePicker
   type="datehour"
-  minDate={new Date(2020, 0, 1)}
-  maxDate={new Date(2025, 10, 1)}
-  value={new Date()}
+  minDate="{new"
+  Date(2020,
+  0,
+  1)}
+  maxDate="{new"
+  Date(2025,
+  10,
+  1)}
+  value="{new"
+  Date()}
 />
 ```
 
@@ -107,36 +104,21 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 通过传入 `filter` 函数，可以对选项数组进行过滤，实现自定义时间间隔。
 
-```jsx
-<DatetimePicker
-  type="time"
-  minHour="10"
-  maxHour="20"
-  value="12:00"
-  filter={(type, options) => {
-    if (type === 'minute') {
-      return options.filter((option) => option % 5 === 0);
-    }
-    return options;
-  }}
-/>
+```html
+<DatetimePicker type="time" minHour="10" maxHour="20" value="12:00" filter={(type, options) => { if
+(type === 'minute') { return options.filter((option) => option % 5 === 0); } return options; }} />
 ```
 
 ### 自定义列排序
 
-```jsx
-<DatetimePicker
-  type="date"
-  columnsOrder={['month', 'day', 'year']}
-  minDate={new Date(2020, 0, 1)}
-  maxDate={new Date(2025, 10, 1)}
-  value={new Date()}
-/>
+```html
+<DatetimePicker type="date" columnsOrder={['month', 'day', 'year']} minDate={new Date(2020, 0, 1)}
+maxDate={new Date(2025, 10, 1)} value={new Date()} />
 ```
 
 ### 搭配弹出层使用
 
-```jsx
+```html
 <Field
   readonly
   clickable
@@ -237,13 +219,11 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 通过 `DatetimePickerInstance` 获取 DatetimePicker 实例的类型定义（从 3.2.0 版本开始支持）。
 
-```jsx
-import { useRef } from 'react';
-import type { DatetimePickerInstance } from 'react-vant';
-
-const datetimePickerRef = useRef<DatetimePickerInstance>();
-
-datetimePickerRef.current?.getPicker();
+```html
+import { useRef } from 'react'; import type { DatetimePickerInstance } from 'react-vant'; const
+datetimePickerRef = useRef<DatetimePickerInstance
+  >(); datetimePickerRef.current?.getPicker();</DatetimePickerInstance
+>
 ```
 
 ## 常见问题

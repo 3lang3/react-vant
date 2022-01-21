@@ -16,63 +16,61 @@ import { Rate } from 'react-vant';
 
 通过 `value` 来绑定当前评分值。
 
-```jsx
-<Rate value={3} />
+```html
+<Rate value="{3}" />
 ```
 
-```jsx
-export default () => {
-  const [value, setValue] = useState(3);
-  return <Rate value={value} onChange={(current) => setValue(current)} />;
-};
+```html
+export default () => { const [value, setValue] = useState(3); return <Rate value={value}
+onChange={(current) => setValue(current)} />; };
 ```
 
 ### 自定义图标
 
 通过 `icon` 属性设置选中时的图标，`voidIcon` 属性设置未选中时的图标。
 
-```jsx
-<Rate defaultValue={3} icon="like" voidIcon="like-o" />
+```html
+<Rate defaultValue="{3}" icon="like" voidIcon="like-o" />
 ```
 
 ### 自定义样式
 
 通过 `size` 属性设置图标大小，`color` 属性设置选中时的颜色，`voidColor` 设置未选中时的颜色。
 
-```jsx
-<Rate defaultValue={3} size={25} color="#ffd21e" voidIcon="star" voidColor="#eee" />
+```html
+<Rate defaultValue="{3}" size="{25}" color="#ffd21e" voidIcon="star" voidColor="#eee" />
 ```
 
 ### 半星
 
 设置 `allowHalf` 属性后可以选中半星。
 
-```jsx
-<Rate defaultValue={3.5} allowHalf />
+```html
+<Rate defaultValue="{3.5}" allowHalf />
 ```
 
 ### 自定义数量
 
 通过 `count` 属性设置评分总数。
 
-```jsx
-<Rate defaultValue={1} count="8" />
+```html
+<Rate defaultValue="{1}" count="8" />
 ```
 
 ### 禁用状态
 
 通过 `disabled` 属性来禁用评分。
 
-```jsx
-<Rate defaultValue={3} disabled />
+```html
+<Rate defaultValue="{3}" disabled />
 ```
 
 ### 只读状态显示小数
 
 设置 `readonly` 和 `allowHalf` 属性后，Rate 组件可以展示任意小数结果。
 
-```jsx
-<Rate defaultValue={3.3} readonly allowHalf />
+```html
+<Rate defaultValue="{3.3}" readonly allowHalf />
 ```
 
 ## API
@@ -102,16 +100,15 @@ export default () => {
 | -------- | ------------------------ | -------- |
 | onChange | 当前分值变化时触发的事件 | 当前分值 |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                           | 默认值                    | 描述 |
-| ------------------------------ | ------------------------- | ---- |
-| --rv-rate-icon-size           | _20px_                    | -    |
+| 名称                          | 默认值                   | 描述 |
+| ----------------------------- | ------------------------ | ---- |
+| --rv-rate-icon-size           | _20px_                   | -    |
 | --rv-rate-icon-gutter         | _var(--rv-padding-base)_ | -    |
 | --rv-rate-icon-void-color     | _var(--rv-gray-5)_       | -    |
 | --rv-rate-icon-full-color     | _var(--rv-danger-color)_ | -    |

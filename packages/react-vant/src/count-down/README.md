@@ -16,53 +16,40 @@ import { CountDown } from 'react-vant';
 
 `time` 属性表示倒计时总时长，单位为毫秒。
 
-```jsx
-export default () => {
-  return <CountDown time={30 * 60 * 60 * 1000} />;
-};
+```html
+export default () => { return <CountDown time="{30" * 60 * 60 * 1000} />; };
 ```
 
 ### 自定义格式
 
 通过 `format` 属性设置倒计时文本的内容。
 
-```jsx
-export default () => {
-  return (
-    <CountDown 
-      time={30 * 60 * 60 * 1000} 
-      format="DD 天 HH 时 mm 分 ss 秒" 
-    />
-  )
-};
+```html
+export default () => { return (
+<CountDown time="{30" * 60 * 60 * 1000} format="DD 天 HH 时 mm 分 ss 秒" />
+) };
 ```
 
 ### 毫秒级渲染
 
 倒计时默认每秒渲染一次，设置 `millisecond` 属性可以开启毫秒级渲染。
 
-```jsx
-export default () => {
-  return (
-    <CountDown 
-      time={30 * 60 * 60 * 1000} 
-      millisecond 
-      format="HH:mm:ss:SS" 
-    />
-  );
-};
+```html
+export default () => { return (
+<CountDown time="{30" * 60 * 60 * 1000} millisecond format="HH:mm:ss:SS" />
+); };
 ```
 
 ### 自定义样式
 
 通过`children`自定义倒计时的样式，[react render prop](https://reactjs.org/docs/render-props.html)文档。
 
-```jsx
+```html
 export default () => {
   return (
-    <CountDown 
-      time={30 * 60 * 60 * 1000} 
-      millisecond 
+    <CountDown
+      time={30 * 60 * 60 * 1000}
+      millisecond
       format="HH:mm:ss:SS"
     >
       {(timeData) => (
@@ -99,7 +86,7 @@ export default () => {
 
 通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
 
-```jsx
+```html
 import { useRef } from 'react';
 
 export default () => {
@@ -138,7 +125,7 @@ export default () => {
 | ----------- | -------------------- | ------------------ | ---------- |
 | time        | 倒计时时长，单位毫秒 | _number \| string_ | `0`        |
 | format      | 时间格式             | _string_           | `HH:mm:ss` |
-| autoStart  | 是否自动开始倒计时   | _boolean_          | `true`     |
+| autoStart   | 是否自动开始倒计时   | _boolean_          | `true`     |
 | millisecond | 是否开启毫秒级渲染   | _boolean_          | `false`    |
 
 ### format 格式
@@ -155,11 +142,10 @@ export default () => {
 
 ### Events
 
-| 事件名 | 说明             | 回调参数                   |
-| ------ | ---------------- | -------------------------- |
+| 事件名   | 说明             | 回调参数                   |
+| -------- | ---------------- | -------------------------- |
 | onFinish | 倒计时结束时触发 | -                          |
 | onChange | 倒计时变化时触发 | _currentTime: CurrentTime_ |
-
 
 ### CurrentTime 格式
 
@@ -176,12 +162,11 @@ export default () => {
 
 通过 ref 可以获取到 CountDown 实例并调用实例方法
 
-| 方法名 | 说明                                                          | 参数 | 返回值 |
-| ------ | ------------------------------------------------------------- | ---- | ------ |
-| start  | 开始倒计时                                                    | -    | -      |
-| pause  | 暂停倒计时                                                    | -    | -      |
+| 方法名 | 说明                                                         | 参数 | 返回值 |
+| ------ | ------------------------------------------------------------ | ---- | ------ |
+| start  | 开始倒计时                                                   | -    | -      |
+| pause  | 暂停倒计时                                                   | -    | -      |
 | reset  | 重设倒计时，若 `autoStart` 为 `true`，重设后会自动开始倒计时 | -    | -      |
-
 
 ### 类型定义
 
@@ -208,8 +193,8 @@ countDownRef.current?.start();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                         | 默认值                      | 描述 |
-| ---------------------------- | --------------------------- | ---- |
+| 名称                        | 默认值                     | 描述 |
+| --------------------------- | -------------------------- | ---- |
 | --rv-count-down-text-color  | _var(--rv-text-color)_     | -    |
 | --rv-count-down-font-size   | _var(--rv-font-size-md)_   | -    |
 | --rv-count-down-line-height | _var(--rv-line-height-md)_ | -    |

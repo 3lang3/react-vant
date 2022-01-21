@@ -22,24 +22,18 @@ import { Add } from '@react-vant/icons';
 
 ## 代码演示
 
-### 基础用法
+### 基础示例
 
 `Icon` 的 `name` 属性支持传入图标名称或图片链接，所有可用的图标名称见右侧示例。
-
-```jsx
-import React from 'react';
-import { ChatO } from '@react-vant/icons';
-
-export default () => {
-  return <ChatO />;
-};
-```
 
 ### 徽标提示
 
 结合`badge`组件可以实现带徽标的 Icon。
 
 ```jsx
+/**
+ * inline: true
+ */
 import React from 'react';
 import { Badge } from 'react-vant';
 import { ChatO } from '@react-vant/icons';
@@ -63,6 +57,9 @@ export default () => {
 `Icon` 的 `color` 属性用来设置图标的颜色。
 
 ```jsx
+/**
+ * inline: true
+ */
 import React from 'react';
 import { ChatO, FireO } from '@react-vant/icons';
 
@@ -81,6 +78,9 @@ export default () => {
 `Icon` 的 `fontSize` 属性用来设置图标的尺寸大小，默认单位为 `px`。
 
 ```jsx
+/**
+ * inline: true
+ */
 import React from 'react';
 import { ChatO, FireO } from '@react-vant/icons';
 
@@ -99,6 +99,9 @@ export default () => {
 通过方法`createFromIconfontCN` 引入[iconfont.cn](https://www.iconfont.cn)上的 js 文件
 
 ```jsx
+/**
+ * inline: true
+ */
 import React from 'react';
 import { createFromIconfontCN } from '@react-vant/icons';
 
@@ -117,6 +120,9 @@ export default () => {
 `Icon` 的 `spin` 属性用来设置图标旋转，默认单位为 `false`。
 
 ```jsx
+/**
+ * inline: true
+ */
 import React from 'react';
 import { ChatO, FireO } from '@react-vant/icons';
 

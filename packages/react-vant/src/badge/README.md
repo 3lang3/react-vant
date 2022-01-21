@@ -16,7 +16,7 @@ import { Badge } from 'react-vant';
 
 设置 `content` 属性后，Badge 会在子元素的右上角显示对应的徽标，也可以通过 `dot` 来显示小红点。
 
-```jsx
+```html
 <Badge content="5">
   <div class="child" />
 </Badge>
@@ -44,7 +44,7 @@ import { Badge } from 'react-vant';
 
 设置 `max` 属性后，当 `content` 的数值超过最大值时，会自动显示为 `{max}+`。
 
-```jsx
+```html
 <Badge content="20" max="9">
   <div class="child" />
 </Badge>
@@ -60,7 +60,7 @@ import { Badge } from 'react-vant';
 
 通过 `color` 属性来设置徽标的颜色。
 
-```jsx
+```html
 <Badge content="5" color="#1989fa">
   <div class="child" />
 </Badge>
@@ -74,7 +74,7 @@ import { Badge } from 'react-vant';
 
 ### 自定义徽标内容
 
-```jsx
+```html
 <Badge content={<Success className="badge-icon" />}>
   <div class="child" />
 </Badge>
@@ -92,7 +92,7 @@ import { Badge } from 'react-vant';
 
 当 Badge 没有子元素时，会作为一个独立的元素进行展示。
 
-```jsx
+```html
 <Badge content="20" />
 
 <Badge content="200" max="99" />

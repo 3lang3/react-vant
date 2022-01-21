@@ -47,7 +47,7 @@ export default () => {
 
 ### 基础用法
 
-```jsx
+```html
 Notify.show('通知内容');
 ```
 
@@ -73,17 +73,9 @@ Notify.show({ type: 'warning', message: '通知内容' });
 
 自定义消息通知的颜色和展示时长。
 
-```jsx
-Notify.show({
-  message: '自定义颜色',
-  color: '#ad0000',
-  background: '#ffe1e1',
-});
-
-Notify.show({
-  message: '自定义时长',
-  duration: 1000,
-});
+```html
+Notify.show({ message: '自定义颜色', color: '#ad0000', background: '#ffe1e1', }); Notify.show({
+message: '自定义时长', duration: 1000, });
 ```
 
 ## API

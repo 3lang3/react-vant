@@ -9,6 +9,9 @@
 ### 基本用法
 
 ```jsx
+/**
+ * inline: true
+ */
 import { useRef } from 'React';
 import { useClickAway } from 'react-vant';
 
@@ -28,6 +31,9 @@ export default () => {
 通过 `eventName` 选项可以自定义需要监听的事件类型。
 
 ```jsx
+/**
+ * inline: true
+ */
 import { useRef } from 'React';
 import { hooks } from 'react-vant';
 

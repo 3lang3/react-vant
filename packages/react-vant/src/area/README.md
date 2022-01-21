@@ -16,14 +16,9 @@ import { Area } from 'react-vant';
 
 初始化省市区组件时，需要通过 `areaList` 属性传入省市区数据。
 
-```jsx
-import React from 'react';
-import { Area } from 'react-vant';
-import { areaList } from '@vant/area-data';
-
-export default () => {
-  return <Area title="标题" areaList={areaList} />;
-};
+```html
+import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
+'@vant/area-data'; export default () => { return <area title="标题" areaList="{areaList}" />; };
 ```
 
 ### areaList 格式
@@ -60,63 +55,39 @@ Vant 官方提供了一份默认的省市区数据，可以通过 [@vant/area-da
 yarn add @vant/area-data
 ```
 
-```jsx
-import React from 'react';
-import { Area } from 'react-vant';
-import { areaList } from '@vant/area-data';
-
-export default () => {
-  return <Area title="标题" areaList={areaList} />;
-};
+```html
+import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
+'@vant/area-data'; export default () => { return <area title="标题" areaList="{areaList}" />; };
 ```
 
 ### 选中省市区
 
 如果想选中某个省市区，需要传入一个 `value` 属性，绑定对应的地区码。
 
-```jsx
-import React, { useState } from 'react';
-import { Area } from 'react-vant';
-import { areaList } from '@vant/area-data';
-
-export default () => {
-  const [value, setValue] = useState('330302');
-  return <Area title="标题" value={value} areaList={areaList} />;
-};
+```html
+import React, { useState } from 'react'; import { Area } from 'react-vant'; import { areaList } from
+'@vant/area-data'; export default () => { const [value, setValue] = useState('330302'); return
+<area title="标题" value="{value}" areaList="{areaList}" />; };
 ```
 
 ### 配置显示列
 
 可以通过 `columnsNum` 属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为 `2`，则只会显示省市选择。
 
-```jsx
-import React from 'react';
-import { Area } from 'react-vant';
-import { areaList } from '@vant/area-data';
-
-export default () => {
-  return <Area title="标题" columnsNum={2} areaList={areaList} />;
-};
+```html
+import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
+'@vant/area-data'; export default () => { return
+<area title="标题" columnsNum="{2}" areaList="{areaList}" />; };
 ```
 
 ### 配置列占位提示文字
 
 可以通过 `columnsPlaceholder` 属性配置每一列的占位提示文字。
 
-```jsx
-import React from 'react';
-import { Area } from 'react-vant';
-import { areaList } from '@vant/area-data';
-
-export default () => {
-  return (
-    <Area
-      title="标题"
-      areaList={areaList}
-      columnsPlaceholder={['请选择🤔', '请选择🤔', '请选择🤔']}
-    />
-  );
-};
+```html
+import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
+'@vant/area-data'; export default () => { return ( <Area title="标题" areaList={areaList}
+columnsPlaceholder={['请选择🤔', '请选择🤔', '请选择🤔']} /> ); };
 ```
 
 ## API

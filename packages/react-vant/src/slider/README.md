@@ -14,59 +14,50 @@ import { Slider } from 'react-vant';
 
 ### 基础用法
 
-```jsx
-import { useState } from 'react';
-import { Slider, Toast } from 'react-vant';
-
-export default () => {
-  const [value, setValue] = useState(10);
-  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
-  return <Slider value={value} onChange={setValue} onChangeAfter={onChangeAfter} />;
-};
+```html
+import { useState } from 'react'; import { Slider, Toast } from 'react-vant'; export default () => {
+const [value, setValue] = useState(10); const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+return <Slider value="{value}" onChange="{setValue}" onChangeAfter="{onChangeAfter}" />; };
 ```
 
 ### 双滑块
 
 添加 `range` 属性就可以开启双滑块模式，确保 `value` 的值是一个数组。
 
-```jsx
-import { useState } from 'react';
-import { Slider, Toast } from 'react-vant';
-
-export default () => {
-  const [value, setValue] = useState([10, 50]);
-  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
-  return <Slider range value={value} onChange={setValue} onChangeAfter={onChangeAfter} />;
-};
+```html
+import { useState } from 'react'; import { Slider, Toast } from 'react-vant'; export default () => {
+const [value, setValue] = useState([10, 50]); const onChangeAfter = (v) =>
+Toast.info(`当前值：${v}`); return
+<Slider range value="{value}" onChange="{setValue}" onChangeAfter="{onChangeAfter}" />; };
 ```
 
 ### 指定选择范围
 
-```jsx
-<Slider value={value} onChange={setValue} min={-50} max={50} />
+```html
+<Slider value="{value}" onChange="{setValue}" min="{-50}" max="{50}" />
 ```
 
 ### 禁用
 
-```jsx
-<Slider disabled value={value} />
+```html
+<Slider disabled value="{value}" />
 ```
 
 ### 指定步长
 
-```jsx
-<Slider value={value} step={10} />
+```html
+<Slider value="{value}" step="{10}" />
 ```
 
 ### 自定义样式
 
-```jsx
-<Slider value={value} onChange={setValue} barHeight={4} activeColor="#ee0a24" />
+```html
+<Slider value="{value}" onChange="{setValue}" barHeight="{4}" activeColor="#ee0a24" />
 ```
 
 ### 自定义按钮
 
-```jsx
+```html
 <Slider
   value={value}
   onChange={setValue}
@@ -91,8 +82,8 @@ export default () => {
 
 设置 `vertical` 属性后，滑块会垂直展示，且高度为 100% 父元素高度。
 
-```jsx
-<Slider vertical value={value} onChange={setValue} />
+```html
+<Slider vertical value="{value}" onChange="{setValue}" />
 ```
 
 ## API
@@ -100,7 +91,7 @@ export default () => {
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | value | 当前进度百分比，在双滑块模式下为数组格式 | \_number | [number, number]\_ | `0` |
 | max | 最大值 | _number \| string_ | `100` |
 | min | 最小值 | _number \| string_ | `0` |
@@ -129,21 +120,20 @@ export default () => {
 | onDragStart   | 开始拖动时触发               | _event: TouchEvent_, _value: SliderValue_ |
 | onDragEnd     | 结束拖动时触发               | _event: TouchEvent_, _value: SliderValue_ |
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-slider-active-background-color | _var(--rv-primary-color)_ | - |
-| --rv-slider-inactive-background-color | _var(--rv-gray-3)_ | - |
-| --rv-slider-disabled-opacity | _var(--rv-disabled-opacity)_ | - |
-| --rv-slider-bar-height | _2px_ | - |
-| --rv-slider-button-width | _24px_ | - |
-| --rv-slider-button-height | _24px_ | - |
-| --rv-slider-button-border-radius | _50%_ | - |
-| --rv-slider-button-background-color | _var(--rv-white)_ | - |
-| --rv-slider-button-box-shadow | _0 1px 2px rgba(0, 0, 0, 0.5)_ | - |
+| 名称                                  | 默认值                         | 描述 |
+| ------------------------------------- | ------------------------------ | ---- |
+| --rv-slider-active-background-color   | _var(--rv-primary-color)_      | -    |
+| --rv-slider-inactive-background-color | _var(--rv-gray-3)_             | -    |
+| --rv-slider-disabled-opacity          | _var(--rv-disabled-opacity)_   | -    |
+| --rv-slider-bar-height                | _2px_                          | -    |
+| --rv-slider-button-width              | _24px_                         | -    |
+| --rv-slider-button-height             | _24px_                         | -    |
+| --rv-slider-button-border-radius      | _50%_                          | -    |
+| --rv-slider-button-background-color   | _var(--rv-white)_              | -    |
+| --rv-slider-button-box-shadow         | _0 1px 2px rgba(0, 0, 0, 0.5)_ | -    |

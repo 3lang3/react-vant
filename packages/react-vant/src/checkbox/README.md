@@ -16,7 +16,7 @@ import { Checkbox } from 'react-vant';
 
 通过 `defaultChecked` 值默认复选框的勾选状态。
 
-```jsx
+```html
 <Checkbox defaultChecked onChange={(val) => console.log(val)}>
   复选框
 </Checkbox>
@@ -26,57 +26,47 @@ import { Checkbox } from 'react-vant';
 
 通过设置 `disabled` 属性可以禁用复选框。
 
-```jsx
-<Checkbox defaultChecked disabled>
-  复选框
-</Checkbox>
+```html
+<Checkbox defaultChecked disabled> 复选框 </Checkbox>
 ```
 
 ### 自定义形状
 
 将 `shape` 属性设置为 `square`，复选框的形状会变成方形。
 
-```jsx
-<Checkbox defaultChecked shape="square">
-  复选框
-</Checkbox>
+```html
+<Checkbox defaultChecked shape="square"> 复选框 </Checkbox>
 ```
 
 ### 自定义颜色
 
 通过 `checkedColor` 属性设置选中状态的图标颜色。
 
-```jsx
-<Checkbox defaultChecked checkedColor="#ee0a24">
-  复选框
-</Checkbox>
+```html
+<Checkbox defaultChecked checkedColor="#ee0a24"> 复选框 </Checkbox>
 ```
 
 ### 自定义大小
 
 通过 `iconSize` 属性可以自定义图标的大小。
 
-```jsx
-<Checkbox defaultChecked iconSize={24}>
-  复选框
-</Checkbox>
+```html
+<Checkbox defaultChecked iconSize="{24}"> 复选框 </Checkbox>
 ```
 
 ### 禁用文本点击
 
 设置 `labelDisabled` 属性后，点击图标以外的内容不会触发复选框切换。
 
-```jsx
-<Checkbox defaultChecked labelDisabled>
-  复选框
-</Checkbox>
+```html
+<Checkbox defaultChecked labelDisabled> 复选框 </Checkbox>
 ```
 
 ### 异步更新
 
 设置 `checked` 属性后，点击图标状态不会改变，而是直接执行 `onChange` 方法，在此方法中更换状态
 
-```jsx
+```html
 <Checkbox
   checked={value}
   onChange={(val) => {
@@ -100,7 +90,7 @@ import { Checkbox } from 'react-vant';
 const checked = ['a', 'b'];
 ```
 
-```jsx
+```html
 <Checkbox.Group defaultChecked="checked">
   <Checkbox name="a">复选框 a</Checkbox>
   <Checkbox name="b">复选框 b</Checkbox>
@@ -111,7 +101,7 @@ const checked = ['a', 'b'];
 
 将 `direction` 属性设置为 `horizontal` 后，复选框组会变成水平排列。
 
-```jsx
+```html
 <Checkbox.Group defaultChecked="checked" direction="horizontal">
   <Checkbox name="a">复选框 a</Checkbox>
   <Checkbox name="b">复选框 b</Checkbox>
@@ -122,8 +112,8 @@ const checked = ['a', 'b'];
 
 通过 `max` 属性可以限制复选框组的最大可选数。
 
-```jsx
-<Checkbox.Group defaultChecked="result" max={2}>
+```html
+<Checkbox.Group defaultChecked="result" max="{2}">
   <Checkbox name="a">复选框 a</Checkbox>
   <Checkbox name="b">复选框 b</Checkbox>
   <Checkbox name="c">复选框 c</Checkbox>
@@ -134,7 +124,7 @@ const checked = ['a', 'b'];
 
 通过 `CheckboxGroup` 实例上的`toggleAll`方法可以实现全选与反选。
 
-```jsx
+```html
 import { useState, useRef } from 'react';
 import { Checkbox, Button } from 'react-vant';
 
@@ -164,38 +154,19 @@ export default () => {
 
 此时你需要再引入 `Cell` 和 `Cell.Group` 组件。
 
-```jsx
-export default () => {
-  const [value, setValue] = useState([]);
-
-  const toggle = (name) => {
-    const newValue = cellCheck.includes(name)
-      ? cellCheck.filter((el) => el !== name)
-      : [...cellCheck, name];
-    setValue(newValue);
-  };
-
-  return (
-    <Checkbox.Group value={value}>
-      <Cell.Group>
-        <Cell
-          clickable
-          title="单选框1"
-          icon="shop-o"
-          onClick={() => toggle('a')}
-          rightIcon={<Checkbox name="a" />}
-        />
-        <Cell
-          clickable
-          title="单选框2"
-          icon="shop-o"
-          onClick={() => toggle('b')}
-          rightIcon={<Checkbox name="b" />}
-        />
-      </Cell.Group>
-    </Checkbox.Group>
-  );
-};
+```html
+export default () => { const [value, setValue] = useState([]); const toggle = (name) => { const
+newValue = cellCheck.includes(name) ? cellCheck.filter((el) => el !== name) : [...cellCheck, name];
+setValue(newValue); }; return (
+<Checkbox.Group value="{value}">
+  <Cell.Group>
+    <Cell clickable title="单选框1" icon="shop-o" onClick={() => toggle('a')} rightIcon={<Checkbox
+      name="a"
+    />} /> <Cell clickable title="单选框2" icon="shop-o" onClick={() => toggle('b')}
+    rightIcon={<Checkbox name="b" />} />
+  </Cell.Group>
+</Checkbox.Group>
+); };
 ```
 
 ## API
@@ -251,26 +222,12 @@ export default () => {
 
 ### toggleAll 方法示例
 
-```jsx
-import { CheckboxGroupInstance } from 'react-vant';
-
-const checkboxGroup = useRef < CheckboxGroupInstance > null;
-
-// 全部反选
-checkboxGroup.current?.toggleAll();
-// 全部选中
-checkboxGroup.current?.toggleAll(true);
-// 全部取消
-checkboxGroup.current?.toggleAll(false);
-
-// 全部反选，并跳过禁用的复选框
-checkboxGroup.current?.toggleAll({
-  skipDisabled: true,
-});
-// 全部选中，并跳过禁用的复选框
-checkboxGroup.current?.toggleAll({
-  checked: true,
-  skipDisabled: true,
+```html
+import { CheckboxGroupInstance } from 'react-vant'; const checkboxGroup = useRef <
+CheckboxGroupInstance > null; // 全部反选 checkboxGroup.current?.toggleAll(); // 全部选中
+checkboxGroup.current?.toggleAll(true); // 全部取消 checkboxGroup.current?.toggleAll(false); //
+全部反选，并跳过禁用的复选框 checkboxGroup.current?.toggleAll({ skipDisabled: true, }); //
+全部选中，并跳过禁用的复选框 checkboxGroup.current?.toggleAll({ checked: true, skipDisabled: true,
 });
 ```
 
@@ -297,21 +254,20 @@ checkboxRef.current?.toggle();
 checkboxGroupRef.current?.toggleAll();
 ```
 
-
 ## 主题定制
 
 ### 样式变量
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --rv-checkbox-size | _20px_ | - |
-| --rv-checkbox-border-color | _var(--rv-gray-5)_ | - |
-| --rv-checkbox-transition-duration | _var(--rv-animation-duration-fast)_ | - |
-| --rv-checkbox-label-margin | _var(--rv-padding-xs)_ | - |
-| --rv-checkbox-label-color | _var(--rv-text-color)_ | - |
-| --rv-checkbox-checked-icon-color | _var(--rv-primary-color)_ | - |
-| --rv-checkbox-disabled-icon-color | _var(--rv-gray-5)_ | - |
-| --rv-checkbox-disabled-label-color | _var(--rv-gray-5)_ | - |
-| --rv-checkbox-disabled-background-color | _var(--rv-border-color)_ | - |
+| 名称                                    | 默认值                              | 描述 |
+| --------------------------------------- | ----------------------------------- | ---- |
+| --rv-checkbox-size                      | _20px_                              | -    |
+| --rv-checkbox-border-color              | _var(--rv-gray-5)_                  | -    |
+| --rv-checkbox-transition-duration       | _var(--rv-animation-duration-fast)_ | -    |
+| --rv-checkbox-label-margin              | _var(--rv-padding-xs)_              | -    |
+| --rv-checkbox-label-color               | _var(--rv-text-color)_              | -    |
+| --rv-checkbox-checked-icon-color        | _var(--rv-primary-color)_           | -    |
+| --rv-checkbox-disabled-icon-color       | _var(--rv-gray-5)_                  | -    |
+| --rv-checkbox-disabled-label-color      | _var(--rv-gray-5)_                  | -    |
+| --rv-checkbox-disabled-background-color | _var(--rv-border-color)_            | -    |

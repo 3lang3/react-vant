@@ -16,44 +16,31 @@ import { Image } from 'react-vant';
 
 基础用法与原生 `img` 标签一致，可以设置 `src`、`width`、`height`、`alt` 等原生属性。
 
-```jsx
-<Image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-```
+<code title="基础用法" src="./demo/base.tsx"></code>
 
 ### 填充模式
 
 通过 `fit` 属性可以设置图片填充模式，可选值见下方表格。
 
-```jsx
-<Image width="10rem" height="10rem" fit="contain" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-```
+<code title="填充模式" src="./demo/fit.tsx"></code>
 
 ### 圆形图片
 
 通过 `round` 属性可以设置图片变圆，注意当图片宽高不相等且 `fit` 为 `contain` 或 `scale-down` 时，将无法填充一个完整的圆形。
 
-```jsx
-<Image round width="10rem" height="10rem" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-```
+<code title="圆形图片" src="./demo/round.tsx"></code>
 
 ### 加载中提示
 
 `Image` 组件提供了默认的加载中提示，支持通过 `loadingIcon` 自定义内容。
 
-```jsx
-<Image src="https://img.yzcdn.cn/vant/cat.jpeg" loadingIcon={<Loading type="spinner" />} />
-```
+<code title="加载中提示" src="./demo/loading.tsx"></code>
 
 ### 加载失败提示
 
 `Image` 组件提供了默认的加载失败提示，支持通过 `errorIcon` 自定义内容。
 
-```jsx
-<Image
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
-  errorIcon={<div style={{ fontSize: 14 }}>加载失败</div>}
-/>
-```
+<code title="加载失败提示" src="./demo/error.tsx"></code>
 
 ## API
 
@@ -123,10 +110,10 @@ import type { ImageFit } from 'react-vant';
 
 在 .tsx, jsx 文件中通过相对路径引用本地图片时，需要在图片的链接外包上一层 `require()`，将图片 URL 转换为 webpack 模块请求，并结合 [file-loader](https://github.com/webpack-contrib/file-loader) 或者 [url-loader](https://github.com/webpack-contrib/url-loader) 进行处理。
 
-```jsx
+```html
 // 错误写法
-<Image src="./image.png" />
+<image src="./image.png" />
 
 // 正确写法
-<Image src="require('./image.png')" />
+<image src="require('./image.png')" />
 ```

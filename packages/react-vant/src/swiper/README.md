@@ -16,20 +16,15 @@ import { Swiper } from 'react-vant';
 
 每个 Swiper.Item 代表一张轮播卡片，可以通过 `autoplay` 属性设置自动轮播的间隔。
 
-```jsx
-import React from 'react';
-import { Swiper } from 'react-vant';
-
-export default () => {
-  return (
-    <Swiper className="my-swipe" autoplay={3000}>
-      <Swiper.Item>1</Swiper.Item>
-      <Swiper.Item>2</Swiper.Item>
-      <Swiper.Item>3</Swiper.Item>
-      <Swiper.Item>4</Swiper.Item>
-    </Swiper>
-  );
-};
+```html
+import React from 'react'; import { Swiper } from 'react-vant'; export default () => { return (
+<Swiper className="my-swipe" autoplay="{3000}">
+  <Swiper.Item>1</Swiper.Item>
+  <Swiper.Item>2</Swiper.Item>
+  <Swiper.Item>3</Swiper.Item>
+  <Swiper.Item>4</Swiper.Item>
+</Swiper>
+); };
 ```
 
 ```css
@@ -46,35 +41,26 @@ export default () => {
 
 当 Swiper 中含有图片时，可以通过设置图片 `lazyload` 属性来开启懒加载模式。在懒加载模式下，只会渲染当前页，上一页和下一页。
 
-```jsx
-import React from 'react';
-import { Image, Swiper } from 'react-vant';
-
-const images = [
-  'https://img.yzcdn.cn/vant/apple-1.jpg',
-  'https://img.yzcdn.cn/vant/apple-2.jpg',
-  'https://img.yzcdn.cn/vant/apple-3.jpg',
-  'https://img.yzcdn.cn/vant/apple-4.jpg',
-];
-
-export default () => {
-  return (
-    <Swiper>
-      {images.map((image) => (
-        <Swiper.Item key={image}>
-          <Image lazyload src={image} />
-        </Swiper.Item>
-      ))}
-    </Swiper>
-  );
-};
+```html
+import React from 'react'; import { Image, Swiper } from 'react-vant'; const images = [
+'https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg',
+'https://img.yzcdn.cn/vant/apple-3.jpg', 'https://img.yzcdn.cn/vant/apple-4.jpg', ]; export default
+() => { return (
+<Swiper>
+  {images.map((image) => (
+  <Swiper.Item key="{image}">
+    <image lazyload src="{image}" />
+  </Swiper.Item>
+  ))}
+</Swiper>
+); };
 ```
 
 ### 监听 onChange 事件
 
 在每一页轮播结束后，会触发 `onChange` 事件。
 
-```jsx
+```html
 import React from 'react';
 import { Swiper, Toast } from 'react-vant';
 
@@ -94,65 +80,50 @@ export default () => {
 
 设置 `vertical` 属性后滑块会纵向排列，此时需要指定滑块容器的高度。
 
-```jsx
-import React from 'react';
-import { Swiper } from 'react-vant';
-
-export default () => {
-  return (
-    <Swiper vertical>
-      <Swiper.Item>1</Swiper.Item>
-      <Swiper.Item>2</Swiper.Item>
-      <Swiper.Item>3</Swiper.Item>
-      <Swiper.Item>4</Swiper.Item>
-    </Swiper>
-  );
-};
+```html
+import React from 'react'; import { Swiper } from 'react-vant'; export default () => { return (
+<Swiper vertical>
+  <Swiper.Item>1</Swiper.Item>
+  <Swiper.Item>2</Swiper.Item>
+  <Swiper.Item>3</Swiper.Item>
+  <Swiper.Item>4</Swiper.Item>
+</Swiper>
+); };
 ```
 
 ### 自定义滑块大小
 
 滑块默认宽度为 `100%`，可以通过 `slideSize` 属性改变滑块宽度。
 
-```jsx
-import React from 'react';
-import { Swiper } from 'react-vant';
-
-export default () => {
-  return (
-    <Swiper slideSize={80}>
-      <Swiper.Item>1</Swiper.Item>
-      <Swiper.Item>2</Swiper.Item>
-      <Swiper.Item>3</Swiper.Item>
-      <Swiper.Item>4</Swiper.Item>
-    </Swiper>
-  );
-};
+```html
+import React from 'react'; import { Swiper } from 'react-vant'; export default () => { return (
+<Swiper slideSize="{80}">
+  <Swiper.Item>1</Swiper.Item>
+  <Swiper.Item>2</Swiper.Item>
+  <Swiper.Item>3</Swiper.Item>
+  <Swiper.Item>4</Swiper.Item>
+</Swiper>
+); };
 ```
 
 ### 滑块居中
 
 通过 `trackOffset` 改变滑块偏移量实现居中展示。
 
-```jsx
-import React from 'react';
-import { Swiper } from 'react-vant';
-
-export default () => {
-  return (
-    <Swiper slideSize={80} trackOffset={10}>
-      <Swiper.Item>1</Swiper.Item>
-      <Swiper.Item>2</Swiper.Item>
-      <Swiper.Item>3</Swiper.Item>
-      <Swiper.Item>4</Swiper.Item>
-    </Swiper>
-  );
-};
+```html
+import React from 'react'; import { Swiper } from 'react-vant'; export default () => { return (
+<Swiper slideSize="{80}" trackOffset="{10}">
+  <Swiper.Item>1</Swiper.Item>
+  <Swiper.Item>2</Swiper.Item>
+  <Swiper.Item>3</Swiper.Item>
+  <Swiper.Item>4</Swiper.Item>
+</Swiper>
+); };
 ```
 
 ### 垂直滑块居中
 
-```jsx
+```html
 import React from 'react';
 import { Swiper } from 'react-vant';
 
@@ -172,7 +143,7 @@ export default () => {
 
 通过 `indicator` 属性可以自定义指示器的样式。
 
-```jsx
+```html
 import React from 'react';
 import { Swiper } from 'react-vant';
 

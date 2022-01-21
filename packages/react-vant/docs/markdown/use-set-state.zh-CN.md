@@ -9,6 +9,9 @@
 ### 基本用法
 
 ```jsx
+/**
+ * inline: true
+ */
 import React from 'react';
 import { hooks } from 'react-vant';
 
@@ -34,24 +37,11 @@ export default () => {
 
 ### 获取 state 最新状态
 
-```jsx
-import React, { useEffect } from 'react';
-import { useSetState } from 'react-vant';
-
-export default () => {
-  const [state, setState, stateRef] = useSetState({
-    count: 0,
-  });
-
-  useEffect(() => {
-    setInterval(() => {
-      setState((prev) => ({ count: prev.count + 1 }));
-      console.log(state.count, stateRef.current.count);
-    }, 1000);
-  }, []);
-
-  return null;
-};
+```html
+import React, { useEffect } from 'react'; import { useSetState } from 'react-vant'; export default
+() => { const [state, setState, stateRef] = useSetState({ count: 0, }); useEffect(() => {
+setInterval(() => { setState((prev) => ({ count: prev.count + 1 })); console.log(state.count,
+stateRef.current.count); }, 1000); }, []); return null; };
 ```
 
 ## API

@@ -86,15 +86,9 @@ The following are some code examples of react-vant:
 
 #### Code Snippet:
 
-```jsx
-import ReactDOM from 'react-dom';
-import { Button } from 'react-vant';
-import 'react-vant/lib/index.css';
-
-function App() {
-  return <Button>Default Button</Button>;
-}
-
+```html
+import ReactDOM from 'react-dom'; import { Button } from 'react-vant'; import
+'react-vant/lib/index.css'; function App() { return <button>Default Button</button>; }
 ReactDOM.render(<App />, mountNode);
 ```
 

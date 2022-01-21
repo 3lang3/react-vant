@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import clsx from 'clsx';
-import { config } from 'site-mobile-shared';
+import { config } from 'site-desktop-shared';
 
 import DemoHomeNav from '../DemoHomeNav';
 import './index.less';

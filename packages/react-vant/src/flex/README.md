@@ -14,46 +14,19 @@ import { Flex } from 'react-vant';
 
 `Flex` 组件提供了`24列栅格`。使用单一的一组 `Flex` 和 `Flex.Item` 栅格组件，就可以创建一个基本的栅格系统，所有列（`Flex.Item`）必须放在 `Flex` 内。
 
-```jsx
-<Flex>
-  <Flex.Item span={12}>span: 12</Flex.Item>
-  <Flex.Item span={12}>span: 12</Flex.Item>
-</Flex>
-<Flex>
-  <Flex.Item span={8}>span: 8</Flex.Item>
-  <Flex.Item span={8}>span: 8</Flex.Item>
-  <Flex.Item span={8}>span: 8</Flex.Item>
-</Flex>
-```
+<code title="基础用法" src="./demo/base.tsx"></code>
 
 ### 区域间隔
 
 通过`gutter`属性可以设置列元素之间的间距，默认间距为 `0`; 如果需要垂直间距，可以写成数组形式 `[水平间距, 垂直间距]`
 
-```jsx
-<Flex gutter={16}>
-  <Flex.Item span={8}>span: 8</Flex.Item>
-  <Flex.Item span={8}>span: 8</Flex.Item>
-  <Flex.Item span={8}>span: 8</Flex.Item>
-</Flex>
-```
+<code title="区域间隔" src="./demo/gutter.tsx"></code>
 
 ### 方向
 
 通过`direction`属性设置弹性布局方向。默认是 `row`
 
-```jsx
-<Flex direction="row">
-  <Flex.Item span={8}>span: 8-1</Flex.Item>
-  <Flex.Item span={8}>span: 8-2</Flex.Item>
-  <Flex.Item span={8}>span: 8-3</Flex.Item>
-</Flex>
-<Flex direction="row-reverse">
-  <Flex.Item span={8}>span: 8-1</Flex.Item>
-  <Flex.Item span={8}>span: 8-2</Flex.Item>
-  <Flex.Item span={8}>span: 8-3</Flex.Item>
-</Flex>
-```
+<code title="方向" src="./demo/direction.tsx"></code>
 
 ## API
 

@@ -12,7 +12,7 @@ import { Sku } from 'reactvant';
 
 > 完整 Sku demo 代码详见[demo](https://github.com/3lang3/react-vant/tree/main/packages/react-vant/src/sku/demo/index.tsx)。
 
-```jsx
+```html
 import React, { useRef } from 'react';
 import { Cell, Sku } from 'react-vant';
 import type { SkuInstance } from 'react/vant/es/sku';
@@ -44,17 +44,12 @@ export default () => {
 
 ### 自定义试图
 
-```jsx
-<Sku
-  sku={demoData.sku}
-  goods={demoData.goods_info}
-  goodsId={demoData.goods_id}
-  properties={demoData.properties}
-  skuHeaderPriceRender={(price) => {
-    return `😄 ¥ ${price}`;
-  }}
-  skuActionsTop={<div className="sku-actions-top">商品不多，赶快购买吧</div>}
-/>
+```html
+<Sku sku={demoData.sku} goods={demoData.goods_info} goodsId={demoData.goods_id}
+properties={demoData.properties} skuHeaderPriceRender={(price) => { return `😄 ¥ ${price}`; }}
+skuActionsTop={
+<div className="sku-actions-top">商品不多，赶快购买吧</div>
+} />
 ```
 
 ## API

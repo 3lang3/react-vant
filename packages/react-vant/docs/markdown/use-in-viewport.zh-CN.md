@@ -13,6 +13,9 @@
 使用 ref 监听节点在视图变化或者滚动时是否在可视范围之内
 
 ```jsx
+/**
+ * inline: true
+ */
 import React, { useRef } from 'react';
 import { hooks } from 'react-vant';
 

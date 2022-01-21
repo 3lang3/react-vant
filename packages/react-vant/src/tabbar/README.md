@@ -16,7 +16,7 @@ import { Tabbar } from 'react-vant';
 
 `value` 默认绑定选中标签的索引值，通过修改 `value` 即可切换选中的标签。
 
-```jsx
+```html
 import { useState } from 'react';
 import { Tabbar } from 'react-vant';
 
@@ -37,7 +37,7 @@ export default () => {
 
 在标签指定 `name` 属性的情况下，`value` 的值为当前标签的 `name`。
 
-```jsx
+```html
 <Tabbar
   value={name}
   onChange={(v) => {
@@ -63,7 +63,7 @@ export default () => {
 
 通过 `badge` 属性，可以设置图标相应的徽标内容。
 
-```jsx
+```html
 <Tabbar>
   <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
   <Tabbar.Item badge={{ dot: true }} icon={<Search />}>
@@ -82,7 +82,7 @@ export default () => {
 
 通过 `icon` 属性自定义图标。
 
-```jsx
+```html
 const icon = {
   active: 'https://img.yzcdn.cn/vant/user-active.png',
   inactive: 'https://img.yzcdn.cn/vant/user-inactive.png',
@@ -101,7 +101,7 @@ const icon = {
 
 通过 `activeColor` 属性设置选中标签的颜色，通过 `inactiveColor` 属性设置未选中标签的颜色。
 
-```jsx
+```html
 <Tabbar activeColor="#f44336" inactiveColor="#000">
   <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
   <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>
@@ -114,7 +114,7 @@ const icon = {
 
 通过 `onChange` 事件来监听选中标签的变化。
 
-```jsx
+```html
 <Tabbar onChange={(v) => Toast.info(`标签${+v + 1}`)}>
   <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
   <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>

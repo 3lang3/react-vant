@@ -32,7 +32,7 @@ const ActionsRender = (props) => {
   const openCsb = useCodeSandbox(props);
   const [copy] = useCopy();
   return (
-    <div className="local-previewer">
+    <>
       <DefaultRender {...props} />
       <button title="在codesandbox上尝试" className="csb-btn" onClick={openCsb}>
         <img src={csbIcon} />
@@ -40,10 +40,15 @@ const ActionsRender = (props) => {
       <button title="复制" className="copy-btn" onClick={() => copy(props.code)}>
         <img src={copyIcon} />
       </button>
-    </div>
+    </>
   );
 };
 
 export default (props) => {
-  return props.dependencies ? <ActionsRender {...props} /> : <DefaultRender {...props} />;
+  console.log(props.dependencies);
+  return (
+    <div className="local-previewer">
+      {props.dependencies ? <ActionsRender {...props} /> : <DefaultRender {...props} />}
+    </div>
+  );
 };

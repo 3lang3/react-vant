@@ -16,7 +16,7 @@ import { Popover } from 'react-vant';
 
 当 Popover 弹出时，会基于 `reference` 属性的内容进行定位。
 
-```jsx
+```html
 import { Popover, Button, Toast } from 'react-vant';
 
 const actions = [{ text: '选项一' }, { text: '选项二' }, { text: '选项三' }];
@@ -39,7 +39,7 @@ export default () => {
 
 Popover 支持浅色和深色两种风格，默认为浅色风格，将 `theme` 属性设置为 `dark` 可切换为深色风格。
 
-```jsx
+```html
 <Popover
   theme="dark"
   actions={actions}
@@ -52,7 +52,7 @@ Popover 支持浅色和深色两种风格，默认为浅色风格，将 `theme` 
 
 通过 `placement` 属性来控制气泡的弹出位置。
 
-```jsx
+```html
 <Popover placement="top" />
 ```
 
@@ -77,7 +77,7 @@ bottom-end    # 底部右侧位置
 
 在 `actions` 数组中，可以通过 `icon` 字段来定义选项的图标。
 
-```jsx
+```html
 const actions = [
   { text: '选项一', icon: <AddO /> },
   { text: '选项二', icon: <MusicO /> },
@@ -95,7 +95,7 @@ const actions = [
 
 在 `actions` 数组中，可以通过 `disabled` 字段来禁用某个选项。
 
-```jsx
+```html
 const actions = [
   { text: '选项一', disabled: true },
   { text: '选项二', disabled: true },
@@ -113,7 +113,7 @@ const actions = [
 
 通过 children，可以在 Popover 内部放置任意内容。
 
-```jsx
+```html
 <Popover ref={popover} placement="top-start" reference={<Button type="primary">自定义内容</Button>}>
   <Grid square border={false} columnNum={3} style={{ width: 240 }}>
     {Array.from({ length: 6 }, (_, i) => (

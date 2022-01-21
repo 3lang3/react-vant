@@ -1,9 +1,17 @@
 import React from 'react';
 import { Flex, Badge, Tabs, Toast } from 'react-vant';
 import * as Icons from '@react-vant/icons';
-import { components } from 'site-mobile-demo';
 import icons from './config';
 import './style.less';
+
+const DemoBlock = ({ title, children }) => {
+  return (
+    <>
+      {title && <h2 className="vant-doc-demo-block__title">{title}</h2>}
+      {children}
+    </>
+  );
+};
 
 const IconFont = Icons.createFromIconfontCN('//at.alicdn.com/t/font_1619071_dqiwns2g0d.js');
 
@@ -50,7 +58,6 @@ function getTypeIcons(type) {
 }
 
 export default (): React.ReactNode => {
-  const { DemoBlock, DemoSection } = components;
   const copy = (icon: string) => {
     const tag = `<${icon}  />`;
     copyToClipboard(tag);
@@ -63,7 +70,7 @@ export default (): React.ReactNode => {
   };
 
   return (
-    <DemoSection>
+    <div className="demo-icon">
       <Tabs active={0} sticky>
         <Tabs.TabPane title="用法示例">
           <DemoBlock title="基础用法">
@@ -173,6 +180,6 @@ export default (): React.ReactNode => {
           </Flex>
         </Tabs.TabPane>
       </Tabs>
-    </DemoSection>
+    </div>
   );
 };

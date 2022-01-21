@@ -20,32 +20,23 @@ import { Form } from 'react-vant';
 
 > Form.Item 是基于 Field 和 [RcField](https://github.com/react-component/field-form#field) 的封装
 
-```jsx
-import React from 'react';
-import { Form, Field } from 'react-vant';
-
-export default () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('form submit', values);
-  };
-
-  return (
-    <Form onFinish={onFinish} form={form}>
-      <Form.Item name="username" label="用户名">
-        <Field />
-      </Form.Item>
-    </Form>
-  );
-};
+```html
+import React from 'react'; import { Form, Field } from 'react-vant'; export default () => { const
+[form] = Form.useForm(); const onFinish = (values) => { console.log('form submit', values); };
+return (
+<form onFinish="{onFinish}" form="{form}">
+  <Form.Item name="username" label="用户名">
+    <Field />
+  </Form.Item>
+</form>
+); };
 ```
 
 ### 校验规则
 
 通过 `rules` 定义表单校验规则，点击此处查看文档[rule](https://github.com/react-component/field-form#rule)。
 
-```jsx
+```html
 import React from 'react';
 import { Form, Button, Field } from 'react-vant';
 
@@ -124,170 +115,112 @@ export default () => {
 
 在表单中使用 [Switch 组件](#/zh-CN/switch)。
 
-```jsx
-import React from 'react';
-import { Form, Switch } from 'react-vant';
-
-export default () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('form submit', values);
-  };
-
-  return (
-    <Form onFinish={onFinish} form={form}>
-      <Form.Item name="switch" label="开关" valuePropName="checked">
-        <Switch />
-      </Form.Item>
-    </Form>
-  );
-};
+```html
+import React from 'react'; import { Form, Switch } from 'react-vant'; export default () => { const
+[form] = Form.useForm(); const onFinish = (values) => { console.log('form submit', values); };
+return (
+<form onFinish="{onFinish}" form="{form}">
+  <Form.Item name="switch" label="开关" valuePropName="checked">
+    <Switch />
+  </Form.Item>
+</form>
+); };
 ```
 
 ### 表单项类型 - 复选框
 
 在表单中使用 [Checkbox 组件](#/zh-CN/checkbox)。
 
-```jsx
-import React from 'react';
-import { Form, Checkbox } from 'react-vant';
-
-export default () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('form submit', values);
-  };
-
-  return (
-    <Form onFinish={onFinish} form={form}>
-      <Form.Item name="checkbox" label="复选框" valuePropName="checked">
-        <Checkbox shape="square" />
-      </Form.Item>
-      <Form.Item name="checkbox_group" label="复选框组">
-        <Checkbox.Group direction="horizontal">
-          <Checkbox shape="square" name="c1">
-            复选框1
-          </Checkbox>
-          <Checkbox shape="square" name="c2">
-            复选框2
-          </Checkbox>
-        </Checkbox.Group>
-      </Form.Item>
-    </Form>
-  );
-};
+```html
+import React from 'react'; import { Form, Checkbox } from 'react-vant'; export default () => { const
+[form] = Form.useForm(); const onFinish = (values) => { console.log('form submit', values); };
+return (
+<form onFinish="{onFinish}" form="{form}">
+  <Form.Item name="checkbox" label="复选框" valuePropName="checked">
+    <Checkbox shape="square" />
+  </Form.Item>
+  <Form.Item name="checkbox_group" label="复选框组">
+    <Checkbox.Group direction="horizontal">
+      <Checkbox shape="square" name="c1"> 复选框1 </Checkbox>
+      <Checkbox shape="square" name="c2"> 复选框2 </Checkbox>
+    </Checkbox.Group>
+  </Form.Item>
+</form>
+); };
 ```
 
 ### 表单项类型 - 单选框
 
 在表单中使用 [Radio 组件](#/zh-CN/radio)。
 
-```jsx
-import React from 'react';
-import { Form, Radio } from 'react-vant';
-
-export default () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('form submit', values);
-  };
-
-  return (
-    <Form onFinish={onFinish} form={form}>
-      <Form.Item name="radio" label="单选框">
-        <Radio.Group direction="horizontal">
-          <Radio name="r1">单选框1</Radio>
-          <Radio name="r2">单选框2</Radio>
-        </Radio.Group>
-      </Form.Item>
-    </Form>
-  );
-};
+```html
+import React from 'react'; import { Form, Radio } from 'react-vant'; export default () => { const
+[form] = Form.useForm(); const onFinish = (values) => { console.log('form submit', values); };
+return (
+<form onFinish="{onFinish}" form="{form}">
+  <Form.Item name="radio" label="单选框">
+    <Radio.Group direction="horizontal">
+      <Radio name="r1">单选框1</Radio>
+      <Radio name="r2">单选框2</Radio>
+    </Radio.Group>
+  </Form.Item>
+</form>
+); };
 ```
 
 ### 表单项类型 - 步进器
 
 在表单中使用 [Stepper 组件](#/zh-CN/stepper)。
 
-```jsx
-import React from 'react';
-import { Form, Stepper } from 'react-vant';
-
-export default () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('form submit', values);
-  };
-
-  return (
-    <Form onFinish={onFinish} form={form}>
-      <Form.Item name="stepper" label="步进器" initialValue={1}>
-        <Stepper />
-      </Form.Item>
-    </Form>
-  );
-};
+```html
+import React from 'react'; import { Form, Stepper } from 'react-vant'; export default () => { const
+[form] = Form.useForm(); const onFinish = (values) => { console.log('form submit', values); };
+return (
+<form onFinish="{onFinish}" form="{form}">
+  <Form.Item name="stepper" label="步进器" initialValue="{1}">
+    <Stepper />
+  </Form.Item>
+</form>
+); };
 ```
 
 ### 表单项类型 - 评分
 
 在表单中使用 [Rate 组件](#/zh-CN/rate)。
 
-```jsx
-import React from 'react';
-import { Form, Rate } from 'react-vant';
-
-export default () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('form submit', values);
-  };
-
-  return (
-    <Form onFinish={onFinish} form={form}>
-      <Form.Item name="rate" label="评分" initialValue={3}>
-        <Rate />
-      </Form.Item>
-    </Form>
-  );
-};
+```html
+import React from 'react'; import { Form, Rate } from 'react-vant'; export default () => { const
+[form] = Form.useForm(); const onFinish = (values) => { console.log('form submit', values); };
+return (
+<form onFinish="{onFinish}" form="{form}">
+  <Form.Item name="rate" label="评分" initialValue="{3}">
+    <Rate />
+  </Form.Item>
+</form>
+); };
 ```
 
 ### 表单项类型 - 滑块
 
 在表单中使用 [Slider 组件](#/zh-CN/slider)。
 
-```jsx
-import React from 'react';
-import { Form, Slider } from 'react-vant';
-
-export default () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('form submit', values);
-  };
-
-  return (
-    <Form onFinish={onFinish} form={form}>
-      <Form.Item name="slider" label="滑块" initialValue={50}>
-        <Slider />
-      </Form.Item>
-    </Form>
-  );
-};
+```html
+import React from 'react'; import { Form, Slider } from 'react-vant'; export default () => { const
+[form] = Form.useForm(); const onFinish = (values) => { console.log('form submit', values); };
+return (
+<form onFinish="{onFinish}" form="{form}">
+  <Form.Item name="slider" label="滑块" initialValue="{50}">
+    <Slider />
+  </Form.Item>
+</form>
+); };
 ```
 
 ### 表单项类型 - 文件上传
 
 在表单中使用 [Uploader 组件](#/zh-CN/uploader)。
 
-```jsx
+```html
 import React from 'react';
 import { Form, Uploader } from 'react-vant';
 
@@ -322,7 +255,7 @@ export default () => {
 
 在表单中使用 [Picker 组件](#/zh-CN/picker)。
 
-```jsx
+```html
 import React, { useState } from 'react';
 import { Form, Field, Picker, Popup } from 'react-vant';
 import type { FormItemProps } from 'react-vant';
@@ -380,7 +313,7 @@ export default () => {
 
 在表单中使用 [DatetimePicker 组件](#/zh-CN/datetime-picker)。
 
-```jsx
+```html
 import React, { useState } from 'react';
 import { Form, Field, DatetimePicker, Popup } from 'react-vant';
 import type { FormItemProps } from 'react-vant';
@@ -443,7 +376,7 @@ export default () => {
 
 在表单中使用 [Calendar 组件](#/zh-CN/calendar)。
 
-```jsx
+```html
 import React, { useState } from 'react';
 import { Form, Field, Calendar } from 'react-vant';
 import type { FormItemProps } from 'react-vant';
@@ -497,7 +430,7 @@ export default () => {
 
 Form.List 为字段提供数组化管理。
 
-```jsx
+```html
 import React from 'react';
 import { Form, Field, Button } from 'react-vant';
 

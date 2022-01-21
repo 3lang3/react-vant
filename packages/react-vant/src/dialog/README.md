@@ -67,24 +67,16 @@ Dialog.confirm({
 
 将 theme 选项设置为 `round-button` 可以展示圆角按钮风格的弹窗，该选项从 2.10.0 版本开始支持。
 
-```jsx
-Dialog.alert({
-  title: '标题',
-  message: '弹窗内容',
-  theme: 'round-button',
-});
-
-Dialog.alert({
-  message: '弹窗内容',
-  theme: 'round-button',
-});
+```html
+Dialog.alert({ title: '标题', message: '弹窗内容', theme: 'round-button', }); Dialog.alert({
+message: '弹窗内容', theme: 'round-button', });
 ```
 
 ### 自定义内容
 
 通过 `children` 属性可以传入 `JSX`, 来自定义显示的内容。
 
-```jsx
+```html
 Dialog.alert({
   title: '标题',
   closeable: true,
@@ -101,21 +93,10 @@ Dialog.alert({
 
 通过 `onConfirm` 和 `onCancel` 属性返回`Promise`函数，在弹窗关闭前进行特定操作。
 
-```jsx
-const onConfirm = (action, done) => {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res(true);
-      Toast.success({ message: '确认按钮异步' });
-    }, 3000);
-  });
-};
-
-Dialog.confirm({
-  title: '标题',
-  message: '弹窗内容',
-  onConfirm,
-});
+```html
+const onConfirm = (action, done) => { return new Promise((res) => { setTimeout(() => { res(true);
+Toast.success({ message: '确认按钮异步' }); }, 3000); }); }; Dialog.confirm({ title: '标题',
+message: '弹窗内容', onConfirm, });
 ```
 
 ### 组件调用
@@ -126,7 +107,7 @@ Dialog.confirm({
 const [show, setShow] = useState(false);
 ```
 
-```jsx
+```html
 <Dialog
   visible={show}
   title="标题"

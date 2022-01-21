@@ -16,7 +16,7 @@ import { ShareSheet } from 'reactvant';
 
 分享面板通过 `options` 属性来定义分享选项，数组的每一项是一个对象，对象格式见文档下方表格。
 
-```jsx
+```html
 import { useState } from 'react';
 import { Cell, ShareSheet } from 'react-vant';
 const options = [
@@ -104,11 +104,7 @@ const options = [
   { name: '二维码', icon: 'qrcode' },
 ];
 
-<ShareSheet
-  title="立即分享给好友"
-  description="描述信息"
-  options={options}
-/>;
+<ShareSheet title="立即分享给好友" description="描述信息" options={options} />;
 ```
 
 ## API
@@ -149,7 +145,6 @@ const options = [
 | onSelect | 点击分享选项时触发 | _option: Option, index: number_ |
 | onCancel | 点击取消按钮时触发 | -                               |
 
-
 ## 主题定制
 
 ### 样式变量
@@ -173,7 +168,6 @@ const options = [
 | --rv-share-sheet-cancel-button-font-size | _var(--rv-font-size-lg)_ | - |
 | --rv-share-sheet-cancel-button-height | _48px_ | - |
 | --rv-share-sheet-cancel-button-background | _var(--rv-white)_ | - |
-
 
 ## 常见问题
 

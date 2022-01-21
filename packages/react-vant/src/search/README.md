@@ -16,15 +16,10 @@ import { Search } from 'react-vant';
 
 `value` 用于控制搜索框中的文字，`background` 可以自定义搜索框外部背景色。
 
-```jsx
-import { useState } from 'react';
-import { Search } from 'react-vant';
-
-export default () => {
-  const [value, setValue] = useState('');
-
-  return <Search value={value} onChange={setValue} placeholder="请输入搜索关键词" />;
-};
+```html
+import { useState } from 'react'; import { Search } from 'react-vant'; export default () => { const
+[value, setValue] = useState(''); return
+<Search value="{value}" onChange="{setValue}" placeholder="请输入搜索关键词" />; };
 ```
 
 ### 事件监听
@@ -43,32 +38,25 @@ Search 组件提供了 `onSearch` 和 `onCancel` 事件，`onSearch` 事件在�
 </form>
 ```
 
-```jsx
-import { useState } from 'react';
-import { Search, Toast } from 'react-vant';
-
-export default () => {
-  const [value, setValue] = useState('');
-
-  const onSearch = (val) => Toast.info(val);
-  const onCancel = () => Toast.info('取消');
-  return (
-    <Search
-      value={value}
-      onChange={setValue}
-      onSearch={onSearch}
-      onCancel={onCancel}
-      placeholder="请输入搜索关键词"
-    />
-  );
-};
+```html
+import { useState } from 'react'; import { Search, Toast } from 'react-vant'; export default () => {
+const [value, setValue] = useState(''); const onSearch = (val) => Toast.info(val); const onCancel =
+() => Toast.info('取消'); return (
+<Search
+  value="{value}"
+  onChange="{setValue}"
+  onSearch="{onSearch}"
+  onCancel="{onCancel}"
+  placeholder="请输入搜索关键词"
+/>
+); };
 ```
 
 ### 搜索框内容对齐
 
 通过 `inputAlign` 属性设置搜索框内容的对齐方式，可选值为 `center`、`right`。
 
-```jsx
+```html
 <Search placeholder="请输入搜索关键词" inputAlign="center" />
 ```
 
@@ -76,7 +64,7 @@ export default () => {
 
 通过 `disabled` 属性禁用搜索框。
 
-```jsx
+```html
 <Search placeholder="请输入搜索关键词" disabled />
 ```
 
@@ -84,7 +72,7 @@ export default () => {
 
 通过 `background` 属性可以设置搜索框外部的背景色，通过 `shape` 属性设置搜索框的形状，可选值为 `round`。
 
-```jsx
+```html
 <Search shape="round" background="#4fc08d" placeholder="请输入搜索关键词" />
 ```
 
@@ -92,7 +80,7 @@ export default () => {
 
 使用 `actionText` 属性可以自定义右侧按钮的内容。使用后，`onCancel` 事件将不再触发。
 
-```jsx
+```html
 <Search
   showAction
   label="地址"

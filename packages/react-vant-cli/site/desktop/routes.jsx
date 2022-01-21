@@ -64,35 +64,38 @@ const getRoutes = () => {
     const { component, lang } = parseName(name);
 
     let { MdContent } = documents[name];
-    console.log(MdContent);
 
     const previewer = (props) => <MdPreviewer {...props} />;
-    const PreviewerComp = <MdContent previewer={previewer} />;
+    const PreviewerComp = (props) => (
+      <section>
+        <MdContent {...props} previewer={previewer} />
+      </section>
+    );
 
     if (component === 'home') {
       addHomeRoute(() => <PreviewerComp />, lang);
     }
 
-    // if (lang) {
-    //   routes.push({
-    //     name: `${lang}/${component}`,
-    //     path: `/${lang}/${component}`,
-    //     component: () => <PreviewerComp />,
-    //     state: {
-    //       lang,
-    //       name: component,
-    //     },
-    //   });
-    // } else {
-    //   routes.push({
-    //     name: `${component}`,
-    //     path: `/${component}`,
-    //     component: () => <PreviewerComp />,
-    //     meta: {
-    //       name: component,
-    //     },
-    //   });
-    // }
+    if (lang) {
+      routes.push({
+        name: `${lang}/${component}`,
+        path: `/${lang}/${component}`,
+        component: () => <PreviewerComp />,
+        state: {
+          lang,
+          name: component,
+        },
+      });
+    } else {
+      routes.push({
+        name: `${component}`,
+        path: `/${component}`,
+        component: () => <PreviewerComp />,
+        meta: {
+          name: component,
+        },
+      });
+    }
   });
 
   if (locales) {

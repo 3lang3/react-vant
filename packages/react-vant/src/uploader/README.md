@@ -16,7 +16,7 @@ import { Uploader } from 'react-vant';
 
 文件上传完毕后会触发 `afterRead` 回调函数，获取到对应的 `file` 对象。
 
-```jsx
+```html
 <Uploader afterRead={(file) => console.log(file)} />
 ```
 
@@ -24,66 +24,32 @@ import { Uploader } from 'react-vant';
 
 通过 `value` 可以绑定已经上传的文件列表，并展示文件列表的预览图。
 
-```jsx
-export default () => {
-  const [demo, setDemo] = useState([
-    { url: 'https://img.yzcdn.cn/vant/leaf.jpg' },
-    // Uploader 根据文件后缀来判断是否为图片文件
-    // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
-    { url: 'https://cloud-image', isImage: true },
-  ]);
-
-  return <Uploader value={demo} />;
-};
+```html
+export default () => { const [demo, setDemo] = useState([ { url:
+'https://img.yzcdn.cn/vant/leaf.jpg' }, // Uploader 根据文件后缀来判断是否为图片文件 // 如果图片 URL
+中不包含类型信息，可以添加 isImage 标记来声明 { url: 'https://cloud-image', isImage: true }, ]);
+return <Uploader value="{demo}" />; };
 ```
 
 ### 上传状态
 
 通过 `status` 属性可以标识上传状态，`uploading` 表示上传中，`failed` 表示上传失败，`done` 表示上传完成。
 
-```jsx
-export default () => {
-  const [demo, setDemo] = useState([
-    {
-      url: 'https://img.yzcdn.cn/vant/leaf.jpg',
-      status: 'uploading',
-      message: '上传中...',
-    },
-    {
-      url: 'https://img.yzcdn.cn/vant/tree.jpg',
-      status: 'failed',
-      message: '上传失败',
-    },
-  ]);
-
-  const afterRead = (file, { index }) => {
-    file.status = 'uploading';
-    file.message = '上传中...';
-    const newDemo = demo.slice(0);
-    newDemo[index] = file;
-    setDemo(newDemo);
-
-    setTimeout(() => {
-      file.status = 'failed';
-      file.message = '上传失败';
-
-      setDemo((v) => {
-        const nv = v.slice(0);
-        nv[index] = file;
-        return nv;
-      });
-    }, 1000);
-  };
-
-  return <Uploader value={demo} afterRead={afterRead} onChange={(v) => setDemo(v)} />;
-};
+```html
+export default () => { const [demo, setDemo] = useState([ { url:
+'https://img.yzcdn.cn/vant/leaf.jpg', status: 'uploading', message: '上传中...', }, { url:
+'https://img.yzcdn.cn/vant/tree.jpg', status: 'failed', message: '上传失败', }, ]); const afterRead
+= (file, { index }) => { file.status = 'uploading'; file.message = '上传中...'; const newDemo =
+demo.slice(0); newDemo[index] = file; setDemo(newDemo); setTimeout(() => { file.status = 'failed';
+file.message = '上传失败'; setDemo((v) => { const nv = v.slice(0); nv[index] = file; return nv; });
+}, 1000); }; return <Uploader value={demo} afterRead={afterRead} onChange={(v) => setDemo(v)} />; };
 ```
 
 ### 限制上传数量
 
 通过 `maxCount` 属性可以限制上传文件的数量，上传数量达到限制后，会自动隐藏上传区域。
 
-```jsx
+```html
 <Uploader multiple maxCount={2} value={demo2} afterRead={afterRead} onChange={(v) => setDemo2(v)} />
 ```
 
@@ -91,31 +57,25 @@ export default () => {
 
 通过 `maxSize` 属性可以限制上传文件的大小，超过大小的文件会被自动过滤，这些文件信息可以通过 `onOversize` 事件获取。
 
-```jsx
-<Uploader maxSize={5 * 1024} onOversize={onOversize} />
+```html
+<Uploader maxSize="{5" * 1024} onOversize="{onOversize}" />
 ```
 
 如果需要针对不同类型的文件来作出不同的大小限制，可以在 `maxSize` 属性中传入一个函数，在函数中通过 `file.type` 区分文件类型，返回 `true` 表示超出限制，`false` 表示未超出限制。
 
-```jsx
-export default () => {
-  const isOverSize = (file) => {
-    const maxSize = file.type === 'image/jpeg' ? 500 * 1024 : 1000 * 1024;
-    return file.size >= maxSize;
-  };
-  return <Uploader maxSize={isOverSize} onOversize={onOversize} />;
-};
+```html
+export default () => { const isOverSize = (file) => { const maxSize = file.type === 'image/jpeg' ?
+500 * 1024 : 1000 * 1024; return file.size >= maxSize; }; return
+<Uploader maxSize="{isOverSize}" onOversize="{onOversize}" />; };
 ```
 
 ### 自定义上传样式
 
 通过默认插槽可以自定义上传区域的样式。
 
-```jsx
+```html
 <Uploader>
-  <Button block type="primary" round>
-    上传文件
-  </Button>
+  <button block type="primary" round>上传文件</button>
 </Uploader>
 ```
 
@@ -123,47 +83,24 @@ export default () => {
 
 通过传入 `beforeRead` 函数可以在上传前进行校验和处理，返回 `true` 表示校验通过，返回 `false` 表示校验失败。支持返回 `Promise` 对 file 对象进行自定义处理，例如压缩图片。
 
-```jsx
-
-export default () => {
-  // 返回 boolean
-  const beforeRead = (file: File | File[]) => {
-    const files = Array.isArray(file) ? file : [file];
-    return !files.some(f => {
-      if (f.type !== 'image/jpeg') {
-        Toast('请上传 jpg 格式图片');
-        return true;
-      }
-      return false
-    })
-  };
-
-  // 返回 Promise
-  const asyncBeforeRead = async (file: File | File[]) => {
-    // multiple 为 true, `file`是array类型
-    const files = Array.isArray(file) ? file : [file];
-    return new Promise<File[]>((resolve) => {
-      // 过滤掉不符合的文件，符合的还是会上传
-      const passFiles = files.filter((f) => {
-        if (f.type !== 'image/jpeg') {
-          Toast.info(`${f.name}格式错误，请上传 jpg 格式图片`);
-          return false;
-        }
-        return true;
-      });
-      resolve(passFiles);
-    });
-  };
-
-  return <Uploader beforeRead={asyncBeforeRead} />;
-};
+```html
+export default () => { // 返回 boolean const beforeRead = (file: File | File[]) => { const files =
+Array.isArray(file) ? file : [file]; return !files.some(f => { if (f.type !== 'image/jpeg') {
+Toast('请上传 jpg 格式图片'); return true; } return false }) }; // 返回 Promise const
+asyncBeforeRead = async (file: File | File[]) => { // multiple 为 true, `file`是array类型 const
+files = Array.isArray(file) ? file : [file]; return new Promise<File[]
+  >((resolve) => { // 过滤掉不符合的文件，符合的还是会上传 const passFiles = files.filter((f) => {
+  if (f.type !== 'image/jpeg') { Toast.info(`${f.name}格式错误，请上传 jpg 格式图片`); return false;
+  } return true; }); resolve(passFiles); }); }; return <Uploader beforeRead="{asyncBeforeRead}" />;
+  };</File[]
+>
 ```
 
 ### 禁用文件上传
 
 通过 `disabled` 属性禁用文件上传。
 
-```jsx
+```html
 <Uploader disabled />
 ```
 
@@ -293,22 +230,11 @@ compressorjs 是一个开源的图片处理库，提供了图片压缩、图片�
 
 使用 compressorjs 进行处理的示例代码如下:
 
-```jsx
-export default () => {
-  const beforeRead = (file) => {
-    return new Promise((resolve) => {
-      // compressorjs 默认开启 checkOrientation 选项
-      // 会将图片修正为正确方向
-      new Compressor(file, {
-        success: resolve,
-        error(err) {
-          console.log(err.message);
-        },
-      });
-    });
-  };
-  return <Uploader beforeRead="beforeRead" />;
-};
+```html
+export default () => { const beforeRead = (file) => { return new Promise((resolve) => { //
+compressorjs 默认开启 checkOrientation 选项 // 会将图片修正为正确方向 new Compressor(file, {
+success: resolve, error(err) { console.log(err.message); }, }); }); }; return
+<Uploader beforeRead="beforeRead" />; };
 ```
 
 ### 上传 HEIC/HEIF 格式的图片后无法展示？

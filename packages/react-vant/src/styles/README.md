@@ -8,26 +8,22 @@
 
 当文本内容长度超过容器最大宽度时，自动省略多余的文本。
 
-```jsx
+```html
 <!-- 最多显示一行 -->
 <div className="rv-ellipsis">这是一段最多显示一行的文字，多余的内容会被省略</div>
 
 <!-- 最多显示两行 -->
-<div className="rv-multi-ellipsis--l2">
-  这是一段最多显示两行的文字，多余的内容会被省略
-</div>
+<div className="rv-multi-ellipsis--l2">这是一段最多显示两行的文字，多余的内容会被省略</div>
 
 <!-- 最多显示三行 -->
-<div className="rv-multi-ellipsis--l3">
-  这是一段最多显示三行的文字，多余的内容会被省略
-</div>
+<div className="rv-multi-ellipsis--l3">这是一段最多显示三行的文字，多余的内容会被省略</div>
 ```
 
 ### 1px 边框
 
 为元素添加 Retina 屏幕下的 1px 边框（即 hairline），基于伪类 transform 实现。
 
-```jsx
+```html
 <!-- 上边框 -->
 <div className="rv-hairline--top"></div>
 
@@ -61,6 +57,9 @@ import { CSSTransition } from 'react-transition-group';
 ```
 
 ```jsx
+/**
+ * inline: true
+ */
 <!-- 淡入 -->
 <CSSTransition in={visible} timeout={500} classNames="rv-fade" unmountOnExit>
   <div>Fade</div>

@@ -16,7 +16,7 @@ import { Radio } from 'react-vant';
 
 通过 `defaultValue` 值默认当前选中项的 name。
 
-```jsx
+```html
 <Radio.Group defaultValue="1">
   <Radio name="1">单选框 1</Radio>
   <Radio name="2">单选框 2</Radio>
@@ -27,7 +27,7 @@ import { Radio } from 'react-vant';
 
 将 `direction` 属性设置为 `horizontal` 后，单选框组会变成水平排列。
 
-```jsx
+```html
 <Radio.Group defaultValue="1" direction="horizontal">
   <Radio name="1">单选框 1</Radio>
   <Radio name="2">单选框 2</Radio>
@@ -38,7 +38,7 @@ import { Radio } from 'react-vant';
 
 通过 `disabled` 属性禁止选项切换，在 `Radio` 上设置 `disabled` 可以禁用单个选项。
 
-```jsx
+```html
 <Radio.Group defaultValue="1" disabled>
   <Radio name="1">单选框 1</Radio>
   <Radio name="2">单选框 2</Radio>
@@ -49,14 +49,10 @@ import { Radio } from 'react-vant';
 
 将 `shape` 属性设置为 `square`，单选框的形状会变成方形。
 
-```jsx
+```html
 <Radio.Group defaultValue="1">
-  <Radio name="1" shape="square">
-    单选框 1
-  </Radio>
-  <Radio name="2" shape="square">
-    单选框 2
-  </Radio>
+  <Radio name="1" shape="square"> 单选框 1 </Radio>
+  <Radio name="2" shape="square"> 单选框 2 </Radio>
 </Radio.Group>
 ```
 
@@ -64,14 +60,10 @@ import { Radio } from 'react-vant';
 
 通过 `checkedColor` 属性设置选中状态的图标颜色。
 
-```jsx
+```html
 <Radio.Group defaultValue="1">
-  <Radio name="1" checkedColor="#ee0a24">
-    单选框 1
-  </Radio>
-  <Radio name="2" checkedColor="#ee0a24">
-    单选框 2
-  </Radio>
+  <Radio name="1" checkedColor="#ee0a24"> 单选框 1 </Radio>
+  <Radio name="2" checkedColor="#ee0a24"> 单选框 2 </Radio>
 </Radio.Group>
 ```
 
@@ -79,14 +71,10 @@ import { Radio } from 'react-vant';
 
 通过 `iconSize` 属性可以自定义图标的大小。
 
-```jsx
+```html
 <Radio.Group defaultValue="1">
-  <Radio name="1" iconSize="24px">
-    单选框 1
-  </Radio>
-  <Radio name="2" iconSize="24px">
-    单选框 2
-  </Radio>
+  <Radio name="1" iconSize="24px"> 单选框 1 </Radio>
+  <Radio name="2" iconSize="24px"> 单选框 2 </Radio>
 </Radio.Group>
 ```
 
@@ -94,14 +82,10 @@ import { Radio } from 'react-vant';
 
 设置 `labelDisabled` 属性后，点击图标以外的内容不会触发单选框切换。
 
-```jsx
+```html
 <Radio.Group defaultValue="1">
-  <Radio name="1" labelDisabled>
-    单选框 1
-  </Radio>
-  <Radio name="2" labelDisabled>
-    单选框 2
-  </Radio>
+  <Radio name="1" labelDisabled> 单选框 1 </Radio>
+  <Radio name="2" labelDisabled> 单选框 2 </Radio>
 </Radio.Group>
 ```
 
@@ -109,7 +93,7 @@ import { Radio } from 'react-vant';
 
 设置 `value` 属性后，点击图标状态不会改变，而是直接执行 `onChange` 方法，在此方法中更换状态
 
-```jsx
+```html
 <Radio.Group
   value={value}
   onChange={(val) => {
@@ -136,11 +120,11 @@ import { Radio } from 'react-vant';
 
 此时你需要再引入 `Cell` 和 `CellGroup` 组件。
 
-```jsx
+```html
 <Radio.Group value="1">
   <Cell.Group>
-    <Cell title="单选框1" icon="shop-o" rightIcon={<Radio name="1" />} />{' '}
-    <Cell title="单选框2" icon="shop-o" rightIcon={<Radio name="2" />} />
+    <Cell title="单选框1" icon="shop-o" rightIcon="{<Radio" name="1" />} />{' '}
+    <Cell title="单选框2" icon="shop-o" rightIcon="{<Radio" name="2" />} />
   </Cell.Group>
 </Radio.Group>
 ```

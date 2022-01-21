@@ -11,6 +11,9 @@
 在组件首次渲染时，执行方法。
 
 ```jsx
+/**
+ * inline: true
+ */
 import React, { useState } from 'react';
 import { hooks, Toast } from 'react-vant';
 

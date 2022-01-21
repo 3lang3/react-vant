@@ -16,18 +16,16 @@ import { NoticeBar } from 'react-vant';
 
 通过 `text` 属性设置通知栏的内容，通过 `leftIcon` 属性设置通知栏左侧的图标。
 
-```jsx
-<NoticeBar
-  leftIcon={<SpeakerS />}
-  text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
-/>
+```html
+<NoticeBar leftIcon="{<SpeakerS" />}
+text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
 ```
 
 ### 滚动播放
 
 通知栏的内容长度溢出时会自动开启滚动播放，通过 `scrollable` 属性可以控制该行为。
 
-```jsx
+```html
 <NoticeBar scrollable text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
 ```
 
@@ -35,7 +33,7 @@ import { NoticeBar } from 'react-vant';
 
 文字较长时，可以通过设置 `wrapable` 属性来开启多行展示。
 
-```jsx
+```html
 <NoticeBar wrapable text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
 ```
 
@@ -43,7 +41,7 @@ import { NoticeBar } from 'react-vant';
 
 通知栏支持 `closeable` 和 `link` 两种模式。
 
-```jsx
+```html
 <!-- closeable 模式，在右侧显示关闭按钮 -->
 <NoticeBar mode="closeable">技术是开发它的人的共同灵魂。</NoticeBar>
 
@@ -55,7 +53,7 @@ import { NoticeBar } from 'react-vant';
 
 通过 `color` 属性设置文本颜色，通过 `background` 属性设置背景色。
 
-```jsx
+```html
 <NoticeBar color="#1989fa" background="#ecf9ff" leftIcon={<InfoO />}>
   技术是开发它的人的共同灵魂。
 </NoticeBar>
@@ -65,7 +63,7 @@ import { NoticeBar } from 'react-vant';
 
 搭配 NoticeBar 和 Swiper 组件可以实现垂直滚动的效果。
 
-```jsx
+```html
 import React from 'react';
 import { NoticeBar, Swiper } from 'react-vant';
 

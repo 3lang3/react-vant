@@ -11,7 +11,7 @@ export { default as CountDown } from './count-down';
 export { default as Divider } from './divider';
 export { default as Image } from './image';
 export { default as ImagePreview } from './image-preview';
-export { default as Popup } from './popup';
+export * from './popup';
 export { default as Overlay } from './overlay';
 export { default as Empty } from './empty';
 export { default as Loading } from './loading';
