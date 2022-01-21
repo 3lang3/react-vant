@@ -8,6 +8,7 @@ import type { InlineConfig } from 'vite';
 import MarkdownIt from 'markdown-it';
 import markdownItAnchor from 'markdown-it-anchor';
 import { slugify } from 'transliteration';
+import mdoc from 'vite-plugin-react-mdoc'
 import { setBuildTarget, getVantConfig, isDev } from '../common/index.js';
 import {
   SITE_DIST_DIR,
@@ -73,16 +74,17 @@ export function getViteConfigForSiteDev(): InlineConfig {
     root: SITE_SRC_DIR,
     plugins: [
       react(),
-      mdPlugin.default({
-        mode: [Mode.HTML],
-        markdownIt: new MarkdownIt({
-          html: true,
-          highlight,
-        }).use(markdownItAnchor, {
-          level: 2,
-          slugify,
-        }),
-      }),
+      mdoc['default'](),
+      // mdPlugin.default({
+      //   mode: [Mode.HTML],
+      //   markdownIt: new MarkdownIt({
+      //     html: true,
+      //     highlight,
+      //   }).use(markdownItAnchor, {
+      //     level: 2,
+      //     slugify,
+      //   }),
+      // }),
 
       injectHtml({
         data: {
