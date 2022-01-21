@@ -104,12 +104,19 @@
     &--line {
       box-sizing: content-box;
       height: 100%;
-      padding-bottom: 15*@hd; /* 15*@hd padding to hide scrollbar in mobile safari */
+      padding-bottom: 15 * @hd; /* 15*@hd padding to hide scrollbar in mobile safari */
     }
 
     &--line&--complete {
       padding-right: var(--rv-padding-xs);
       padding-left: var(--rv-padding-xs);
+    }
+
+    &--start {
+      .@{rv-prefix}-tab {
+        flex: none;
+        padding: 0 var(--rv-padding-sm);
+      }
     }
 
     &--card {
@@ -121,8 +128,7 @@
 
       .@{rv-prefix}-tab {
         color: var(--rv-tabs-default-color);
-        border-right: var(--rv-border-width-base) solid
-          var(--rv-tabs-default-color);
+        border-right: var(--rv-border-width-base) solid var(--rv-tabs-default-color);
 
         &:last-child {
           border-right: none;
@@ -142,7 +148,7 @@
 
   &__line {
     position: absolute;
-    bottom: 15*@hd;
+    bottom: 15 * @hd;
     left: 0;
     z-index: 1;
     width: var(--rv-tabs-bottom-bar-width);

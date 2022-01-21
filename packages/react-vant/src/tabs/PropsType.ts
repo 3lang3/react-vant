@@ -7,9 +7,14 @@ type ScrollspyConfig = {
   autoFocusLast?: boolean;
   /** 触底偏移量 */
   reachBottomThreshold?: number;
-}
+};
 
 export interface TabsProps extends BaseTypeProps {
+  /**
+   * 标签栏对齐方式
+   * @default 'center'
+   */
+  align?: 'start' | 'center' | string;
   /** 标签主题色	 */
   color?: string;
   /** 是否显示标签栏外边框，仅在 type="line" 时有效	 */

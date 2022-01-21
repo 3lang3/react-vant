@@ -126,6 +126,7 @@ import { Tabs } from 'react-vant';
 | --- | --- | --- | --- |
 | active | 绑定当前选中标签的标识符 | _number \| string_ | `0` |
 | type | 样式风格类型，可选值为 `card` | _string_ | `line` |
+| align | 标签栏对齐方式, 可选值 `start` `center` | _string_ | `center` |
 | color | 标签主题色 | _string_ | `#ee0a24` |
 | background | 标签栏背景色 | _string_ | `white` |
 | duration | 动画时间，单位秒 | _number \| string_ | `0.3` |

@@ -45,7 +45,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const popupContext = useContext(PopupContext);
   const [bem] = createNamespace('tabs', prefixCls);
 
-  const { children, color, background } = props;
+  const { children, color, align, background } = props;
 
   const root = useRef<HTMLDivElement>(null);
   const [wrapRef, setWrapRef] = useState<HTMLDivElement>(null);
@@ -308,7 +308,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
         <div
           ref={navRef}
           role="tablist"
-          className={clsx(bem('nav', [type, { complete: scrollable }]))}
+          className={clsx(bem('nav', [type, { complete: scrollable, start: align === 'start' }]))}
           style={navStyle}
         >
           {props.navRight}
@@ -425,6 +425,7 @@ Tabs.defaultProps = {
   ellipsis: true,
   lazyRender: true,
   active: 0,
+  align: 'center',
 };
 
 export default Tabs;
