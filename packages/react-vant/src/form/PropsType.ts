@@ -3,7 +3,6 @@ import type { FormProps as RcFormProps, FormInstance as RcFormInstance } from 'r
 import type { FieldProps as RcFieldProps } from 'rc-field-form/lib/Field';
 import type { Meta } from 'rc-field-form/lib/interface';
 import type { BaseTypeProps } from '../utils';
-import type { CellGroupProps } from '../cell/PropsType';
 import { FieldProps } from '../field/PropsType';
 
 export type FormLayout = 'vertical' | 'horizontal';
@@ -17,7 +16,6 @@ export type FormProps = {
   /** 是否显示验证信息 */
   showValidateMessage?: boolean;
 } & Omit<RcFormProps, 'style'> &
-  Omit<CellGroupProps, 'title'> &
   BaseTypeProps &
   Pick<FieldProps, 'labelAlign' | 'inputAlign'>;
 

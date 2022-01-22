@@ -572,8 +572,6 @@ export default () => {
 | showValidateMessage | 是否显示验证错误信息 | _boolean_ | `true` |
 | labelAlign | 统一设置左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | inputAlign | 统一设置右侧内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| inset | 是否展示为圆角卡片风格 | _boolean_ | `false` |
-| border | 是否显示外边框 | _boolean_ | `false` |
 | footer | 表单底部内容 | _ReactNode_ | - |
 
 > 更多 Form API 参见：[rc-field-form](https://github.com/react-component/field-form#form)
