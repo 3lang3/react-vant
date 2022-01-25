@@ -499,7 +499,7 @@ Form.List 为字段提供数组化管理。
 
 ```jsx
 import React from 'react';
-import { Form, Field, Button } from 'react-vant';
+import { Cell, Form, Field, Button } from 'react-vant';
 
 export default () => {
   const [form] = Form.useForm();
@@ -519,43 +519,47 @@ export default () => {
         </div>
       }
     >
-      <Form.List name="users" initialValue={[{ name: 'react-vant', age: '1' }]}>
-        {(fields, { add, remove }) => (
-          <>
-            {fields.map((field, idx) => (
-              <div className="form-list-item" key={field.key}>
-                <h6>用户{idx + 1}:</h6>
-                <div className="form-list-item__control">
-                  <Form.Item
-                    label="姓名"
-                    name={[field.name, 'name']}
-                    rules={[
-                      { type: 'string', min: 2, max: 6, message: '姓名最少两个字，最多6个字' },
-                    ]}
-                  >
-                    <Field placeholder="请输入用户姓名" />
-                  </Form.Item>
-                  <Form.Item
-                    label="年龄"
-                    name={[field.name, 'age']}
-                    rules={[{ type: 'number', message: '请输入数字', transform: (v) => Number(v) }]}
-                  >
-                    <Field
-                      placeholder="请输入用户年龄"
-                      rightIcon={<Delete onClick={() => remove(idx)} />}
-                    />
-                  </Form.Item>
+      <Cell.Group inset>
+        <Form.List name="users" initialValue={[{ name: 'react-vant', age: '1' }]}>
+          {(fields, { add, remove }) => (
+            <>
+              {fields.map((field, idx) => (
+                <div className="form-list-item" key={field.key}>
+                  <h6>用户{idx + 1}:</h6>
+                  <div className="form-list-item__control">
+                    <Form.Item
+                      label="姓名"
+                      name={[field.name, 'name']}
+                      rules={[
+                        { type: 'string', min: 2, max: 6, message: '姓名最少两个字，最多6个字' },
+                      ]}
+                    >
+                      <Field placeholder="请输入用户姓名" />
+                    </Form.Item>
+                    <Form.Item
+                      label="年龄"
+                      name={[field.name, 'age']}
+                      rules={[
+                        { type: 'number', message: '请输入数字', transform: (v) => Number(v) },
+                      ]}
+                    >
+                      <Field
+                        placeholder="请输入用户年龄"
+                        rightIcon={<Delete onClick={() => remove(idx)} />}
+                      />
+                    </Form.Item>
+                  </div>
                 </div>
+              ))}
+              <div style={{ padding: 10 }}>
+                <Button round block plain icon="add-o" size="small" onClick={() => add()}>
+                  新增用户
+                </Button>
               </div>
-            ))}
-            <div style={{ padding: 10 }}>
-              <Button round block plain icon="add-o" size="small" onClick={() => add()}>
-                新增用户
-              </Button>
-            </div>
-          </>
-        )}
-      </Form.List>
+            </>
+          )}
+        </Form.List>
+      </Cell.Group>
     </Form>
   );
 };
@@ -572,8 +576,6 @@ export default () => {
 | showValidateMessage | 是否显示验证错误信息 | _boolean_ | `true` |
 | labelAlign | 统一设置左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | inputAlign | 统一设置右侧内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| inset | 是否展示为圆角卡片风格 | _boolean_ | `false` |
-| border | 是否显示外边框 | _boolean_ | `false` |
 | footer | 表单底部内容 | _ReactNode_ | - |
 
 > 更多 Form API 参见：[rc-field-form](https://github.com/react-component/field-form#form)
