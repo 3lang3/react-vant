@@ -226,6 +226,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Jungzl",
+      "name": "Jungzl",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35426360?v=4",
+      "profile": "https://github.com/Jungzl",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

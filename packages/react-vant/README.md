@@ -155,6 +155,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/chinieer"><img src="https://avatars.githubusercontent.com/u/5187043?v=4?s=100" width="100px;" alt=""/><br /><sub><b>chinieer</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=chinieer" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/GangYHu"><img src="https://avatars.githubusercontent.com/u/26001209?v=4?s=100" width="100px;" alt=""/><br /><sub><b>GangYHu</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AGangYHu" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Jungzl"><img src="https://avatars.githubusercontent.com/u/35426360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jungzl</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=Jungzl" title="Code">💻</a></td>
   </tr>
 </table>
 
