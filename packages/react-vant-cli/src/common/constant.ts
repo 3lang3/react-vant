@@ -2,7 +2,8 @@
 import { get } from 'lodash-es';
 import { existsSync, readFileSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { join, dirname, isAbsolute } from 'path';
+import { dirname, isAbsolute, join } from 'path';
+import slash from 'slash2';
 
 export const CONFIG_FILE_NAME = 'vant.config.mjs';
 
@@ -99,9 +100,9 @@ function getSrcDir() {
     if (isAbsolute(srcDir)) {
       return srcDir;
     }
-    return join(ROOT, srcDir);
+    return slash(join(ROOT, srcDir));
   }
-  return join(ROOT, 'src');
+  return slash(join(ROOT, 'src'));
 }
 
 export const SRC_DIR = getSrcDir();
@@ -114,8 +115,7 @@ function ComponentClassification(): {
   let ComponentClassificationArray = [];
   let navArray = [];
   if (existsSync(VANT_CONFIG_FILE)) {
-    const config = vantConfig;
-    const { nav } = config.site.locales['zh-CN'];
+    const { nav } = vantConfig.site.locales['zh-CN'];
     navArray = nav;
     ComponentClassificationArray = nav.map((item) => {
       return item.title;
