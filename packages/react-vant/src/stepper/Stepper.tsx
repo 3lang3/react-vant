@@ -28,13 +28,13 @@ const Stepper: React.FC<StepperProps> = (props) => {
 
   const format = useCallback(
     (value: string | number) => {
-      const { min, max, allowEmpty, decimalLength } = props;
+      const { min, max, allowEmpty, decimalLength, integer } = props;
 
       if (allowEmpty && value === '') {
         return value;
       }
 
-      value = formatNumber(String(value), !props.integer);
+      value = formatNumber(String(value), !integer);
       value = value === '' ? 0 : +value;
       value = isNaN(value) ? +min : value;
       value = Math.max(Math.min(+max, value), +min);
@@ -46,7 +46,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
 
       return value;
     },
-    [props],
+    [props.min, props.max, props.allowEmpty, props.decimalLength, props.integer],
   );
 
   const getInitialValue = () => {
@@ -89,11 +89,11 @@ const Stepper: React.FC<StepperProps> = (props) => {
     [props, setCurrent],
   );
   const check = useCallback(() => {
-    const value = format(current);
-    if (!equal(value, current)) {
+    const value = format(currentRef.current);
+    if (!equal(value, currentRef.current)) {
       innerChange(value);
     }
-  }, [current, format, innerChange]);
+  }, [format, currentRef.current]);
 
   const setValue = (value: string | number) => {
     if (props.beforeChange) {
@@ -156,6 +156,11 @@ const Stepper: React.FC<StepperProps> = (props) => {
   );
 
   const onBlur = (event: FormEvent) => {
+    const input = event.target as HTMLInputElement;
+    const value = format(input.value);
+    if (!equal(value, currentRef.current)) {
+      innerChange(value);
+    }
     props.onBlur?.(event);
     resetScroll();
   };
@@ -222,7 +227,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
     setCurrent(props.value);
   }, [props.value, setCurrent]);
 
-  useEffect(() => check, [check, props.max, props.min, props.integer, props.decimalLength]);
+  useEffect(() => check, [props.max, props.min, props.integer, props.decimalLength]);
 
   return (
     <div className={clsx(props.className, bem([props.theme]))} style={props.style}>
