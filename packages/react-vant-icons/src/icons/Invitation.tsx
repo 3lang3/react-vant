@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgInvitation = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgInvitation.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgInvitation = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgInvitation" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgInvitation;

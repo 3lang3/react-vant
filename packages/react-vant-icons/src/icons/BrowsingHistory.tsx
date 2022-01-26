@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBrowsingHistory = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgBrowsingHistory.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgBrowsingHistory = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgBrowsingHistory" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgBrowsingHistory;

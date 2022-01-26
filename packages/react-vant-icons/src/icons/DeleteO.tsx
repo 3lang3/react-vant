@@ -17,12 +17,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgDeleteO = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgDeleteO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgDeleteO.name} {...props}>
+    <IconBase name="SvgDeleteO" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgDeleteO;

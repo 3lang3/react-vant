@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgChartTrendingO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgChartTrendingO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgChartTrendingO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgChartTrendingO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgChartTrendingO;

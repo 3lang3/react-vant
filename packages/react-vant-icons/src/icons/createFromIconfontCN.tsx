@@ -22,19 +22,25 @@ const createFromIconfontCN = (scriptUrl: string | string[]) => {
     });
   }
 
-  const Iconfont = (props: Omit<IconBaseProps, 'children'>) => {
-    const { name } = props;
+  const Iconfont = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'children'>>(
+    (props, ref) => {
+      const { name } = props;
 
-    let content: React.ReactNode;
-    if (name) {
-      content = (
-        <svg width="1em" height="1em" fill="currentColor">
-          <use xlinkHref={`#${name}`} />
-        </svg>
+      let content: React.ReactNode;
+      if (name) {
+        content = (
+          <svg width="1em" height="1em" fill="currentColor">
+            <use xlinkHref={`#${name}`} />
+          </svg>
+        );
+      }
+      return (
+        <IconBase {...props} ref={ref}>
+          {content}
+        </IconBase>
       );
-    }
-    return <IconBase {...props}>{content}</IconBase>;
-  };
+    },
+  );
 
   return Iconfont;
 };

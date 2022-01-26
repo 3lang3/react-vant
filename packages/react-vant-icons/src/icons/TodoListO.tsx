@@ -25,12 +25,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgTodoListO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgTodoListO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgTodoListO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgTodoListO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgTodoListO;

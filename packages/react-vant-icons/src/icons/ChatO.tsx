@@ -22,12 +22,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgChatO = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgChatO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgChatO.name} {...props}>
+    <IconBase name="SvgChatO" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgChatO;

@@ -20,12 +20,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgUpgrade = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgUpgrade = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgUpgrade.name} {...props}>
+    <IconBase name="SvgUpgrade" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgUpgrade;

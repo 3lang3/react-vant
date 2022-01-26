@@ -18,12 +18,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgLocation = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgLocation = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgLocation.name} {...props}>
+    <IconBase name="SvgLocation" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgLocation;

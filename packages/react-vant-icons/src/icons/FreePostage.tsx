@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgFreePostage = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgFreePostage.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgFreePostage = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgFreePostage" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgFreePostage;

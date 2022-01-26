@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgPlayCircle = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgPlayCircle.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgPlayCircle = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgPlayCircle" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgPlayCircle;

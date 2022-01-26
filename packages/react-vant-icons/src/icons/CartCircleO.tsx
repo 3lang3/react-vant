@@ -19,12 +19,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgCartCircleO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgCartCircleO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgCartCircleO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgCartCircleO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgCartCircleO;

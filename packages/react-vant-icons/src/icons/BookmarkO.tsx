@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBookmarkO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgBookmarkO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgBookmarkO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgBookmarkO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgBookmarkO;

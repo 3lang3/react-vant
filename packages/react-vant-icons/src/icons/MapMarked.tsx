@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgMapMarked = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgMapMarked.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgMapMarked = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgMapMarked" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgMapMarked;

@@ -22,8 +22,8 @@ module.exports = {
   import IconBase, { IconBaseProps } from './IconBase';
   const SvgIcon = (${props}: React.SVGProps<SVGSVGElement>) => ${jsx};
 
-  const ${componentName} = (props: Omit<IconBaseProps, 'name'>) => {
-    return <IconBase name={${componentName}.name} {...props}><SvgIcon /></IconBase>
+  const ${componentName} = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
+    return <IconBase name="${componentName}" {...props} ref={ref}><SvgIcon /></IconBase>
   }
 
 ${exports};

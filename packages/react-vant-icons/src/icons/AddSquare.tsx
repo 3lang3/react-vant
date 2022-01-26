@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgAddSquare = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgAddSquare.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgAddSquare = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgAddSquare" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgAddSquare;

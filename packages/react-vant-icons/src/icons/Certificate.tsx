@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgCertificate = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgCertificate.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgCertificate = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgCertificate" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgCertificate;

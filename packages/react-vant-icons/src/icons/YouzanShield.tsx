@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgYouzanShield = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgYouzanShield.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgYouzanShield = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgYouzanShield" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgYouzanShield;

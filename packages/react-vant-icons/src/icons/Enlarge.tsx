@@ -17,12 +17,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgEnlarge = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgEnlarge = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgEnlarge.name} {...props}>
+    <IconBase name="SvgEnlarge" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgEnlarge;

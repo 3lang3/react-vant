@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBarChartO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgBarChartO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgBarChartO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgBarChartO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgBarChartO;

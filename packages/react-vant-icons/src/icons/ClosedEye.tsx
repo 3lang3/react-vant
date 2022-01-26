@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgClosedEye = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgClosedEye.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgClosedEye = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgClosedEye" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgClosedEye;
