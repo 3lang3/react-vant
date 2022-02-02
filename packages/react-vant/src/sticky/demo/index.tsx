@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import Sticky from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const container = useRef<HTMLDivElement>(null);
 

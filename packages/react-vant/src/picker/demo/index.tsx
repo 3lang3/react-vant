@@ -4,7 +4,7 @@ import { Toast, Field, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Picker from '..';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
 
   const picker = useRef(null);

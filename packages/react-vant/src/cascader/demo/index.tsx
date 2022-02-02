@@ -127,7 +127,7 @@ const options = [
   },
 ];
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [state, set] = hooks.useSetState({
     v1: false,

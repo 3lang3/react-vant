@@ -6,7 +6,7 @@ import './style.less';
 
 const format = (rate: number) => Math.min(Math.max(rate, 0), 100);
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [percentage, setPercentage] = useState(50);
 

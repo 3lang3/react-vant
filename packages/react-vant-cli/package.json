@@ -107,7 +107,7 @@
     "vite": "^2.6.14",
     "vite-plugin-html": "^2.1.1",
     "vite-plugin-markdown": "^2.0.2",
-    "vite-plugin-react-mdoc": "^0.0.0-dev.3"
+    "vite-plugin-react-mdoc": "^1.0.0"
   },
   "devDependencies": {
     "@types/execa": "2.0.0",

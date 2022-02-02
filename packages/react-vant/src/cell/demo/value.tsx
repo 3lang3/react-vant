@@ -1,6 +1,6 @@
 import React from 'react';
 import { Cell } from 'react-vant';
 
-export default (): React.ReactNode => {
+export default () => {
   return <Cell value="内容" />;
 };

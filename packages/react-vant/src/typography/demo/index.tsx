@@ -1,9 +1,9 @@
 import React from 'react';
 import { components } from 'site-mobile-demo';
-import Typography from '..'
+import Typography from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection className="demo-badge">

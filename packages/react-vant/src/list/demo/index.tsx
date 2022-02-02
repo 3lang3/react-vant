@@ -19,7 +19,7 @@ async function getData(throwError?) {
   });
 }
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoSection } = components;
 
   const unmountedRef = useRef<boolean>(false);

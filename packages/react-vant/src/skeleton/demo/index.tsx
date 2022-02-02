@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import Skeleton from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [loading, setLoading] = useState(true);
   return (

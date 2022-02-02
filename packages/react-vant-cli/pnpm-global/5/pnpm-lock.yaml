@@ -1,7 +1,4 @@
 lockfileVersion: 5.3
 
 specifiers:
-  vite-plugin-react-mdoc: ^0.0.0-dev.3
-
-dependencies:
-  vite-plugin-react-mdoc: link:../../../../../../../.nvm/versions/node/v16.9.1/pnpm-global/5/node_modules/vite-plugin-react-mdoc
+  vite-plugin-react-mdoc: ^1.0.0

@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import Pagination from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [page1, setPage1] = useState(1);
   const [page2, setPage2] = useState(1);

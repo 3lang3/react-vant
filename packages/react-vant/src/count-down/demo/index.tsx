@@ -8,7 +8,7 @@ import './style.less';
 
 const demoTime = 30 * 60 * 60 * 1000;
 
-export default (): React.ReactNode => {
+export default () => {
   const ref = useRef<CountDownInstance>();
   const { DemoBlock, DemoSection } = components;
   return (

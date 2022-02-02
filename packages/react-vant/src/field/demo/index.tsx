@@ -6,7 +6,7 @@ import { components } from 'site-mobile-demo';
 import Field from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');

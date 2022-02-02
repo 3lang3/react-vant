@@ -4,7 +4,7 @@ import { Field, Popup } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import DatetimePicker from '..';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
 
   const [fieldValue, setFieldValue] = useState('');

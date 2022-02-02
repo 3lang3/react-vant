@@ -4,7 +4,7 @@ import { Toast, NavBar } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
 
   return (

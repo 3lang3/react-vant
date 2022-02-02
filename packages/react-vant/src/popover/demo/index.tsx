@@ -37,7 +37,7 @@ const placements = [
   'bottom-end',
 ] as PopoverPlacement[];
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const popover = useRef<PopoverInstance>(null);
   const popover1 = useRef<PopoverInstance>(null);

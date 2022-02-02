@@ -30,10 +30,7 @@ import { Add } from '@react-vant/icons';
 
 结合`badge`组件可以实现带徽标的 Icon。
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import React from 'react';
 import { Badge } from 'react-vant';
 import { ChatO } from '@react-vant/icons';
@@ -56,10 +53,7 @@ export default () => {
 
 `Icon` 的 `color` 属性用来设置图标的颜色。
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import React from 'react';
 import { ChatO, FireO } from '@react-vant/icons';
 
@@ -77,10 +71,7 @@ export default () => {
 
 `Icon` 的 `fontSize` 属性用来设置图标的尺寸大小，默认单位为 `px`。
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import React from 'react';
 import { ChatO, FireO } from '@react-vant/icons';
 
@@ -98,10 +89,7 @@ export default () => {
 
 通过方法`createFromIconfontCN` 引入[iconfont.cn](https://www.iconfont.cn)上的 js 文件
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import React from 'react';
 import { createFromIconfontCN } from '@react-vant/icons';
 
@@ -109,20 +97,19 @@ const IconFont = createFromIconfontCN('//at.alicdn.com/t/font_1619071_dqiwns2g0d
 
 export default () => {
   return (
-    <IconFont name="icon-weunblock"/>
-    <IconFont name="icon-1111"/>
-  )
-}
+    <>
+      <IconFont name="icon-weunblock" />
+      <IconFont name="icon-1111" />
+    </>
+  );
+};
 ```
 
 ### 图标旋转
 
 `Icon` 的 `spin` 属性用来设置图标旋转，默认单位为 `false`。
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import React from 'react';
 import { ChatO, FireO } from '@react-vant/icons';
 

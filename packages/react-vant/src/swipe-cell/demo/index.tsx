@@ -23,7 +23,7 @@ const beforeClose = ({ position }) => {
   }
 };
 
-export default (): React.ReactNode => {
+export default () => {
   const ref = useRef<SwipeCellInstance>();
   const { DemoBlock, DemoSection } = components;
   return (

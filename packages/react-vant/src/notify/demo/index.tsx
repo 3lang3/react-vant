@@ -6,7 +6,7 @@ import { components } from 'site-mobile-demo';
 import Notify from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
 
   const [visible, setVisible] = useState(false);

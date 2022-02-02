@@ -75,7 +75,32 @@ export function getViteConfigForSiteDev(): InlineConfig {
     root: SITE_SRC_DIR,
     plugins: [
       react(),
-      mdoc['default']({ root: ROOT }),
+      mdoc({
+        root: ROOT,
+        codeBlockOutput: ['independent'],
+        localPkgs: {
+          'react-vant': {
+            version: '2.0.0-alpha.16',
+          },
+        },
+        replaceHtml: (JSX) => {
+          const group = JSX.replace(/(<h3\s+id=)/g, ':::$1')
+            .replace(/<h2/g, ':::<h2')
+            .split(':::');
+
+          const ne = group
+            .map((fragment) => {
+              if (fragment.indexOf('<h3') !== -1) {
+                return `<div className="van-doc-card">${fragment}</div>`;
+              }
+
+              return fragment;
+            })
+            .join('');
+
+          return ne;
+        },
+      }),
       // mdPlugin.default({
       //   mode: [Mode.HTML],
       //   markdownIt: new MarkdownIt({
@@ -110,7 +135,6 @@ export function getViteConfigForSiteDev(): InlineConfig {
     },
     server: {
       port: 4000,
-      https: true,
     },
   };
 }

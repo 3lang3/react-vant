@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-vant';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   return (
     <div className="demo-button">
       <Button loading type="primary" />

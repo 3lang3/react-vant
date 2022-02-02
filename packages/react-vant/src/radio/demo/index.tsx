@@ -7,7 +7,7 @@ import './style.less';
 
 let timer;
 
-export default (): React.ReactNode => {
+export default () => {
   const [value, setValue] = useState('1');
   const [cellValue, setCellValue] = useState('');
 

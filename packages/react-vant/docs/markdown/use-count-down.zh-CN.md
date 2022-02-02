@@ -10,10 +10,7 @@
 
 ### 基本用法
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import { hooks } from 'react-vant';
 
 export default () => {
@@ -21,19 +18,19 @@ export default () => {
     // 倒计时 24 小时
     time: 24 * 60 * 60 * 1000,
     // 自动开始倒计时
-    autostart: true
+    autostart: true,
   });
 
   return (
     <>
-      <span>总时间：{{ current.total }}</span>
-      <span>剩余天数：{{ current.days }}</span>
-      <span>剩余小时：{{ current.hours }}</span>
-      <span>剩余分钟：{{ current.minutes }}</span>
-      <span>剩余秒数：{{ current.seconds }}</span>
-      <span>剩余毫秒：{{ current.milliseconds }}</span>
+      <span>总时间：{current.total}</span>
+      <span>剩余天数：{current.days}</span>
+      <span>剩余小时：{current.hours}</span>
+      <span>剩余分钟：{current.minutes}</span>
+      <span>剩余秒数：{current.seconds}</span>
+      <span>剩余毫秒：{current.milliseconds}</span>
     </>
-  )
+  );
 };
 ```
 
@@ -41,10 +38,7 @@ export default () => {
 
 倒计时默认每秒渲染一次，设置 millisecond 选项可以开启毫秒级渲染。
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import { useCountDown } from 'react-vant';
 
 export default () => {
@@ -59,14 +53,14 @@ export default () => {
 
   return (
     <>
-      <span>总时间：{{ current.total }}</span>
-      <span>剩余天数：{{ current.days }}</span>
-      <span>剩余小时：{{ current.hours }}</span>
-      <span>剩余分钟：{{ current.minutes }}</span>
-      <span>剩余秒数：{{ current.seconds }}</span>
-      <span>剩余毫秒：{{ current.milliseconds }}</span>
+      <span>总时间：{current.total}</span>
+      <span>剩余天数：{current.days}</span>
+      <span>剩余小时：{current.hours}</span>
+      <span>剩余分钟：{current.minutes}</span>
+      <span>剩余秒数：{current.seconds}</span>
+      <span>剩余毫秒：{current.milliseconds}</span>
     </>
-  )
+  );
 };
 ```
 

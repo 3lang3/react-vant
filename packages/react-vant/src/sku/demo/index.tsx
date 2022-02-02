@@ -29,7 +29,7 @@ const customStepperConfig = {
   },
 };
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
 
   const ref1 = useRef<SkuInstance>();

@@ -41,7 +41,7 @@ const disabledDiscountCoupon = {
 
 const getRandomId = (max = 999999) => String(Math.floor(Math.random() * max) + 1);
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [coupons, setCoupons] = useState([data, disabledDiscountCoupon]);
   const [disabledCoupons] = useState([disabledCoupon, disabledDiscountCoupon]);

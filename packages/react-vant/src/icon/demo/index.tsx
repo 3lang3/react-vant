@@ -57,7 +57,7 @@ function getTypeIcons(type) {
   });
 }
 
-export default (): React.ReactNode => {
+export default () => {
   const copy = (icon: string) => {
     const tag = `<${icon}  />`;
     copyToClipboard(tag);

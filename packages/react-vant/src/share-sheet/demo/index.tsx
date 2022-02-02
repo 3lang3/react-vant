@@ -51,7 +51,7 @@ const descOptions = [
   { name: '二维码', icon: 'qrcode' },
 ];
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);

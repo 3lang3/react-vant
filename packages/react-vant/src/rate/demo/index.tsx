@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import Rate from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const [value, setValue] = useState(3);
   const [value1, setValue1] = useState(3.5);
   const onChange = (v) => {

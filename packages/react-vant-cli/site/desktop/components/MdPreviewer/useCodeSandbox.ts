@@ -1,22 +1,6 @@
 import { useState, useEffect } from 'react';
 import LZString from 'lz-string';
-
-interface IPreviewerComponentProps {
-  title?: string;
-  description?: string;
-  /**
-   * third-party dependencies of demo
-   */
-  dependencies: Record<
-    string,
-    {
-      type: string;
-      value: string;
-      css: boolean;
-    }
-  >;
-  [key: string]: any;
-}
+import type { MDocPreviewerProps } from '.';
 
 const CSB_API_ENDPOINT = 'https://codesandbox.io/api/v1/sandboxes/define';
 
@@ -42,8 +26,8 @@ function getTextContent(raw: string) {
  * get serialized data that use to submit to codesandbox.io
  * @param opts  previewer props
  */
-function getCSBData(opts: IPreviewerComponentProps) {
-  const isTSX = opts.language === 'tsx';
+function getCSBData(opts: Omit<MDocPreviewerProps, 'children'>) {
+  const isTSX = opts.lang === 'tsx';
   const ext = isTSX ? '.tsx' : '.jsx';
   const files: Record<string, { content: string }> = {};
   const deps: Record<string, string> = {};
@@ -77,8 +61,8 @@ function getCSBData(opts: IPreviewerComponentProps) {
   files['package.json'] = {
     content: JSON.stringify(
       {
-        name: opts.title,
-        description: getTextContent(opts.description || 'An auto-generated demo by dumi'),
+        name: opts.meta?.title,
+        description: getTextContent(opts.meta?.description || 'An auto-generated demo by mdoc'),
         main: entryFileName,
         dependencies: deps,
         // add TypeScript dependency if required, must in devDeps to avoid csb compile error
@@ -95,10 +79,10 @@ function getCSBData(opts: IPreviewerComponentProps) {
   // append entry file
   files[entryFileName] = {
     content: `/**
-* This is an auto-generated demo by dumi
+* This is an auto-generated demo by mdoc
 * if you think it is not working as expected,
 * please report the issue at
-* https://github.com/umijs/dumi/issues
+* https://github.com/3lang3/vite-plugin-react-mdoc/issues
 **/
 
 import React from 'react';
@@ -129,11 +113,14 @@ ReactDOM.render(
  * @param opts  previewer opts
  * @note  return a open function for open demo on codesandbox.io
  */
-export default (opts: IPreviewerComponentProps | null, api: string = CSB_API_ENDPOINT) => {
+export default (
+  opts: Omit<MDocPreviewerProps, 'children'> | null,
+  api: string = CSB_API_ENDPOINT,
+) => {
   const [handler, setHandler] = useState<(...args: any) => void | undefined>();
 
   useEffect(() => {
-    if (opts) {
+    if (opts && Object.keys(opts.dependencies || []).length) {
       const form = document.createElement('form');
       const input = document.createElement('input');
       const data = getCSBData(opts);
@@ -143,7 +130,7 @@ export default (opts: IPreviewerComponentProps | null, api: string = CSB_API_END
       form.style.display = 'none';
       form.action = api;
       form.appendChild(input);
-      form.setAttribute('data-demo', opts.title || '');
+      form.setAttribute('data-demo', opts.meta?.title || '');
 
       input.name = 'parameters';
       input.value = data;
@@ -154,7 +141,7 @@ export default (opts: IPreviewerComponentProps | null, api: string = CSB_API_END
 
       return () => form.remove();
     }
-  }, [opts]);
+  }, [JSON.stringify(opts)]);
 
   return handler;
 };

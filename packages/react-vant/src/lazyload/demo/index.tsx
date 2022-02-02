@@ -29,7 +29,7 @@ const LazyComponent = () => {
   );
 };
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection>

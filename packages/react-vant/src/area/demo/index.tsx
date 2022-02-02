@@ -5,7 +5,7 @@ import { areaList } from '@vant/area-data';
 import { Area } from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [value] = useState('330302');
 

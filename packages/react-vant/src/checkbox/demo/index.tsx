@@ -10,7 +10,7 @@ import './style.less';
 const activeIcon = 'https://img.yzcdn.cn/vant/user-active.png';
 const inactiveIcon = 'https://img.yzcdn.cn/vant/user-inactive.png';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
 
   const ref = useRef<CheckboxGroupInstance>(null);

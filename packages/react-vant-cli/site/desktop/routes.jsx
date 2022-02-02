@@ -3,20 +3,6 @@ import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';
 import MdPreviewer from './components/MdPreviewer';
 
-function markdownCardWrapper(htmlCode) {
-  const group = htmlCode.replace(/<h3/g, ':::<h3').replace(/<h2/g, ':::<h2').split(':::');
-
-  return group
-    .map((fragment) => {
-      if (fragment.indexOf('<h3') !== -1) {
-        return `<div class="van-doc-card">${fragment}</div>`;
-      }
-
-      return fragment;
-    })
-    .join('');
-}
-
 const { locales, defaultLang } = config.site;
 setDefaultLang(defaultLang);
 

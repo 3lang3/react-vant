@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import Sidebar from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [ac, setAc] = useState(2);
   return (

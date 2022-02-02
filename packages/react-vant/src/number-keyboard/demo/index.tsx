@@ -3,7 +3,7 @@ import { Field, NumberKeyboard, Cell, hooks, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoSection, DemoBlock } = components;
   const [state, set] = hooks.useSetState({
     v1: false,

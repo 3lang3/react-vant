@@ -2,7 +2,7 @@ import { Fire } from '@react-vant/icons';
 import React, { useState } from 'react';
 import { Popup, Cell } from 'react-vant';
 
-export default (): React.ReactNode => {
+export default () => {
   const [showCloseIcon, setShowCloseIcon] = useState(false);
   const [showCustomCloseIcon, setShowCustomCloseIcon] = useState(false);
   const [showCustomIconPosition, setShowCustomIconPosition] = useState(false);

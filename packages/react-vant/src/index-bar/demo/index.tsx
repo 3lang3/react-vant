@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import IndexBar from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoSection } = components;
 
   const indexList = [];

@@ -7,7 +7,7 @@ import Dialog from '..';
 
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [show, setShow] = useState(false);
 

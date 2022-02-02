@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import { CSSTransition } from 'react-transition-group';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
 
   const [show, setShow] = useState(false);

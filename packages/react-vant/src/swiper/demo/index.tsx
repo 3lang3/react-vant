@@ -28,7 +28,7 @@ const items = colors.map((color, index) => (
   </Swiper.Item>
 ));
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [visible, set] = useState(false);
 

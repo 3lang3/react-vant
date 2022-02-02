@@ -5,7 +5,7 @@ import { Image, Button, Toast } from 'react-vant';
 import { Card } from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection>

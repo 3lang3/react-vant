@@ -8,11 +8,8 @@
 
 ### 基本用法
 
-```jsx
-/**
- * inline: true
- */
-import { useRef } from 'React';
+```jsx | pure
+import { useRef } from 'react';
 import { useClickAway } from 'react-vant';
 
 export default () => {
@@ -30,11 +27,8 @@ export default () => {
 
 通过 `eventName` 选项可以自定义需要监听的事件类型。
 
-```jsx
-/**
- * inline: true
- */
-import { useRef } from 'React';
+```jsx | pure
+import { useRef } from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {

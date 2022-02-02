@@ -6,7 +6,7 @@ import { Checkbox } from 'react-vant';
 import { SubmitBar } from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection>

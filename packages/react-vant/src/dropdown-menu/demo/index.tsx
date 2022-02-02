@@ -15,7 +15,7 @@ const option2 = [
   { text: '销量排序', value: 'c' },
 ];
 
-export default (): React.ReactNode => {
+export default () => {
   const [value, setValue] = useState<Record<string, string | number>>({});
   const { DemoBlock, DemoSection } = components;
 

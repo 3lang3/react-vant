@@ -5,7 +5,7 @@ import { components } from 'site-mobile-demo';
 import Slider from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [value1, setValue1] = useState(10);
   const [value2, setValue2] = useState<[number, number]>([10, 50]);

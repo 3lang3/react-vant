@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Cell } from 'react-vant';
 import { components } from 'site-mobile-demo';
-import ActionSheet from '..'
+import ActionSheet from '..';
 import './style.less';
 
 const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
@@ -12,7 +12,7 @@ const actions2 = [
   { loading: true },
 ];
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [visible, setVisible] = useState(-1);
   const onCancel = () => setVisible(-1);

@@ -10,7 +10,7 @@ const icon = {
   inactive: 'https://img.yzcdn.cn/vant/user-inactive.png',
 };
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [name, setName] = useState('setting');
   return (

@@ -4,7 +4,7 @@ import { Stepper, Cell, Toast } from 'react-vant';
 
 let timer;
 
-export default (): React.ReactNode => {
+export default () => {
   const [value1, setValue1] = useState<string | number>(1);
   const [value9, setValue9] = useState<string | number>(0);
   const [value2, setValue2] = useState<string | number>(1);

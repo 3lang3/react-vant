@@ -5,7 +5,7 @@ import { components } from 'site-mobile-demo';
 import ActionBar from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection>

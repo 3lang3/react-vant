@@ -3,7 +3,7 @@ import { Button, Overlay } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [show, setShow] = useState<boolean>(false);
   const [showEmbedded, setShowEmbedded] = useState<boolean>(false);

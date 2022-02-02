@@ -10,7 +10,7 @@ const images = [
   'https://img.yzcdn.cn/vant/apple-3.jpg',
 ];
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [visible, setVisible] = useState(false);
   return (

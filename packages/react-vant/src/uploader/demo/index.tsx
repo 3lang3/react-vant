@@ -19,7 +19,7 @@ const demoUploadValue = [
   },
 ];
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const [demo, setDemo] = useState<UploaderFileListItem[]>([
     {

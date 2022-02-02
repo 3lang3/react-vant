@@ -5,7 +5,7 @@ import { components } from 'site-mobile-demo';
 import './style.less';
 import PullRefresh from '../index';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoSection } = components;
   const [count, setCount] = useState<number>(0);
   const tips = useMemo(() => {

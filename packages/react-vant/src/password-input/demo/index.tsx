@@ -5,7 +5,7 @@ import { components } from 'site-mobile-demo';
 import PasswordInput from '..';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   const onSubmit = (val: string) => {
     Dialog.alert({

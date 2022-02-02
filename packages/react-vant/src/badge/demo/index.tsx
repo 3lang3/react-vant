@@ -4,7 +4,7 @@ import { components } from 'site-mobile-demo';
 import { Success, Cross, Down } from '@react-vant/icons';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection className="demo-badge">

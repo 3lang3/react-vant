@@ -4,7 +4,7 @@ import { Grid, Image } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import './style.less';
 
-export default (): React.ReactNode => {
+export default () => {
   const { DemoBlock, DemoSection } = components;
   return (
     <DemoSection className="demo-grid">

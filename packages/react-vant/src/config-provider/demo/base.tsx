@@ -12,7 +12,7 @@ const themeVars = {
   buttonPrimaryBackgroundColor: '#951fff',
 };
 
-export default (): React.ReactNode => {
+export default () => {
   const [rate, updateRate] = useState(4);
   const [slider, updateSlider] = useState(50);
   return (
