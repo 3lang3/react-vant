@@ -1,14 +1,7 @@
 import { join } from 'path';
 import fse from 'fs-extra';
 import { SRC_DIR, SITE_MOBILE_SHARED_FILE } from '../common/constant.js';
-import {
-  pascalize,
-  removeExt,
-  decamelize,
-  getVantConfig,
-  smartOutputFile,
-  normalizePath,
-} from '../common/index.js';
+import { pascalize, decamelize, getVantConfig, smartOutputFile } from '../common/index.js';
 
 const { existsSync, readdirSync } = fse;
 
@@ -18,15 +11,15 @@ type DemoItem = {
   component: string;
 };
 
-function genImports(demos: DemoItem[]) {
-  const vantConfig = getVantConfig();
-  return demos
-    .map((item) => `import ${item.name} from '${join(vantConfig.name, item.path)}';`)
-    .join('\n');
-}
+// function genImports(demos: DemoItem[]) {
+//   const vantConfig = getVantConfig();
+//   return demos
+//     .map((item) => `import ${item.name} from '${join(vantConfig.name, item.path)}';`)
+//     .join('\n');
+// }
 
 function genExports(demos: DemoItem[]) {
-  return `export const demos = {\n  ${demos.map((item) => item.name).join(',\n  ')}\n};`;
+  return `export const demoNames = [\n  ${demos.map((item) => `'${item.name}'`).join(',\n  ')}\n];`;
 }
 
 function genConfig(demos: DemoItem[]) {
@@ -64,7 +57,6 @@ function genCode(components: string[]) {
     .filter((item) => existsSync(join(SRC_DIR, item.path)));
 
   return `
- ${genImports(demos)}
  ${genExports(demos)}
  ${genConfig(demos)}
 `;

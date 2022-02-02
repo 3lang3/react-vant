@@ -43,7 +43,7 @@ export default {
                 title: '从 v1 升级',
               },
               { path: 'contribution', title: '贡献指南' },
-              { path: 'locale', title: '国际化' },
+              { path: 'i18n', title: '国际化' },
               { path: 'hd', title: '高清适配' },
             ],
           },

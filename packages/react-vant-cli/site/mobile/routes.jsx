@@ -1,5 +1,4 @@
-import { demos } from 'site-mobile-shared';
-import { config, documents } from 'site-desktop-shared';
+import { config, documents, componentNames } from 'site-desktop-shared';
 import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';
 import DemoHome from './components/DemoHome';
@@ -19,9 +18,25 @@ export function getLangFromRoute(pathname) {
   return getLang();
 }
 
+function parseName(name) {
+  if (name.indexOf('_') !== -1) {
+    const pairs = name.split('_');
+    const component = pairs.shift();
+
+    return {
+      component: `${decamelize(component)}`,
+      lang: pairs.join('-'),
+    };
+  }
+  return {
+    component: `${decamelize(name)}`,
+    lang: '',
+  };
+}
+
 function getRoutes() {
   const routes = [];
-  const names = Object.keys(documents);
+  const names = componentNames;
   const langs = locales ? Object.keys(locales) : [];
 
   if (langs.length) {
@@ -42,18 +57,17 @@ function getRoutes() {
     });
   }
 
-  names.forEach((name) => {
-    const componentName = name.split('_')[0];
-    const component = decamelize(componentName);
-    let { MdDemos } = documents[name];
-    let childrenDemo = demos[componentName];
+  names.forEach((componentNameWithLang) => {
+    const { component } = parseName(componentNameWithLang);
+    const { MdDemos } = documents[componentNameWithLang];
+    const componentName = componentNameWithLang.split('_')[0];
 
     if (langs.length) {
       langs.forEach((lang) => {
         routes.push({
           name: `${lang}/${component}`,
           path: `/${lang}/${component}`,
-          component: () => <DemoPage blocks={MdDemos} children={childrenDemo} />,
+          component: () => <DemoPage blocks={MdDemos} />,
           meta: {
             name: componentName,
             lang,
@@ -64,7 +78,7 @@ function getRoutes() {
       routes.push({
         name,
         path: `/${component}`,
-        component: () => <DemoPage blocks={MdDemos} children={childrenDemo} />,
+        component: () => <DemoPage blocks={MdDemos} />,
         meta: {
           name: componentName,
         },

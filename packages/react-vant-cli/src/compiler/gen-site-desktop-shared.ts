@@ -40,7 +40,7 @@ function formatName(component: string, lang?: string) {
  * default mode:
  *   - action-sheet/README.md => ActionSheet
  */
-function resolveDocuments(components: string[]): DocumentItem[] {
+function resolveComponentDocuments(components: string[]): DocumentItem[] {
   const vantConfig = getVantConfig();
   const { locales, defaultLang } = vantConfig.site;
 
@@ -66,6 +66,13 @@ function resolveDocuments(components: string[]): DocumentItem[] {
     });
   }
 
+  return [...docs.filter((item) => existsSync(item.path))];
+}
+
+function resolveStaticDocuments(): DocumentItem[] {
+  const vantConfig = getVantConfig();
+  const { defaultLang } = vantConfig.site;
+
   const staticDocs = glob.sync(normalizePath(join(DOCS_DIR, '**/*.md'))).map((path) => {
     const pairs = parse(path).name.split('.');
     return {
@@ -74,7 +81,11 @@ function resolveDocuments(components: string[]): DocumentItem[] {
     };
   });
 
-  return [...staticDocs, ...docs.filter((item) => existsSync(item.path))];
+  return [...staticDocs];
+}
+
+function resolveDocuments(components: string[]): DocumentItem[] {
+  return [...resolveStaticDocuments(), ...resolveComponentDocuments(components)];
 }
 
 // config.js
@@ -99,19 +110,29 @@ function genImportDocuments(items: DocumentItem[]) {
 }
 
 // 导出所有.md
-function genExportDocuments(items: DocumentItem[]) {
+function genExportAllDocuments(items: DocumentItem[]) {
   return `export const documents = {
   ${items.map((item) => item.name).join(',\n  ')}
 };`;
 }
 
+// 导出所有组件.md
+function genExportDocuments(items: DocumentItem[]) {
+  return `export const componentNames = [
+    ${items.map((item) => `'${item.name}'`).join(',\n  ')}
+  ];`;
+}
+
 export function genSiteDesktopShared() {
   const dirs = readdirSync(SRC_DIR);
-  const documents = resolveDocuments(dirs);
+  const componentDocuments = resolveComponentDocuments(dirs);
+  const staticDocuments = resolveStaticDocuments();
+  const documents = [...staticDocuments, ...componentDocuments];
   const code = `${genImportConfig()}
 ${genImportDocuments(documents)}
 ${genExportConfig()}
-${genExportDocuments(documents)}
+${genExportAllDocuments(documents)}
+${genExportDocuments(componentDocuments)}
 ${genExportVersion()}
 `;
   smartOutputFile(SITE_DESKTOP_SHARED_FILE, code);
