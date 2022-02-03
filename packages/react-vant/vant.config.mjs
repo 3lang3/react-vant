@@ -17,7 +17,7 @@ export default {
       'zh-CN': {
         title: 'React Vant',
         description: '轻量、可靠的移动端 React 组件库',
-        logo: 'https://img01.yzcdn.cn/vant/logo.png',
+        logo: 'https://user-images.githubusercontent.com/7098719/152373941-a4984db8-9a23-4e8f-a011-c887bee9395b.svg',
         langLabel: '中文',
         links: [
           {

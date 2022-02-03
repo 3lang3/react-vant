@@ -29,6 +29,8 @@
       }
       &-item {
         margin-left: 14px;
+        border: 1px solid @van-doc-border-color;
+        border-radius: 10px;
       }
       &-title {
         display: block;
@@ -39,14 +41,11 @@
   &__cube {
     position: relative;
     display: block;
-    padding: 0 12px;
+    padding: 0 10px;
     color: #001938;
-    background: #f7f8fa;
     font-size: 14px;
     line-height: 30px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 20px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
   }
@@ -87,34 +86,11 @@
       }
     }
   }
-  &__logo {
-    display: block;
-    img,
-    span {
-      vertical-align: middle;
-    }
-    img {
-      width: 28px;
-      margin-right: 12px;
-    }
-    span {
-      display: inline-block;
-      color: #fff;
-      font-weight: 500;
-      text-decoration: none;
-      font-size: 22px;
-      line-height: 100%;
-    }
-  }
   &__logo-link {
     img {
       display: block;
       width: 30px;
       height: 30px;
-      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      &:hover {
-        transform: scale(1.2);
-      }
     }
   }
 }
