@@ -4,27 +4,25 @@
 
 语义化的矢量图形。使用图标组件，你需要安装 `@react-vant/icons` 图标组件包：
 
-> 从 2.0 开始，react-vant 不再内置 Icon 组件，请使用独立的包 @react-vant/icons。
-
 ```bash
 npm install --save @react-vant/icons
 # or
 yarn add @react-vant/icons
 ```
 
-### 引入
+然后从这个包中引入你所需要的图标即可：
 
-主流的构建工具会自动做 Tree-Shaking，所以最终被打包进来的只有你用到的那些图标，不必担心包体积问题。
+```jsx | pure
+import { Arrow } from '@react-vant/icons';
+```
+
+> 主流的构建工具会自动做 Tree-Shaking，所以最终被打包进来的只有你用到的那些图标，不必担心包体积问题。
 
 ### 图标列表
 
 <code src="./demo/index.tsx" inline />
 
 ## 代码演示
-
-### 基础示例
-
-`Icon` 的 `name` 属性支持传入图标名称或图片链接，所有可用的图标名称见右侧示例。
 
 ### 徽标提示
 
@@ -135,7 +133,7 @@ export default () => {
 
 | 参数     | 说明                      | 类型               | 默认值    |
 | -------- | ------------------------- | ------------------ | --------- |
-| name     | 自定义图标名称            | _string_           | -         |
+| name     | 图标名称                  | _string_           | -         |
 | color    | svg 的 `color` 属性       | _string_           | `inherit` |
 | fontSize | 图标大小，如 `20px` `2em` | _number \| string_ | `inherit` |
 | spin     | 是否开启旋转动画          | _boolean_          | `false`   |

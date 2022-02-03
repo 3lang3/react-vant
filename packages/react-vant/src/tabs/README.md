@@ -61,7 +61,7 @@ import { Tabs } from 'react-vant';
 
 设置 `align` 属性即可改变标签栏对齐方式。
 
-```jsx
+```jsx | pure
 <Tabs align="start">
   <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
   <Tabs.TabPane title="标签2">内容2</Tabs.TabPane>
