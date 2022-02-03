@@ -1,11 +1,10 @@
 import React, { forwardRef, useContext } from 'react';
 import clsx from 'clsx';
-import RcForm from 'rc-field-form';
 import type { FormInstance } from 'rc-field-form';
+import RcForm from 'rc-field-form';
 import { FormProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { FormContext } from './FormContext';
-import { CellGroup } from '../cell';
 
 const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -17,8 +16,6 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     layout,
     footer,
     children,
-    border,
-    inset,
     colon,
     labelAlign,
     inputAlign,
@@ -37,9 +34,7 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
       }}
     >
       <RcForm className={clsx(bem(), className)} style={style} ref={ref} {...formProps}>
-        <CellGroup border={border} inset={inset}>
-          {children}
-        </CellGroup>
+        {children}
         {footer && <div className={clsx(bem('footer'))}>{footer}</div>}
       </RcForm>
     </FormContext.Provider>

@@ -12,6 +12,18 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.12
+
+`2022-01-21`
+
+**Bug Fixes**
+
+- Typography: `ellipsis` 属性在 Button 中失效的问题 [#305](https://github.com/3lang3/react-vant/issues/305) ([#306](https://github.com/3lang3/react-vant/issues/306)) ([1507945](https://github.com/3lang3/react-vant/commit/150794543b10423488ef039a40c460f07b91a15e))
+
+**Features**
+
+- Tabs: 新增 `align` 属性 ([8012a3d](https://github.com/3lang3/react-vant/commit/8012a3df3eada86cfff95fbfcec6e95ee4652267)) [#307](https://github.com/3lang3/react-vant/issues/307)
+
 ### 1.4.11
 
 `2021-12-30`
