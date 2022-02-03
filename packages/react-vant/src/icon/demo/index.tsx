@@ -1,19 +1,8 @@
 import React from 'react';
-import { Flex, Badge, Tabs, Toast } from 'react-vant';
+import { Flex, Tabs, Toast } from 'react-vant';
 import * as Icons from '@react-vant/icons';
 import icons from './config';
 import './style.less';
-
-const DemoBlock = ({ title, children }) => {
-  return (
-    <>
-      {title && <h2 className="vant-doc-demo-block__title">{title}</h2>}
-      {children}
-    </>
-  );
-};
-
-const IconFont = Icons.createFromIconfontCN('//at.alicdn.com/t/font_1619071_dqiwns2g0d.js');
 
 // from https://30secondsofcode.org
 function copyToClipboard(str: string) {
@@ -71,7 +60,7 @@ export default () => {
 
   return (
     <div className="demo-icon">
-      <Tabs active={0} align="start" sticky scrollspy>
+      <Tabs active={0} align="start" scrollspy>
         <Tabs.TabPane title="基础图标">
           <Flex wrap="wrap">
             {getTypeIcons('basic').map((item) => (

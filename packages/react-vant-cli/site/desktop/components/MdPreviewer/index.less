@@ -24,7 +24,8 @@
     top: 10px;
     right: 6px;
     border: none;
-    background: none;
+    background: #fff;
+    border-radius: 4px;
     padding: 6px;
     transition: opacity 0.15s linear;
 
@@ -40,9 +41,14 @@
 .default-previewer {
   background-color: #fff;
   border: 1px solid #ebedf1;
-  border-radius: 1px;
+  border-radius: 0.5em;
+  overflow: hidden;
   position: relative;
   margin: 16px 0;
+
+  pre {
+    border-radius: 0;
+  }
 
   .default-pre {
     margin: 0;

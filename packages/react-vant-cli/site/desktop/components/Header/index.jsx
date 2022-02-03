@@ -24,15 +24,15 @@ const Header = (props) => {
       return items[0];
     }
     return {};
-  }, [pathname]);
+  }, [lang, langConfigs]);
 
   const langLink = useMemo(() => {
     return `#${pathname.replace(lang, anotherLang.lang)}`;
-  }, [pathname]);
+  }, [anotherLang.lang, lang, pathname]);
 
   const langLabel = useMemo(() => {
     return anotherLang.label;
-  }, [pathname]);
+  }, [anotherLang.label]);
 
   const toggleVersionPop = () => {
     // eslint-disable-next-line react/no-this-in-sfc
@@ -52,10 +52,6 @@ const Header = (props) => {
     <div className="vant-doc-header">
       <div className="vant-doc-row">
         <div className="vant-doc-header__top">
-          <a className="vant-doc-header__logo">
-            <img alt="vant" src={config.logo} />
-            <span>{config.title}</span>
-          </a>
           {config.searchConfig && <SearchInput lang={lang} searchConfig={config.searchConfig} />}
           <ul className="vant-doc-header__top-nav">
             {config.links &&

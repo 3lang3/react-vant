@@ -8,20 +8,24 @@ import Simulator from './Simulator';
 const Doc = (props) => {
   const { lang, versions, simulator, langConfigs, config, hideSimulator, currentCompnentName } =
     props;
+
+  const hasSimulator = !!simulator && !hideSimulator;
   return (
     <div className="vant-doc">
-      <Header
-        lang={lang}
-        config={config}
-        versions={versions}
-        langConfigs={langConfigs}
-        // onSwitchVersion="$emit('switch-version', $event)"
-      />
-      <Nav lang={lang} navConfig={config.nav} />
+      <Nav config={config} lang={lang} navConfig={config.nav} />
       <Container hasSimulator={!!simulator && !hideSimulator}>
-        <Content currentCompnentName={currentCompnentName}>{props.children}</Content>
+        <Header
+          lang={lang}
+          config={config}
+          versions={versions}
+          langConfigs={langConfigs}
+          // onSwitchVersion="$emit('switch-version', $event)"
+        />
+        <Content currentCompnentName={currentCompnentName} hasSimulator={hasSimulator}>
+          {props.children}
+        </Content>
+        {hasSimulator && <Simulator src={simulator} />}
       </Container>
-      {simulator && !hideSimulator && <Simulator src={simulator} />}
     </div>
   );
 };

@@ -52,7 +52,7 @@ const App = () => {
       lang: key,
       label: locales[key].langLabel || '',
     }));
-  }, [config]);
+  }, []);
 
   const navItems = useMemo(() => {
     return localeConfig.nav.reduce((result, nav) => [...result, ...nav.items], []);
@@ -65,22 +65,22 @@ const App = () => {
 
   const hideSimulatorMemo = useMemo(() => {
     // 文档模式
-    let { hideSimulator = false } = config.site;
-    return hideSimulator || currentNav.simulator === false;
-  }, [config.site.hideSimulator, currentNav]);
+    const { hideSimulator = false } = config.site;
+    return hideSimulator || currentNav?.simulator === false;
+  }, [currentNav]);
 
   // 更新标题
   const setTitle = useCallback(() => {
-    let { title, description } = localeConfig;
+    let { title } = localeConfig;
 
     if (currentNav && currentNav.title) {
       title = `${currentNav.title} - ${title}`;
-    } else if (description) {
-      title += ` - ${description}`;
+    } else if (localeConfig.description) {
+      title += ` - ${localeConfig.description}`;
     }
 
     document.title = title;
-  }, [currentNav, localeConfig.tilte, localeConfig.description]);
+  }, [localeConfig, currentNav]);
 
   useEffect(setTitle);
 
