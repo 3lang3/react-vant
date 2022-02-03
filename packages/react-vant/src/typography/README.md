@@ -14,21 +14,50 @@ import { Typography } from 'react-vant';
 
 ### 基础用法
 
-```html
-<Typography.Text>这是一条文本</Typography.Text>
-<Typography.Title>这是一条标题</Typography.Title>
-<Typography.Link>这是一条链接</Typography.Link>
+```tsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Typography } from 'react-vant';
+import './demo/style.less';
+
+export default () => {
+  return (
+    <Typography.Text>
+      In the process of <Typography.Text type="danger">internal</Typography.Text>{' '}
+      <Typography.Text delete>desktop</Typography.Text>applications development,
+      <Typography.Text type="primary"> many different</Typography.Text> design specs and <Typography.Text
+        underline
+      >
+        implementations
+      </Typography.Text>would be <Typography.Text type="warning">involved</Typography.Text>
+    </Typography.Text>
+  );
+};
 ```
 
 ### 类型
 
 设置 `type` 属性后，文本会展示不同的 ui 状态。
 
-```html
-<Typography.Text type="danger">这是一条文本</Typography.Text>
-<Typography.Text type="primary">这是一条文本</Typography.Text>
-<Typography.Text type="warning">这是一条文本</Typography.Text>
-<Typography.Text type="secondary">这是一条文本</Typography.Text>
+```tsx
+/**
+ * title: 类型
+ */
+import React from 'react';
+import { Typography } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Typography.Text type="danger">这是一条文本</Typography.Text>
+      <Typography.Text type="primary">这是一条文本</Typography.Text>
+      <Typography.Text type="warning">这是一条文本</Typography.Text>
+      <Typography.Text type="secondary">这是一条文本</Typography.Text>
+    </>
+  );
+};
 ```
 
 ## API

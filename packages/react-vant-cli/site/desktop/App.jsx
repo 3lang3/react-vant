@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useCallback, useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
 import { config, packageVersion } from 'site-desktop-shared';
 
@@ -45,9 +45,6 @@ const App = () => {
     return config.site;
   }, [lang]);
 
-  // 文档模式
-  const { hideSimulator = false } = config.site;
-
   // 文档语言数据
   const langConfigs = React.useMemo(() => {
     const { locales = {} } = config.site;
@@ -57,22 +54,33 @@ const App = () => {
     }));
   }, [config]);
 
+  const navItems = useMemo(() => {
+    return localeConfig.nav.reduce((result, nav) => [...result, ...nav.items], []);
+  }, [localeConfig.nav]);
+
+  const currentNav = useMemo(
+    () => navItems.find((item) => item.path === currentCompnentName),
+    [navItems, currentCompnentName],
+  );
+
+  const hideSimulatorMemo = useMemo(() => {
+    // 文档模式
+    let { hideSimulator = false } = config.site;
+    return hideSimulator || currentNav.simulator === false;
+  }, [config.site.hideSimulator, currentNav]);
+
   // 更新标题
-  const setTitle = () => {
-    let { title } = localeConfig;
+  const setTitle = useCallback(() => {
+    let { title, description } = localeConfig;
 
-    const navItems = localeConfig.nav.reduce((result, nav) => [...result, ...nav.items], []);
-
-    const current = navItems.find((item) => item.path === currentCompnentName);
-
-    if (current && current.title) {
-      title = `${current.title} - ${title}`;
-    } else if (localeConfig.description) {
-      title += ` - ${localeConfig.description}`;
+    if (currentNav && currentNav.title) {
+      title = `${currentNav.title} - ${title}`;
+    } else if (description) {
+      title += ` - ${description}`;
     }
 
     document.title = title;
-  };
+  }, [currentNav, localeConfig.tilte, localeConfig.description]);
 
   useEffect(setTitle);
 
@@ -91,7 +99,7 @@ const App = () => {
       langConfigs={langConfigs}
       versions={versions}
       simulator={simulator}
-      hideSimulator={hideSimulator}
+      hideSimulator={hideSimulatorMemo}
       currentCompnentName={currentCompnentName}
     >
       <Switch>

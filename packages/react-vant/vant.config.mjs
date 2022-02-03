@@ -55,7 +55,7 @@ export default {
               { path: 'cell', title: 'Cell 单元格' },
               { path: 'config-provider', title: 'ConfigProvider 全局配置' },
               { path: 'typography', title: 'Typography 文本' },
-              { path: 'icon', title: 'Icon 图标' },
+              { path: 'icon', title: 'Icon 图标', simulator: false },
               { path: 'image', title: 'Image 图片' },
               { path: 'popup', title: 'Popup 弹出层' },
               { path: 'styles', title: 'Style 内置样式' },

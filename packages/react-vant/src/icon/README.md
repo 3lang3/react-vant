@@ -16,9 +16,9 @@ yarn add @react-vant/icons
 
 主流的构建工具会自动做 Tree-Shaking，所以最终被打包进来的只有你用到的那些图标，不必担心包体积问题。
 
-```js
-import { Add } from '@react-vant/icons';
-```
+### 图标列表
+
+<code src="./demo/index.tsx" inline />
 
 ## 代码演示
 
