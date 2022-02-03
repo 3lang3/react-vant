@@ -12,85 +12,11 @@ import { Calendar } from 'react-vant';
 
 ## 代码演示
 
-### 选择单个日期
+### 基础使用
 
 下面演示了结合单元格来使用日历组件的用法，日期选择完成后会触发 `onConfirm` 事件。
 
-```html
-import { useState } from 'react';
-import { Cell, Calendar } from 'react-vant';
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-  const [text, setText] = useState('');
-
-  const formatDate = (date) => {
-    return `${date.getMonth() + 1}/${date.getDate()}`;
-  };
-  const onConfirm = (date) => {
-    const dateStr = formatDate(date);
-    setText(dateStr);
-    setVisible(false);
-  };
-  return (
-    <>
-      <Cell title="选择单个日期" value={text} onClick={() => setVisible(true)} />
-      <Calendar visible={visible} onConfirm={onConfirm} />
-    </>
-  );
-};
-```
-
-### 选择多个日期
-
-设置 `type` 为 `multiple` 后可以选择多个日期，此时 `onConfirm` 事件返回的 date 为数组结构，数组包含若干个选中的日期。
-
-```html
-import { useState } from 'react';
-import { Cell, Calendar } from 'react-vant';
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-  const [text, setText] = useState('');
-
-  const onConfirm = (dates) => {
-    setText(`选择了 ${dates.length} 个日期`);
-    setVisible(false);
-  };
-  return (
-    <>
-      <Cell title="选择多个日期" value={text} onClick={() => setVisible(true)} />
-      <Calendar type="multiple" visible={visible} onConfirm={onConfirm} />
-    </>
-  );
-};
-```
-
-### 选择日期区间
-
-设置 `type` 为 `range` 后可以选择日期区间，此时 `onConfirm` 事件返回的 date 为数组结构，数组第一项为开始时间，第二项为结束时间。
-
-```html
-import { useState } from 'react';
-import { Cell, Calendar } from 'react-vant';
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-  const [text, setText] = useState('');
-
-  const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
-  const onConfirm = ([start, end]) => {
-    setText(`${formatDate(start)} - ${formatDate(end)}`);
-    setVisible(false);
-  };
-  return (
-    <>
-      <Cell title="选择日期区间" value={text} onClick={() => setVisible(true)} />
-      <Calendar type="range" visible={visible} onConfirm={onConfirm} />
-    </>
-  );
-};
-```
+<code src="./demo/base.tsx" title="选择单个日期" />
 
 > Tips: 默认情况下，日期区间的起止时间不能为同一天，可以通过设置 allowSameDay 属性来允许选择同一天。
 
@@ -98,94 +24,29 @@ export default () => {
 
 将 `showConfirm` 设置为 `false` 可以隐藏确认按钮，这种情况下选择完成后会立即触发 `onConfirm` 事件。
 
-```html
-<Calendar visible="{visible}" showConfirm="{false}" />
-```
+<code src="./demo/quick.tsx" title="快捷选择" />
 
-### 自定义颜色
+### 自定义日历
 
-通过 `color` 属性可以自定义日历的颜色，对选中日期和底部按钮生效。
+- 通过 `color` 属性可以自定义日历的颜色，对选中日期和底部按钮生效
+- 通过 `minDate` 和 `maxDate` 定义日历的范围
+- 通过传入 `formatter` 函数来对日历上每一格的内容进行格式化
+- 通过 weekdays 属性可以实现周标题自定义，通过 formatMonthTitle 函数可以实现月标题自定义
 
-```html
-<Calendar visible="{visible}" color="#1989fa" />
-```
+<code title="自定义" src="./demo/custom.tsx" />
 
-### 自定义日期范围
+### 日期范围
 
-通过 `minDate` 和 `maxDate` 定义日历的范围。
+- 选择日期区间时，可以通过 `maxRange` 属性来指定最多可选天数，选择的范围超过最多可选天数时，会弹出相应的提示文案
+- 通过 `firstDayOfWeek` 属性设置一周从哪天开始
 
-```html
-const minDate = new Date(2010, 0, 1); const maxDate = new Date(2010, 0, 31);
-
-<Calendar visible="{visible}" minDate="{minDate}" maxDate="{maxDate}" />;
-```
-
-### 自定义按钮文字
-
-通过 `confirmText` 设置按钮文字，通过 `confirmDisabledText` 设置按钮禁用时的文字。
-
-```html
-<Calendar
-  visible="{visible}"
-  type="range"
-  confirmText="完成咯"
-  confirmDisabledText="请选择结束时间啊"
-/>
-```
-
-### 自定义日期文案
-
-通过传入 `formatter` 函数来对日历上每一格的内容进行格式化。
-
-```html
-const formatter = (day) => { const month = day.date.getMonth() + 1; const date = day.date.getDate();
-if (month === 5) { if (date === 1) { day.topInfo = '劳动节'; } else if (date === 4) { day.topInfo =
-'青年节'; } else if (date === 11) { day.text = '今天'; } } if (day.type === 'start') {
-day.bottomInfo = '入住'; } else if (day.type === 'end') { day.bottomInfo = '离店'; } return day; };
-
-<Calendar visible="{visible}" type="range" formatter="{formatter}" />;
-```
-
-### 自定义星期文案/月标题
-
-通过 `weekdays` 属性可以实现星期内容的自定义，通过 `formatMonthTitle` 函数可以实现月标题的自定义渲染。
-
-```html
-<Calendar weekdays={['🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓']} formatMonthTitle={(date) =>
-`${date.getFullYear()}🥑${date.getMonth() + 1}🍪`} visible={visible} />
-```
-
-### 自定义弹出位置
-
-通过 `position` 属性自定义弹出层的弹出位置，可选值为 `top`、`left`、`right`。
-
-```html
-<Calendar visible="{visible}" round="{false}" position="right" />
-```
-
-### 日期区间最大范围
-
-选择日期区间时，可以通过 `maxRange` 属性来指定最多可选天数，选择的范围超过最多可选天数时，会弹出相应的提示文案。
-
-```html
-<Calendar visible="{visible}" type="range" maxRange="{3}" />
-```
-
-### 自定义周起始日
-
-通过 `firstDayOfWeek` 属性设置一周从哪天开始。
-
-```html
-<Calendar firstDayOfWeek="{1}" />
-```
+<code title="日期范围" src="./demo/range.tsx" />
 
 ### 平铺展示
 
 将 `poppable` 设置为 `false`，日历会直接展示在页面内，而不是以弹层的形式出现。
 
-```html
-<Calendar title="日历" poppable={false} showConfirm={false} style={{ height: 500 }} />
-```
+<code title="平铺展示" src="./demo/poppable.tsx" />
 
 ## API
 

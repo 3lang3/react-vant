@@ -29,7 +29,7 @@ export default () => {
       />
 
       <Cell
-        title="选择多个日期"
+        title="选择日期区间"
         value={state.multiText}
         isLink
         onClick={() => set({ multi: true })}
@@ -37,7 +37,7 @@ export default () => {
       <Calendar
         showConfirm={false}
         visible={state.multi}
-        type="multiple"
+        type="range"
         onClose={() => set({ multi: false })}
         onConfirm={(v: any[]) => {
           set({ multi: false, multiText: `选择了 ${v.length} 个日期` });

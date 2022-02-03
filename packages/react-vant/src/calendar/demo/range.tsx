@@ -7,31 +7,12 @@ export default () => {
   const [state, set] = hooks.useSetState({
     week: false,
     weekText: '',
-    multi: false,
-    multiText: '',
     range: false,
     rangeText: '',
   });
 
   return (
     <>
-      <Cell
-        title="自定义日期范围"
-        value={state.multiText}
-        isLink
-        onClick={() => set({ multi: true })}
-      />
-      <Calendar
-        minDate={new Date(2010, 0, 1)}
-        maxDate={new Date(2010, 0, 31)}
-        visible={state.multi}
-        type="multiple"
-        onClose={() => set({ multi: false })}
-        onConfirm={(v: any[]) => {
-          set({ multi: false, multiText: `选择了 ${v.length} 个日期` });
-        }}
-      />
-
       <Cell
         title="日期区间最大范围"
         value={state.rangeText}

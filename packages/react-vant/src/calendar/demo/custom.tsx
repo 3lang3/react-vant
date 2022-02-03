@@ -34,6 +34,8 @@ export default () => {
     multiText: '',
     range: false,
     rangeText: '',
+    title: false,
+    titleText: '',
   });
 
   return (
@@ -85,6 +87,22 @@ export default () => {
         onClose={() => set({ range: false })}
         onConfirm={(v) => {
           set({ range: false, rangeText: `${formatDate(v[0])} - ${formatDate(v[1])}` });
+        }}
+      />
+
+      <Cell
+        title="自定义周/月文案"
+        value={state.titleText}
+        isLink
+        onClick={() => set({ title: true })}
+      />
+      <Calendar
+        formatMonthTitle={(date) => `${date.getFullYear()}🥑${date.getMonth() + 1}🍪`}
+        weekdays={['🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓']}
+        visible={state.title}
+        onClose={() => set({ title: false })}
+        onConfirm={(v) => {
+          set({ title: false, titleText: formatDate(v) });
         }}
       />
     </>
