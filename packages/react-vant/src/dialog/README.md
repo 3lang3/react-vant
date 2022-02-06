@@ -20,104 +20,43 @@ import { Dialog } from 'react-vant';
 
 用于提示一些消息，只包含一个确认按钮。
 
-```js
-Dialog.alert({
-  title: '标题',
-  message: '弹窗内容',
-}).then(() => {
-  // on close
-});
-```
+<code title="基础用法" card src="./demo/base.tsx" />
 
 ### Promise 调用
 
 Dialog 支持 promise
 
-```js
-try {
-  await Dialog.confirm({
-    title: '标题',
-    message: '弹窗内容',
-  });
-  // after confirm do something
-  console.log('confirm');
-} catch (erorr) {
-  // after cancel do something
-}
-```
-
-### 消息确认
-
-用于确认消息，包含取消和确认按钮。
-
-```js
-Dialog.confirm({
-  title: '标题',
-  message: '弹窗内容',
-})
-  .then(() => {
-    // on confirm
-  })
-  .catch(() => {
-    // on cancel
-  });
-```
+<code title="Promise调用" card src="./demo/promise.tsx" />
 
 ### 圆角按钮风格
 
-将 theme 选项设置为 `round-button` 可以展示圆角按钮风格的弹窗，该选项从 2.10.0 版本开始支持。
+将 theme 选项设置为 `round-button` 可以展示圆角按钮风格的弹窗。
 
-```html
-Dialog.alert({ title: '标题', message: '弹窗内容', theme: 'round-button', }); Dialog.alert({
-message: '弹窗内容', theme: 'round-button', });
-```
+<code title="圆角按钮风格" card src="./demo/theme.tsx" />
 
 ### 自定义内容
 
-通过 `children` 属性可以传入 `JSX`, 来自定义显示的内容。
+通过 `children` 属性可以传入 `ReactNode`, 来自定义显示的内容。
 
-```html
-Dialog.alert({
-  title: '标题',
-  closeable: true,
-  theme: 'round-button',
-  children: (
-    <div style={{ textAlign: 'center', margin: '16px' }}>
-      代码是写出来给人看的，附带能在机器上运行
-    </div>
-  ),
-});
-```
+<code title="自定义内容" card src="./demo/custom.tsx" />
 
-### 异步关闭
+### 关闭弹出框
 
 通过 `onConfirm` 和 `onCancel` 属性返回`Promise`函数，在弹窗关闭前进行特定操作。
 
-```html
-const onConfirm = (action, done) => { return new Promise((res) => { setTimeout(() => { res(true);
-Toast.success({ message: '确认按钮异步' }); }, 3000); }); }; Dialog.confirm({ title: '标题',
-message: '弹窗内容', onConfirm, });
-```
+<code title="关闭弹出框" card src="./demo/close.tsx" />
+
+### 关闭按钮
+
+通过 `closeable` 可以显示关闭按钮你，通过 `closeIcon` 可以自定义按钮内容。
+
+<code title="关闭按钮" card src="./demo/closeIcon.tsx" />
 
 ### 组件调用
 
 如果需要在弹窗内嵌入组件或其他自定义内容，可以使用组件调用的方式。
 
-```js
-const [show, setShow] = useState(false);
-```
-
-```html
-<Dialog
-  visible={show}
-  title="标题"
-  showCancelButton
-  onCancel={() => setShow(false)}
-  onConfirm={() => alert('confirm button click')}
->
-  <img src="https://img.yzcdn.cn/vant/apple-3.jpg" alt="2131" />
-</Dialog>
-```
+<code title="组件调用" card src="./demo/component.tsx" />
 
 ## API
 
