@@ -12,105 +12,24 @@ import { NumberKeyboard } from 'react-vant';
 
 ## 代码演示
 
-### 默认样式
+### 基础用法
 
-数字键盘提供了 `onInput`、`onDelete`、`onBlur` 事件，分别对应输入内容、删除内容和失去焦点的动作。
+- 数字键盘提供了 `onInput`、`onDelete`、`onBlur` 事件，分别对应输入内容、删除内容和失去焦点的动作。
+- 将 theme 属性设置为 `custom` 来展示键盘的右侧栏，常用于输入金额的场景。
+- 通过 `extraKey` 属性可以设置左下角按键内容，比如需要输入身份证号时，可以将 `extraKey` 设置为 `X`。
+- 通过 `title` 属性可以设置键盘标题。
+- 当 theme 为 `custom` 时，支持以数组的形式配置两个 `extraKey`。
+- 通过 `randomKeyOrder` 属性可以随机排序数字键盘，常用于安全等级较高的场景。
 
-```html
-import { useState } from 'react';
-import { NumberKeyboard, Cell, Toast } from 'react-vant';
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-
-  const onInput = (v) => Toast.info(`输入${v}`);
-  const onDelete = () => Toast.info('删除');
-  return (
-    <>
-      <Cell title="弹出默认键盘" isLink onClick={() => setVisible(true)} />
-      <NumberKeyboard
-        visible={visible}
-        onBlur={() => {
-          setVisible(false);
-        }}
-        onInput={onInput}
-        onDelete={onDelete}
-      />
-    </>
-  );
-};
-```
+<code card src="./demo/base.tsx" />
 
 > 点击键盘以外的区域时，键盘会自动收起，通过阻止元素上的 touchstart 事件冒泡可以避免键盘收起。
-
-### 带右侧栏的键盘
-
-将 theme 属性设置为 `custom` 来展示键盘的右侧栏，常用于输入金额的场景。
-
-```html
-<NumberKeyboard theme="custom" extraKey="." closeButtonText="完成" />
-```
-
-### 身份证号键盘
-
-通过 `extraKey` 属性可以设置左下角按键内容，比如需要输入身份证号时，可以将 `extraKey` 设置为 `X`。
-
-```html
-<NumberKeyboard extraKey="X" closeButtonText="完成" />
-```
-
-### 键盘标题
-
-通过 `title` 属性可以设置键盘标题。
-
-```html
-<NumberKeyboard title="键盘标题" extraKey="X" closeButtonText="完成" />
-```
-
-### 配置多个按键
-
-当 theme 为 `custom` 时，支持以数组的形式配置两个 `extraKey`。
-
-```html
-<NumberKeyboard theme="custom" extraKey={['00', '.']} closeButtonText="完成" />
-```
-
-### 随机数字键盘
-
-通过 `randomKeyOrder` 属性可以随机排序数字键盘，常用于安全等级较高的场景。
-
-```html
-<NumberKeyboard randomKeyOrder />
-```
 
 ### 双向绑定
 
 可以通过 `value` 绑定键盘当前输入值，并通过 `maxlength` 属性来限制输入长度。
 
-```html
-import { useState } from 'react';
-import { NumberKeyboard, Field } from 'react-vant';
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-  const [value, setValue] = useState('');
-
-  return (
-    <>
-      <Field label="双向绑定" isLink value={value} onClick={() => setVisible(true)} />
-      <NumberKeyboard
-        value={value}
-        visible={visible}
-        maxlength={6}
-        onChange={setValue}
-        onBlur={() => {
-          setVisible(false);
-        }}
-      />
-    </>
-  );
-};
-```
+<code title="双向绑定" card src="./demo/control.tsx" />
 
 ## API
 
