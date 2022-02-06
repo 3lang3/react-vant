@@ -1,13 +1,8 @@
 import { join } from 'path';
 import { get } from 'lodash-es';
-import hljs from 'highlight.js';
-import mdPlugin, { Mode } from 'vite-plugin-markdown';
 import react from '@vitejs/plugin-react';
 import { injectHtml } from 'vite-plugin-html';
 import type { InlineConfig } from 'vite';
-import MarkdownIt from 'markdown-it';
-import markdownItAnchor from 'markdown-it-anchor';
-import { slugify } from 'transliteration';
 import mdoc from 'vite-plugin-react-mdoc';
 import { setBuildTarget, getVantConfig, isDev } from '../common/index.js';
 import {
@@ -19,15 +14,6 @@ import {
   SRC_DIR,
   ROOT,
 } from '../common/constant.js';
-
-function highlight(str: string, lang: string) {
-  if (lang && hljs.getLanguage(lang)) {
-    // https://github.com/highlightjs/highlight.js/issues/2277
-    return hljs.highlight(str, { language: lang, ignoreIllegals: true }).value;
-  }
-
-  return '';
-}
 
 function getSiteConfig(vantConfig: any) {
   const siteConfig = vantConfig.site;
@@ -100,18 +86,7 @@ export function getViteConfigForSiteDev(): InlineConfig {
 
           return ne;
         },
-      }),
-      // mdPlugin.default({
-      //   mode: [Mode.HTML],
-      //   markdownIt: new MarkdownIt({
-      //     html: true,
-      //     highlight,
-      //   }).use(markdownItAnchor, {
-      //     level: 2,
-      //     slugify,
-      //   }),
-      // }),
-
+      }) as any,
       injectHtml({
         data: {
           ...siteConfig,

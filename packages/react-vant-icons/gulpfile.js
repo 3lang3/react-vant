@@ -20,7 +20,7 @@ function buildES() {
         allowSyntheticDefaultImports: true,
       }),
     )
-    .pipe(gulp.dest('es/'));
+    .pipe(gulp.dest('./es/'));
 }
 
 function buildCJS() {

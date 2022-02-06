@@ -12,6 +12,7 @@ node_modules
 package-error.json
 yarn-error.json
 yarn.lock
+pnpm-global
 
 # dist file
 es
