@@ -14,160 +14,55 @@ import { Checkbox } from 'react-vant';
 
 ### 基础用法
 
-通过 `defaultChecked` 值默认复选框的勾选状态。
+- 通过 `defaultChecked` 值默认复选框的勾选状态。
+- 通过设置 `disabled` 属性可以禁用复选框。
+- 设置 `labelDisabled` 属性后，点击图标以外的内容不会触发复选框切换。
 
-```html
-<Checkbox defaultChecked onChange={(val) => console.log(val)}>
-  复选框
-</Checkbox>
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
-### 禁用状态
+### 自定义
 
-通过设置 `disabled` 属性可以禁用复选框。
+- 将 `shape` 属性设置为 `square`，复选框的形状会变成方形。
+- 通过 `checkedColor` 属性设置选中状态的图标颜色。
+- 通过 `iconSize` 属性可以自定义图标的大小。
 
-```html
-<Checkbox defaultChecked disabled> 复选框 </Checkbox>
-```
-
-### 自定义形状
-
-将 `shape` 属性设置为 `square`，复选框的形状会变成方形。
-
-```html
-<Checkbox defaultChecked shape="square"> 复选框 </Checkbox>
-```
-
-### 自定义颜色
-
-通过 `checkedColor` 属性设置选中状态的图标颜色。
-
-```html
-<Checkbox defaultChecked checkedColor="#ee0a24"> 复选框 </Checkbox>
-```
-
-### 自定义大小
-
-通过 `iconSize` 属性可以自定义图标的大小。
-
-```html
-<Checkbox defaultChecked iconSize="{24}"> 复选框 </Checkbox>
-```
-
-### 禁用文本点击
-
-设置 `labelDisabled` 属性后，点击图标以外的内容不会触发复选框切换。
-
-```html
-<Checkbox defaultChecked labelDisabled> 复选框 </Checkbox>
-```
+<code title="自定义" src="./demo/custom.tsx" />
 
 ### 异步更新
 
 设置 `checked` 属性后，点击图标状态不会改变，而是直接执行 `onChange` 方法，在此方法中更换状态
 
-```html
-<Checkbox
-  checked={value}
-  onChange={(val) => {
-    Toast.loading({ forbidClick: true, duration: 0 });
-
-    setTimeout(() => {
-      Toast.clear();
-      setValue(val);
-    }, 500);
-  }}
->
-  复选框
-</Checkbox>
-```
+<code title="异步更新" src="./demo/async.tsx" />
 
 ### 复选框组
 
 复选框可以与复选框组一起使用，复选框组通过 `defaultChecked` 数组默认复选框的勾选状态。
 
-```js
-const checked = ['a', 'b'];
-```
-
-```html
-<Checkbox.Group defaultChecked="checked">
-  <Checkbox name="a">复选框 a</Checkbox>
-  <Checkbox name="b">复选框 b</Checkbox>
-</Checkbox.Group>
-```
+<code title="复选框组" src="./demo/group.tsx" />
 
 ### 水平排列
 
 将 `direction` 属性设置为 `horizontal` 后，复选框组会变成水平排列。
 
-```html
-<Checkbox.Group defaultChecked="checked" direction="horizontal">
-  <Checkbox name="a">复选框 a</Checkbox>
-  <Checkbox name="b">复选框 b</Checkbox>
-</Checkbox.Group>
-```
+<code title="水平排列" src="./demo/direction.tsx" />
 
-### 限制最大可选数
+### 最大可选数
 
 通过 `max` 属性可以限制复选框组的最大可选数。
 
-```html
-<Checkbox.Group defaultChecked="result" max="{2}">
-  <Checkbox name="a">复选框 a</Checkbox>
-  <Checkbox name="b">复选框 b</Checkbox>
-  <Checkbox name="c">复选框 c</Checkbox>
-</Checkbox.Group>
-```
+<code title="最大可选数" src="./demo/max.tsx" />
 
 ### 全选与反选
 
 通过 `CheckboxGroup` 实例上的`toggleAll`方法可以实现全选与反选。
 
-```html
-import { useState, useRef } from 'react';
-import { Checkbox, Button } from 'react-vant';
-
-export default () => {
-  const ref = useRef(null);
-  const [checkedAll, setCheckedAll] = useState([]);
-  return (
-    <>
-      <Checkbox.Group value={checkedAll} onChange={setCheckedAll} ref={ref}>
-        <Checkbox name="a">复选框 a</Checkbox>
-        <Checkbox name="b">复选框 b</Checkbox>
-        <Checkbox name="c">复选框 c</Checkbox>
-      </Checkbox.Group>
-
-      <Button type="primary" onClick={() => ref.current?.toggleAll()}>
-        全选
-      </Button>
-      <Button type="primary" onClick={() => ref.current?.toggleAll(false)}>
-        反选
-      </Button>
-    </>
-  );
-};
-```
+<code title="全选与反选" src="./demo/ref.tsx" />
 
 ### 搭配单元格组件使用
 
 此时你需要再引入 `Cell` 和 `Cell.Group` 组件。
 
-```html
-export default () => { const [value, setValue] = useState([]); const toggle = (name) => { const
-newValue = cellCheck.includes(name) ? cellCheck.filter((el) => el !== name) : [...cellCheck, name];
-setValue(newValue); }; return (
-<Checkbox.Group value="{value}">
-  <Cell.Group>
-    <Cell clickable title="单选框1" icon="shop-o" onClick={() => toggle('a')} rightIcon={<Checkbox
-      name="a"
-    />} /> <Cell clickable title="单选框2" icon="shop-o" onClick={() => toggle('b')}
-    rightIcon={<Checkbox name="b" />} />
-  </Cell.Group>
-</Checkbox.Group>
-); };
-```
+<code title="搭配单元格组件使用" src="./demo/cell.tsx" />
 
 ## API
 
