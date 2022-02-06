@@ -1,3 +1,7 @@
+---
+background: '#ffff'
+---
+
 # Uploader 文件上传
 
 ### 介绍
@@ -16,92 +20,112 @@ import { Uploader } from 'react-vant';
 
 文件上传完毕后会触发 `afterRead` 回调函数，获取到对应的 `file` 对象。
 
-```html
-<Uploader afterRead={(file) => console.log(file)} />
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Uploader } from 'react-vant';
+
+export default () => <Uploader afterRead={(file) => console.log(file)} />;
 ```
 
 ### 文件预览
 
 通过 `value` 可以绑定已经上传的文件列表，并展示文件列表的预览图。
 
-```html
-export default () => { const [demo, setDemo] = useState([ { url:
-'https://img.yzcdn.cn/vant/leaf.jpg' }, // Uploader 根据文件后缀来判断是否为图片文件 // 如果图片 URL
-中不包含类型信息，可以添加 isImage 标记来声明 { url: 'https://cloud-image', isImage: true }, ]);
-return <Uploader value="{demo}" />; };
-```
+<code title="文件预览" src="./demo/preview.tsx" />
 
 ### 上传状态
 
 通过 `status` 属性可以标识上传状态，`uploading` 表示上传中，`failed` 表示上传失败，`done` 表示上传完成。
 
-```html
-export default () => { const [demo, setDemo] = useState([ { url:
-'https://img.yzcdn.cn/vant/leaf.jpg', status: 'uploading', message: '上传中...', }, { url:
-'https://img.yzcdn.cn/vant/tree.jpg', status: 'failed', message: '上传失败', }, ]); const afterRead
-= (file, { index }) => { file.status = 'uploading'; file.message = '上传中...'; const newDemo =
-demo.slice(0); newDemo[index] = file; setDemo(newDemo); setTimeout(() => { file.status = 'failed';
-file.message = '上传失败'; setDemo((v) => { const nv = v.slice(0); nv[index] = file; return nv; });
-}, 1000); }; return <Uploader value={demo} afterRead={afterRead} onChange={(v) => setDemo(v)} />; };
-```
+<code title="上传状态" src="./demo/status.tsx" />
 
 ### 限制上传数量
 
 通过 `maxCount` 属性可以限制上传文件的数量，上传数量达到限制后，会自动隐藏上传区域。
 
-```html
-<Uploader multiple maxCount={2} value={demo2} afterRead={afterRead} onChange={(v) => setDemo2(v)} />
-```
+<code title="限制上传数量" src="./demo/maxCount.tsx" />
 
 ### 限制上传大小
 
 通过 `maxSize` 属性可以限制上传文件的大小，超过大小的文件会被自动过滤，这些文件信息可以通过 `onOversize` 事件获取。
 
-```html
-<Uploader maxSize="{5" * 1024} onOversize="{onOversize}" />
-```
+<code title="限制上传大小" src="./demo/size.tsx" />
 
 如果需要针对不同类型的文件来作出不同的大小限制，可以在 `maxSize` 属性中传入一个函数，在函数中通过 `file.type` 区分文件类型，返回 `true` 表示超出限制，`false` 表示未超出限制。
 
-```html
-export default () => { const isOverSize = (file) => { const maxSize = file.type === 'image/jpeg' ?
-500 * 1024 : 1000 * 1024; return file.size >= maxSize; }; return
-<Uploader maxSize="{isOverSize}" onOversize="{onOversize}" />; };
+```jsx | pure
+export default () => {
+  const isOverSize = (file) => {
+    const maxSize = file.type === 'image/jpeg' ? 500 * 1024 : 1000 * 1024;
+    return file.size >= maxSize;
+  };
+  return <Uploader maxSize={isOverSize} />;
+};
 ```
 
 ### 自定义上传样式
 
 通过默认插槽可以自定义上传区域的样式。
 
-```html
-<Uploader>
-  <button block type="primary" round>上传文件</button>
-</Uploader>
+```jsx
+/**
+ * title: 自定义上传样式
+ */
+import React from 'react';
+import { Uploader, Button } from 'react-vant';
+
+export default () => (
+  <Uploader style={{ width: '100%' }}>
+    <Button block type="primary" round>
+      上传文件
+    </Button>
+  </Uploader>
+);
 ```
+
+### 自定义预览样式
+
+通过 `previewCoverRender` 属性自定义预览样式。
+
+<code title="自定义预览样式" src="./demo/previewCoverRender.tsx" />
 
 ### 上传前置处理
 
 通过传入 `beforeRead` 函数可以在上传前进行校验和处理，返回 `true` 表示校验通过，返回 `false` 表示校验失败。支持返回 `Promise` 对 file 对象进行自定义处理，例如压缩图片。
 
-```html
-export default () => { // 返回 boolean const beforeRead = (file: File | File[]) => { const files =
-Array.isArray(file) ? file : [file]; return !files.some(f => { if (f.type !== 'image/jpeg') {
-Toast('请上传 jpg 格式图片'); return true; } return false }) }; // 返回 Promise const
-asyncBeforeRead = async (file: File | File[]) => { // multiple 为 true, `file`是array类型 const
-files = Array.isArray(file) ? file : [file]; return new Promise<File[]
-  >((resolve) => { // 过滤掉不符合的文件，符合的还是会上传 const passFiles = files.filter((f) => {
-  if (f.type !== 'image/jpeg') { Toast.info(`${f.name}格式错误，请上传 jpg 格式图片`); return false;
-  } return true; }); resolve(passFiles); }); }; return <Uploader beforeRead="{asyncBeforeRead}" />;
-  };</File[]
->
-```
+<code title="上传前置处理" src="./demo/beforeRead.tsx" />
 
 ### 禁用文件上传
 
 通过 `disabled` 属性禁用文件上传。
 
-```html
-<Uploader disabled />
+```jsx
+/**
+ * title: 禁用文件上传
+ */
+import React from 'react';
+import { Uploader } from 'react-vant';
+
+export default () => (
+  <Uploader
+    value={[
+      {
+        url: 'https://img.yzcdn.cn/vant/sand.jpg',
+        status: 'done',
+        name: '图片名称',
+      },
+      {
+        url: 'https://img.yzcdn.cn/vant/tree.jpg',
+        status: 'done',
+        name: '图片名称',
+      },
+    ]}
+    disabled
+  />
+);
 ```
 
 ## API

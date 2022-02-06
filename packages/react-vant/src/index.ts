@@ -49,13 +49,7 @@ export * from './number-keyboard';
 export { default as Slider } from './slider';
 export { default as Stepper } from './stepper';
 export { default as Switch } from './switch';
-export { default as Uploader } from './uploader';
-export type {
-  UploaderProps,
-  UploaderResultType,
-  UploaderInstance,
-  UploaderFileListItem,
-} from './uploader';
+export * from './uploader';
 export { default as Progress } from './progress';
 export { default as Circle } from './circle';
 export { default as Pagination } from './pagination';
