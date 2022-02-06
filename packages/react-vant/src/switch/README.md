@@ -16,56 +16,141 @@ import { Switch } from 'react-vant';
 
 通过 `defaultChecked` 默认开关的选中状态，`true` 表示开，`false` 表示关。
 
-```html
-<Switch defaultChecked />
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React from 'react';
+import { Switch } from 'react-vant';
+
+export default () => {
+  return <Switch defaultChecked />;
+};
 ```
 
 ### 禁用状态
 
 通过 `disabled` 属性来禁用开关，禁用状态下开关不可点击。
 
-```html
-<Switch defaultChecked disabled />
+```jsx
+/**
+ * title: 禁用状态
+ * card: true
+ */
+import React from 'react';
+import { Switch } from 'react-vant';
+
+export default () => {
+  return <Switch disabled defaultChecked />;
+};
 ```
 
 ### 加载状态
 
 通过 `loading` 属性设置开关为加载状态，加载状态下开关不可点击。
 
-```html
-<Switch defaultChecked loading />
+```jsx
+/**
+ * title: 加载状态
+ * card: true
+ */
+import React from 'react';
+import { Switch } from 'react-vant';
+
+export default () => {
+  return <Switch loading defaultChecked />;
+};
 ```
 
 ### 自定义大小
 
 通过 `size` 属性自定义开关的大小。
 
-```html
-<Switch defaultChecked size="24px" />
+```jsx
+/**
+ * title: 自定义大小
+ * card: true
+ */
+import React from 'react';
+import { Switch } from 'react-vant';
+
+export default () => {
+  return <Switch size="24px" defaultChecked />;
+};
 ```
 
 ### 自定义颜色
 
 `activeColor` 属性表示打开时的背景色，`inactiveColor` 表示关闭时的背景色。
 
-```html
-<Switch defaultChecked activeColor="#ee0a24" inactiveColor="#dcdee0" />
+```jsx
+/**
+ * title: 自定义颜色
+ * card: true
+ */
+import React from 'react';
+import { Switch } from 'react-vant';
+
+export default () => {
+  return <Switch activeColor="#ee0a24" inactiveColor="#dcdee0" defaultChecked />;
+};
 ```
 
 ### 异步控制
 
 需要异步控制开关时，可以使用 `checked` 属性和 `onChange` 事件代替 `defaultChecked`，并在事件回调函数中手动处理开关状态。
 
-```html
-<Switch checked={value} onChange={(checked) => { Dialog.confirm({ title: '提醒', message:
-'是否切换开关？', }).then(() => { setValue(checked); }); }} />
+```jsx
+/**
+ * title: 异步控制
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Switch, Dialog } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(false);
+  const onChange = async (checked) => {
+    try {
+      await Dialog.confirm({
+        title: '提醒',
+        message: '是否切换开关？',
+      });
+      setValue(checked);
+    } catch {
+      // 取消dialog
+    }
+  };
+  return <Switch checked={value} onChange={onChange} />;
+};
 ```
 
 ### 搭配单元格使用
 
-```html
-<Cell center title="标题" rightIcon={ <Switch size={24} defaultChecked onChange={(checked) =>
-console.log(`switch to ${checked}`)} /> } />
+```jsx
+/**
+ * title: 搭配单元格使用
+ * card: true
+ */
+import React from 'react';
+import { Cell, Switch } from 'react-vant';
+
+export default () => {
+  return (
+    <Cell
+      center
+      title="标题"
+      rightIcon={
+        <Switch
+          size={24}
+          defaultChecked
+          onChange={(checked) => console.log(`switch to ${checked}`)}
+        />
+      }
+    />
+  );
+};
 ```
 
 ## API
