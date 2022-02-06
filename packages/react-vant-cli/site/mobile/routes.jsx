@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { config, documents, componentNames } from 'site-desktop-shared';
 import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';
@@ -59,7 +60,7 @@ function getRoutes() {
 
   names.forEach((componentNameWithLang) => {
     const { component } = parseName(componentNameWithLang);
-    const { MdDemos } = documents[componentNameWithLang];
+    const { MdDemos, frontmatter = {} } = documents[componentNameWithLang];
     const componentName = componentNameWithLang.split('_')[0];
 
     if (langs.length) {
@@ -67,7 +68,7 @@ function getRoutes() {
         routes.push({
           name: `${lang}/${component}`,
           path: `/${lang}/${component}`,
-          component: () => <DemoPage blocks={MdDemos} />,
+          component: () => <DemoPage blocks={MdDemos} {...frontmatter} />,
           meta: {
             name: componentName,
             lang,
@@ -76,9 +77,9 @@ function getRoutes() {
       });
     } else {
       routes.push({
-        name,
+        name: component,
         path: `/${component}`,
-        component: () => <DemoPage blocks={MdDemos} />,
+        component: () => <DemoPage blocks={MdDemos} {...frontmatter} />,
         meta: {
           name: componentName,
         },

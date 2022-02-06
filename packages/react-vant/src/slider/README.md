@@ -1,3 +1,7 @@
+---
+background: '#fff'
+---
+
 # Slider 滑块
 
 ### 介绍
@@ -14,76 +18,172 @@ import { Slider } from 'react-vant';
 
 ### 基础用法
 
-```html
-import { useState } from 'react'; import { Slider, Toast } from 'react-vant'; export default () => {
-const [value, setValue] = useState(10); const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
-return <Slider value="{value}" onChange="{setValue}" onChangeAfter="{onChangeAfter}" />; };
+```jsx
+/**
+ * title: 基础用法
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(10);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return <Slider value={value} onChange={setValue} onChangeAfter={onChangeAfter} />;
+};
 ```
 
 ### 双滑块
 
 添加 `range` 属性就可以开启双滑块模式，确保 `value` 的值是一个数组。
 
-```html
-import { useState } from 'react'; import { Slider, Toast } from 'react-vant'; export default () => {
-const [value, setValue] = useState([10, 50]); const onChangeAfter = (v) =>
-Toast.info(`当前值：${v}`); return
-<Slider range value="{value}" onChange="{setValue}" onChangeAfter="{onChangeAfter}" />; };
+```jsx
+/**
+ * title: 双滑块
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState([10, 50]);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return <Slider range value={value} onChange={setValue} onChangeAfter={onChangeAfter} />;
+};
 ```
 
 ### 指定选择范围
 
-```html
-<Slider value="{value}" onChange="{setValue}" min="{-50}" max="{50}" />
+```jsx
+/**
+ * title: 指定选择范围
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(10);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return (
+    <Slider min={-50} max={50} value={value} onChange={setValue} onChangeAfter={onChangeAfter} />
+  );
+};
 ```
 
 ### 禁用
 
-```html
-<Slider disabled value="{value}" />
+```jsx
+/**
+ * title: 禁用
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(10);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return <Slider disabled value={value} onChange={setValue} onChangeAfter={onChangeAfter} />;
+};
 ```
 
 ### 指定步长
 
-```html
-<Slider value="{value}" step="{10}" />
+```jsx
+/**
+ * title: 指定步长
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(10);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return <Slider step={10} value={value} onChange={setValue} onChangeAfter={onChangeAfter} />;
+};
 ```
 
 ### 自定义样式
 
-```html
-<Slider value="{value}" onChange="{setValue}" barHeight="{4}" activeColor="#ee0a24" />
+```jsx
+/**
+ * title: 自定义样式
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(10);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return (
+    <Slider
+      barHeight={4}
+      activeColor="#ee0a24"
+      value={value}
+      onChange={setValue}
+      onChangeAfter={onChangeAfter}
+    />
+  );
+};
 ```
 
 ### 自定义按钮
 
-```html
-<Slider
-  value={value}
-  onChange={setValue}
-  activeColor="#ee0a24"
-  button={<div className="custom-button">{value}</div>}
-/>
+```jsx
+/**
+ * title: 自定义按钮
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+import './demo/style.less';
 
-<style>
-  .custom-button {
-    width: 26px;
-    color: #fff;
-    font-size: 10px;
-    line-height: 18px;
-    text-align: center;
-    background-color: #ee0a24;
-    border-radius: 100px;
-  }
-</style>
+export default () => {
+  const [value, setValue] = useState(10);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return (
+    <Slider
+      button={<div className="custom-slider-button">{value}</div>}
+      value={value}
+      onChange={setValue}
+      onChangeAfter={onChangeAfter}
+    />
+  );
+};
 ```
 
 ### 垂直方向
 
 设置 `vertical` 属性后，滑块会垂直展示，且高度为 100% 父元素高度。
 
-```html
-<Slider vertical value="{value}" onChange="{setValue}" />
+```tsx
+/**
+ * title: 垂直方向
+ */
+import { useState } from 'react';
+import { Slider, Toast } from 'react-vant';
+
+export default () => {
+  const [value1, setValue1] = useState(50);
+  const [value2, setValue2] = useState<[number, number]>([20, 50]);
+  const onChangeAfter = (v) => Toast.info(`当前值：${v}`);
+
+  return (
+    <div style={{ height: 150, paddingLeft: 30 }}>
+      <Slider
+        vertical
+        style={{ marginRight: 100 }}
+        value={value1}
+        onChange={setValue1}
+        onChangeAfter={onChangeAfter}
+      />
+      <Slider range vertical value={value2} onChange={setValue2} onChangeAfter={onChangeAfter} />
+    </div>
+  );
+};
 ```
 
 ## API

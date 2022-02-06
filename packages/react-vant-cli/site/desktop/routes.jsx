@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { config, documents } from 'site-desktop-shared';
 import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';

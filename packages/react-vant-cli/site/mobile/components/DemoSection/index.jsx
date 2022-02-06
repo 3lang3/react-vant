@@ -9,7 +9,7 @@ import routes from '../../routes';
 import './index.less';
 
 const DemoSection = (props) => {
-  const { children } = props;
+  const { children, style } = props;
   const { pathname } = useLocation();
 
   const demoName = useMemo(() => {
@@ -21,7 +21,11 @@ const DemoSection = (props) => {
     return '';
   }, [pathname]);
 
-  return <section className={clsx('vant-doc-demo-section', demoName)}>{children}</section>;
+  return (
+    <section className={clsx('vant-doc-demo-section', demoName)} style={style}>
+      {children}
+    </section>
+  );
 };
 
 export default DemoSection;
