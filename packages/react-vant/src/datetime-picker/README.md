@@ -16,144 +16,51 @@ import { DatetimePicker } from 'react-vant';
 
 DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为 `date` 表示选择年月日。通过 minDate 和 maxDate 属性可以确定可选的时间范围。
 
-```html
-<DatetimePicker
-  type="date"
-  minDate="{new"
-  Date(2020,
-  0,
-  1)}
-  maxDate="{new"
-  Date(2025,
-  10,
-  1)}
-  value="{new"
-  Date()}
-/>
-```
+<code title="选择年月日" src="./demo/date.tsx">
 
 ### 选择年月
 
 将 type 设置为 `year-month` 即可选择年份和月份。通过传入 `formatter` 函数，可以对选项文字进行格式化处理。
 
-```html
-<DatetimePicker type="year-month" minDate={new Date(2020, 0, 1)} maxDate={new Date(2025, 10, 1)}
-value={new Date()} formatter={(type: string, val: string) => { if (type === 'year') { return
-`${val}年`; } if (type === 'month') { return `${val}月`; } return val; }} />
-```
+<code title="选择年月" src="./demo/yearMonth.tsx" />
 
 ### 选择月日
 
 将 type 设置为 `month-day` 即可选择月份和日期。
 
-```html
-<DatetimePicker type="month-day" minDate={new Date(2020, 0, 1)} maxDate={new Date(2025, 10, 1)}
-value={new Date()} formatter={(type: string, val: string) => { if (type === 'month') { return
-`${val}月`; } if (type === 'day') { return `${val}日`; } return val; }} />
-```
+<code title="选择月日" src="./demo/monthDay.tsx" />
 
 ### 选择时间
 
 将 type 设置为 `time` 即可选择时间（小时和分钟）。
 
-```html
-<DatetimePicker type="time" minHour="10" maxHour="20" value="12:00" />
-```
+<code title="选择时间" src="./demo/time.tsx" />
 
 ### 选择完整时间
 
 将 type 设置为 `datetime` 即可选择完整时间，包括年月日和小时、分钟。
 
-```html
-<DatetimePicker
-  type="datetime"
-  minDate="{new"
-  Date(2020,
-  0,
-  1)}
-  maxDate="{new"
-  Date(2025,
-  10,
-  1)}
-  value="{new"
-  Date()}
-/>
-```
+<code title="选择完整时间" src="./demo/datetime.tsx" />
 
 ### 选择年月日小时
 
 将 type 设置为 `datehour` 即可选择日期和小时，包括年月日和小时。
 
-```html
-<DatetimePicker
-  type="datehour"
-  minDate="{new"
-  Date(2020,
-  0,
-  1)}
-  maxDate="{new"
-  Date(2025,
-  10,
-  1)}
-  value="{new"
-  Date()}
-/>
-```
+<code title="选择年月日小时" src="./demo/datehour.tsx" />
 
 ### 选项过滤器
 
 通过传入 `filter` 函数，可以对选项数组进行过滤，实现自定义时间间隔。
 
-```html
-<DatetimePicker type="time" minHour="10" maxHour="20" value="12:00" filter={(type, options) => { if
-(type === 'minute') { return options.filter((option) => option % 5 === 0); } return options; }} />
-```
+<code title="选项过滤器" src="./demo/datehour.tsx" />
 
 ### 自定义列排序
 
-```html
-<DatetimePicker type="date" columnsOrder={['month', 'day', 'year']} minDate={new Date(2020, 0, 1)}
-maxDate={new Date(2025, 10, 1)} value={new Date()} />
-```
+<code title="自定义列排序" src="./demo/columnsOrder.tsx" />
 
 ### 搭配弹出层使用
 
-```html
-<Field
-  readonly
-  clickable
-  label="日期"
-  value={fieldValue}
-  placeholder="选择选择日期"
-  onClick={() => setShowPicker(true)}
-/>
-<Popup
-  title="请选择日期"
-  closeable
-  visible={showPicker}
-  round
-  position="bottom"
-  onClose={() => setShowPicker(false)}
->
-  <DatetimePicker
-    showSubmitBtn
-    onConfirm={(value: string) => {
-      setFieldValue(value);
-      setShowPicker(false);
-    }}
-    type="datetime"
-    filter={(type: string, options) => {
-      if (type === 'minute') {
-        return options.filter((option) => option % 5 === 0);
-      }
-      return options;
-    }}
-    minDate={new Date(2021, 0, 1)}
-    maxDate={new Date(2021, 2, 1)}
-    value={new Date()}
-  />
-</Popup>
-```
+<code title="搭配弹出层使用" src="./demo/popup.tsx" />
 
 ## API
 
