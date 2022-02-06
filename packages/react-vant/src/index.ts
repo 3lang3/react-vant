@@ -14,7 +14,7 @@ export { default as ImagePreview } from './image-preview';
 export * from './popup';
 export { default as Overlay } from './overlay';
 export { default as Empty } from './empty';
-export { default as Loading } from './loading';
+export * from './loading';
 export { default as Notify } from './notify';
 export { default as PullRefresh } from './pull-refresh';
 export { default as SwipeCell } from './swipe-cell';
