@@ -28,7 +28,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
     inputMode: 'text',
   });
 
-  const codeArr = useMemo(() => state.code.split(''), [state.code]);
+  const codeArr = useMemo(() => state.code?.toString().split(''), [state.code]);
   const cursorIndex = useMemo(() => codeArr.length, [codeArr.length]);
 
   const focus = () => {
@@ -119,7 +119,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
       inputRef?.current?.blur?.();
       props?.onSubmit?.(state.code);
     }
-  }, [state.code]);
+  }, [props, state.code]);
 
   useUpdateEffect(() => {
     if (props.type === 'number') {
@@ -139,31 +139,31 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
 
   return (
     <div className={clsx(bem(), props.className)} style={props.style}>
-      <input
-        ref={inputRef}
-        type={state.inputType}
-        inputMode={state.inputMode as InputMode}
-        pattern="[0-9]*"
-        maxLength={props.length}
-        value={state.code}
-        autoComplete="false"
-        autoCorrect="off"
-        autoCapitalize="off"
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus={props.autoFocus}
-        spellCheck="false"
-        onChange={handleChange}
-        onFocus={(e) => {
-          updateState({ focused: true });
-          props.onFocus?.(e);
-        }}
-        onBlur={(e) => {
-          updateState({ focused: false });
-          props.onBlur?.(e);
-        }}
-      />
       <ul className={clsx(bem('security'), { [BORDER_SURROUND]: !props.gutter })}>
         {renderPoints()}
+        <input
+          ref={inputRef}
+          type={state.inputType}
+          inputMode={state.inputMode as InputMode}
+          pattern="[0-9]*"
+          maxLength={props.length}
+          value={state.code}
+          autoComplete="false"
+          autoCorrect="off"
+          autoCapitalize="off"
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus={props.autoFocus}
+          spellCheck="false"
+          onChange={handleChange}
+          onFocus={(e) => {
+            updateState({ focused: true });
+            props.onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            updateState({ focused: false });
+            props.onBlur?.(e);
+          }}
+        />
       </ul>
       {info ? (
         <div className={clsx(bem(props.errorInfo ? 'error-info' : 'info'))}>{info}</div>
