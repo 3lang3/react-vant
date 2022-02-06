@@ -14,108 +14,25 @@ import { ActionSheet } from 'react-vant';
 
 ### 基础用法
 
-动作面板通过 `actions` 属性来定义选项，`actions` 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象格式见文档下方表格。
+- 动作面板通过 `actions` 属性来定义选项，`actions` 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象格式见文档下方表格。
 
-```html
-const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
+- 设置 `cancelText` 属性后，会在底部展示取消按钮，点击后关闭当前面板并触发 `onCancel` 事件。
 
-export default () => {
-  return (
-    <>
-      <Cell isLink onClick={() => setVisible(true)} />
-      <ActionSheet visible={visible} onCancel={() => setVisible(false)} actions={actions} />
-    </>
-  );
-};
-```
+- 通过 `description` 可以在菜单顶部显示描述信息，通过选项的 `subname` 属性可以在选项文字的右侧展示描述信息。
 
-### 展示取消按钮
-
-设置 `cancelText` 属性后，会在底部展示取消按钮，点击后关闭当前面板并触发 `onCancel` 事件。
-
-```html
-const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }];
-
-export default () => {
-  return (
-    <>
-      <Cell isLink onClick={() => setVisible(true)} />
-      <ActionSheet
-        cancelText="取消"
-        visible={visible}
-        onCancel={() => setVisible(false)}
-        actions={actions}
-      />
-    </>
-  );
-};
-```
-
-### 展示描述信息
-
-通过 `description` 可以在菜单顶部显示描述信息，通过选项的 `subname` 属性可以在选项文字的右侧展示描述信息。
-
-```html
-const actions = [{ name: '选项一' }, { name: '选项二' }, { name: '选项三', subname: '描述信息' }];
-
-export default () => {
-  return (
-    <>
-      <Cell isLink onClick={() => setVisible(true)} />
-      <ActionSheet
-        description="这是一段描述信息"
-        cancelText="取消"
-        visible={visible}
-        onCancel={() => setVisible(false)}
-        actions={actions}
-      />
-    </>
-  );
-};
-```
+<code title="基础用法" card src="./demo/base.tsx" />
 
 ### 选项状态
 
 可以通过 `loading` 和 `disabled` 将选项设置为加载状态或禁用状态，或者通过`color`设置选项的颜色
 
-```html
-const actions = [
-  { name: '选项一', color: '#ee0a24' },
-  { name: '选项二', disabled: true },
-  { loading: true },
-];
-
-export default () => {
-  return (
-    <>
-      <Cell isLink onClick={() => setVisible(true)} />
-      <ActionSheet
-        cancelText="取消"
-        visible={visible}
-        onCancel={() => setVisible(false)}
-        actions={actions}
-      />
-    </>
-  );
-};
-```
+<code title="选项状态" card src="./demo/status.tsx" />
 
 ### 自定义面板
 
 通过插槽可以自定义面板的展示内容，同时可以使用`title`属性展示标题栏
 
-```html
-export default () => {
-  return (
-    <>
-      <Cell isLink onClick={() => setVisible(true)} />
-      <ActionSheet title="自定义内容" visible={visible} onCancel={() => setVisible(false)}>
-        <div>自定义内容</div>
-      </ActionSheet>
-    </>
-  );
-};
-```
+<code title="自定义面板" card src="./demo/custom.tsx" />
 
 ## API
 

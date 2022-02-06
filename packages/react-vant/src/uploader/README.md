@@ -254,11 +254,22 @@ compressorjs 是一个开源的图片处理库，提供了图片压缩、图片�
 
 使用 compressorjs 进行处理的示例代码如下:
 
-```html
-export default () => { const beforeRead = (file) => { return new Promise((resolve) => { //
-compressorjs 默认开启 checkOrientation 选项 // 会将图片修正为正确方向 new Compressor(file, {
-success: resolve, error(err) { console.log(err.message); }, }); }); }; return
-<Uploader beforeRead="beforeRead" />; };
+```jsx | pure
+export default () => {
+  const beforeRead = (file) => {
+    return new Promise((resolve) => {
+      // compressorjs 默认开启 checkOrientation 选项
+      // 会将图片修正为正确方向
+      new Compressor(file, {
+        success: resolve,
+        error(err) {
+          console.log(err.message);
+        },
+      });
+    });
+  };
+  return <Uploader beforeRead={beforeRead} />;
+};
 ```
 
 ### 上传 HEIC/HEIF 格式的图片后无法展示？
