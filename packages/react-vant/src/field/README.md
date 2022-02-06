@@ -16,196 +16,171 @@ import { Field } from 'react-vant';
 
 可以通过 `value` 和 `input` 双向绑定输入框的值，通过 `placeholder` 设置占位提示文字。
 
-```html
-<!-- Field 是基于 Cell 实现的，可以使用 Cell.Group 作为容器来提供外边框。 -->
-<Cell.Group>
-  <Field
-    value="{value1}"
-    type="text"
-    label="文本"
-    placeholder="请输入用户名"
-    onChange="{setValue1}"
-  />
-</Cell.Group>
-```
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Field } from 'react-vant';
 
-```js
-const [value1, setValue1] = useState('');
+// Field 是基于 Cell 实现的，可以使用 Cell.Group 作为容器来提供外边框。
+export default () => {
+  const [value, setValue] = useState('');
+  return (
+    <Field
+      label="文本"
+      tooltip="提示tooltip"
+      intro={<div>We must make sure that your are a human.</div>}
+      placeholder="请输入文本"
+      value={value}
+      onChange={setValue}
+    />
+  );
+};
 ```
 
 ### 自定义类型
 
 根据 `type` 属性定义不同类型的输入框，默认值为 `text`。
 
-```html
-<!-- 输入任意文本 -->
-<Field value="{value2}" label="文本" onChange="{setValue2}" />
-<!-- 输入手机号，调起手机号键盘 -->
-<Field value="{tel}" type="tel" label="手机号" onChange="{setTel}" />
-<!-- 允许输入正整数，调起纯数字键盘 -->
-<Field value="{digit}" type="digit" label="整数" onChange="{setDigit}" />
-<!-- 允许输入数字，调起带符号的纯数字键盘 -->
-<Field value="{number}" type="number" label="数字" onChange="{setNumber}" />
-<!-- 输入密码 -->
-<Field value="{password}" type="password" label="密码" onChange="{setPasswrod}" />
-```
-
-```js
-const [value2, setValue2] = useState('');
-const [tel, setTel] = useState('');
-const [digit, setDigit] = useState('');
-const [number, setNumber] = useState('');
-const [password, setPasswrod] = useState('');
-```
+<code title="自定义类型" card src="./demo/type.tsx" />
 
 ### 禁用输入框
 
 通过 `readonly` 将输入框设置为只读状态，通过 `disabled` 将输入框设置为禁用状态。
 
-```html
-<Cell.Group>
-  <Field label="文本" value="输入框只读" readonly />
-  <Field label="文本" value="输入框已禁用" disabled />
-</Cell.Group>
+```jsx
+/**
+ * title: 禁用输入框
+ * card: true
+ */
+import React from 'react';
+import { Cell, Field } from 'react-vant';
+
+export default () => {
+  return (
+    <Cell.Group>
+      <Field label="文本" value="输入框只读" readonly />
+      <Field label="文本" value="输入框已禁用" disabled />
+    </Cell.Group>
+  );
+};
 ```
 
 ### 显示图标
 
 通过 `leftIcon` 和 `rightIcon` 配置输入框两侧的图标，通过设置 `clearable` 在输入过程中展示清除图标。
 
-```html
-<Cell.Group>
-  <Field value="{value3}" label="文本" leftIcon="{<SmileO" />} rightIcon={<WarningO />}
-  placeholder="显示图标" onChange={setValue3} />
-  <Field value="{value4}" clearable label="文本" leftIcon="{<MusicO" />} placeholder="显示清除图标"
-  onChange={setValue4} />
-</Cell.Group>
-```
-
-```js
-const [value3, setValue3] = useState('');
-const [value4, setValue4] = useState('');
-```
+<code title="显示图标" card src="./demo/icon.tsx" />
 
 ### 错误提示
 
-设置 `required` 属性表示这是一个必填项，可以配合 `error` 或 `error-message` 属性显示对应的错误提示。
+设置 `required` 属性表示这是一个必填项，可以配合 `error` 或 `errorMessage` 属性显示对应的错误提示。
 
-```html
-<Cell.Group>
-  <Field
-    value="{username}"
-    error
-    required
-    label="用户名"
-    placeholder="请输入用户名"
-    onChange="{setUsername}"
-  />
-  <Field
-    value="{phone}"
-    required
-    label="手机号"
-    placeholder="请输入手机号"
-    errorMessage="手机号格式错误"
-    onChange="{setPhone}"
-  />
-</Cell.Group>
-```
+<code title="错误提示" card src="./demo/error.tsx" />
 
 ### 插入按钮
 
 通过 button 插槽可以在输入框尾部插入按钮。
 
-```html
-<Field
-  value="{sms}"
-  center
-  clearable
-  label="短信验证码"
-  placeholder="请输入短信验证码"
-  onChange="{setSms}"
-  button="{<Button"
-  size="small"
-  type="primary"
-/>} />
+```jsx
+/**
+ * title: 插入按钮
+ * card: true
+ */
+import React from 'react';
+import { Field, Button } from 'react-vant';
+
+export default () => {
+  return (
+    <Field
+      center
+      clearable
+      label="短信验证码"
+      placeholder="请输入短信验证码"
+      button={
+        <Button size="small" type="primary">
+          发送
+        </Button>
+      }
+    />
+  );
+};
 ```
 
 ### 格式化输入内容
 
 通过 `formatter` 属性可以对输入的内容进行格式化，通过 `format-trigger` 属性可以指定执行格式化的时机，默认在输入时进行格式化。
 
-```html
-<Field
-  value="{value5}"
-  label="文本"
-  formatter="{formatter}"
-  placeholder="在输入时执行格式化"
-  onChange="{setValue5}"
-/>
-<Field
-  value="{value6}"
-  label="文本"
-  formatter="{formatter}"
-  format-trigger="onBlur"
-  placeholder="在失焦时执行格式化"
-  onChange="{setValue6}"
-/>
-```
-
-```js
-const [value5, setValue5] = useState('');
-const [value6, setValue6] = useState('');
-
-const formatter = (value) => value.replace(/\d/g, '');
-```
+<code title="格式化输入内容" card src="./demo/formatter.tsx">
 
 ### 高度自适应
 
 对于 textarea，可以通过 `autosize` 属性设置高度自适应。
 
-```html
-<Field
-  value="{message}"
-  rows="1"
-  autosize
-  label="留言"
-  type="textarea"
-  placeholder="请输入留言"
-  onChange="{setMessage}"
-/>
+```jsx
+/**
+ * title: 高度自适应
+ * card: true
+ */
+import React from 'react';
+import { Field } from 'react-vant';
+
+export default () => {
+  return <Field rows={1} autosize label="留言" type="textarea" placeholder="请输入留言" />;
+};
 ```
 
 ### 显示字数统计
 
 设置 `maxlength` 和 `showWordLimit` 属性后会在底部显示字数统计。
 
-```html
-<Field
-  value="{message2}"
-  rows="2"
-  autosize
-  label="留言"
-  type="textarea"
-  maxlength="50"
-  placeholder="请输入留言"
-  showWordLimit
-  onChange="{setMessage2}"
-/>
+```jsx
+/**
+ * title: 显示字数统计
+ * card: true
+ */
+import React from 'react';
+import { Field } from 'react-vant';
+
+export default () => {
+  return (
+    <Field
+      rows={2}
+      autosize
+      label="留言"
+      type="textarea"
+      placeholder="请输入留言"
+      maxlength={50}
+      showWordLimit
+    />
+  );
+};
 ```
 
 ### 输入框内容对齐
 
 通过 `inputAlign` 属性可以设置输入框内容的对齐方式，可选值为 `center`、`right`。
 
-```html
-<Field
-  value="{value7}"
-  label="文本"
-  placeholder="输入框内容右对齐"
-  inputAlign="right"
-  onChange="{setValue7}"
-/>
+```jsx
+/**
+ * title: 显示字数统计
+ * card: true
+ */
+import React from 'react';
+import { Field } from 'react-vant';
+
+export default () => {
+  return <Field label="文本" placeholder="输入框内容右对齐" inputAlign="right" />;
+};
 ```
+
+### ref 调用
+
+通过 ref 可以获取到 Field 实例并调用实例方法。
+
+<code title="ref调用" card src="./demo/ref.tsx" />
 
 ## API
 
@@ -265,22 +240,6 @@ const formatter = (value) => value.replace(/\d/g, '');
 ### 方法
 
 通过 ref 可以获取到 Field 实例并调用实例方法
-
-```js
-const fieldRef = useRef < FieldInstance > null;
-```
-
-```html
-<Field
-  ref="{fieldRef}"
-  value="{value}"
-  onChange="{setValue}"
-  placeholder="请输入文本"
-  maxlength="11"
-/>
-
-<input type="button" value="click" onClick={() => { fieldRef.current?.focus() }} />
-```
 
 | 方法名 | 说明           | 参数 | 返回值 |
 | ------ | -------------- | ---- | ------ |

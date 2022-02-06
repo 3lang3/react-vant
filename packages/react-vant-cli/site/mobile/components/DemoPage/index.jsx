@@ -6,8 +6,8 @@ export default ({ blocks = [], children }) => {
   return (
     <DemoSection>
       {typeof children === 'function' ? children() : children}
-      {blocks.map(({ Component, key, title }) => (
-        <DemoBlock key={key} title={title}>
+      {blocks.map(({ Component, key, title, ...props }) => (
+        <DemoBlock key={key} title={title} {...props}>
           <Component />
         </DemoBlock>
       ))}
