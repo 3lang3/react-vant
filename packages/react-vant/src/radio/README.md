@@ -16,118 +16,186 @@ import { Radio } from 'react-vant';
 
 通过 `defaultValue` 值默认当前选中项的 name。
 
-```html
-<Radio.Group defaultValue="1">
-  <Radio name="1">单选框 1</Radio>
-  <Radio name="2">单选框 2</Radio>
-</Radio.Group>
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React from 'react';
+import { Radio } from 'react-vant';
+
+export default () => {
+  return (
+    <Radio.Group defaultValue="1">
+      <Radio name="1">单选框1</Radio>
+      <Radio name="2">单选框2</Radio>
+    </Radio.Group>
+  );
+};
 ```
 
 ### 水平排列
 
 将 `direction` 属性设置为 `horizontal` 后，单选框组会变成水平排列。
 
-```html
-<Radio.Group defaultValue="1" direction="horizontal">
-  <Radio name="1">单选框 1</Radio>
-  <Radio name="2">单选框 2</Radio>
-</Radio.Group>
+```jsx
+/**
+ * title: 水平排列
+ * card: true
+ */
+import React from 'react';
+import { Radio } from 'react-vant';
+
+export default () => {
+  return (
+    <Radio.Group defaultValue="1" direction="horizontal">
+      <Radio name="1">单选框 1</Radio>
+      <Radio name="2">单选框 2</Radio>
+    </Radio.Group>
+  );
+};
 ```
 
 ### 禁用状态
 
 通过 `disabled` 属性禁止选项切换，在 `Radio` 上设置 `disabled` 可以禁用单个选项。
 
-```html
-<Radio.Group defaultValue="1" disabled>
-  <Radio name="1">单选框 1</Radio>
-  <Radio name="2">单选框 2</Radio>
-</Radio.Group>
+```jsx
+/**
+ * title: 禁用状态
+ * card: true
+ */
+import React from 'react';
+import { Radio } from 'react-vant';
+
+export default () => {
+  return (
+    <Radio.Group defaultValue="1">
+      <Radio name="1" disabled>
+        单选框1
+      </Radio>
+      <Radio name="2" disabled>
+        单选框2
+      </Radio>
+    </Radio.Group>
+  );
+};
 ```
 
 ### 自定义形状
 
 将 `shape` 属性设置为 `square`，单选框的形状会变成方形。
 
-```html
-<Radio.Group defaultValue="1">
-  <Radio name="1" shape="square"> 单选框 1 </Radio>
-  <Radio name="2" shape="square"> 单选框 2 </Radio>
-</Radio.Group>
+```jsx
+/**
+ * title: 自定义形状
+ */
+import React from 'react';
+import { Radio } from 'react-vant';
+
+export default () => {
+  return (
+    <Radio.Group defaultValue="1" style={{ marginLeft: 16 }}>
+      <Radio shape="square" name="1">
+        单选框1
+      </Radio>
+      <Radio shape="square" name="2">
+        单选框2
+      </Radio>
+    </Radio.Group>
+  );
+};
 ```
 
 ### 自定义颜色
 
 通过 `checkedColor` 属性设置选中状态的图标颜色。
 
-```html
-<Radio.Group defaultValue="1">
-  <Radio name="1" checkedColor="#ee0a24"> 单选框 1 </Radio>
-  <Radio name="2" checkedColor="#ee0a24"> 单选框 2 </Radio>
-</Radio.Group>
+```jsx
+/**
+ * title: 自定义颜色
+ * card: true
+ */
+import React from 'react';
+import { Radio } from 'react-vant';
+
+export default () => {
+  return (
+    <Radio.Group defaultValue="1">
+      <Radio name="1" checkedColor="#ee0a24">
+        单选框 1
+      </Radio>
+      <Radio name="2" checkedColor="#ee0a24">
+        单选框 2
+      </Radio>
+    </Radio.Group>
+  );
+};
 ```
 
 ### 自定义大小
 
 通过 `iconSize` 属性可以自定义图标的大小。
 
-```html
-<Radio.Group defaultValue="1">
-  <Radio name="1" iconSize="24px"> 单选框 1 </Radio>
-  <Radio name="2" iconSize="24px"> 单选框 2 </Radio>
-</Radio.Group>
+```jsx
+/**
+ * title: 自定义大小
+ * card: true
+ */
+import React from 'react';
+import { Radio } from 'react-vant';
+
+export default () => {
+  return (
+    <Radio.Group defaultValue="1">
+      <Radio name="1" iconSize="24px">
+        单选框 1
+      </Radio>
+      <Radio name="2" iconSize="24px">
+        单选框 2
+      </Radio>
+    </Radio.Group>
+  );
+};
 ```
 
 ### 禁用文本点击
 
 设置 `labelDisabled` 属性后，点击图标以外的内容不会触发单选框切换。
 
-```html
-<Radio.Group defaultValue="1">
-  <Radio name="1" labelDisabled> 单选框 1 </Radio>
-  <Radio name="2" labelDisabled> 单选框 2 </Radio>
-</Radio.Group>
+```jsx
+/**
+ * title: 禁用文本点击
+ * card: true
+ */
+import React from 'react';
+import { Radio } from 'react-vant';
+
+export default () => {
+  return (
+    <Radio.Group defaultValue="1">
+      <Radio name="1" labelDisabled>
+        单选框 1
+      </Radio>
+      <Radio name="2" labelDisabled>
+        单选框 2
+      </Radio>
+    </Radio.Group>
+  );
+};
 ```
 
 ### 异步更新
 
 设置 `value` 属性后，点击图标状态不会改变，而是直接执行 `onChange` 方法，在此方法中更换状态
 
-```html
-<Radio.Group
-  value={value}
-  onChange={(val) => {
-    Toast.loading({ forbidClick: true });
-
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      Toast.clear();
-      // 注意此时修改 value 后会再次触发 change 事件
-      setValue(val);
-    }, 500);
-  }}
->
-  <Radio name="1" labelDisabled>
-    单选框 1
-  </Radio>
-  <Radio name="2" labelDisabled>
-    单选框 2
-  </Radio>
-</Radio.Group>
-```
+<code title="异步更新" card src="./demo/async.tsx" />
 
 ### 与 Cell 组件一起使用
 
 此时你需要再引入 `Cell` 和 `CellGroup` 组件。
 
-```html
-<Radio.Group value="1">
-  <Cell.Group>
-    <Cell title="单选框1" icon="shop-o" rightIcon="{<Radio" name="1" />} />{' '}
-    <Cell title="单选框2" icon="shop-o" rightIcon="{<Radio" name="2" />} />
-  </Cell.Group>
-</Radio.Group>
-```
+<code title="与 Cell 组件一起使用" src="./demo/cell.tsx" />
 
 ## API
 
