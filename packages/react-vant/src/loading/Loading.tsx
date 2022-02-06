@@ -66,7 +66,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
   };
 
   return (
-    <div className={clsx(className, bem([type, { vertical }]))}>
+    <div className={clsx(className, bem([type, { vertical }]))} style={props.style}>
       <span className={clsx(bem('spinner', type))} style={spinnerStyle}>
         {Icon(bem)[type]}
       </span>
