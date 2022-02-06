@@ -27,7 +27,7 @@ export { default as Steps } from './steps';
 export { default as Toast } from './toast';
 export { default as ActionSheet } from './action-sheet';
 export { default as Dialog } from './dialog';
-export { default as DropdownMenu } from './dropdown-menu';
+export * from './dropdown-menu';
 export { default as Search } from './search';
 export { default as Sidebar } from './sidebar';
 export { default as Tabs } from './tabs';

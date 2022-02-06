@@ -14,114 +14,23 @@ import { DropdownMenu } from 'react-vant';
 
 ### 基础用法
 
-```html
-const option1 = [ { text: '全部商品', value: 0 }, { text: '新款商品', value: 1 }, { text:
-'活动商品', value: 2 }, ]; const option2 = [ { text: '默认排序', value: 'a' }, { text: '好评排序',
-value: 'b' }, { text: '销量排序', value: 'c' }, ]; export default () => { const [value, setValue] =
-useState({}); return (
-<DropdownMenu value="{value}" onChange="{setValue}">
-  <DropdownMenu.Item name="value1" options="{option1}" />
-  <DropdownMenu.Item name="value2" options="{option2}" />
-</DropdownMenu>
-); };
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
 ### 自定义菜单内容
 
-```html
-const option1 = [
-  { text: '全部商品', value: 0 },
-  { text: '新款商品', value: 1 },
-  { text: '活动商品', value: 2 },
-];
-export default () => {
-  const [value, setValue] = useState();
-  return (
-    <DropdownMenu value={value} onChange={(v) => setValue(v)}>
-      <DropdownMenu.Item name="value1" options={option1} />
-      <DropdownMenu.Item title="筛选" name="value2">
-        <Cell center title="包邮" rightIcon={<Switch size={24} />} />
-        <Cell center title="团购" rightIcon={<Switch size={24} />} />
-      </DropdownMenu.Item>
-    </DropdownMenu>
-  );
-};
-```
+<code title="自定义菜单内容" src="./demo/custom.tsx" />
 
 ### 自定义高亮颜色
 
-```html
-const option1 = [
-  { text: '全部商品', value: 0 },
-  { text: '新款商品', value: 1 },
-  { text: '活动商品', value: 2 },
-];
-const option2 = [
-  { text: '默认排序', value: 'a' },
-  { text: '好评排序', value: 'b' },
-  { text: '销量排序', value: 'c' },
-];
-
-export default () => {
-  const [value, setValue] = useState();
-  return (
-    <DropdownMenu activeColor="#f44336" value={value} onChange={(v) => setValue(v)}>
-      <DropdownMenu.Item name="value1" options={option1} />
-      <DropdownMenu.Item name="value2" options={option2} />
-    </DropdownMenu>
-  );
-};
-```
+<code title="自定义高亮颜色" src="./demo/color.tsx" />
 
 ### 向上展开
 
-```html
-const option1 = [
-  { text: '全部商品', value: 0 },
-  { text: '新款商品', value: 1 },
-  { text: '活动商品', value: 2 },
-];
-const option2 = [
-  { text: '默认排序', value: 'a' },
-  { text: '好评排序', value: 'b' },
-  { text: '销量排序', value: 'c' },
-];
-
-export default () => {
-  const [value, setValue] = useState();
-  return (
-    <DropdownMenu direction="up" value={value} onChange={(v) => setValue(v)}>
-      <DropdownMenu.Item name="value1" options={option1} />
-      <DropdownMenu.Item name="value2" options={option2} />
-    </DropdownMenu>
-  );
-};
-```
+<code title="向上展开" src="./demo/direction.tsx" />
 
 ### 禁用菜单
 
-```html
-const option1 = [
-  { text: '全部商品', value: 0 },
-  { text: '新款商品', value: 1 },
-  { text: '活动商品', value: 2 },
-];
-const option2 = [
-  { text: '默认排序', value: 'a' },
-  { text: '好评排序', value: 'b' },
-  { text: '销量排序', value: 'c' },
-];
-
-export default () => {
-  const [value, setValue] = useState();
-  return (
-    <DropdownMenu disabled value={value} onChange={(v) => setValue(v)}>
-      <DropdownMenu.Item name="value1" options={option1} />
-      <DropdownMenu.Item name="value2" options={option2} />
-    </DropdownMenu>
-  );
-};
-```
+<code title="禁用菜单" src="./demo/disabled.tsx" />
 
 ## API
 
@@ -185,17 +94,17 @@ export default () => {
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { DropdownMenuInstance, DropdownItemOption, DropdownMenuDirection } from 'react-vant';
 ```
 
 `DropdownMenuInstance` 是组件实例的类型，用法如下：
 
-```js
+```ts
 import { useRef } from 'react';
-import type { DropdownMenuInstance } from 'react-vant/es/dropdown-menu';
+import type { DropdownMenuInstance } from 'react-vant';
 
-const dropdownRef = useRef < DropdownMenuInstance > null;
+const dropdownRef = useRef<DropdownMenuInstance>(null);
 
 dropdownRef.current?.toggleItem(0);
 ```
