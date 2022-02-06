@@ -16,78 +16,143 @@ import { Search } from 'react-vant';
 
 `value` 用于控制搜索框中的文字，`background` 可以自定义搜索框外部背景色。
 
-```html
-import { useState } from 'react'; import { Search } from 'react-vant'; export default () => { const
-[value, setValue] = useState(''); return
-<Search value="{value}" onChange="{setValue}" placeholder="请输入搜索关键词" />; };
+```jsx
+/**
+ * title: 基础用法
+ */
+import React, { useState } from 'react';
+import { Search } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState('');
+  return <Search value={value} onChange={setValue} placeholder="请输入搜索关键词" />;
+};
 ```
 
 ### 事件监听
 
 Search 组件提供了 `onSearch` 和 `onCancel` 事件，`onSearch` 事件在点击键盘上的搜索/回车按钮后触发，`onCancel` 事件在点击搜索框右侧取消按钮时触发。
 
-```html
-<form action="/">
-  <van-search
-    v-model="value"
-    show-action
-    placeholder="请输入搜索关键词"
-    @search="onSearch"
-    @cancel="onCancel"
-  />
-</form>
-```
+```jsx
+/**
+ * title: 事件监听
+ */
+import React, { useState } from 'react';
+import { Search, Toast } from 'react-vant';
 
-```html
-import { useState } from 'react'; import { Search, Toast } from 'react-vant'; export default () => {
-const [value, setValue] = useState(''); const onSearch = (val) => Toast.info(val); const onCancel =
-() => Toast.info('取消'); return (
-<Search
-  value="{value}"
-  onChange="{setValue}"
-  onSearch="{onSearch}"
-  onCancel="{onCancel}"
-  placeholder="请输入搜索关键词"
-/>
-); };
+export default () => {
+  const [value, setValue] = useState('');
+  return (
+    <Search
+      value={value}
+      onChange={setValue}
+      placeholder="请输入搜索关键词"
+      showAction
+      onSearch={(val) => {
+        Toast(val);
+        setValue(val);
+      }}
+      onCancel={() => {
+        Toast('取消');
+        setValue('');
+      }}
+      onClear={() => {
+        Toast('清除');
+        setValue('');
+      }}
+      onClickInput={() => {
+        Toast('点击输入区域时触发	');
+      }}
+    />
+  );
+};
 ```
 
 ### 搜索框内容对齐
 
 通过 `inputAlign` 属性设置搜索框内容的对齐方式，可选值为 `center`、`right`。
 
-```html
-<Search placeholder="请输入搜索关键词" inputAlign="center" />
+```jsx
+/**
+ * title: 搜索框内容对齐
+ */
+import React, { useState } from 'react';
+import { Search } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState('');
+  return (
+    <Search value={value} onChange={setValue} inputAlign="center" placeholder="请输入搜索关键词" />
+  );
+};
 ```
 
 ### 禁用搜索框
 
 通过 `disabled` 属性禁用搜索框。
 
-```html
-<Search placeholder="请输入搜索关键词" disabled />
+```jsx
+/**
+ * title: 禁用搜索框
+ */
+import React, { useState } from 'react';
+import { Search } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState('');
+  return <Search disabled value={value} onChange={setValue} placeholder="请输入搜索关键词" />;
+};
 ```
 
 ### 自定义背景色
 
 通过 `background` 属性可以设置搜索框外部的背景色，通过 `shape` 属性设置搜索框的形状，可选值为 `round`。
 
-```html
-<Search shape="round" background="#4fc08d" placeholder="请输入搜索关键词" />
+```jsx
+/**
+ * title: 自定义背景色
+ */
+import React, { useState } from 'react';
+import { Search } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState('');
+  return (
+    <Search
+      shape="round"
+      background="#4fc08d"
+      value={value}
+      onChange={setValue}
+      placeholder="请输入搜索关键词"
+    />
+  );
+};
 ```
 
 ### 自定义按钮
 
 使用 `actionText` 属性可以自定义右侧按钮的内容。使用后，`onCancel` 事件将不再触发。
 
-```html
-<Search
-  showAction
-  label="地址"
-  placeholder="请输入搜索关键词"
-  actionText={<div onClick={onSearch}>搜索</div>}
-  onSearch={onSearch}
-/>
+```jsx
+/**
+ * title: 自定义按钮
+ */
+import React, { useState } from 'react';
+import { Search, Toast } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState('');
+  return (
+    <Search
+      showAction
+      label="地址"
+      actionText={<div onClick={() => Toast.info(value)}>搜索</div>}
+      value={value}
+      onChange={setValue}
+      placeholder="请输入搜索关键词"
+    />
+  );
+};
 ```
 
 ## API
