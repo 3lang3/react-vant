@@ -14,40 +14,166 @@ import { PasswordInput } from 'react-vant';
 
 ### 基础用法
 
-```html
-const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
-<PasswordInput value="12a" length="{4}" type="text" onSubmit="{onSubmit}" />;
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return <PasswordInput onSubmit={onSubmit} />;
+};
 ```
 
 ### 限制长度
 
-```html
-const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
-<PasswordInput type="text" length="{6}" onSubmit="{onSubmit}" />;
+```jsx
+/**
+ * title: 限制长度
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return <PasswordInput length={4} onSubmit={onSubmit} />;
+};
+```
+
+### 格子间距
+
+```jsx
+/**
+ * title: 格子间距
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return <PasswordInput gutter={10} onSubmit={onSubmit} />;
+};
+```
+
+### 明文展示
+
+```jsx
+/**
+ * title: 明文展示
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return <PasswordInput value="123" mask={false} onSubmit={onSubmit} />;
+};
 ```
 
 ### 只允许数字
 
-```html
-const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
-<PasswordInput type="number" value="" mask="{false}" length="{4}" onSubmit="{onSubmit}" />;
+```jsx
+/**
+ * title: 只允许数字
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return <PasswordInput type="number" value="12" mask={false} length={4} onSubmit={onSubmit} />;
+};
 ```
 
 ### 自定义规则
 
 > 如果设置的初始值不符合规则, 将不会展示
 
-```html
-const onSubmit = (val: string) => { Dialog.alert({ message: val, }); }; <PasswordInput value="124"
-mask={false} length={4} validator={(val: string) => { return /^[0-3]{0,4}$/.test(val); }}
-onSubmit={onSubmit} />;
+```jsx
+/**
+ * title: 只允许数字
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return (
+    <PasswordInput
+      value={123}
+      mask={false}
+      length={4}
+      validator={(val) => {
+        return /^[0-3]{0,4}$/.test(val);
+      }}
+      onSubmit={onSubmit}
+    />
+  );
+};
 ```
 
 ### 自动聚焦
 
-```html
-const onSubmit = (val: string) => { Dialog.alert({ message: val, }); };
-<PasswordInput length="{4}" autoFocus onSubmit="{onSubmit}" />;
+```jsx
+/**
+ * title: 只允许数字
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return <PasswordInput length={4} autoFocus onSubmit={onSubmit} />;
+};
+```
+
+### 提示信息
+
+```jsx
+/**
+ * title: 提示信息
+ */
+import React from 'react';
+import { PasswordInput, Dialog } from 'react-vant';
+
+export default () => {
+  const onSubmit = (val) => {
+    Dialog.alert({
+      message: val,
+    });
+  };
+  return <PasswordInput onSubmit={onSubmit} info={<div>密码为6位数字</div>} />;
+};
 ```
 
 ## API
