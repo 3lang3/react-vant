@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useRef, useContext, useMemo } from 'react';
 import { Star, StarO } from '@react-vant/icons';
 import clsx from 'clsx';
@@ -59,7 +60,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
       Array(count)
         .fill('')
         .map((_, i) => getRateStatus(value, i + 1, props.allowHalf, props.readonly)),
-    [value, count],
+    [count, value, props.allowHalf, props.readonly],
   );
 
   const ranges = useRef<{ left: number; score: number }[]>();
@@ -156,18 +157,22 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
       >
         {React.cloneElement((isFull ? icon : voidIcon) as React.ReactElement, {
           className: clsx(bem('icon', { disabled, full: isFull })),
-          // eslint-disable-next-line no-nested-ternary
-          color: disabled ? disabledColor : isFull ? color : voidColor,
-          fontSize: size,
-        })}
-        {renderHalf &&
-          React.cloneElement((isVoid ? voidIcon : icon) as React.ReactElement, {
-            className: clsx(bem('icon', ['half', { disabled, full: !isVoid }])),
-            // eslint-disable-next-line no-nested-ternary
-            color: disabled ? disabledColor : isVoid ? voidColor : color,
+          style: {
+            color: disabled ? disabledColor : isFull ? color : voidColor,
             fontSize: size,
-            style: { width: `${item.value}em` },
-          })}
+          },
+        })}
+        {renderHalf && (
+          <div className={clsx(bem('icon', ['half']))} style={{ width: `${item.value}em` }}>
+            {React.cloneElement((isVoid ? voidIcon : icon) as React.ReactElement, {
+              className: clsx(bem('icon', [{ disabled, full: !isVoid }])),
+              style: {
+                color: disabled ? disabledColor : isVoid ? voidColor : color,
+                fontSize: size,
+              },
+            })}
+          </div>
+        )}
       </div>
     );
   };
