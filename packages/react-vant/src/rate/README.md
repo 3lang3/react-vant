@@ -16,61 +16,114 @@ import { Rate } from 'react-vant';
 
 通过 `value` 来绑定当前评分值。
 
-```html
-<Rate value="{3}" />
-```
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Rate } from 'react-vant';
 
-```html
-export default () => { const [value, setValue] = useState(3); return <Rate value={value}
-onChange={(current) => setValue(current)} />; };
+export default () => {
+  const [value, setValue] = useState(3);
+  return <Rate value={value} onChange={setValue} />;
+};
 ```
 
 ### 自定义图标
 
 通过 `icon` 属性设置选中时的图标，`voidIcon` 属性设置未选中时的图标。
 
-```html
-<Rate defaultValue="{3}" icon="like" voidIcon="like-o" />
-```
+<code title="自定义图标" card src="./demo/icon.tsx" />
 
 ### 自定义样式
 
 通过 `size` 属性设置图标大小，`color` 属性设置选中时的颜色，`voidColor` 设置未选中时的颜色。
 
-```html
-<Rate defaultValue="{3}" size="{25}" color="#ffd21e" voidIcon="star" voidColor="#eee" />
+```jsx
+/**
+ * title: 自定义样式
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Rate } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(3);
+  return <Rate size="32" color="#3f45ff" voidColor="#111" value={value} onChange={setValue} />;
+};
 ```
 
 ### 半星
 
 设置 `allowHalf` 属性后可以选中半星。
 
-```html
-<Rate defaultValue="{3.5}" allowHalf />
+```jsx
+/**
+ * title: 半星
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Rate } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(3.5);
+  return <Rate allowHalf value={value} onChange={setValue} />;
+};
 ```
 
 ### 自定义数量
 
 通过 `count` 属性设置评分总数。
 
-```html
-<Rate defaultValue="{1}" count="8" />
+```jsx
+/**
+ * title: 自定义数量
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Rate } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(4);
+  return <Rate value={value} onChange={setValue} count={8} />;
+};
 ```
 
 ### 禁用状态
 
 通过 `disabled` 属性来禁用评分。
 
-```html
-<Rate defaultValue="{3}" disabled />
+```jsx
+/**
+ * title: 禁用状态
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Rate } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(4);
+  return <Rate value={value} onChange={setValue} disabled />;
+};
 ```
 
 ### 只读状态显示小数
 
 设置 `readonly` 和 `allowHalf` 属性后，Rate 组件可以展示任意小数结果。
 
-```html
-<Rate defaultValue="{3.3}" readonly allowHalf />
+```jsx
+/**
+ * title: 只读状态显示小数
+ * card: true
+ */
+import React, { useState } from 'react';
+import { Rate } from 'react-vant';
+
+export default () => {
+  const [value, setValue] = useState(3.3);
+  return <Rate value={value} onChange={setValue} readonly allowHalf />;
+};
 ```
 
 ## API
