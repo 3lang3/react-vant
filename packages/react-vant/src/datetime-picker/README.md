@@ -124,22 +124,24 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 ### 类型定义
 
-通过 `DatetimePickerInstance` 获取 DatetimePicker 实例的类型定义（从 3.2.0 版本开始支持）。
+通过 `DatetimePickerInstance` 获取 DatetimePicker 实例的类型定义。
 
-```html
-import { useRef } from 'react'; import type { DatetimePickerInstance } from 'react-vant'; const
-datetimePickerRef = useRef<DatetimePickerInstance
-  >(); datetimePickerRef.current?.getPicker();</DatetimePickerInstance
->
+```ts
+import { useRef } from 'react';
+import type { DatetimePickerInstance } from 'react-vant';
+
+const datetimePickerRef = useRef<DatetimePickerInstance>();
+
+datetimePickerRef.current?.getPicker();
 ```
 
 ## 常见问题
 
-### 设置 min-date 或 max-date 后出现页面卡死的情况？
+### 设置 minDate 或 maxDate 后出现页面卡死的情况？
 
-请注意不要在模板中直接使用类似`min-date="new Date()"`的写法，这样会导致每次渲染组件时传入一个新的 Date 对象，而传入新的数据会触发下一次渲染，从而陷入死循环。
+请注意不要在模板中直接使用类似`minDate="new Date()"`的写法，这样会导致每次渲染组件时传入一个新的 Date 对象，而传入新的数据会触发下一次渲染，从而陷入死循环。
 
-正确的做法是将`min-date`作为一个数据定义在`data`函数中。
+正确的做法是将`minDate`作为一个数据定义在`data`函数中。
 
 ### 在 iOS 系统上初始化组件失败？
 
