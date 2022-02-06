@@ -49,7 +49,7 @@ const getRoutes = () => {
   names.forEach((name) => {
     const { component, lang } = parseName(name);
 
-    let { MdContent } = documents[name];
+    const { MdContent } = documents[name];
 
     const previewer = (props) => <MdPreviewer {...props} />;
     const PreviewerComp = (props) => (

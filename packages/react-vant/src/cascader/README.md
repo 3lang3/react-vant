@@ -16,215 +16,31 @@ import { Cascader } from 'react-vant';
 
 级联选择组件可以搭配 Field 和 Popup 组件使用，示例如下：
 
-```html
-import { Field, Popup, Cascader, useSetState } from 'react-vant';
-
-// 选项列表，children 代表子选项，支持多级嵌套
-const options = [
-  {
-    text: '浙江省',
-    value: '330000',
-    children: [{ text: '杭州市', value: '330100' }],
-  },
-  {
-    text: '江苏省',
-    value: '320000',
-    children: [{ text: '南京市', value: '320100' }],
-  },
-];
-
-export default () => {
-  const [state, set] = useSetState({
-    visible: false,
-    value: '',
-  });
-  // 全部选项选择完毕后，会触发 finish 事件
-  const onFinish = {({ selectedOptions }) => {
-    set({
-      visible: false,
-      value: selectedOptions.map((option) => option.text).join('/'),
-    });
-  }}
-  return (
-    <>
-      <Field
-        isLink
-        readonly
-        value={state.value}
-        label="地区"
-        placeholder="请选择所在地区"
-        onClick={() => set({ visible: true })}
-      />
-      <Popup round visible={state.value} position="bottom" onClose={() => set({ visible: false })}>
-        <Cascader
-          title="请选择所在地区"
-          options={options}
-          onClose={() => set({ visible: false })}
-          onFinish={onFinish}
-        />
-      </Popup>
-    </>
-  );
-};
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
 ### 自定义颜色
 
 通过 `activeColor` 属性来设置选中状态的高亮颜色。
 
-```html
-<Cascader title="请选择所在地区" activeColor="#f44336" options="{options}" />
-```
+<code title="自定义颜色" src="./demo/color.tsx" />
 
 ### 异步加载选项
 
 可以监听 `onChange` 事件并动态设置 `options`，实现异步加载选项。
 
-```html
-import { useState } from 'react'
-import { Toast, Field, Popup, Cascader, useSetState } from 'react-vant';
-
-export default () => {
-  const [dynamicOpts, setDynamicOpts] = useState([
-    {
-      text: '浙江省',
-      value: '330000',
-      children: [],
-    },
-  ]);
-  const onChange = ({ value }) => {
-    if (value === dynamicOpts[0].value) {
-      Toast.loading({ message: '加载中...', duration: 0 });
-      setTimeout(() => {
-        Toast.clear()
-        const newOpts = [...dynamicOpts];
-        newOpts[0].children = [
-          { text: '杭州市', value: '330100' },
-          { text: '宁波市', value: '330200' },
-        ];
-        setDynamicOpts(newOpts);
-      }, 2000);
-    }
-  };
-  const onFinish = {({ selectedOptions }) => {
-    set({
-      visible: false,
-      value: selectedOptions.map((option) => option.text).join('/'),
-    });
-  }}
-  return (
-    <>
-      <Field
-        isLink
-        readonly
-        value={state.value}
-        label="地区"
-        placeholder="请选择所在地区"
-        onClick={() => set({ visible: true })}
-      />
-      <Popup round visible={state.value} position="bottom" onClose={() => set({ visible: false })}>
-        <Cascader
-          title="请选择所在地区"
-          options={options}
-          onClose={() => set({ visible: false })}
-          onChange={onChange}
-          onFinish={onFinish}
-        />
-      </Popup>
-    </>
-  );
-};
-```
+<code title="异步加载选项" src="./demo/async.tsx" />
 
 ### 自定义字段名
 
 通过 `fieldNames` 属性可以自定义 `options` 里的字段名称。
 
-```html
-const options = [ { name: '浙江省', code: '330000', items: [{ name: '杭州市', code: '330100' }], },
-{ name: '江苏省', code: '320000', items: [{ name: '南京市', code: '320100' }], }, ]; <Cascader
-title="请选择所在地区" options={options} fieldNames={{ text: 'name', value: 'code', children:
-'items', }} />;
-```
+<code title="自定义字段名" src="./demo/fieldNames.tsx" />
 
 ### 受控组件
 
 通过 `value` 属性可以 Cascader 成为受控组件。
 
-> 此处 options 数据和右侧 demo 数据不一致，完整数据请看 [options](https://github.com/3lang3/react-vant/blob/main/src/cascader/demo/index.tsx#L7-L128)
-
-```html
-import { useState } from 'react';
-import { Cascader, Button, Popup, Field } from 'react-vant';
-
-// 选项列表，children 代表子选项，支持多级嵌套
-const options = [
-  {
-    text: '浙江省',
-    value: '330000',
-    children: [{ text: '杭州市', value: '330100' }],
-  },
-  {
-    text: '江苏省',
-    value: '320000',
-    children: [{ text: '南京市', value: '320100' }],
-  },
-];
-
-// 从当前选中值获取选中文本
-// 在实际业务中可能需要结合childrenKey，valueKey等进行调整
-function getTextFromValue(value, opts) {
-  const rs = [];
-  value.reduce((a, v) => {
-    const matchOpt = a.find((opt) => opt.value === v);
-    rs.push(matchOpt.text);
-    return matchOpt.children;
-  }, opts);
-  return rs.join('/');
-}
-
-export default () => {
-  const [text, setText] = useState(getTextFromValue(['330000', '330100', '330103'], options));
-  const [value, setValue] = useState(['330000', '330100', '330103']);
-  const [visible, setVisible] = useState(false);
-
-  const onFinish = ({ selectedOptions }) => {
-    setText(selectedOptions.map((option) => option.text).join('/'));
-    setValue(selectedOptions.map((option) => option.value));
-    setVisible(false);
-  };
-
-  const onSetting = () => {
-    const newValue = ['330000', '330100', '330104'];
-    setText(getTextFromValue(newValue, options));
-    setValue(newValue);
-  };
-  return (
-    <>
-      <Field
-        isLink
-        readonly
-        value={text}
-        label="地区"
-        placeholder="请选择所在地区"
-        errorMessage={<div>当前值:{JSON.stringify(value)}</div>}
-        onClick={() => setVisible(true)}
-      />
-      <Popup visible={visible} round position="bottom" onClose={() => setVisible(false)}>
-        <Cascader
-          title="请选择所在地区"
-          options={options}
-          value={value}
-          onClose={() => setVisible(false)}
-          onFinish={onFinish}
-        />
-      </Popup>
-
-      <Button onClick={onSetting}>外部设置</Button>
-    </>
-  );
-};
-```
+<code title="受控组件" src="./demo/value.tsx" />
 
 ## API
 

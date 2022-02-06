@@ -12,17 +12,6 @@ type DemoItem = {
   component: string;
 };
 
-function genImports(demos: DemoItem[]) {
-  const vantConfig = getVantConfig();
-  return demos
-    .map((item) => `import ${item.name} from '${slash(join(vantConfig.name, item.path))}';`)
-    .join('\n');
-}
-
-function genExports(demos: DemoItem[]) {
-  return `export const demos = {\n  ${demos.map((item) => item.name).join(',\n  ')}\n};`;
-}
-
 function genConfig(demos: DemoItem[]) {
   const vantConfig = getVantConfig();
   const demoNames = demos.map((item) => decamelize(item.name));
@@ -53,13 +42,11 @@ function genCode(components: string[]) {
     .map((component) => ({
       component,
       name: pascalize(component),
-      path: slash(join(component, 'demo/index.tsx')),
+      path: slash(join(component)),
     }))
     .filter((item) => existsSync(join(SRC_DIR, item.path)));
 
   return `
- ${genImports(demos)}
- ${genExports(demos)}
  ${genConfig(demos)}
 `;
 }

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import clsx from 'clsx';
-import { config } from 'site-desktop-shared';
+import { config } from 'site-mobile-shared';
 
 import DemoHomeNav from '../DemoHomeNav';
 import './index.less';
@@ -14,7 +14,7 @@ const DemoHome = (props) => {
       return locales[lang];
     }
     return config.site;
-  }, [config]);
+  }, [lang]);
 
   const smallTitle = useMemo(() => siteConfig.title.length >= 8, [siteConfig]);
 

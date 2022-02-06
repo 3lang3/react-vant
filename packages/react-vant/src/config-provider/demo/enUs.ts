@@ -22,12 +22,6 @@ export default {
   vanCascader: {
     select: 'Select',
   },
-  vanContactCard: {
-    addText: 'Add contact info',
-  },
-  vanContactList: {
-    addText: 'Add new contact',
-  },
   vanPagination: {
     prev: 'Previous',
     next: 'Next',
@@ -55,20 +49,5 @@ export default {
     enable: 'Available',
     disabled: 'Unavailable',
     placeholder: 'Coupon code',
-  },
-  vanAddressEdit: {
-    area: 'Area',
-    postal: 'Postal',
-    areaEmpty: 'Please select a receiving area',
-    addressEmpty: 'Address can not be empty',
-    postalEmpty: 'Wrong postal code',
-    defaultAddress: 'Set as the default address',
-  },
-  vanAddressEditDetail: {
-    label: 'Address',
-    placeholder: 'Address',
-  },
-  vanAddressList: {
-    add: 'Add new address',
   },
 };
