@@ -81,7 +81,7 @@ export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<Cel
   /** 输入框类型 */
   type?: FieldType;
   /** 名称，提交表单的标识符	 */
-  name?: string;
+  name?: string | any;
   /** 输入框行数 */
   rows?: number;
   /**

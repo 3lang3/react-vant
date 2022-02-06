@@ -62,7 +62,7 @@ export { default as Pagination } from './pagination';
 export { default as ActionBar } from './action-bar';
 export { default as Tabbar } from './tabbar';
 export { default as ConfigProvider } from './config-provider';
-export { default as Form } from './form';
+export * from './form';
 export { default as Lazyload } from './lazyload';
 export { default as Area } from './area';
 export { default as Card } from './card';

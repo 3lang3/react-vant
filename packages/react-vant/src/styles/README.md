@@ -17,7 +17,7 @@ import './demo/ellipsis.less';
 
 export default () => {
   return (
-    <>
+    <div className="demo-styles">
       <div className="rv-ellipsis">这是一段最多显示一行的文字，后面的内容会省略</div>
       <div className="rv-multi-ellipsis--l2">
         这是一段最多显示两行的文字，后面的内容会省略。这是一段最多显示两行的文字，后面的内容会省略
@@ -25,7 +25,7 @@ export default () => {
       <div className="rv-multi-ellipsis--l3">
         这是一段最多显示三行的文字，多余的内容会被省略这是一段最多显示三行的文字，多余的内容会被省略这是一段最多显示三行的文字，多余的内容会被省略这是一段最多显示三行的文字，多余的内容会被省略
       </div>
-    </>
+    </div>
   );
 };
 ```
@@ -42,7 +42,11 @@ import React from 'react';
 import './demo/hairline.less';
 
 export default () => {
-  return <div className="rv-hairline--top"></div>;
+  return (
+    <div className="demo-styles">
+      <div className="rv-hairline--top"></div>
+    </div>
+  );
 };
 ```
 

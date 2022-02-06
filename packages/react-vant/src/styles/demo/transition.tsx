@@ -17,7 +17,7 @@ export default () => {
   };
 
   return (
-    <>
+    <div className="demo-styles">
       <Cell isLink title="Fade" onClick={() => animate('rv-fade')} />
       <Cell isLink title="Slide Up" onClick={() => animate('rv-slide-up')} />
       <Cell isLink title="Slide Down" onClick={() => animate('rv-slide-down')} />
@@ -27,6 +27,6 @@ export default () => {
       <CSSTransition in={show} timeout={300} classNames={transition} unmountOnExit>
         <div className="demo-animate-block" />
       </CSSTransition>
-    </>
+    </div>
   );
 };

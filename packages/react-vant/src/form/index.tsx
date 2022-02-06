@@ -6,6 +6,6 @@ import './style/index.less';
 const FormNamespace = Object.assign(Form, { Item: FormItem, useForm, List });
 
 export default FormNamespace;
-export { Form, FormItem };
+export { FormNamespace as Form, FormItem };
 
 export type { FormProps, FormItemProps, FormInstance } from './PropsType';
