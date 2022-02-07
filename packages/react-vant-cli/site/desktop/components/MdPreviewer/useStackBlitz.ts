@@ -1,16 +1,7 @@
 import { useState, useEffect } from 'react';
-import LZString from 'lz-string';
 import type { MDocPreviewerProps } from '.';
 
-const CSB_API_ENDPOINT = 'https://codesandbox.io/api/v1/sandboxes/define';
-
-// ref: https://github.com/codesandbox/codesandbox-importers/blob/master/packages/import-utils/src/api/define.ts
-function serialize(data: Record<string, any>) {
-  return LZString.compressToBase64(JSON.stringify(data))
-    .replace(/\+/g, '-') // Convert '+' to '-'
-    .replace(/\//g, '_') // Convert '/' to '_'
-    .replace(/=+$/, ''); // Remove ending '='
-}
+const SB_API_ENDPOINT = 'https://stackblitz.com/run';
 
 function getTextContent(raw: string) {
   const elm = document.createElement('span');
@@ -26,55 +17,43 @@ function getTextContent(raw: string) {
  * get serialized data that use to submit to codesandbox.io
  * @param opts  previewer props
  */
-function getCSBData(opts: Omit<MDocPreviewerProps, 'children'>) {
+function getStackblitzData(opts: Omit<MDocPreviewerProps, 'children'>) {
   const isTSX = opts.lang === 'tsx';
   const ext = isTSX ? '.tsx' : '.jsx';
   const files: Record<string, { content: string }> = {};
-  const deps: Record<string, string> = {};
+  const dependencies: Record<string, string> = {};
   const CSSDeps = Object.values(opts.dependencies).filter((dep) => dep.css);
-  const appFileName = `App${ext}`;
-  const entryFileName = `index${ext}`;
+  const appFileName = `src/App${ext}`;
+  const entryFileName = `src/index.js`;
+
+  const title = opts.meta?.title;
+  const description = getTextContent(opts.meta?.description || 'An auto-generated demo by mdoc');
+
+  const devDependencies = isTSX ? { typescript: '^3' } : {};
 
   // generate dependencies
   Object.entries(opts.dependencies).forEach(([dep, { type, value }]) => {
-    if (type === 'NPM') deps[dep] = value;
+    if (type === 'NPM') dependencies[dep] = value;
   });
 
   // add react-dom dependency
-  if (!deps['react-dom']) {
-    deps['react-dom'] = deps.react || 'latest';
+  if (!dependencies['react-dom']) {
+    dependencies['react-dom'] = dependencies.react || 'latest';
   }
 
-  // append sandbox.config.json
-  files['sandbox.config.json'] = {
-    content: JSON.stringify(
-      {
-        // template: isTSX ? 'create-react-app-typescript' : 'create-react-app',
-        template: 'create-react-app',
-      },
-      null,
-      2,
-    ),
-  };
-
-  // append package.json
-  files['package.json'] = {
-    content: JSON.stringify(
-      {
-        name: opts.meta?.title,
-        description: getTextContent(opts.meta?.description || 'An auto-generated demo by mdoc'),
-        main: entryFileName,
-        dependencies: deps,
-        // add TypeScript dependency if required, must in devDeps to avoid csb compile error
-        devDependencies: isTSX ? { typescript: '^3' } : {},
-      },
-      null,
-      2,
-    ),
-  };
-
   // append index.html
-  files['index.html'] = { content: '<div style="margin: 16px;" id="root"></div>' };
+  files['public/index.html'] = {
+    content: `<!DOCTYPE html>
+  <html>
+    <head>
+      <title>${title}</title>
+    </head>
+    <body>
+      <div style="margin: 16px;" id="root"></div>
+    </body>
+  </html>
+  `.trim(),
+  };
 
   // append entry file
   files[entryFileName] = {
@@ -100,12 +79,20 @@ ReactDOM.render(
   Object.entries(opts.dependencies).forEach(([filename, { value, type }]) => {
     if (type !== 'FILE') return;
     // handle primary content
-    files[filename.startsWith('index') ? appFileName : filename] = {
+    files[filename.startsWith('index') ? appFileName : `src/${filename}`] = {
       content: value,
     };
   });
 
-  return serialize({ files });
+  return { title, description, dependencies, devDependencies, files };
+}
+
+function addHiddenInput(form, name, value) {
+  const input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = name;
+  input.value = value;
+  form.appendChild(input);
 }
 
 /**
@@ -115,28 +102,32 @@ ReactDOM.render(
  */
 export default (
   opts: Omit<MDocPreviewerProps, 'children'> | null,
-  api: string = CSB_API_ENDPOINT,
+  api: string = SB_API_ENDPOINT,
 ) => {
   const [handler, setHandler] = useState<(...args: any) => void | undefined>();
 
   useEffect(() => {
     if (opts && Object.keys(opts.dependencies || []).length) {
+      const demoConfig = getStackblitzData(opts);
       const form = document.createElement('form');
-      const input = document.createElement('input');
-      const data = getCSBData(opts);
-
       form.method = 'POST';
       form.target = '_blank';
-      form.style.display = 'none';
       form.action = api;
-      form.appendChild(input);
-      form.setAttribute('data-demo', opts.meta?.title || '');
 
-      input.name = 'parameters';
-      input.value = data;
-
+      const title = opts.meta?.title;
+      const description = getTextContent(
+        opts.meta?.description || 'An auto-generated demo by mdoc',
+      );
+      addHiddenInput(form, 'project[template]', 'create-react-app');
+      addHiddenInput(form, 'project[title]', title);
+      addHiddenInput(form, 'project[description]', `# ${title}\n${description}`);
+      addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
+      addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
+      Object.keys(demoConfig.files).forEach((key) => {
+        const value = demoConfig.files[key].content;
+        addHiddenInput(form, `project[files][${key}]`, value);
+      });
       document.body.appendChild(form);
-
       setHandler(() => () => form.submit());
 
       return () => form.remove();

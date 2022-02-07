@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import type { Language } from 'prism-react-renderer';
+import React, { useMemo, useState } from 'react';
 import useCodeSandbox from './useCodeSandbox';
 import useCopy from './useCopy';
 import fileIcon from './file.svg';
@@ -7,7 +9,6 @@ import codeIcon from './code.svg';
 import csbIcon from './csb.svg';
 import copyIcon from './copy.svg';
 import copyDoneIcon from './done.svg';
-import { useMemo, useState } from 'react';
 import './index.less';
 
 type DependenciesType = {
@@ -32,7 +33,7 @@ export type MDocPreviewerProps = {
  */
 function getSourceType(file: string) {
   // use file extension as source type first
-  let type = file.match(/\.(\w+)$/)?.[1];
+  const type = file.match(/\.(\w+)$/)?.[1];
 
   return type || 'jsx';
 }
@@ -63,7 +64,7 @@ const FileTabs = ({
             onClick={() => setCurrent({ code: info.value, lang: getSourceType(filename) })}
             className="default-previewer__tabs-plane"
           >
-            <img src={fileIcon} /> {filename}
+            <img alt="file" src={fileIcon} /> {filename}
           </div>
         );
       })}
@@ -87,8 +88,13 @@ const DefaultRender = ({
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div className="default-pre">
           {showCopy && (
-            <button title="复制" className="default-pre__btn" onClick={() => copy(code)}>
-              <img src={copyStatus === 'ready' ? copyIcon : copyDoneIcon} />
+            <button
+              type="button"
+              title="复制"
+              className="default-pre__btn"
+              onClick={() => copy(code)}
+            >
+              <img alt="copy" src={copyStatus === 'ready' ? copyIcon : copyDoneIcon} />
             </button>
           )}
           <pre className={className} style={style}>
@@ -127,24 +133,32 @@ export default ({ children, ...props }: MDocPreviewerProps) => {
       {children && <div className="default-previewer__demo">{children}</div>}
       <div className="default-previewer__actions">
         {Object.keys(props?.dependencies || []).length ? (
-          <button
-            title="在codesandbox上尝试"
-            className="default-previewer__btn default-previewer__csb"
-            onClick={openCsb}
-          >
-            <img src={csbIcon} />
-          </button>
+          <>
+            <button
+              type="button"
+              title="在codesandbox上尝试"
+              className="default-previewer__btn default-previewer__csb"
+              onClick={openCsb}
+            >
+              <img alt="cbs" src={csbIcon} />
+            </button>
+          </>
         ) : null}
         <button
+          type="button"
           title="复制"
           className="default-previewer__btn default-previewer__copy"
           onClick={() => copy(props.code)}
         >
-          <img src={copyStatus === 'ready' ? copyIcon : copyDoneIcon} />
+          <img alt="copy" src={copyStatus === 'ready' ? copyIcon : copyDoneIcon} />
         </button>
         {children && (
-          <button className="default-previewer__btn" onClick={() => setShowSource((v) => !v)}>
-            <img src={codeIcon} />
+          <button
+            type="button"
+            className="default-previewer__btn"
+            onClick={() => setShowSource((v) => !v)}
+          >
+            <img alt="toggle" src={codeIcon} />
           </button>
         )}
       </div>
