@@ -14,19 +14,31 @@ import { NavBar } from 'react-vant';
 
 ### 基础用法
 
-```html
-<NavBar title="标题" leftArrow rightText="按钮" onClickLeft={() => Toast.info('返回')}
-onClickRight={() => Toast.info('按钮')} />
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Toast, NavBar } from 'react-vant';
+
+export default () => {
+  return (
+    <NavBar
+      title="标题"
+      leftText="返回"
+      rightText="按钮"
+      onClickLeft={() => Toast('返回')}
+      onClickRight={() => Toast('按钮')}
+    />
+  );
+};
 ```
 
 ### 自定义内容
 
 自定义导航栏两侧的内容。
 
-```html
-<NavBar title="标题" leftArrow rightText="{<Search" fontSize="{24}" />} onClickLeft={() =>
-Toast.info('返回')} onClickRight={() => Toast.info('按钮')} />
-```
+<code title="自定义内容" src="./demo/custom.tsx" />
 
 ## API
 
