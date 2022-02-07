@@ -8,7 +8,7 @@ export * from './flex';
 export * from './space';
 export { default as Typography } from './typography';
 export { default as Cell } from './cell';
-export { default as CountDown } from './count-down';
+export * from './count-down';
 export { default as Divider } from './divider';
 export { default as Image } from './image';
 export { default as ImagePreview } from './image-preview';

@@ -1,3 +1,8 @@
+---
+className: 'vant-doc-demo-section--card'
+background: '#fff'
+---
+
 # CountDown 倒计时
 
 ### 介绍
@@ -16,107 +21,83 @@ import { CountDown } from 'react-vant';
 
 `time` 属性表示倒计时总时长，单位为毫秒。
 
-```html
-export default () => { return <CountDown time="{30" * 60 * 60 * 1000} />; };
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { CountDown } from 'react-vant';
+export default () => {
+  return <CountDown time={30 * 60 * 60 * 1000} />;
+};
 ```
 
 ### 自定义格式
 
 通过 `format` 属性设置倒计时文本的内容。
 
-```html
-export default () => { return (
-<CountDown time="{30" * 60 * 60 * 1000} format="DD 天 HH 时 mm 分 ss 秒" />
-) };
+```jsx
+/**
+ * title: 自定义格式
+ */
+import React from 'react';
+import { CountDown } from 'react-vant';
+export default () => {
+  return <CountDown time={30 * 60 * 60 * 1000} format="DD 天 HH 时 mm 分 ss 秒" />;
+};
 ```
 
 ### 毫秒级渲染
 
 倒计时默认每秒渲染一次，设置 `millisecond` 属性可以开启毫秒级渲染。
 
-```html
-export default () => { return (
-<CountDown time="{30" * 60 * 60 * 1000} millisecond format="HH:mm:ss:SS" />
-); };
+```jsx
+/**
+ * title: 毫秒级渲染
+ */
+import React from 'react';
+import { CountDown } from 'react-vant';
+export default () => {
+  return <CountDown time={30 * 60 * 60 * 1000} millisecond format="HH:mm:ss:SS" />;
+};
 ```
 
 ### 自定义样式
 
 通过`children`自定义倒计时的样式，[react render prop](https://reactjs.org/docs/render-props.html)文档。
 
-```html
+```jsx
+/**
+ * title: 毫秒级渲染
+ */
+import React from 'react';
+import { CountDown } from 'react-vant';
+import './demo/style.less';
+
 export default () => {
   return (
-    <CountDown
-      time={30 * 60 * 60 * 1000}
-      millisecond
-      format="HH:mm:ss:SS"
-    >
-      {(timeData) => (
-        <>
-          <span className="block">{timeData.hours}</span>
-          <span className="colon">:</span>
-          <span className="block">{timeData.minutes}</span>
-          <span className="colon">:</span>
-          <span className="block">{timeData.seconds}</span>
-        </>
-      )}
-    </CountDown>
-  )
+    <div className="demo-count-down">
+      <CountDown time={30 * 60 * 60 * 1000} millisecond format="HH:mm:ss:SS">
+        {(timeData) => (
+          <>
+            <span className="block">{timeData.hours}</span>
+            <span className="colon">:</span>
+            <span className="block">{timeData.minutes}</span>
+            <span className="colon">:</span>
+            <span className="block">{timeData.seconds}</span>
+          </>
+        )}
+      </CountDown>
+    </div>
+  );
 };
-
-<style>
-  .colon {
-    display: inline-block;
-    margin: 0 4px;
-    color: #ee0a24;
-  }
-  .block {
-    display: inline-block;
-    width: 22px;
-    color: #fff;
-    font-size: 12px;
-    text-align: center;
-    background-color: #ee0a24;
-  }
-</style>
 ```
 
 ### 手动控制
 
 通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
 
-```html
-import { useRef } from 'react';
-
-export default () => {
-  const ref = useRef(null)
-  return (
-    <>
-      <CountDown
-        ref={ref}
-        time={3000}
-        millisecond
-        format="ss:SSS"
-        autoStart={false}
-        onFinish={() => Toast.info('倒计时结束')}
-      />
-      <Flex>
-        <Flex.Item onClick={() => ref.current.start()} span={8}>
-          <Button icon="play-circle-o">开始</Button>
-        </Flex.Item>
-        <Flex.Item onClick={() => ref.current.pause()} span={8}>
-          <Button icon="pause-circle-o">暂停</Button>
-        </Flex.Item>
-        <Flex.Item onClick={() => ref.current.reset()} span={8}>
-          <Button icon="replay">重置</Button>
-        </Flex.Item>
-      </Flex>
-    </>
-  );
-};
-```
-
+<code title="手动控制" src="./demo/ref.tsx" />
 ## API
 
 ### Props
@@ -172,17 +153,17 @@ export default () => {
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { CountDownInstance, CountDownCurrentTime } from 'react-vant';
 ```
 
 `CountDownInstance` 是组件实例的类型，用法如下：
 
-```js
+```ts
 import { useRef } from 'react';
 import type { CountDownInstance } from 'react-vant';
 
-const countDownRef = useRef<CountDownInstance>();
+const countDownRef = useRef<CountDownInstance>(null);
 
 countDownRef.current?.start();
 ```
