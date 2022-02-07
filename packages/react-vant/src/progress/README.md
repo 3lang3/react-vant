@@ -1,3 +1,8 @@
+---
+className: 'vant-doc-demo-section--card'
+background: '#fff'
+---
+
 # Progress 进度条
 
 ### 介绍
@@ -16,39 +21,112 @@ import { Progress } from 'react-vant';
 
 进度条默认为蓝色，使用 `percentage` 属性来设置当前进度。
 
-```html
-<progress percentage="{50}" />
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Progress } from 'react-vant';
+
+export default () => {
+  return <Progress percentage="50" />;
+};
 ```
 
 ### 线条粗细
 
 通过 `strokeWidth` 可以设置进度条的粗细。
 
-```html
-<progress percentage="{50}" strokeWidth="{8}" />
+```jsx
+/**
+ * title: 线条粗细
+ */
+import React from 'react';
+import { Progress } from 'react-vant';
+
+export default () => {
+  return <Progress strokeWidth={8} percentage="50" />;
+};
 ```
 
 ### 置灰
 
 设置 `inactive` 属性后进度条将置灰。
 
-```html
-<progress inactive percentage="{50}" />
+```jsx
+/**
+ * title: 置灰
+ */
+import React from 'react';
+import { Progress } from 'react-vant';
+
+export default () => {
+  return <Progress inactive percentage="50" />;
+};
 ```
 
 ### 样式定制
 
 可以使用 `pivotText` 属性自定义文字，`color` 属性自定义进度条颜色。
 
-```html
-<progress color="#f2826a" percentage="25" pivotText="橙色" />
-<progress color="#ee0a24" percentage="50" pivotText="红色" />
-<progress
-  color="linear-gradient(to right, #be99ff, #7232dd)"
-  percentage="75"
-  pivotColor="#7232dd"
-  pivotText="紫色"
-/>
+```jsx
+/**
+ * title: 样式定制
+ */
+import React from 'react';
+import { Space, Progress } from 'react-vant';
+
+export default () => {
+  return (
+    <Space block gap={[0, 20]} direction="vertical">
+      <Progress color="#f2826a" percentage="25" pivotText="橙色" />
+      <Progress color="#ee0a24" percentage="50" pivotText="红色" />
+      <Progress
+        color="linear-gradient(to right, #be99ff, #7232dd)"
+        percentage="75"
+        pivotColor="#7232dd"
+        pivotText={<div>紫色</div>}
+      />
+    </Space>
+  );
+};
+```
+
+### 过渡效果
+
+```jsx
+/**
+ * title: 过渡效果
+ */
+import React, { useState } from 'react';
+import { Flex, Button, Progress } from 'react-vant';
+
+const format = (rate) => Math.min(Math.max(rate, 0), 100);
+
+export default () => {
+  const [percentage, setPercentage] = useState(50);
+
+  const add = () => {
+    setPercentage((value) => format(value + 20));
+  };
+
+  const reduce = () => {
+    setPercentage((value) => format(value - 20));
+  };
+  return (
+    <>
+      <Progress percentage={percentage} />
+      <Flex justify="center" style={{ marginTop: 20 }}>
+        <Button style={{ marginRight: 10 }} type="primary" size="small" onClick={add}>
+          增加
+        </Button>
+        <Button type="danger" size="small" onClick={reduce}>
+          减少
+        </Button>
+      </Flex>
+    </>
+  );
+};
 ```
 
 ## API
