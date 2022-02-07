@@ -9,5 +9,5 @@ const ActionBarNamespace = Object.assign(ActionBar, {
 });
 
 export default ActionBarNamespace;
-export { ActionBarNamespace as ActionBar, ActionBarIcon, ActionBarButton };
+export { ActionBarNamespace as ActionBar };
 export type { ActionBarProps, ActionBarIconProps, ActionBarButtonProps } from './PropsType';
