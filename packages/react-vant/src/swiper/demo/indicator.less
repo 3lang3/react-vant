@@ -1,0 +1,35 @@
+.demo-swiper {
+  .custom-indicator {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    padding: 2px 5px;
+    color: #fff;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 2px;
+  }
+
+  .rv-swiper {
+    &__slide {
+      .rv-swiper-item {
+        color: #fff;
+        font-size: 20px;
+        line-height: 150px;
+        text-align: center;
+      }
+
+      &:nth-child(odd) {
+        .rv-swiper-item {
+          background-color: #3f45ff;
+        }
+      }
+
+      &:nth-child(even) {
+        .rv-swiper-item {
+          background-color: lighten(#3f45ff, 8%);
+        }
+      }
+    }
+  }
+}
