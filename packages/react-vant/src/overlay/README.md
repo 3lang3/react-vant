@@ -1,3 +1,7 @@
+---
+className: vant-doc-demo-section--card
+---
+
 # Overlay 遮罩层
 
 ### 介绍
@@ -14,26 +18,60 @@ import { Overlay } from 'react-vant';
 
 ### 基础用法
 
-```html
-const [show, setShow] = useState(false);
+```jsx
+/**
+ * title: 显示遮罩层
+ */
+import React, { useState } from 'react';
+import { Button, Overlay } from 'react-vant';
 
-<Button type="primary" onClick={() => setShow(true)}>显示遮罩层</Button>
-<Overlay visible={show} onClick={() => setShow(false)} />
+export default () => {
+  const [show, setShow] = useState(false);
+
+  return (
+    <>
+      <Button type="primary" onClick={() => setShow(true)}>
+        显示遮罩层
+      </Button>
+      <Overlay visible={show} onClick={() => setShow(false)} />
+    </>
+  );
+};
 ```
 
 ### 嵌入内容
 
 通过默认插槽可以在遮罩层上嵌入任意内容。
 
-```html
-const [showEmbedded, setShowEmbedded] = useState(false);
+```jsx
+/**
+ * title: 嵌入内容
+ */
+import React, { useState } from 'react';
+import { Button, Overlay } from 'react-vant';
 
-<Button type="primary" onClick={() => setShowEmbedded(true)}>嵌入内容</Button>
-<Overlay visible={showEmbedded} onClick={() => setShowEmbedded(false)}>
-  <div className="wrapper">
-    <div className="block" />
-  </div>
-</Overlay>
+export default () => {
+  const [visible, setVisible] = useState(false);
+  return (
+    <>
+      <Button type="primary" onClick={() => setVisible(true)}>
+        嵌入内容
+      </Button>
+      <Overlay visible={visible} onClick={() => setVisible(false)}>
+        <div
+          style={{
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div style={{ width: 120, height: 120, backgroundColor: '#fff', borderRadius: 4 }} />
+        </div>
+      </Overlay>
+    </>
+  );
+};
 ```
 
 ## API
