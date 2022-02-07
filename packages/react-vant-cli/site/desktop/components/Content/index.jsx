@@ -10,7 +10,7 @@ export default (props) => {
         'vant-doc-content--with-simulator': hasSimulator,
       })}
     >
-      {props.children}
+      <div className="vant-doc-content--layer">{props.children}</div>
     </div>
   );
 };
