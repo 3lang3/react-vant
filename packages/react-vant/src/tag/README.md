@@ -12,66 +12,150 @@ import { Tag } from 'react-vant';
 
 通过 `type` 属性控制标签颜色。
 
-```html
-<Tag type="primary">标签</Tag>
-<Tag type="success">标签</Tag>
-<Tag type="danger">标签</Tag>
-<Tag type="warning">标签</Tag>
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React from 'react';
+import { Cell, Tag } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Cell title="primary 类型">
+        <Tag type="primary">标签</Tag>
+      </Cell>
+      <Cell title="success 类型">
+        <Tag type="success">标签</Tag>
+      </Cell>
+      <Cell title="danger  类型">
+        <Tag type="danger">标签</Tag>
+      </Cell>
+      <Cell title="warning  类型">
+        <Tag type="warning">标签</Tag>
+      </Cell>
+    </>
+  );
+};
 ```
 
-### 空心样式
+### 样式风格
 
-设置 `plain` 属性设置为空心样式。
+- 设置 `plain` 属性设置为空心样式。
+- 通过 `round` 设置为圆角样式。
+- 通过 `mark` 设置为标记样式(半圆角)。
+- 添加 `closeable` 属性表示标签是可关闭的，关闭标签时会触发 `onClose` 事件，可以执行隐藏标签的逻辑。
 
-```html
-<Tag plain type="primary"> 标签 </Tag>
-```
+```jsx
+/**
+ * title: 样式风格
+ * card: true
+ */
+import React from 'react';
+import { Cell, Tag } from 'react-vant';
 
-### 圆角样式
+export default () => {
+  const [show, setShow] = React.useState(true);
 
-通过 `round` 设置为圆角样式。
-
-```html
-<Tag round type="primary"> 标签 </Tag>
-```
-
-### 标记样式
-
-通过 `mark` 设置为标记样式(半圆角)。
-
-```html
-<Tag mark type="primary"> 标签 </Tag>
-```
-
-### 可关闭标签
-
-添加 `closeable` 属性表示标签是可关闭的，关闭标签时会触发 `close` 事件，在 `close` 事件中可以执行隐藏标签的逻辑。
-
-```html
-<Tag show={show} closeable size="medium" type="primary" onClose={() => setShow(false)}>
-  标签
-</Tag>
+  return (
+    <>
+      <Cell title="空心样式">
+        <Tag plain type="primary">
+          标签
+        </Tag>
+      </Cell>
+      <Cell title="圆角样式">
+        <Tag round type="primary">
+          标签
+        </Tag>
+      </Cell>
+      <Cell title="标记样式">
+        <Tag mark type="primary">
+          标签
+        </Tag>
+      </Cell>
+      <Cell title="可关闭标签">
+        <Tag
+          show={show}
+          plain
+          closeable
+          size="medium"
+          type="primary"
+          onClose={() => setShow(false)}
+        >
+          标签
+        </Tag>
+      </Cell>
+    </>
+  );
+};
 ```
 
 ### 标签大小
 
 通过 `size` 属性调整标签大小。
 
-```html
-<Tag type="primary" size="mini">标签</Tag>
-<Tag type="primary">标签</Tag>
-<Tag type="primary" size="medium">标签</Tag>
-<Tag type="primary" size="large">标签</Tag>
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React from 'react';
+import { Cell, Tag } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Cell title="小号标签">
+        <Tag type="primary">标签</Tag>
+      </Cell>
+      <Cell title="中号标签">
+        <Tag size="medium" type="primary">
+          标签
+        </Tag>
+      </Cell>
+      <Cell title="大号标签">
+        <Tag size="large" type="primary">
+          标签
+        </Tag>
+      </Cell>
+    </>
+  );
+};
 ```
 
 ### 自定义颜色
 
 通过 `color` 和 `textColor` 属性设置标签颜色。
 
-```html
-<Tag color="#7232dd">标签</Tag>
-<Tag color="#ffe1e1" textColor="#ad0000">标签</Tag>
-<Tag color="#7232dd" plain>标签</Tag>
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React from 'react';
+import { Cell, Tag } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Cell title="背景颜色">
+        <Tag color="#7232dd">标签</Tag>
+      </Cell>
+      <Cell title="文字颜色">
+        <Tag color="#ffe1e1" textColor="#ad0000">
+          标签
+        </Tag>
+      </Cell>
+      <Cell title="空心颜色">
+        <Tag color="#7232dd" plain>
+          标签
+        </Tag>
+      </Cell>
+    </>
+  );
+};
 ```
 
 ## API
