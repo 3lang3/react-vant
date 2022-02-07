@@ -18,91 +18,43 @@ import { Grid } from 'react-vant';
 
 通过 `icon` 属性设置格子内的图标，`text` 属性设置文字内容。
 
-```html
-<Grid>
-  <Grid.Item icon="photo-o" text="文字" />
-  <Grid.Item icon="photo-o" text="文字" />
-  <Grid.Item icon="photo-o" text="文字" />
-  <Grid.Item icon="photo-o" text="文字" />
-</Grid>
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
 ### 自定义列数
 
 默认一行展示四个格子，可以通过 `columnNum` 自定义列数。
 
-```html
-<Grid columnNum="{3}">
-  {Array.from({ length: 6 }, (_, i) => (
-  <Grid.Item key="{i}" icon="photo-o" text="文字" />
-  ))}
-</Grid>
-```
+<code title="自定义列数" src="./demo/column.tsx" />
 
 ### 自定义内容
 
 通过插槽可以自定义格子展示的内容。
 
-```html
-<Grid border="{false}" columnNum="{3}">
-  <Grid.Item>
-    <image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-  </Grid.Item>
-  <Grid.Item>
-    <image src="https://img.yzcdn.cn/vant/apple-2.jpg" />
-  </Grid.Item>
-  <Grid.Item>
-    <image src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-  </Grid.Item>
-</Grid>
-```
+<code title="自定义内容" src="./demo/children.tsx" />
 
 ### 正方形格子
 
 设置 `square` 属性后，格子的高度会和宽度保持一致。
 
-```html
-<Grid square>
-  {Array.from({ length: 8 }, (_, i) => (
-  <Grid.Item key="{i}" icon="photo-o" text="文字" />
-  ))}
-</Grid>
-```
+<code title="正方形格子" src="./demo/square.tsx" />
 
 ### 格子间距
 
 通过 `gutter` 属性设置格子之间的距离。
 
-```html
-<Grid gutter="{10}">
-  {Array.from({ length: 8 }, (_, i) => (
-  <Grid.Item key="{i}" icon="photo-o" text="文字" />
-  ))}
-</Grid>
-```
+<code title="格子间距" src="./demo/gutter.tsx" />
 
 ### 内容横排
 
 将 `direction` 属性设置为 `horizontal`，可以让宫格的内容呈横向排列。
 
-```html
-<Grid direction="horizontal" columnNum="{3}">
-  <Grid.Item icon="photo-o" text="文字" />
-  <Grid.Item icon="photo-o" text="文字" />
-  <Grid.Item icon="photo-o" text="文字" />
-</Grid>
-```
+<code title="内容横排" src="./demo/direction.tsx" />
 
 ### 徽标提示
 
 设置 `dot` 属性后，会在图标右上角展示一个小红点。设置 `badge` 属性后，会在图标右上角展示相应的徽标。
 
-```html
-<Grid columnNum="{2}">
-  <Grid.Item icon="home-o" text="文字" badge={{ dot: true }} /> <Grid.Item icon="search" text="文字"
-  badge={{ content: '99+' }} />
-</Grid>
-```
+<code title="徽标提示" src="./demo/badge.tsx" />
 
 ## API
 
@@ -144,7 +96,7 @@ import { Grid } from 'react-vant';
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { GridDirection } from 'react-vant';
 ```
 

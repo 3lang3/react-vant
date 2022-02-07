@@ -5,5 +5,5 @@ import './style/index.less';
 const GridNamespace = Object.assign(Grid, { Item: GridItem });
 
 export default GridNamespace;
-export { Grid, GridItem };
+export { GridNamespace as Grid, GridItem };
 export type { GridProps, GridItemProps, GridDirection } from './PropsType';
