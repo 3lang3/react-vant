@@ -36,7 +36,7 @@ export * from './sticky';
 export { default as NavBar } from './nav-bar';
 export { default as Tag } from './tag';
 export * from './grid';
-export { default as IndexBar } from './index-bar';
+export * from './index-bar';
 export { default as Collapse } from './collapse';
 export { default as Radio } from './radio';
 export { default as Rate } from './rate';

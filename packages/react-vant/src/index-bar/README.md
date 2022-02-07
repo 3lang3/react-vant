@@ -12,43 +12,10 @@ import { IndexBar } from 'react-vant';
 
 ### 基础用法
 
-点击索引栏时，会自动跳转到对应的 `IndexAnchor` 锚点位置。
+- 点击索引栏时，会自动跳转到对应的 `IndexAnchor` 锚点位置。
+- 可以通过 `indexList` 属性自定义展示的索引字符列表。
 
-```html
-<IndexBar>
-  <IndexBar.Anchor index="A" />
-  <Cell title="文本" />
-  <Cell title="文本" />
-  <Cell title="文本" />
-  <IndexBar.Anchor index="B" />
-  <Cell title="文本" />
-  <Cell title="文本" />
-  <Cell title="文本" />
-  ...
-</IndexBar>
-```
-
-### 自定义索引列表
-
-可以通过 `indexList` 属性自定义展示的索引字符列表。
-
-```html
-<IndexBar indexList="{indexList}">
-  <IndexBar.Anchor index="1">标题1</IndexBar.Anchor>
-  <Cell title="文本" />
-  <Cell title="文本" />
-  <Cell title="文本" />
-  <IndexBar.Anchor index="2">标题2</IndexBar.Anchor>
-  <Cell title="文本" />
-  <Cell title="文本" />
-  <Cell title="文本" />
-  ...
-</IndexBar>
-```
-
-```js
-const indexList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-```
+<code src="./demo/index.tsx" />
 
 ## API
 
@@ -88,17 +55,17 @@ const indexList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { IndexBarInstance } from 'react-vant';
 ```
 
 `IndexBarInstance` 是组件实例的类型，用法如下：
 
-```js
+```ts
 import { useRef } from 'react';
 import type { IndexBarInstance } from 'react-vant';
 
-const indexBarRef = useRef<IndexBarInstance>();
+const indexBarRef = useRef<IndexBarInstance>(null);
 
 indexBarRef.current?.scrollTo('B');
 ```
