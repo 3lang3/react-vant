@@ -1,7 +1,6 @@
 import React from 'react';
 import { CartO, ChatO, ShopO } from '@react-vant/icons';
 import { ActionBar } from 'react-vant';
-import './style.less';
 
 export default () => {
   return (
