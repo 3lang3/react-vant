@@ -1,3 +1,8 @@
+---
+className: 'vant-doc-demo-section--card'
+background: '#fff'
+---
+
 # Divider 分割线
 
 ### 介绍
@@ -16,40 +21,79 @@ import { Divider } from 'react-vant';
 
 默认渲染一条水平分割线。
 
-```html
-<Divider />
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Divider } from 'react-vant';
+
+export default () => <Divider />;
 ```
 
 ### 展示文字
 
 通过插槽在可以分割线中间插入内容。
 
-```html
-<Divider>文字</Divider>
+```jsx
+/**
+ * title: 展示文字
+ */
+import React from 'react';
+import { Divider } from 'react-vant';
+
+export default () => <Divider>文字</Divider>;
 ```
 
 ### 内容位置
 
 通过 `contentPosition` 指定内容所在位置。
 
-```html
-<Divider content-position="left">文字</Divider> <Divider content-position="right">文字</Divider>
+```jsx
+/**
+ * title: 内容位置
+ */
+import React from 'react';
+import { Divider } from 'react-vant';
+
+export default () => (
+  <>
+    <Divider contentPosition="left">左侧内容位置</Divider>
+    <Divider contentPosition="right">右侧内容位置</Divider>
+  </>
+);
 ```
 
 ### 虚线
 
 添加 `dashed` 属性使分割线渲染为虚线。
 
-```html
-<Divider dashed>文字</Divider>
+```jsx
+/**
+ * title: 虚线
+ */
+import React from 'react';
+import { Divider } from 'react-vant';
+
+export default () => <Divider dashed>虚线Divider</Divider>;
 ```
 
 ### 自定义样式
 
 可以直接通过 `style` 属性设置分割线的样式。
 
-```html
-<Divider style={{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }}>文字</Divider>
+```jsx
+/**
+ * title: 自定义样式
+ */
+import React from 'react';
+import { Divider } from 'react-vant';
+
+export default () => (
+  <Divider style={{ color: '#3f45ff', borderColor: '#3f45ff', padding: '0 16px' }}>
+    自定义样式
+  </Divider>
+);
 ```
 
 ## API
