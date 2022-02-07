@@ -1,3 +1,7 @@
+---
+className: 'vant-doc-demo-section--card'
+---
+
 # Popover 气泡弹出框
 
 ### 介绍
@@ -16,44 +20,98 @@ import { Popover } from 'react-vant';
 
 当 Popover 弹出时，会基于 `reference` 属性的内容进行定位。
 
-```html
-import { Popover, Button, Toast } from 'react-vant';
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Popover, Space, Toast, Button } from 'react-vant';
 
 const actions = [{ text: '选项一' }, { text: '选项二' }, { text: '选项三' }];
 
 export default () => {
-  const onSelect = (item) => Toast.info(item.text);
+  const select = (option) => Toast.info(option.text);
 
   return (
-    <Popover
-      placement="bottom-start"
-      actions={actions}
-      onSelect={onSelect}
-      reference={<Button type="primary">浅色风格</Button>}
-    />
+    <Space>
+      <Popover
+        placement="bottom-start"
+        actions={actions}
+        onSelect={select}
+        reference={<Button type="primary">浅色风格</Button>}
+      />
+      <Popover
+        actions={actions}
+        theme="dark"
+        onSelect={select}
+        reference={<Button type="primary">深色风格</Button>}
+      />
+    </Space>
   );
 };
-```
-
-### 深色风格
-
-Popover 支持浅色和深色两种风格，默认为浅色风格，将 `theme` 属性设置为 `dark` 可切换为深色风格。
-
-```html
-<Popover
-  theme="dark"
-  actions={actions}
-  onSelect={onSelect}
-  reference={<Button type="primary">浅色风格</Button>}
-/>
 ```
 
 ### 弹出位置
 
 通过 `placement` 属性来控制气泡的弹出位置。
 
-```html
-<Popover placement="top" />
+```tsx
+/**
+ * title: 弹出位置
+ */
+import React, { useRef, useState } from 'react';
+import { Toast, Popover, Popup, Picker, Cell } from 'react-vant';
+import type { PopoverInstance, PopoverPlacement } from 'react-vant';
+
+const popupActions = [{ text: '选项一' }, { text: '选项二' }];
+
+const placements = [
+  'top',
+  'top-start',
+  'top-end',
+  'left',
+  'left-start',
+  'left-end',
+  'right',
+  'right-start',
+  'right-end',
+  'bottom',
+  'bottom-start',
+  'bottom-end',
+] as PopoverPlacement[];
+
+export default () => {
+  const popover = useRef<PopoverInstance>(null);
+  const [visible, setVisible] = useState(false);
+  const [placement, updatePlacement] = useState(placements[0]);
+
+  const select = (option) => Toast.info(option.text);
+
+  const onPickerChange = (plc) => {
+    updatePlacement(plc);
+    setTimeout(() => popover.current.show(), 0);
+  };
+  return (
+    <>
+      <Cell title="选择弹出位置" onClick={() => setVisible(true)} isLink />
+      <Popup round position="bottom" visible={visible} onClose={() => setVisible(false)}>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '110px 0' }}>
+          <Popover
+            ref={popover}
+            theme="dark"
+            actions={popupActions}
+            onSelect={select}
+            placement={placement}
+            reference={
+              <div style={{ width: 60, height: 60, backgroundColor: '#3f45ff', borderRadius: 8 }} />
+            }
+          />
+        </div>
+        <Picker showToolbar={false} columns={placements} onChange={onPickerChange} />
+      </Popup>
+    </>
+  );
+};
 ```
 
 `placement` 支持以下值：
@@ -73,55 +131,18 @@ bottom-start  # 底部左侧位置
 bottom-end    # 底部右侧位置
 ```
 
-### 展示图标
+### 选项配置
 
-在 `actions` 数组中，可以通过 `icon` 字段来定义选项的图标。
+- 在 `actions` 数组中，可以通过 `icon` 字段来定义选项的图标。
+- 在 `actions` 数组中，可以通过 `disabled` 字段来禁用某个选项。
 
-```html
-const actions = [
-  { text: '选项一', icon: <AddO /> },
-  { text: '选项二', icon: <MusicO /> },
-  { text: '选项三', icon: <MoreO /> },
-];
-
-<Popover
-  actions={actions}
-  onSelect={onSelect}
-  reference={<Button type="primary">浅色风格</Button>}
-/>;
-```
-
-### 禁用选项
-
-在 `actions` 数组中，可以通过 `disabled` 字段来禁用某个选项。
-
-```html
-const actions = [
-  { text: '选项一', disabled: true },
-  { text: '选项二', disabled: true },
-  { text: '选项三' },
-];
-
-<Popover
-  actions={actions}
-  onSelect={onSelect}
-  reference={<Button type="primary">浅色风格</Button>}
-/>;
-```
+<code title="选项配置" src="./demo/config.tsx" />
 
 ### 自定义内容
 
 通过 children，可以在 Popover 内部放置任意内容。
 
-```html
-<Popover ref={popover} placement="top-start" reference={<Button type="primary">自定义内容</Button>}>
-  <Grid square border={false} columnNum={3} style={{ width: 240 }}>
-    {Array.from({ length: 6 }, (_, i) => (
-      <Grid.Item onClick={() => popover.current?.hide()} key={i} icon={<PhotoO />} text="文字" />
-    ))}
-  </Grid>
-</Popover>
-```
+<code title="自定义内容" src="./demo/custom.tsx" />
 
 ## API
 

@@ -3,4 +3,4 @@ import './style/index.less';
 
 export default Popover;
 export { Popover };
-export type { PopoverProps, PopoverPlacement, PopoverTheme } from './PropsType';
+export type { PopoverProps, PopoverPlacement, PopoverTheme, PopoverInstance } from './PropsType';
