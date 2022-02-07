@@ -1,3 +1,7 @@
+---
+background: '#fff'
+---
+
 # Skeleton 骨架屏
 
 ### 介绍
@@ -16,38 +20,66 @@ import { Skeleton } from 'react-vant';
 
 通过 `title` 属性显示标题占位图，通过 `row` 属性配置占位段落行数。
 
-```html
-<Skeleton title />
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Skeleton } from 'react-vant';
+
+export default () => {
+  return <Skeleton title />;
+};
 ```
 
 ### 显示头像
 
 通过 `avatar` 属性显示头像占位图。
 
-```html
-<Skeleton avatar />
+```jsx
+/**
+ * title: 显示头像
+ */
+import React from 'react';
+import { Skeleton } from 'react-vant';
+
+export default () => {
+  return <Skeleton avatar />;
+};
 ```
 
 ### 自定义高度
 
 通过 `rowHeight` 属性显示头像占位图。
 
-```html
-<Skeleton rowHeight="{10}" />
+```jsx
+/**
+ * title: 自定义高度
+ */
+import React from 'react';
+import { Skeleton } from 'react-vant';
+
+export default () => {
+  return <Skeleton rowHeight={10} />;
+};
 ```
 
 ### 展示子组件
 
 将 `loading` 属性设置成 `false` 表示内容加载完成，此时会隐藏占位图，并显示 `Skeleton` 的子组件。
 
-```html
-import { useState } from 'react';
+```jsx
+/**
+ * title: 基础用法
+ */
+import React, { useState } from 'react';
 import { Flex, Typography, Switch, Skeleton } from 'react-vant';
+import './demo/style.less';
 
 export default () => {
   const [loading, setLoading] = useState(true);
   return (
-    <>
+    <div className="demo-skeleton">
       <Switch checked={loading} onChange={setLoading} size={24} />
       <Skeleton avatar loading={loading}>
         <Flex className="demo-preview">
@@ -61,7 +93,7 @@ export default () => {
           </div>
         </Flex>
       </Skeleton>
-    </>
+    </div>
   );
 };
 ```
