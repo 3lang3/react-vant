@@ -32,7 +32,7 @@ export * from './dropdown-menu';
 export { default as Search } from './search';
 export { default as Sidebar } from './sidebar';
 export { default as Tabs } from './tabs';
-export { default as Sticky } from './sticky';
+export * from './sticky';
 export { default as NavBar } from './nav-bar';
 export { default as Tag } from './tag';
 export { default as Grid } from './grid';
