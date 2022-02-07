@@ -4,7 +4,7 @@ import { BaseTypeProps } from '../utils';
 
 export type ShareSheetOption = {
   name: string;
-  icon: string;
+  icon: string | React.ReactNode;
   className?: string;
   description?: string;
 };

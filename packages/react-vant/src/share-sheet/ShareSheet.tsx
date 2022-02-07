@@ -58,7 +58,11 @@ const ShareSheet: React.FC<ShareSheetProps> = (props) => {
         className={cls([bem('option'), className])}
         onClick={() => onSelect(option, index)}
       >
-        <img alt="share sheet icon" src={getIconURL(icon)} className={cls(bem('icon'))} />
+        {typeof icon === 'string' ? (
+          <img alt="share sheet icon" src={getIconURL(icon)} className={cls(bem('icon'))} />
+        ) : (
+          icon
+        )}
         {name && <span className={cls(bem('name'))}>{name}</span>}
         {description && <span className={cls(bem('option-description'))}>{description}</span>}
       </div>

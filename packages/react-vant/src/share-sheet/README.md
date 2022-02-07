@@ -16,96 +16,25 @@ import { ShareSheet } from 'reactvant';
 
 分享面板通过 `options` 属性来定义分享选项，数组的每一项是一个对象，对象格式见文档下方表格。
 
-```html
-import { useState } from 'react';
-import { Cell, ShareSheet } from 'react-vant';
-const options = [
-  { name: '微信', icon: 'wechat' },
-  { name: '微博', icon: 'weibo' },
-  { name: '复制链接', icon: 'link' },
-  { name: '分享海报', icon: 'poster' },
-  { name: '二维码', icon: 'qrcode' },
-];
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-  const close = () => setVisible(false);
-  return (
-    <>
-      <Cell isLink title="显示分享面板" onClick={() => setVisible(true)} />
-      <ShareSheet
-        visible={visible}
-        options={options}
-        title="立即分享给好友"
-        onCancel={close}
-        onSelect={(option, index) => {
-          console.log('option', option);
-          console.log('index', index);
-          close();
-        }}
-      />
-    </>
-  );
-};
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
 ### 展示多行选项
 
 当分享选项的数量较多时，可以将 `options` 定义为数组嵌套的格式，每个子数组会作为一行选项展示。
 
-```js
-const options = [
-  [
-    { name: '微信', icon: 'wechat' },
-    { name: '朋友圈', icon: 'wechat-moments' },
-    { name: '微博', icon: 'weibo' },
-    { name: 'QQ', icon: 'qq' },
-  ],
-  [
-    { name: '复制链接', icon: 'link' },
-    { name: '分享海报', icon: 'poster' },
-    { name: '二维码', icon: 'qrcode' },
-    { name: '小程序码', icon: 'weapp-qrcode' },
-  ],
-];
-```
+<code title="展示多行选项" src="./demo/mulit.tsx" />
 
 ### 自定义图标
 
 除了使用内置的几种图标外，可以直接在 `icon` 中传入图片 URL 来使用自定义的图标。
 
-```js
-const options = [
-  {
-    name: '名称',
-    icon: 'https://img.yzcdn.cn/vant/custom-icon-fire.png',
-  },
-  {
-    name: '名称',
-    icon: 'https://img.yzcdn.cn/vant/custom-icon-light.png',
-  },
-  {
-    name: '名称',
-    icon: 'https://img.yzcdn.cn/vant/custom-icon-water.png',
-  },
-];
-```
+<code title="自定义图标" src="./demo/custom.tsx" />
 
 ### 展示描述信息
 
 通过 `description` 属性可以设置标题下方的描述文字, 在 `options` 内设置 `description` 属性可以添加分享选项描述。
 
-```js
-const options = [
-  { name: '微信', icon: 'wechat' },
-  { name: '微博', icon: 'weibo' },
-  { name: '复制链接', icon: 'link', description: '描述信息' },
-  { name: '分享海报', icon: 'poster' },
-  { name: '二维码', icon: 'qrcode' },
-];
-
-<ShareSheet title="立即分享给好友" description="描述信息" options={options} />;
-```
+<code title="展示描述信息" src="./demo/description.tsx" />
 
 ## API
 
@@ -135,7 +64,7 @@ const options = [
 | --- | --- | --- |
 | name | 分享渠道名称 | _string_ |
 | description | 分享选项描述 | _string_ |
-| icon | 图标，可选值为 `wechat` `weibo` `qq` `link` `qrcode` `poster` `weapp-qrcode` `wechat-moments`，支持传入图片 URL | _string_ |
+| icon | 图标，可选值为 `wechat` `weibo` `qq` `link` `qrcode` `poster` `weapp-qrcode` `wechat-moments` 或自定义组件，支持传入图片 URL | _string\| ReactNode_ |
 | className | 分享选项类名 | _string_ |
 
 ### Events
