@@ -68,7 +68,7 @@ function getRoutes() {
         routes.push({
           name: `${lang}/${component}`,
           path: `/${lang}/${component}`,
-          component: () => <DemoPage blocks={MdDemos} {...frontmatter} />,
+          component: (props) => <DemoPage {...props} blocks={MdDemos} frontmatter={frontmatter} />,
           meta: {
             name: componentName,
             lang,
@@ -79,7 +79,7 @@ function getRoutes() {
       routes.push({
         name: component,
         path: `/${component}`,
-        component: () => <DemoPage blocks={MdDemos} {...frontmatter} />,
+        component: (props) => <DemoPage {...props} blocks={MdDemos} frontmatter={frontmatter} />,
         meta: {
           name: componentName,
         },
