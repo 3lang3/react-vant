@@ -1,3 +1,7 @@
+---
+background: '#fff'
+---
+
 # NoticeBar 通知栏
 
 ### 介绍
@@ -16,76 +20,88 @@ import { NoticeBar } from 'react-vant';
 
 通过 `text` 属性设置通知栏的内容，通过 `leftIcon` 属性设置通知栏左侧的图标。
 
-```html
-<NoticeBar leftIcon="{<SpeakerS" />}
-text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
 ### 滚动播放
 
 通知栏的内容长度溢出时会自动开启滚动播放，通过 `scrollable` 属性可以控制该行为。
 
-```html
-<NoticeBar scrollable text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+```jsx
+/**
+ * title: 滚动播放
+ */
+import React from 'react';
+import { NoticeBar } from 'react-vant';
+
+export default () => {
+  return <NoticeBar scrollable text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />;
+};
 ```
 
 ### 多行展示
 
 文字较长时，可以通过设置 `wrapable` 属性来开启多行展示。
 
-```html
-<NoticeBar wrapable text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+```jsx
+/**
+ * title: 多行展示
+ */
+import React from 'react';
+import { NoticeBar } from 'react-vant';
+
+export default () => {
+  return <NoticeBar wrapable text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />;
+};
 ```
 
 ### 通知栏模式
 
 通知栏支持 `closeable` 和 `link` 两种模式。
 
-```html
-<!-- closeable 模式，在右侧显示关闭按钮 -->
-<NoticeBar mode="closeable">技术是开发它的人的共同灵魂。</NoticeBar>
+```jsx
+/**
+ * title: 通知栏模式
+ */
+import React from 'react';
+import { NoticeBar } from 'react-vant';
 
-<!-- link 模式，在右侧显示链接箭头 -->
-<NoticeBar mode="link">技术是开发它的人的共同灵魂。</NoticeBar>
+export default () => {
+  return (
+    <>
+      {/* closeable 模式，在右侧显示关闭按钮 */}
+      <NoticeBar mode="closeable">技术是开发它的人的共同灵魂。</NoticeBar>
+      {/* link 模式，在右侧显示链接箭头 */}
+      <NoticeBar mode="link">技术是开发它的人的共同灵魂。</NoticeBar>
+    </>
+  );
+};
 ```
 
 ### 自定义样式
 
 通过 `color` 属性设置文本颜色，通过 `background` 属性设置背景色。
 
-```html
-<NoticeBar color="#1989fa" background="#ecf9ff" leftIcon={<InfoO />}>
-  技术是开发它的人的共同灵魂。
-</NoticeBar>
+```jsx
+/**
+ * title: 自定义样式
+ */
+import React from 'react';
+import { NoticeBar } from 'react-vant';
+
+export default () => {
+  return (
+    <NoticeBar color="#3f45ff" background="#edeeff">
+      技术是开发它的人的共同灵魂。
+    </NoticeBar>
+  );
+};
 ```
 
 ### 垂直滚动
 
 搭配 NoticeBar 和 Swiper 组件可以实现垂直滚动的效果。
 
-```html
-import React from 'react';
-import { NoticeBar, Swiper } from 'react-vant';
-
-export default () => {
-  return (
-    <NoticeBar leftIcon={<InfoO />}>
-      <Swiper autoplay={3000} vertical className="notice-swipe">
-        <Swiper.Item>内容 1</Swiper.Item>
-        <Swiper.Item>内容 2</Swiper.Item>
-        <Swiper.Item>内容 3</Swiper.Item>
-      </Swiper>
-    </NoticeBar>
-  );
-};
-```
-
-```css
-.notice-swipe {
-  height: 40px;
-  line-height: 40px;
-}
-```
+<code  title="垂直滚动"  src="./demo/vertical.tsx" />
 
 ## API
 
