@@ -15,7 +15,7 @@ export * from './popup';
 export { default as Overlay } from './overlay';
 export { default as Empty } from './empty';
 export * from './loading';
-export { default as Notify } from './notify';
+export * from './notify';
 export { default as PullRefresh } from './pull-refresh';
 export { default as SwipeCell } from './swipe-cell';
 export { default as ShareSheet } from './share-sheet';

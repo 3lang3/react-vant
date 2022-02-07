@@ -14,69 +14,100 @@ import { Notify } from 'reactvant';
 Notify.show('通知内容');
 ```
 
-### 组件调用
-
-通过组件调用 Notify 时，可以通过下面的方式进行注册：
-
-```js
-import { useState } from 'react';
-import { Ball, Close } from '@react-vant/icons';
-import { Notify, Flex, Icon, Button } from 'react-vant';
-
-export default () => {
-  const [visible, setVisible] = useState(false);
-  return (
-    <>
-      <Button onClick={() => setVisible(true)}>打开Notify</Button>
-      <Notify visible={visible} type="success">
-        <Flex style={{ width: '100%' }} align="center" justify="between">
-          <div />
-          <div>
-            <Bell style={{ marginRight: 4 }} />
-            <span>通知内容</span>
-          </div>
-          <Close onClick={() => setVisible(false)} />
-        </Flex>
-      </Notify>
-    </>
-  );
-};
-```
-
 ## 代码演示
 
 ### 基础用法
 
-```html
-Notify.show('通知内容');
+```jsx
+/**
+ * title: 基础用法
+ * card: true
+ */
+import React from 'react';
+import { Notify, Cell } from 'react-vant';
+
+export default () => {
+  return <Cell title="基础用法" isLink onClick={() => Notify.show('通知内容')} />;
+};
 ```
 
 ### 通知类型
 
 支持 `primary`、`success`、`warning`、`danger` 四种通知类型，默认为 `danger`。
 
-```js
-// 主要通知
-Notify.show({ type: 'primary', message: '通知内容' });
+```jsx
+/**
+ * title: 通知类型
+ * card: true
+ */
+import React from 'react';
+import { Notify, Cell } from 'react-vant';
 
-// 成功通知
-Notify.show({ type: 'success', message: '通知内容' });
-
-// 危险通知
-Notify.show({ type: 'danger', message: '通知内容' });
-
-// 警告通知
-Notify.show({ type: 'warning', message: '通知内容' });
+export default () => {
+  return (
+    <>
+      <Cell
+        title="主要通知"
+        isLink
+        onClick={() => Notify.show({ type: 'primary', message: '通知内容' })}
+      />
+      <Cell
+        title="成功通知"
+        isLink
+        onClick={() => Notify.show({ type: 'success', message: '通知内容' })}
+      />
+      <Cell
+        title="危险通知"
+        isLink
+        onClick={() => Notify.show({ type: 'danger', message: '通知内容' })}
+      />
+      <Cell
+        title="警告通知"
+        isLink
+        onClick={() => Notify.show({ type: 'warning', message: '通知内容' })}
+      />
+    </>
+  );
+};
 ```
 
 ### 自定义通知
 
 自定义消息通知的颜色和展示时长。
 
-```html
-Notify.show({ message: '自定义颜色', color: '#ad0000', background: '#ffe1e1', }); Notify.show({
-message: '自定义时长', duration: 1000, });
+```jsx
+/**
+ * title: 自定义通知
+ * card: true
+ */
+import React from 'react';
+import { Notify, Cell } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Cell
+        title="自定义颜色"
+        isLink
+        onClick={() =>
+          Notify.show({ message: '自定义颜色', color: '#ad0000', background: '#ffe1e1' })
+        }
+      />
+      <Cell
+        title="自定义时长"
+        isLink
+        onClick={() => Notify.show({ message: '自定义时长', duration: 1000 })}
+      />
+    </>
+  );
+};
 ```
+
+### 组件调用
+
+通过组件调用 Notify 时，可以通过下面的方式进行注册：
+
+<code title="组件调用" card src="./demo/component.tsx" />
 
 ## API
 
@@ -108,7 +139,7 @@ message: '自定义时长', duration: 1000, });
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { NotifyType, NotifyProps } from 'react-vant';
 ```
 
