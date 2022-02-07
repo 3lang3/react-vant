@@ -10,100 +10,139 @@
 
 直接传入图片数组，即可展示图片预览。
 
-```html
-import { ImagePreview } from 'react-vant'; ImagePreview.open({ images: [
-'https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg',
-'https://img.yzcdn.cn/vant/apple-3.jpg', ], // 开启懒加载 lazyload: true, });
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { ImagePreview, Cell } from 'react-vant';
+
+const images = [
+  'https://img.yzcdn.cn/vant/apple-1.jpg',
+  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://img.yzcdn.cn/vant/apple-3.jpg',
+];
+
+export default () => {
+  return <Cell title="预览图片" isLink onClick={() => ImagePreview.open({ images })} />;
+};
 ```
 
-### 指定初始位置
+### 配置项
 
-`ImagePreview` 支持传入配置对象，并通过 `startPosition` 选项指定图片的初始位置（索引值）。
+- `ImagePreview` 支持传入配置对象，并通过 `startPosition` 选项指定图片的初始位置（索引值）。
+- 设置 `closeable` 属性后，会在弹出层的右上角显示关闭图标，并且可以通过 `closeIcon` 属性自定义图标，使用`closeIconPosition` 属性可以自定义图标位置。
+- 通过 `onClose` 选项监听图片预览的关闭事件。
+- `ImagePreview.open`会返回实例的销毁方法。
 
-```js
-ImagePreview.open({
-  images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
-    'https://img.yzcdn.cn/vant/apple-3.jpg',
-  ],
-  startPosition: 1,
-});
-```
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { ImagePreview, Cell, Toast } from 'react-vant';
 
-### 展示关闭按钮
+const images = [
+  'https://img.yzcdn.cn/vant/apple-1.jpg',
+  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://img.yzcdn.cn/vant/apple-3.jpg',
+];
 
-设置 `closeable` 属性后，会在弹出层的右上角显示关闭图标，并且可以通过 `closeIcon` 属性自定义图标，使用`closeIconPosition` 属性可以自定义图标位置。
-
-```js
-ImagePreview.open({
-  images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
-    'https://img.yzcdn.cn/vant/apple-3.jpg',
-  ],
-  closeable: true,
-});
-```
-
-### 监听关闭事件
-
-通过 `onClose` 选项监听图片预览的关闭事件。
-
-```js
-import { Toast } from 'react-vant';
-
-ImagePreview.open({
-  images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
-    'https://img.yzcdn.cn/vant/apple-3.jpg',
-  ],
-  onClose() {
-    Toast('关闭');
-  },
-});
+export default () => {
+  return (
+    <>
+      <Cell
+        title="指定初始位置"
+        isLink
+        onClick={() => ImagePreview.open({ images, startPosition: 2 })}
+      />
+      <Cell
+        title="展示关闭按钮"
+        isLink
+        onClick={() => ImagePreview.open({ images, startPosition: 2, closeable: true })}
+      />
+      <Cell
+        title="监听关闭事件"
+        isLink
+        onClick={() =>
+          ImagePreview.open({
+            images,
+            startPosition: 2,
+            onClose: () => {
+              Toast.info('关闭预览');
+            },
+          })
+        }
+      />
+      <Cell
+        title="展示指示点"
+        isLink
+        onClick={() => ImagePreview.open({ images, showIndicators: true, showIndex: false })}
+      />
+    </>
+  );
+};
 ```
 
 ### 异步关闭
 
 `ImagePreview.open`会返回实例的销毁方法。
 
-```js
-const destory = ImagePreview.open({
-  images: [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
-    'https://img.yzcdn.cn/vant/apple-3.jpg',
-  ],
-});
+```jsx
+/**
+ * title: 异步关闭
+ */
+import React from 'react';
+import { ImagePreview, Cell } from 'react-vant';
 
-setTimeout(() => {
-  // 调用实例的销毁方法手动关闭图片预览
-  destory();
-}, 2000);
+const images = [
+  'https://img.yzcdn.cn/vant/apple-1.jpg',
+  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://img.yzcdn.cn/vant/apple-3.jpg',
+];
+
+export default () => {
+  return (
+    <Cell
+      title="预览图片"
+      isLink
+      onClick={() => {
+        const destory = ImagePreview.open({ images });
+        setTimeout(() => destory(), 2000);
+      }}
+    />
+  );
+};
 ```
 
 ### 组件调用
 
 如果需要在图片预览内嵌入组件或其他自定义内容，可以使用组件调用的方式。
 
-```html
-import { ImagePreview, Button } from 'react-vant';
+```jsx
+/**
+ * title: 组件调用
+ */
+import React, { useState } from 'react';
+import { ImagePreview, Cell } from 'react-vant';
+
+const images = [
+  'https://img.yzcdn.cn/vant/apple-1.jpg',
+  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://img.yzcdn.cn/vant/apple-3.jpg',
+];
 
 export default () => {
   const [visible, setVisible] = useState(false);
   return (
     <>
-      <Button onClick={() => setVisible(true)}>组件调用</Button>
+      <Cell title="组件调用" isLink onClick={() => setVisible(true)} />
       <ImagePreview
         visible={visible}
         onClose={() => setVisible(false)}
-        images={i[
-          'https://img.yzcdn.cn/vant/apple-1.jpg',
-          'https://img.yzcdn.cn/vant/apple-2.jpg',
-          'https://img.yzcdn.cn/vant/apple-3.jpg',
-        ]}
+        images={images}
+        showIndicators
+        showIndex={false}
       />
     </>
   );
