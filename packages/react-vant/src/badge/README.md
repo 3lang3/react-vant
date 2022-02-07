@@ -1,3 +1,8 @@
+---
+className: 'vant-doc-demo-section--card'
+background: '#fff'
+---
+
 # Badge 徽标
 
 ### 介绍
@@ -16,86 +21,124 @@ import { Badge } from 'react-vant';
 
 设置 `content` 属性后，Badge 会在子元素的右上角显示对应的徽标，也可以通过 `dot` 来显示小红点。
 
-```html
-<Badge content="5">
-  <div class="child" />
-</Badge>
-<Badge content="10">
-  <div class="child" />
-</Badge>
-<Badge content="Hot">
-  <div class="child" />
-</Badge>
-<Badge dot>
-  <div class="child" />
-</Badge>
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Space, Badge } from 'react-vant';
 
-<style>
-  .child {
-    width: 40px;
-    height: 40px;
-    background: #f2f3f5;
-    border-radius: 4px;
-  }
-</style>
+const Child = () => (
+  <div style={{ width: 40, height: 40, background: '#f2f3f5', borderRadius: 4 }} />
+);
+
+export default () => {
+  return (
+    <Space gap={20}>
+      <Badge content={5}>
+        <Child />
+      </Badge>
+      <Badge content={10}>
+        <Child />
+      </Badge>
+      <Badge content="hot">
+        <Child />
+      </Badge>
+      <Badge dot>
+        <Child />
+      </Badge>
+    </Space>
+  );
+};
 ```
 
 ### 最大值
 
 设置 `max` 属性后，当 `content` 的数值超过最大值时，会自动显示为 `{max}+`。
 
-```html
-<Badge content="20" max="9">
-  <div class="child" />
-</Badge>
-<Badge content="50" max="20">
-  <div class="child" />
-</Badge>
-<Badge content="200" max="99">
-  <div class="child" />
-</Badge>
+```jsx
+/**
+ * title: 最大值
+ */
+import React from 'react';
+import { Space, Badge } from 'react-vant';
+
+const Child = () => (
+  <div style={{ width: 40, height: 40, background: '#f2f3f5', borderRadius: 4 }} />
+);
+
+export default () => {
+  return (
+    <Space gap={20}>
+      <Badge content={20} max={9}>
+        <Child />
+      </Badge>
+      <Badge content="99" max="20">
+        <Child />
+      </Badge>
+      <Badge content="9999" max="99">
+        <Child />
+      </Badge>
+    </Space>
+  );
+};
 ```
 
 ### 自定义颜色
 
 通过 `color` 属性来设置徽标的颜色。
 
-```html
-<Badge content="5" color="#1989fa">
-  <div class="child" />
-</Badge>
-<Badge content="10" color="#1989fa">
-  <div class="child" />
-</Badge>
-<Badge dot color="#1989fa">
-  <div class="child" />
-</Badge>
+```jsx
+/**
+ * title: 自定义颜色
+ */
+import React from 'react';
+import { Space, Badge } from 'react-vant';
+
+const Child = () => (
+  <div style={{ width: 40, height: 40, background: '#f2f3f5', borderRadius: 4 }} />
+);
+
+export default () => {
+  return (
+    <Space gap={20}>
+      <Badge content={5} color="#3f45ff">
+        <Child />
+      </Badge>
+      <Badge content={10} color="#3f45ff">
+        <Child />
+      </Badge>
+      <Badge color="#3f45ff" dot>
+        <Child />
+      </Badge>
+    </Space>
+  );
+};
 ```
 
 ### 自定义徽标内容
 
-```html
-<Badge content={<Success className="badge-icon" />}>
-  <div class="child" />
-</Badge>
-```
-
-```css
-.badge-icon {
-  display: block;
-  font-size: 10px;
-  line-height: 16px;
-}
-```
+<code title="自定义徽标内容" src="./demo/custom.tsx" />
 
 ### 独立展示
 
 当 Badge 没有子元素时，会作为一个独立的元素进行展示。
 
-```html
-<Badge content="20" />
+```jsx
+/**
+ * title: 独立展示
+ */
+import React from 'react';
+import { Space, Badge } from 'react-vant';
 
-<Badge content="200" max="99" />
+export default () => {
+  return (
+    <Space gap={20}>
+      <Badge content="20" style={{ marginRight: 16 }} />
+      <Badge content="200" max="99" />
+    </Space>
+  );
+};
 ```
 
 ## API
