@@ -1,3 +1,7 @@
+---
+className: 'vant-doc-demo-section--card'
+---
+
 # Card 卡片
 
 ### 介绍
@@ -12,73 +16,63 @@ import { Card } from 'react-vant';
 
 ### 基础用法
 
-```html
-import React from 'react'; import { Card } from 'react-vant'; export default () => { return (
-<Card>
-  <Card.Header>卡片标题</Card.Header>
-  <Card.Body>卡片内容区域</Card.Body>
-</Card>
-); };
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Card } from 'react-vant';
+export default () => {
+  return (
+    <Card>
+      <Card.Header>卡片标题</Card.Header>
+      <Card.Body>卡片内容区域</Card.Body>
+    </Card>
+  );
+};
 ```
 
 ### 圆角卡片
 
 `round`属性开启圆角样式
 
-```html
-import React from 'react'; import { Card } from 'react-vant'; export default () => { return (
-<Card round>
-  <Card.Header>圆角卡片</Card.Header>
-  <Card.Body>卡片内容区域</Card.Body>
-</Card>
-); };
+```jsx
+/**
+ * title: 圆角卡片
+ */
+import React from 'react';
+import { Card } from 'react-vant';
+export default () => {
+  return (
+    <Card round>
+      <Card.Header>圆角卡片</Card.Header>
+      <Card.Body>卡片内容区域</Card.Body>
+    </Card>
+  );
+};
 ```
 
 ### 底部内容
 
 通过 `Card.Footer` 设置底部内容。
 
-```html
-import React from 'react'; import { Card, Button } from 'react-vant'; import { Arrow } from
-'@react-vant/icons'; export default () => { return (
-<Card round>
-  <Card.Header>卡片标题</Card.Header>
-  <Card.Body>卡片内容区域</Card.Body>
-  <Card.Footer>
-    <button type="primary" round block size="mini">查看更多 <Arrow /></button>
-  </Card.Footer>
-</Card>
-); };
-```
-
-### 封面展示
-
-使用 `Card.Cover` 可以方便的展示封面，随意调整位置
-
-```html
+```jsx
+/**
+ * title: 底部内容
+ */
 import React from 'react';
-import { Card, Image, Button } from 'react-vant';
-import { Arrow, Like } from '@react-vant/icons';
+import { Card, Button } from 'react-vant';
 
 export default () => {
   return (
     <Card round>
-      <Card.Cover>
-        <Image src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/baa20698931623.5ee79b6a8ec2b.jpg" />
-      </Card.Cover>
-      <Card.Header extra={<Arrow />}>自定义标题</Card.Header>
-      <Card.Body>卡片内容区域</Card.Body>
+      <Card.Header>卡片标题</Card.Header>
+      <Card.Body>
+        想到生的乐趣，生固然可以留恋；但想到生的苦趣，无常也不一定是恶客。 ——鲁迅《朝花夕拾》
+      </Card.Body>
       <Card.Footer>
-        <Button round size="small">
-          更多
-        </Button>
-        <Button
-          icon={<Like />}
-          round
-          color="linear-gradient(to right, #ff6034, #ee0a24)"
-          size="small"
-        >
-          Like
+        <Button type="primary" round block size="small">
+          查看更多
         </Button>
       </Card.Footer>
     </Card>
@@ -86,14 +80,22 @@ export default () => {
 };
 ```
 
+### 封面展示
+
+使用 `Card.Cover` 可以方便的展示封面，随意调整位置
+
+<code title="封面展示" src="./demo/cover.tsx" />
+
 ### 展示边框
 
 `Card.Header` 和 `Card.Footer` 的 `border` 属性可以展示对应边框
 
-```html
+```jsx
+/**
+ * title: 展示边框
+ */
 import React from 'react';
 import { Card, Button } from 'react-vant';
-import { Arrow } from '@react-vant/icons';
 
 export default () => {
   return (
@@ -101,7 +103,7 @@ export default () => {
       <Card.Header border>卡片标题</Card.Header>
       <Card.Body
         style={{
-          height: '30vh',
+          height: '20vh',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -111,7 +113,7 @@ export default () => {
       </Card.Body>
       <Card.Footer border>
         <Button type="primary" round block size="mini">
-          查看更多 <Arrow />
+          查看更多
         </Button>
       </Card.Footer>
     </Card>
@@ -121,7 +123,10 @@ export default () => {
 
 ### 自定义卡片样式
 
-```html
+```jsx
+/**
+ * title: 自定义卡片样式
+ */
 import React from 'react';
 import { Card } from 'react-vant';
 
@@ -131,7 +136,7 @@ export default () => {
       <Card.Header>卡片标题</Card.Header>
       <Card.Body
         style={{
-          height: '30vh',
+          height: '20vh',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
