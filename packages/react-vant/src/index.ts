@@ -53,7 +53,7 @@ export { default as Switch } from './switch';
 export * from './uploader';
 export { default as Progress } from './progress';
 export * from './circle';
-export { default as Pagination } from './pagination';
+export * from './pagination';
 export * from './action-bar';
 export { default as Tabbar } from './tabbar';
 export { default as ConfigProvider } from './config-provider';

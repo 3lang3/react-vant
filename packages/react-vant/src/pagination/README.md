@@ -16,45 +16,58 @@ import { Pagination } from 'react-vant';
 
 通过 `value` 来绑定当前页码。
 
-```html
-import { setStatee } from 'react'; import { Pagination } from 'react-vant'; export default () => {
-const [currentPage, setCurrentPage] = useState(1); return (
-<Pagination
-  totalItems="{24}"
-  itemsPerPage="{5}"
-  value="{currentPage}"
-  onChange="{setCurrentPage}"
-/>
-); };
+```jsx
+/**
+ * title: 基础用法
+ */
+import React, { useState } from 'react';
+import { Pagination } from 'react-vant';
+
+export default () => {
+  const [page, setPage] = useState(1);
+  return <Pagination value={page} onChange={setPage} totalItems={24} itemsPerPage={5} />;
+};
 ```
 
 ### 简单模式
 
- 将 `mode` 设置为 `simple` 来切换到简单模式，此时分页器不会展示具体的页码按钮。
+将 `mode` 设置为 `simple` 来切换到简单模式，此时分页器不会展示具体的页码按钮。
 
-```html
-<Pagination value="{currentPage}" pageCount="{12}" mode="simple" />
+```jsx
+/**
+ * title: 简单模式
+ */
+import React, { useState } from 'react';
+import { Pagination } from 'react-vant';
+
+export default () => {
+  const [page, setPage] = useState(1);
+  return <Pagination value={page} mode="simple" onChange={setPage} pageCount={12} />;
+};
 ```
 
 ### 显示省略号
 
-```html
-<Pagination value="{currentPage}" pageCount="{12}" forceEllipses />
+```jsx
+/**
+ * title: 基础用法
+ */
+import React, { useState } from 'react';
+import { Pagination } from 'react-vant';
+
+export default () => {
+  const [page, setPage] = useState(1);
+  return (
+    <Pagination forceEllipses value={page} onChange={setPage} totalItems={125} showPageSize={3} />
+  );
+};
 ```
 
 ### 自定义按钮
 
 通过 `prevText`、`nextText` 等属性来自定义分页按钮的内容。
 
-```html
-<Pagination
-  value="{page4}"
-  onChange="{setPage4}"
-  totalItems="{125}"
-  showPageSize="{5}"
-  prevText="{<ArrowLeft"
-/>} nextText={<Arrow />} pageRender={({ text }) => `😀${text}`} />
-```
+<code title="自定义按钮" src="./demo/custom.tsx" />
 
 ## API
 
@@ -83,7 +96,7 @@ const [currentPage, setCurrentPage] = useState(1); return (
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { PaginationMode } from 'react-vant';
 ```
 
