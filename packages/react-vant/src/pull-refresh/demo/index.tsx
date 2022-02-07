@@ -1,12 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useMemo } from 'react';
-import { Tabs, Toast } from 'react-vant';
-import { components } from 'site-mobile-demo';
+import { PullRefresh, Tabs, Toast } from 'react-vant';
 import './style.less';
-import PullRefresh from '../index';
 
 export default () => {
-  const { DemoSection } = components;
   const [count, setCount] = useState<number>(0);
   const tips = useMemo(() => {
     if (count) {
@@ -28,7 +25,7 @@ export default () => {
   };
 
   return (
-    <DemoSection>
+    <div className="demo-pull-refresh">
       <Tabs>
         <Tabs.TabPane title="基础用法">
           <PullRefresh onRefresh={() => onRefresh(true)}>
@@ -60,6 +57,6 @@ export default () => {
           </PullRefresh>
         </Tabs.TabPane>
       </Tabs>
-    </DemoSection>
+    </div>
   );
 };

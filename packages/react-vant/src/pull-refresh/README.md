@@ -18,20 +18,13 @@ import { PullRefresh } from 'react-vant';
 
 > 和 vant 不同的是，react-vant 根据 onRefresh 在组件内部维护了 loading 状态。
 
-```html
-export default () => { const onRefresh = () => { return new Promise((resolve) => { setTimeout(() =>
-{ resolve(true); }, 1000); }); }; return (
-<PullRefresh onRefresh="{onRefresh}">
-  <p>下拉刷新</p>
-</PullRefresh>
-); };
-```
+<code src="./demo/index.tsx" />
 
 ### 成功提示
 
 通过 `successText` 可以设置刷新成功后的顶部提示文案。
 
-```html
+```jsx | pure
 <PullRefresh successText="刷新成功" onRefresh="{onRefresh}">
   <p>下拉刷新</p>
 </PullRefresh>
@@ -41,7 +34,7 @@ export default () => { const onRefresh = () => { return new Promise((resolve) =>
 
 通过插槽可以自定义下拉刷新过程中的提示内容。
 
-```html
+```jsx | pure
 <PullRefresh
   headHeight={80}
   pullingText={({ distance }) => (
@@ -55,7 +48,7 @@ export default () => { const onRefresh = () => { return new Promise((resolve) =>
   loadingText={() => <img className="doge" src="https://img.yzcdn.cn/vant/doge-fire.jpg" />}
   onRefresh={onRefresh}
 >
-  <p>{tips}</p>
+  <p>自定义提示</p>
 </PullRefresh>
 ```
 
@@ -109,6 +102,6 @@ export default () => { const onRefresh = () => { return new Promise((resolve) =>
 
 默认情况下，下拉区域的高度是和内容高度保持一致的，如果需要让下拉区域始终为全屏，可以给 PullRefresh 设置一个与屏幕大小相等的最小高度：
 
-```html
+```jsx | pure
 <PullRefresh style="min-height: 100vh;" />
 ```
