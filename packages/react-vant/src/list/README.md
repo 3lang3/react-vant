@@ -18,100 +18,7 @@ List 组件滚动到底部时，会触发 `onLoad` 事件，此时可以发起�
 
 > 和 vant 不同的是，react-vant 根据 onLoad 在组件内部维护了 loading 和 error 状态。
 
-```html
-<List finished="{finished}" onLoad="{onLoad}">
-  {list.length ? list.map((item) => { return <Cell key="{item}" title="{item}" />; }) : null}
-</List>
-```
-
-```js
-async function getData(throwError?) {
-  return new Promise<number[]>((resolve, reject) => {
-    setTimeout(() => {
-      if (throwError) {
-        reject(new Error('error'));
-      }
-      resolve(Array.from({ length: 10 }, (_, i) => i));
-    }, 1000);
-  });
-}
-
-const [list, setList] = useState([]);
-const [finished, setFinished] = useState(false);
-
-const onLoad = async () => {
-  // 异步更新数据
-  const data = await getData();
-  setList((v) => [...v, ...data]);
-  if (list.length >= 30) {
-    setFinished(true);
-  }
-};
-```
-
-### 错误提示
-
-若 onLoad 抛出错误，即可显示错误提示，用户点击错误提示后会重新触发 onLoad 事件。
-
-```html
-<List errorText="请求失败，点击重新加载" onLoad="{onLoadError}">
-  {errorList.length ? errorList.map((item) => { return <Cell key="{item}" title="{item}" />; }) :
-  null}
-</List>
-```
-
-```js
-// 模拟异步错误，实际业务中不需要
-const [count, setCount] = useState(0);
-const [errorList, setErrorList] = useState([]);
-
-const onLoadError = async () => {
-  // 异步更新数据
-  setCount((v) => v + 1);
-  // 请求次数等于1时 getData会抛出错误
-  const data = await getData(count === 1);
-  setErrorList((v) => [...v, ...data]);
-  if (list.length >= 30) {
-    setFinished(true);
-  }
-};
-```
-
-### 下拉刷新
-
-List 组件可以与 [PullRefresh](#/zh-CN/pull-refresh) 组件结合使用，实现下拉刷新的效果。
-
-```html
-<PullRefresh onRefresh="{onRefresh}">
-  <List ref="{listRef}" finished="{finished}" onLoad="{onLoadRefresh}">
-    {list.length ? list.map((item) => { return <Cell key="{item}" title="{item}" />; }) : null}
-  </List>
-</PullRefresh>
-```
-
-```js
-const listRef = useState < ListInstance > null;
-const [finished, setFinished] = useState(false);
-const [refreshList, setRefreshList] = useState([]);
-
-const onLoadRefresh = async (isRefresh?) => {
-  const data = await getData();
-  setRefreshList((v) => {
-    const newList = isRefresh ? data : [...v, ...data];
-    if (newList.length >= 30) {
-      setFinished(true);
-    }
-    return newList;
-  });
-};
-
-const onRefresh = async () => {
-  setFinished(false);
-  await onLoadRefresh(1);
-  // 调用list的check方法，检查是否需要继续执行onLoad方法
-  listRef.current?.check();
-};
-```
+<code src="./demo/base.tsx" />
 
 ## API
 
@@ -127,7 +34,7 @@ const onRefresh = async () => {
 | finishedText | 加载完成后的提示文案 | _ReactNode_ | - |
 | errorText | 加载失败后的提示文案 | _ReactNode_ | - |
 | immediateCheck | 是否在初始化时立即执行滚动位置检查 | _boolean_ | `true` |
-| autoCheck `v1.0.1` | 是否在 onLoad 执行后再次检查滚动位置 | _boolean_ | `true` |
+| autoCheck | 是否在 onLoad 执行后再次检查滚动位置 | _boolean_ | `true` |
 
 ### Events
 
