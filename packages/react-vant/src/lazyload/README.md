@@ -18,52 +18,69 @@ import { Lazyload } from 'react-vant';
 
 将 `Image` 组件的 lazyload 属性设为 `true` 即可开启懒加载功能。
 
-```html
-import React from 'react'; import { Image } from 'react-vant'; const imageList = [
-'https://img.yzcdn.cn/vant/apple-1.jpg', 'https://img.yzcdn.cn/vant/apple-2.jpg',
-'https://img.yzcdn.cn/vant/apple-3.jpg', 'https://img.yzcdn.cn/vant/apple-4.jpg',
-'https://img.yzcdn.cn/vant/apple-5.jpg', 'https://img.yzcdn.cn/vant/apple-6.jpg',
-'https://img.yzcdn.cn/vant/apple-7.jpg', ]; export default () => { return (
-<div>
-  {imageList.map((img) => (
-  <image className="lazy-img" lazyload src="{img}" key="{img}" />
-  ))}
-</div>
-); };
-```
+```jsx
+/**
+ * title: 图片懒加载
+ * card: true
+ */
+import React from 'react';
+import { Image } from 'react-vant';
+import './demo/style.less';
 
-```css
-.lazy-img {
-  box-sizing: border-box;
-  width: 100%;
-  height: 250px;
-  margin-bottom: 16px;
-  padding: 16px;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  border-radius: 12px;
-}
+const imageList = [
+  'https://img.yzcdn.cn/vant/apple-1.jpg',
+  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://img.yzcdn.cn/vant/apple-3.jpg',
+  'https://img.yzcdn.cn/vant/apple-4.jpg',
+  'https://img.yzcdn.cn/vant/apple-5.jpg',
+  'https://img.yzcdn.cn/vant/apple-6.jpg',
+  'https://img.yzcdn.cn/vant/apple-7.jpg',
+];
+
+export default () => {
+  return (
+    <>
+      {imageList.map((img) => (
+        <Image lazyload src={img} key={img} />
+      ))}
+    </>
+  );
+};
 ```
 
 ### 组件懒加载
 
 将需要懒加载的组件放在 `Lazyload` 组件中，即可实现组件懒加载。
 
-```html
-import React, { useEffect } from 'react'; import { Lazyload, Image, Typography } from 'react-vant';
-const LazyComponent = () => { useEffect(() => { console.log('mounted'); }, []); return (
-<div>
-  <image src="https://img.yzcdn.cn/vant/apple-1.jpg" />
-  <Typography.Text>
-    当页面需要加载大量内容时，使用懒加载可以实现延迟加载页面可视区域外的内容，从而使页面加载更流畅。
-  </Typography.Text>
-</div>
-); }; export default () => { return (
-<Lazyload>
-  <LazyComponent />
-</Lazyload>
-); };
+```jsx
+/**
+ * title: 组件懒加载
+ * card: true
+ */
+import React, { useEffect } from 'react';
+import { Lazyload, Image, Typography } from 'react-vant';
+
+const LazyComponent = () => {
+  useEffect(() => {
+    console.log('lazy component mounted');
+  }, []);
+  return (
+    <div>
+      <Image src="https://img.yzcdn.cn/vant/apple-8.jpg" />
+      <Typography.Text>
+        当页面需要加载大量内容时，使用懒加载可以实现延迟加载页面可视区域外的内容，从而使页面加载更流畅。
+      </Typography.Text>
+    </div>
+  );
+};
+
+export default () => {
+  return (
+    <Lazyload>
+      <LazyComponent />
+    </Lazyload>
+  );
+};
 ```
 
 ## API
