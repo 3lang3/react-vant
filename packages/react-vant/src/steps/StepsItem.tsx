@@ -59,6 +59,9 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
         return React.cloneElement(activeIcon as React.ReactElement, {
           className: cls(bem('icon', 'active')),
           color: activeColor,
+          style: {
+            color: activeColor,
+          },
         });
       }
     }
@@ -67,6 +70,9 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
       return React.cloneElement(finishIcon as React.ReactElement, {
         className: cls(bem('icon', 'finish')),
         color: activeColor,
+        style: {
+          color: activeColor,
+        },
       });
     }
 
@@ -74,6 +80,9 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
       return React.cloneElement(inactiveIcon as React.ReactElement, {
         className: cls(bem('icon')),
         color: activeColor,
+        style: {
+          color: activeColor,
+        },
       });
     }
 

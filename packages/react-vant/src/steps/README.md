@@ -16,50 +16,95 @@ import { Step, Steps } from 'react-vant';
 
 `active` 属性表示当前步骤的索引，从 0 起计。
 
-```html
-import { useState } from 'react'; import { Steps } from 'react-vant'; export default () => { const
-[active, setActive] = useState(0); return (
-<Steps active="{active}">
-  <Steps.Item>买家下单</Steps.Item>
-  <Steps.Item>商家接单</Steps.Item>
-  <Steps.Item>买家提货</Steps.Item>
-  <Steps.Item>交易完成</Steps.Item>
-</Steps>
-); };
+```jsx
+/**
+ * title: 基础用法
+ */
+import React, { useState } from 'react';
+import { Steps, Button } from 'react-vant';
+
+export default () => {
+  const [active, setActive] = useState(1);
+  const nextStep = () => setActive((prev) => (prev >= 3 ? 0 : prev + 1));
+  return (
+    <>
+      <Steps active={active}>
+        <Steps.Item>买家下单</Steps.Item>
+        <Steps.Item>商家接单</Steps.Item>
+        <Steps.Item>买家提货</Steps.Item>
+        <Steps.Item>交易完成</Steps.Item>
+      </Steps>
+      <div style={{ padding: 20 }}>
+        <Button round block onClick={nextStep}>
+          下一步
+        </Button>
+      </div>
+    </>
+  );
+};
 ```
 
 ### 自定义样式
 
 可以通过 `activeIcon` 和 `activeColor` 属性设置激活状态下的图标和颜色。
 
-```html
-<Steps active={active} activeIcon={<Success />} activeColor="#38f">
-  <Steps.Item>买家下单</Steps.Item>
-  <Steps.Item>商家接单</Steps.Item>
-  <Steps.Item>买家提货</Steps.Item>
-  <Steps.Item>交易完成</Steps.Item>
-</Steps>
+```jsx
+/**
+ * title: 自定义样式
+ */
+import React, { useState } from 'react';
+import { Steps, Button } from 'react-vant';
+
+export default () => {
+  const [active, setActive] = useState(1);
+  const nextStep = () => setActive((prev) => (prev >= 3 ? 0 : prev + 1));
+  return (
+    <>
+      <Steps active={active} activeIcon={<div>!</div>} activeColor="#3f45ff">
+        <Steps.Item>买家下单</Steps.Item>
+        <Steps.Item>商家接单</Steps.Item>
+        <Steps.Item>买家提货</Steps.Item>
+        <Steps.Item>交易完成</Steps.Item>
+      </Steps>
+      <div style={{ padding: 20 }}>
+        <Button round block onClick={nextStep}>
+          下一步
+        </Button>
+      </div>
+    </>
+  );
+};
 ```
 
 ### 竖向步骤条
 
 可以通过设置 `direction` 属性来改变步骤条的显示方向。
 
-```html
-<Steps direction="vertical" active="{0}">
-  <Steps.Item>
-    <h3>【城市】物流状态1</h3>
-    <p>2016-07-12 12:40</p>
-  </Steps.Item>
-  <Steps.Item>
-    <h3>【城市】物流状态2</h3>
-    <p>2016-07-11 10:00</p>
-  </Steps.Item>
-  <Steps.Item>
-    <h3>快件已发货</h3>
-    <p>2016-07-10 09:30</p>
-  </Steps.Item>
-</Steps>
+```jsx
+/**
+ * title: 竖向步骤条
+ */
+import React from 'react';
+import { Steps } from 'react-vant';
+
+export default () => {
+  return (
+    <Steps direction="vertical" active={0}>
+      <Steps.Item>
+        <h3>【城市】物流状态1</h3>
+        <p>2016-07-12 12:40</p>
+      </Steps.Item>
+      <Steps.Item>
+        <h3>【城市】物流状态2</h3>
+        <p>2016-07-11 10:00</p>
+      </Steps.Item>
+      <Steps.Item>
+        <h3>快件已发货</h3>
+        <p>2016-07-10 09:30</p>
+      </Steps.Item>
+    </Steps>
+  );
+};
 ```
 
 ## API

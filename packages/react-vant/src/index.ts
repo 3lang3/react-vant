@@ -24,7 +24,7 @@ export { default as NoticeBar } from './notice-bar';
 export { default as Popover } from './popover';
 export * from './list';
 export { default as Skeleton } from './skeleton';
-export { default as Steps } from './steps';
+export * from './steps';
 export { default as Toast } from './toast';
 export { default as ActionSheet } from './action-sheet';
 export { default as Dialog } from './dialog';
