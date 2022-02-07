@@ -17,7 +17,7 @@ export { default as Empty } from './empty';
 export * from './loading';
 export * from './notify';
 export { default as PullRefresh } from './pull-refresh';
-export { default as SwipeCell } from './swipe-cell';
+export * from './swipe-cell';
 export { default as ShareSheet } from './share-sheet';
 export { default as NoticeBar } from './notice-bar';
 export { default as Popover } from './popover';

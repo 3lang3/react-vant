@@ -1,27 +1,18 @@
-@import '../../styles/var.less';
-
 .demo-swipe-cell {
   user-select: none;
-  .vant-doc-demo-block__title {
-    padding: @padding-md;
-  }
 
-  &-row {
-    margin-bottom: @padding-sm;
-  }
-}
+  .demo-product-card {
+    padding: 10px 16px;
+    background-color: #fff;
 
-.product-card {
-  padding: @padding-xs @padding-md;
-  background-color: @white;
+    &__img {
+      width: 88px;
+      height: 88px;
+      margin-right: 10px;
+    }
 
-  &__img {
-    width: 88px;
-    height: 88px;
-    margin-right: @padding-xs;
-  }
-
-  &__content {
-    flex: 1;
+    &__content {
+      flex: 1;
+    }
   }
 }

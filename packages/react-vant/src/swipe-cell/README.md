@@ -16,97 +16,140 @@ import { SwipeCell } from 'react-vant';
 
 `SwipeCell` 组件提供了 `leftAction` 和 `rightRight` 两个属性，用于定义两侧滑动区域的内容。
 
-```html
-<SwipeCell
-  leftAction={
-    <Button square type="primary">
-      选择
-    </Button>
-  }
-  rightAction={
-    <>
-      <Button square type="danger">
-        删除
-      </Button>
-      <Button square type="primary">
-        收藏
-      </Button>
-    </>
-  }
->
-  <Cell title="单元格" value="内容" />
-</SwipeCell>
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { SwipeCell, Button, Cell, Toast } from 'react-vant';
+
+export default () => {
+  return (
+    <SwipeCell
+      onOpen={() => Toast.info('打开')}
+      onClose={() => Toast.info('关闭')}
+      rightAction={
+        <Button style={{ height: '100%' }} square type="danger">
+          删除
+        </Button>
+      }
+    >
+      <Cell title="单元格" value="内容" />
+    </SwipeCell>
+  );
+};
+```
+
+### 事件监听
+
+```jsx
+/**
+ * title: 事件监听
+ */
+import React from 'react';
+import { SwipeCell, Button, Cell } from 'react-vant';
+
+export default () => {
+  return (
+    <SwipeCell
+      leftAction={
+        <Button square type="primary">
+          选择
+        </Button>
+      }
+      rightAction={
+        <>
+          <Button square type="danger">
+            删除
+          </Button>
+          <Button square type="primary">
+            收藏
+          </Button>
+        </>
+      }
+    >
+      <Cell title="单元格" value="内容" />
+    </SwipeCell>
+  );
+};
 ```
 
 ### 自定义内容
 
 `SwipeCell` 可以嵌套任意内容，比如嵌套一个商品卡片。
 
-```html
-<SwipeCell
-  rightAction={
-    <Button style={{ height: '100%' }} square type="danger">
-      删除
-    </Button>
-  }
->
-  <Flex className="demo-card" align="stretch">
-    <Image src="https://img.yzcdn.cn/vant/ipad.jpeg" className="demo-card__img" />
-    <Flex direction="column" justify="between" className="demo-card__content">
-      <div>
-        <Typography.Title level={5}>商品标题</Typography.Title>
-        <Typography.Text type="secondary">这里是商品描述</Typography.Text>
-      </div>
-      <Flex justify="between" align="center">
-        <Typography.Text strong size="lg">
-          ¥2.00
-        </Typography.Text>
-        <Typography.Text size="sm" type="secondary">
-          x2
-        </Typography.Text>
+```jsx
+/**
+ * title: 自定义内容
+ */
+import React from 'react';
+import { SwipeCell, Flex, Button, Image, Typography } from 'react-vant';
+import './demo/style.less';
+
+export default () => {
+  return (
+    <SwipeCell
+      rightAction={
+        <Button style={{ height: '100%' }} square type="danger">
+          删除
+        </Button>
+      }
+    >
+      <Flex className="demo-product-card" align="stretch">
+        <Image src="https://img.yzcdn.cn/vant/ipad.jpeg" className="demo-product-card__img" />
+        <Flex direction="column" justify="between" className="demo-product-card__content">
+          <div>
+            <Typography.Title level={5}>商品标题</Typography.Title>
+            <Typography.Text type="secondary">这里是商品描述</Typography.Text>
+          </div>
+          <Flex justify="between" align="center">
+            <Typography.Text strong size="lg">
+              ¥2.00
+            </Typography.Text>
+            <Typography.Text size="sm" type="secondary">
+              x2
+            </Typography.Text>
+          </Flex>
+        </Flex>
       </Flex>
-    </Flex>
-  </Flex>
-</SwipeCell>
-
-<style>
-.demo-card {
-  padding: @padding-xs @padding-md;
-  background-color: @white;
-
-  &__img {
-    width: 88px;
-    height: 88px;
-    margin-right: @padding-xs;
-  }
-
-  &__content {
-    flex: 1;
-  }
-}
-</style>
+    </SwipeCell>
+  );
+};
 ```
 
 ### 异步关闭
 
 通过传入 `beforeClose` 回调函数，可以自定义两侧滑动内容关闭时的行为。
 
-```html
-export default () => {
-  const beforeClose = ({ position }) => {
-    switch (position) {
-      case 'left':
-      case 'cell':
-      case 'outside':
-        return true;
-      case 'right':
-        return new Promise((resolve) => {
+```jsx
+/**
+ * title: 异步关闭
+ */
+import React from 'react';
+import { SwipeCell, Button, Cell, Dialog } from 'react-vant';
+
+const beforeClose = ({ position }) => {
+  switch (position) {
+    case 'left':
+    case 'cell':
+    case 'outside':
+      return true;
+    case 'right':
+      return (
+        new Promise() <
+        boolean >
+        ((resolve) => {
           Dialog.confirm({
             title: '确定删除吗？',
           }).then(resolve);
-        });
-    }
-  };
+        })
+      );
+    default:
+      return true;
+  }
+};
+
+export default () => {
   return (
     <SwipeCell
       beforeClose={beforeClose}
@@ -131,47 +174,7 @@ export default () => {
 
 通过 `ref` 获取 SwipeCell 实例的类型定义。
 
-```html
-import { useRef } from 'react';
-import { SwipeCell, Cell, Button, Flex } from 'react-vant';
-import type { SwipeCellInstance } from 'react-vant';
-
-export default () => {
-  const swipeCellRef = useRef<SwipeCellInstance>();
-
-  return (
-    <>
-      <SwipeCell
-        ref={swipeCellRef}
-        leftAction={
-          <Button square type="primary">
-            选择
-          </Button>
-        }
-        rightAction={
-          <Button square type="danger">
-            删除
-          </Button>
-        }
-      >
-        <Cell title="单元格" value="内容" />
-      </SwipeCell>
-
-      <Flex justify="around">
-        <Button icon="arrow-left" onClick={() => swipeCellRef.current?.open('left')}>
-          左滑打开
-        </Button>
-        <Button icon="arrow" onClick={() => swipeCellRef.current?.open('right')}>
-          右滑打开
-        </Button>
-        <Button icon="cross" onClick={() => swipeCellRef.current?.close()}>
-          关闭
-        </Button>
-      </Flex>
-    </>
-  );
-};
-```
+<code title="外部调用" src="./demo/ref.tsx" />
 
 ## API
 
