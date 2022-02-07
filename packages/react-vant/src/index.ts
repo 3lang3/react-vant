@@ -5,6 +5,7 @@ export { default as Button } from './button';
 export { default as Badge } from './badge';
 export * from './field';
 export * from './flex';
+export * from './space';
 export { default as Typography } from './typography';
 export { default as Cell } from './cell';
 export { default as CountDown } from './count-down';

@@ -47,7 +47,13 @@ export default {
               { path: 'hd', title: '高清适配' },
             ],
           },
-          { title: '布局组件', items: [{ path: 'flex', title: 'Flex 布局' }] },
+          {
+            title: '布局组件',
+            items: [
+              { path: 'flex', title: 'Flex 布局' },
+              { path: 'space', title: 'Space 间距' },
+            ],
+          },
           {
             title: '基础组件',
             items: [
