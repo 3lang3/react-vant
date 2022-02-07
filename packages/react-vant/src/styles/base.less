@@ -69,6 +69,7 @@
 
 [class*='@{rv-prefix}-shadow'] {
   transition: box-shadow 0.2s linear;
+
   &:hover,
   &:active {
     box-shadow: rgba(0, 0, 0, 0.2) 0 2 * @hd 4 * @hd -1 * @hd,
@@ -94,6 +95,20 @@
 }
 
 .@{rv-prefix}-icon {
+  position: relative;
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  line-height: 0;
+  height: inherit;
+  width: 1em;
+  vertical-align: -0.125em;
+
+  & > * {
+    height: inherit;
+    line-height: 1;
+  }
+
   &--spin {
     animation: rv-spin 1.5s infinite linear;
   }

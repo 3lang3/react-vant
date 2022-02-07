@@ -49,7 +49,7 @@ const IconBase = React.forwardRef<HTMLSpanElement, IconBaseProps>((props, ref) =
     className: ['rv-icon', kebabCaseName ? `rv-icon-${kebabCaseName}` : '', className]
       .join(' ')
       .trim(),
-    style: { display: 'inline-block', lineHeight: 0, verticalAlign: '-0.125em', ...style },
+    style,
     ...restProps,
   };
   return (
@@ -67,6 +67,7 @@ const IconBase = React.forwardRef<HTMLSpanElement, IconBaseProps>((props, ref) =
         focusable: 'false',
         'data-icon': kebabCaseName,
         'aria-hidden': 'true',
+        preserveAspectRatio: 'xMidYMid meet',
       })}
     </span>
   );
