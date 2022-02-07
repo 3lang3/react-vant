@@ -16,62 +16,84 @@ import { Collapse } from 'react-vant';
 
 通过 `initExpanded` 控制展开的面板列表，`initExpanded` 为数组格式。
 
-```js
-const initExpanded = ['1'];
-```
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { Collapse } from 'react-vant';
 
-```html
-<Collapse initExpanded="{initExpanded}">
-  <Collapse.Item title="标题1" name="1"> 内容 </Collapse.Item>
-  <Collapse.Item title="标题2" name="2"> 内容 </Collapse.Item>
-  <Collapse.Item title="标题3" name="3"> 内容 </Collapse.Item>
-</Collapse>
+export default () => {
+  return (
+    <Collapse initExpanded={['1']}>
+      <Collapse.Item title="标题1" name="1">
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+      <Collapse.Item title="标题2" name="2">
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+      <Collapse.Item title="标题3" name="3">
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+    </Collapse>
+  );
+};
 ```
 
 ### 手风琴
 
 通过 `accordion` 可以设置为手风琴模式，最多展开一个面板，此时 `initExpanded` 为字符串格式。
 
-```html
-<Collapse initExpanded="1" accordion>
-  <Collapse.Item title="标题1" name="1"> 内容 </Collapse.Item>
-  <Collapse.Item title="标题2" name="2"> 内容 </Collapse.Item>
-  <Collapse.Item title="标题3" name="3"> 内容 </Collapse.Item>
-</Collapse>
+```jsx
+/**
+ * title: 手风琴
+ */
+import React from 'react';
+import { Collapse } from 'react-vant';
+
+export default () => {
+  return (
+    <Collapse initExpanded="1" accordion>
+      <Collapse.Item title={<div>自定义标题</div>} name="1">
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+      <Collapse.Item title="标题2" name="2">
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+      <Collapse.Item title="标题3" name="3">
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+    </Collapse>
+  );
+};
 ```
 
 ### 禁用状态
 
 通过 `disabled` 属性来禁用单个面板。
 
-```html
-<Collapse initExpanded="initExpanded">
-  <Collapse.Item title="标题1" name="1"> 内容 </Collapse.Item>
-  <Collapse.Item title="标题2" name="2" disabled> 内容 </Collapse.Item>
-  <Collapse.Item title="标题3" name="3" disabled> 内容 </Collapse.Item>
-</Collapse>
-```
+```jsx
+/**
+ * title: 禁用状态
+ */
+import React from 'react';
+import { Collapse } from 'react-vant';
 
-### 自定义标题内容
-
-通过 `title` 插槽可以自定义标题栏的内容。
-
-```html
-<Collapse initExpanded="initExpanded">
-  <Collapse.Item
-    name="1"
-    title={
-      <div>
-        标题1 <QuestionO />
-      </div>
-    }
-  >
-    内容
-  </Collapse.Item>
-  <Collapse.Item title="标题2" name="2" icon="shop-o">
-    内容
-  </Collapse.Item>
-</Collapse>
+export default () => {
+  return (
+    <Collapse>
+      <Collapse.Item title="标题1" name="1">
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+      <Collapse.Item title="标题2" name="2" disabled>
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+      <Collapse.Item title="标题3" name="3" disabled>
+        代码是写出来给人看的，附带能在机器上运行
+      </Collapse.Item>
+    </Collapse>
+  );
+};
 ```
 
 ## API
@@ -97,9 +119,9 @@ const initExpanded = ['1'];
 | name       | 唯一标识符，默认为索引值             | _number \| string_  | `index` |
 | icon       | 标题栏左侧图标                       | _string\|ReactNode_ | -       |
 | size       | 标题栏大小，可选值为 `large`         | _string_            | -       |
-| title      | 标题栏左侧内容                       | _number \| string_  | -       |
-| value      | 标题栏右侧内容                       | _number \| string_  | -       |
-| label      | 标题栏描述信息                       | _number \| string_  | -       |
+| title      | 标题栏左侧内容                       | _ReactNode_         | -       |
+| value      | 标题栏右侧内容                       | _ReactNode_         | -       |
+| label      | 标题栏描述信息                       | _ReactNode_         | -       |
 | border     | 是否显示内边框                       | _boolean_           | `true`  |
 | isLink     | 是否展示标题栏右侧箭头并开启点击反馈 | _boolean_           | `true`  |
 | disabled   | 是否禁用面板                         | _boolean_           | `false` |
@@ -119,17 +141,17 @@ const initExpanded = ['1'];
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { CollapseItemInstance } from 'react-vant';
 ```
 
 `CollapseItemInstance` 是组件实例的类型，用法如下：
 
-```js
+```ts
 import { useRef } from 'react';
 import type { CollapseItemInstance } from 'react-vant';
 
-const collapseItemRef = useRef<CollapseItemInstance>();
+const collapseItemRef = useRef<CollapseItemInstance>(null);
 
 collapseItemRef.current?.toggle();
 ```

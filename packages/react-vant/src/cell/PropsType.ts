@@ -6,8 +6,8 @@ export type CellArrowDirection = 'up' | 'down' | 'left' | 'right';
 export interface CellProps extends BaseTypeProps {
   /** 左侧标题	*/
   title?: React.ReactNode;
-  /** 右侧内容	 */
-  value?: number | string;
+  /** 右侧内容 */
+  value?: number | string | React.ReactNode;
   /**  标题下方的描述信息	*/
   label?: React.ReactNode;
   /** 单元格大小 */
