@@ -1,3 +1,7 @@
+---
+background: '#fff'
+---
+
 # Card 卡片
 
 ### 介绍
@@ -12,64 +16,94 @@ import { ProductCard } from 'react-vant';
 
 ### 基础用法
 
-```html
-<ProductCard
-  num="2"
-  price="2.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-/>
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { ProductCard, Tag, Button } from 'react-vant';
+
+export default () => {
+  return (
+    <ProductCard
+      num="2"
+      price="2.00"
+      desc="描述信息"
+      title="商品名称"
+      thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+    />
+  );
+};
 ```
 
 ### 营销信息
 
 通过 `originPrice` 设置商品原价，通过 `tag` 设置商品左上角标签。
 
-```html
-<ProductCard
-  num="2"
-  tag="标签"
-  price="2.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-  originPrice="10.00"
-/>
+```jsx
+/**
+ * title: 营销信息
+ */
+import React from 'react';
+import { ProductCard, Tag, Button } from 'react-vant';
+
+export default () => {
+  return (
+    <ProductCard
+      tag="标签"
+      num="2"
+      price="2.00"
+      originPrice="10.00"
+      desc="描述信息"
+      title="商品名称"
+      thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+    />
+  );
+};
 ```
 
 ### 自定义内容
 
 `ProductCard` 组件提供了多个插槽，可以灵活地自定义内容。
 
-```html
-<ProductCard
-  num="2"
-  price="2.00"
-  desc="描述信息"
-  title="商品名称"
-  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-  tags={
-    <>
-      <Tag plain type="danger" style={{ marginRight: 5 }}>
-        标签
-      </Tag>
-      <Tag plain type="danger">
-        标签
-      </Tag>
-    </>
-  }
-  footer={
-    <>
-      <Button size="mini" round plain style={{ marginRight: 2 }}>
-        标签1
-      </Button>
-      <Button size="mini" round plain>
-        标签2
-      </Button>
-    </>
-  }
-/>
+```jsx
+/**
+ * title: 自定义内容
+ */
+import React from 'react';
+import { ProductCard, Tag, Button } from 'react-vant';
+
+export default () => {
+  return (
+    <ProductCard
+      num="2"
+      price="2.00"
+      desc="描述信息"
+      title="商品名称"
+      thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+      tags={
+        <>
+          <Tag plain type="danger" style={{ marginRight: 5 }}>
+            标签
+          </Tag>
+          <Tag plain type="danger">
+            标签
+          </Tag>
+        </>
+      }
+      footer={
+        <>
+          <Button size="mini" round plain style={{ marginRight: 2 }}>
+            标签1
+          </Button>
+          <Button size="mini" round plain>
+            标签2
+          </Button>
+        </>
+      }
+    />
+  );
+};
 ```
 
 ## API
