@@ -16,4 +16,4 @@ const Simulator = (props) => {
   );
 };
 
-export default Simulator;
+export default React.memo(Simulator, (prevProps, nextProps) => prevProps.src === nextProps.src);
