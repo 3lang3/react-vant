@@ -59,7 +59,7 @@ export { default as Tabbar } from './tabbar';
 export { default as ConfigProvider } from './config-provider';
 export * from './form';
 export { default as Lazyload } from './lazyload';
-export { default as Area } from './area';
+export * from './area';
 export { default as Card } from './card';
 export { default as ProductCard } from './product-card';
 export { default as SubmitBar } from './submit-bar';

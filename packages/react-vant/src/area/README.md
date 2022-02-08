@@ -10,16 +10,21 @@
 import { Area } from 'react-vant';
 ```
 
+### @vant/area-data
+
+Vant 官方提供了一份默认的省市区数据，可以通过 [@vant/area-data](https://github.com/youzan/vant/tree/dev/packages/vant-area-data) 引入：
+
+```bash
+yarn add @vant/area-data
+```
+
 ## 代码演示
 
 ### 基础用法
 
 初始化省市区组件时，需要通过 `areaList` 属性传入省市区数据。
 
-```html
-import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
-'@vant/area-data'; export default () => { return <area title="标题" areaList="{areaList}" />; };
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
 ### areaList 格式
 
@@ -47,48 +52,23 @@ const areaList = {
 };
 ```
 
-### @vant/area-data
-
-Vant 官方提供了一份默认的省市区数据，可以通过 [@vant/area-data](https://github.com/youzan/vant/tree/dev/packages/vant-area-data) 引入：
-
-```bash
-yarn add @vant/area-data
-```
-
-```html
-import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
-'@vant/area-data'; export default () => { return <area title="标题" areaList="{areaList}" />; };
-```
-
 ### 选中省市区
 
 如果想选中某个省市区，需要传入一个 `value` 属性，绑定对应的地区码。
 
-```html
-import React, { useState } from 'react'; import { Area } from 'react-vant'; import { areaList } from
-'@vant/area-data'; export default () => { const [value, setValue] = useState('330302'); return
-<area title="标题" value="{value}" areaList="{areaList}" />; };
-```
+<code title="选中省市区" src="./demo/choose.tsx" />
 
 ### 配置显示列
 
 可以通过 `columnsNum` 属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为 `2`，则只会显示省市选择。
 
-```html
-import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
-'@vant/area-data'; export default () => { return
-<area title="标题" columnsNum="{2}" areaList="{areaList}" />; };
-```
+<code title="配置显示列" src="./demo/column.tsx" />
 
 ### 配置列占位提示文字
 
 可以通过 `columnsPlaceholder` 属性配置每一列的占位提示文字。
 
-```html
-import React from 'react'; import { Area } from 'react-vant'; import { areaList } from
-'@vant/area-data'; export default () => { return ( <Area title="标题" areaList={areaList}
-columnsPlaceholder={['请选择🤔', '请选择🤔', '请选择🤔']} /> ); };
-```
+<code title="占位提示文字" src="./demo/placeholder.tsx" />
 
 ## API
 
@@ -154,17 +134,17 @@ onConfirm 事件返回的数据整体为一个数组，数组每一项对应一�
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { AreaList, AreaInstance, AreaColumnOption } from 'react-vant';
 ```
 
 `AreaInstance` 是组件实例的类型，用法如下：
 
-```js
+```ts
 import { useRef } from 'react';
 import type { AreaInstance } from 'react-vant';
 
-const areaRef = useRef<AreaInstance>();
+const areaRef = useRef<AreaInstance>(null);
 
 areaRef.value?.reset();
 ```
