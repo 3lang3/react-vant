@@ -66,7 +66,7 @@ export function getViteConfigForSiteDev(): InlineConfig {
         codeBlockOutput: ['independent'],
         localPkgs: {
           'react-vant': {
-            version: '2.0.0-alpha.16',
+            version: '2.0.0-alpha.19',
           },
         },
         replaceHtml: (JSX) => {

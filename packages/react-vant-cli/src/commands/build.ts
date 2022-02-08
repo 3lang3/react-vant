@@ -26,7 +26,6 @@ import { CSS_LANG } from '../common/css.js';
 import { compileScript } from '../compiler/compile-js.js';
 import { compileBundles } from '../compiler/compile-bundles.js';
 import { compileStyle } from '../compiler/compile-style.js';
-import { installDependencies } from '../common/manager.js';
 
 const { remove, copy, readdir, existsSync } = fse;
 
@@ -268,7 +267,6 @@ export async function build(cmd: { watch?: boolean } = {}) {
 
   try {
     await clean();
-    await installDependencies();
     await runBuildTasks();
 
     if (cmd.watch) {
