@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
-
 import ScrollTop from './components/ScrollTop';
 import DemoNav from './components/DemoNav';
 import routes from './routes';

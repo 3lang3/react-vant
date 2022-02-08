@@ -13,11 +13,11 @@ const NavLink = (props) => {
   const itemName = useMemo(() => {
     const name = (item.title || item.name).split(' ');
     return `${name[0]} <span>${name.slice(1).join(' ')}</span>`;
-  }, [pathname]);
+  }, [item.name, item.title]);
 
   const path = useMemo(() => {
     return `${base}${item.path}`;
-  }, [pathname]);
+  }, [base, item.path]);
 
   const active = useMemo(() => {
     if (pathname === path) {
@@ -27,7 +27,7 @@ const NavLink = (props) => {
       return pathname === base;
     }
     return false;
-  }, [pathname]);
+  }, [base, path, pathname]);
 
   return (
     <>

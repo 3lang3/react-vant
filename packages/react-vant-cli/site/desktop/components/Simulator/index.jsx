@@ -5,7 +5,6 @@ import './index.less';
 
 const Simulator = (props) => {
   const { src } = props;
-
   return (
     <SimulatorContext.Consumer>
       {({ visible }) => (
