@@ -1,3 +1,8 @@
+---
+mobile-className: 'vant-doc-demo-section--card'
+fluid: true
+---
+
 # Icon 图标
 
 ### 介绍
@@ -18,108 +23,39 @@ import { Arrow } from '@react-vant/icons';
 
 > 主流的构建工具会自动做 Tree-Shaking，所以最终被打包进来的只有你用到的那些图标，不必担心包体积问题。
 
-### 图标列表
+## 图标列表
 
 <code src="./demo/index.tsx" inline />
 
 ## 代码演示
 
+### 基础使用
+
+<code title="基础使用" src="./demo/base.tsx" />
+
 ### 徽标提示
 
 结合`badge`组件可以实现带徽标的 Icon。
 
-```jsx | pure
-import React from 'react';
-import { Badge } from 'react-vant';
-import { ChatO } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <>
-      <Badge dot>
-        <ChatO />
-      </Badge>
-      <Badge content="99+">
-        <ChatO />
-      </Badge>
-    </>
-  );
-};
-```
+<code title="徽标提示" src="./demo/badge.tsx" />
 
 ### 图标颜色
 
 `Icon` 的 `color` 属性用来设置图标的颜色。
 
-```jsx | pure
-import React from 'react';
-import { ChatO, FireO } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <>
-      <ChatO color="#f44336" />
-      <FireO color="#3f45ff" />
-    </>
-  );
-};
-```
-
-### 图标大小
-
-`Icon` 的 `fontSize` 属性用来设置图标的尺寸大小，默认单位为 `px`。
-
-```jsx | pure
-import React from 'react';
-import { ChatO, FireO } from '@react-vant/icons';
-
-export default () => {
-  return (
-    <>
-      <ChatO fontSize={40} />
-      <FireO fontSize="3rem" />
-    </>
-  );
-};
-```
-
-### 自定义图标
-
-通过方法`createFromIconfontCN` 引入[iconfont.cn](https://www.iconfont.cn)上的 js 文件
-
-```jsx | pure
-import React from 'react';
-import { createFromIconfontCN } from '@react-vant/icons';
-
-const IconFont = createFromIconfontCN('//at.alicdn.com/t/font_1619071_dqiwns2g0d.js');
-
-export default () => {
-  return (
-    <>
-      <IconFont name="icon-weunblock" />
-      <IconFont name="icon-1111" />
-    </>
-  );
-};
-```
+<code title="图标颜色" src="./demo/color.tsx" />
 
 ### 图标旋转
 
 `Icon` 的 `spin` 属性用来设置图标旋转，默认单位为 `false`。
 
-```jsx | pure
-import React from 'react';
-import { ChatO, FireO } from '@react-vant/icons';
+<code title="图标旋转" src="./demo/rotate.tsx" />
 
-export default () => {
-  return (
-    <>
-      <ClockO spin />
-      <FireO spin />
-    </>
-  );
-};
-```
+### 自定义图标
+
+通过方法`createFromIconfontCN` 引入[iconfont.cn](https://www.iconfont.cn)上的 js 文件
+
+<code title="自定义图标" src="./demo/custom.tsx" />
 
 ## API
 
@@ -133,7 +69,6 @@ export default () => {
 
 | 参数     | 说明                      | 类型               | 默认值    |
 | -------- | ------------------------- | ------------------ | --------- |
-| name     | 图标名称                  | _string_           | -         |
 | color    | svg 的 `color` 属性       | _string_           | `inherit` |
 | fontSize | 图标大小，如 `20px` `2em` | _number \| string_ | `inherit` |
 | spin     | 是否开启旋转动画          | _boolean_          | `false`   |

@@ -29,7 +29,7 @@ const App = () => {
   );
 
   const path = window.location.pathname.replace(/\/index(\.html)?/, '/');
-  const simulator = `${path}mobile.html${window.location.hash}`;
+  const simulatorSrc = `${path}mobile.html${window.location.hash}`;
 
   const lang = useMemo(() => {
     return getLangFromRoute(pathname);
@@ -66,8 +66,8 @@ const App = () => {
   const hideSimulatorMemo = useMemo(() => {
     // 文档模式
     const { hideSimulator = false } = config.site;
-    return hideSimulator || currentNav?.simulator === false;
-  }, [currentNav]);
+    return hideSimulator;
+  }, []);
 
   // 更新标题
   const setTitle = useCallback(() => {
@@ -98,7 +98,7 @@ const App = () => {
       config={localeConfig}
       langConfigs={langConfigs}
       versions={versions}
-      simulator={simulator}
+      simulatorSrc={simulatorSrc}
       hideSimulator={hideSimulatorMemo}
       currentCompnentName={currentCompnentName}
     >
@@ -111,7 +111,13 @@ const App = () => {
               key={route.path}
               exact={route.exact}
               path={route.path}
-              render={(props) => <route.component {...props} routes={route.routes} />}
+              render={(props) => (
+                <route.component
+                  hideSimulator={hideSimulatorMemo}
+                  {...props}
+                  routes={route.routes}
+                />
+              )}
             />
           ),
         )}

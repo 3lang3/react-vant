@@ -80,9 +80,9 @@
 
   &__left-icon,
   &__right-icon {
-    height: var(--rv-cell-line-height);
+    display: flex;
+    align-items: center;
     font-size: var(--rv-cell-icon-size);
-    line-height: var(--rv-cell-line-height);
   }
 
   &__left-icon {
@@ -131,7 +131,6 @@
     }
   }
 }
-
 
 .@{rv-prefix}-cell-group {
   background-color: var(--rv-cell-group-background-color);

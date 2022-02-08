@@ -8,11 +8,11 @@
 
 ### 基本用法
 
-```js
-import { useRef } from 'react';
+```jsx | pure
+import React from 'react';
 import { hooks } from 'react-vant';
 
-export default {
+export default () => {
   // 在 window 上绑定 resize 事件
   // 未指定监听对象时，默认会监听 window 的事件
   hooks.useEventListener('resize', () => {
@@ -25,9 +25,9 @@ export default {
     () => {
       console.log('click body');
     },
-    { target: document.body }
+    { target: document.body },
   );
-  return null
+  return null;
 };
 ```
 

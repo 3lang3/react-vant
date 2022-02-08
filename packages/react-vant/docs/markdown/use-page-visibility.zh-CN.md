@@ -9,13 +9,13 @@
 ### 基本用法
 
 ```js
-import { useEffect } from 'react';
+import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
   const pageVisibility = hooks.usePageVisibility();
 
-  useEffect(() => {
+  React.useEffect(() => {
     console.log('page visibility: ', value);
   }, [pageVisibility]);
 
@@ -27,7 +27,7 @@ export default () => {
 
 ### 类型定义
 
-```js
+```ts
 type VisibilityState = 'visible' | 'hidden';
 
 function usePageVisibility(): VisibilityState;

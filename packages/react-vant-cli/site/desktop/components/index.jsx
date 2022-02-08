@@ -4,27 +4,28 @@ import Nav from './Nav';
 import Container from './Container';
 import Content from './Content';
 import Simulator from './Simulator';
+import { SimulatorContext } from '../context';
 
 const Doc = (props) => {
-  const { lang, versions, simulator, langConfigs, config, hideSimulator, currentCompnentName } =
+  const { lang, versions, simulatorSrc, langConfigs, config, hideSimulator, currentCompnentName } =
     props;
+  const hasSimulator = !!simulatorSrc && !hideSimulator;
+  const [visible, updateVisible] = React.useState(false);
+  const toggleSimulator = React.useCallback((visibleStatus) => {
+    updateVisible(visibleStatus);
+  }, []);
 
-  const hasSimulator = !!simulator && !hideSimulator;
+  React.useEffect(() => {}, []);
+
   return (
     <div className="vant-doc">
       <Nav config={config} lang={lang} navConfig={config.nav} />
-      <Container hasSimulator={!!simulator && !hideSimulator}>
-        <Header
-          lang={lang}
-          config={config}
-          versions={versions}
-          langConfigs={langConfigs}
-          // onSwitchVersion="$emit('switch-version', $event)"
-        />
-        <Content currentCompnentName={currentCompnentName} hasSimulator={hasSimulator}>
-          {props.children}
-        </Content>
-        {hasSimulator && <Simulator src={simulator} />}
+      <Container>
+        <Header lang={lang} config={config} versions={versions} langConfigs={langConfigs} />
+        <SimulatorContext.Provider value={{ visible, toggleSimulator }}>
+          <Content currentCompnentName={currentCompnentName}>{props.children}</Content>
+          {hasSimulator && <Simulator src={simulatorSrc} />}
+        </SimulatorContext.Provider>
       </Container>
     </div>
   );

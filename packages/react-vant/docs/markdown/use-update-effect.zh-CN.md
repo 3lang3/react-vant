@@ -8,25 +8,22 @@
 
 ### 基本用法
 
-使用上与 useEffect 完全相同，只是它忽略了首次渲染，且只在依赖项更新时运行。
+使用上与 `useEffect` 完全相同，只是它忽略了首次渲染，且只在依赖项更新时运行。
 
-```jsx
-/**
- * inline: true
- */
-import React, { useEffect, useState } from 'react';
+```jsx | pure
+import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
-  const [count, setCount] = useState(0);
-  const [effectCount, setEffectCount] = useState(0);
-  const [updateEffectCount, setUpdateEffectCount] = useState(0);
+  const [count, setCount] = React.useState(0);
+  const [effectCount, setEffectCount] = React.useState(0);
+  const [updateEffectCount, setUpdateEffectCount] = React.useState(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setEffectCount((c) => c + 1);
   }, [count]);
 
-  hooks.useUpdateEffect(() => {
+  React.hooks.useUpdateEffect(() => {
     setUpdateEffectCount((c) => c + 1);
   }, [count]);
 
@@ -48,11 +45,8 @@ export default () => {
 
 ### 类型定义
 
-```js
-function useUpdateEffect(
-  effect: () => (void | (() => void | undefined)),
-  deps?: deps,
-)
+```ts
+function useUpdateEffect(effect: () => void | (() => void | undefined), deps?: deps);
 ```
 
 ### 参数

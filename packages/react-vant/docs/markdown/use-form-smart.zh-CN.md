@@ -10,16 +10,13 @@
 
 > 默认情况 value 被设置值后再次变化不再重复设置,和 Form initialValues 行为一致,只是增加了空值判定
 
-```jsx
-/**
- * inline: true
- */
-import React, { useCallback, useState } from 'react';
+```jsx | pure
+import React from 'react';
 import { Field, Form, hooks } from 'react-vant';
 
 function useRequest() {
-  const [data, setData] = useState({});
-  const run = useCallback(() => {
+  const [data, setData] = React.useState({});
+  const run = React.useCallback(() => {
     setTimeout(() => {
       setData({
         age: 32,
@@ -60,10 +57,8 @@ export default () => {
 
 > 某些场景下需要将每次变化的数据都设置到表单中,useFormSmart 提供了绑定功能
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
+import React from 'react';
 import { Field, Form, hooks } from 'react-vant';
 
 export default () => {
@@ -90,7 +85,7 @@ export default () => {
 
 ### 类型定义
 
-```js
+```ts
 export type FormOption = {
   /**
    * initialValues

@@ -1,5 +1,5 @@
 ---
-background: '#fff'
+mobile-background: '#fff'
 ---
 
 # Slider 滑块

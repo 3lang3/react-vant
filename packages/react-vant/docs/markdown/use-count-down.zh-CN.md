@@ -11,6 +11,7 @@
 ### 基本用法
 
 ```jsx | pure
+import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
@@ -39,6 +40,7 @@ export default () => {
 倒计时默认每秒渲染一次，设置 millisecond 选项可以开启毫秒级渲染。
 
 ```jsx | pure
+import React from 'react';
 import { useCountDown } from 'react-vant';
 
 export default () => {
@@ -68,7 +70,7 @@ export default () => {
 
 ### 类型定义
 
-```js
+```ts
 type CurrentTime = {
   days: number;
   hours: number;

@@ -2,7 +2,7 @@
 import { config, documents } from 'site-desktop-shared';
 import { decamelize } from '../common';
 import { getLang, setDefaultLang } from '../common/locales';
-import MdPreviewer from './components/MdPreviewer';
+import MdPage from './components/MdPage';
 
 const { locales, defaultLang } = config.site;
 setDefaultLang(defaultLang);
@@ -50,24 +50,30 @@ const getRoutes = () => {
   names.forEach((name) => {
     const { component, lang } = parseName(name);
 
-    const { MdContent } = documents[name];
+    const { MdContent, frontmatter = {} } = documents[name];
 
-    const previewer = (props) => <MdPreviewer {...props} />;
+    const desktopFrontmatter = Object.keys(frontmatter).reduce((a, fk) => {
+      if (!fk.startsWith('mobile-')) {
+        a[fk] = frontmatter[fk];
+      }
+      return a;
+    }, {});
+
     const PreviewerComp = (props) => (
-      <section>
-        <MdContent {...props} previewer={previewer} />
-      </section>
+      <MdPage {...props} frontmatter={desktopFrontmatter}>
+        {({ previewer }) => <MdContent previewer={previewer} />}
+      </MdPage>
     );
 
     if (component === 'home') {
-      addHomeRoute(() => <PreviewerComp />, lang);
+      addHomeRoute((p) => <PreviewerComp {...p} />, lang);
     }
 
     if (lang) {
       routes.push({
         name: `${lang}/${component}`,
         path: `/${lang}/${component}`,
-        component: () => <PreviewerComp />,
+        component: (p) => <PreviewerComp {...p} />,
         state: {
           lang,
           name: component,
@@ -77,7 +83,7 @@ const getRoutes = () => {
       routes.push({
         name: `${component}`,
         path: `/${component}`,
-        component: () => <PreviewerComp />,
+        component: (p) => <PreviewerComp {...p} />,
         meta: {
           name: component,
         },

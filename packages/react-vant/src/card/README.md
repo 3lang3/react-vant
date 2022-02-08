@@ -1,5 +1,5 @@
 ---
-className: 'vant-doc-demo-section--card'
+mobile-className: 'vant-doc-demo-section--card'
 ---
 
 # Card 卡片

@@ -8,10 +8,7 @@
 
 ### 基本用法
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import React from 'react';
 import { hooks } from 'react-vant';
 
@@ -37,11 +34,21 @@ export default () => {
 
 ### 获取 state 最新状态
 
-```html
-import React, { useEffect } from 'react'; import { useSetState } from 'react-vant'; export default
-() => { const [state, setState, stateRef] = useSetState({ count: 0, }); useEffect(() => {
-setInterval(() => { setState((prev) => ({ count: prev.count + 1 })); console.log(state.count,
-stateRef.current.count); }, 1000); }, []); return null; };
+```jsx | pure
+import React from 'react';
+import { hooks } from 'react-vant';
+
+export default () => {
+  const [state, setState, stateRef] = hooks.useSetState({ count: 0 });
+  React.useEffect(() => {
+    setInterval(() => {
+      setState((prev) => ({ count: prev.count + 1 }));
+      console.log(state.count, stateRef.current.count);
+    }, 1000);
+  }, []);
+
+  return null;
+};
 ```
 
 ## API
@@ -50,12 +57,8 @@ stateRef.current.count); }, 1000); }, []); return null; };
 
 用法与 class 组件的 this.setState 基本一致
 
-```js
+```ts
 function useSetState<T extends object>(
-  initialState: T = {} as T
-): [
-  T,
-  (patch: Partial<T> | ((prevState: T) => Partial<T>)) => void,
-  React.MutableRefObject<T>
-]
+  initialState: T = {} as T,
+): [T, (patch: Partial<T> | ((prevState: T) => Partial<T>)) => void, React.MutableRefObject<T>];
 ```

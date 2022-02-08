@@ -3,14 +3,9 @@ import clsx from 'clsx';
 import './index.less';
 
 export default (props) => {
-  const { hasSimulator } = props;
   return (
-    <div
-      className={clsx('vant-doc-content', `vant-doc-content--${props.currentCompnentName}`, {
-        'vant-doc-content--with-simulator': hasSimulator,
-      })}
-    >
-      <div className="vant-doc-content--layer">{props.children}</div>
+    <div className={clsx('vant-doc-content', `vant-doc-content--${props.currentCompnentName}`)}>
+      {props.children}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 ---
-background: '#fff'
+mobile-background: '#fff'
 ---
 
 # NoticeBar 通知栏

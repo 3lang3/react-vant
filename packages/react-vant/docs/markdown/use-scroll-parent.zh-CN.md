@@ -8,15 +8,12 @@
 
 ### 基本用法
 
-```jsx
-/**
- * inline: true
- */
-import { useRef } from 'react';
+```jsx | pure
+import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
-  const root = useRef();
+  const root = React.useRef();
   const scrollParent = hooks.useScrollParent(root);
 
   hooks.useEventListener(
@@ -35,15 +32,17 @@ export default () => {
 
 ### 类型定义
 
-```js
-function useScrollParent(element: React.MutableRefObject<Element | undefined>): Element | HTMLElement | Window;
+```ts
+function useScrollParent(
+  element: React.MutableRefObject<Element | undefined>,
+): Element | HTMLElement | Window;
 ```
 
 ### 参数
 
-| 参数    | 说明     | 类型                         | 默认值 |
-| ------- | -------- | ---------------------------- | ------ |
-| element | 当前元素 | _MutableRefObject\<Element>_ | -      |
+| 参数    | 说明     | 类型                        | 默认值 |
+| ------- | -------- | --------------------------- | ------ |
+| element | 当前元素 | _MutableRefObject\|Element_ | -      |
 
 ### 返回值
 

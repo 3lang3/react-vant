@@ -10,24 +10,19 @@
 
 在组件首次渲染时，执行方法。
 
-```jsx
-/**
- * inline: true
- */
-import React, { useState } from 'react';
+```jsx | pure
+import React from 'react';
 import { hooks, Toast } from 'react-vant';
 
 const MyComponent = () => {
   hooks.useMount(() => {
     Toast.info('mount');
   });
-
   return <div>Hello World</div>;
 };
 
 export default () => {
-  const [show, setShow] = useState(false);
-
+  const [show, setShow] = React.useState(false);
   return (
     <>
       <button type="button" onClick={() => setShow((v) => !v)}>
@@ -43,7 +38,7 @@ export default () => {
 
 ### 类型定义
 
-```js
+```ts
 function useMount(fn: () => void);
 ```
 

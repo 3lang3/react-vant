@@ -12,16 +12,12 @@
 
 > 在触摸时根据 touch 返回的数据可以实现很多常见效果，例如[下拉刷新](https://github.com/3lang3/react-vant/blob/main/packages/react-vant/src/pull-refresh/PullRefresh.tsx#L145-L168)
 
-```jsx
-/**
- * inline: true
- */
+```jsx | pure
 import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
   const touch = hooks.useTouch(true);
-
   const onTouchStart = (event) => {
     touch.start(event);
   };
@@ -47,7 +43,7 @@ export default () => {
 
 ### 类型定义
 
-```js
+```ts
 type TouchState = {
   // 开始点x坐标
   startX: number;
@@ -73,7 +69,7 @@ type TouchState = {
   isVertical: () => boolean;
   // 是否是水平方向的触摸
   isHorizontal: () => boolean;
-}
+};
 
 function useTouch(stateable: boolean): TouchState;
 ```

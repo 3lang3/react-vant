@@ -1,6 +1,6 @@
 ---
-className: 'vant-doc-demo-section--card'
-background: '#fff'
+mobile-className: 'vant-doc-demo-section--card'
+mobile-background: '#fff'
 ---
 
 # Space 间距
@@ -176,8 +176,6 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称                      | 默认值 | 描述               |
-| ------------------------- | ------ | ------------------ |
-| --rv-space-gap            | _8px_  | 间距大小           |
-| --rv-space-gap-vertical   | _8px_  | 垂直方向的间距大小 |
-| --rv-space-gap-horizontal | _8px_  | 水平方向的间距大小 |
+| 名称           | 默认值 | 描述     |
+| -------------- | ------ | -------- |
+| --rv-space-gap | _8px_  | 间距大小 |

@@ -1,5 +1,5 @@
 ---
-background: '#fff'
+mobile-background: '#fff'
 ---
 
 # Loading 加载

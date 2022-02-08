@@ -10,17 +10,14 @@
 
 ### 基本用法
 
-使用 ref 监听节点在视图变化或者滚动时是否在可视范围之内
+使用 `ref` 监听节点在视图变化或者滚动时是否在可视范围之内
 
-```jsx
-/**
- * inline: true
- */
-import React, { useRef } from 'react';
+```jsx | pure
+import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
-  const ref = useRef();
+  const ref = React.useRef();
   const inViewPort = hooks.useInViewport(ref);
   return (
     <div>
@@ -37,7 +34,7 @@ export default () => {
 
 ### 类型定义
 
-```js
+```ts
 function useInViewport(target): boolean;
 ```
 

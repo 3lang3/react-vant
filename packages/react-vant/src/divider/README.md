@@ -1,6 +1,6 @@
 ---
-className: 'vant-doc-demo-section--card'
-background: '#fff'
+mobile-className: 'vant-doc-demo-section--card'
+mobile-background: '#fff'
 ---
 
 # Divider 分割线

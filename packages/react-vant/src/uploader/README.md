@@ -1,5 +1,5 @@
 ---
-background: '#ffff'
+mobile-background: '#ffff'
 ---
 
 # Uploader 文件上传

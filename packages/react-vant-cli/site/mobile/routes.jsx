@@ -63,12 +63,23 @@ function getRoutes() {
     const { MdDemos, frontmatter = {} } = documents[componentNameWithLang];
     const componentName = componentNameWithLang.split('_')[0];
 
+    const mobileFrontmatter = Object.keys(frontmatter).reduce((a, fk) => {
+      if (fk.startsWith('mobile-')) {
+        const value = frontmatter[fk];
+        const key = fk.replace(/^mobile-/, '');
+        a[key] = value;
+      }
+      return a;
+    }, {});
+
     if (langs.length) {
       langs.forEach((lang) => {
         routes.push({
           name: `${lang}/${component}`,
           path: `/${lang}/${component}`,
-          component: (props) => <DemoPage {...props} blocks={MdDemos} frontmatter={frontmatter} />,
+          component: (props) => (
+            <DemoPage {...props} blocks={MdDemos} frontmatter={mobileFrontmatter} />
+          ),
           meta: {
             name: componentName,
             lang,

@@ -1,5 +1,5 @@
 ---
-background: '#fff'
+mobile-background: '#fff'
 ---
 
 # Skeleton 骨架屏

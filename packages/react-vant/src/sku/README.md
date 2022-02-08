@@ -1,3 +1,8 @@
+---
+mobile-className: 'vant-doc-demo-section--card'
+mobile-background: '#fff'
+---
+
 # Sku 商品规格
 
 ### 引入
@@ -10,46 +15,227 @@ import { Sku } from 'reactvant';
 
 ### 基础用法
 
-> 完整 Sku demo 代码详见[demo](https://github.com/3lang3/react-vant/tree/main/packages/react-vant/src/sku/demo/index.tsx)。
-
-```html
+```tsx
+/**
+ * title: 基础用法
+ */
 import React, { useRef } from 'react';
-import { Cell, Sku } from 'react-vant';
-import type { SkuInstance } from 'react/vant/es/sku';
+import { Sku, Button, Toast } from 'react-vant';
+import type { SkuInstance } from 'react-vant';
+import { getSkuData, initialSku } from './demo/data';
 
-// demo数据详见https://github.com/3lang3/react-vant/tree/main/packages/react-vant/src/sku/demo/data.ts
-const demoData = {};
+const demoData = getSkuData();
 
 export default () => {
-  const ref = useRef < SkuInstance > null;
+  const ref = useRef<SkuInstance>(null);
+
   return (
     <>
-      <Cell title="打开sku" onClick={() => ref.current.show()} />
+      <Button
+        block
+        type="primary"
+        color="linear-gradient( 135deg, #3f45ff 10%, #7367F0 100%)"
+        style={{ marginBottom: 10 }}
+        onClick={() => ref.current?.show()}
+      >
+        基础用法
+      </Button>
+
+      <Button
+        block
+        type="primary"
+        color="linear-gradient( 135deg, #3f45ff 10%, #7367F0 100%)"
+        onClick={() => ref.current?.show(initialSku)}
+      >
+        设置默认值
+      </Button>
       <Sku
         ref={ref}
-        goodsId={demoData.goods_id}
         sku={demoData.sku}
-        properties={demoData.properties}
         goods={demoData.goods_info}
-        quota={demoData.quota}
-        quotaUsed={demoData.quota_used}
-        startSaleNum={demoData.start_sale_num}
-        onBuyClicked={(r) => console.log(r)}
-        onStepperChange={(v) => console.log(v)}
+        goodsId={demoData.goods_id}
+        properties={demoData.properties}
+        onAddCart={(value) => Toast(JSON.stringify(value))}
+        onBuyClicked={(value) => Toast(JSON.stringify(value))}
       />
     </>
   );
 };
 ```
 
-### 自定义试图
+### 自定义步进器
 
-```html
-<Sku sku={demoData.sku} goods={demoData.goods_info} goodsId={demoData.goods_id}
-properties={demoData.properties} skuHeaderPriceRender={(price) => { return `😄 ¥ ${price}`; }}
-skuActionsTop={
-<div className="sku-actions-top">商品不多，赶快购买吧</div>
-} />
+```tsx
+/**
+ * title: 自定义步进器
+ */
+import React, { useRef } from 'react';
+import { Sku, Button, Toast } from 'react-vant';
+import type { SkuInstance } from 'react-vant';
+import { getSkuData } from './demo/data';
+
+const demoData = getSkuData();
+
+const customStepperConfig = {
+  quotaText: '单次限购100件',
+  stockFormatter: (stock) => `剩余${stock}`,
+  handleOverLimit: (data) => {
+    const { action, limitType, quota, startSaleNum = 1 } = data;
+    if (action === 'minus') {
+      Toast(startSaleNum > 1 ? `${startSaleNum}件起售` : '至少选择一件商品');
+    } else if (action === 'plus') {
+      if (limitType === 0) {
+        Toast(`限购${quota}件`);
+      } else {
+        Toast('库存不够了');
+      }
+    }
+  },
+};
+
+export default () => {
+  const ref = useRef<SkuInstance>(null);
+  return (
+    <>
+      <Button
+        block
+        type="primary"
+        color="linear-gradient( 135deg, #3f45ff 10%, #7367F0 100%)"
+        onClick={() => ref.current?.show()}
+      >
+        自定义步进器
+      </Button>
+      <Sku
+        ref={ref}
+        sku={demoData.sku}
+        goods={demoData.goods_info}
+        goodsId={demoData.goods_id}
+        properties={demoData.properties}
+        quota={demoData.quota}
+        quotaUsed={demoData.quota_used}
+        startSaleNum={demoData.start_sale_num}
+        onBuyClicked={(r) => console.log(r)}
+        onStepperChange={(v) => console.log(v)}
+        customStepperConfig={customStepperConfig}
+      />
+    </>
+  );
+};
+```
+
+### 大图模式
+
+```tsx
+/**
+ * title: 大图模式
+ */
+import React, { useRef } from 'react';
+import { Sku, Button } from 'react-vant';
+import type { SkuInstance } from 'react-vant';
+import { getSkuData } from './demo/data';
+
+const demoDataLarge = getSkuData(true);
+
+export default () => {
+  const ref = useRef<SkuInstance>();
+  return (
+    <>
+      <Button
+        block
+        type="primary"
+        color="linear-gradient( 135deg, #3f45ff 10%, #7367F0 100%)"
+        onClick={() => ref.current?.show()}
+      >
+        大图模式
+      </Button>
+      <Sku
+        ref={ref}
+        sku={demoDataLarge.sku}
+        goods={demoDataLarge.goods_info}
+        goodsId={demoDataLarge.goods_id}
+        properties={demoDataLarge.properties}
+        disableStepperInput
+      />
+    </>
+  );
+};
+```
+
+### 自定义
+
+```tsx
+/**
+ * title: 自定义
+ */
+import React, { useRef } from 'react';
+import { Sku, Button, Toast } from 'react-vant';
+import type { SkuInstance } from 'react-vant';
+import { getSkuData } from './demo/data';
+
+const demoData = getSkuData();
+
+export default () => {
+  const ref1 = useRef<SkuInstance>();
+  const ref2 = useRef<SkuInstance>();
+  return (
+    <>
+      <Button
+        block
+        type="primary"
+        color="linear-gradient( 135deg, #3f45ff 10%, #7367F0 100%)"
+        style={{ marginBottom: 10 }}
+        onClick={() => ref1.current?.show()}
+      >
+        自定义视图
+      </Button>
+      <Button
+        block
+        type="primary"
+        color="linear-gradient( 135deg, #3f45ff 10%, #7367F0 100%)"
+        onClick={() => ref2.current?.show()}
+      >
+        自定义SKU校验规则
+      </Button>
+      <Sku
+        ref={ref1}
+        sku={demoData.sku}
+        goods={demoData.goods_info}
+        goodsId={demoData.goods_id}
+        properties={demoData.properties}
+        skuHeaderPriceRender={(price) => {
+          return `😄 ¥ ${price}`;
+        }}
+        skuActionsTop={
+          <div
+            style={{
+              padding: 5,
+              color: '#f44336',
+              fontSize: 12,
+              textAlign: 'center',
+              backgroundColor: '#f2f2f2',
+            }}
+          >
+            商品不多，赶快购买吧
+          </div>
+        }
+      />
+      <Sku
+        ref={ref2}
+        sku={demoData.sku}
+        goods={demoData.goods_info}
+        goodsId={demoData.goods_id}
+        properties={demoData.properties}
+        onAddCart={(value) => Toast(JSON.stringify(value))}
+        onBuyClicked={(value) => Toast(JSON.stringify(value))}
+        customSkuValidator={(actionType, selected) => {
+          console.log(actionType, selected);
+          Toast('不管怎样 都不通过！');
+          return false;
+        }}
+      />
+    </>
+  );
+};
 ```
 
 ## API

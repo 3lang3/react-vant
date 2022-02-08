@@ -8,17 +8,17 @@
 
 ### 基本用法
 
-```js
-import React, { useEffect } from 'react';
+```jsx | pure
+import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
   const { width, height } = hooks.useWindowSize();
 
-  console.log(width); // -> 窗口宽度
-  console.log(height); // -> 窗口高度
+  console.log(width); // 窗口宽度
+  console.log(height); // 窗口高度
 
-  useEffect(
+  React.useEffect(
     [width, height],
     () => {
       console.log('window resized');

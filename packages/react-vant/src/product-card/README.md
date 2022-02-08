@@ -1,5 +1,5 @@
 ---
-background: '#fff'
+mobile-background: '#fff'
 ---
 
 # Card 卡片
