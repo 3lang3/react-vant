@@ -1,3 +1,7 @@
+---
+className: 'vant-doc-demo-section--card'
+---
+
 # Sidebar 侧边导航
 
 ### 介绍
@@ -16,67 +20,106 @@ import { Sidebar, SidebarItem } from 'react-vant';
 
 通过 `value` 绑定当前选中项的索引。
 
-```html
-import { useState } from 'react'; import { Sidebar } from 'react-vant'; export default () => { const
-[active, setActive] = useState(0); return (
-<Sidebar value="{active}" onChange="{setActive}">
-  <Sidebar.Item title="标签名称" />
-  <Sidebar.Item title="标签名称" />
-  <Sidebar.Item title="标签名称" />
-</Sidebar>
-); };
+```jsx
+/**
+ * title: 基础用法
+ */
+import React, { useState } from 'react';
+import { Sidebar, Toast } from 'react-vant';
+
+export default () => {
+  const [active, setActive] = useState(2);
+  return (
+    <Sidebar
+      value={active}
+      onChange={(v) => {
+        setActive(v);
+        Toast.info(`标签名 ${v + 1}`);
+      }}
+    >
+      <Sidebar.Item title="标签名1" />
+      <Sidebar.Item title="标签名2" />
+      <Sidebar.Item title="标签名3" />
+    </Sidebar>
+  );
+};
 ```
 
 ### 徽标提示
 
 设置 `dot` 属性后，会在右上角展示一个小红点；设置 `badge` 属性后，会在右上角展示相应的徽标。
 
-```html
-<Sidebar>
-  <Sidebar.Item title="标签名" dot />
-  <Sidebar.Item title="标签名" badge="{5}" />
-  <Sidebar.Item title="标签名" badge="{20}" />
-</Sidebar>
+```jsx
+/**
+ * title: 徽标提示
+ */
+import React from 'react';
+import { Sidebar } from 'react-vant';
+
+export default () => {
+  return (
+    <Sidebar>
+      <Sidebar.Item title="标签名" dot />
+      <Sidebar.Item title="标签名" badge={5} />
+      <Sidebar.Item title="标签名" badge={20} />
+    </Sidebar>
+  );
+};
 ```
 
 ### 禁用选项
 
 通过 `disabled` 属性禁用选项。
 
-```html
-<Sidebar>
-  <Sidebar.Item title="标签名" />
-  <Sidebar.Item title="标签名" disabled />
-  <Sidebar.Item title="标签名" />
-</Sidebar>
-```
+```jsx
+/**
+ * title: 徽标提示
+ */
+import React from 'react';
+import { Sidebar } from 'react-vant';
 
-### 监听切换事件
-
-设置 `onChange` 方法来监听切换导航项时的事件。
-
-```html
-import { useState } from 'react'; import { Sidebar } from 'react-vant'; export default () => { const
-[active, setActive] = useState(0); return (
-<Sidebar value="{active}" onChange="{setActive}">
-  <Sidebar.Item title="标签名称" />
-  <Sidebar.Item title="标签名称" />
-  <Sidebar.Item title="标签名称" />
-</Sidebar>
-); };
+export default () => {
+  return (
+    <Sidebar>
+      <Sidebar.Item title="标签名" />
+      <Sidebar.Item title="标签名" disabled />
+      <Sidebar.Item title="标签名" />
+    </Sidebar>
+  );
+};
 ```
 
 ### 自定义内容区
 
-```html
-import { useState } from 'react'; import { Sidebar } from 'react-vant'; export default () => { const
-[active, setActive] = useState(0); return (
-<Sidebar value="{active}" onChange="{setActive}">
-  <Sidebar.Item title="内容1">我是内容区1</Sidebar.Item>
-  <Sidebar.Item title="内容2">我是内容区2</Sidebar.Item>
-  <Sidebar.Item title="内容3">我是内容区3</Sidebar.Item>
-</Sidebar>
-); };
+```jsx
+/**
+ * title: 自定义内容区
+ */
+import React, { useState } from 'react';
+import { Sidebar, Toast } from 'react-vant';
+
+export default () => {
+  const [active, setActive] = useState(0);
+  return (
+    <Sidebar
+      value={active}
+      onChange={(v) => {
+        setActive(v);
+        Toast.info(`内容区 ${v + 1}`);
+      }}
+    >
+      <Sidebar.Item contentStyle={{ backgroundColor: '#fff', padding: '18px 10px' }} title="内容1">
+        我是内容区1
+      </Sidebar.Item>
+      <Sidebar.Item contentStyle={{ backgroundColor: '#fff', padding: '18px 10px' }} title="内容2">
+        我是内容区2
+      </Sidebar.Item>
+      <Sidebar.Item contentStyle={{ backgroundColor: '#fff', padding: '18px 10px' }} title="内容3">
+        我是内容区3
+      </Sidebar.Item>
+    </Sidebar>
+  );
+};
 ```
 
 ## API
