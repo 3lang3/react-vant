@@ -14,114 +14,29 @@ import { Tabbar } from 'react-vant';
 
 ### 基础用法
 
-`value` 默认绑定选中标签的索引值，通过修改 `value` 即可切换选中的标签。
+点击 `Tabbar.Item` 即可切换选中的标签(非受控状态)。
 
-```html
-import { useState } from 'react';
-import { Tabbar } from 'react-vant';
+<code title="基础用法" src="./demo/base.tsx" />
 
-export default () => {
-  const [active, setActive] = useState(0);
-  return (
-    <Tabbar value={active} onChange={setActive}>
-      <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
-      <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>
-      <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
-      <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
-    </Tabbar>
-  );
-};
-```
+### 受控组件
 
-### 通过名称匹配
+- `value` 默认绑定选中标签的索引值，通过修改 `value` 即可切换选中的标签。
+- 在标签指定 `name` 属性的情况下，`value` 的值为当前标签的 `name`。
 
-在标签指定 `name` 属性的情况下，`value` 的值为当前标签的 `name`。
-
-```html
-<Tabbar
-  value={name}
-  onChange={(v) => {
-    setName(v as string);
-  }}
->
-  <Tabbar.Item name="home" icon={<HomeO />}>
-    标签
-  </Tabbar.Item>
-  <Tabbar.Item name="search" icon={<Search />}>
-    标签
-  </Tabbar.Item>
-  <Tabbar.Item name="firends" icon={<FriendsO />}>
-    标签
-  </Tabbar.Item>
-  <Tabbar.Item name="setting" icon={<SettingO />}>
-    标签
-  </Tabbar.Item>
-</Tabbar>
-```
+<code title="受控组件" src="./demo/control.tsx" />
 
 ### 徽标提示
 
 通过 `badge` 属性，可以设置图标相应的徽标内容。
 
-```html
-<Tabbar>
-  <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
-  <Tabbar.Item badge={{ dot: true }} icon={<Search />}>
-    标签
-  </Tabbar.Item>
-  <Tabbar.Item badge={{ content: 5 }} icon={<FriendsO />}>
-    标签
-  </Tabbar.Item>
-  <Tabbar.Item badge={{ content: 20 }} icon={<SettingO />}>
-    标签
-  </Tabbar.Item>
-</Tabbar>
-```
+<code title="徽标提示" src="./demo/badge.tsx" />
 
-### 自定义图标
+### 自定义
 
-通过 `icon` 属性自定义图标。
+- 通过 `icon` 属性自定义图标。
+- 通过 `activeColor` 属性设置选中标签的颜色，通过 `inactiveColor` 属性设置未选中标签的颜色。
 
-```html
-const icon = {
-  active: 'https://img.yzcdn.cn/vant/user-active.png',
-  inactive: 'https://img.yzcdn.cn/vant/user-inactive.png',
-};
-
-<Tabbar>
-  <Tabbar.Item icon={(ac) => <img alt="" src={ac ? icon.active : icon.inactive} />}>
-    标签
-  </Tabbar.Item>
-  <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
-  <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
-</Tabbar>;
-```
-
-### 自定义颜色
-
-通过 `activeColor` 属性设置选中标签的颜色，通过 `inactiveColor` 属性设置未选中标签的颜色。
-
-```html
-<Tabbar activeColor="#f44336" inactiveColor="#000">
-  <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
-  <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>
-  <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
-  <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
-</Tabbar>
-```
-
-### 监听切换事件
-
-通过 `onChange` 事件来监听选中标签的变化。
-
-```html
-<Tabbar onChange={(v) => Toast.info(`标签${+v + 1}`)}>
-  <Tabbar.Item icon={<HomeO />}>标签</Tabbar.Item>
-  <Tabbar.Item icon={<Search />}>标签</Tabbar.Item>
-  <Tabbar.Item icon={<FriendsO />}>标签</Tabbar.Item>
-  <Tabbar.Item icon={<SettingO />}>标签</Tabbar.Item>
-</Tabbar>
-```
+<code title="自定义" src="./demo/custom.tsx" />
 
 ## API
 
