@@ -12,55 +12,63 @@ import { SubmitBar } from 'react-vant';
 
 ### 基础用法
 
-```html
-import React from 'react'; import { SubmitBar, Toast } from 'react-vant'; export default () => {
-const onSubmit = () => Toast('点击按钮'); return
-<SubmitBar price="3050" buttonText="提交订单" onSubmit="{onSubmit}" />; };
+```jsx
+/**
+ * title: 基础用法
+ */
+import React from 'react';
+import { SubmitBar } from 'react-vant';
+
+export default () => {
+  return <SubmitBar price="3050" buttonText="提交订单" />;
+};
 ```
 
 ### 禁用状态
 
 禁用状态下不会触发 `onSubmit` 事件。
 
-```html
-<SubmitBar
-  disabled
-  price="3050"
-  buttonText="提交订单"
-  tip="你的收货地址不支持同城送, 我们已为你推荐快递"
-  tipIcon="{<InfoO"
-/>} onSubmit={onSubmit} />
-```
+<code title="禁用状态" src="./demo/disabled.tsx" />
 
 ### 加载状态
 
 加载状态下不会触发 `onSubmit` 事件。
 
-```html
-<SubmitBar loading price="3050" buttonText="提交订单" onSubmit="{onSubmit}" />
+```jsx
+/**
+ * title: 加载状态
+ */
+import React from 'react';
+import { SubmitBar } from 'react-vant';
+
+export default () => {
+  return <SubmitBar loading price="3050" buttonText="提交订单" />;
+};
 ```
 
 ### 高级用法
 
 自定义内容。
 
-```html
+```jsx
+/**
+ * title: 高级用法
+ */
 import React from 'react';
-import { SubmitBar, Checkbox, Toast } from 'react-vant';
+import { SubmitBar, Checkbox } from 'react-vant';
+import './demo/style.less';
 
 export default () => {
-  const onSubmit = () => Toast('点击按钮');
   return (
     <SubmitBar
       price="3050"
       buttonText="提交订单"
       tip={
         <>
-          你的收货地址不支持同城送，
-          <span className="edit-address">修改地址</span>
+          你的收货地址不支持同城送,
+          <span style={{ color: '#1989fa' }}>修改地址</span>
         </>
       }
-      onSubmit={onSubmit}
     >
       <Checkbox>全选</Checkbox>
     </SubmitBar>
