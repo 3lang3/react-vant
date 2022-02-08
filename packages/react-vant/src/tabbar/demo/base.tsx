@@ -1,7 +1,6 @@
 import React from 'react';
 import { Tabbar } from 'react-vant';
 import { FriendsO, HomeO, Search, SettingO } from '@react-vant/icons';
-import './style.less';
 
 export default () => {
   return (

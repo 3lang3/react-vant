@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabbar } from 'react-vant';
 import { FriendsO, HomeO, Search, SettingO } from '@react-vant/icons';
+import './style.less';
 
 const icon = {
   active: 'https://img.yzcdn.cn/vant/user-active.png',
@@ -9,7 +10,7 @@ const icon = {
 
 export default () => {
   return (
-    <>
+    <div className="demo-tabbar">
       <Tabbar>
         <Tabbar.Item icon={(ac) => <img alt="tab" src={ac ? icon.active : icon.inactive} />}>
           图标
@@ -24,6 +25,6 @@ export default () => {
         <Tabbar.Item icon={<FriendsO />}>颜色</Tabbar.Item>
         <Tabbar.Item icon={<SettingO />}>颜色</Tabbar.Item>
       </Tabbar>
-    </>
+    </div>
   );
 };
