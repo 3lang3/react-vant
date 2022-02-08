@@ -16,7 +16,8 @@ const App = () => {
   }, [pathname]);
 
   return (
-    <div className="vant-doc-demo-app">
+    <div>
+      <DemoNav title={title} />
       <ScrollTop />
       <Switch>
         {routes.map((route) => {
@@ -28,14 +29,7 @@ const App = () => {
               exact={route.exact}
               path={route.path}
               render={(props) => {
-                return (
-                  <route.component
-                    {...props}
-                    title={title}
-                    meta={route.meta}
-                    routes={route.routes}
-                  />
-                );
+                return <route.component {...props} meta={route.meta} routes={route.routes} />;
               }}
             />
           );

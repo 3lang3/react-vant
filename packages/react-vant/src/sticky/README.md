@@ -1,7 +1,3 @@
----
-flex: false
----
-
 # Sticky 粘性布局
 
 ### 介绍
@@ -20,10 +16,9 @@ import { Sticky } from 'react-vant';
 
 将内容包裹在 `Sticky` 组件内即可。
 
-```jsx
-/**
- * title: 基础用法
- */
+<code title="基础用法" src="./demo/index.tsx" />
+
+```jsx | pure
 import React from 'react';
 import { Sticky, Button } from 'react-vant';
 
@@ -42,10 +37,7 @@ export default () => {
 
 通过 `offsetTop` 属性可以设置组件在吸顶时与顶部的距离。
 
-```jsx
-/**
- * title: 吸顶距离
- */
+```jsx | pure
 import React from 'react';
 import { Sticky, Button } from 'react-vant';
 
@@ -64,10 +56,7 @@ export default () => {
 
 通过 `container` 属性可以指定组件的容器，页面滚动时，组件会始终保持在容器范围内，当组件即将超出容器底部时，会固定在容器的底部。
 
-```tsx
-/**
- * title: 指定容器
- */
+```tsx | pure
 import React, { useRef } from 'react';
 import { Sticky, Button } from 'react-vant';
 
@@ -90,10 +79,7 @@ export default () => {
 
 将 `position` 设置为 `bottom` 可以让组件吸附在底部。通过 `offsetBottom` 属性可以设置组件在吸底时与底部的距离。
 
-```jsx
-/**
- * title: 吸底距离
- */
+```jsx | pure
 import React from 'react';
 import { Sticky, Button } from 'react-vant';
 
