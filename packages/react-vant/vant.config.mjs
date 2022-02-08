@@ -15,18 +15,23 @@ export default {
     },
     locales: {
       'zh-CN': {
-        title: 'React Vant',
+        title: 'react vant',
         description: '轻量、可靠的移动端 React 组件库',
         logo: 'https://user-images.githubusercontent.com/7098719/152668954-4d84ca21-d9ec-4b97-9b43-f0d72032a2de.png',
         langLabel: '中文',
         links: [
           {
-            logo: 'https://user-images.githubusercontent.com/7098719/140293692-8c3c109d-ae11-4038-82b2-074b52aca315.png',
+            url: 'https://github.com/youzan/vant',
+            title: 'vant',
+            alt: 'vant官网',
+          },
+          {
             url: 'https://github.com/mallfoundry/taroify/',
+            title: 'taroify',
             alt: 'taro版本',
           },
           {
-            logo: 'https://raw.githubusercontent.com/3lang3/react-vant/main/screenshots/github.svg',
+            title: 'GitHub',
             url: 'https://github.com/3lang3/react-vant',
           },
         ],
@@ -209,7 +214,7 @@ export default {
         ],
       },
       'en-US': {
-        title: 'react-vant',
+        title: 'react vant',
         description: 'Mobile UI Components built on React',
         logo: 'https://img01.yzcdn.cn/vant/logo.png',
         langLabel: 'En',

@@ -20,7 +20,6 @@
 
     &-nav {
       flex: 1;
-      font-size: 0;
       text-align: right;
       > li {
         position: relative;
@@ -31,6 +30,23 @@
         margin-left: 14px;
         border: 1px solid @van-doc-border-color;
         border-radius: 10px;
+
+        &--link {
+          font-weight: bold;
+          transition: all 0.2s linear;
+          &:hover {
+            border-color: #ddd;
+            background-color: #f3f3f3;
+          }
+        }
+
+        &--img {
+          a {
+            padding: 0 6px;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+        }
       }
       &-title {
         display: block;
@@ -40,14 +56,27 @@
   }
   &__cube {
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0 10px;
-    color: #001938;
+    color: #545454;
     font-size: 14px;
-    line-height: 30px;
-    text-align: center;
+    height: 30px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+
+    img,
+    svg {
+      display: block;
+      width: 1.5em;
+      height: 1.5em;
+    }
+
+    &--httplink {
+      width: 14px !important;
+      height: 14px !important;
+    }
   }
   &__version {
     padding-right: 20px;
@@ -84,13 +113,6 @@
           color: @van-doc-blue;
         }
       }
-    }
-  }
-  &__logo-link {
-    img {
-      display: block;
-      width: 30px;
-      height: 30px;
     }
   }
 }

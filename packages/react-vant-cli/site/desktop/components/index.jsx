@@ -19,9 +19,9 @@ const Doc = (props) => {
 
   return (
     <div className="vant-doc">
-      <Nav config={config} lang={lang} navConfig={config.nav} />
+      <Nav config={config} lang={lang} navConfig={config.nav} versions={versions} />
       <Container>
-        <Header lang={lang} config={config} versions={versions} langConfigs={langConfigs} />
+        <Header lang={lang} config={config} langConfigs={langConfigs} />
         <SimulatorContext.Provider value={{ visible, toggleSimulator }}>
           <Content currentCompnentName={currentCompnentName}>{props.children}</Content>
           {hasSimulator && <Simulator src={simulatorSrc} />}

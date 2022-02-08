@@ -1,22 +1,14 @@
-import React, { useState, useRef, useMemo } from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
-import { packageVersion } from 'site-desktop-shared';
-
 import SearchInput from '../SearchInput';
+import { GitHubIcon, HttpLinkIcon } from '../Icons';
 import './index.less';
 
 const Header = (props) => {
-  const versionRef = useRef(null);
-  const { lang, config, versions, langConfigs } = props;
+  const { lang, config, langConfigs } = props;
   const { pathname } = useLocation();
-  const [showVersionPop, setShowVersionPop] = useState(false);
-
-  const checkHideVersionPop = (event) => {
-    if (!versionRef.current.contains(event.target)) {
-      setShowVersionPop(false);
-    }
-  };
 
   const anotherLang = useMemo(() => {
     const items = langConfigs.filter((item) => item.lang !== lang);
@@ -34,20 +26,6 @@ const Header = (props) => {
     return anotherLang.label;
   }, [anotherLang.label]);
 
-  const toggleVersionPop = () => {
-    // eslint-disable-next-line react/no-this-in-sfc
-    const val = !showVersionPop;
-    const action = val ? 'add' : 'remove';
-    document.body[`${action}EventListener`]('click', checkHideVersionPop);
-    setShowVersionPop(val);
-  };
-
-  const onSwitchVersion = (version) => {
-    if (version.link) {
-      window.location.href = version.link;
-    }
-  };
-
   return (
     <div className="vant-doc-header">
       <div className="vant-doc-row">
@@ -56,44 +34,43 @@ const Header = (props) => {
           <ul className="vant-doc-header__top-nav">
             {config.links &&
               config.links.length &&
-              config.links.map((item) => (
-                <li key={item.url} className="vant-doc-header__top-nav-item">
-                  <a
-                    className="vant-doc-header__logo-link"
-                    target="_blank"
-                    href={item.url}
-                    title={item.alt}
-                    rel="noreferrer"
-                  >
-                    <img src={item.logo} alt={item.alt} />
-                  </a>
-                </li>
-              ))}
-            {versions && (
-              <li ref={versionRef} className="vant-doc-header__top-nav-item">
-                <span
-                  className={clsx('vant-doc-header__cube vant-doc-header__version')}
-                  onClick={toggleVersionPop}
-                >
-                  {packageVersion}
-                  <div name="vant-doc-dropdown">
-                    {showVersionPop && (
-                      <div className="vant-doc-header__version-pop">
-                        {versions.map((item) => (
-                          <div
-                            key={item}
-                            className="vant-doc-header__version-pop-item"
-                            onClick={() => onSwitchVersion(item)}
-                          >
-                            {item.label}
-                          </div>
-                        ))}
-                      </div>
+              config.links.map((item) => {
+                const guessGithub = item.title?.toLowerCase() === 'github' && !item.logo;
+                const hasImg = item.logo || guessGithub;
+                return (
+                  <li
+                    key={item.url}
+                    className={clsx(
+                      'vant-doc-header__top-nav-item',
+                      'vant-doc-header__top-nav-item--link',
+                      {
+                        'vant-doc-header__top-nav-item--img': hasImg,
+                      },
                     )}
-                  </div>
-                </span>
-              </li>
-            )}
+                  >
+                    <a
+                      className="vant-doc-header__cube"
+                      target="_blank"
+                      href={item.url}
+                      title={item.alt}
+                      rel="noreferrer"
+                    >
+                      {hasImg ? (
+                        guessGithub ? (
+                          <GitHubIcon alt={item.alt} />
+                        ) : (
+                          <img src={item.logo} alt={item.alt} />
+                        )
+                      ) : (
+                        <>
+                          {item.title}
+                          <HttpLinkIcon className="vant-doc-header__cube--httplink" />
+                        </>
+                      )}
+                    </a>
+                  </li>
+                );
+              })}
             {langLabel && langLink && (
               <li className="vant-doc-header__top-nav-item">
                 <a className="vant-doc-header__cube" href={langLink}>
