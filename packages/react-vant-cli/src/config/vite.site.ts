@@ -1,4 +1,5 @@
 import { join } from 'path';
+import slash from 'slash2';
 import { get } from 'lodash-es';
 import react from '@vitejs/plugin-react';
 import { injectHtml } from 'vite-plugin-html';
@@ -12,6 +13,7 @@ import {
   SITE_DESKTOP_SHARED_FILE,
   SITE_SRC_DIR,
   SRC_DIR,
+  getPackageJson,
   ROOT,
 } from '../common/constant.js';
 
@@ -50,11 +52,19 @@ function getHTMLMeta(vantConfig: any) {
 export function getViteConfigForSiteDev(): InlineConfig {
   setBuildTarget('site');
 
+  const projectPackageJson = getPackageJson();
   const vantConfig = getVantConfig();
   const siteConfig = getSiteConfig(vantConfig);
   const title = getTitle(siteConfig);
   const baiduAnalytics = get(vantConfig, 'site.baiduAnalytics');
   const enableVConsole = isDev() && get(vantConfig, 'site.enableVConsole');
+
+  // @hack
+  // enforce alias redirect to not root dir
+  const projectDepsAlias = Object.keys(projectPackageJson.dependencies).reduce((a, v) => {
+    a[v] = slash(join(ROOT, 'node_modules', v));
+    return a;
+  }, {});
 
   return {
     base: './',
@@ -62,13 +72,7 @@ export function getViteConfigForSiteDev(): InlineConfig {
     plugins: [
       react(),
       mdoc({
-        root: ROOT,
         codeBlockOutput: ['independent'],
-        localPkgs: {
-          'react-vant': {
-            version: '2.0.0-alpha.19',
-          },
-        },
         replaceHtml: (JSX) => {
           const group = JSX.replace(/(<h3\s+id=)/g, ':::$1')
             .replace(/<h2/g, ':::<h2')
@@ -99,14 +103,15 @@ export function getViteConfigForSiteDev(): InlineConfig {
     ],
     resolve: {
       alias: {
-        [vantConfig.name]: SRC_DIR,
+        [projectPackageJson.name]: SRC_DIR,
         'site-mobile-demo': SITE_MOBILE_DEMO_FILE,
         'site-mobile-shared': SITE_MOBILE_SHARED_FILE,
         'site-desktop-shared': SITE_DESKTOP_SHARED_FILE,
+        ...projectDepsAlias,
       },
     },
     optimizeDeps: {
-      entries: [join(SITE_SRC_DIR, '*.html')],
+      entries: [join(SITE_SRC_DIR, '*.html'), join(SRC_DIR, 'index.ts')],
     },
     server: {
       port: 4000,

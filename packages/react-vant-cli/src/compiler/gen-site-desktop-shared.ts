@@ -41,6 +41,7 @@ function formatName(component: string, lang?: string) {
  *   - action-sheet/README.md => ActionSheet
  */
 function resolveComponentDocuments(components: string[]): DocumentItem[] {
+  const projectPackageJson = getPackageJson();
   const vantConfig = getVantConfig();
   const { locales, defaultLang } = vantConfig.site;
 
@@ -66,7 +67,11 @@ function resolveComponentDocuments(components: string[]): DocumentItem[] {
     });
   }
 
-  return [...docs.filter((item) => existsSync(item.path))];
+  const componentDocs = docs
+    .filter((item) => existsSync(item.path))
+    .map((el) => ({ ...el, path: el.path.replace(SRC_DIR, projectPackageJson.name) }));
+
+  return componentDocs;
 }
 
 function resolveStaticDocuments(): DocumentItem[] {
@@ -81,11 +86,9 @@ function resolveStaticDocuments(): DocumentItem[] {
     };
   });
 
-  return [...staticDocs];
-}
+  // const docs = staticDocs.filter((item) => existsSync(item.path)).map(el => ({ ...el, path: el.path.replace(DOCS_DIR, projectPackageJson.name) }))
 
-function resolveDocuments(components: string[]): DocumentItem[] {
-  return [...resolveStaticDocuments(), ...resolveComponentDocuments(components)];
+  return staticDocs;
 }
 
 // config.js
@@ -98,7 +101,8 @@ function genExportConfig() {
 }
 
 function genExportVersion() {
-  return `export const packageVersion = '${getPackageJson().version}';`;
+  const projectPackageJson = getPackageJson();
+  return `export const packageVersion = '${projectPackageJson.version}';`;
 }
 
 // 引入所有.md

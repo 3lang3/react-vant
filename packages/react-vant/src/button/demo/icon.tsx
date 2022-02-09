@@ -1,6 +1,7 @@
-import { Plus } from '@react-vant/icons';
 import React from 'react';
 import { Button } from 'react-vant';
+import { Plus } from '@react-vant/icons';
+
 import './style.less';
 
 export default () => {
