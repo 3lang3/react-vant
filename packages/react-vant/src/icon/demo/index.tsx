@@ -115,7 +115,7 @@ export default () => {
       {baseVisible && !!baseIcons.length && (
         <>
           <Typography.Title level={3}>基础图标</Typography.Title>
-          <Grid style={{ marginBottom: 40 }} border={false} columnNum={8}>
+          <Grid style={{ marginBottom: 40 }} border={false} columnNum={7}>
             {baseIcons.map((item) => (
               <Grid.Item
                 icon={<item.component />}
@@ -130,7 +130,7 @@ export default () => {
       {lineVisible && !!lineIcons.length && (
         <>
           <Typography.Title level={3}>线框风格</Typography.Title>
-          <Grid style={{ marginBottom: 40 }} border={false} columnNum={8}>
+          <Grid style={{ marginBottom: 40 }} border={false} columnNum={7}>
             {getTypeIcons('outline').map((item) => (
               <Grid.Item
                 icon={<item.component />}
@@ -145,7 +145,7 @@ export default () => {
       {fillVisible && !!fillIcons.length && (
         <>
           <Typography.Title level={3}>实底风格</Typography.Title>
-          <Grid style={{ marginBottom: 40 }} border={false} columnNum={8}>
+          <Grid style={{ marginBottom: 40 }} border={false} columnNum={7}>
             {getTypeIcons('filled').map((item) => (
               <Grid.Item
                 icon={<item.component />}
