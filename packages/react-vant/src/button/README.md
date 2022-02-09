@@ -96,7 +96,7 @@ import { Button } from 'react-vant';
 | plain | 是否为朴素按钮 | _boolean_ | `false` |
 | square | 是否为方形按钮 | _boolean_ | `false` |
 | round | 是否为圆形按钮 | _boolean_ | `false` |
-| shadow | 显示阴影，可选值为 `1` `2` `3` | _boolean_ _number_ | `false` |
+| shadow | 显示阴影，可选值为 `1` `2` `3` | _boolean\|number_ | `false` |
 | disabled | 是否禁用按钮 | _boolean_ | `false` |
 | hairline | 是否使用 0.5px 边框 | _boolean_ | `false` |
 | loading | 是否显示为加载状态 | _boolean_ | `false` |

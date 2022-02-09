@@ -115,17 +115,6 @@ import { Checkbox } from 'react-vant';
 | --- | --- | --- | --- |
 | toggleAll | 切换所有复选框，传 `true` 为选中，`false` 为取消选中，不传参为取反 | _options?: boolean \| object_ | - |
 
-### toggleAll 方法示例
-
-```html
-import { CheckboxGroupInstance } from 'react-vant'; const checkboxGroup = useRef <
-CheckboxGroupInstance > null; // 全部反选 checkboxGroup.current?.toggleAll(); // 全部选中
-checkboxGroup.current?.toggleAll(true); // 全部取消 checkboxGroup.current?.toggleAll(false); //
-全部反选，并跳过禁用的复选框 checkboxGroup.current?.toggleAll({ skipDisabled: true, }); //
-全部选中，并跳过禁用的复选框 checkboxGroup.current?.toggleAll({ checked: true, skipDisabled: true,
-});
-```
-
 ### Checkbox 方法
 
 通过 ref 可以获取到 Checkbox 实例并调用实例方法。
@@ -138,7 +127,7 @@ checkboxGroup.current?.toggleAll(true); // 全部取消 checkboxGroup.current?.t
 
 通过 `CheckboxInstance` 和 `CheckboxGroupInstance` 获取 Checkbox 实例的类型定义（从 3.2.0 版本开始支持）。
 
-```js
+```ts
 import { useRef } from 'react';
 import type { CheckboxInstance, CheckboxGroupInstance } from 'react-vant';
 

@@ -207,7 +207,7 @@ export default () => {
 
 通过 `SearchInstance` 获取 Search 实例的类型定义。
 
-```js
+```ts
 import { useRef } from 'react';
 import type { SearchInstance } from 'react-vant';
 

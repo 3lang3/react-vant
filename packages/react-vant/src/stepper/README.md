@@ -63,7 +63,7 @@ import { Stepper } from 'react-vant';
 
 组件导出以下类型定义：
 
-```js
+```ts
 import type { StepperTheme } from 'react-vant';
 ```
 
