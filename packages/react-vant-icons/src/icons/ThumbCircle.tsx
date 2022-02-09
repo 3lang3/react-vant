@@ -17,7 +17,7 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgThumbCircle = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+const SvgThumbCircle = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
   (props, ref) => {
     return (
       <IconBase name="SvgThumbCircle" {...props} ref={ref}>

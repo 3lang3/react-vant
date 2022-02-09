@@ -17,7 +17,7 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgChartTrendingO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+const SvgChartTrendingO = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
   (props, ref) => {
     return (
       <IconBase name="SvgChartTrendingO" {...props} ref={ref}>

@@ -24,7 +24,7 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBirthdayCakeO = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+const SvgBirthdayCakeO = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
   (props, ref) => {
     return (
       <IconBase name="SvgBirthdayCakeO" {...props} ref={ref}>

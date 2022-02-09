@@ -17,7 +17,7 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBrowsingHistory = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+const SvgBrowsingHistory = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
   (props, ref) => {
     return (
       <IconBase name="SvgBrowsingHistory" {...props} ref={ref}>

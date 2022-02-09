@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import IconBase, { IconBaseProps } from './IconBase';
 
 const cache: string[] = [];
@@ -22,27 +22,23 @@ const createFromIconfontCN = (scriptUrl: string | string[]) => {
     });
   }
 
-  const Iconfont = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'children'>>(
-    (props, ref) => {
-      const { name } = props;
+  return React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'children'>>((props, ref) => {
+    const { name } = props;
 
-      let content: React.ReactNode;
-      if (name) {
-        content = (
-          <svg width="1em" height="1em" fill="currentColor">
-            <use xlinkHref={`#${name}`} />
-          </svg>
-        );
-      }
-      return (
-        <IconBase {...props} ref={ref}>
-          {content}
-        </IconBase>
+    let content: React.ReactNode;
+    if (name) {
+      content = (
+        <svg width="1em" height="1em" fill="currentColor">
+          <use xlinkHref={`#${name}`} />
+        </svg>
       );
-    },
-  );
-
-  return Iconfont;
+    }
+    return (
+      <IconBase {...props} ref={ref}>
+        {content}
+      </IconBase>
+    );
+  });
 };
 
 export default createFromIconfontCN;

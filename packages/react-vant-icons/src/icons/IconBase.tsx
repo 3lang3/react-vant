@@ -8,7 +8,7 @@ function kebabCase(str: string): string {
     .replace(/^-/, '');
 }
 
-export interface IconBaseProps extends React.HTMLProps<HTMLSpanElement> {
+export interface IconBaseProps extends React.SVGProps<SVGSVGElement> {
   /** 是否开启旋转动画	 */
   spin?: boolean;
   /** 图标旋转角度 */
@@ -19,7 +19,7 @@ export interface IconBaseProps extends React.HTMLProps<HTMLSpanElement> {
   className?: string;
 }
 
-const IconBase = React.forwardRef<HTMLSpanElement, IconBaseProps>((props, ref) => {
+const IconBase = React.forwardRef<SVGSVGElement, IconBaseProps>((props, ref) => {
   const {
     name = '',
     className,
@@ -45,32 +45,28 @@ const IconBase = React.forwardRef<HTMLSpanElement, IconBaseProps>((props, ref) =
   }
 
   const attrs = {
+    role: 'img',
     'aria-label': kebabCaseName,
-    className: ['rv-icon', kebabCaseName ? `rv-icon-${kebabCaseName}` : '', className]
+    focusable: 'false',
+    'data-icon': kebabCaseName,
+    'aria-hidden': 'true',
+    preserveAspectRatio: 'xMidYMid meet',
+    ref,
+    tabIndex: iconTabIndex,
+    onClick,
+    className: [
+      'rv-icon',
+      kebabCaseName ? `rv-icon-${kebabCaseName}` : '',
+      spin ? 'rv-icon--spin' : '',
+      className,
+    ]
       .join(' ')
       .trim(),
-    style,
+    style: { ...style, ...svgStyle },
     ...restProps,
   };
-  return (
-    <span
-      role="img"
-      aria-label={kebabCaseName}
-      {...attrs}
-      ref={ref}
-      tabIndex={iconTabIndex}
-      onClick={onClick}
-    >
-      {React.cloneElement(children as React.ReactElement, {
-        className: spin ? 'rv-icon--spin' : '',
-        style: svgStyle,
-        focusable: 'false',
-        'data-icon': kebabCaseName,
-        'aria-hidden': 'true',
-        preserveAspectRatio: 'xMidYMid meet',
-      })}
-    </span>
-  );
+
+  return React.cloneElement(children as React.ReactElement, attrs);
 });
 
 export default IconBase;

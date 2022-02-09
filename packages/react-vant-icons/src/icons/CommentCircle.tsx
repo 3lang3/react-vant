@@ -17,7 +17,7 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgCommentCircle = React.forwardRef<HTMLSpanElement, Omit<IconBaseProps, 'name'>>(
+const SvgCommentCircle = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
   (props, ref) => {
     return (
       <IconBase name="SvgCommentCircle" {...props} ref={ref}>
