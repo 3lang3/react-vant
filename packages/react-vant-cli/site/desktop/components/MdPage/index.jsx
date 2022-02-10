@@ -11,9 +11,10 @@ const MdPageComponent = ({
   simulatorVisible,
   children,
   frontmatter = {},
+  slugs = [],
   hideSimulator,
 }) => {
-  const { simulator = true, fluid } = frontmatter;
+  const { simulator = true, fluid, slugs: showSlugs = true } = frontmatter;
   const pageSimulator = simulator && !hideSimulator;
 
   React.useEffect(() => {
@@ -23,10 +24,30 @@ const MdPageComponent = ({
   }, [simulator, simulatorVisible, toggleSimulator]);
   return (
     <div
-      className={clsx({
-        'vant-doc-md-page--simulator': pageSimulator,
+      className={clsx('vant-doc-md-wrapper', {
+        'vant-doc-md-wrapper--simulator': pageSimulator,
       })}
     >
+      {!!slugs.length && showSlugs && !fluid && (
+        <div className="vant-doc-md--slugs">
+          <div className="vant-doc-md--slug-title">#目录</div>
+          {slugs.map((slug, key) => {
+            if (+slug.depth === 2 || +slug.depth === 3) {
+              return (
+                <a
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={key}
+                  href={`#${slug.id}`}
+                  className={clsx('vant-doc-md--slug', `vant-doc-md--slug-${slug.depth}`)}
+                >
+                  {slug.text}
+                </a>
+              );
+            }
+            return null;
+          })}
+        </div>
+      )}
       <section
         className={clsx('vant-doc-md-page', {
           'vant-doc-md-page--fluid': fluid,

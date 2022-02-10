@@ -45,6 +45,29 @@
     font-weight: 600;
     font-size: 18px;
   }
+  h2,
+  h3 {
+    display: inline-flex;
+    align-items: center;
+
+    &:before {
+      content: '#';
+      display: none;
+      margin-right: 4px;
+    }
+    &:target {
+      &:before {
+        display: block;
+        color: @van-doc-blue;
+      }
+    }
+    &:target {
+      padding-top: @van-doc-header-top-height;
+      &:before {
+        font-size: 1.2em;
+      }
+    }
+  }
   h4 {
     margin: 24px 0 12px;
     font-weight: 600;

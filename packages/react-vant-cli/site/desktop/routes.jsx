@@ -50,7 +50,7 @@ const getRoutes = () => {
   names.forEach((name) => {
     const { component, lang } = parseName(name);
 
-    const { MdContent, frontmatter = {} } = documents[name];
+    const { MdContent, frontmatter = {}, slugs = [] } = documents[name];
 
     const desktopFrontmatter = Object.keys(frontmatter).reduce((a, fk) => {
       if (!fk.startsWith('mobile-')) {
@@ -60,7 +60,7 @@ const getRoutes = () => {
     }, {});
 
     const PreviewerComp = (props) => (
-      <MdPage {...props} frontmatter={desktopFrontmatter}>
+      <MdPage {...props} frontmatter={desktopFrontmatter} slugs={slugs}>
         {({ previewer }) => <MdContent previewer={previewer} />}
       </MdPage>
     );
