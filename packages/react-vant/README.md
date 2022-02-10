@@ -53,7 +53,7 @@ Support modern browsers and Chrome >= 51, iOS >= 10.0.
 
 Scan the QR code on your mobile phone to access the demo:
 
-<img src="https://github.com/3lang3/react-vant/blob/main/public/preview_qrcocde.png?raw=true" width="200" />
+<img src="https://github.com/3lang3/react-vant/blob/main/public/preview_qrcode.png?raw=true" width="200" />
 
 <details>
   <summary>View some screenshots.</summary>

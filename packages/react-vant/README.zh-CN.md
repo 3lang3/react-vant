@@ -54,7 +54,7 @@
 
 手机扫描上的二维码访问演示：
 
-<img src="https://github.com/3lang3/react-vant/blob/main/public/preview_qrcocde.png?raw=true" width="200" />
+<img src="https://github.com/3lang3/react-vant/blob/main/public/preview_qrcode.png?raw=true" width="200" />
 
 <details>
   <summary>查看部分截图</summary>
