@@ -161,7 +161,7 @@ importers:
       vinyl-fs: ^3.0.3
       vite: ^2.6.14
       vite-plugin-html: ^2.1.1
-      vite-plugin-react-mdoc: ^0.0.0-dev.9
+      vite-plugin-react-mdoc: ^0.0.0-dev.10
     dependencies:
       '@babel/core': 7.16.0
       '@babel/plugin-proposal-decorators': 7.16.4_@babel+core@7.16.0
@@ -217,7 +217,7 @@ importers:
       vinyl-fs: 3.0.3
       vite: 2.7.0_less@3.13.1
       vite-plugin-html: 2.1.1_vite@2.7.0
-      vite-plugin-react-mdoc: 0.0.0-dev.9_less@3.13.1
+      vite-plugin-react-mdoc: 0.0.0-dev.10_less@3.13.1
     devDependencies:
       '@types/execa': 2.0.0
       '@types/gulp-if': 0.0.34
@@ -18050,10 +18050,10 @@ packages:
       vite: 2.7.0_less@3.13.1
     dev: false
 
-  /vite-plugin-react-mdoc/0.0.0-dev.9_less@3.13.1:
+  /vite-plugin-react-mdoc/0.0.0-dev.10_less@3.13.1:
     resolution:
       {
-        integrity: sha512-BvNcrT3ZSc5VWRkJUvo+qRxJTnt/JfIKnombesjyij55s5SCU0Y28XmVaAKDtg5qnM2epjhDQqZqgXnsHYRv4A==,
+        integrity: sha512-xHCkvA41Fp8iikSjyz0z1jeO9ptqT9SkfiO3aOKp42RK9l6rGJ54f3krDBxIazeVZsfOsKMsSehZR/WiMlQL3A==,
       }
     dependencies:
       '@babel/core': 7.17.0
