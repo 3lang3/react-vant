@@ -28,7 +28,7 @@ const App = () => {
     false,
   );
 
-  const simulatorSrc = useMemo(() => `/mobile.html#${window.location.pathname}`, []);
+  const simulatorSrc = useMemo(() => `/mobile.html#${pathname}`, [pathname]);
 
   const lang = useMemo(() => {
     return getLangFromRoute(pathname);
