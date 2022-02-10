@@ -6,11 +6,16 @@
 
 ### Breaking Change
 
+#### 新增组件
+
+- `Space`
+- `Card`
+
 #### 废弃组件
 
 - 移除了 `Swipe` 组件
 - 移除了 `Icon` 组件
-- 重写 `Card` 组件, 原 `Card` 组件改名为 `ProductCard`
+- 原 `Card` 组件改名为 `ProductCard`
 
 #### API 调整
 
