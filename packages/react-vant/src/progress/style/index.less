@@ -1,0 +1,46 @@
+@import './var.less';
+
+:root {
+  --rv-progress-height: @progress-height;
+  --rv-progress-color: @progress-color;
+  --rv-progress-background-color: @progress-background-color;
+  --rv-progress-pivot-padding: @progress-pivot-padding;
+  --rv-progress-pivot-text-color: @progress-pivot-text-color;
+  --rv-progress-pivot-font-size: @progress-pivot-font-size;
+  --rv-progress-pivot-line-height: @progress-pivot-line-height;
+  --rv-progress-pivot-background-color: @progress-pivot-background-color;
+}
+
+.@{rv-prefix}-progress {
+  position: relative;
+  height: var(--rv-progress-height);
+  background: var(--rv-progress-background-color);
+  border-radius: var(--rv-progress-height);
+
+  &__portion {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--rv-progress-color);
+    border-radius: inherit;
+    transform-origin: 0;
+    transition: all var(--rv-animation-duration-base) var(--rv-animation-timing-function-enter);
+  }
+
+  &__pivot {
+    position: absolute;
+    top: 50%;
+    box-sizing: border-box;
+    min-width: 3.6em;
+    padding: var(--rv-progress-pivot-padding);
+    color: var(--rv-progress-pivot-text-color);
+    font-size: var(--rv-progress-pivot-font-size);
+    line-height: var(--rv-progress-pivot-line-height);
+    text-align: center;
+    word-break: keep-all;
+    background-color: var(--rv-progress-pivot-background-color);
+    border-radius: 1em;
+    transition: all var(--rv-animation-duration-base) var(--rv-animation-timing-function-enter);
+  }
+}

@@ -1,0 +1,145 @@
+@import './var.less';
+
+:root {
+  --rv-dialog-width: @dialog-width;
+  --rv-dialog-small-screen-width: @dialog-small-screen-width;
+  --rv-dialog-font-size: @dialog-font-size;
+  --rv-dialog-transition: @dialog-transition;
+  --rv-dialog-border-radius: @dialog-border-radius;
+  --rv-dialog-background-color: @dialog-background-color;
+  --rv-dialog-header-font-weight: @dialog-header-font-weight;
+  --rv-dialog-header-line-height: @dialog-header-line-height;
+  --rv-dialog-header-padding-top: @dialog-header-padding-top;
+  --rv-dialog-header-isolated-padding: @dialog-header-isolated-padding;
+  --rv-dialog-message-padding: @dialog-message-padding;
+  --rv-dialog-message-font-size: @dialog-message-font-size;
+  --rv-dialog-message-line-height: @dialog-message-line-height;
+  --rv-dialog-message-max-height: @dialog-message-max-height;
+  --rv-dialog-has-title-message-text-color: @dialog-has-title-message-text-color;
+  --rv-dialog-has-title-message-padding-top: @dialog-has-title-message-padding-top;
+  --rv-dialog-button-height: @dialog-button-height;
+  --rv-dialog-round-button-height: @dialog-round-button-height;
+  --rv-dialog-confirm-button-text-color: @dialog-confirm-button-text-color;
+}
+
+.@{rv-prefix}-dialog {
+  top: 45%;
+  left: 50%;
+  width: var(--rv-dialog-width);
+  overflow: hidden;
+  font-size: var(--rv-dialog-font-size);
+  background-color: var(--rv-dialog-background-color);
+  border-radius: var(--rv-dialog-border-radius);
+  backface-visibility: hidden; // avoid blurry text after scale animation
+  transition: var(--rv-dialog-transition);
+  transition-property: transform, opacity;
+
+  @media (max-width: 321px) {
+    width: var(--rv-dialog-small-screen-width);
+  }
+
+  &__header {
+    padding-top: var(--rv-dialog-header-padding-top);
+    font-weight: var(--rv-dialog-header-font-weight);
+    line-height: var(--rv-dialog-header-line-height);
+    text-align: center;
+
+    &--isolated {
+      padding: var(--rv-dialog-header-isolated-padding);
+    }
+  }
+
+  &__content {
+    &--isolated {
+      display: flex;
+      align-items: center;
+      min-height: 104 * @hd;
+    }
+  }
+
+  &__message {
+    flex: 1;
+    max-height: var(--rv-dialog-message-max-height);
+    padding: 26 * @hd var(--rv-dialog-message-padding);
+    overflow-y: auto;
+    font-size: var(--rv-dialog-message-font-size);
+    line-height: var(--rv-dialog-message-line-height);
+
+    // allow newline character
+    white-space: pre-wrap;
+    text-align: center;
+    word-wrap: break-word;
+    -webkit-overflow-scrolling: touch;
+
+    &--has-title {
+      padding-top: var(--rv-dialog-has-title-message-padding-top);
+      color: var(--rv-dialog-has-title-message-text-color);
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  &__confirm,
+  &__cancel {
+    flex: 1;
+    height: var(--rv-dialog-button-height);
+    margin: 0;
+    border: 0;
+  }
+
+  &__confirm {
+    &,
+    &:active {
+      color: var(--rv-dialog-confirm-button-text-color);
+    }
+  }
+
+  &--round-button {
+    .@{rv-prefix}-dialog__footer {
+      position: relative;
+      height: auto;
+      padding: var(--rv-padding-xs) var(--rv-padding-lg) var(--rv-padding-md);
+    }
+
+    .@{rv-prefix}-dialog__message {
+      padding-bottom: var(--rv-padding-md);
+      color: var(--rv-text-color);
+    }
+
+    .@{rv-prefix}-dialog__confirm,
+    .@{rv-prefix}-dialog__cancel {
+      height: var(--rv-dialog-round-button-height);
+    }
+
+    .@{rv-prefix}-dialog__confirm {
+      color: var(--rv-white);
+    }
+  }
+
+  &-bounce-enter {
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+    opacity: 0;
+  }
+
+  &-bounce-exit-active {
+    transform: translate3d(-50%, -50%, 0) scale(0.9);
+    opacity: 0;
+  }
+  &-bounce-enter-active,
+  &-bounce-leave-exit {
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,16 @@
+@import './var.less';
+
+:root {
+  --rv-overlay-z-index: @overlay-z-index;
+  --rv-overlay-background-color: @overlay-background-color;
+}
+
+.@{rv-prefix}-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--rv-overlay-z-index);
+  width: 100%;
+  height: 100%;
+  background-color: var(--rv-overlay-background-color);
+}

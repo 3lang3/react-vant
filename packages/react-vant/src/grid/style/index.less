@@ -1,0 +1,104 @@
+@import './var.less';
+
+:root {
+  --rv-grid-item-content-padding: @grid-item-content-padding;
+  --rv-grid-item-content-background-color: @grid-item-content-background-color;
+  --rv-grid-item-content-active-color: @grid-item-content-active-color;
+  --rv-grid-item-icon-size: @grid-item-icon-size;
+  --rv-grid-item-text-color: @grid-item-text-color;
+  --rv-grid-item-text-font-size: @grid-item-text-font-size;
+}
+
+.@{rv-prefix}-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.@{rv-prefix}-grid-item {
+  position: relative;
+  box-sizing: border-box;
+
+  &--square {
+    height: 0;
+  }
+
+  &__icon {
+    font-size: var(--rv-grid-item-icon-size);
+  }
+
+  &__text {
+    color: var(--rv-grid-item-text-color);
+    font-size: var(--rv-grid-item-text-font-size);
+    line-height: 1.5;
+    // https://github.com/youzan/vant/issues/3894
+    word-break: break-all;
+  }
+
+  &__icon + &__text {
+    margin-top: var(--rv-padding-xs);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    padding: var(--rv-grid-item-content-padding);
+    background-color: var(--rv-grid-item-content-background-color);
+
+    &::after {
+      z-index: 1;
+      border-width: 0 var(--rv-border-width-base) var(--rv-border-width-base) 0;
+    }
+
+    &--square {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+    }
+
+    &--center {
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--horizontal {
+      flex-direction: row;
+
+      .@{rv-prefix}-grid-item__text {
+        margin: 0 0 0 var(--rv-padding-xs);
+      }
+    }
+
+    &--reverse {
+      flex-direction: column-reverse;
+
+      .@{rv-prefix}-grid-item__text {
+        margin: 0 0 var(--rv-padding-xs);
+      }
+    }
+
+    &--horizontal&--reverse {
+      flex-direction: row-reverse;
+
+      .@{rv-prefix}-grid-item__text {
+        margin: 0 var(--rv-padding-xs) 0 0;
+      }
+    }
+
+    &--surround {
+      &::after {
+        border-width: var(--rv-border-width-base);
+      }
+    }
+
+    &--clickable {
+      cursor: pointer;
+
+      &:active {
+        background-color: var(--rv-grid-item-content-active-color);
+      }
+    }
+  }
+}

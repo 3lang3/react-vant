@@ -1,0 +1,44 @@
+@import './var.less';
+
+:root {
+  --rv-notify-text-color: @notify-text-color;
+  --rv-notify-padding: @notify-padding;
+  --rv-notify-font-size: @notify-font-size;
+  --rv-notify-line-height: @notify-line-height;
+  --rv-notify-primary-background-color: @notify-primary-background-color;
+  --rv-notify-success-background-color: @notify-success-background-color;
+  --rv-notify-danger-background-color: @notify-danger-background-color;
+  --rv-notify-warning-background-color: @notify-warning-background-color;
+}
+
+.@{rv-prefix}-notify {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--rv-notify-padding);
+  color: var(--rv-notify-text-color);
+  font-size: var(--rv-notify-font-size);
+  line-height: var(--rv-notify-line-height);
+
+  // allow newline character
+  white-space: pre-wrap;
+  text-align: center;
+  word-wrap: break-word;
+
+  &--primary {
+    background-color: var(--rv-notify-primary-background-color);
+  }
+
+  &--success {
+    background-color: var(--rv-notify-success-background-color);
+  }
+
+  &--danger {
+    background-color: var(--rv-notify-danger-background-color);
+  }
+
+  &--warning {
+    background-color: var(--rv-notify-warning-background-color);
+  }
+}

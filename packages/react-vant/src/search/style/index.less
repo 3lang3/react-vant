@@ -1,0 +1,78 @@
+@import './var.less';
+
+:root {
+  --rv-search-padding: @search-padding;
+  --rv-search-background-color: @search-background-color;
+  --rv-search-content-background-color: @search-content-background-color;
+  --rv-search-input-height: @search-input-height;
+  --rv-search-label-padding: @search-label-padding;
+  --rv-search-label-color: @search-label-color;
+  --rv-search-label-font-size: @search-label-font-size;
+  --rv-search-left-icon-color: @search-left-icon-color;
+  --rv-search-action-padding: @search-action-padding;
+  --rv-search-action-text-color: @search-action-text-color;
+  --rv-search-action-font-size: @search-action-font-size;
+}
+
+.@{rv-prefix}-search {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--rv-search-padding);
+  background-color: var(--rv-search-background-color);
+
+  &__content {
+    display: flex;
+    flex: 1;
+    padding-left: var(--rv-padding-sm);
+    background-color: var(--rv-search-content-background-color);
+    border-radius: var(--rv-border-radius-sm);
+
+    &--round {
+      border-radius: var(--rv-border-radius-max);
+    }
+  }
+
+  &__label {
+    padding: var(--rv-search-label-padding);
+    color: var(--rv-search-label-color);
+    font-size: var(--rv-search-label-font-size);
+    line-height: var(--rv-search-input-height);
+  }
+
+  &__field {
+    flex: 1;
+    padding: 5 * @hd var(--rv-padding-xs) 5 * @hd 0;
+    background-color: transparent;
+
+    .@{rv-prefix}-field__left-icon {
+      color: var(--rv-search-left-icon-color);
+    }
+  }
+
+  &--show-action {
+    padding-right: 0;
+  }
+
+  input {
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
+    }
+  }
+
+  &__action {
+    padding: var(--rv-search-action-padding);
+    color: var(--rv-search-action-text-color);
+    font-size: var(--rv-search-action-font-size);
+    line-height: var(--rv-search-input-height);
+    cursor: pointer;
+    user-select: none;
+
+    &:active {
+      background-color: var(--rv-active-color);
+    }
+  }
+}

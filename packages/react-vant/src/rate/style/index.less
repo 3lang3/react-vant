@@ -1,0 +1,54 @@
+@import './var.less';
+
+:root {
+  --rv-rate-icon-size: @rate-icon-size;
+  --rv-rate-icon-gutter: @rate-icon-gutter;
+  --rv-rate-icon-void-color: @rate-icon-void-color;
+  --rv-rate-icon-full-color: @rate-icon-full-color;
+  --rv-rate-icon-disabled-color: @rate-icon-disabled-color;
+}
+
+.@{rv-prefix}-rate {
+  display: inline-flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+  user-select: none;
+
+  &__item {
+    position: relative;
+
+    &:not(:last-child) {
+      padding-right: var(--rv-rate-icon-gutter);
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 1em;
+    color: var(--rv-rate-icon-void-color);
+    font-size: var(--rv-rate-icon-size);
+
+    &--half {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    &--full {
+      color: var(--rv-rate-icon-full-color);
+    }
+
+    &--disabled {
+      color: var(--rv-rate-icon-disabled-color);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &--readonly {
+    cursor: default;
+  }
+}

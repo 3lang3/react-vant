@@ -1,0 +1,70 @@
+@import './var.less';
+
+:root {
+  --rv-switch-size: @switch-size;
+  --rv-switch-width: @switch-width;
+  --rv-switch-height: @switch-height;
+  --rv-switch-node-size: @switch-node-size;
+  --rv-switch-node-background-color: @switch-node-background-color;
+  --rv-switch-node-box-shadow: @switch-node-box-shadow;
+  --rv-switch-background-color: @switch-background-color;
+  --rv-switch-on-background-color: @switch-on-background-color;
+  --rv-switch-transition-duration: @switch-transition-duration;
+  --rv-switch-disabled-opacity: @switch-disabled-opacity;
+  --rv-switch-border: @switch-border;
+}
+
+.@{rv-prefix}-switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  width: var(--rv-switch-width);
+  height: var(--rv-switch-height);
+  font-size: var(--rv-switch-size);
+  background-color: var(--rv-switch-background-color);
+  border: var(--rv-switch-border);
+  border-radius: var(--rv-switch-node-size);
+  cursor: pointer;
+  transition: background-color var(--rv-switch-transition-duration);
+
+  &__node {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--rv-switch-node-size);
+    height: var(--rv-switch-node-size);
+    background-color: var(--rv-switch-node-background-color);
+    border-radius: 100%;
+    box-shadow: var(--rv-switch-node-box-shadow);
+    transition: transform var(--rv-switch-transition-duration) cubic-bezier(0.3, 1.05, 0.4, 1.05);
+  }
+
+  &__loading {
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    line-height: 1;
+  }
+
+  &--on {
+    background-color: var(--rv-switch-on-background-color);
+
+    .@{rv-prefix}-switch__node {
+      transform: translateX(calc(var(--rv-switch-width) - var(--rv-switch-node-size)));
+    }
+
+    .@{rv-prefix}-switch__loading {
+      color: var(--rv-switch-on-background-color);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: var(--rv-switch-disabled-opacity);
+  }
+
+  &--loading {
+    cursor: default;
+  }
+}

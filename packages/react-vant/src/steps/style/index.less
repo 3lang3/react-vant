@@ -1,0 +1,170 @@
+@import './var.less';
+
+:root {
+  --rv-steps-background-color: @steps-background-color;
+  --rv-step-text-color: @step-text-color;
+  --rv-step-active-color: @step-active-color;
+  --rv-step-process-text-color: @step-process-text-color;
+  --rv-step-font-size: @step-font-size;
+  --rv-step-line-color: @step-line-color;
+  --rv-step-finish-line-color: @step-finish-line-color;
+  --rv-step-finish-text-color: @step-finish-text-color;
+  --rv-step-icon-size: @step-icon-size;
+  --rv-step-circle-size: @step-circle-size;
+  --rv-step-circle-color: @step-circle-color;
+  --rv-step-horizontal-title-font-size: @step-horizontal-title-font-size;
+}
+
+.@{rv-prefix}-steps {
+  overflow: hidden;
+  background-color: var(--rv-steps-background-color);
+
+  &--horizontal {
+    padding: 10 * @hd 10 * @hd 0;
+
+    .@{rv-prefix}-steps__items {
+      position: relative;
+      display: flex;
+      margin: 0 0 10 * @hd;
+      padding-bottom: 22 * @hd;
+    }
+  }
+
+  &--vertical {
+    padding: 0 0 0 var(--rv-padding-xl);
+  }
+}
+
+.@{rv-prefix}-step {
+  position: relative;
+  flex: 1;
+  color: var(--rv-step-text-color);
+  font-size: var(--rv-step-font-size);
+
+  &__circle {
+    display: block;
+    width: var(--rv-step-circle-size);
+    height: var(--rv-step-circle-size);
+    background-color: var(--rv-step-circle-color);
+    border-radius: 50%;
+  }
+
+  &__line {
+    position: absolute;
+    background-color: var(--rv-step-line-color);
+    transition: background-color var(--rv-animation-duration-base);
+  }
+
+  &--horizontal {
+    float: left;
+
+    &:first-child {
+      .@{rv-prefix}-step__title {
+        margin-left: 0;
+        transform: none;
+      }
+    }
+
+    &:last-child {
+      position: absolute;
+      right: 1 * @hd;
+      width: auto;
+
+      .@{rv-prefix}-step__title {
+        margin-left: 0;
+        transform: none;
+      }
+
+      .@{rv-prefix}-step__circle-container {
+        right: -9 * @hd;
+        left: auto;
+      }
+    }
+
+    .@{rv-prefix}-step__circle-container {
+      position: absolute;
+      top: 30 * @hd;
+      left: calc(var(--rv-padding-xs) * -1);
+      z-index: 1;
+      padding: 0 var(--rv-padding-xs);
+      background-color: var(--rv-white);
+      transform: translateY(-50%);
+    }
+
+    .@{rv-prefix}-step__title {
+      display: inline-block;
+      margin-left: 3 * @hd;
+      font-size: var(--rv-step-horizontal-title-font-size);
+      transform: translateX(-50%);
+    }
+
+    .@{rv-prefix}-step__line {
+      top: 30 * @hd;
+      left: 0;
+      width: 100%;
+      height: 1 * @hd;
+    }
+
+    .@{rv-prefix}-step__icon {
+      display: block;
+      font-size: var(--rv-step-icon-size);
+    }
+
+    .@{rv-prefix}-step--process {
+      color: var(--rv-step-process-text-color);
+    }
+  }
+
+  &--vertical {
+    display: block;
+    float: none;
+    padding: 10 * @hd 10 * @hd 10 * @hd 0;
+    line-height: var(--rv-line-height-sm);
+
+    &:not(:last-child)::after {
+      border-bottom-width: 1 * @hd;
+    }
+
+    .@{rv-prefix}-step__circle-container {
+      position: absolute;
+      top: 19 * @hd;
+      left: -15 * @hd;
+      z-index: 1;
+      font-size: var(--rv-step-icon-size);
+      line-height: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    .@{rv-prefix}-step__line {
+      top: 16 * @hd;
+      left: -15 * @hd;
+      width: 1 * @hd;
+      height: 100%;
+    }
+  }
+
+  &:last-child {
+    .@{rv-prefix}-step__line {
+      width: 0;
+    }
+  }
+
+  &--finish {
+    color: var(--rv-step-finish-text-color);
+
+    .@{rv-prefix}-step__circle,
+    .@{rv-prefix}-step__line {
+      background-color: var(--rv-step-finish-line-color);
+    }
+  }
+
+  &__icon,
+  &__title {
+    transition: color var(--rv-animation-duration-base);
+
+    &--active,
+    &--finish {
+      color: var(--rv-step-active-color);
+    }
+  }
+}

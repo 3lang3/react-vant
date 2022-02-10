@@ -1,0 +1,90 @@
+@import './var.less';
+
+:root {
+  --rv-pagination-height: @pagination-height;
+  --rv-pagination-font-size: @pagination-font-size;
+  --rv-pagination-item-width: @pagination-item-width;
+  --rv-pagination-item-default-color: @pagination-item-default-color;
+  --rv-pagination-item-disabled-color: @pagination-item-disabled-color;
+  --rv-pagination-item-disabled-background-color: @pagination-item-disabled-background-color;
+  --rv-pagination-background-color: @pagination-background-color;
+  --rv-pagination-desc-color: @pagination-desc-color;
+  --rv-pagination-disabled-opacity: @pagination-disabled-opacity;
+}
+
+.@{rv-prefix}-pagination {
+  display: flex;
+  font-size: var(--rv-pagination-font-size);
+
+  &__item,
+  &__page-desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item {
+    flex: 1;
+    box-sizing: border-box;
+    min-width: var(--rv-pagination-item-width);
+    height: var(--rv-pagination-height);
+    color: var(--rv-pagination-item-default-color);
+    background-color: var(--rv-pagination-background-color);
+    cursor: pointer;
+    user-select: none;
+
+    &:active {
+      color: var(--rv-white);
+      background-color: var(--rv-pagination-item-default-color);
+    }
+
+    &::after {
+      border-width: var(--rv-border-width-base) 0 var(--rv-border-width-base)
+        var(--rv-border-width-base);
+    }
+
+    &:last-child::after {
+      border-right-width: var(--rv-border-width-base);
+    }
+
+    &--active {
+      color: var(--rv-white);
+      background-color: var(--rv-pagination-item-default-color);
+    }
+  }
+
+  &__prev,
+  &__next {
+    padding: 0 var(--rv-padding-base);
+    cursor: pointer;
+  }
+
+  &__item--disabled {
+    &,
+    &:active {
+      color: var(--rv-pagination-item-disabled-color);
+      background-color: var(--rv-pagination-item-disabled-background-color);
+      cursor: not-allowed;
+      opacity: var(--rv-pagination-disabled-opacity);
+    }
+  }
+
+  &__page {
+    flex-grow: 0;
+  }
+
+  &__page-desc {
+    flex: 1;
+    height: var(--rv-pagination-height);
+    color: var(--rv-pagination-desc-color);
+  }
+
+  &--simple {
+    .@{rv-prefix}-pagination__prev,
+    .@{rv-prefix}-pagination__next {
+      &::after {
+        border-width: var(--rv-border-width-base);
+      }
+    }
+  }
+}

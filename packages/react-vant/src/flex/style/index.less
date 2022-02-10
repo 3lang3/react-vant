@@ -1,0 +1,85 @@
+@import './mixins.less';
+
+.@{rv-prefix}-flexbox {
+  display: flex;
+
+  &::before,
+  &::after {
+    display: flex;
+  }
+
+  // justify
+  &--justify {
+    &-start {
+      justify-content: flex-start;
+    }
+    &-center {
+      justify-content: center;
+    }
+    &-end {
+      justify-content: flex-end;
+    }
+    &-between {
+      justify-content: space-between;
+    }
+    &-around {
+      justify-content: space-around;
+    }
+  }
+
+  // align
+  &--align {
+    &-start {
+      align-items: flex-start;
+    }
+    &-center {
+      align-items: center;
+    }
+    &-end {
+      align-items: flex-end;
+    }
+    &-baseline {
+      align-items: baseline;
+    }
+    &-stretch {
+      align-items: stretch;
+    }
+  }
+
+  //direction
+  &--row {
+    flex-direction: row;
+  }
+  &--row-reverse {
+    flex-direction: row-reverse;
+  }
+  &--column {
+    flex-direction: column;
+  }
+  &--column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  //wrap
+  &--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  &--wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+}
+
+.@{rv-prefix}-flexitem {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+  // Prevent columns from collapsing when empty
+  min-height: 1 * @hd;
+}
+
+.make-grid();
