@@ -47,7 +47,7 @@
     "postcreate-component": "yarn prettier",
     "prepack": "yarn build",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
-    "release:site": "npm run build:site && gh-pages -d site",
+    "release:site": "npm run build:site && gh-pages -d site --add --dest v1",
     "start": "react-vant-cli dev",
     "test": "react-vant-cli test --coverage",
     "test:coverage": "open tests/coverage/index.html"
