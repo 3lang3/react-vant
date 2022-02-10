@@ -5,8 +5,8 @@ import SimulatorContext from '../../context';
 import './index.less';
 
 const SlugNav = ({ slugs }) => {
-  const onClick = (slug) => {
-    const element = document.querySelector(`#${slug.id}`);
+  const scrollWithOffset = (slug) => {
+    const element = document.getElementById(slug.id);
     if (element) {
       const header = document.querySelector('.vant-doc-header');
       const elementPosition = element.getBoundingClientRect().top - header.clientHeight;
@@ -20,14 +20,15 @@ const SlugNav = ({ slugs }) => {
       {slugs.map((slug, key) => {
         if (+slug.depth === 2 || +slug.depth === 3) {
           return (
-            <div
+            <a
               // eslint-disable-next-line react/no-array-index-key
               key={key}
-              onClick={() => onClick(slug)}
+              href={`#${slug.id}`}
+              onClick={() => scrollWithOffset(slug)}
               className={clsx('vant-doc-md--slug', `vant-doc-md--slug-${slug.depth}`)}
             >
               {slug.text}
-            </div>
+            </a>
           );
         }
         return null;
@@ -49,6 +50,19 @@ const MdPageComponent = ({
   const { simulator = true, fluid, slugs: showSlugs = true } = frontmatter;
   const pageSimulator = simulator && !hideSimulator;
 
+  const hashPath = React.useMemo(() => window.location.hash.split('#').filter(Boolean)[0], []);
+
+  const formatSlugs = React.useMemo(
+    () => slugs.map((slug) => ({ ...slug, id: `${hashPath}#${slug.id}` })),
+    [hashPath, slugs],
+  );
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+    replaceHeadingsId(hashPath, '.vant-doc-md-page h2');
+    replaceHeadingsId(hashPath, '.vant-doc-md-page h3');
+  }, [hashPath]);
+
   React.useEffect(() => {
     if (simulator !== simulatorVisible) {
       toggleSimulator(simulator);
@@ -60,7 +74,7 @@ const MdPageComponent = ({
         'vant-doc-md-wrapper--simulator': pageSimulator,
       })}
     >
-      {!!slugs.length && showSlugs && !fluid && <SlugNav slugs={slugs} />}
+      {!!slugs.length && showSlugs && !fluid && <SlugNav slugs={formatSlugs} />}
       <section
         className={clsx('vant-doc-md-page', {
           'vant-doc-md-page--fluid': fluid,
@@ -81,3 +95,10 @@ export default (props) => {
     </SimulatorContext.Consumer>
   );
 };
+
+function replaceHeadingsId(hashPath, target) {
+  const headings = [...document.querySelectorAll(target)].filter((el) => el.id);
+  headings.forEach((el) => {
+    el.id = el.id.replace(/(.*)/, `${hashPath}#$1`);
+  });
+}
