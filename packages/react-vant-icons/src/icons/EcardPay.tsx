@@ -17,12 +17,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgEcardPay = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgEcardPay = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgEcardPay.name} {...props}>
+    <IconBase name="SvgEcardPay" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgEcardPay;

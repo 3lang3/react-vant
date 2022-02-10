@@ -17,12 +17,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgStopCircle = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgStopCircle = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgStopCircle.name} {...props}>
+    <IconBase name="SvgStopCircle" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgStopCircle;

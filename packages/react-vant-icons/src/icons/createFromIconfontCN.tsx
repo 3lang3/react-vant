@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import IconBase, { IconBaseProps } from './IconBase';
 
 const cache: string[] = [];
@@ -22,7 +22,7 @@ const createFromIconfontCN = (scriptUrl: string | string[]) => {
     });
   }
 
-  const Iconfont = (props: Omit<IconBaseProps, 'children'>) => {
+  return React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'children'>>((props, ref) => {
     const { name } = props;
 
     let content: React.ReactNode;
@@ -33,10 +33,12 @@ const createFromIconfontCN = (scriptUrl: string | string[]) => {
         </svg>
       );
     }
-    return <IconBase {...props}>{content}</IconBase>;
-  };
-
-  return Iconfont;
+    return (
+      <IconBase {...props} ref={ref}>
+        {content}
+      </IconBase>
+    );
+  });
 };
 
 export default createFromIconfontCN;

@@ -16,12 +16,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgChecked = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgChecked = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgChecked.name} {...props}>
+    <IconBase name="SvgChecked" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgChecked;

@@ -17,12 +17,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBalancePay = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgBalancePay = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgBalancePay.name} {...props}>
+    <IconBase name="SvgBalancePay" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgBalancePay;

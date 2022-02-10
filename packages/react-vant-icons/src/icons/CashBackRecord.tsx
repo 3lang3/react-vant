@@ -25,12 +25,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgCashBackRecord = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgCashBackRecord.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgCashBackRecord = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgCashBackRecord" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgCashBackRecord;

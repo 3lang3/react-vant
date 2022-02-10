@@ -24,12 +24,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBirthdayCakeO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgBirthdayCakeO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgBirthdayCakeO = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgBirthdayCakeO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgBirthdayCakeO;

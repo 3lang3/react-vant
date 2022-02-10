@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 
 function kebabCase(str: string): string {
   return str
-    .substr(3)
+    .substring(3)
     .replace(/([A-Z])/g, '-$1')
     .toLowerCase()
     .replace(/^-/, '');
@@ -19,15 +19,18 @@ export interface IconBaseProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
 }
 
-const IconBase: React.FC<IconBaseProps> = ({
-  name = '',
-  className,
-  style,
-  spin,
-  rotate,
-  children,
-  ...props
-}) => {
+const IconBase = React.forwardRef<SVGSVGElement, IconBaseProps>((props, ref) => {
+  const {
+    name = '',
+    className,
+    style,
+    spin,
+    rotate,
+    tabIndex,
+    onClick,
+    children,
+    ...restProps
+  } = props;
   const svgStyle = {} as React.CSSProperties;
   if (rotate) {
     svgStyle.msTransform = `rotate(${rotate}deg)`;
@@ -36,20 +39,34 @@ const IconBase: React.FC<IconBaseProps> = ({
 
   const kebabCaseName = name ? kebabCase(name) : undefined;
 
+  let iconTabIndex = tabIndex;
+  if (iconTabIndex === undefined && onClick) {
+    iconTabIndex = -1;
+  }
+
   const attrs = {
+    role: 'img',
     'aria-label': kebabCaseName,
+    focusable: 'false',
+    'data-icon': kebabCaseName,
+    'aria-hidden': 'true',
+    preserveAspectRatio: 'xMidYMid meet',
+    ref,
+    tabIndex: iconTabIndex,
+    onClick,
     className: [
       'rv-icon',
       kebabCaseName ? `rv-icon-${kebabCaseName}` : '',
-      className,
       spin ? 'rv-icon--spin' : '',
+      className,
     ]
       .join(' ')
       .trim(),
     style: { ...style, ...svgStyle },
-    ...props,
+    ...restProps,
   };
+
   return React.cloneElement(children as React.ReactElement, attrs);
-};
+});
 
 export default IconBase;

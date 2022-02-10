@@ -16,12 +16,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgExchange = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgExchange = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgExchange.name} {...props}>
+    <IconBase name="SvgExchange" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgExchange;

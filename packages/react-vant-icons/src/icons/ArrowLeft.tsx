@@ -17,12 +17,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgArrowLeft = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgArrowLeft = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgArrowLeft.name} {...props}>
+    <IconBase name="SvgArrowLeft" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgArrowLeft;

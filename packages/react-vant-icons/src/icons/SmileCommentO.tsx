@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgSmileCommentO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgSmileCommentO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgSmileCommentO = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgSmileCommentO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgSmileCommentO;

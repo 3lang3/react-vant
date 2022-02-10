@@ -17,12 +17,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgUmbrellaCircle = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgUmbrellaCircle.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgUmbrellaCircle = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgUmbrellaCircle" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgUmbrellaCircle;

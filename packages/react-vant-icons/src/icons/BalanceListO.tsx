@@ -21,12 +21,14 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgBalanceListO = (props: Omit<IconBaseProps, 'name'>) => {
-  return (
-    <IconBase name={SvgBalanceListO.name} {...props}>
-      <SvgIcon />
-    </IconBase>
-  );
-};
+const SvgBalanceListO = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>(
+  (props, ref) => {
+    return (
+      <IconBase name="SvgBalanceListO" {...props} ref={ref}>
+        <SvgIcon />
+      </IconBase>
+    );
+  },
+);
 
 export default SvgBalanceListO;

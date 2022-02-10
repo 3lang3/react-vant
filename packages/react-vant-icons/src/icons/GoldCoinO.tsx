@@ -17,12 +17,12 @@ const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const SvgGoldCoinO = (props: Omit<IconBaseProps, 'name'>) => {
+const SvgGoldCoinO = React.forwardRef<SVGSVGElement, Omit<IconBaseProps, 'name'>>((props, ref) => {
   return (
-    <IconBase name={SvgGoldCoinO.name} {...props}>
+    <IconBase name="SvgGoldCoinO" {...props} ref={ref}>
       <SvgIcon />
     </IconBase>
   );
-};
+});
 
 export default SvgGoldCoinO;
