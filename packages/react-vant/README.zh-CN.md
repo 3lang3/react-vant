@@ -1,7 +1,7 @@
 [English](https://github.com/3lang3/react-vant) | 简体中文
 
 <p align="center">
-    <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="240" style="margin-bottom: 10px;">
+    <img alt="logo" src="https://github.com/3lang3/react-vant/blob/main/public/logo.svg?raw=true" width="200" style="margin-bottom: 10px;">
 </p>
 
 <h1 align="center">React Vant</h1>
@@ -54,7 +54,7 @@
 
 手机扫描上的二维码访问演示：
 
-<img src="https://user-images.githubusercontent.com/7098719/132332336-20429085-18b7-4639-8022-a5e7098610ad.png" width="200" />
+<img src="https://github.com/3lang3/react-vant/blob/main/public/preview_qrcocde.png?raw=true" width="200" />
 
 <details>
   <summary>查看部分截图</summary>
@@ -88,11 +88,11 @@ pnpm i react-vant@next -S -E
 #### 代码片段:
 
 ```jsx
-import ReactDOM from 'react-dom'; 
-import { Button } from 'react-vant'; 
+import ReactDOM from 'react-dom';
+import { Button } from 'react-vant';
 
-function App() { 
-  return <button>Default Button</button>; 
+function App() {
+  return <button>Default Button</button>;
 }
 
 ReactDOM.render(<App />, mountNode);

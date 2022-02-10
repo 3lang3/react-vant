@@ -1,7 +1,7 @@
 English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages/react-vant/README.zh-CN.md)
 
 <p align="center">
-    <img alt="logo" src="https://user-images.githubusercontent.com/7098719/132332142-f84a2bb9-879d-47e6-8e99-638d8e4b4740.png" width="240" style="margin-bottom: 10px;">
+    <img alt="logo" src="https://github.com/3lang3/react-vant/blob/main/public/logo.svg?raw=true" width="200" style="margin-bottom: 10px;">
 </p>
 
 <h1 align="center">React Vant</h1>
@@ -53,7 +53,7 @@ Support modern browsers and Chrome >= 51, iOS >= 10.0.
 
 Scan the QR code on your mobile phone to access the demo:
 
-<img src="https://user-images.githubusercontent.com/7098719/132332336-20429085-18b7-4639-8022-a5e7098610ad.png" width="200" />
+<img src="https://github.com/3lang3/react-vant/blob/main/public/preview_qrcocde.png?raw=true" width="200" />
 
 <details>
   <summary>View some screenshots.</summary>
@@ -87,11 +87,11 @@ The following are some code examples of react-vant:
 #### Code Snippet:
 
 ```jsx
-import ReactDOM from 'react-dom'; 
-import { Button } from 'react-vant'; 
+import ReactDOM from 'react-dom';
+import { Button } from 'react-vant';
 
-function App() { 
-  return <button>Default Button</button>; 
+function App() {
+  return <button>Default Button</button>;
 }
 
 ReactDOM.render(<App />, mountNode);
