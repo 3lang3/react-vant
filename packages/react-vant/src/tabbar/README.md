@@ -1,10 +1,10 @@
 # Tabbar 标签栏
 
-### 介绍
+## 介绍
 
 底部导航栏，用于在不同页面之间进行切换。
 
-### 引入
+## 引入
 
 ```js
 import { Tabbar } from 'react-vant';

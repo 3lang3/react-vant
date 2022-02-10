@@ -1,10 +1,10 @@
 # Typography 文本
 
-### 介绍
+## 介绍
 
 文本的基本格式。
 
-### 引入
+## 引入
 
 ```js
 import { Typography } from 'react-vant';

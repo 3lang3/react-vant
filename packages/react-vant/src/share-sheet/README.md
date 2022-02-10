@@ -1,10 +1,10 @@
 # ShareSheet 分享面板
 
-### 介绍
+## 介绍
 
 底部弹起的分享面板，用于展示各分享渠道对应的操作按钮，不含具体的分享逻辑。
 
-### 引入
+## 引入
 
 ```js
 import { ShareSheet } from 'reactvant';

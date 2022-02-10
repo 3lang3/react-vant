@@ -4,11 +4,11 @@ mobile-background: '#fff'
 
 # NoticeBar 通知栏
 
-### 介绍
+## 介绍
 
 用于循环播放展示一组消息通知。
 
-### 引入
+## 引入
 
 ```js
 import { NoticeBar } from 'react-vant';

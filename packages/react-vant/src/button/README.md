@@ -1,10 +1,10 @@
 # Button 按钮
 
-### 介绍
+## 介绍
 
 按钮用于触发一个操作，如提交表单。
 
-### 引入
+## 引入
 
 ```js
 import { Button } from 'react-vant';

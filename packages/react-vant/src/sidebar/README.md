@@ -4,11 +4,11 @@ mobile-className: 'vant-doc-demo-section--card'
 
 # Sidebar 侧边导航
 
-### 介绍
+## 介绍
 
 垂直展示的导航栏，用于在不同的内容区域之间进行切换。
 
-### 引入
+## 引入
 
 ```js
 import { Sidebar, SidebarItem } from 'react-vant';

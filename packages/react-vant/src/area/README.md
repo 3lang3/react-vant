@@ -1,10 +1,10 @@
 # Area 省市区选择
 
-### 介绍
+## 介绍
 
 省市区三级联动选择，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-### 引入
+## 引入
 
 ```js
 import { Area } from 'react-vant';

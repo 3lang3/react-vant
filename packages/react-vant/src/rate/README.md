@@ -1,10 +1,10 @@
 # Rate 评分
 
-### 介绍
+## 介绍
 
 用于对事物进行评级操作。
 
-### 引入
+## 引入
 
 ```js
 import { Rate } from 'react-vant';

@@ -5,11 +5,11 @@ mobile-background: '#fff'
 
 # Progress 进度条
 
-### 介绍
+## 介绍
 
 用于展示操作的当前进度。
 
-### 引入
+## 引入
 
 ```js
 import { Progress } from 'react-vant';

@@ -1,12 +1,12 @@
 # Lazyload 懒加载
 
-### 介绍
+## 介绍
 
 当页面需要加载大量内容时，使用懒加载可以实现延迟加载页面可视区域外的内容，从而使页面加载更流畅。
 
 > Lazyload 基于 [IntersectionObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API)实现， 部分浏览器需要[intersection-observer polyfill](https://www.npmjs.com/package/intersection-observer)支持。
 
-### 引入
+## 引入
 
 ```js
 import { Lazyload } from 'react-vant';

@@ -1,10 +1,10 @@
 # Checkbox 复选框
 
-### 介绍
+## 介绍
 
 用于在选中和非选中状态之间进行切换。
 
-### 引入
+## 引入
 
 ```js
 import { Checkbox } from 'react-vant';

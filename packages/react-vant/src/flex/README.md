@@ -1,14 +1,16 @@
 # Flex 布局
 
-### 介绍
+## 介绍
 
 `Flex` 组件是 CSS `flex` 布局的一个封装。
 
-### 引入
+## 引入
 
 ```js
 import { Flex } from 'react-vant';
 ```
+
+## 代码演示
 
 ### 基础用法
 

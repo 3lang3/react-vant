@@ -5,7 +5,7 @@ fluid: true
 
 # Icon 图标
 
-### 介绍
+## 介绍
 
 语义化的矢量图形。使用图标组件，你需要安装 `@react-vant/icons` 图标组件包：
 

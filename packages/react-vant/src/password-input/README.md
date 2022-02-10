@@ -1,10 +1,10 @@
 # PasswordInput 密码输入框
 
-### 介绍
+## 介绍
 
 密码输入框
 
-### 引入
+## 引入
 
 ```js
 import { PasswordInput } from 'react-vant';

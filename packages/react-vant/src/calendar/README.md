@@ -1,10 +1,10 @@
 # Calendar 日历
 
-### 介绍
+## 介绍
 
 日历组件用于选择日期或日期区间。
 
-### 引入
+## 引入
 
 ```js
 import { Calendar } from 'react-vant';

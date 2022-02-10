@@ -1,12 +1,12 @@
 # Form 表单
 
-### 介绍
+## 介绍
 
 用于数据录入、校验，支持输入框、单选框、复选框、文件上传等类型。
 
 > Form 组件是基于[rc-field-form](https://github.com/react-component/field-form)的封装。
 
-### 引入
+## 引入
 
 ```js
 import { Form } from 'react-vant';

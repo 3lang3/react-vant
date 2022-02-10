@@ -5,11 +5,11 @@ mobile-background: '#fff'
 
 # Empty 空状态
 
-### 介绍
+## 介绍
 
 空状态时的占位提示。
 
-### 引入
+## 引入
 
 ```js
 import { Empty } from 'react-vant';

@@ -5,11 +5,11 @@ mobile-background: '#fff'
 
 # Divider 分割线
 
-### 介绍
+## 介绍
 
 分隔线可以将内容分成清晰的几组。
 
-### 引入
+## 引入
 
 ```js
 import { Divider } from 'react-vant';

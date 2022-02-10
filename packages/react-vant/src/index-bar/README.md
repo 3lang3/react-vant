@@ -1,6 +1,6 @@
 # IndexBar 索引栏
 
-### 引入
+## 引入
 
 ```js
 import { IndexBar } from 'react-vant';

@@ -4,11 +4,11 @@ mobile-background: '#fff'
 
 # Loading 加载
 
-### 介绍
+## 介绍
 
 加载图标，用于表示加载中的过渡状态。
 
-### 引入
+## 引入
 
 ```js
 import { Loading } from 'react-vant';

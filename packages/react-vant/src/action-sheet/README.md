@@ -1,10 +1,10 @@
 # ActionSheet 动作面板
 
-### 介绍
+## 介绍
 
 底部弹起的模态面板，包含与当前情境相关的多个选项。
 
-### 引入
+## 引入
 
 ```js
 import { ActionSheet } from 'react-vant';

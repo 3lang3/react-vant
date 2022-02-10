@@ -1,10 +1,10 @@
 # Coupon 优惠券选择器
 
-### 介绍
+## 介绍
 
 用于优惠券的兑换和选择。
 
-### 引入
+## 引入
 
 ```js
 import { CouponCell, CouponList } from 'react-vant';

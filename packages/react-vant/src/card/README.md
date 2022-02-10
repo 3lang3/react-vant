@@ -4,7 +4,7 @@ mobile-className: 'vant-doc-demo-section--card'
 
 # Card 卡片
 
-### 介绍
+## 介绍
 
 最基础的卡片容器，可承载文字、列表、图片、段落。
 

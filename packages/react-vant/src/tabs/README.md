@@ -1,6 +1,6 @@
 # Tabs 标签页
 
-### 引入
+## 引入
 
 ```js
 import { Tabs } from 'react-vant';

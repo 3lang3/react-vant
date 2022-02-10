@@ -5,11 +5,11 @@ mobile-background: '#fff'
 
 # Badge 徽标
 
-### 介绍
+## 介绍
 
 在右上角展示徽标数字或小红点。
 
-### 引入
+## 引入
 
 ```js
 import { Badge } from 'react-vant';

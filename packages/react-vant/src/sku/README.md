@@ -5,7 +5,7 @@ mobile-background: '#fff'
 
 # Sku 商品规格
 
-### 引入
+## 引入
 
 ```js
 import { Sku } from 'reactvant';

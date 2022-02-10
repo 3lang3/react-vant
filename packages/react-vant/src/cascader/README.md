@@ -1,10 +1,10 @@
 # Cascader 级联选择
 
-### 介绍
+## 介绍
 
 级联选择框，用于多层级数据的选择，典型场景为省市区选择。
 
-### 引入
+## 引入
 
 ```js
 import { Cascader } from 'react-vant';

@@ -4,11 +4,11 @@ mobile-className: 'vant-doc-demo-section--card'
 
 # Circle 环形进度条
 
-### 介绍
+## 介绍
 
 圆环形的进度条组件，支持进度渐变动画。
 
-### 引入
+## 引入
 
 ```js
 import { Circle } from 'react-vant';

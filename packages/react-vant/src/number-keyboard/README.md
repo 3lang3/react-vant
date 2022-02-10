@@ -1,10 +1,10 @@
 # NumberKeyboard 数字键盘
 
-### 介绍
+## 介绍
 
 虚拟数字键盘，可以配合[密码输入框组件](#/zh-CN/password-input)或自定义的输入框组件使用。
 
-### 引入
+## 引入
 
 ```js
 import { NumberKeyboard } from 'react-vant';

@@ -1,10 +1,10 @@
 # Pagination 分页
 
-### 介绍
+## 介绍
 
 数据量过多时，采用分页的形式将数据分隔，每次只加载一个页面。
 
-### 引入
+## 引入
 
 ```js
 import { Pagination } from 'react-vant';

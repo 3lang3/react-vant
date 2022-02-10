@@ -1,10 +1,10 @@
 # NavBar 导航栏
 
-### 介绍
+## 介绍
 
 为页面提供导航功能，常用于页面顶部。
 
-### 引入
+## 引入
 
 ```js
 import { NavBar } from 'react-vant';

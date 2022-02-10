@@ -5,11 +5,11 @@ mobile-background: '#fff'
 
 # Space 间距
 
-### 介绍
+## 介绍
 
 设置组件之间的间距，避免组件紧贴在一起，拉开统一的空间。
 
-### 引入
+## 引入
 
 ```js
 import { Space } from 'react-vant';

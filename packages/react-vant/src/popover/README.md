@@ -4,11 +4,11 @@ mobile-className: 'vant-doc-demo-section--card'
 
 # Popover 气泡弹出框
 
-### 介绍
+## 介绍
 
 弹出式的气泡菜单。
 
-### 引入
+## 引入
 
 ```js
 import { Popover } from 'react-vant';

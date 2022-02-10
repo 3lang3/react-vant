@@ -1,10 +1,10 @@
 # ActionBar 动作栏
 
-### 介绍
+## 介绍
 
 用于为页面相关操作提供便捷交互。
 
-### 引入
+## 引入
 
 ```js
 import { ActionBar } from 'react-vant';

@@ -1,10 +1,10 @@
 # Radio 单选框
 
-### 介绍
+## 介绍
 
 用于在多个选项中选择单个结果。
 
-### 引入
+## 引入
 
 ```js
 import { Radio } from 'react-vant';

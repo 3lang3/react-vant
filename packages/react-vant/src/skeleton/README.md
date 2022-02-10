@@ -4,11 +4,11 @@ mobile-background: '#fff'
 
 # Skeleton 骨架屏
 
-### 介绍
+## 介绍
 
 用于在内容加载过程中展示一组占位图形。
 
-### 引入
+## 引入
 
 ```js
 import { Skeleton } from 'react-vant';

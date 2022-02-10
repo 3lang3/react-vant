@@ -1,10 +1,10 @@
 # DatetimePicker 时间选择
 
-### 介绍
+## 介绍
 
 时间选择器，支持日期、年月、时分等维度，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-### 引入
+## 引入
 
 ```js
 import { DatetimePicker } from 'react-vant';

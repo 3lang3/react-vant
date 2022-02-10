@@ -4,7 +4,7 @@ mobile-background: '#fff'
 
 # Card 卡片
 
-### 介绍
+## 介绍
 
 商品卡片，用于展示商品的图片、价格等信息。
 

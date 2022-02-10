@@ -1,10 +1,10 @@
 # Switch 开关
 
-### 介绍
+## 介绍
 
 用于在打开和关闭状态之间进行切换。
 
-### 引入
+## 引入
 
 ```js
 import { Switch } from 'react-vant';

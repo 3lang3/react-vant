@@ -1,10 +1,10 @@
 # Collapse 折叠面板
 
-### 介绍
+## 介绍
 
 将一组内容放置在多个折叠面板中，点击面板的标题可以展开或收缩其内容。
 
-### 引入
+## 引入
 
 ```js
 import { Collapse } from 'react-vant';

@@ -4,11 +4,11 @@ mobile-background: '#fff'
 
 # Slider 滑块
 
-### 介绍
+## 介绍
 
 滑动输入条，用于在给定的范围内选择一个值。
 
-### 引入
+## 引入
 
 ```js
 import { Slider } from 'react-vant';

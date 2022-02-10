@@ -5,11 +5,11 @@ mobile-background: '#fff'
 
 # CountDown 倒计时
 
-### 介绍
+## 介绍
 
 用于实时展示倒计时数值，支持毫秒精度。
 
-### 引入
+## 引入
 
 ```js
 import { CountDown } from 'react-vant';

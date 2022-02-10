@@ -1,10 +1,10 @@
 # Search 搜索
 
-### 介绍
+## 介绍
 
 用于搜索场景的输入框组件。
 
-### 引入
+## 引入
 
 ```js
 import { Search } from 'react-vant';

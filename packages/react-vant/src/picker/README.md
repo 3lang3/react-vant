@@ -1,10 +1,10 @@
 # Picker 选择器
 
-### 介绍
+## 介绍
 
 提供多个选项集合供用户选择，支持单列选择和多列级联，通常与[弹出层](#/zh-CN/popup)组件配合使用。
 
-### 引入
+## 引入
 
 ```js
 import { Picker } from 'react-vant';

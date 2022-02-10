@@ -1,10 +1,10 @@
 # ConfigProvider 全局配置
 
-### 介绍
+## 介绍
 
 为组件提供统一的全局化配置。
 
-### 引入
+## 引入
 
 ConfigProvider 使用 React 的 context 特性，只需在应用外围包裹一次即可全局生效。
 
