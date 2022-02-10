@@ -9,7 +9,7 @@ export default {
   },
   site: {
     defaultLang: 'zh-CN',
-    versions: [{ label: 'v1', link: '/react-vant/' }],
+    versions: [{ label: 'v1', link: 'https://3lang3.github.io/react-vant/v1' }],
     htmlMeta: {
       'docsearch:version': 'v3',
     },
