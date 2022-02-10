@@ -4,6 +4,38 @@ import MdPreviewer from '../MdPreviewer';
 import SimulatorContext from '../../context';
 import './index.less';
 
+const SlugNav = ({ slugs }) => {
+  const onClick = (slug) => {
+    const element = document.querySelector(`#${slug.id}`);
+    if (element) {
+      const header = document.querySelector('.vant-doc-header');
+      const elementPosition = element.getBoundingClientRect().top - header.clientHeight;
+      window.scrollTo({ top: elementPosition + window.scrollY });
+    }
+  };
+
+  return (
+    <div className="vant-doc-md--slugs">
+      <div className="vant-doc-md--slug-title">#目录</div>
+      {slugs.map((slug, key) => {
+        if (+slug.depth === 2 || +slug.depth === 3) {
+          return (
+            <div
+              // eslint-disable-next-line react/no-array-index-key
+              key={key}
+              onClick={() => onClick(slug)}
+              className={clsx('vant-doc-md--slug', `vant-doc-md--slug-${slug.depth}`)}
+            >
+              {slug.text}
+            </div>
+          );
+        }
+        return null;
+      })}
+    </div>
+  );
+};
+
 const previewer = (props) => <MdPreviewer {...props} />;
 
 const MdPageComponent = ({
@@ -28,26 +60,7 @@ const MdPageComponent = ({
         'vant-doc-md-wrapper--simulator': pageSimulator,
       })}
     >
-      {!!slugs.length && showSlugs && !fluid && (
-        <div className="vant-doc-md--slugs">
-          <div className="vant-doc-md--slug-title">#目录</div>
-          {slugs.map((slug, key) => {
-            if (+slug.depth === 2 || +slug.depth === 3) {
-              return (
-                <a
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={key}
-                  href={`#${slug.id}`}
-                  className={clsx('vant-doc-md--slug', `vant-doc-md--slug-${slug.depth}`)}
-                >
-                  {slug.text}
-                </a>
-              );
-            }
-            return null;
-          })}
-        </div>
-      )}
+      {!!slugs.length && showSlugs && !fluid && <SlugNav slugs={slugs} />}
       <section
         className={clsx('vant-doc-md-page', {
           'vant-doc-md-page--fluid': fluid,
