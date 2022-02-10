@@ -91,7 +91,7 @@
     "vinyl-fs": "^3.0.3",
     "vite": "^2.6.14",
     "vite-plugin-html": "^2.1.1",
-    "vite-plugin-react-mdoc": "^0.0.0-dev.9"
+    "vite-plugin-react-mdoc": "^0.0.0-dev.10"
   },
   "devDependencies": {
     "@types/execa": "2.0.0",
