@@ -161,7 +161,7 @@ importers:
       vinyl-fs: ^3.0.3
       vite: ^2.6.14
       vite-plugin-html: ^2.1.1
-      vite-plugin-react-mdoc: ^0.0.0-dev.6
+      vite-plugin-react-mdoc: ^0.0.0-dev.9
     dependencies:
       '@babel/core': 7.16.0
       '@babel/plugin-proposal-decorators': 7.16.4_@babel+core@7.16.0
@@ -217,7 +217,7 @@ importers:
       vinyl-fs: 3.0.3
       vite: 2.7.0_less@3.13.1
       vite-plugin-html: 2.1.1_vite@2.7.0
-      vite-plugin-react-mdoc: 0.0.0-dev.6_less@3.13.1
+      vite-plugin-react-mdoc: 0.0.0-dev.9_less@3.13.1
     devDependencies:
       '@types/execa': 2.0.0
       '@types/gulp-if': 0.0.34
@@ -3212,7 +3212,7 @@ packages:
         integrity: sha512-6zzkezS9QEIL8yCBvXWxPTJPNuMeECJVxSOhxNY/jfq9LxOTHivaYTqr37n9LknWWRTIkzqH2UilS5QFvfa90A==,
       }
     dependencies:
-      '@babel/parser': 7.16.4
+      '@babel/parser': 7.17.0
       '@babel/types': 7.17.0
       '@types/babel__generator': 7.6.3
       '@types/babel__template': 7.4.1
@@ -10651,7 +10651,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       '@babel/core': 7.17.0
-      '@babel/parser': 7.16.4
+      '@babel/parser': 7.17.0
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.0
       semver: 6.3.0
@@ -18050,10 +18050,10 @@ packages:
       vite: 2.7.0_less@3.13.1
     dev: false
 
-  /vite-plugin-react-mdoc/0.0.0-dev.6_less@3.13.1:
+  /vite-plugin-react-mdoc/0.0.0-dev.9_less@3.13.1:
     resolution:
       {
-        integrity: sha512-dY9FAyYoA/77KogNOX6hnbR6Xqgsxk4A+3XS3USM7mhYlV/hjs951idrXoXxCAXF9Ty5HLNxQJi93Pl4NS4LNg==,
+        integrity: sha512-BvNcrT3ZSc5VWRkJUvo+qRxJTnt/JfIKnombesjyij55s5SCU0Y28XmVaAKDtg5qnM2epjhDQqZqgXnsHYRv4A==,
       }
     dependencies:
       '@babel/core': 7.17.0
