@@ -2,40 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import MdPreviewer from '../MdPreviewer';
 import SimulatorContext from '../../context';
+import SlugNav from './SlugNav';
 import './index.less';
-
-const SlugNav = ({ slugs }) => {
-  const scrollWithOffset = (slug) => {
-    const element = document.getElementById(slug.id);
-    if (element) {
-      const header = document.querySelector('.vant-doc-header');
-      const elementPosition = element.getBoundingClientRect().top - header.clientHeight;
-      window.scrollTo({ top: elementPosition + window.scrollY });
-    }
-  };
-
-  return (
-    <div className="vant-doc-md--slugs">
-      <div className="vant-doc-md--slug-title">#目录</div>
-      {slugs.map((slug, key) => {
-        if (+slug.depth === 2 || +slug.depth === 3) {
-          return (
-            <a
-              // eslint-disable-next-line react/no-array-index-key
-              key={key}
-              href={`#${slug.id}`}
-              onClick={() => scrollWithOffset(slug)}
-              className={clsx('vant-doc-md--slug', `vant-doc-md--slug-${slug.depth}`)}
-            >
-              {slug.text}
-            </a>
-          );
-        }
-        return null;
-      })}
-    </div>
-  );
-};
 
 const previewer = (props) => <MdPreviewer {...props} />;
 
@@ -59,11 +27,13 @@ const MdPageComponent = ({
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    // anchor format
     replaceHeadingsId(hashPath, '.vant-doc-md-page h2');
     replaceHeadingsId(hashPath, '.vant-doc-md-page h3');
   }, [hashPath]);
 
   React.useEffect(() => {
+    // simulator 是否展示
     if (simulator !== simulatorVisible) {
       toggleSimulator(simulator);
     }

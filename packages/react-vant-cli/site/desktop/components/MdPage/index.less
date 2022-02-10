@@ -2,51 +2,9 @@
 
 .vant-doc-md-wrapper {
   position: relative;
+
   &--simulator {
     padding-right: @van-doc-simulator-width;
-  }
-
-  .vant-doc-md--slugs {
-    @media (min-width: 1400px) {
-      display: flex;
-    }
-    position: fixed;
-    left: calc(@van-doc-nav-width + 14px);
-    top: calc(@van-doc-header-top-height + 24px);
-    display: none;
-    flex-direction: column;
-    max-width: 160px;
-    overflow: hidden;
-    font-size: 13px;
-
-    .vant-doc-md--slug {
-      box-sizing: border-box;
-      cursor: pointer;
-      color: #545454;
-      margin: 0 0 8px;
-      padding-left: 10px;
-      border-left: 2px solid transparent;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      font-weight: 600;
-
-      &:hover,
-      &-ac {
-        color: @van-doc-blue;
-        border-left-color: @van-doc-blue;
-      }
-
-      &-3 {
-        padding-left: 20px;
-        font-weight: 400;
-      }
-
-      &-title {
-        font-size: 14px;
-        font-weight: bold;
-        padding: 0 0 10px 10px;
-      }
-    }
   }
 }
 
