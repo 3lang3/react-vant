@@ -10,7 +10,7 @@ English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages
 
 <p align="center">
   <a href="https://npmjs.org/package/react-vant" target="_blank" referrerpolicy="no-referrer">
-    <img src="https://img.shields.io/npm/v/react-vant/latest?style=flat-square" alt="npm version" />
+    <img src="https://img.shields.io/npm/v/react-vant/next?style=flat-square" alt="npm version" />
   </a>
   <a href="https://npmjs.org/package/react-vant" target="_blank" referrerpolicy="no-referrer">
     <img src="https://img.shields.io/npm/dm/react-vant.svg?style=flat-square" alt="npm download" />
@@ -74,10 +74,10 @@ Recommended **pin** version:
 
 ```bash
 # npm
-npm i react-vant -S -E
+npm i react-vant@next -S -E
 
 # pnpm
-pnpm i react-vant -S -E
+pnpm i react-vant@next -S -E
 ```
 
 ## 🚀 Quick start
@@ -86,9 +86,14 @@ The following are some code examples of react-vant:
 
 #### Code Snippet:
 
-```html
-import ReactDOM from 'react-dom'; import { Button } from 'react-vant'; import
-'react-vant/lib/index.css'; function App() { return <button>Default Button</button>; }
+```jsx
+import ReactDOM from 'react-dom'; 
+import { Button } from 'react-vant'; 
+
+function App() { 
+  return <button>Default Button</button>; 
+}
+
 ReactDOM.render(<App />, mountNode);
 ```
 
