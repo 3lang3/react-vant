@@ -100,10 +100,10 @@ ReactDOM.render(<App />, mountNode);
 
 #### 代码示例:
 
-- [Create React App](https://github.com/3lang3/react-vant-template/tree/main/template/create-react-app)
-- [Umi](https://github.com/3lang3/react-vant-template/tree/main/template/umi)
-- [Next.js](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
-- [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
+- [Create React App](https://github.com/3lang3/react-vant-template/tree/main/next/cra)
+- [Umi](https://github.com/3lang3/react-vant-template/tree/main/next/umijs)
+- [Next.js](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs)
+- [Vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
 
 更多信息请参考[快速开始](https://3lang3.github.io/react-vant/#/zh-CN/).
 
