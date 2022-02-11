@@ -2,13 +2,10 @@
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import type { Language } from 'prism-react-renderer';
 import React, { useMemo, useState } from 'react';
+import clsx from 'clsx';
 import useCodeSandbox from './useCodeSandbox';
 import useCopy from './useCopy';
-import fileIcon from './file.svg';
-import codeIcon from './code.svg';
-import csbIcon from './csb.svg';
-import copyIcon from './copy.svg';
-import copyDoneIcon from './done.svg';
+import { FileIcon, CodeIcon, CsbIcon, CopyIcon, DoneIcon } from '../Icons';
 import './index.less';
 
 type DependenciesType = {
@@ -62,9 +59,11 @@ const FileTabs = ({
           <div
             key={filename}
             onClick={() => setCurrent({ code: info.value, lang: getSourceType(filename) })}
-            className="default-previewer__tabs-plane"
+            className={clsx('default-previewer__tabs-plane', {
+              'default-previewer__tabs-plane--active': info.value === code,
+            })}
           >
-            <img alt="file" src={fileIcon} /> {filename}
+            <FileIcon /> {filename}
           </div>
         );
       })}
@@ -94,7 +93,11 @@ const DefaultRender = ({
               className="default-pre__btn"
               onClick={() => copy(code)}
             >
-              <img alt="copy" src={copyStatus === 'ready' ? copyIcon : copyDoneIcon} />
+              {copyStatus === 'ready' ? (
+                <CopyIcon />
+              ) : (
+                <DoneIcon className="default-pre__btn-svg--active" />
+              )}
             </button>
           )}
           <pre className={className} style={style}>
@@ -118,7 +121,7 @@ export default ({ children, ...props }: MDocPreviewerProps) => {
     [props.dependencies],
   );
   const files = useMemo(
-    () => dependenciesArr.filter(([_, el]) => el.type === 'FILE'),
+    () => dependenciesArr.filter(([, el]) => el.type === 'FILE'),
     [dependenciesArr],
   );
 
@@ -140,7 +143,7 @@ export default ({ children, ...props }: MDocPreviewerProps) => {
               className="default-previewer__btn default-previewer__csb"
               onClick={openCsb}
             >
-              <img alt="cbs" src={csbIcon} />
+              <CsbIcon />
             </button>
           </>
         ) : null}
@@ -150,7 +153,11 @@ export default ({ children, ...props }: MDocPreviewerProps) => {
           className="default-previewer__btn default-previewer__copy"
           onClick={() => copy(props.code)}
         >
-          <img alt="copy" src={copyStatus === 'ready' ? copyIcon : copyDoneIcon} />
+          {copyStatus === 'ready' ? (
+            <CopyIcon />
+          ) : (
+            <DoneIcon className="default-pre__btn-svg--active" />
+          )}
         </button>
         {children && (
           <button
@@ -158,7 +165,7 @@ export default ({ children, ...props }: MDocPreviewerProps) => {
             className="default-previewer__btn"
             onClick={() => setShowSource((v) => !v)}
           >
-            <img alt="toggle" src={codeIcon} />
+            <CodeIcon />
           </button>
         )}
       </div>
