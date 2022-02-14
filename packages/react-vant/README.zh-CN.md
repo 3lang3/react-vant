@@ -1,7 +1,7 @@
 [English](https://github.com/3lang3/react-vant) | 简体中文
 
 <p align="center">
-    <img alt="logo" src="https://github.com/3lang3/react-vant/blob/main/public/logo.svg?raw=true" width="200" style="margin-bottom: 10px;">
+    <img alt="logo" src="https://gitee.com/lang3/react-vant/raw/main/public/logo.svg" width="200" style="margin-bottom: 10px;">
 </p>
 
 <h1 align="center">React Vant</h1>
