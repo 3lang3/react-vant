@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  🔥 <a href="https://lang3.gitee.io/react-vant/">文档网站 (Domestic)</a>
+  🔥 <a href="https://lang3.gitee.io/react-vant/next">文档网站 (Domestic)</a>
   &nbsp;
   🌈 <a href="https://3lang3.github.io/react-vant/">文档网站（GitHub）</a>
 </p>

@@ -25,7 +25,7 @@ English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages
 </p>
 
 <p align="center">
-  🔥 <a href="https://lang3.gitee.io/react-vant/">Documentation (Domestic)</a>
+  🔥 <a href="https://lang3.gitee.io/react-vant/next">Documentation (Domestic)</a>
   &nbsp;
   🌈 <a href="https://3lang3.github.io/react-vant/">Documentation（GitHub）</a>
 </p>
