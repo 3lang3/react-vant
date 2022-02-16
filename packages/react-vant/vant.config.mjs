@@ -39,7 +39,8 @@ export default {
           {
             title: '开发指南',
             items: [
-              { path: 'home', title: '介绍' },
+              { path: 'home', title: '首页' },
+              { path: 'about', title: '介绍' },
               { path: 'quickstart', title: '快速上手' },
               { path: 'advanced-usage', title: '进阶用法' },
               { path: 'changelog', title: '更新日志' },
