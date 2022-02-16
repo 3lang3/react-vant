@@ -92,7 +92,7 @@ import ReactDOM from 'react-dom';
 import { Button } from 'react-vant';
 
 function App() {
-  return <button>Default Button</button>;
+  return <Button>Default Button</Button>;
 }
 
 ReactDOM.render(<App />, mountNode);
