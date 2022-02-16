@@ -391,6 +391,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       titleClass={clsx(bem('label', labelAlign), labelClass)}
       arrowDirection={arrowDirection}
       onClick={props.onClick}
+      style={props.style}
       className={clsx(
         bem({
           error,
