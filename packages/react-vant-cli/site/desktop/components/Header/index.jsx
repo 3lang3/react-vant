@@ -35,7 +35,7 @@ const Header = (props) => {
 
   const toggleVersionPop = () => {
     // eslint-disable-next-line react/no-this-in-sfc
-    const val = !this.showVersionPop;
+    const val = !showVersionPop;
     const action = val ? 'add' : 'remove';
     document.body[`${action}EventListener`]('click', checkHideVersionPop);
     setShowVersionPop(val);
@@ -81,12 +81,12 @@ const Header = (props) => {
                   onClick={toggleVersionPop}
                 >
                   v{versions[0].label}
-                  {/* <transition name="vant-doc-dropdown">
+                  <div name="vant-doc-dropdown">
                     {showVersionPop && (
                       <div className="vant-doc-header__version-pop">
                         {versions.map((item) => (
                           <div
-                            key={item}
+                            key={item.label}
                             className="vant-doc-header__version-pop-item"
                             onClick={() => onSwitchVersion(item)}
                           >
@@ -95,7 +95,7 @@ const Header = (props) => {
                         ))}
                       </div>
                     )}
-                  </transition> */}
+                  </div>
                 </span>
               </li>
             )}

@@ -45,18 +45,20 @@
     transition: 0.3s ease-in-out;
   }
   &__version {
-    &-multiple::after {
-      padding-right: 20px;
-      position: absolute;
-      top: 7px;
-      right: 7px;
-      width: 5px;
-      height: 5px;
-      color: #001938;
-      border: 1px solid;
-      border-color: transparent transparent currentColor currentColor;
-      transform: rotate(-45deg);
-      content: '';
+    &-multiple {
+      padding: 0 20px 0 12px;
+      &::after {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 5px;
+        height: 5px;
+        color: #001938;
+        border: 1px solid;
+        border-color: transparent transparent currentColor currentColor;
+        transform: rotate(-45deg);
+        content: '';
+      }
     }
     &-pop {
       position: absolute;
