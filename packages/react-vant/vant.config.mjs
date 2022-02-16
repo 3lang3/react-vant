@@ -17,7 +17,7 @@ export default {
       'zh-CN': {
         title: 'react vant',
         description: '轻量、可靠的移动端 React 组件库',
-        logo: 'https://gitee.com/lang3/react-vant/raw/main/public/logo.svg',
+        logo: 'https://cdn.jsdelivr.net/gh/3lang3/react-vant@main/public/logo.svg',
         langLabel: '中文',
         links: [
           {
