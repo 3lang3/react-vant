@@ -110,6 +110,22 @@ import { Button } from 'react-vant';
 | ------- | ---------------------------------------- | -------------- |
 | onClick | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_ |
 
+### Button.Group
+
+| 参数         | 说明                           | 类型              | 默认值    |
+| ------------ | ------------------------------ | ----------------- | --------- |
+| type         | 统一设置按钮类型               | _string_          | `default` |
+| size         | 统一设置按钮尺寸               | _string_          | `normal`  |
+| iconPosition | 统一设置按钮图标展示位置       | _string_          | `left`    |
+| tag          | 统一设置按钮根节点的 HTML 标签 | _string_          | `Button`  |
+| nativeType   | 统一设置按钮标签的 type 属性   | _string_          | `Button`  |
+| block        | 统一设置按钮为块级元素         | _boolean_         | `false`   |
+| plain        | 是否为朴素按钮组               | _boolean_         | `false`   |
+| square       | 是否为方形按钮组               | _boolean_         | `false`   |
+| round        | 是否为圆形按钮组               | _boolean_         | `false`   |
+| shadow       | 显示阴影，可选值为 `1` `2` `3` | _boolean\|number_ | `false`   |
+| disabled     | 是否禁用按钮组                 | _boolean_         | `false`   |
+
 ### 类型定义
 
 组件导出以下类型定义：

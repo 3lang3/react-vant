@@ -61,3 +61,24 @@ export interface ButtonProps extends BaseTypeProps {
    */
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
+
+export type ButtonGroupProps = BaseTypeProps &
+  Pick<
+    ButtonProps,
+    | 'size'
+    | 'type'
+    | 'square'
+    | 'tag'
+    | 'block'
+    | 'round'
+    | 'plain'
+    | 'shadow'
+    | 'disabled'
+    | 'nativeType'
+    | 'iconPosition'
+  > & {
+    /**
+     * 点击事件
+     */
+    onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  };

@@ -205,7 +205,7 @@
   }
 
   &__text {
-    width: 100%;
+    max-width: 100%;
   }
 
   &__icon {
@@ -239,23 +239,54 @@
 
   &-group {
     display: flex;
+    overflow: hidden;
+    border: var(--rv-button-border-width) solid var(--rv-button-default-border-color);
+    border-radius: var(--rv-button-border-radius);
 
     .@{rv-prefix}-button {
       border-radius: 0;
     }
 
-    .@{rv-prefix}-button:not(:first-child) {
-      border-left: 0;
+    .@{rv-prefix}-button {
+      border-width: 0 var(--rv-button-border-width) 0 0;
+
+      &:last-child {
+        border-width: 0;
+      }
     }
 
-    .@{rv-prefix}-button:last-child {
-      border-top-right-radius: var(--rv-button-border-radius);
-      border-bottom-right-radius: var(--rv-button-border-radius);
+    &--primary {
+      border-color: var(--rv-button-primary-border-color);
     }
 
-    .@{rv-prefix}-button:first-child {
-      border-top-left-radius: var(--rv-button-border-radius);
-      border-bottom-left-radius: var(--rv-button-border-radius);
+    &--danger {
+      border-color: var(--rv-button-danger-border-color);
+    }
+
+    &--warning {
+      border-color: var(--rv-button-warning-border-color);
+    }
+
+    &--success,
+    &--info {
+      border-color: var(--rv-button-success-border-color);
+    }
+
+    &--round {
+      border-radius: var(--rv-button-round-border-radius);
+    }
+
+    &--square {
+      border-radius: 0;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: var(--rv-button-disabled-opacity);
+
+      .@{rv-prefix}-button {
+        --rv-button-disabled-opacity: 1;
+      }
     }
   }
 }
