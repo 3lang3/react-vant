@@ -1,3 +1,8 @@
+---
+mobile-className: 'vant-doc-demo-section--card'
+mobile-background: '#fff'
+---
+
 # Typography 文本
 
 ## 介绍
@@ -20,7 +25,6 @@ import { Typography } from 'react-vant';
  */
 import React from 'react';
 import { Typography } from 'react-vant';
-import './demo/style.less';
 
 export default () => {
   return (
@@ -57,6 +61,75 @@ export default () => {
       <Typography.Text type="secondary">这是一条文本</Typography.Text>
     </>
   );
+};
+```
+
+### 文本省略
+
+设置 `ellipsis` 属性后，文本超出部分将省略。
+
+```tsx
+/**
+ * title: 文本省略
+ */
+import React from 'react';
+import { Typography } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Typography.Text ellipsis>
+        In the process of internal desktop applications development, many different design specs and
+        implementations would be involved
+      </Typography.Text>
+
+      <br />
+      <Typography.Text ellipsis={2}>
+        In the process of internal desktop applications development, many different design specs and
+        implementations would be involved
+      </Typography.Text>
+    </>
+  );
+};
+```
+
+### 标题
+
+`Typography.Title` 使用标题组件
+
+```tsx
+/**
+ * title: 类型
+ */
+import React from 'react';
+import { Typography } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Typography.Title level={1}>一级测试标题</Typography.Title>
+      <Typography.Title level={2}>二级测试标题</Typography.Title>
+      <Typography.Title level={3}>三级测试标题</Typography.Title>
+      <Typography.Title level={4}>四级测试标题</Typography.Title>
+      <Typography.Title level={5}>五级测试标题</Typography.Title>
+    </>
+  );
+};
+```
+
+### 链接样式
+
+`Typography.Link` 使用链接样式组件
+
+```tsx
+/**
+ * title: 链接样式
+ */
+import React from 'react';
+import { Typography } from 'react-vant';
+
+export default () => {
+  return <Typography.Link>测试Link</Typography.Link>;
 };
 ```
 
