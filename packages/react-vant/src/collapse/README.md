@@ -50,11 +50,12 @@ export default () => {
  */
 import React from 'react';
 import { Collapse } from 'react-vant';
+import { QuestionO } from '@react-vant/icons';
 
 export default () => {
   return (
     <Collapse initExpanded="1" accordion>
-      <Collapse.Item title={<div>自定义标题</div>} name="1">
+      <Collapse.Item icon={<QuestionO />} title={<div>自定义标题</div>} name="1">
         代码是写出来给人看的，附带能在机器上运行
       </Collapse.Item>
       <Collapse.Item title="标题2" name="2">
