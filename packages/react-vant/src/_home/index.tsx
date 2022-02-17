@@ -8,7 +8,9 @@ export default () => {
     <div className="_home-container">
       <div className="_home-container-left">
         <Typography.Title level={1}>React Vant</Typography.Title>
-        <Typography.Title level={2}>性能极佳高质量组件库，覆盖移动端主流场景</Typography.Title>
+        <Typography.Title level={2}>
+          性能极佳的高质量组件库，覆盖<span className="_home-primary-color">移动端</span>主流场景
+        </Typography.Title>
         <Typography.Text size="lg">
           <Typography.Text strong type="primary">
             Vant
@@ -33,14 +35,7 @@ export default () => {
                 color: 'white',
               }}
             >
-              <Card.Body
-                style={{
-                  height: '20vh',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
+              <Card.Body>
                 <Space direction="vertical">
                   <Typography.Text type="light">
                     <ClockO /> March 25th
@@ -104,7 +99,7 @@ export default () => {
               ))}
             </Tabs>
 
-            <Calendar style={{ height: 500 }} showConfirm={false} poppable={false} />
+            <Calendar className="_home-calendar" showConfirm={false} poppable={false} />
           </Flex.Item>
         </Flex>
       </div>
