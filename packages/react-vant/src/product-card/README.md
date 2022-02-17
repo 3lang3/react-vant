@@ -2,7 +2,7 @@
 mobile-background: '#fff'
 ---
 
-# Card 卡片
+# ProductCard 商品卡片
 
 ## 介绍
 
