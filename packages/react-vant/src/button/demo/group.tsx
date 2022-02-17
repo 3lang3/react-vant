@@ -6,14 +6,10 @@ import './style.less';
 export default () => {
   return (
     <div className="demo-button">
-      <Button.Group>
-        <Button icon={<ArrowLeft />} block>
-          上一步
-        </Button>
-        <Button icon={<Replay />} block>
-          刷新
-        </Button>
-        <Button icon={<Arrow />} block>
+      <Button.Group block round>
+        <Button icon={<ArrowLeft />}>上一步</Button>
+        <Button icon={<Replay />}>刷新</Button>
+        <Button iconPosition="right" icon={<Arrow />}>
           下一步
         </Button>
       </Button.Group>

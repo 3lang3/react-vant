@@ -4,37 +4,60 @@ import Loading from '../loading';
 import { ButtonProps } from './PropsType';
 import { BORDER_SURROUND, SHADOW, WHITE } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import ButtonContext from './ButtonContext';
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const {
-    tag = 'button',
-    type,
-    color,
-    plain,
-    disabled,
-    loading,
-    hairline,
-    className,
-    loadingText,
-    iconPosition,
-  } = props;
-
-  const TagElement = tag as React.ElementType;
+  const { color, loading, hairline, className, loadingText } = props;
 
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('button', prefixCls);
+
+  const { parent } = useContext(ButtonContext);
+
+  const size = React.useMemo(
+    () => props.size || parent?.size || 'normal',
+    [parent?.size, props.size],
+  );
+
+  const type = React.useMemo(
+    () => props.type || parent?.type || 'default',
+    [parent?.type, props.type],
+  );
+
+  const plain = React.useMemo(() => props.plain || parent?.plain, [parent?.plain, props.plain]);
+
+  const block = React.useMemo(() => props.block || parent?.block, [parent?.block, props.block]);
+
+  const iconPosition = React.useMemo(
+    () => props.iconPosition || parent?.iconPosition || 'left',
+    [parent?.iconPosition, props.iconPosition],
+  );
+
+  const disabled = React.useMemo(
+    () => props.disabled || parent?.disabled,
+    [parent?.disabled, props.disabled],
+  );
+
+  const nativeType = React.useMemo(
+    () => props.nativeType || parent?.nativeType || 'button',
+    [parent?.nativeType, props.nativeType],
+  );
+
+  const tag = React.useMemo(() => props.tag || parent?.tag || 'button', [parent?.tag, props.tag]);
+
+  const TagElement = tag as React.ElementType;
 
   const classes = clsx(
     className,
     bem([
       type,
-      props.size,
+      size,
       {
         plain,
         loading,
         disabled,
         hairline,
-        block: props.block,
+        block,
         round: props.round,
         square: props.square,
       },
@@ -123,16 +146,10 @@ const Button: React.FC<ButtonProps> = (props) => {
   );
 
   return (
-    <TagElement className={classes} style={style} type={props.nativeType} onClick={onClick}>
+    <TagElement className={classes} style={style} type={nativeType} onClick={onClick}>
       {renderContent()}
     </TagElement>
   );
-};
-
-Button.defaultProps = {
-  size: 'normal',
-  type: 'default',
-  iconPosition: 'left',
 };
 
 export default Button;
