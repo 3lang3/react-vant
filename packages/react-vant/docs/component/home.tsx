@@ -17,7 +17,16 @@ import {
   Steps,
 } from 'react-vant';
 import clsx from 'clsx';
-import { ClockO, Exchange, Play, Arrow, ArrowLeft, Bookmark, WarningO } from '@react-vant/icons';
+import {
+  ClockO,
+  Exchange,
+  Play,
+  Arrow,
+  ArrowLeft,
+  Bookmark,
+  WarningO,
+  AppsO,
+} from '@react-vant/icons';
 import './home.less';
 
 const SliderDemo = () => {
@@ -42,8 +51,26 @@ export default () => {
           </Typography.Text>
 
           <Space style={{ marginTop: 30 }}>
-            <Button round>npm install react-vant@next</Button>
-            <Button round type="primary" icon={<Arrow />} iconPosition="right">
+            <Button
+              round
+              icon={<AppsO />}
+              style={{ width: 148 }}
+              onClick={() => {
+                window.location.href = '/#/zh-CN/button';
+              }}
+            >
+              组件列表
+            </Button>
+            <Button
+              onClick={() => {
+                window.location.href = '/#/zh-CN/quickstart';
+              }}
+              round
+              type="primary"
+              icon={<Arrow />}
+              iconPosition="right"
+              style={{ width: 148 }}
+            >
               开始使用
             </Button>
           </Space>
