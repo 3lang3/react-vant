@@ -15,7 +15,7 @@ const MdPageComponent = ({
   slugs = [],
   hideSimulator,
 }) => {
-  const { simulator = true, fluid, slugs: showSlugs = true } = frontmatter;
+  const { simulator = true, fluid, slugs: showSlugs = true, className } = frontmatter;
   const pageSimulator = simulator && !hideSimulator;
 
   const hashPath = React.useMemo(() => window.location.hash.split('#').filter(Boolean)[0], []);
@@ -48,10 +48,14 @@ const MdPageComponent = ({
     >
       {pageSlug && <SlugNav slugs={formatSlugs} />}
       <section
-        className={clsx('vant-doc-md-page', {
-          'vant-doc-md-page--fluid': fluid,
-          'vant-doc-md-page--slug': pageSlug,
-        })}
+        className={clsx(
+          'vant-doc-md-page',
+          {
+            'vant-doc-md-page--fluid': fluid,
+            'vant-doc-md-page--slug': pageSlug,
+          },
+          className,
+        )}
       >
         {children({ previewer })}
       </section>
