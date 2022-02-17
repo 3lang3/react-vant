@@ -43,16 +43,22 @@ export default () => {
           <Typography.Title level={2}>
             性能极佳的高质量组件库，覆盖<span className="_home-primary-color">移动端</span>主流场景
           </Typography.Title>
-          <Typography.Text size="lg">
-            <Typography.Text strong type="primary">
+          <Typography.Text type="secondary" size="lg">
+            <Typography.Text
+              style={{ cursor: 'pointer' }}
+              onClick={() => window.open('https://github.com/youzan/vant', '_blank')}
+              strong
+              type="primary"
+            >
               Vant
             </Typography.Text>{' '}
             是有赞前端团队开源的移动端组件库，于 2017 年开源。
           </Typography.Text>
 
-          <Space style={{ marginTop: 30 }}>
+          <Space gap={16} style={{ marginTop: 30 }}>
             <Button
               round
+              size="large"
               icon={<AppsO />}
               style={{ width: 148 }}
               onClick={() => {
@@ -62,6 +68,7 @@ export default () => {
               组件列表
             </Button>
             <Button
+              size="large"
               onClick={() => {
                 window.location.href = '/#/zh-CN/quickstart';
               }}
