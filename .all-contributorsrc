@@ -235,6 +235,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ZhaoTim",
+      "name": "Tim Zhao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30540533?v=4",
+      "profile": "https://github.com/ZhaoTim",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
