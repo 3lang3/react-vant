@@ -6,7 +6,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = ({
   type,
   size = 'md',
-  level,
+  level = 4,
   center,
   ellipsis,
   className,
