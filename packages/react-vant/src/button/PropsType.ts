@@ -67,6 +67,7 @@ export type ButtonGroupProps = BaseTypeProps &
     ButtonProps,
     | 'size'
     | 'type'
+    | 'square'
     | 'tag'
     | 'block'
     | 'round'

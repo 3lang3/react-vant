@@ -7,7 +7,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import ButtonContext from './ButtonContext';
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { color, loading, hairline, className, loadingText } = props;
+  const { color, loading, className, hairline, loadingText } = props;
 
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('button', prefixCls);
@@ -24,9 +24,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     [parent?.type, props.type],
   );
 
-  const plain = React.useMemo(() => props.plain || parent?.plain, [parent?.plain, props.plain]);
+  const plain = React.useMemo(() => props.plain ?? parent?.plain, [parent?.plain, props.plain]);
 
-  const block = React.useMemo(() => props.block || parent?.block, [parent?.block, props.block]);
+  const block = React.useMemo(() => props.block ?? parent?.block, [parent?.block, props.block]);
 
   const iconPosition = React.useMemo(
     () => props.iconPosition || parent?.iconPosition || 'left',
@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   );
 
   const disabled = React.useMemo(
-    () => props.disabled || parent?.disabled,
+    () => props.disabled ?? parent?.disabled,
     [parent?.disabled, props.disabled],
   );
 

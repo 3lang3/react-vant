@@ -5,12 +5,24 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import ButtonContext from './ButtonContext';
 import { SHADOW } from '../utils/constant';
 
-export const ButtonGroup: FC<ButtonGroupProps> = ({ className, style, children, ...props }) => {
+export const ButtonGroup: FC<ButtonGroupProps> = ({
+  className,
+  style,
+  children,
+  onClick,
+  ...props
+}) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('button-group', prefixCls);
 
+  const internalClick = (e) => {
+    if (props.disabled) return;
+    onClick(e);
+  };
+
   return (
     <div
+      onClick={internalClick}
       style={style}
       className={clsx(
         className,
@@ -19,6 +31,7 @@ export const ButtonGroup: FC<ButtonGroupProps> = ({ className, style, children, 
           {
             round: props.round,
             plain: props.plain,
+            disabled: props.disabled,
           },
         ]),
         props.shadow && `${SHADOW}--${+props.shadow}`,

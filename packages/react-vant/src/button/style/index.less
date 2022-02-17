@@ -241,8 +241,7 @@
     display: flex;
     overflow: hidden;
     border: var(--rv-button-border-width) solid var(--rv-button-default-border-color);
-
-    --rv-button-border-radius: 0;
+    border-radius: var(--rv-button-border-radius);
 
     .@{rv-prefix}-button {
       border-radius: 0;
@@ -275,6 +274,19 @@
 
     &--round {
       border-radius: var(--rv-button-round-border-radius);
+    }
+
+    &--square {
+      border-radius: 0;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: var(--rv-button-disabled-opacity);
+
+      .@{rv-prefix}-button {
+        --rv-button-disabled-opacity: 1;
+      }
     }
   }
 }
