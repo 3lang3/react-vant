@@ -1,0 +1,126 @@
+@primary-color: #3f45ff;
+@shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px, rgba(0, 0, 0, 0.04) 0px 10px 10px;
+
+._home {
+  &-full-page {
+    padding: 0 !important;
+  }
+  &-wrapper {
+    margin: 20px auto;
+  }
+
+  &-box {
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  &-container {
+    display: flex;
+    align-items: stretch;
+    background: #f5f5f5;
+
+    &-left,
+    &-right {
+      width: 50%;
+      box-sizing: border-box;
+      height: calc(100vh - 65px);
+    }
+
+    &-left {
+      box-sizing: border-box;
+      display: flex;
+      padding: 50px;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+
+      .rv-typography--l1 {
+        font-size: 72px;
+        line-height: 1em;
+      }
+    }
+
+    &-right {
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    &-right-content {
+      width: 826px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: 40px;
+      flex: none;
+    }
+
+    .rv-image img {
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+
+  &-card {
+    box-shadow: @shadow;
+    background: linear-gradient(135deg, #3f45ff 10%, #7367f0 100%);
+    color: #fff;
+  }
+
+  &-music-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: stretch;
+  }
+
+  &-tabs {
+    --rv-tabs-nav-background-color: @primary-color;
+    --rv-tab-active-text-color: #fff;
+    --rv-tab-text-color: #c2e0ff;
+    --rv-tabs-bottom-bar-color: #fff;
+
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: @shadow;
+  }
+
+  &-calendar {
+    --rv-calendar-selected-day-background-color: @primary-color;
+    height: 380px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &-steps {
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+
+    &-count {
+      color: @primary-color;
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      background-color: rgb(240, 247, 255);
+    }
+  }
+
+  &-slider {
+    ._home-box {
+      height: 214px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &-primary-color {
+    color: @primary-color;
+  }
+}

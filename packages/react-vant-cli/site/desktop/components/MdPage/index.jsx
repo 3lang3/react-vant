@@ -15,13 +15,13 @@ const MdPageComponent = ({
   slugs = [],
   hideSimulator,
 }) => {
-  const { simulator = true, fluid, slugs: showSlugs = true } = frontmatter;
+  const { simulator = true, fluid, slugs: showSlugs = true, className } = frontmatter;
   const pageSimulator = simulator && !hideSimulator;
 
   const hashPath = React.useMemo(() => window.location.hash.split('#').filter(Boolean)[0], []);
 
   const formatSlugs = React.useMemo(
-    () => slugs.map((slug) => ({ ...slug, id: `${hashPath}#${slug.id}` })),
+    () => (slugs ? slugs.map((slug) => ({ ...slug, id: `${hashPath}#${slug.id}` })) : []),
     [hashPath, slugs],
   );
 
@@ -38,17 +38,24 @@ const MdPageComponent = ({
       toggleSimulator(simulator);
     }
   }, [simulator, simulatorVisible, toggleSimulator]);
+
+  const pageSlug = !!slugs.length && showSlugs && !fluid;
   return (
     <div
       className={clsx('vant-doc-md-wrapper', {
         'vant-doc-md-wrapper--simulator': pageSimulator,
       })}
     >
-      {!!slugs.length && showSlugs && !fluid && <SlugNav slugs={formatSlugs} />}
+      {pageSlug && <SlugNav slugs={formatSlugs} />}
       <section
-        className={clsx('vant-doc-md-page', {
-          'vant-doc-md-page--fluid': fluid,
-        })}
+        className={clsx(
+          'vant-doc-md-page',
+          {
+            'vant-doc-md-page--fluid': fluid,
+            'vant-doc-md-page--slug': pageSlug,
+          },
+          className,
+        )}
       >
         {children({ previewer })}
       </section>
