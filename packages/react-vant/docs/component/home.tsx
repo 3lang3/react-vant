@@ -115,6 +115,7 @@ export default () => {
 
               <Flex className="_home-music-card">
                 <Image
+                  fit="cover"
                   style={{
                     width: 124,
                     height: 124,
@@ -123,7 +124,8 @@ export default () => {
                     overflow: 'hidden',
                     flex: 'none',
                   }}
-                  src="https://mui.com/static/images/cards/basement-beside-myself.jpeg"
+                  // src="https://mui.com/static/images/cards/basement-beside-myself.jpeg"
+                  src="https://cdn.jsdelivr.net/gh/3lang3/react-vant@main/public/home-music-card-1.jpg"
                 />
                 <Space style={{ padding: '10px 0' }} direction="vertical" justify="between">
                   <div>
