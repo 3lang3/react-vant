@@ -1,6 +1,19 @@
 import React from 'react';
-import { Calendar, Image, Button, Space, Flex, Typography, Card, Progress, Tabs } from 'react-vant';
-import { ClockO, Exchange, Play, Arrow, ArrowLeft } from '@react-vant/icons';
+import {
+  Collapse,
+  Switch,
+  Checkbox,
+  Calendar,
+  Image,
+  Button,
+  Space,
+  Flex,
+  Typography,
+  Card,
+  Progress,
+  Tabs,
+} from 'react-vant';
+import { ClockO, Exchange, Play, Arrow, ArrowLeft, Bookmark } from '@react-vant/icons';
 import './index.less';
 
 export default () => {
@@ -85,13 +98,33 @@ export default () => {
               </Space>
             </Flex>
 
-            <Button.Group>
-              <Button type="primary" plain>
-                React
-              </Button>
+            <Button.Group plain round block type="primary">
+              <Button type="primary">React</Button>
               <Button>Vant</Button>
               <Button>Next</Button>
             </Button.Group>
+
+            <Space align="center">
+              <Switch defaultChecked />
+              <Switch loading />
+              <Checkbox defaultChecked>React </Checkbox>
+              <Checkbox>JavaScript</Checkbox>
+            </Space>
+
+            <Collapse initExpanded={['1']}>
+              <Collapse.Item
+                icon={<Bookmark />}
+                title="Fonts"
+                label="Typefaces used in this branding project."
+                name="1"
+              >
+                Tag line headings (h1, h2) use Plus Jakarta Sans, whereas the rest of the elements
+                use IBM Plex Sans.
+              </Collapse.Item>
+              <Collapse.Item title="标题2" name="2">
+                代码是写出来给人看的，附带能在机器上运行
+              </Collapse.Item>
+            </Collapse>
 
             <Tabs className="_home-tabs">
               {['Yesterday', 'Today', 'Tomorrow'].map((el) => (
