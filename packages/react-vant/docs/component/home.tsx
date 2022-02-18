@@ -62,7 +62,7 @@ export default () => {
               icon={<AppsO />}
               style={{ width: 148 }}
               onClick={() => {
-                window.location.href = '/#/zh-CN/button';
+                window.location.href = '#/zh-CN/button';
               }}
             >
               组件列表
@@ -70,7 +70,7 @@ export default () => {
             <Button
               size="large"
               onClick={() => {
-                window.location.href = '/#/zh-CN/quickstart';
+                window.location.href = '#/zh-CN/quickstart';
               }}
               round
               type="primary"
