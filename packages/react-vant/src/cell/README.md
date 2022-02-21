@@ -18,6 +18,12 @@ import { Cell } from 'react-vant';
 
 <code title="基础用法" src="./demo/base.tsx"></code>
 
+### 用户列表
+
+通过 `icon` 属性可以自定义左侧内容
+
+<code title="用户列表" src="./demo/list.tsx"></code>
+
 ### 单元格大小
 
 通过 `size` 属性可以控制单元格的大小。
