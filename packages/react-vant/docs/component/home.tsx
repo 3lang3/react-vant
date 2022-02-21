@@ -238,6 +238,21 @@ export default () => {
                 </Space>
                 <WarningO style={{ fontSize: 24, color: '#888' }} />
               </Space>
+
+              <Cell
+                isLink
+                center
+                title="Avatar"
+                label="Typefaces used in this branding project."
+                icon={
+                  <Image
+                    width={44}
+                    height={44}
+                    src="https://cdn.jsdelivr.net/gh/3lang3/react-vant@main/public/home-music-card-1.jpg"
+                    round
+                  />
+                }
+              />
             </Space>
           </Flex.Item>
         </Flex>
