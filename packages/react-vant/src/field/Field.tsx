@@ -403,6 +403,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       )}
     >
       <div className={clsx(bem('body'))}>
+        {props.prefix && <div className={clsx(bem('prefix'))}>{props.prefix}</div>}
         <div className={clsx(bem('control-wrapper'))} onClick={props.onClickInput}>
           {renderInput()}
         </div>

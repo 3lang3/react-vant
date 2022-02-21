@@ -1,9 +1,11 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, useRef } from 'react';
-import { Cell, Button, Toast } from 'react-vant';
+import { Popup, Picker, Icon, Cell, Button, Toast } from 'react-vant';
 import { components } from 'site-mobile-demo';
 import Field from '..';
 import './style.less';
+
+const columns = ['86', '87', '88', '89', '90', '91', '92'];
 
 export default (): React.ReactNode => {
   const { DemoBlock, DemoSection } = components;
@@ -24,6 +26,9 @@ export default (): React.ReactNode => {
   const [message2, setMessage2] = useState('');
   const [value7, setValue7] = useState('');
   const [value8, setValue8] = useState('');
+
+  const [visible, setVisible] = useState(false);
+  const [field, setVield] = useState('86');
 
   const formatter = (val) => val.replace(/\d/g, '');
 
@@ -136,12 +141,27 @@ export default (): React.ReactNode => {
           label="短信验证码"
           placeholder="请输入短信验证码"
           onChange={setSms}
+          prefix={
+            <div onClick={() => setVisible(true)} className="demo-field-prefix">
+              +{field} <Icon name="arrow-down" />
+            </div>
+          }
           button={
             <Button size="small" type="primary">
               发送
             </Button>
           }
         />
+        <Popup round visible={visible} position="bottom" onClose={() => setVisible(false)}>
+          <Picker
+            title="标题"
+            onConfirm={(value: string) => {
+              setVield(value);
+              setVisible(false);
+            }}
+            columns={columns}
+          />
+        </Popup>
       </DemoBlock>
 
       <DemoBlock card title="格式化输入内容">

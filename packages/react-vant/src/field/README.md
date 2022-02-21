@@ -120,7 +120,7 @@ const [value4, setValue4] = useState('');
 
 ### 插入按钮
 
-通过 button 插槽可以在输入框尾部插入按钮。
+通过 `button` 可以在输入框尾部插入按钮。
 
 ```jsx
 <Field
@@ -130,6 +130,25 @@ const [value4, setValue4] = useState('');
   label="短信验证码"
   placeholder="请输入短信验证码"
   onChange={setSms}
+  button={<Button size="small" type="primary" />}
+/>
+```
+
+通过 `prefix` 可以在输入框前面插入内容。
+
+```jsx
+<Field
+  value={sms}
+  center
+  clearable
+  label="短信验证码"
+  placeholder="请输入短信验证码"
+  onChange={setSms}
+  prefix={
+    <div>
+      +86 <Icon name="arrow-down" />
+    </div>
+  }
   button={<Button size="small" type="primary" />}
 />
 ```
@@ -253,6 +272,7 @@ const formatter = (value) => value.replace(/\d/g, '');
 | rightIcon | 右侧图标 | _string\|ReactNode_ | - |
 | iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | button | 自定义输入框尾部按钮 | _ReactNode_ | - |
+| prefix | 设置前置内容 | _ReactNode_ | - |
 
 ### Events
 
