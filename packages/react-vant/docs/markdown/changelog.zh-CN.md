@@ -12,6 +12,30 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.15
+
+`2022-02-21`
+
+**Features**
+
+- Field: 新增 `prefix` 属性。 [#325](https://github.com/3lang3/react-vant/issues/325)
+
+### 1.4.14
+
+`2022-02-16`
+
+**Bug Fixes**
+
+- Field: 修复 `style` 属性不生效问题 [#324](https://github.com/3lang3/react-vant/issues/324) ([4fec1bf](https://github.com/3lang3/react-vant/commit/4fec1bfded7b9346142decc4f7fd55d049ac2f45))
+
+### 1.4.13
+
+`2022-01-26`
+
+**Bug Fixes**
+
+- Stepper: 修复手动输入 value 错误的问题 [#314](https://github.com/3lang3/react-vant/issues/314) ([#315](https://github.com/3lang3/react-vant/issues/315)) ([1fe7e9d](https://github.com/3lang3/react-vant/commit/1fe7e9dc8b0fc28f8ebafe4b477d8093210d352b))
+
 ### 1.4.12
 
 `2022-01-21`
