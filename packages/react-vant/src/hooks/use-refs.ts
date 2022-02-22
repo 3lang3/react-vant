@@ -8,5 +8,9 @@ export default function useRefs() {
     refs.current[index] = el;
   };
 
-  return [refs.current, setRefs as any];
+  const clean = () => {
+    refs.current = [];
+  };
+
+  return [refs.current, setRefs as any, clean];
 }
