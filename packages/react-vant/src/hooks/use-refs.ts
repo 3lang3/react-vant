@@ -1,16 +1,19 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { useRef } from 'react';
+import React from 'react';
 
 export default function useRefs() {
-  const refs = useRef<HTMLDivElement[]>([]);
+  const refs = React.useRef<HTMLDivElement[]>([]);
 
-  const setRefs = (index: number) => (el: HTMLDivElement) => {
-    refs.current[index] = el;
-  };
+  const setRefs = React.useCallback(
+    (index: number) => (el: HTMLDivElement) => {
+      if (el) refs.current[index] = el;
+    },
+    [],
+  );
 
-  const clean = () => {
+  const reset = React.useCallback(() => {
     refs.current = [];
-  };
+  }, []);
 
-  return [refs.current, setRefs as any, clean];
+  return [refs.current, setRefs as any, reset];
 }
