@@ -26,7 +26,8 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
   const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('picker', prefixCls);
 
-  const [refs, setRefs] = useRefs();
+  const [refs, setRefs, resetRefs] = useRefs();
+
   const [formattedColumns, setFormattedColumns] = useState([]);
 
   const {
@@ -315,6 +316,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
 
   useEffect(() => {
     if (JSON.stringify(props.columns) !== JSON.stringify(formattedColumns)) {
+      resetRefs();
       format();
     }
   }, [props.columns]);
