@@ -27,9 +27,11 @@ function validateModelValue(
 const Collapse: React.FC<CollapseProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('collapse', prefixCls);
-
+  const { accordion } = props;
+  const initExpandedDefault = accordion ? '' : [];
+  const { initExpanded = initExpandedDefault } = props;
   const innerEffect = useRef(false);
-  const [expanded, setExpanded] = useState(() => props.value ?? props.initExpanded);
+  const [expanded, setExpanded] = useState(() => props.value ?? initExpanded);
   const updateName = (name: number | string | Array<number | string>) => {
     innerEffect.current = true;
     setExpanded(name);
@@ -37,7 +39,6 @@ const Collapse: React.FC<CollapseProps> = (props) => {
   };
 
   const toggle = (name, isExpanded: boolean) => {
-    const { accordion } = props;
     if (accordion) {
       if (name === expanded) {
         name = '';
@@ -51,8 +52,6 @@ const Collapse: React.FC<CollapseProps> = (props) => {
   };
 
   const isExpanded = (name: string | number): boolean => {
-    const { accordion } = props;
-
     if (process.env.NODE_ENV !== 'production' && !validateModelValue(expanded, accordion)) {
       return false;
     }
@@ -85,7 +84,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
 
 Collapse.defaultProps = {
   border: true,
-  initExpanded: [],
+  // initExpanded: [],
 };
 
 export default Collapse;
