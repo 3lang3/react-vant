@@ -12,6 +12,14 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
+### 1.4.16
+
+`2022-03-09`
+
+**Bug Fixes**
+
+- Collapse: 手风琴(`accordion`)模式下默认值问题 ([cafdcae](https://github.com/3lang3/react-vant/commit/cafdcaed8031c50af2a23558483bf0b5937e7bf4))
+
 ### 1.4.15
 
 `2022-02-21`
