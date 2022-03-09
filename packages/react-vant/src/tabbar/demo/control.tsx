@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tabbar } from 'react-vant';
 import { FriendsO, HomeO, Search, SettingO } from '@react-vant/icons';
 
 export default () => {
-  const [name, setName] = useState('setting');
+  const [name, setName] = React.useState('setting');
   return (
-    <Tabbar value={name} onChange={(v: string) => setName(v)}>
+    <Tabbar value={name} onChange={(v) => setName(v as string)}>
       <Tabbar.Item name="home" icon={<HomeO />}>
         标签
       </Tabbar.Item>
