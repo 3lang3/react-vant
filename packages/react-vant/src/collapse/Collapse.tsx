@@ -84,7 +84,6 @@ const Collapse: React.FC<CollapseProps> = (props) => {
 
 Collapse.defaultProps = {
   border: true,
-  // initExpanded: [],
 };
 
 export default Collapse;
