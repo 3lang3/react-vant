@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { inBrowser } from '../utils';
 import useEventListener from './use-event-listener';
 
-function usePageVisibility(): VisibilityState {
-  const [visibility, _setVisibility] = useState<VisibilityState>('visible');
+function usePageVisibility(): DocumentVisibilityState {
+  const [visibility, _setVisibility] = useState<DocumentVisibilityState>('visible');
 
   const setVisibility = () => {
     if (inBrowser) {
