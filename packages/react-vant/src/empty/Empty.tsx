@@ -31,7 +31,7 @@ const Empty: React.FC<EmptyProps> = (props) => {
 
   const renderDescription = () => {
     if (props.description) {
-      return <p className={clsx(bem('description'))}>{props.description}</p>;
+      return <div className={clsx(bem('description'))}>{props.description}</div>;
     }
     return null;
   };
