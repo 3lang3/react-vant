@@ -51,7 +51,7 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
 
   const attrs = {
     ...fieldProps,
-    className: clsx(bem({ vertical: itemLayout === 'vertical' && !isFieldChildren }), className),
+    className: clsx(bem({ vertical: itemLayout === 'vertical' }), className),
     colon: itemColon,
     error,
     errorMessage,

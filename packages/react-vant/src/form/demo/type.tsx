@@ -22,6 +22,7 @@ export default () => {
 
   return (
     <Form
+      layout="vertical"
       form={form}
       onFinish={onFinish}
       footer={
