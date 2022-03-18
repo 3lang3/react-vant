@@ -17,10 +17,10 @@ export type FormProps = {
   showValidateMessage?: boolean;
 } & Omit<RcFormProps, 'style'> &
   BaseTypeProps &
-  Pick<FieldProps, 'labelAlign' | 'inputAlign'>;
+  Pick<FieldProps, 'labelAlign' | 'inputAlign' | 'border'>;
 
 export type RenderChildren<Values = unknown> = (form: RcFormInstance<Values>) => React.ReactNode;
-type ChildrenType<Values = unknown> = RenderChildren<Values> | React.ReactNode;
+type ChildrenType<Values = unknown> = RenderChildren<Values> | React.ReactElement;
 
 export type FormInstance = RcFormInstance;
 
@@ -30,30 +30,31 @@ export type MemoInputProps = {
   children: React.ReactNode;
 } & Record<string, unknown>;
 
-export type FormItemProps = RcFieldProps &
-  Pick<FormProps, 'showValidateMessage'> &
-  Pick<
-    FieldProps,
-    | 'style'
-    | 'className'
-    | 'tooltip'
-    | 'intro'
-    | 'colon'
-    | 'labelWidth'
-    | 'labelAlign'
-    | 'labelClass'
-    | 'onClick'
-    | 'inputAlign'
-    | 'errorMessageAlign'
-  > & {
-    label?: string;
-    required?: boolean;
-    noStyle?: boolean;
-    disabled?: boolean;
-    /** 自定义item，此时不会渲染内置的field */
-    customField?: boolean;
-    children?: ChildrenType;
-  };
+export interface FormItemProps<Values = any>
+  extends RcFieldProps,
+    Pick<FormProps, 'showValidateMessage' | 'border' | 'layout'>,
+    Pick<
+      FieldProps,
+      | 'style'
+      | 'className'
+      | 'tooltip'
+      | 'intro'
+      | 'colon'
+      | 'labelWidth'
+      | 'labelAlign'
+      | 'labelClass'
+      | 'onClick'
+      | 'inputAlign'
+      | 'errorMessageAlign'
+    > {
+  label?: string;
+  required?: boolean;
+  noStyle?: boolean;
+  disabled?: boolean;
+  /** 自定义item，此时不会渲染内置的field */
+  customField?: boolean;
+  children?: ChildrenType<Values>;
+}
 
 export type FormItemLayoutProps = Pick<
   FormItemProps,
@@ -65,6 +66,8 @@ export type FormItemLayoutProps = Pick<
   | 'tooltip'
   | 'intro'
   | 'colon'
+  | 'border'
+  | 'layout'
   | 'labelWidth'
   | 'labelAlign'
   | 'labelClass'
@@ -75,7 +78,6 @@ export type FormItemLayoutProps = Pick<
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;
   meta?: Meta;
-  layout?: FormLayout;
   /** @private */
   isFieldChildren?: boolean;
 };
