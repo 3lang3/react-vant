@@ -103,5 +103,5 @@ import { PullRefresh } from 'react-vant';
 默认情况下，下拉区域的高度是和内容高度保持一致的，如果需要让下拉区域始终为全屏，可以给 PullRefresh 设置一个与屏幕大小相等的最小高度：
 
 ```jsx | pure
-<PullRefresh style="min-height: 100vh;" />
+<PullRefresh style="height: 100vh;" />
 ```
