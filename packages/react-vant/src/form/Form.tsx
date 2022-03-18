@@ -17,6 +17,7 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     footer,
     children,
     colon,
+    border,
     labelAlign,
     inputAlign,
     showValidateMessage,
@@ -28,6 +29,7 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
       value={{
         layout,
         colon,
+        border,
         showValidateMessage,
         inputAlign,
         labelAlign,

@@ -17,12 +17,15 @@ export default () => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
+    // eslint-disable-next-line no-console
     console.log(values);
   };
 
   return (
     <Form
+      colon
       layout="vertical"
+      border={false}
       form={form}
       onFinish={onFinish}
       footer={
@@ -36,7 +39,7 @@ export default () => {
       <Form.Item name="switch" label="开关" valuePropName="checked">
         <Switch size={20} />
       </Form.Item>
-      <Form.Item name="checkbox" label="复选框" valuePropName="checked">
+      <Form.Item layout="horizontal" name="checkbox" label="复选框" valuePropName="checked">
         <Checkbox shape="square" />
       </Form.Item>
       <Form.Item name="checkbox_group" label="复选框组">
