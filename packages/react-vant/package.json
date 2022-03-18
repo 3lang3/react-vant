@@ -67,7 +67,7 @@
     "postcreate-component": "yarn prettier",
     "prepack": "yarn build",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
-    "release": "pnpm publish --tag next",
+    "release": "pnpm publish --tag beta",
     "release:site": "pnpm run build:site && gh-pages -d site --add",
     "dev": "react-vant-cli dev",
     "test": "react-vant-cli test",
