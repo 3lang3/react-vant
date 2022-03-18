@@ -19,8 +19,8 @@ export type FormProps = {
   BaseTypeProps &
   Pick<FieldProps, 'labelAlign' | 'inputAlign' | 'border'>;
 
-export type RenderChildren<Values = unknown> = (form: RcFormInstance<Values>) => React.ReactNode;
-type ChildrenType<Values = unknown> = RenderChildren<Values> | React.ReactElement;
+export type RenderChildren<Values = any> = (form: RcFormInstance<Values>) => React.ReactNode;
+type ChildrenType<Values = any> = RenderChildren<Values> | React.ReactNode;
 
 export type FormInstance = RcFormInstance;
 
@@ -31,7 +31,7 @@ export type MemoInputProps = {
 } & Record<string, unknown>;
 
 export interface FormItemProps<Values = any>
-  extends RcFieldProps,
+  extends Omit<RcFieldProps, 'children'>,
     Pick<FormProps, 'showValidateMessage' | 'border' | 'layout'>,
     Pick<
       FieldProps,
