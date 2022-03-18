@@ -61,6 +61,7 @@ async function preCompileDir(dir: string) {
         return remove(filePath);
       }
       if (isDir(filePath)) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         return preCompileDir(filePath);
       }
       if (isScript(filePath)) {

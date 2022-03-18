@@ -32,12 +32,28 @@
     "./es/styles/index.js",
     "./src/styles/index.ts"
   ],
-  "main": "./lib/index.js",
+  "main": "./lib/react-vant.cjs.js",
   "jsdelivr": "./lib/react-vant.min.js",
   "unpkg": "./lib/react-vant.min.js",
   "module": "./es/index.js",
-  "types": "./es/index.d.ts",
+  "style": "./lib/index.css",
   "typings": "./es/index.d.ts",
+  "exports": {
+    ".": {
+      "node": {
+        "import": "./lib/react-vant.es.js",
+        "require": "./lib/react-vant.cjs.js"
+      },
+      "import": "./es/index.js",
+      "require": "./lib/react-vant.cjs.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./es": "./es/index.js",
+    "./lib": "./lib/react-vant.cjs.js",
+    "./es/": "./es/",
+    "./lib/": "./lib/",
+    "./package.json": "./package.json"
+  },
   "files": [
     "lib",
     "es",
