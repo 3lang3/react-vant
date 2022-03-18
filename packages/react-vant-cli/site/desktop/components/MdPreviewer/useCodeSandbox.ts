@@ -74,7 +74,7 @@ function getCSBData(opts: Omit<MDocPreviewerProps, 'children'>) {
   };
 
   // append index.html
-  files['index.html'] = { content: '<div style="margin: 16px;" id="root"></div>' };
+  files['index.html'] = { content: '<div id="root"></div>' };
 
   // append entry file
   files[entryFileName] = {
@@ -138,7 +138,7 @@ export default (
       input.value = data;
 
       queryInput.name = 'query';
-      queryInput.value = 'resolutionWidth=320&resolutionHeight=675';
+      queryInput.value = 'resolutionWidth=350&resolutionHeight=675';
 
       document.body.appendChild(form);
 
