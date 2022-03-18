@@ -35,12 +35,14 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
     layout,
     labelAlign,
     inputAlign,
+    border,
     ...fieldProps
   } = props;
   const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
   const [bem] = createNamespace('form', prefixCls);
   const context = React.useContext(FormContext);
   const itemLayout = layout ?? context.layout;
+  const itemBorder = border ?? context.border;
   const itemColon = colon ?? context.colon;
   const itemShowValidateMessage = showValidateMessage ?? context.showValidateMessage;
   const itemLabelAlign = labelAlign ?? context.labelAlign;
@@ -51,12 +53,13 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
 
   const attrs = {
     ...fieldProps,
-    className: clsx(bem({ vertical: itemLayout === 'vertical' && !isFieldChildren }), className),
+    className: clsx(bem({ vertical: itemLayout === 'vertical' }), className),
     colon: itemColon,
     error,
     errorMessage,
     labelAlign: itemLabelAlign,
     inputAlign: itemInputAlign,
+    border: itemBorder,
   };
 
   if (isFieldChildren) return React.cloneElement(children as React.ReactElement, attrs);
@@ -91,6 +94,8 @@ const FormItem: FC<FormItemProps> = (props) => {
     showValidateMessage,
     inputAlign,
     errorMessageAlign,
+    border,
+    layout,
     ...fieldProps
   } = props;
 
@@ -126,6 +131,8 @@ const FormItem: FC<FormItemProps> = (props) => {
         htmlFor={fieldId}
         meta={meta}
         colon={colon}
+        border={border}
+        layout={layout}
         labelWidth={labelWidth}
         labelAlign={labelAlign}
         labelClass={labelClass}

@@ -31,6 +31,7 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
       value={{
         layout,
         colon,
+        border,
         showValidateMessage,
         inputAlign,
         labelAlign,

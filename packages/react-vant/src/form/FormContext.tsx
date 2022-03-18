@@ -2,13 +2,14 @@ import React from 'react';
 import { FormLayout, FormItemProps } from './PropsType';
 
 export type FormContextType = {
-  layout: FormLayout;
-  colon: boolean;
-  showValidateMessage: boolean;
+  layout?: FormLayout;
+  colon?: boolean;
+  border?: boolean;
+  showValidateMessage?: boolean;
 } & Pick<FormItemProps, 'labelAlign' | 'inputAlign'>;
 
 export const DEFAULT_FORM_CONTEXT: FormContextType = {
-  layout: 'horizontal',
+  border: true,
   colon: false,
   showValidateMessage: true,
   labelAlign: 'left',

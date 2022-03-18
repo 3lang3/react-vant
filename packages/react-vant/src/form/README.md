@@ -568,6 +568,7 @@ export default () => {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | layout | 表单布局 | _horizontal \| vertical_ | `horizontal` |
+| border | 是否显示表单项底部边框 | _border_ | `true` |
 | colon | 配置 Form.Item 的 colon 的默认值。表示是否显示 label 后面的冒号 | _boolean_ | `false` |
 | showValidateMessage | 是否显示验证错误信息 | _boolean_ | `true` |
 | labelAlign | 统一设置左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
@@ -582,6 +583,8 @@ export default () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| layout | 表单项布局 | _horizontal \| vertical_ | `horizontal` |
+| border | 是否显示表单项底部边框 | _border_ | `true` |
 | colon | 配合 label 属性使用，表示是否显示 label 后面的冒号 | _boolean_ | `false` |
 | showValidateMessage | 是否显示验证信息 | _boolean_ | `true` |
 | intro | 额外的提示信息 | _ReactNode_ | - |
