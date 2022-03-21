@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "2.0.0-alpha.24",
+  "version": "2.0.0-alpha.25",
   "description": "React Mobile UI Components base on Vant UI",
   "keywords": [
     "ui",
@@ -67,7 +67,7 @@
     "postcreate-component": "yarn prettier",
     "prepack": "yarn build",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
-    "release": "pnpm publish --tag beta",
+    "release": "pnpm publish --tag next",
     "release:site": "pnpm run build:site && gh-pages -d site --add",
     "dev": "react-vant-cli dev",
     "test": "react-vant-cli test",
