@@ -38,10 +38,9 @@
 - 📝 提供完善的文档和组件示例.
 - 🎨 支持主题定制，内置 700+ 个主题变量.
 - 😎 支持按需引入和 Tree Shaking.
-- 🌝 支持服务器端渲染[SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
 - ⚡️ 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)和 Parcel@2.
 - 🌵 现代浏览器
-- 🌝 支持 [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
+- 🌝 支持 SSR([nextjs](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs), [remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)).
 
 ## 🖥 环境支持
 
@@ -103,6 +102,7 @@ ReactDOM.render(<App />, mountNode);
 - [Create React App](https://github.com/3lang3/react-vant-template/tree/main/next/cra)
 - [Umi](https://github.com/3lang3/react-vant-template/tree/main/next/umijs)
 - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs)
+- [Remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)
 - [Vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
 
 更多信息请参考[快速开始](https://3lang3.github.io/react-vant/#/zh-CN/).

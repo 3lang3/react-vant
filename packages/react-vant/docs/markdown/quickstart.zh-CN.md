@@ -34,6 +34,10 @@ import { Button } from 'react-vant';
 
 参考[react-vant-nextjs](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs)
 
+#### 在 remix 使用
+
+参考[react-vant-remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)
+
 #### vite 集成
 
 参考[react-vant-vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)

@@ -40,7 +40,7 @@ English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages
 - 😎 Support on-demand import and Tree Shaking.
 - ⚡️ Support [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite) and Parcel@2.
 - 🌵 Modern browsers
-- 🌝 Support [SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs).
+- 🌝 Support SSR([nextjs](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs), [remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)).
 
 ## 🖥 Environment Support
 
@@ -102,6 +102,7 @@ ReactDOM.render(<App />, mountNode);
 - [Create React App](https://github.com/3lang3/react-vant-template/tree/main/next/cra)
 - [Umi](https://github.com/3lang3/react-vant-template/tree/main/next/umijs)
 - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs)
+- [Remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)
 - [Vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
 
 For more information, please refer to [QuickStart](https://3lang3.github.io/react-vant/#/zh-CN/).

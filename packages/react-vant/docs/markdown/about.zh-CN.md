@@ -5,14 +5,15 @@
 ### 特性
 
 - 🚀 性能极佳，组件平均体积小于 1KB（min+gzip）
-- 🚀 60+ 个高质量组件，覆盖移动端主流场景
-- 💪 使用 TypeScript 编写，提供完整的类型定义
-- 📖 提供完善的文档和组件示例
-- 🌍 支持国际化和语言包定制
-- 🍭 支持主题定制，内置 700+ 个主题变量
-- 🍭 内置按需引入和 Tree Shaking
-- 🍭 支持服务器端渲染[SSR](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
-- 🍭 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
+- 🚀 组件平均体积小于 1KB（min+gzip）.
+- 💎 60+ 个高质量组件，覆盖移动端主流场景.
+- 💪 使用 TypeScript 编写，提供完整的类型定义.
+- 📝 提供完善的文档和组件示例.
+- 🎨 支持主题定制，内置 700+ 个主题变量.
+- 😎 支持按需引入和 Tree Shaking.
+- ⚡️ 支持 [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)和 Parcel@2.
+- 🌵 现代浏览器
+- 🌝 支持 SSR([nextjs](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs), [remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)).
 
 ### 快速上手
 
