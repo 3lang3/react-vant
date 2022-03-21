@@ -24,7 +24,6 @@ export default () => {
   return (
     <Form
       colon
-      layout="vertical"
       border={false}
       form={form}
       onFinish={onFinish}
@@ -39,7 +38,7 @@ export default () => {
       <Form.Item name="switch" label="开关" valuePropName="checked">
         <Switch size={20} />
       </Form.Item>
-      <Form.Item layout="horizontal" name="checkbox" label="复选框" valuePropName="checked">
+      <Form.Item name="checkbox" label="复选框" valuePropName="checked">
         <Checkbox shape="square" />
       </Form.Item>
       <Form.Item name="checkbox_group" label="复选框组">
