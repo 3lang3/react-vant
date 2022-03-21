@@ -52,6 +52,7 @@
     "./lib": "./lib/react-vant.cjs.js",
     "./es/": "./es/",
     "./lib/": "./lib/",
+    "./2x": "./2x",
     "./package.json": "./package.json"
   },
   "files": [
