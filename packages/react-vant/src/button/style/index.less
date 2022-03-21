@@ -206,7 +206,6 @@
 
   &__text {
     max-width: 100%;
-    flex: 1 0 auto;
   }
 
   &__icon {
@@ -247,6 +246,10 @@
     .@{rv-prefix}-button {
       border-radius: 0;
       flex: 1;
+
+      &__text {
+        white-space: nowrap;
+      }
     }
 
     .@{rv-prefix}-button {
