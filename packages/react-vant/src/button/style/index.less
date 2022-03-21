@@ -206,6 +206,7 @@
 
   &__text {
     max-width: 100%;
+    flex: 1 0 auto;
   }
 
   &__icon {
@@ -238,13 +239,14 @@
   }
 
   &-group {
-    display: flex;
+    display: inline-flex;
     overflow: hidden;
     border: var(--rv-button-border-width) solid var(--rv-button-default-border-color);
     border-radius: var(--rv-button-border-radius);
 
     .@{rv-prefix}-button {
       border-radius: 0;
+      flex: 1;
     }
 
     .@{rv-prefix}-button {
