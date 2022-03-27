@@ -123,7 +123,7 @@ importers:
       babel-plugin-transform-async-to-promises: ^0.8.16
       chalk: ^4.1.0
       chokidar: ^3.4.3
-      clean-css: ^4.2.3
+      clean-css: ^5.0.0
       clsx: 1.1.1
       commander: ^8.3.0
       consola: ^2.15.0
@@ -179,7 +179,7 @@ importers:
       babel-plugin-transform-async-to-promises: 0.8.16
       chalk: 4.1.2
       chokidar: 3.5.2
-      clean-css: 4.2.4
+      clean-css: 5.2.4
       clsx: 1.1.1
       commander: 8.3.0
       consola: 2.15.3
@@ -4145,6 +4145,13 @@ packages:
   /clean-css/4.2.4:
     resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
     engines: {node: '>= 4.0'}
+    dependencies:
+      source-map: 0.6.1
+    dev: false
+
+  /clean-css/5.2.4:
+    resolution: {integrity: sha512-nKseG8wCzEuji/4yrgM/5cthL9oTDc5UOQyFMvW/Q53oP6gLH690o1NbuTh6Y18nujr7BxlsFuS7gXLnLzKJGg==}
+    engines: {node: '>= 10.0'}
     dependencies:
       source-map: 0.6.1
     dev: false
