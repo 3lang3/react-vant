@@ -39,7 +39,7 @@ importers:
       consola: ^2.11.3
       fast-glob: ^3.2.4
       fs-extra: ^8.1.0
-      inquirer: ^7.0.6
+      inquirer: ^8.0.0
       release-it: 13.7.2
       typescript: 4.6.3
       yeoman-environment: ^2.8.0
@@ -49,7 +49,7 @@ importers:
       consola: 2.15.3
       fast-glob: 3.2.7
       fs-extra: 8.1.0
-      inquirer: 7.3.3
+      inquirer: 8.2.0
       yeoman-environment: 2.10.3
       yeoman-generator: 4.13.0
     devDependencies:
