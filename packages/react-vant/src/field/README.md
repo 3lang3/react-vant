@@ -244,7 +244,7 @@ export default () => {
 
 | 事件             | 说明                 | 回调参数                |
 | ---------------- | -------------------- | ----------------------- |
-| onChange         | 输入框获得焦点时触发 | _val: string \| number_ |
+| onChange         | 当值变化时触发      | _val: string \| number_ |
 | onFocus          | 输入框获得焦点时触发 | _event: MouseEvent_     |
 | onBlur           | 输入框失去焦点时触发 | _event: MouseEvent_     |
 | onClear          | 点击清除按钮时触发   | _event: MouseEvent_     |
