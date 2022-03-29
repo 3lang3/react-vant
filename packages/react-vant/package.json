@@ -32,7 +32,7 @@
     "./es/styles/index.js",
     "./src/styles/index.ts"
   ],
-  "main": "./lib/react-vant.cjs.js",
+  "main": "./lib/index.js",
   "jsdelivr": "./lib/react-vant.min.js",
   "unpkg": "./lib/react-vant.min.js",
   "module": "./es/index.js",
@@ -45,11 +45,11 @@
         "require": "./lib/react-vant.cjs.js"
       },
       "import": "./es/index.js",
-      "require": "./lib/react-vant.cjs.js",
+      "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     },
     "./es": "./es/index.js",
-    "./lib": "./lib/react-vant.cjs.js",
+    "./lib": "./lib/index.js",
     "./es/": "./es/",
     "./lib/": "./lib/",
     "./2x": "./2x",
