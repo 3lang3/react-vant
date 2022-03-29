@@ -153,10 +153,12 @@ export default () => {
  * title: 显示字数统计
  * card: true
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Field } from 'react-vant';
 
 export default () => {
+  const [content, setContent] = useState('');
+
   return (
     <Field
       rows={2}
@@ -164,6 +166,8 @@ export default () => {
       label="留言"
       type="textarea"
       placeholder="请输入留言"
+      value={content}
+      onChange={setContent}
       maxlength={50}
       showWordLimit
     />
