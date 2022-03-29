@@ -124,11 +124,23 @@ export default () => {
  * title: 高度自适应
  * card: true
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Field } from 'react-vant';
 
 export default () => {
-  return <Field rows={1} autosize label="留言" type="textarea" placeholder="请输入留言" />;
+  const [content, setContent] = useState('');
+
+  return (
+    <Field
+      rows={1}
+      autosize
+      value={content}
+      onChange={setContent}
+      label="留言"
+      type="textarea"
+      placeholder="请输入留言"
+    />
+  );
 };
 ```
 
@@ -141,10 +153,12 @@ export default () => {
  * title: 显示字数统计
  * card: true
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Field } from 'react-vant';
 
 export default () => {
+  const [content, setContent] = useState('');
+
   return (
     <Field
       rows={2}
@@ -152,6 +166,8 @@ export default () => {
       label="留言"
       type="textarea"
       placeholder="请输入留言"
+      value={content}
+      onChange={setContent}
       maxlength={50}
       showWordLimit
     />
@@ -228,7 +244,7 @@ export default () => {
 
 | 事件             | 说明                 | 回调参数                |
 | ---------------- | -------------------- | ----------------------- |
-| onChange         | 输入框获得焦点时触发 | _val: string \| number_ |
+| onChange         | 当值变化时触发      | _val: string \| number_ |
 | onFocus          | 输入框获得焦点时触发 | _event: MouseEvent_     |
 | onBlur           | 输入框失去焦点时触发 | _event: MouseEvent_     |
 | onClear          | 点击清除按钮时触发   | _event: MouseEvent_     |
