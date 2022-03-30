@@ -27,7 +27,6 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
     inputType: props.type,
     inputMode: 'text',
   });
-
   const codeArr = useMemo(() => state.code?.toString().split(''), [state.code]);
   const cursorIndex = useMemo(() => codeArr.length, [codeArr.length]);
 
@@ -46,7 +45,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   };
 
   const formatValue = (val: string, callback?: (v: string) => void) => {
-    if (isDef(props.length) && val.length > +props.length) {
+    if (isDef(props.length) && val?.length > +props.length) {
       val = val.slice(0, props.length);
     }
 
@@ -111,7 +110,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
       innerEffect.current = false;
       return;
     }
-    formatValue(props.value);
+    formatValue(props.value ?? '');
   }, [props.value]);
 
   useEffect(() => {
