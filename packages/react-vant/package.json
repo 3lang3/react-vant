@@ -51,6 +51,7 @@
     "./es": "./es/index.js",
     "./lib": "./lib/index.js",
     "./es/": "./es/",
+    "./es/*": "./es/*/index.js",
     "./lib/": "./lib/",
     "./2x": "./2x",
     "./package.json": "./package.json"
