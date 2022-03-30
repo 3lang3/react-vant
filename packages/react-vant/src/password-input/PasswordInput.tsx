@@ -66,7 +66,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   };
 
   const handleChange = (e) => {
-    const val = e.target.value;
+    const val = e.target.value || '';
     innerEffect.current = true;
     formatValue(val, props.onChange);
   };
