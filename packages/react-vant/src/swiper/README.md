@@ -28,7 +28,9 @@ import './demo/base.less';
 export default () => {
   return (
     <div className="demo-swiper">
-      <Swiper autoplay={5000}>{items}</Swiper>
+      <Swiper disable autoplay={5000}>
+        {items}
+      </Swiper>
     </div>
   );
 };
@@ -216,6 +218,7 @@ export default () => {
 | duration | 动画时长，单位为 ms | _number_ | `300` |
 | initialSwipe | 初始位置索引值 | _number_ | `0` |
 | loop | 是否开启循环播放 | _boolean_ | `true` |
+| disable | 是否禁用 | _boolean_ | `false` |
 | vertical | 是否为纵向滚动 | _boolean_ | `false` |
 | touchable | 是否可以通过手势滑动 | _boolean_ | `true` |
 | slideSize | 滑块的宽度百分比 | _number_ | `100` |

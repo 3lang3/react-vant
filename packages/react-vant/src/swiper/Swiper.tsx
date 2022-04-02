@@ -51,7 +51,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop: outerLoop, autoplay, vertical, duration } = props;
+  const { loop: outerLoop, autoplay, vertical, duration, disable } = props;
 
   const lock = useRef<boolean>(false);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -144,7 +144,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const bind = useDrag(
     (state) => {
-      if (lock.current) return;
+      if (lock.current || disable) return;
       const slidePixels = getSlidePixels();
       if (!slidePixels) return;
       const paramIndex = vertical ? 1 : 0;
@@ -223,6 +223,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   };
 
   function swipeTo(index: number, immediate = false) {
+    if (disable) return;
     if (loop) {
       const i = modulus(index, count);
       setCurrent(i);
@@ -243,10 +244,12 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   }
 
   const swipeNext = () => {
+    if (disable) return;
     swipeTo(Math.round(position.get() / 100) + 1);
   };
 
   const swipePrev = () => {
+    if (disable) return;
     swipeTo(Math.round(position.get() / 100) - 1);
   };
 
