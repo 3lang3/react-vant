@@ -21,6 +21,8 @@ export interface SwiperProps extends BaseTypeProps {
   vertical?: boolean;
   /** 动画时长，单位为 ms */
   duration?: number;
+  /** 是否禁用 */
+  disable?: boolean;
   /** 每一页轮播结束后触发 */
   onChange?: (index: number) => void;
   /** 指示器属性 */
