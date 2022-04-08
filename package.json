@@ -4,7 +4,7 @@
   "scripts": {
     "build": "pnpm build --dir ./packages/react-vant",
     "build:site": "pnpm build:site --dir ./packages/react-vant",
-    "release:site": "pnpm release:site --dir ./packages/react-vant",
+    "site:deploy": "pnpm site:deploy --dir ./packages/react-vant",
     "changelog": "lerna exec --scope react-vant yarn changelog",
     "dev": "pnpm dev --dir ./packages/react-vant"
   },
