@@ -219,8 +219,10 @@ export default () => {
 | border | 是否显示标签栏外边框，仅在 `type="line"` 时有效 | _boolean_ | `false` |
 | ellipsis | 是否省略过长的标题文字 | _boolean_ | `true` |
 | sticky | 是否使用粘性定位布局 | _boolean_ | `false` |
+| stickyInitScrollbar | `sticky` 模式下点击标签重置滚动条位置 | _boolean_ | `true` |
 | swipeable | 是否开启手势滑动切换 | _boolean_ | `false` |
 | lazyRender | 是否开启延迟渲染（首次切换到标签时才触发内容渲染） | _boolean_ | `true` |
+| lazyRenderPlaceholder | 启延迟渲染占位符 | _ReactNode_ | - |
 | scrollspy | 是否开启滚动导航 | _boolean\|ScrollspyConfig_ | `false` |
 | offsetTop | 粘性定位布局下与顶部的最小距离，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `0` |
 | swipeThreshold | 滚动阈值，标签数量超过阈值且总宽度超过标签栏宽度时开始横向滚动 | _number \| string_ | `5` |

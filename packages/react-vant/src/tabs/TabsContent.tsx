@@ -19,15 +19,15 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
     if (animated || swipeable) {
       return (
         <Swiper
+          autoHeight
           ref={swipeRef}
+          stuckAtBoundary
           loop={false}
           autoplay={false}
           touchable={swipeable}
-          stuckAtBoundary
           className={clsx(bem('track'))}
           duration={+duration}
           indicator={false}
-          autoHeight
           onChange={(idx) => {
             if (innerEffect.current) {
               innerEffect.current = false;
