@@ -28,9 +28,7 @@ import './demo/base.less';
 export default () => {
   return (
     <div className="demo-swiper">
-      <Swiper disable autoplay={5000}>
-        {items}
-      </Swiper>
+      <Swiper autoplay={5000}>{items}</Swiper>
     </div>
   );
 };
@@ -184,7 +182,7 @@ export default () => {
 
 ```jsx
 /**
- * title: 垂直滑块居中
+ * title: 自定义指示器
  */
 import React from 'react';
 import { Swiper, Toast } from 'react-vant';
@@ -221,6 +219,7 @@ export default () => {
 | disable | 是否禁用 | _boolean_ | `false` |
 | vertical | 是否为纵向滚动 | _boolean_ | `false` |
 | touchable | 是否可以通过手势滑动 | _boolean_ | `true` |
+| autoHeight | 是否启用自适应高度 | _boolean_ | `false` |
 | slideSize | 滑块的宽度百分比 | _number_ | `100` |
 | trackOffset | 滑块轨道整体的偏移量百分比 | _number_ | `0` |
 | stuckAtBoundary | 是否在边界两边卡住，避免出现空白，仅在非 `loop` 模式且 `slideSize` < 100 时生效 | _boolean_ | `false` |

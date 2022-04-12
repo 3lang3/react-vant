@@ -51,7 +51,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop: outerLoop, autoplay, vertical, duration, disable } = props;
+  const { loop: outerLoop, autoplay, vertical, duration, disable, autoHeight } = props;
 
   const lock = useRef<boolean>(false);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -71,6 +71,14 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       ...props.style,
     };
   }, [props.style, props.slideSize, props.trackOffset]);
+
+  const trackStyle = useMemo(() => {
+    if (!autoHeight) return {};
+    const parent = document.querySelectorAll('.rv-swiper__slide')[current];
+    const target = parent.querySelector('.rv-swiper-item');
+    if (target) return { height: target.clientHeight };
+    return {};
+  }, [autoHeight, current]);
 
   const axisDistance = useMemo(() => {
     if (!vertical) return 100;
@@ -299,11 +307,16 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
               vertical,
             }),
           )}
+          style={trackStyle}
         >
           {React.Children.map(validChildren, (child, index) => {
             return (
               <animated.div
-                className={cls(bem('slide'))}
+                className={cls(
+                  bem('slide', {
+                    active: index === current,
+                  }),
+                )}
                 style={{
                   [axis]: position.to((pos) => {
                     let finalPosition = -pos + index * 100;

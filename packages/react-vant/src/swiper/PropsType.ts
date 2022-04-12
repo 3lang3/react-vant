@@ -35,6 +35,8 @@ export interface SwiperProps extends BaseTypeProps {
   trackOffset?: number;
   /** 是否在边界两边卡住，避免出现空白，仅在非 loop 模式且 slideSize < 100 时生效	 */
   stuckAtBoundary?: boolean;
+  /** 自适应高度 */
+  autoHeight?: boolean;
   children?: React.ReactElement | React.ReactElement[];
 }
 
