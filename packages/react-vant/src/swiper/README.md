@@ -28,7 +28,9 @@ import './demo/base.less';
 export default () => {
   return (
     <div className="demo-swiper">
-      <Swiper autoplay={5000}>{items}</Swiper>
+      <Swiper autoHeight autoplay={5000}>
+        {items}
+      </Swiper>
     </div>
   );
 };
