@@ -42,6 +42,7 @@ export interface SwiperProps extends BaseTypeProps {
 
 export interface SwiperItemProps extends BaseTypeProps {
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  children?: React.ReactNode;
 }
 
 export type SwiperInstance = {
@@ -51,4 +52,8 @@ export type SwiperInstance = {
   swipePrev: () => void;
   lock: () => void;
   unlock: () => void;
+};
+
+export type SwiperItemInstance = {
+  getHeight: () => number;
 };
