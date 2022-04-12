@@ -166,7 +166,7 @@ import { Tabs } from 'react-vant';
 
 export default () => {
   return (
-    <Tabs swipeable sticky stickyInitScrollbar={false}>
+    <Tabs sticky>
       {[1, 2, 3, 4].map((item) => (
         <Tabs.TabPane key={item} title={`标签${item}`}>
           <div style={{ height: `${30 * item}vh` }}>内容 {item}</div>
