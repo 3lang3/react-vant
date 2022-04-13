@@ -28,9 +28,7 @@ import './demo/base.less';
 export default () => {
   return (
     <div className="demo-swiper">
-      <Swiper disable autoplay={5000}>
-        {items}
-      </Swiper>
+      <Swiper autoplay={5000}>{items}</Swiper>
     </div>
   );
 };
@@ -184,7 +182,7 @@ export default () => {
 
 ```jsx
 /**
- * title: 垂直滑块居中
+ * title: 自定义指示器
  */
 import React from 'react';
 import { Swiper, Toast } from 'react-vant';

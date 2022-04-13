@@ -16,6 +16,7 @@ import { useDrag } from '@use-gesture/react';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import SwiperItem from './SwiperItem';
 import { SwiperProps, SwiperInstance, PageIndicatorProps } from './PropsType';
+import useRefs from '../hooks/use-refs';
 import useRefState from '../hooks/use-ref-state';
 import { bound } from '../utils/bound';
 import { devWarning } from '../utils/dev-log';
@@ -51,8 +52,9 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop: outerLoop, autoplay, vertical, duration, disable } = props;
+  const { loop: outerLoop, autoplay, vertical, duration, disable, autoHeight } = props;
 
+  const [childrenRefs, setChildrenRefs] = useRefs();
   const lock = useRef<boolean>(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const [root, setRoot] = useState<HTMLDivElement>(null);
@@ -70,7 +72,15 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       [`--${prefixCls}-swipe-track-offset`]: `${props.trackOffset}%`,
       ...props.style,
     };
-  }, [props.style, props.slideSize, props.trackOffset]);
+  }, [prefixCls, props.slideSize, props.trackOffset, props.style]);
+
+  const trackStyle = useMemo(() => {
+    if (!autoHeight) return {};
+    const target = childrenRefs[current];
+    if (target) return { height: target.getHeight() || 'auto' };
+    return {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoHeight, childrenRefs.length, current]);
 
   const axisDistance = useMemo(() => {
     if (!vertical) return 100;
@@ -275,6 +285,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     return () => {
       window.clearInterval(interval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoplay, dragging, axisDistance]);
 
   if (count === 0) {
@@ -299,6 +310,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
               vertical,
             }),
           )}
+          style={trackStyle}
         >
           {React.Children.map(validChildren, (child, index) => {
             return (
@@ -315,7 +327,9 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
                   left: `-${index * 100}%`,
                 }}
               >
-                {child}
+                {React.cloneElement(child, {
+                  ref: setChildrenRefs(index),
+                })}
               </animated.div>
             );
           })}

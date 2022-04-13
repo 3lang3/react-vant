@@ -20,7 +20,12 @@ export interface TabsProps extends BaseTypeProps {
   /** 是否显示标签栏外边框，仅在 type="line" 时有效	 */
   border?: boolean;
   /** 是否使用粘性定位布局	 */
-  sticky?: boolean | StickyProps;
+  sticky?: boolean;
+  /**
+   * sticky模式下点击标签重置滚动条位置
+   * @default true
+   */
+  stickyInitScrollbar?: boolean;
   /** 是否开启切换标签内容时的转场动画	 */
   animated?: boolean;
   /** 是否开启手势左右滑动切换	 */
@@ -51,6 +56,8 @@ export interface TabsProps extends BaseTypeProps {
   offsetTop?: number | string;
   /** 是否开启延迟渲染（首次切换到标签时才触发内容渲染）	 */
   lazyRender?: boolean;
+  /** 延迟渲染占位符 */
+  lazyRenderPlaceholder?: React.ReactNode;
   /**
    * 滚动阈值，标签数量超过阈值且总宽度超过标签栏宽度时开始横向滚动
    * @default 5

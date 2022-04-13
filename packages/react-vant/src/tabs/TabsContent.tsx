@@ -19,7 +19,9 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
     if (animated || swipeable) {
       return (
         <Swiper
+          autoHeight
           ref={swipeRef}
+          stuckAtBoundary
           loop={false}
           autoplay={false}
           touchable={swipeable}

@@ -100,8 +100,8 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const currentName = useMemo(() => {
     const activeTab = childrenList[state.currentIndex];
-    return activeTab && getTabName(activeTab, state.currentIndex);
-  }, [state.currentIndex]);
+    return activeTab ? getTabName(activeTab, state.currentIndex) : 0;
+  }, [childrenList, state.currentIndex]);
 
   const offsetTopPx = useMemo(() => unitToPx(props.offsetTop), [props.offsetTop]);
 
@@ -342,7 +342,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     scrollIntoView();
     setLine();
     // scroll to correct position
-    if (stickyFixed.current && !props.scrollspy) {
+    if (stickyFixed.current && props.stickyInitScrollbar && !props.scrollspy) {
       setRootScrollTop(Math.ceil(getElementTop(root.current!) - offsetTopPx));
     }
   }, [state.currentIndex]);
@@ -424,6 +424,7 @@ Tabs.defaultProps = {
   offsetTop: 0,
   ellipsis: true,
   lazyRender: true,
+  stickyInitScrollbar: true,
   active: 0,
   align: 'center',
 };

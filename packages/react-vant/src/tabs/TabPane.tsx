@@ -11,26 +11,25 @@ const TabPane = forwardRef<HTMLDivElement, TabPaneProps>((props, ref) => {
   const [bem] = createNamespace('tab', prefixCls);
   const parent = useContext(TabsContext);
 
-  const [inited, setInited] = useState(false);
-
-  const { animated, swipeable, scrollspy, lazyRender } = parent.props;
+  const { animated, swipeable, scrollspy, lazyRender, lazyRenderPlaceholder } = parent.props;
   const { index } = props;
 
-  const getName = () => props.name ?? index;
+  const name = useMemo(() => props.name ?? index, [index, props.name]);
+
+  const active = useMemo(() => name === parent.currentName, [name, parent.currentName]);
+
+  const [inited, setInited] = useState(() => active);
 
   const init = () => {
     setInited(true);
   };
 
   const isActive = useMemo(() => {
-    const active = getName() === parent.currentName;
-
     if (active && !inited) {
       init();
     }
-
     return active;
-  }, [inited, parent.currentName]);
+  }, [active, inited]);
 
   useUpdateEffect(() => {
     parent.setLine();
@@ -39,12 +38,16 @@ const TabPane = forwardRef<HTMLDivElement, TabPaneProps>((props, ref) => {
 
   const show = scrollspy || isActive;
 
-  if (animated || swipeable) {
-    return <div className={clsx(bem('pane'))}>{props.children}</div>;
-  }
-
   const shouldRender = inited || scrollspy || !lazyRender;
-  const Content = shouldRender ? props.children : null;
+  const Content = shouldRender ? props.children : lazyRenderPlaceholder;
+
+  if (animated || swipeable) {
+    return (
+      <div ref={ref} role="tabpanel" className={clsx(bem('pane'))}>
+        {Content}
+      </div>
+    );
+  }
 
   return (
     <div

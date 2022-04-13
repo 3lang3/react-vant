@@ -35,11 +35,14 @@ export interface SwiperProps extends BaseTypeProps {
   trackOffset?: number;
   /** 是否在边界两边卡住，避免出现空白，仅在非 loop 模式且 slideSize < 100 时生效	 */
   stuckAtBoundary?: boolean;
+  /** 自适应高度 */
+  autoHeight?: boolean;
   children?: React.ReactElement | React.ReactElement[];
 }
 
 export interface SwiperItemProps extends BaseTypeProps {
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  children?: React.ReactNode;
 }
 
 export type SwiperInstance = {
@@ -49,4 +52,8 @@ export type SwiperInstance = {
   swipePrev: () => void;
   lock: () => void;
   unlock: () => void;
+};
+
+export type SwiperItemInstance = {
+  getHeight: () => number;
 };
