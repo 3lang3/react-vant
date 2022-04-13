@@ -77,7 +77,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const trackStyle = useMemo(() => {
     if (!autoHeight) return {};
     const target = childrenRefs[current];
-    if (target) return { height: target.getHeight() };
+    if (target) return { height: target.getHeight() || 'auto' };
     return {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoHeight, childrenRefs.length, current]);
