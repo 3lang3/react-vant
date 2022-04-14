@@ -26,6 +26,11 @@ export interface SwiperProps extends BaseTypeProps {
    * @default true
    */
   enabled?: boolean;
+  /**
+   * 是否在拖动超出内容区域时启用橡皮筋效果，仅在非 loop 模式下生效
+   * @default true
+   */
+  rubberband?: boolean;
   /** 每一页轮播结束后触发 */
   onChange?: (index: number) => void;
   /** 指示器属性 */

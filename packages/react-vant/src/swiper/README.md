@@ -222,6 +222,7 @@ export default () => {
 | preventScroll | 是否阻止内部滚动行为 | _boolean_ | `true` |
 | slideSize | 滑块的宽度百分比 | _number_ | `100` |
 | trackOffset | 滑块轨道整体的偏移量百分比 | _number_ | `0` |
+| rubberband | 是否在拖动超出内容区域时启用橡皮筋效果，仅在非 loop 模式下生效 | _boolean_ | `true` |
 | stuckAtBoundary | 是否在边界两边卡住，避免出现空白，仅在非 `loop` 模式且 `slideSize` < 100 时生效 | _boolean_ | `false` |
 | indicator | 自定义指示器 | _boolean \| (total, current) => ReactNode_ | - |
 | indicatorProps | 指示器属性 | _IndicatorProps_ | - |

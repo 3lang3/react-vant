@@ -205,11 +205,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
               right: upperBound,
             };
       },
-      rubberband: true,
+      rubberband: props.rubberband,
       axis,
-      preventScroll: !vertical,
+      preventScroll: axis === 'x' ? props.preventScroll : true,
       pointer: {
-        capture: props.preventScroll,
         touch: true,
       },
     },
@@ -351,6 +350,7 @@ Swiper.defaultProps = {
   touchable: true,
   loop: true,
   enabled: true,
+  rubberband: true,
   autoplay: false,
   slideSize: 100,
   trackOffset: 0,

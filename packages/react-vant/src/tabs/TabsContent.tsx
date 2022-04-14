@@ -22,6 +22,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
           autoHeight
           {...swiperProps}
           ref={swiperRef}
+          rubberband={false}
           stuckAtBoundary
           loop={false}
           autoplay={false}
