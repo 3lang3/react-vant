@@ -370,7 +370,12 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   useImperativeHandle(ref, () => ({
     resize: setLine,
     scrollTo,
-    ...swiperRef.current,
+    swiper: swiperRef.current
+      ? {
+          enable: swiperRef.current?.enable,
+          disable: swiperRef.current?.disable,
+        }
+      : undefined,
   }));
 
   const onStickyChange = () => {

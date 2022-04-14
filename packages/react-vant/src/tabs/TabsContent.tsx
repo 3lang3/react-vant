@@ -13,16 +13,19 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
   const innerEffect = useRef(false);
   const { animated, swipeable, duration, swiperRef } = props;
 
+  const swiperProps = typeof swipeable === 'boolean' ? {} : swipeable;
+
   const renderChildren = () => {
     if (animated || swipeable) {
       return (
         <Swiper
           autoHeight
+          {...swiperProps}
           ref={swiperRef}
           stuckAtBoundary
           loop={false}
           autoplay={false}
-          touchable={swipeable}
+          touchable={!!swipeable}
           className={clsx(bem('track'))}
           duration={+duration}
           indicator={false}

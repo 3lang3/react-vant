@@ -165,26 +165,14 @@ import React from 'react';
 import { Tabs } from 'react-vant';
 
 export default () => {
-  const ref = React.useRef();
-
-  const enable = () => {
-    ref.current.enable();
-  };
-  const disable = () => {
-    ref.current.disable();
-  };
   return (
-    <>
-      <Tabs sticky swipeable ref={ref}>
-        {[1, 2, 3, 4].map((item) => (
-          <Tabs.TabPane key={item} title={`标签${item}`}>
-            内容 {item}
-          </Tabs.TabPane>
-        ))}
-      </Tabs>
-      <button onClick={enable}>enable</button>
-      <button onClick={disable}>disable</button>
-    </>
+    <Tabs sticky swipeable>
+      {[1, 2, 3, 4].map((item) => (
+        <Tabs.TabPane key={item} title={`标签${item}`}>
+          内容 {item}
+        </Tabs.TabPane>
+      ))}
+    </Tabs>
   );
 };
 ```
@@ -232,7 +220,7 @@ export default () => {
 | ellipsis | 是否省略过长的标题文字 | _boolean_ | `true` |
 | sticky | 是否使用粘性定位布局 | _boolean_ | `false` |
 | stickyInitScrollbar | `sticky` 模式下点击标签重置滚动条位置 | _boolean_ | `true` |
-| swipeable | 是否开启手势滑动切换 | _boolean_ | `false` |
+| swipeable | 是否开启手势滑动切换 | _boolean\|TabsSwiperProps_ | `false` |
 | lazyRender | 是否开启延迟渲染（首次切换到标签时才触发内容渲染） | _boolean_ | `true` |
 | lazyRenderPlaceholder | 启延迟渲染占位符 | _ReactNode_ | - |
 | scrollspy | 是否开启滚动导航 | _boolean\|ScrollspyConfig_ | `false` |
@@ -241,6 +229,13 @@ export default () => {
 | titleActiveColor | 标题选中态颜色 | _string_ | - |
 | titleInactiveColor | 标题默认态颜色 | _string_ | - |
 | beforeChange | 切换标签前的回调函数，返回 `false` 可阻止切换，支持返回 Promise | _(name) => boolean \| Promise_ | - |
+
+### TabsSwiperProps
+
+| 参数          | 说明                 | 类型      | 默认值 |
+| ------------- | -------------------- | --------- | ------ |
+| autoHeight    | 自适应高度           | _boolean_ | `true` |
+| preventScroll | 是否阻止内部滚动行为 | _boolean_ | `true` |
 
 ### ScrollspyConfig
 
@@ -281,6 +276,8 @@ export default () => {
 | --- | --- | --- | --- |
 | resize | 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘 | - | - |
 | scrollTo | 滚动到指定的标签页，在滚动导航模式下可用 | _name: string \| number_ | - |
+| swiper.disable | 开启 `swipeable`后获得， 禁用 Swiper 能力（如果已启用） | - | - |
+| swiper.enable | 开启 `swipeable`后获得， 动态启用 Swiper 能力（如果已经禁用） | - | - |
 
 ## 主题定制
 
