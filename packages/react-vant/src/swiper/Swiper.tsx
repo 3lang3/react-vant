@@ -156,7 +156,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     (state) => {
       const slidePixels = getSlidePixels();
       if (!slidePixels) return;
-      if (!props.preventScroll && isScrollTarget(state.target as any, childrenRefs[current].self)) {
+      if (
+        !props.preventScroll &&
+        isScrollTarget(state.target as any, childrenRefs[current]?.self)
+      ) {
         return;
       }
 
@@ -206,6 +209,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       axis,
       preventScroll: !vertical,
       pointer: {
+        capture: props.preventScroll,
         touch: true,
       },
     },
@@ -362,6 +366,8 @@ function modulus(value: number, division: number) {
 }
 
 function isScrollTarget(element: HTMLElement, parent: HTMLElement) {
+  if (!parent) return false;
+
   if (element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight) {
     return true;
   }
