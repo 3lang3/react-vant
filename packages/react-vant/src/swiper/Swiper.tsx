@@ -295,7 +295,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
         ref={trackRef}
         className={cls(
           bem('track', {
-            'allow-touch-move': props.touchable,
+            'allow-touch-move': props.touchable && enabled,
           }),
         )}
         onClickCapture={onClickCapture}

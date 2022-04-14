@@ -165,14 +165,26 @@ import React from 'react';
 import { Tabs } from 'react-vant';
 
 export default () => {
+  const ref = React.useRef();
+
+  const enable = () => {
+    ref.current.enable();
+  };
+  const disable = () => {
+    ref.current.disable();
+  };
   return (
-    <Tabs sticky>
-      {[1, 2, 3, 4].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+    <>
+      <Tabs sticky swipeable ref={ref}>
+        {[1, 2, 3, 4].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
+      <button onClick={enable}>enable</button>
+      <button onClick={disable}>disable</button>
+    </>
   );
 };
 ```

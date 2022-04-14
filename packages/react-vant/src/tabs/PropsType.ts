@@ -1,5 +1,5 @@
 import React from 'react';
-import { StickyProps } from '../sticky/PropsType';
+import { SwiperInstance } from '../swiper/PropsType';
 import { BaseTypeProps } from '../utils';
 
 type ScrollspyConfig = {
@@ -110,6 +110,7 @@ export interface TabsContentProps {
   count: number;
   duration: number | string;
   currentIndex: number;
+  swiperRef: React.RefObject<SwiperInstance>;
   onChange?: (index) => void;
 }
 
@@ -150,4 +151,4 @@ export type TabsInstance = {
   resize: () => void;
   /** 滚动到指定的标签页，在滚动导航模式下可用	 */
   scrollTo: (name: number | string) => void;
-};
+} & Partial<SwiperInstance>;
