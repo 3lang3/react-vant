@@ -1,9 +1,9 @@
-import _Tabs from './Tabs';
+import Tabs from './Tabs';
 import TabPane from './TabPane';
 import './style/index.less';
 
-const Tabs = Object.assign(_Tabs, { TabPane });
+const TabsNamespace = Object.assign(Tabs, { TabPane });
 
-export default Tabs;
+export { TabsNamespace as Tabs };
 
 export type { TabsInstance } from './PropsType';
