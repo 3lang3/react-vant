@@ -4,27 +4,29 @@ import clsx from 'clsx';
 import Swiper from '../swiper';
 
 import { TabsContentProps } from './PropsType';
-import { SwiperInstance } from '../swiper/PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const TabsContent: React.FC<TabsContentProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('tabs', prefixCls);
 
-  const swipeRef = useRef<SwiperInstance>();
   const innerEffect = useRef(false);
-  const { animated, swipeable, duration } = props;
+  const { animated, swipeable, duration, swiperRef } = props;
+
+  const swiperProps = typeof swipeable === 'boolean' ? {} : swipeable;
 
   const renderChildren = () => {
     if (animated || swipeable) {
       return (
         <Swiper
           autoHeight
-          ref={swipeRef}
+          {...swiperProps}
+          ref={swiperRef}
+          rubberband={false}
           stuckAtBoundary
           loop={false}
           autoplay={false}
-          touchable={swipeable}
+          touchable={!!swipeable}
           className={clsx(bem('track'))}
           duration={+duration}
           indicator={false}
@@ -51,7 +53,7 @@ const TabsContent: React.FC<TabsContentProps> = (props) => {
     return props.children;
   };
   const swipeToCurrentTab = (index: number) => {
-    const swipe = swipeRef.current;
+    const swipe = swiperRef.current;
     if (!swipe) return;
     if (swipe.activeIndex !== index) {
       innerEffect.current = true;

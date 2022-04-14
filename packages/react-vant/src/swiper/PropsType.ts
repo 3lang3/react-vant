@@ -21,8 +21,16 @@ export interface SwiperProps extends BaseTypeProps {
   vertical?: boolean;
   /** 动画时长，单位为 ms */
   duration?: number;
-  /** 是否禁用 */
-  disable?: boolean;
+  /**
+   * 是否启用
+   * @default true
+   */
+  enabled?: boolean;
+  /**
+   * 是否在拖动超出内容区域时启用橡皮筋效果，仅在非 loop 模式下生效
+   * @default true
+   */
+  rubberband?: boolean;
   /** 每一页轮播结束后触发 */
   onChange?: (index: number) => void;
   /** 指示器属性 */
@@ -37,6 +45,8 @@ export interface SwiperProps extends BaseTypeProps {
   stuckAtBoundary?: boolean;
   /** 自适应高度 */
   autoHeight?: boolean;
+  /** 是否阻止内部滚动行为 */
+  preventScroll?: boolean;
   children?: React.ReactElement | React.ReactElement[];
 }
 
@@ -50,10 +60,13 @@ export type SwiperInstance = {
   swipeTo: (index: number) => void;
   swipeNext: () => void;
   swipePrev: () => void;
-  lock: () => void;
-  unlock: () => void;
+  /** 动态启用Swiper（如果已经禁用） */
+  enable: () => void;
+  /** 禁用 Swiper（如果已启用）被禁用时，它将不会响应任何事件和交互 */
+  disable: () => void;
 };
 
 export type SwiperItemInstance = {
   getHeight: () => number;
+  self: any;
 };

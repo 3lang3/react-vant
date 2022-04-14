@@ -39,6 +39,7 @@ import useEventListener from '../hooks/use-event-listener';
 import { isReachBottom } from './utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import PopupContext from '../popup/PopupContext';
+import type { SwiperInstance } from '../swiper/PropsType';
 
 const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -48,6 +49,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   const { children, color, align, background } = props;
 
   const root = useRef<HTMLDivElement>(null);
+  const swiperRef = useRef<SwiperInstance>(null);
   const [wrapRef, setWrapRef] = useState<HTMLDivElement>(null);
   const initChange = useRef<boolean>(false);
   const lockScroll = useRef<boolean>(false);
@@ -368,6 +370,12 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   useImperativeHandle(ref, () => ({
     resize: setLine,
     scrollTo,
+    swiper: swiperRef.current
+      ? {
+          enable: swiperRef.current?.enable,
+          disable: swiperRef.current?.disable,
+        }
+      : undefined,
   }));
 
   const onStickyChange = () => {
@@ -394,6 +402,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
           </>
         )}
         <TabsContent
+          swiperRef={swiperRef}
           count={childrenList.length}
           inited={state.inited}
           animated={props.animated}

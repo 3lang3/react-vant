@@ -14,6 +14,7 @@ const SwiperItem = React.forwardRef<SwiperItemInstance, SwiperItemProps>((props,
 
   React.useImperativeHandle(ref, () => ({
     getHeight,
+    self: wrapperRef.current,
   }));
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StickyProps } from '../sticky/PropsType';
+import { SwiperInstance, SwiperProps } from '../swiper/PropsType';
 import { BaseTypeProps } from '../utils';
 
 type ScrollspyConfig = {
@@ -29,7 +29,7 @@ export interface TabsProps extends BaseTypeProps {
   /** 是否开启切换标签内容时的转场动画	 */
   animated?: boolean;
   /** 是否开启手势左右滑动切换	 */
-  swipeable?: boolean;
+  swipeable?: boolean | Pick<SwiperProps, 'autoHeight' | 'preventScroll'>;
   /** 是否开启滚动导航	 */
   scrollspy?: boolean | ScrollspyConfig;
   /** 标签栏背景色	 */
@@ -105,11 +105,12 @@ export interface TabsTitleProps extends BaseTypeProps {
 export interface TabsContentProps {
   inited?: boolean;
   animated?: boolean;
-  swipeable?: boolean;
+  swipeable?: TabsProps['swipeable'];
   lazyRender?: boolean;
   count: number;
   duration: number | string;
   currentIndex: number;
+  swiperRef: React.RefObject<SwiperInstance>;
   onChange?: (index) => void;
 }
 
@@ -148,6 +149,8 @@ export type TabsClickTabEventParams = {
 export type TabsInstance = {
   /** 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘	 */
   resize: () => void;
-  /** 滚动到指定的标签页，在滚动导航模式下可用	 */
+  /** 滚动到指定的标签页，在滚动导航模式下可用 */
   scrollTo: (name: number | string) => void;
+  /** 调用 swiper 方法 */
+  swiper?: Partial<Pick<SwiperInstance, 'disable' | 'enable'>>;
 };

@@ -216,14 +216,17 @@ export default () => {
 | duration | 动画时长，单位为 ms | _number_ | `300` |
 | initialSwipe | 初始位置索引值 | _number_ | `0` |
 | loop | 是否开启循环播放 | _boolean_ | `true` |
-| disable | 是否禁用 | _boolean_ | `false` |
+| enabled | 是否启用 Swiper | _boolean_ | `true` |
 | vertical | 是否为纵向滚动 | _boolean_ | `false` |
 | touchable | 是否可以通过手势滑动 | _boolean_ | `true` |
+| preventScroll | 是否阻止内部滚动行为 | _boolean_ | `true` |
 | slideSize | 滑块的宽度百分比 | _number_ | `100` |
 | trackOffset | 滑块轨道整体的偏移量百分比 | _number_ | `0` |
+| rubberband | 是否在拖动超出内容区域时启用橡皮筋效果，仅在非 loop 模式下生效 | _boolean_ | `true` |
 | stuckAtBoundary | 是否在边界两边卡住，避免出现空白，仅在非 `loop` 模式且 `slideSize` < 100 时生效 | _boolean_ | `false` |
 | indicator | 自定义指示器 | _boolean \| (total, current) => ReactNode_ | - |
 | indicatorProps | 指示器属性 | _IndicatorProps_ | - |
+| onChange | 每一页轮播结束后触发 | _(index:当前页的索引) => void_ | - |
 
 ### IndicatorProps 格式
 
@@ -231,12 +234,6 @@ export default () => {
 | --------- | ---------- | -------- |
 | className | 指示器类名 | _string_ |
 | style     | 指示器样式 | _string_ |
-
-### Swiper Events
-
-| 事件名   | 说明                 | 回调参数            |
-| -------- | -------------------- | ------------------- |
-| onChange | 每一页轮播结束后触发 | index, 当前页的索引 |
 
 ### SwiperItem Events
 
@@ -248,11 +245,13 @@ export default () => {
 
 通过 ref 可以获取到 Swiper 实例并调用实例方法。
 
-| 方法名    | 说明           | 参数            | 返回值 |
-| --------- | -------------- | --------------- | ------ |
-| swipePrev | 切换到上一轮播 | -               | -      |
-| swipeNext | 切换到下一轮播 | -               | -      |
-| swipeTo   | 切换到指定位置 | _index: number_ | -      |
+| 方法名    | 说明                            | 参数            | 返回值 |
+| --------- | ------------------------------- | --------------- | ------ |
+| swipePrev | 切换到上一轮播                  | -               | -      |
+| swipeNext | 切换到下一轮播                  | -               | -      |
+| swipeTo   | 切换到指定位置                  | _index: number_ | -      |
+| disable   | 禁用 Swiper（如果已启用）       | -               | -      |
+| enable    | 动态启用 Swiper（如果已经禁用） | -               | -      |
 
 ### 类型定义
 

@@ -31,7 +31,7 @@ export { default as Dialog } from './dialog';
 export * from './dropdown-menu';
 export * from './search';
 export { default as Sidebar } from './sidebar';
-export { default as Tabs } from './tabs';
+export * from './tabs';
 export * from './sticky';
 export { default as NavBar } from './nav-bar';
 export { default as Tag } from './tag';

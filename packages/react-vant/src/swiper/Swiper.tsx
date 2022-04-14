@@ -52,10 +52,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop: outerLoop, autoplay, vertical, duration, disable, autoHeight } = props;
+  const { loop: outerLoop, autoplay, vertical, duration, autoHeight } = props;
 
   const [childrenRefs, setChildrenRefs] = useRefs();
-  const lock = useRef<boolean>(false);
+  const [enabled, setEnabled] = useState<boolean>(() => props.enabled);
   const trackRef = useRef<HTMLDivElement>(null);
   const [root, setRoot] = useState<HTMLDivElement>(null);
   const [current, setCurrent] = useState(props.initialSwipe);
@@ -154,9 +154,15 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const bind = useDrag(
     (state) => {
-      if (lock.current || disable) return;
       const slidePixels = getSlidePixels();
       if (!slidePixels) return;
+      if (
+        !props.preventScroll &&
+        isScrollTarget(state.target as any, childrenRefs[current]?.self)
+      ) {
+        return;
+      }
+
       const paramIndex = vertical ? 1 : 0;
       const offset = state.offset[paramIndex];
       const direction = state.direction[paramIndex];
@@ -178,6 +184,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       }
     },
     {
+      enabled,
       transform: ([x, y]) => [-x, -y],
       from: () => {
         const slidePixels = getSlidePixels();
@@ -198,9 +205,9 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
               right: upperBound,
             };
       },
-      rubberband: true,
+      rubberband: props.rubberband,
       axis,
-      preventScroll: !vertical,
+      preventScroll: axis === 'x' ? props.preventScroll : true,
       pointer: {
         touch: true,
       },
@@ -233,7 +240,6 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   };
 
   function swipeTo(index: number, immediate = false) {
-    if (disable) return;
     if (loop) {
       const i = modulus(index, count);
       setCurrent(i);
@@ -254,12 +260,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   }
 
   const swipeNext = () => {
-    if (disable) return;
     swipeTo(Math.round(position.get() / 100) + 1);
   };
 
   const swipePrev = () => {
-    if (disable) return;
     swipeTo(Math.round(position.get() / 100) - 1);
   };
 
@@ -268,11 +272,11 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     swipeTo,
     swipeNext,
     swipePrev,
-    lock: () => {
-      lock.current = true;
+    enable: () => {
+      setEnabled(true);
     },
-    unlock: () => {
-      lock.current = false;
+    disable: () => {
+      setEnabled(false);
     },
   }));
 
@@ -298,7 +302,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
         ref={trackRef}
         className={cls(
           bem('track', {
-            'allow-touch-move': props.touchable,
+            'allow-touch-move': props.touchable && enabled && props.preventScroll,
           }),
         )}
         onClickCapture={onClickCapture}
@@ -345,10 +349,13 @@ Swiper.defaultProps = {
   initialSwipe: 0,
   touchable: true,
   loop: true,
+  enabled: true,
+  rubberband: true,
   autoplay: false,
   slideSize: 100,
   trackOffset: 0,
   stuckAtBoundary: false,
+  preventScroll: true,
 };
 
 export default Swiper;
@@ -356,4 +363,17 @@ export default Swiper;
 function modulus(value: number, division: number) {
   const remainder = value % division;
   return remainder < 0 ? remainder + division : remainder;
+}
+
+function isScrollTarget(element: HTMLElement, parent: HTMLElement) {
+  if (!parent) return false;
+
+  if (element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight) {
+    return true;
+  }
+  if (element.parentElement && element.parentElement !== parent) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return isScrollTarget(element.parentElement, parent);
+  }
+  return false;
 }
