@@ -52,10 +52,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('swiper', prefixCls);
 
-  const { loop: outerLoop, autoplay, vertical, duration, disable, autoHeight } = props;
+  const { loop: outerLoop, autoplay, vertical, duration, autoHeight } = props;
 
   const [childrenRefs, setChildrenRefs] = useRefs();
-  const lock = useRef<boolean>(false);
+  const [enabled, setEnabled] = useState<boolean>(() => props.enabled);
   const trackRef = useRef<HTMLDivElement>(null);
   const [root, setRoot] = useState<HTMLDivElement>(null);
   const [current, setCurrent] = useState(props.initialSwipe);
@@ -154,7 +154,6 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const bind = useDrag(
     (state) => {
-      if (lock.current || disable) return;
       const slidePixels = getSlidePixels();
       if (!slidePixels) return;
       const paramIndex = vertical ? 1 : 0;
@@ -178,6 +177,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       }
     },
     {
+      enabled,
       transform: ([x, y]) => [-x, -y],
       from: () => {
         const slidePixels = getSlidePixels();
@@ -233,7 +233,6 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   };
 
   function swipeTo(index: number, immediate = false) {
-    if (disable) return;
     if (loop) {
       const i = modulus(index, count);
       setCurrent(i);
@@ -254,12 +253,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   }
 
   const swipeNext = () => {
-    if (disable) return;
     swipeTo(Math.round(position.get() / 100) + 1);
   };
 
   const swipePrev = () => {
-    if (disable) return;
     swipeTo(Math.round(position.get() / 100) - 1);
   };
 
@@ -268,11 +265,11 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     swipeTo,
     swipeNext,
     swipePrev,
-    lock: () => {
-      lock.current = true;
+    enable: () => {
+      setEnabled(true);
     },
-    unlock: () => {
-      lock.current = false;
+    disable: () => {
+      setEnabled(false);
     },
   }));
 
@@ -345,6 +342,7 @@ Swiper.defaultProps = {
   initialSwipe: 0,
   touchable: true,
   loop: true,
+  enabled: true,
   autoplay: false,
   slideSize: 100,
   trackOffset: 0,

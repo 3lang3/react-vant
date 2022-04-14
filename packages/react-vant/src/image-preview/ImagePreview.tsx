@@ -43,9 +43,9 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
             }}
             onZoomChange={(zoom) => {
               if (zoom !== 1) {
-                swiperRef.current?.lock();
+                swiperRef.current?.disable();
               } else {
-                swiperRef.current?.unlock();
+                swiperRef.current?.enable();
               }
             }}
           />

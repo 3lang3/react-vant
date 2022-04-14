@@ -21,8 +21,11 @@ export interface SwiperProps extends BaseTypeProps {
   vertical?: boolean;
   /** 动画时长，单位为 ms */
   duration?: number;
-  /** 是否禁用 */
-  disable?: boolean;
+  /**
+   * 是否启用
+   * @default true
+   */
+  enabled?: boolean;
   /** 每一页轮播结束后触发 */
   onChange?: (index: number) => void;
   /** 指示器属性 */
@@ -50,8 +53,10 @@ export type SwiperInstance = {
   swipeTo: (index: number) => void;
   swipeNext: () => void;
   swipePrev: () => void;
-  lock: () => void;
-  unlock: () => void;
+  /** 动态启用Swiper（如果已经禁用） */
+  enable: () => void;
+  /** 禁用 Swiper（如果已启用）被禁用时，它将不会响应任何事件和交互 */
+  disable: () => void;
 };
 
 export type SwiperItemInstance = {

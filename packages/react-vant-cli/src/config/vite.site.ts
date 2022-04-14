@@ -114,6 +114,7 @@ export function getViteConfigForSiteDev(): InlineConfig {
       entries: [join(SITE_SRC_DIR, '*.html'), join(SRC_DIR, 'index.ts')],
     },
     server: {
+      host: true,
       port: 4000,
     },
   };
