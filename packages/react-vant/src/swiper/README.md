@@ -219,6 +219,7 @@ export default () => {
 | enabled | 是否启用 Swiper | _boolean_ | `true` |
 | vertical | 是否为纵向滚动 | _boolean_ | `false` |
 | touchable | 是否可以通过手势滑动 | _boolean_ | `true` |
+| preventScroll | 是否阻止内部滚动行为 | _boolean_ | `true` |
 | slideSize | 滑块的宽度百分比 | _number_ | `100` |
 | trackOffset | 滑块轨道整体的偏移量百分比 | _number_ | `0` |
 | stuckAtBoundary | 是否在边界两边卡住，避免出现空白，仅在非 `loop` 模式且 `slideSize` < 100 时生效 | _boolean_ | `false` |

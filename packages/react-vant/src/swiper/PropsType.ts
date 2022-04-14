@@ -40,6 +40,8 @@ export interface SwiperProps extends BaseTypeProps {
   stuckAtBoundary?: boolean;
   /** 自适应高度 */
   autoHeight?: boolean;
+  /** 是否阻止内部滚动行为 */
+  preventScroll?: boolean;
   children?: React.ReactElement | React.ReactElement[];
 }
 
@@ -61,4 +63,5 @@ export type SwiperInstance = {
 
 export type SwiperItemInstance = {
   getHeight: () => number;
+  self: any;
 };

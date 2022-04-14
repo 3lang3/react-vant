@@ -156,6 +156,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     (state) => {
       const slidePixels = getSlidePixels();
       if (!slidePixels) return;
+      if (!props.preventScroll && isScrollTarget(state.target as any, childrenRefs[current].self)) {
+        return;
+      }
+
       const paramIndex = vertical ? 1 : 0;
       const offset = state.offset[paramIndex];
       const direction = state.direction[paramIndex];
@@ -347,6 +351,7 @@ Swiper.defaultProps = {
   slideSize: 100,
   trackOffset: 0,
   stuckAtBoundary: false,
+  preventScroll: true,
 };
 
 export default Swiper;
@@ -354,4 +359,15 @@ export default Swiper;
 function modulus(value: number, division: number) {
   const remainder = value % division;
   return remainder < 0 ? remainder + division : remainder;
+}
+
+function isScrollTarget(element: HTMLElement, parent: HTMLElement) {
+  if (element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight) {
+    return true;
+  }
+  if (element.parentElement && element.parentElement !== parent) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return isScrollTarget(element.parentElement, parent);
+  }
+  return false;
 }
