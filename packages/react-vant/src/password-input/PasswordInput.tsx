@@ -30,6 +30,8 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   const codeArr = useMemo(() => state.code?.toString().split(''), [state.code]);
   const cursorIndex = useMemo(() => codeArr.length, [codeArr.length]);
 
+  const { length, onSubmit } = props;
+
   const focus = () => {
     inputRef.current?.focus();
     updateState({ focused: true });
@@ -45,8 +47,8 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   };
 
   const formatValue = (val: string, callback?: (v: string) => void) => {
-    if (isDef(props.length) && val?.length > +props.length) {
-      val = val.slice(0, props.length);
+    if (isDef(length) && val?.length > +length) {
+      val = val.slice(0, length);
     }
 
     if (props.type === 'number') {
@@ -72,7 +74,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
 
   const renderPoints = () => {
     const Points: JSX.Element[] = [];
-    const { mask, length, gutter } = props;
+    const { mask, gutter } = props;
 
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < length; i++) {
@@ -114,11 +116,12 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   }, [props.value]);
 
   useEffect(() => {
-    if (state.code.length >= props.length) {
+    if (state.code.length >= length) {
       inputRef?.current?.blur?.();
-      props?.onSubmit?.(state.code);
+      onSubmit?.(state.code);
     }
-  }, [props, state.code]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [length, state.code]);
 
   useUpdateEffect(() => {
     if (props.type === 'number') {
