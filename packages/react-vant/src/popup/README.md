@@ -42,6 +42,14 @@ import { Popup } from 'react-vant';
 
 <code title="标题弹窗" src="./demo/title.tsx"></code>
 
+### ConfigProvider 配置
+
+通过设置 `teleport` 属性，弹窗会挂载在指定的节点下，`ConfigProvider` 即可生效。
+
+<code title="ConfigProvider配置" src="./demo/teleport.tsx"></code>
+
+> 如果想实现全局配置 `Popup` 样式变量，请使用 [css :root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root#examples)
+
 ## API
 
 ### Props
@@ -98,6 +106,9 @@ import type { PopupPosition, PopupCloseIconPosition } from 'react-vant';
 | 名称                               | 默认值                                        | 描述 |
 | ---------------------------------- | --------------------------------------------- | ---- |
 | --rv-popup-background-color        | _var(--rv-white)_                             | -    |
+| --rv-popup-title-font-size         | _16px_                                        | -    |
+| --rv-popup-descrition-color        | _#969799_                                     | -    |
+| --rv-popup-descrition-font-size    | _14px_                                        | -    |
 | --rv-popup-transition              | _transform var(--rv-animation-duration-base)_ | -    |
 | --rv-popup-round-border-radius     | _16px_                                        | -    |
 | --rv-popup-close-icon-size         | _22px_                                        | -    |
