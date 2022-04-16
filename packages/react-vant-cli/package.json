@@ -83,7 +83,7 @@
     "postcss-px-multiple": "^0.1.5",
     "prism-react-renderer": "^1.2.1",
     "prismjs": "^1.26.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.0.0",
     "release-it": "^14.2.2",
     "signale": "^1.4.0",
     "slash2": "^2.0.0",
