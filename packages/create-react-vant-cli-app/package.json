@@ -44,7 +44,7 @@
     "fast-glob": "^3.2.4",
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.6",
-    "yeoman-environment": "^2.8.0",
+    "yeoman-environment": "^3.0.0",
     "yeoman-generator": "^4.6.0"
   },
   "release-it": {
