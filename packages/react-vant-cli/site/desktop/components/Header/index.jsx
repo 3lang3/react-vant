@@ -2,9 +2,10 @@
 import React, { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
-import SearchInput from '../SearchInput';
 import { GitHubIcon, HttpLinkIcon } from '../Icons';
 import './index.less';
+
+const SearchInput = React.lazy(() => import('../SearchInput'));
 
 const Header = (props) => {
   const { lang, config, searchConfig, langConfigs } = props;
@@ -30,7 +31,11 @@ const Header = (props) => {
     <div className="vant-doc-header">
       <div className="vant-doc-row">
         <div className="vant-doc-header__top">
-          {searchConfig && <SearchInput {...searchConfig} />}
+          {searchConfig && (
+            <React.Suspense fallback={<div />}>
+              <SearchInput {...searchConfig} />
+            </React.Suspense>
+          )}
           <ul className="vant-doc-header__top-nav">
             {config.links &&
               config.links.length &&
