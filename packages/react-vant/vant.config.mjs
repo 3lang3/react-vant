@@ -7,6 +7,11 @@ export default {
     css: { preprocessor: 'less' },
     site: { publicPath: './' },
   },
+  searchConfig: {
+    appId: 'E3Q32VXBYB',
+    apiKey: 'c286dbe93a56bf25885c5e47cbe8bd4a',
+    indexName: 'react-vant',
+  },
   site: {
     defaultLang: 'zh-CN',
     versions: [{ label: 'v1', link: 'https://3lang3.github.io/react-vant/v1' }],

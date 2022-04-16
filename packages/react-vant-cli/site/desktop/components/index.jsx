@@ -7,8 +7,16 @@ import Simulator from './Simulator';
 import { SimulatorContext } from '../context';
 
 const Doc = (props) => {
-  const { lang, versions, simulatorSrc, langConfigs, config, hideSimulator, currentCompnentName } =
-    props;
+  const {
+    lang,
+    versions,
+    simulatorSrc,
+    searchConfig,
+    langConfigs,
+    config,
+    hideSimulator,
+    currentCompnentName,
+  } = props;
   const hasSimulator = !!simulatorSrc && !hideSimulator;
   const [visible, updateVisible] = React.useState(false);
   const toggleSimulator = React.useCallback((visibleStatus) => {
@@ -21,7 +29,7 @@ const Doc = (props) => {
     <div className="vant-doc">
       <Nav config={config} lang={lang} navConfig={config.nav} versions={versions} />
       <Container>
-        <Header lang={lang} config={config} langConfigs={langConfigs} />
+        <Header lang={lang} config={config} searchConfig={searchConfig} langConfigs={langConfigs} />
         <SimulatorContext.Provider value={{ visible, toggleSimulator }}>
           <Content currentCompnentName={currentCompnentName}>{props.children}</Content>
           {hasSimulator && <Simulator src={simulatorSrc} />}

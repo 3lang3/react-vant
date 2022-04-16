@@ -7,19 +7,19 @@
   left: @van-doc-nav-width;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
-  z-index: 9999;
+  z-index: 9;
   user-select: none;
   border-bottom: 1px solid @van-doc-border-color;
 
   &__top {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     height: @van-doc-header-top-height;
     padding: 0 @van-doc-padding;
     line-height: @van-doc-header-top-height;
 
     &-nav {
-      flex: 1;
       text-align: right;
       > li {
         position: relative;

@@ -97,6 +97,7 @@ const App = () => {
       lang={lang}
       config={localeConfig}
       langConfigs={langConfigs}
+      searchConfig={config.searchConfig}
       versions={versions}
       simulatorSrc={simulatorSrc}
       hideSimulator={hideSimulatorMemo}

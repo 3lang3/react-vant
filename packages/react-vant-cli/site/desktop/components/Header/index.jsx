@@ -7,7 +7,7 @@ import { GitHubIcon, HttpLinkIcon } from '../Icons';
 import './index.less';
 
 const Header = (props) => {
-  const { lang, config, langConfigs } = props;
+  const { lang, config, searchConfig, langConfigs } = props;
   const { pathname } = useLocation();
 
   const anotherLang = useMemo(() => {
@@ -30,7 +30,7 @@ const Header = (props) => {
     <div className="vant-doc-header">
       <div className="vant-doc-row">
         <div className="vant-doc-header__top">
-          {config.searchConfig && <SearchInput lang={lang} searchConfig={config.searchConfig} />}
+          {searchConfig && <SearchInput {...searchConfig} />}
           <ul className="vant-doc-header__top-nav">
             {config.links &&
               config.links.length &&
