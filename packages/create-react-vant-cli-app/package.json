@@ -34,7 +34,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/yeoman-environment": "2.10.5",
-    "@types/yeoman-generator": "3.1.4",
+    "@types/yeoman-generator": "5.2.10",
     "release-it": "13.7.2",
     "typescript": "4.6.3"
   },
@@ -45,7 +45,7 @@
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.6",
     "yeoman-environment": "^2.8.0",
-    "yeoman-generator": "^4.6.0"
+    "yeoman-generator": "^5.0.0"
   },
   "release-it": {
     "git": {
