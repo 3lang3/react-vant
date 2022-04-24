@@ -321,6 +321,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
         if (selected) {
           const [unselectedDate] = currentDate.splice(selectedIndex, 1);
           props.onUnselect?.(cloneDate(unselectedDate));
+          select([...currentDate]);
         } else if (props.maxRange && currentDate.length >= props.maxRange) {
           Toast(props.rangePrompt || `选择天数不能超过 ${props.maxRange} 天`);
         } else {
