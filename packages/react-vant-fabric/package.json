@@ -20,7 +20,7 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/eslint-plugin": "5.21.0",
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.0.0",
