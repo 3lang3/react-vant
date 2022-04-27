@@ -1,4 +1,4 @@
-const fabric = require('@react-vant/fabric');
+const fabric = require('@umijs/fabric');
 
 module.exports = {
   ...fabric.prettier,

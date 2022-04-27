@@ -1,39 +1,38 @@
 {
   "private": true,
-  "packageManager": "pnpm",
   "scripts": {
     "build": "pnpm build --dir ./packages/react-vant",
-    "build:site": "pnpm build:site --dir ./packages/react-vant",
-    "site:deploy": "pnpm site:deploy --dir ./packages/react-vant",
-    "changelog": "lerna exec --scope react-vant yarn changelog",
-    "dev": "pnpm dev --dir ./packages/react-vant"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "react-vant-cli commit-lint"
-    }
+    "clean": "rm -rf node_modules && rm -rf packages/**/node_modules",
+    "dev": "pnpm dev --dir ./packages/react-vant",
+    "docs:build": "pnpm docs:build --dir ./packages/react-vant",
+    "docs:deploy": "pnpm site:deploy --dir ./packages/react-vant",
+    "lint-staged": "lint-staged",
+    "lint:ts": "pnpm lint --dir ./packages/react-vant",
+    "react-vant:lint": "pnpm lint --dir ./packages/react-vant"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,less}": "prettier --write",
-    "*.{ts,tsx,js}": "eslint --fix",
+    "*.{ts,tsx,less}": "prettier --write",
+    "*.{ts,tsx}": "npm run react-vant:lint",
     "*.{css,less}": "stylelint --fix",
     "package.json": "yarn sort-package-json"
   },
-  "dependencies": {
-    "@react-vant/cli": "workspace:*"
-  },
   "devDependencies": {
-    "@react-vant/fabric": "workspace:*",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "@umijs/fabric": "^2.10.2",
     "all-contributors-cli": "^6.20.0",
+    "commitlint": "^16.2.3",
     "eslint": "7.32.0",
-    "husky": "4.3.8",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "husky": "7.0.4",
     "lint-staged": "12.0.2",
     "prettier": "2.4.1",
     "pretty-quick": "3.1.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
     "sort-package-json": "1.53.1",
     "stylelint": "13.13.1"
-  }
+  },
+  "packageManager": "pnpm"
 }

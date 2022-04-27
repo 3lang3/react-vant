@@ -28,22 +28,50 @@ import {
   AppsO,
 } from '@react-vant/icons';
 import './home.less';
+import { useCN } from './useCN';
+
+const buttons = ['React', 'Vant', 'Next'];
+
+const ButtonGroupDemo = () => {
+  const [current, setCurrent] = React.useState(0);
+  return (
+    <Button.Group className="_home-button-group" round block type="primary">
+      {buttons.map((button, index) => (
+        <Button key={button} plain={index !== current} onClick={() => setCurrent(index)}>
+          {button}
+        </Button>
+      ))}
+    </Button.Group>
+  );
+};
 
 const SliderDemo = () => {
   const [value, updateValue] = React.useState<[number, number]>([20, 50]);
   return <Slider barHeight={4} range value={value} onChange={updateValue} vertical />;
 };
 
-export default () => {
+const Home = () => {
+  const isCN = useCN();
+
   return (
     <div className="_home-container">
       <div className="_home-container-left">
         <Space direction="vertical" block align="end">
           <Typography.Title level={1}>React Vant</Typography.Title>
-          <Typography.Title level={2}>
-            性能极佳的高质量组件库，覆盖<span className="_home-primary-color">移动端</span>主流场景
+          <Typography.Title level={2} style={{ textAlign: 'right' }}>
+            {isCN ? (
+              <>
+                性能极佳的高质量组件库，覆盖<span className="_home-primary-color">移动端</span>
+                主流场景
+              </>
+            ) : (
+              <>
+                Fast and high-quality <span className="_home-primary-color">mobile</span> component
+                library
+              </>
+            )}
           </Typography.Title>
-          <Typography.Text type="secondary" size="lg">
+          <Typography.Text type="secondary" size="lg" style={{ maxWidth: 520, textAlign: 'right' }}>
             <Typography.Text
               style={{ cursor: 'pointer' }}
               onClick={() => window.open('https://github.com/youzan/vant', '_blank')}
@@ -51,8 +79,10 @@ export default () => {
               type="primary"
             >
               Vant
-            </Typography.Text>{' '}
-            是有赞前端团队开源的移动端组件库，于 2017 年开源。
+            </Typography.Text>
+            {isCN
+              ? '是有赞前端团队开源的移动端组件库，于 2017 年开源。'
+              : ' is a mobile component library open source by youzan front-end team, which was open source in 2017.'}
           </Typography.Text>
 
           <Space gap={16} style={{ marginTop: 30 }}>
@@ -62,15 +92,15 @@ export default () => {
               icon={<AppsO />}
               style={{ width: 148 }}
               onClick={() => {
-                window.location.href = '#/zh-CN/button';
+                window.location.href = '/components';
               }}
             >
-              组件列表
+              {isCN ? `组件列表` : `Components`}
             </Button>
             <Button
               size="large"
               onClick={() => {
-                window.location.href = '#/zh-CN/quickstart';
+                window.location.href = '/guide/quickstart';
               }}
               round
               type="primary"
@@ -78,7 +108,7 @@ export default () => {
               iconPosition="right"
               style={{ width: 148 }}
             >
-              开始使用
+              {isCN ? `开始使用` : `Get Started`}
             </Button>
           </Space>
         </Space>
@@ -95,6 +125,7 @@ export default () => {
                     </Typography.Text>
                     <Button
                       round
+                      plain
                       size="mini"
                       icon={
                         <Exchange style={{ fontSize: 18, color: '#3f45ff', fontWeight: 'bold' }} />
@@ -140,11 +171,7 @@ export default () => {
                 </Space>
               </Flex>
 
-              <Button.Group className="_home-button-group" plain round block type="primary">
-                <Button type="primary">React</Button>
-                <Button>Vant</Button>
-                <Button>Next</Button>
-              </Button.Group>
+              <ButtonGroupDemo />
 
               <Space className="_home-switch" align="center" block justify="between">
                 <Switch defaultChecked />
@@ -203,7 +230,12 @@ export default () => {
           </Flex.Item>
           <Flex.Item span={12}>
             <Space direction="vertical" gap={40} block>
-              <Calendar className="_home-calendar" showConfirm={false} poppable={false} />
+              <Calendar
+                title={isCN ? '日期选择' : 'Calender'}
+                className="_home-calendar"
+                showConfirm={false}
+                poppable={false}
+              />
               <Tabs className="_home-tabs">
                 {['Yesterday', 'Today', 'Tomorrow'].map((el) => (
                   <Tabs.TabPane key={el} title={el} />
@@ -227,16 +259,16 @@ export default () => {
                 </Flex.Item>
               </Flex>
 
-              <Space className="_home-steps" justify="between" block>
-                <Space direction="vertical">
+              <Space className="_home-steps" justify="between" direction="vertical" block>
+                <Space justify="between" block>
                   <Typography.Title level={5}>Add these properties:</Typography.Title>
-                  <Steps activeColor="#3f45ff" direction="vertical" active={2}>
-                    <Steps.Item>Margin Top</Steps.Item>
-                    <Steps.Item>Padding Bottom</Steps.Item>
-                    <Steps.Item>Flexbox</Steps.Item>
-                  </Steps>
+                  <WarningO style={{ fontSize: 24, color: '#888' }} />
                 </Space>
-                <WarningO style={{ fontSize: 24, color: '#888' }} />
+                <Steps activeColor="#3f45ff" direction="vertical" active={2}>
+                  <Steps.Item>Margin Top</Steps.Item>
+                  <Steps.Item>Padding Bottom</Steps.Item>
+                  <Steps.Item>Flexbox</Steps.Item>
+                </Steps>
               </Space>
 
               <Cell
@@ -260,3 +292,5 @@ export default () => {
     </div>
   );
 };
+
+export default Home;

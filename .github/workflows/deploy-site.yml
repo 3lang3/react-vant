@@ -2,25 +2,36 @@ name: Deploy Site
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'docs/**'
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm run bootstrap
-
-      - name: Build Site
-        run: npm run build:site
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          branch: gh-pages
-          folder: packages/react-vant/site
+          node-version: '14'
+      - name: Run Npm Scripts
+        run: |
+          node -v
+          npm install pnpm -g
+          pnpm -v
+          pnpm install
+          yarn docs:build
+      - name: Generator 404 file
+        run: |
+          cp ./packages/react-vant/docs-dist/index.html ./packages/react-vant/docs-dist/404.html
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/react-vant/docs-dist
+          cname: react-vant.3lang.dev

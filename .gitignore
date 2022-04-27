@@ -18,7 +18,8 @@ pnpm-global
 es
 lib
 2x
-packages/react-vant/site
+docs-dist
+.rcdoc
 dist
 changelog.generated.md
 

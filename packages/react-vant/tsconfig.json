@@ -14,8 +14,9 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "react-vant": ["src/index.ts"]
+      "react-vant": ["src/components/index.ts"]
     }
   },
-  "exclude": ["node_modules", "lib", "es"]
+  "exclude": ["node_modules", "dist", ".rcdoc"],
+  "include": ["src", "docs", "_rcdoc_", "global.d.ts", "rcdoc.config.ts"]
 }

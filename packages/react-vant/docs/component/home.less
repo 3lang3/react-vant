@@ -1,32 +1,71 @@
 @primary-color: #3f45ff;
 @shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px, rgba(0, 0, 0, 0.04) 0px 10px 10px;
 
+html {
+  --rv-page-footer-bg: #f6f8fc;
+  --rv-page-home-bg-main: #f5f5f5;
+  --rv-page-home-bg-light: var(--mdoc-background-color);
+  --rv-page-home-component-bg: #fff;
+  --rv-page-home-calendar-month-mark-color: rgba(242, 243, 245, 0.8);
+}
+html[data-theme="dark"] {
+  --rv-page-home-bg-main:  rgb(10, 25, 41);
+  --rv-page-home-component-bg: #001e3c;
+  --rv-page-home-calendar-month-mark-color: rgba(17, 54, 101, 0.8);
+  --rv-page-footer-bg: #131313;
+}
+
 ._home {
-  &-full-page {
-    padding: 0 !important;
-  }
+  
+  color: var(--mdoc-font-color-base);
   &-wrapper {
     margin: 20px auto;
   }
 
   &-box {
     box-sizing: border-box;
-    background-color: #fff;
-    border: 1px solid #eee;
+    background-color: var(--rv-page-home-component-bg);
+    border: 1px solid var(--mdoc-border-color);
     border-radius: 10px;
     padding: 10px;
   }
 
   &-container {
+
+    --rv-border-color: var(--mdoc-border-color);
+    --rv-typography-color: var(--mdoc-font-color-base);
+    --rv-cell-border-color: var(--mdoc-border-color);
+    --rv-cell-text-color: var(--mdoc-font-color-base);
+    --rv-cell-background-color: var(--rv-page-home-component-bg);
+    --rv-collapse-item-content-background-color: var(--rv-page-home-component-bg);
+    --rv-collapse-item-content-text-color: var(--mdoc-font-color-base);
+    --rv-calendar-background-color: var(--rv-page-home-component-bg);
+
+    --rv-steps-background-color: var(--rv-page-home-component-bg);
+    --rv-step-text-color: var(--mdoc-font-color-base);
+    --rv-step-finish-text-color: var(--mdoc-font-color-base);
+
+    --rv-button-default-color: var(--mdoc-font-color-base);
+    --rv-button-default-border-color: var(--mdoc-border-color);
+    --rv-button-default-background-color: transparent;
+    --rv-button-plain-background-color: var(--rv-page-home-component-bg);
+
+    --rv-checkbox-label-color: var(--mdoc-font-color-base);
+    --rv-calendar-month-mark-color: var(--rv-page-home-calendar-month-mark-color);
+
+    [class*='rv-hairline']::after {
+      --rv-gray-3: var(--mdoc-border-color);
+    }
+
     display: flex;
     align-items: stretch;
-    background: #f5f5f5;
+    background: var(--rv-page-home-bg-main);
 
     &-left,
     &-right {
       width: 50%;
       box-sizing: border-box;
-      height: calc(100vh - 65px);
+      height: calc(100vh - 60px);
     }
 
     &-left {
@@ -35,7 +74,7 @@
       padding: 50px;
       align-items: center;
       justify-content: center;
-      background-color: #fff;
+      background-color: var(--rv-page-home-bg-light);
 
       .rv-typography--l1 {
         font-size: 72px;
@@ -66,15 +105,22 @@
   &-card {
     box-shadow: @shadow;
     background: linear-gradient(135deg, #3f45ff 10%, #7367f0 100%);
-    color: #fff;
+    .rv-button--plain {
+      border-color: #fff;
+      background-color: #fff;
+    }
   }
 
   &-music-card {
-    background-color: #fff;
-    border: 1px solid #eee;
+    background-color: var(--rv-page-home-component-bg);
+    border: 1px solid var(--mdoc-border-color);
     border-radius: 10px;
     padding: 10px;
     align-items: stretch;
+  }
+
+  &-button-group {
+    width: 100%;
   }
 
   &-tabs {
@@ -98,8 +144,8 @@
   &-steps {
     box-sizing: border-box;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #eee;
+    background-color: var(--rv-page-home-component-bg);
+    border: 1px solid var(--mdoc-border-color);
     border-radius: 10px;
 
     &-count {

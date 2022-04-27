@@ -13,10 +13,12 @@
     "frontend",
     "react-component"
   ],
-  "homepage": "https://3lang3.github.io/react-vant",
+  "homepage": "https://react-vant.3lang.dev",
   "repository": {
     "type": "git",
-    "url": "git@github.com:3lang3/react-vant.git"
+    "url": "git@github.com:3lang3/react-vant.git",
+    "branch": "main",
+    "package": "./packages/react-vant"
   },
   "funding": {
     "type": "opencollective",
@@ -32,49 +34,48 @@
     "./es/styles/index.js",
     "./src/styles/index.ts"
   ],
-  "main": "./lib/index.js",
-  "jsdelivr": "./lib/react-vant.min.js",
-  "unpkg": "./lib/react-vant.min.js",
-  "module": "./es/index.js",
-  "style": "./lib/index.css",
-  "typings": "./es/index.d.ts",
   "exports": {
     ".": {
       "node": {
-        "import": "./lib/react-vant.es.js",
-        "require": "./lib/react-vant.cjs.js"
+        "import": "./bundle/react-vant.es.js",
+        "require": "./bundle/react-vant.js"
       },
+      "require": "./bundle/react-vant.js",
       "import": "./es/index.js",
-      "require": "./lib/index.js",
-      "types": "./lib/index.d.ts"
+      "types": "./es/index.d.ts"
     },
     "./es": "./es/index.js",
     "./lib": "./lib/index.js",
     "./es/": "./es/",
-    "./es/*": "./es/*/index.js",
     "./lib/": "./lib/",
-    "./2x": "./2x",
+    "./bundle/": "./bundle/",
+    "./2x": "./2x/es/index.js",
+    "./2x/": "./2x/",
     "./package.json": "./package.json"
   },
+  "main": "./lib/index.js",
+  "jsdelivr": "./bundle/react-vant.min.js",
+  "unpkg": "./bundle/react-vant.min.js",
+  "module": "./es/index.js",
+  "typings": "./es/index.d.ts",
+  "style": "./bundle/index.css",
   "files": [
-    "lib",
-    "es",
-    "2x"
+    "./dist"
   ],
   "scripts": {
-    "build": "react-vant-cli build",
-    "build:site": "react-vant-cli build-site",
-    "changelog": "react-vant-cli changelog",
-    "create-component": "react-vant-cli create-component",
-    "postcreate-component": "yarn prettier",
-    "prepack": "yarn build",
+    "build": "rcdoc build && pnpm build:gulp",
+    "build:gulp": "gulp",
+    "deploy:gh-pages": "gh-pages -d docs-dist",
+    "dev": "rcdoc dev",
+    "docs:build": "rcdoc docs-build",
+    "docs:deploy": "pnpm run docs:build && gh-pages -d docs-dist --add",
+    "lint": "eslint --fix",
+    "lint:tsx": "eslint src --ext ts,tsx",
+    "prepack": "pnpm build",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
-    "release": "pnpm publish --tag next",
-    "release:dev": "pnpm publish --tag dev",
-    "site:deploy": "pnpm run build:site && gh-pages -d site --add",
-    "dev": "react-vant-cli dev",
-    "test": "react-vant-cli test",
-    "test:coverage": "open tests/coverage/index.html"
+    "preview": "rcdoc preview",
+    "publish": "pnpm publish ./dist --tag next",
+    "publish:dev": "pnpm publish ./dist --tag dev"
   },
   "browserslist": [
     "Android >= 4.0",
@@ -90,13 +91,17 @@
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
-    "@react-vant/cli": "workspace:*",
+    "@rcdoc/cli": "^0.1.5",
+    "@rcdoc/theme": "^0.1.4",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@vant/area-data": "1.1.3",
-    "gh-pages": "3.2.3",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^9.0.1",
+    "postcss-px-multiple": "^0.1.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "through2": "^4.0.2",
     "typescript": "4.6.3"
   },
   "peerDependencies": {
