@@ -56,7 +56,7 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
 
   return (
     <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked }}>
-      <div className={clsx(bem([props.direction]))}>
+      <div className={clsx(props.className, bem([props.direction]))}>
         {React.Children.toArray(props.children)
           .filter(Boolean)
           .map((child: WithDisplayNameReactElement, index: number) => {
