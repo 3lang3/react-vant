@@ -32,7 +32,7 @@
     "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
     "del": "^5.1.0",
     "fast-glob": "^3.2.2",
-    "fs-extra": "^9.0.1",
+    "fs-extra": "10.1.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
