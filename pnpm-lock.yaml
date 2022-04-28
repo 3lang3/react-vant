@@ -87,7 +87,7 @@ importers:
       '@babel/core': ^7.15.5
       '@babel/plugin-transform-modules-commonjs': ^7.15.4
       '@svgr/babel-plugin-remove-jsx-attribute': ^6.0.0
-      del: ^5.1.0
+      del: 6.0.0
       fast-glob: ^3.2.2
       fs-extra: ^9.0.1
       gulp: ^4.0.2
@@ -102,7 +102,7 @@ importers:
       '@babel/core': 7.17.9
       '@babel/plugin-transform-modules-commonjs': 7.17.9_@babel+core@7.17.9
       '@svgr/babel-plugin-remove-jsx-attribute': 6.0.0_@babel+core@7.17.9
-      del: 5.1.0
+      del: 6.0.0
       fast-glob: 3.2.11
       fs-extra: 9.1.0
       gulp: 4.0.2
@@ -4691,16 +4691,16 @@ packages:
       isobject: 3.0.1
     dev: true
 
-  /del/5.1.0:
-    resolution: {integrity: sha512-wH9xOVHnczo9jN2IW68BabcecVPxacIA3g/7z6vhSU/4stOKQzeCRK0yD0A24WiAAUJmmVpWqrERcTxnLo3AnA==}
-    engines: {node: '>=8'}
+  /del/6.0.0:
+    resolution: {integrity: sha512-1shh9DQ23L16oXSZKB2JxpL7iMy2E0S9d517ptA1P8iw0alkPtQcrKH7ru31rYtKwF499HkTu+DRzq3TCKDFRQ==}
+    engines: {node: '>=10'}
     dependencies:
-      globby: 10.0.2
+      globby: 11.1.0
       graceful-fs: 4.2.10
       is-glob: 4.0.3
       is-path-cwd: 2.2.0
       is-path-inside: 3.0.3
-      p-map: 3.0.0
+      p-map: 4.0.0
       rimraf: 3.0.2
       slash: 3.0.0
     dev: true
@@ -6284,20 +6284,6 @@ packages:
 
   /globby/10.0.0:
     resolution: {integrity: sha512-3LifW9M4joGZasyYPz2A1U74zbC/45fvpXUvO/9KbSa+VV0aGZarWkfdgKyR9sExNP0t0x0ss/UMJpNpcaTspw==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@types/glob': 7.2.0
-      array-union: 2.1.0
-      dir-glob: 3.0.1
-      fast-glob: 3.2.11
-      glob: 7.2.0
-      ignore: 5.2.0
-      merge2: 1.4.1
-      slash: 3.0.0
-    dev: true
-
-  /globby/10.0.2:
-    resolution: {integrity: sha512-7dUi7RvCoT/xast/o/dLN53oqND4yk0nsHkhRgn9w65C4PofCLOoJ39iSOg+qVDdWQPIEj+eszMHQ+aLVwwQSg==}
     engines: {node: '>=8'}
     dependencies:
       '@types/glob': 7.2.0
@@ -9699,13 +9685,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-limit: 3.1.0
-    dev: true
-
-  /p-map/3.0.0:
-    resolution: {integrity: sha512-d3qXVTF/s+W+CdJ5A29wywV2n8CQQYahlgz2bFiA+4eVNJbHJodPZ+/gXwPGh0bOqA+j8S+6+ckmvLGPk1QpxQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      aggregate-error: 3.1.0
     dev: true
 
   /p-map/4.0.0:
