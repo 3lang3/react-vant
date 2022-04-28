@@ -89,7 +89,7 @@ importers:
       '@svgr/babel-plugin-remove-jsx-attribute': ^6.0.0
       del: ^5.1.0
       fast-glob: ^3.2.2
-      fs-extra: ^9.0.1
+      fs-extra: 10.1.0
       gulp: ^4.0.2
       gulp-babel: ^8.0.0
       gulp-typescript: ^6.0.0-alpha.1
@@ -104,7 +104,7 @@ importers:
       '@svgr/babel-plugin-remove-jsx-attribute': 6.0.0_@babel+core@7.17.9
       del: 5.1.0
       fast-glob: 3.2.11
-      fs-extra: 9.1.0
+      fs-extra: 10.1.0
       gulp: 4.0.2
       gulp-babel: 8.0.0_@babel+core@7.17.9
       gulp-typescript: 6.0.0-alpha.1_typescript@4.6.3
@@ -3368,11 +3368,6 @@ packages:
     resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
     dev: true
 
-  /at-least-node/1.0.0:
-    resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
-    engines: {node: '>= 4.0.0'}
-    dev: true
-
   /atob/2.1.2:
     resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
     engines: {node: '>= 4.5.0'}
@@ -6007,16 +6002,6 @@ packages:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
     dependencies:
-      graceful-fs: 4.2.10
-      jsonfile: 6.1.0
-      universalify: 2.0.0
-    dev: true
-
-  /fs-extra/9.1.0:
-    resolution: {integrity: sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==}
-    engines: {node: '>=10'}
-    dependencies:
-      at-least-node: 1.0.0
       graceful-fs: 4.2.10
       jsonfile: 6.1.0
       universalify: 2.0.0
