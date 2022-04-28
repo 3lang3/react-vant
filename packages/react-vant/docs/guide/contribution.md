@@ -10,19 +10,19 @@
 
 ### 本地开发
 
-按照下面的步骤操作，即可在本地开发组件。
+按照下面的步骤操作，即可在本地开发组
+
+> react vant使用 [pnpm-workspace](https://pnpm.io/workspaces)， 请使用[pnpm](https://pnpm.io/)安装依赖
 
 ```bash
 # 克隆仓库
 https://github.com/3lang3/react-vant.git
 
 # 安装依赖
-cd my-app && npm run bootstrap
+cd react-vant && pnpm install
 
-# 进入开发模式，浏览器访问 http://localhost:8080
-npm run start
-# 创建新组件，根据提示输入组件信息
-npm run create-component
+# 进入开发模式，浏览器访问 http://localhost:4000
+pnpm dev
 ```
 
 ### 目录结构
@@ -44,7 +44,9 @@ react-vant
 
 ### 添加新组件
 
-添加新组件时，请按照下面的目录结构组织文件，并在 `vant.config.js` 中配置组件名称。
+添加新组件时，请按照下面的目录结构组织文件。
+
+> 可以在 `rcdoc.config.ts` 的 `menus` 属性中调整组件菜单顺序和分组。
 
 ```
 src
