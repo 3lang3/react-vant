@@ -18,7 +18,7 @@ importers:
       lint-staged: 12.0.2
       prettier: 2.4.1
       pretty-quick: 3.1.3
-      sort-package-json: 1.53.1
+      sort-package-json: 1.55.0
       stylelint: 13.13.1
     devDependencies:
       '@commitlint/config-conventional': 16.2.1
@@ -35,7 +35,7 @@ importers:
       lint-staged: 12.0.2
       prettier: 2.4.1
       pretty-quick: 3.1.3_prettier@2.4.1
-      sort-package-json: 1.53.1
+      sort-package-json: 1.55.0
       stylelint: 13.13.1
 
   packages/react-vant:
@@ -11589,8 +11589,8 @@ packages:
     resolution: {integrity: sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==}
     dev: true
 
-  /sort-package-json/1.53.1:
-    resolution: {integrity: sha512-ltLORrQuuPMpy23YkWCA8fO7zBOxM4P1j9LcGxci4K2Fk8jmSyCA/ATU6CFyy8qR2HQRx4RBYWzoi78FU/Anuw==}
+  /sort-package-json/1.55.0:
+    resolution: {integrity: sha512-xhKvRD8WGbALjXQkVuk4/93Z/2NIO+5IzKamdMjN5kn3L+N+M9YWQssmM6GXlQr9v1F7PGWsOJEo1gvXOhM7Mg==}
     hasBin: true
     dependencies:
       detect-indent: 6.1.0
