@@ -95,7 +95,7 @@ importers:
       gulp-typescript: ^6.0.0-alpha.1
       node-sketch: ^0.14.1
       shelljs: ^0.8.4
-      svgo: 1.2.2
+      svgo: 1.3.2
       typescript: ^4.5.2
     devDependencies:
       '@babel/cli': 7.17.6_@babel+core@7.17.9
@@ -110,7 +110,7 @@ importers:
       gulp-typescript: 6.0.0-alpha.1_typescript@4.6.3
       node-sketch: 0.14.1
       shelljs: 0.8.5
-      svgo: 1.2.2
+      svgo: 1.3.2
       typescript: 4.6.3
 
 packages:
@@ -3588,6 +3588,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -4397,20 +4398,12 @@ packages:
       nth-check: 2.0.1
     dev: true
 
-  /css-tree/1.0.0-alpha.28:
-    resolution: {integrity: sha512-joNNW1gCp3qFFzj4St6zk+Wh/NBv0vM5YbEreZk0SD4S23S+1xBKb6cLDg2uj4P4k/GUMlIm6cKIDqIG+vdt0w==}
-    engines: {node: '>=0.10.0'}
+  /css-tree/1.0.0-alpha.37:
+    resolution: {integrity: sha512-DMxWJg0rnz7UgxKT0Q1HU/L9BeJI0M6ksor0OgqOnF+aRCDWg/N2641HmVyU9KVIu0OVVWOb2IpC9A+BJRnejg==}
+    engines: {node: '>=8.0.0'}
     dependencies:
-      mdn-data: 1.1.4
-      source-map: 0.5.7
-    dev: true
-
-  /css-tree/1.0.0-alpha.29:
-    resolution: {integrity: sha512-sRNb1XydwkW9IOci6iB2xmy8IGCj6r/fr+JWitvJ2JxQRPzN3T4AGGVWCMlVmVwM1gtgALJRmGIlWv5ppnGGkg==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      mdn-data: 1.1.4
-      source-map: 0.5.7
+      mdn-data: 2.0.4
+      source-map: 0.6.1
     dev: true
 
   /css-tree/1.1.3:
@@ -4419,10 +4412,6 @@ packages:
     dependencies:
       mdn-data: 2.0.14
       source-map: 0.6.1
-    dev: true
-
-  /css-url-regex/1.1.0:
-    resolution: {integrity: sha1-g4NCMMyfdMRX3lnuvRVD/uuDt+w=}
     dev: true
 
   /css-what/3.4.2:
@@ -4503,13 +4492,6 @@ packages:
       cssnano-preset-default: 5.2.7
       lilconfig: 2.0.5
       yaml: 1.10.2
-    dev: true
-
-  /csso/3.5.1:
-    resolution: {integrity: sha512-vrqULLffYU1Q2tLdJvaCYbONStnfkfimRxXNaGjxMldI0C7JPBC4rB1RyjhfdZ4m1frm8pM9uRPKH3d2knZ8gg==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      css-tree: 1.0.0-alpha.29
     dev: true
 
   /csso/4.2.0:
@@ -5829,6 +5811,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -8758,12 +8741,12 @@ packages:
     resolution: {integrity: sha512-n4Vypz/DZgwo0iMHLQL49dJzlp7YtAJP+N07MZHpjPf/5XJuHUWstviF4Mn2jEiR/GNmtnRRqnwsXExk3igfFA==}
     dev: true
 
-  /mdn-data/1.1.4:
-    resolution: {integrity: sha512-FSYbp3lyKjyj3E7fMl6rYvUdX0FBXaluGqlFoYESWQlyUTq8R+wp0rkFxoYFqZlHCvsUXGjyJmLQSnXToYhOSA==}
-    dev: true
-
   /mdn-data/2.0.14:
     resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==}
+    dev: true
+
+  /mdn-data/2.0.4:
+    resolution: {integrity: sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==}
     dev: true
 
   /mdurl/1.0.1:
@@ -9254,6 +9237,7 @@ packages:
 
   /nan/2.15.0:
     resolution: {integrity: sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -12138,8 +12122,8 @@ packages:
     resolution: {integrity: sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=}
     dev: true
 
-  /svgo/1.2.2:
-    resolution: {integrity: sha512-rAfulcwp2D9jjdGu+0CuqlrAUin6bBWrpoqXWwKDZZZJfXcUXQSxLJOFJCQCSA0x0pP2U0TxSlJu2ROq5Bq6qA==}
+  /svgo/1.3.2:
+    resolution: {integrity: sha512-yhy/sQYxR5BkC98CY7o31VGsg014AKLEPxdfhora76l36hD9Rdy5NZA/Ocn6yayNPgSamYdtX2rFJdcv07AYVw==}
     engines: {node: '>=4.0.0'}
     deprecated: This SVGO version is no longer supported. Upgrade to v2.x.x.
     hasBin: true
@@ -12148,9 +12132,8 @@ packages:
       coa: 2.0.2
       css-select: 2.1.0
       css-select-base-adapter: 0.1.1
-      css-tree: 1.0.0-alpha.28
-      css-url-regex: 1.1.0
-      csso: 3.5.1
+      css-tree: 1.0.0-alpha.37
+      csso: 4.2.0
       js-yaml: 3.14.1
       mkdirp: 0.5.6
       object.values: 1.1.5
