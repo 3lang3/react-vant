@@ -16,7 +16,7 @@ importers:
       eslint-plugin-react-hooks: ^4.4.0
       husky: 7.0.4
       lint-staged: 12.0.2
-      prettier: 2.4.1
+      prettier: 2.6.2
       pretty-quick: 3.1.3
       sort-package-json: 1.53.1
       stylelint: 13.13.1
@@ -33,8 +33,8 @@ importers:
       eslint-plugin-react-hooks: 4.5.0_eslint@7.32.0
       husky: 7.0.4
       lint-staged: 12.0.2
-      prettier: 2.4.1
-      pretty-quick: 3.1.3_prettier@2.4.1
+      prettier: 2.6.2
+      pretty-quick: 3.1.3_prettier@2.6.2
       sort-package-json: 1.53.1
       stylelint: 13.13.1
 
@@ -2902,8 +2902,8 @@ packages:
       eslint-plugin-unicorn: 20.1.0_eslint@7.32.0
       fast-glob: 3.2.11
       os-locale: 5.0.0
-      prettier: 2.4.1
-      prettier-plugin-two-style-order: 1.0.1_prettier@2.4.1
+      prettier: 2.6.2
+      prettier-plugin-two-style-order: 1.0.1_prettier@2.6.2
       stylelint: 13.13.1
       stylelint-config-css-modules: 2.3.0_stylelint@13.13.1
       stylelint-config-prettier: 8.0.2_stylelint@13.13.1
@@ -10473,7 +10473,7 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /prettier-plugin-two-style-order/1.0.1_prettier@2.4.1:
+  /prettier-plugin-two-style-order/1.0.1_prettier@2.6.2:
     resolution: {integrity: sha512-ETltO2FRR/Pxc7bsgz2XwuzWSPwafl7/v5+5Rria4S579CTas7dya+xsmbkix0q1tYQiuRjVVdfGnCKlH/aOuQ==}
     peerDependencies:
       prettier: '>= 2.0.0'
@@ -10481,11 +10481,11 @@ packages:
       postcss: 8.4.12
       postcss-less: 4.0.1
       postcss-sorting: 6.0.0_postcss@8.4.12
-      prettier: 2.4.1
+      prettier: 2.6.2
     dev: true
 
-  /prettier/2.4.1:
-    resolution: {integrity: sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==}
+  /prettier/2.6.2:
+    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
@@ -10504,7 +10504,7 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /pretty-quick/3.1.3_prettier@2.4.1:
+  /pretty-quick/3.1.3_prettier@2.6.2:
     resolution: {integrity: sha512-kOCi2FJabvuh1as9enxYmrnBC6tVMoVOenMaBqRfsvBHB0cbpYHjdQEpSglpASDFEXVwplpcGR4CLEaisYAFcA==}
     engines: {node: '>=10.13'}
     hasBin: true
@@ -10517,7 +10517,7 @@ packages:
       ignore: 5.2.0
       mri: 1.2.0
       multimatch: 4.0.0
-      prettier: 2.4.1
+      prettier: 2.6.2
     dev: true
 
   /prism-react-renderer/1.3.1_react@17.0.2:
