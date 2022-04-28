@@ -17,7 +17,7 @@ importers:
       husky: 7.0.4
       lint-staged: 12.0.2
       prettier: 2.4.1
-      pretty-quick: 3.1.1
+      pretty-quick: 3.1.3
       sort-package-json: 1.53.1
       stylelint: 13.13.1
     devDependencies:
@@ -34,7 +34,7 @@ importers:
       husky: 7.0.4
       lint-staged: 12.0.2
       prettier: 2.4.1
-      pretty-quick: 3.1.1_prettier@2.4.1
+      pretty-quick: 3.1.3_prettier@2.4.1
       sort-package-json: 1.53.1
       stylelint: 13.13.1
 
@@ -10504,8 +10504,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /pretty-quick/3.1.1_prettier@2.4.1:
-    resolution: {integrity: sha512-ZYLGiMoV2jcaas3vTJrLvKAYsxDoXQBUn8OSTxkl67Fyov9lyXivJTl0+2WVh+y6EovGcw7Lm5ThYpH+Sh3XxQ==}
+  /pretty-quick/3.1.3_prettier@2.4.1:
+    resolution: {integrity: sha512-kOCi2FJabvuh1as9enxYmrnBC6tVMoVOenMaBqRfsvBHB0cbpYHjdQEpSglpASDFEXVwplpcGR4CLEaisYAFcA==}
     engines: {node: '>=10.13'}
     hasBin: true
     peerDependencies:
