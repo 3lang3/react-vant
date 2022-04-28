@@ -65,6 +65,11 @@ export default defineConfig({
     ],
   },
   menus: {
+    '/guide': [
+      {
+        children: ['/guide/about'],
+      },
+    ],
     '/components': [
       {
         title: '布局组建',
@@ -176,7 +181,9 @@ export default defineConfig({
     injectComponentCss: false,
     favicon: '/favicon.png',
     github: 'https://github.com/3lang3/react-vant',
-    versions: [{ title: 'v1', path: 'https://3lang3.github.io/react-vant/v1/' }],
+    versions: [
+      { title: 'v1', path: 'https://react-vant-v1.3lang.dev' }
+    ],
     themeConfig: {
       simulator: {
         include: ['/components', '/en/components'],
