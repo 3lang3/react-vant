@@ -173,6 +173,7 @@ export default defineConfig({
     ],
   },
   site: {
+    injectComponentCss: false,
     favicon: '/favicon.png',
     github: 'https://github.com/3lang3/react-vant',
     versions: [{ title: 'v1', path: 'https://3lang3.github.io/react-vant/v1/' }],
@@ -186,13 +187,15 @@ export default defineConfig({
       appId: 'E3Q32VXBYB',
       apiKey: 'c286dbe93a56bf25885c5e47cbe8bd4a',
       indexName: 'react-vant',
-      sitemap: {
-        hostname: 'https://react-vant.3lang.dev',
-      },
+    },
+    sitemap: {
+      hostname: 'https://react-vant.3lang.dev',
     },
   },
   resolve: {
-    includes: ['docs', 'src'],
+    stackblitz: {
+      extra: 'import "react-vant/lib/index.css";',
+    },
   },
   build: {
     cjs: {
@@ -200,13 +203,13 @@ export default defineConfig({
     },
     entry: './src/components',
     bundleDir: 'bundle',
+    style: './style/index.less',
   },
   vite: {
     optimizeDeps: {
       include: ['@react-vant/icons'],
     },
     server: {
-      force: true,
       host: true,
     },
   },
