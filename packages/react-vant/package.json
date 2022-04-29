@@ -51,7 +51,8 @@
     "./bundle/": "./bundle/",
     "./2x": "./2x/es/index.js",
     "./2x/": "./2x/",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./*": "./*"
   },
   "main": "./lib/index.js",
   "jsdelivr": "./bundle/react-vant.min.js",
@@ -91,7 +92,7 @@
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
-    "@rcdoc/cli": "^0.1.6",
+    "@rcdoc/cli": "^0.1.8",
     "@rcdoc/theme": "^0.1.5",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",

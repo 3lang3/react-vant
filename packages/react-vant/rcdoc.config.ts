@@ -214,7 +214,7 @@ export default defineConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['@react-vant/icons'],
+      include: ['@react-vant/icons', 'react-transition-group', 'rc-field-form', '@react-spring/web', '@use-gesture/react'],
     },
     server: {
       host: true,
