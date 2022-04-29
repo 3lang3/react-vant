@@ -58,7 +58,7 @@ importers:
       react-dom: 17.0.2
       react-transition-group: ^4.4.1
       through2: ^4.0.2
-      typescript: 4.6.3
+      typescript: 4.6.4
     dependencies:
       '@react-spring/web': 9.4.4_react-dom@17.0.2+react@17.0.2
       '@react-vant/icons': link:../react-vant-icons
@@ -68,7 +68,7 @@ importers:
       rc-field-form: 1.26.3_react-dom@17.0.2+react@17.0.2
       react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
     devDependencies:
-      '@rcdoc/cli': 0.1.6_fd20b86d2e16d6974276ff729364c27a
+      '@rcdoc/cli': 0.1.6_54c81b000b809fde6c9ed572a897b965
       '@rcdoc/theme': 0.1.5
       '@types/react': 17.0.44
       '@types/react-dom': 17.0.16
@@ -79,7 +79,7 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       through2: 4.0.2
-      typescript: 4.6.3
+      typescript: 4.6.4
 
   packages/react-vant-icons:
     specifiers:
@@ -2132,7 +2132,7 @@ packages:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
 
-  /@rcdoc/build/0.1.4_typescript@4.6.3:
+  /@rcdoc/build/0.1.4_typescript@4.6.4:
     resolution: {integrity: sha512-J2F98+zwXGTqhuJZVbUqNYGZGhhLoltAoo9dvcHvQPvrnL52boTdLcDP63ksuZlpgdUsoD9SA5WOEfi0bQjObA==}
     hasBin: true
     dependencies:
@@ -2152,7 +2152,7 @@ packages:
       gulp: 4.0.2
       gulp-if: 3.0.0
       gulp-less: 5.0.0
-      gulp-typescript: 6.0.0-alpha.1_typescript@4.6.3
+      gulp-typescript: 6.0.0-alpha.1_typescript@4.6.4
       less: 4.1.2
       lodash: 4.17.21
       rollup: 2.70.2
@@ -2167,7 +2167,7 @@ packages:
       - typescript
     dev: true
 
-  /@rcdoc/cli/0.1.6_fd20b86d2e16d6974276ff729364c27a:
+  /@rcdoc/cli/0.1.6_54c81b000b809fde6c9ed572a897b965:
     resolution: {integrity: sha512-HXoASgYx3eMjEQvJF/ERwGJ2jLjQ76XeNSd8cdyhAO6Ac+Hc9KxBynfaECHpGJgriUgDcIxYqDwuUqwXfyT5Pw==}
     hasBin: true
     dependencies:
@@ -2175,9 +2175,9 @@ packages:
       '@babel/preset-env': 7.16.11_@babel+core@7.17.9
       '@babel/preset-react': 7.16.7_@babel+core@7.17.9
       '@babel/runtime': 7.17.9
-      '@rcdoc/build': 0.1.4_typescript@4.6.3
+      '@rcdoc/build': 0.1.4_typescript@4.6.4
       '@rcdoc/theme': 0.1.5
-      '@rcdoc/vitejs-plugin': 0.1.4_d097e290b1e4b5f4d5e80a31fe3534b9
+      '@rcdoc/vitejs-plugin': 0.1.4_d77614876ed95205fc372ef5cc734ca8
       '@vitejs/plugin-react': 1.3.1
       babel-jest: 27.5.1_@babel+core@7.17.9
       bundle-require: 3.0.4_esbuild@0.14.38
@@ -2198,7 +2198,7 @@ packages:
       ora: 6.1.0
       rcdoc-theme-default: 0.1.5_@types+react@17.0.44
       react: 17.0.2
-      react-docgen-typescript: 2.2.2_typescript@4.6.3
+      react-docgen-typescript: 2.2.2_typescript@4.6.4
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 6.3.0_react-dom@17.0.2+react@17.0.2
       rollup-plugin-postcss: 4.0.2
@@ -2225,7 +2225,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@rcdoc/parser/0.1.4_typescript@4.6.3:
+  /@rcdoc/parser/0.1.4_typescript@4.6.4:
     resolution: {integrity: sha512-HxKEw/wInRtC5iyc2jw2mQ+37S3doQeGlKo+6Am+uz+3ceAZaeFZm3UJal+YnxopIrU5Kczm5e355tmZaOVjsA==}
     dependencies:
       '@babel/core': 7.17.9
@@ -2245,7 +2245,7 @@ packages:
       hast-util-to-string: 2.0.0
       js-yaml: 4.1.0
       mdast-util-to-string: 3.1.0
-      react-docgen-typescript: 2.2.2_typescript@4.6.3
+      react-docgen-typescript: 2.2.2_typescript@4.6.4
       rehype-raw: 6.1.1
       rehype-stringify: 9.0.3
       remark-frontmatter: 4.0.1
@@ -2270,10 +2270,10 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: true
 
-  /@rcdoc/vitejs-plugin/0.1.4_d097e290b1e4b5f4d5e80a31fe3534b9:
+  /@rcdoc/vitejs-plugin/0.1.4_d77614876ed95205fc372ef5cc734ca8:
     resolution: {integrity: sha512-WULzpjdEH40Xz9XAqVOyafV3uajm5h8WnTDuBOMA+6wh++uzcR26q2p2KoDsFENMRA71x2kUwD0zn0SnLEFbuw==}
     dependencies:
-      '@rcdoc/parser': 0.1.4_typescript@4.6.3
+      '@rcdoc/parser': 0.1.4_typescript@4.6.4
       '@rollup/pluginutils': 4.2.1
       debug: 4.3.4
       slash2: 2.0.0
@@ -6547,6 +6547,21 @@ packages:
       vinyl-fs: 3.0.3
     dev: true
 
+  /gulp-typescript/6.0.0-alpha.1_typescript@4.6.4:
+    resolution: {integrity: sha512-KoT0TTfjfT7w3JItHkgFH1T/zK4oXWC+a8xxKfniRfVcA0Fa1bKrIhztYelYmb+95RB80OLMBreknYkdwzdi2Q==}
+    engines: {node: '>= 8'}
+    peerDependencies:
+      typescript: '~2.7.1 || >=2.8.0-dev || >=2.9.0-dev || ~3.0.0 || >=3.0.0-dev || >=3.1.0-dev || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.7.0-dev '
+    dependencies:
+      ansi-colors: 4.1.1
+      plugin-error: 1.0.1
+      source-map: 0.7.3
+      through2: 3.0.2
+      typescript: 4.6.4
+      vinyl: 2.2.1
+      vinyl-fs: 3.0.3
+    dev: true
+
   /gulp/4.0.2:
     resolution: {integrity: sha512-dvEs27SCZt2ibF29xYgmnwwCYZxdxhQ/+LFWlbAW8y7jt68L/65402Lz3+CKy0Ov4rOs+NERmDq7YlZaDqUIfA==}
     engines: {node: '>= 0.10'}
@@ -10773,12 +10788,12 @@ packages:
     resolution: {integrity: sha512-dSxo2Mn6Zx4HajeCeQNLefwEO4kNtV/0E682R1+ZTyFRPqxDa5zYb5qM/ocqw9Bxr/kFQO0IUiqdV7wdHw+Cdg==}
     dev: true
 
-  /react-docgen-typescript/2.2.2_typescript@4.6.3:
+  /react-docgen-typescript/2.2.2_typescript@4.6.4:
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
     peerDependencies:
       typescript: '>= 4.3.x'
     dependencies:
-      typescript: 4.6.3
+      typescript: 4.6.4
     dev: true
 
   /react-dom/17.0.2_react@17.0.2:
@@ -12616,6 +12631,12 @@ packages:
 
   /typescript/4.6.3:
     resolution: {integrity: sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /typescript/4.6.4:
+    resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
