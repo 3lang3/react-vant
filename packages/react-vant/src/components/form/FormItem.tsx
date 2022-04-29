@@ -2,7 +2,7 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
 import { Field as RcField } from 'rc-field-form';
-import FieldContext from 'rc-field-form/lib/FieldContext';
+import { FieldContext } from 'rc-field-form';
 import type { Meta } from 'rc-field-form/lib/interface';
 import Field from '../field';
 import type {
@@ -20,7 +20,7 @@ import { devWarning } from '../utils/dev-log';
 
 const MemoInput = React.memo(
   ({ children, ...props }: MemoInputProps) =>
-    React.cloneElement(children as React.ReactElement, props) as JSX.Element,
+    React.cloneElement(children as React.ReactElement, props) as React.ReactElement,
   (prev, next) => prev.value === next.value && prev.update === next.update,
 );
 
@@ -149,7 +149,7 @@ const FormItem: FC<FormItemProps> = (props) => {
   const isRenderProps = typeof children === 'function';
 
   if (!name && !isRenderProps && !props.dependencies) {
-    return renderLayout(children) as JSX.Element;
+    return renderLayout(children) as React.ReactElement;
   }
 
   let variables: Record<string, string> = {};
