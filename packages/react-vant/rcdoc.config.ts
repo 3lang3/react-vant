@@ -72,11 +72,11 @@ export default defineConfig({
     ],
     '/components': [
       {
-        title: '布局组建',
+        title: '布局组件',
         children: ['/components/flex', '/components/space'],
       },
       {
-        title: '基础组建',
+        title: '基础组件',
         children: [
           '/components/button',
           '/components/cell',
@@ -90,7 +90,7 @@ export default defineConfig({
         ],
       },
       {
-        title: '表单组建',
+        title: '表单组件',
         children: [
           '/components/calendar',
           '/components/cascader',
@@ -181,9 +181,7 @@ export default defineConfig({
     injectComponentCss: false,
     favicon: '/favicon.png',
     github: 'https://github.com/3lang3/react-vant',
-    versions: [
-      { title: 'v1', path: 'https://react-vant-v1.3lang.dev' }
-    ],
+    versions: [{ title: 'v1', path: 'https://react-vant-v1.3lang.dev' }],
     themeConfig: {
       simulator: {
         include: ['/components', '/en/components'],
@@ -214,7 +212,13 @@ export default defineConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['@react-vant/icons', 'react-transition-group', 'rc-field-form', '@react-spring/web', '@use-gesture/react'],
+      include: [
+        '@react-vant/icons',
+        'react-transition-group',
+        'rc-field-form',
+        '@react-spring/web',
+        '@use-gesture/react',
+      ],
     },
     server: {
       host: true,
