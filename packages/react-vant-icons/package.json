@@ -30,6 +30,7 @@
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
+    "@types/react": "^17.0.37",
     "del": "6.0.0",
     "fast-glob": "^3.2.2",
     "fs-extra": "10.1.0",
@@ -40,5 +41,8 @@
     "shelljs": "^0.8.4",
     "svgo": "2.8.0",
     "typescript": "^4.5.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.14.0"
   }
 }
