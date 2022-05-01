@@ -1,14 +1,13 @@
 {
   "private": true,
   "scripts": {
-    "build": "pnpm build --dir ./packages/react-vant",
+    "build": "pnpm --dir ./packages/react-vant build",
     "clean": "rm -rf node_modules && rm -rf packages/**/node_modules",
-    "dev": "pnpm dev --dir ./packages/react-vant",
-    "docs:build": "pnpm docs:build --dir ./packages/react-vant",
-    "docs:deploy": "pnpm site:deploy --dir ./packages/react-vant",
+    "dev": "pnpm --dir ./packages/react-vant dev",
+    "docs:build": "pnpm --dir ./packages/react-vant docs:build",
+    "docs:deploy": "pnpm --dir ./packages/react-vant site:deploy",
     "lint-staged": "lint-staged",
-    "lint:ts": "pnpm lint --dir ./packages/react-vant",
-    "react-vant:lint": "pnpm lint --dir ./packages/react-vant"
+    "react-vant:lint": "pnpm --dir ./packages/react-vant lint"
   },
   "lint-staged": {
     "*.{ts,tsx,less}": "prettier --write",
