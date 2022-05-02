@@ -19,12 +19,12 @@ jobs:
           yarn docs:build
       - run: |
           cd packages/react-vant/
-          zip -r dist.zip docs-dist
+          zip -r dist.zip ./packages/react-vant/docs-dist
       - name: upload dist artifact
         uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: dist.zip
+          path: /dist.zip
           retention-days: 5
 
       - name: Save PR number
