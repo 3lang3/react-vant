@@ -7,7 +7,7 @@
 ## 引入
 
 ```js
-import { ShareSheet } from 'reactvant';
+import { ShareSheet } from 'react-vant';
 ```
 
 ## 代码演示

@@ -14,7 +14,7 @@ function validateModelValue(
   accordion: boolean,
 ) {
   if (accordion && Array.isArray(modelValue)) {
-    console.error('[ReactVant] Collapse: "value" should not be Array in accordion mode');
+    console.error('[React Vant] Collapse: "value" should not be Array in accordion mode');
     return false;
   }
   if (!accordion && !Array.isArray(modelValue)) {
