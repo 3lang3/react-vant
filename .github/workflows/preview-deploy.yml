@@ -31,7 +31,7 @@ jobs:
         id: deploy
         run: |
           export DEPLOY_DOMAIN=https://react-vant-pr-${{ steps.pr.outputs.id }}.surge.sh
-          npx surge --project ./dist --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}
+          npx surge --project ./packagesreact-vant/dist --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}
       - name: create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
