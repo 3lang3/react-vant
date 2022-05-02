@@ -29,7 +29,7 @@ export default defineConfig({
       },
       {
         title: 'Vant',
-        path: 'https://github.com/ant-design/ant-design',
+        path: 'https://github.com/youzan/vant',
       },
       {
         title: 'Taroify',
@@ -67,7 +67,7 @@ export default defineConfig({
   menus: {
     '/guide': [
       {
-        children: ['/guide/about'],
+        children: ['/guide/about', '/guide/quickstart'],
       },
     ],
     '/components': [
