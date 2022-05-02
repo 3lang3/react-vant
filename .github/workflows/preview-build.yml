@@ -18,7 +18,6 @@ jobs:
           pnpm i
           yarn docs:build
       - run: |
-          cd packages/react-vant/
           zip -r dist.zip ./packages/react-vant/docs-dist
       - name: upload dist artifact
         uses: actions/upload-artifact@v2
