@@ -10,7 +10,7 @@ simulator:
 ## 引入
 
 ```js
-import { Sku } from 'reactvant';
+import { Sku } from 'react-vant';
 ```
 
 ## 代码演示

@@ -9,7 +9,7 @@
 Notify 是一个函数，调用后会直接在页面中弹出相应的消息提示。
 
 ```js
-import { Notify } from 'reactvant';
+import { Notify } from 'react-vant';
 
 Notify.show('通知内容');
 ```
