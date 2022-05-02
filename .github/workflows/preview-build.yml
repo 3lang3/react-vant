@@ -17,6 +17,9 @@ jobs:
           npm i -g pnpm
           pnpm i
           yarn docs:build
+      - name: Generator 404 file
+        run: |
+          cp ./packages/react-vant/docs-dist/index.html ./packages/react-vant/docs-dist/404.html
       - run: |
           zip -r dist.zip ./packages/react-vant/docs-dist
       - name: upload dist artifact
