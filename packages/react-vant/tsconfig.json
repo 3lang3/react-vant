@@ -13,10 +13,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "typeRoots": ["./src/typings", "./node_modules/@types"],
     "paths": {
       "react-vant": ["src/components/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist", ".rcdoc"],
-  "include": ["src", "docs", "_rcdoc_", "global.d.ts", "rcdoc.config.ts"]
+  "include": ["src", "docs", "_rcdoc_", "rcdoc.config.ts"]
 }
