@@ -33,7 +33,7 @@ jobs:
           export DEPLOY_DOMAIN=https://react-vant-pr-${{ steps.pr.outputs.id }}.surge.sh
           npx surge --project packages/react-vant/docs-dist/ --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}
       - name: create comment
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ steps.pr.outputs.id }}
           body: |
@@ -42,7 +42,7 @@ jobs:
           rm -rf packages/react-vant/docs-dist/
       - name: The job failed
         if: ${{ failure() }}
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ steps.pr.outputs.id }}
           body: |
@@ -60,7 +60,7 @@ jobs:
         id: pr
         run: echo "::set-output name=id::$(<pr-id.txt)"
       - name: The job failed
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ steps.pr.outputs.id }}
           body: |
