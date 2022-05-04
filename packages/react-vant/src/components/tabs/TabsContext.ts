@@ -1,4 +1,4 @@
-import { createContext, Context } from 'react';
+import React, { createContext, Context } from 'react';
 import { TabsProps } from './PropsType';
 
 export interface TabsContextState {

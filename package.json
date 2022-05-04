@@ -7,7 +7,7 @@
     "docs:build": "pnpm --dir ./packages/react-vant docs:build",
     "docs:deploy": "pnpm --dir ./packages/react-vant site:deploy",
     "lint-staged": "lint-staged",
-    "react-vant:lint": "pnpm --dir ./packages/react-vant lint"
+    "react-vant:lint": "pnpm --dir ./packages/react-vant lint:tsx"
   },
   "lint-staged": {
     "*.{ts,tsx,less}": "prettier --write",
