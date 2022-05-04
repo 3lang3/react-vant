@@ -15,7 +15,7 @@ jobs:
       - name: build
         run: |
           npm i -g pnpm
-          pnpm i
+          pnpm install --frozen-lockfile=false
           yarn docs:build
       - name: Generator 404 file
         run: |
