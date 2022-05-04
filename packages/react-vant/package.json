@@ -69,7 +69,6 @@
     "deploy:gh-pages": "gh-pages -d docs-dist",
     "dev": "rcdoc dev",
     "docs:build": "rcdoc docs-build",
-    "docs:deploy": "pnpm run docs:build && gh-pages -d docs-dist --add",
     "lint": "eslint --fix",
     "lint:tsx": "eslint src --ext ts,tsx",
     "prepack": "pnpm build",
