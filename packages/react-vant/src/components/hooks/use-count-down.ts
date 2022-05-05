@@ -63,7 +63,10 @@ export default function useCountDown(options: UseCountDownOptions) {
 
   const [remain, updateRemain] = useState(() => options.time);
   const remainRef = useRef(0);
+  const currentRef = useRef<any>({});
   const current = useMemo(() => parseTime(remain), [remain]);
+
+  currentRef.current = current
 
   remainRef.current = remain;
 
@@ -77,7 +80,7 @@ export default function useCountDown(options: UseCountDownOptions) {
   const setRemain = (value: number) => {
     remainRef.current = value;
     updateRemain(value);
-    options.onChange?.(current);
+    options.onChange?.(currentRef.current);
 
     if (value === 0) {
       pause();
