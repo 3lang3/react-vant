@@ -28,9 +28,76 @@ import { CountDown } from 'react-vant';
 import React from 'react';
 import { CountDown } from 'react-vant';
 export default () => {
-  return <CountDown time={30 * 60 * 60 * 1000} onChange={v => console.log(v)} />;
+  return <CountDown time={30 * 60 * 60 * 1000} />;
 };
 ```
+
+### 自定义格式
+
+通过 `format` 属性设置倒计时文本的内容。
+
+```jsx
+/**
+ * title: 自定义格式
+ */
+import React from 'react';
+import { CountDown } from 'react-vant';
+export default () => {
+  return <CountDown time={30 * 60 * 60 * 1000} format="DD 天 HH 时 mm 分 ss 秒" />;
+};
+```
+
+### 毫秒级渲染
+
+倒计时默认每秒渲染一次，设置 `millisecond` 属性可以开启毫秒级渲染。
+
+```jsx
+/**
+ * title: 毫秒级渲染
+ */
+import React from 'react';
+import { CountDown } from 'react-vant';
+export default () => {
+  return <CountDown time={30 * 60 * 60 * 1000} millisecond format="HH:mm:ss:SS" />;
+};
+```
+
+### 自定义样式
+
+通过`children`自定义倒计时的样式，[react render prop](https://reactjs.org/docs/render-props.html)文档。
+
+```jsx
+/**
+ * title: 自定义样式
+ */
+import React from 'react';
+import { CountDown } from 'react-vant';
+import './demo/style.less';
+
+export default () => {
+  return (
+    <div className="demo-count-down">
+      <CountDown time={30 * 60 * 60 * 1000} millisecond format="HH:mm:ss:SS">
+        {(timeData) => (
+          <>
+            <span className="block">{timeData.hours}</span>
+            <span className="colon">:</span>
+            <span className="block">{timeData.minutes}</span>
+            <span className="colon">:</span>
+            <span className="block">{timeData.seconds}</span>
+          </>
+        )}
+      </CountDown>
+    </div>
+  );
+};
+```
+
+### 手动控制
+
+通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
+
+<code title="手动控制" src="./demo/ref.tsx" />
 
 ## API
 
