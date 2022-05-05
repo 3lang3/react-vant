@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { inBrowser } from '../utils';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

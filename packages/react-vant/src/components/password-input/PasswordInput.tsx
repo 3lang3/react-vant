@@ -73,7 +73,7 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>((pro
   };
 
   const renderPoints = () => {
-    const Points: JSX.Element[] = [];
+    const Points: React.ReactNode[] = [];
     const { mask, gutter } = props;
 
     // eslint-disable-next-line no-plusplus

@@ -8,7 +8,7 @@ import { COMPONENT_TYPE_KEY } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { BEM } from '../utils/create/bem';
 
-export const getLazyImagePlaceholder = (bem: BEM): JSX.Element => (
+export const getLazyImagePlaceholder = (bem: BEM): React.ReactNode => (
   <div className={clsx(bem('loading'))}>
     <Photo className={clsx(bem('loading-icon'))} />
   </div>

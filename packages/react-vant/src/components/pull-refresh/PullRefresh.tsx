@@ -90,7 +90,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
       return props[`${state.status}Text`]!({ distance });
     }
 
-    const nodes: JSX.Element[] = [];
+    const nodes: React.ReactNode[] = [];
 
     if (TEXT_STATUS.includes(status)) {
       nodes.push(

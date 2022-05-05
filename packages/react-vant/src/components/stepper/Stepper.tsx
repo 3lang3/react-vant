@@ -166,7 +166,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
   };
 
   const isLongPress = useRef<boolean>(false);
-  const longPressTimer = useRef<NodeJS.Timeout>(null);
+  const longPressTimer = useRef<any>(null);
 
   const longPressStep = () => {
     longPressTimer.current = setTimeout(() => {
