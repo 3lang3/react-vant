@@ -90,6 +90,7 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
 
       cursor = children[defaultIndex];
     }
+
     setFormattedColumns(formatted);
   };
 
@@ -124,16 +125,27 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
     let cursor: PickerObjectColumn = {
       [childrenKey]: props.columns,
     };
+
     const indexes = getIndexes();
 
     for (let i = 0; i <= columnIndex; i += 1) {
       cursor = cursor[childrenKey][indexes[i]];
     }
 
-    while (cursor && cursor[childrenKey]) {
-      columnIndex += 1;
-      setColumnValues(columnIndex, cursor[childrenKey]);
-      cursor = cursor[childrenKey][cursor.defaultIndex || 0];
+    if (cursor && cursor[childrenKey]) {
+      while (cursor && cursor[childrenKey]) {
+        columnIndex += 1;
+        setColumnValues(columnIndex, cursor[childrenKey]);
+        cursor = cursor[childrenKey]?.[cursor.defaultIndex || 0];
+      }
+    } else {
+      // Clean unsafe data children value
+      // https://github.com/3lang3/react-vant/issues/378
+      refs.forEach((column, i) => {
+        if (i > columnIndex && columnIndex < refs.length) {
+          column.setOptions([])
+        }
+      })
     }
   };
 
