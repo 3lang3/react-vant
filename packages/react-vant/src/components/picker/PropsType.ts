@@ -16,18 +16,18 @@ export type PickerObjectOption = {
 
 export type PickerOption = string | number | PickerObjectOption;
 
-export type PickerObjectColumn = {
+export type PickerObjectColumn<T = PickerOption> = {
   /** 列中对应的备选值	 */
-  values?: PickerOption[];
+  values?: T[];
   /** 级联选项	 */
-  children?: PickerColumn;
+  children?: PickerColumn<T>;
   /** 为对应列添加额外的类名	 */
   className?: unknown;
   /** 初始选中项的索引，默认为 0	 */
   defaultIndex?: number;
 } & Record<string, any>;
 
-export type PickerColumn = PickerOption[] | PickerObjectColumn;
+export type PickerColumn<T> = T[] | PickerObjectColumn<T>;
 
 export type PickerExpose = {
   /** 停止惯性滚动并触发 onConfirm 事件	 */
@@ -63,9 +63,9 @@ export interface Column {
   disabled?: boolean;
 }
 
-export interface PickerCommonProps extends BaseTypeProps {
+export interface PickerCommonProps<T> extends BaseTypeProps {
   /** 对象数组，配置每一列显示的数据	 */
-  columns?: PickerOption[] | PickerColumn[];
+  columns?: T[] | PickerColumn<T>[];
   /** 自定义 columns 结构中的字段	 */
   columnsFieldNames?: PickerFieldNames;
   /** 顶部栏标题	 */
@@ -100,25 +100,25 @@ export interface PickerCommonProps extends BaseTypeProps {
   optionRender?: (option: string | object) => React.ReactNode;
 }
 
-export interface PickerSingleProps extends PickerCommonProps {
+export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T> {
   /** 选项改变时触发	 */
-  onChange?: (value: number | string, index?: number) => void;
+  onChange?: (value: T, index?: number) => void;
   /** 点击完成按钮时触发	 */
-  onConfirm?: (value: number | string, index?: number) => void;
+  onConfirm?: (value: T, index?: number) => void;
   /** 点击取消按钮时触发	 */
-  onCancel?: (value: number | string, index?: number) => void;
+  onCancel?: (value: T, index?: number) => void;
 }
 
-export interface PickerMultipleProps extends PickerCommonProps {
+export interface PickerMultipleProps<T = PickerOption> extends PickerCommonProps<T> {
   /** 选项改变时触发	 */
-  onChange?: (value: (number | string)[], index?: number) => void;
+  onChange?: (value: T[], index?: number) => void;
   /** 点击完成按钮时触发	 */
-  onConfirm?: (value: (number | string)[], index?: number[]) => void;
+  onConfirm?: (value: T[], index?: number[]) => void;
   /** 点击取消按钮时触发	 */
-  onCancel?: (value: (number | string)[], index?: number[]) => void;
+  onCancel?: (value: T[], index?: number[]) => void;
 }
 
-export type PickerProps = PickerSingleProps | PickerMultipleProps;
+export type PickerProps<T = PickerOption> = PickerSingleProps<T> | PickerMultipleProps<T>;
 export interface PickerColumnProps extends BaseTypeProps {
   index?: number;
   textKey: string;
