@@ -21,6 +21,9 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
       props.onChange?.(idx);
     }
   };
+  const onClose = (image: string, i: number) => {
+    props.onClose && props.onClose?.({ url: image, index: i });
+  };
 
   const renderImages = () => (
     <Swiper
@@ -33,13 +36,19 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
       indicator={props.showIndicators}
     >
       {props.images.map((image, i) => (
-        <Swiper.Item className={cls(bem('item'))} key={image}>
+        <Swiper.Item
+          className={cls(bem('item'))}
+          key={image}
+          onClick={() => {
+            onClose(image, i);
+          }}
+        >
           <ImagePreviewItem
             maxZoom={props.maxZoom}
             image={image}
             lazyload={props.lazyload}
             onTap={() => {
-              props.onClose?.({ url: image, index: i });
+              onClose(image, i);
             }}
             onZoomChange={(zoom) => {
               if (zoom !== 1) {
