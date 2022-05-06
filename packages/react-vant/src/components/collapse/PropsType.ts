@@ -3,6 +3,8 @@ import { CellProps } from '../cell/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export interface CollapseProps extends BaseTypeProps {
+  /** 组件根部DOM元素引用 */
+  nativeRef?: React.RefObject<HTMLDivElement>
   /** 是否开启手风琴模式	 */
   accordion?: boolean;
   /** 默认打开的面板name */

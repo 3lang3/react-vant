@@ -81,6 +81,7 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props,
   };
 
   const renderTitle = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { border, disabled, children, readonly, ...others } = props;
 
     return (
@@ -114,7 +115,10 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props,
   }));
 
   return (
-    <div className={clsx(bem({ border: index && props.border }))}>
+    <div
+      style={props.style}
+      className={clsx(props.className, bem({ border: index && props.border }))}
+    >
       {renderTitle()}
       {renderContent()}
     </div>

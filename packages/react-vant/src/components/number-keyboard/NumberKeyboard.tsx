@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useMemo, useRef } from 'react';
 import cls from 'clsx';
 import { CSSTransition } from 'react-transition-group';
@@ -195,8 +196,9 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
     >
       <div
         ref={root}
-        style={getZIndexStyle(props.zIndex)}
+        style={{ ...style, ...getZIndexStyle(props.zIndex) }}
         className={cls(
+          className,
           bem({
             unfit: !props.safeAreaInsetBottom,
             'with-title': !!Title,
