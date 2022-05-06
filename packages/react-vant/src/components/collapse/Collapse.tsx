@@ -69,7 +69,11 @@ const Collapse: React.FC<CollapseProps> = (props) => {
 
   return (
     <CollapseContext.Provider value={{ isExpanded, toggle }}>
-      <div className={clsx(bem(), { [BORDER_TOP_BOTTOM]: props.border })}>
+      <div
+        style={props.style}
+        ref={props.nativeRef}
+        className={clsx(bem(), props.className, { [BORDER_TOP_BOTTOM]: props.border })}
+      >
         {React.Children.toArray(props.children)
           .filter(Boolean)
           .map((child: ReactElement, index: number) =>
