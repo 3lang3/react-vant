@@ -102,20 +102,20 @@ export interface PickerCommonProps<T> extends BaseTypeProps {
 
 export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T> {
   /** 选项改变时触发	 */
-  onChange?: (value: T, index?: number) => void;
+  onChange?: (value: T, index: number) => void;
   /** 点击完成按钮时触发	 */
-  onConfirm?: (value: T, index?: number) => void;
+  onConfirm?: (value: T, index: number) => void;
   /** 点击取消按钮时触发	 */
-  onCancel?: (value: T, index?: number) => void;
+  onCancel?: (value: T, index: number) => void;
 }
 
 export interface PickerMultipleProps<T = PickerOption> extends PickerCommonProps<T> {
   /** 选项改变时触发	 */
-  onChange?: (value: T[], index?: number) => void;
+  onChange?: (value: T[], index: number) => void;
   /** 点击完成按钮时触发	 */
-  onConfirm?: (value: T[], index?: number[]) => void;
+  onConfirm?: (value: T[], index: number[]) => void;
   /** 点击取消按钮时触发	 */
-  onCancel?: (value: T[], index?: number[]) => void;
+  onCancel?: (value: T[], index: number[]) => void;
 }
 
 export type PickerProps<T = PickerOption> = PickerSingleProps<T> | PickerMultipleProps<T>;
