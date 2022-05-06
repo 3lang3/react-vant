@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   useRef,
   useState,
@@ -305,7 +306,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     const { tooltip } = props;
     if (tooltip) {
       let icon = (<QuestionO />) as React.ReactNode;
-      let dialogProps = { message: tooltip };
+      let dialogProps = { message: tooltip as React.ReactNode };
       if (!(React.isValidElement(tooltip) || typeof tooltip === 'string')) {
         const { icon: customIcon, ...customDialogProps } = tooltip as FieldTooltipProps;
         icon = customIcon || icon;

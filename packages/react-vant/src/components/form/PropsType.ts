@@ -80,4 +80,5 @@ export type FormItemLayoutProps = Pick<
   meta?: Meta;
   /** @private */
   isFieldChildren?: boolean;
+  children?: React.ReactNode
 };

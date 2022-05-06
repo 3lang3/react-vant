@@ -25,7 +25,7 @@ export interface TabbarProps<T = number | string> extends BaseTypeProps {
   onChange?: (name: T) => void;
 }
 
-export interface TabbarItemProps<T = number | string> extends BaseTypeProps {
+export interface TabbarItemProps<T = number | string> extends Omit<BaseTypeProps, 'children'> {
   name?: T;
   icon?: React.ReactNode | ((active: boolean) => React.ReactNode);
   badge?: BadgeSettingProps;

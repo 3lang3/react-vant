@@ -112,6 +112,7 @@ export interface TabsContentProps {
   currentIndex: number;
   swiperRef: React.RefObject<SwiperInstance>;
   onChange?: (index) => void;
+  children?: React.ReactNode;
 }
 
 export interface TabPaneProps {

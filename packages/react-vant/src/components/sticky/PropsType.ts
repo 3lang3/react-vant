@@ -24,4 +24,5 @@ export interface StickyProps {
   onScroll?: (e: ScrollEventParams) => void;
   /** 当吸顶状态改变时触发	 */
   onChange?: (isFixed: boolean) => void;
+  children?: React.ReactNode;
 }

@@ -5,7 +5,7 @@ export interface DialogBtnProps {
   loading?: boolean;
   disabled?: boolean;
 }
-export interface DialogProps extends BaseTypeProps {
+export interface DialogProps extends Omit<BaseTypeProps, 'children'> {
   visible?: boolean;
   /** 是否显示右上角关闭按钮 */
   closeable?: boolean;
@@ -21,7 +21,7 @@ export interface DialogProps extends BaseTypeProps {
   /** 设置宽度 */
   width?: string | number;
   /** 设置主题内容 */
-  message?: string | React.ReactNode;
+  message?: React.ReactNode;
   /** 动画类名 @see https://reactcommunity.org/react-transition-group/ */
   transition?: string;
   /** message内容对齐 */

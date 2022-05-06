@@ -65,7 +65,7 @@ const Skeleton: React.FC<SkeletonProps> = ({ children, className, style, ...prop
         return <div key={i} className={cls(bem('row'))} style={{ width, height }} />;
       });
 
-  if (!props.loading) return children;
+  if (!props.loading) return <>{children}</>;
   return (
     <div
       className={cls(className, bem({ animate: props.animate, round: props.round }))}

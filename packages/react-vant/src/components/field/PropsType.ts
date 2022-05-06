@@ -76,7 +76,7 @@ export interface FieldCommonProps {
   children?: React.ReactNode;
 }
 
-export interface FieldProps extends FieldCommonProps, BaseTypeProps, Partial<CellProps> {
+export interface FieldProps extends FieldCommonProps, Omit<BaseTypeProps, 'children'>, Partial<Omit<CellProps, 'children'>> {
   value?: string;
   /** 输入框类型 */
   type?: FieldType;

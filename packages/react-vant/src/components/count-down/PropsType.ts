@@ -13,7 +13,7 @@ export type CountDownInstance = {
   reset: () => void;
 };
 
-export interface CountDownProps extends BaseTypeProps {
+export interface CountDownProps extends Omit<BaseTypeProps, 'children'> {
   /**
    * 是否自动开始倒计时
    * @default true

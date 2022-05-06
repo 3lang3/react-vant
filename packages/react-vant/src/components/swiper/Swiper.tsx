@@ -333,7 +333,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
               >
                 {React.cloneElement(child, {
                   ref: setChildrenRefs(index),
-                })}
+                } as any)}
               </animated.div>
             );
           })}

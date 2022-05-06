@@ -5,6 +5,7 @@ import { BORDER_BOTTOM } from '../../utils/constant';
 
 type SkuRowProps = {
   skuRow: Record<any, any>;
+  children?: React.ReactNode;
 };
 
 const SkuRow: React.FC<SkuRowProps> = (props) => {
