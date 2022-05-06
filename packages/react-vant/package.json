@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "2.0.0-alpha.33",
+  "version": "2.0.0-alpha.34",
   "description": "React Mobile UI Components base on Vant UI",
   "keywords": [
     "ui",
@@ -74,8 +74,8 @@
     "prepack": "pnpm build",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
     "preview": "rcdoc preview",
-    "publish": "pnpm publish ./dist --tag next",
-    "publish:dev": "pnpm publish ./dist --tag dev"
+    "release": "pnpm publish ./dist --tag next",
+    "release:dev": "pnpm publish ./dist --tag dev"
   },
   "browserslist": [
     "Android >= 4.0",
