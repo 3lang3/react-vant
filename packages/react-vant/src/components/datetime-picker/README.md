@@ -2,7 +2,7 @@
 
 ## 介绍
 
-时间选择器，支持日期、年月、时分等维度，通常与[弹出层](#/zh-CN/popup)组件配合使用。
+时间选择器，支持日期、年月、时分等维度，通常与[弹出层](/components/popup)组件配合使用。
 
 ## 引入
 
@@ -52,7 +52,7 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 通过传入 `filter` 函数，可以对选项数组进行过滤，实现自定义时间间隔。
 
-<code title="选项过滤器" src="./demo/datehour.tsx" />
+<code title="选项过滤器" src="./demo/filter.tsx" />
 
 ### 自定义列排序
 
