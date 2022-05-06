@@ -16,13 +16,16 @@ import Column from './PickerColumn';
 import useRefs from '../hooks/use-refs';
 import useEventListener from '../hooks/use-event-listener';
 
-import { PickerProps, PickerInstance,PickerOption, PickerObjectColumn } from './PropsType';
+import { PickerProps, PickerInstance, PickerOption, PickerObjectColumn } from './PropsType';
 import { unitToPx, preventDefault, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { raf } from '../utils/raf';
 
-function PickerInner<T = PickerOption>(props: PickerProps<T>, ref: React.ForwardedRef<PickerInstance> ) {
+function PickerInner<T = PickerOption>(
+  props: PickerProps<T>,
+  ref: React.ForwardedRef<PickerInstance>,
+) {
   const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('picker', prefixCls);
 
@@ -60,6 +63,7 @@ function PickerInner<T = PickerOption>(props: PickerProps<T>, ref: React.Forward
       }
     }
     return 'plain';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.columns]);
 
   const formatCascade = () => {
@@ -143,9 +147,9 @@ function PickerInner<T = PickerOption>(props: PickerProps<T>, ref: React.Forward
       // https://github.com/3lang3/react-vant/issues/378
       refs.forEach((column, i) => {
         if (i > columnIndex && columnIndex < refs.length) {
-          column.setOptions([])
+          column.setOptions([]);
         }
-      })
+      });
     }
   };
 
@@ -331,6 +335,7 @@ function PickerInner<T = PickerOption>(props: PickerProps<T>, ref: React.Forward
       resetRefs();
       format();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.columns]);
 
   useEventListener('touchmove', preventDefault, {
@@ -361,10 +366,10 @@ function PickerInner<T = PickerOption>(props: PickerProps<T>, ref: React.Forward
       {props.toolbarPosition === 'bottom' ? renderToolbar() : null}
     </div>
   );
-};
+}
 
 const Picker = forwardRef(PickerInner) as <T>(
-  props: PickerProps<T> & { ref?: React.ForwardedRef<PickerInstance> }
+  props: PickerProps<T> & { ref?: React.ForwardedRef<PickerInstance> },
 ) => ReturnType<typeof PickerInner>;
 
 (Picker as React.FC<PickerProps>).defaultProps = {
@@ -374,6 +379,6 @@ const Picker = forwardRef(PickerInner) as <T>(
   defaultIndex: 0,
   showToolbar: true,
   toolbarPosition: 'top',
-}
+};
 
 export default Picker;
