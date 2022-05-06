@@ -29,5 +29,4 @@ export interface SkeletonProps extends BaseTypeProps {
    * @default 'round'
    */
   avatarShape?: 'square' | 'round';
-  children?: JSX.Element;
 }

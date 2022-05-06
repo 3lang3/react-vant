@@ -1,6 +1,6 @@
-import { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 
-function useLazyRender(show: boolean): (render: () => JSX.Element) => () => ReactNode {
+function useLazyRender(show: boolean): (render: () => React.ReactNode) => () => ReactNode {
   const [inited, setInited] = useState<boolean>(false);
 
   useEffect(() => {

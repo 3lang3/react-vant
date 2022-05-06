@@ -1,3 +1,5 @@
+import React from 'react'
+
 export type ScrollEventParams = {
   scrollTop: number;
   isFixed: boolean;

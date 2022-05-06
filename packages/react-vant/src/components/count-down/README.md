@@ -98,6 +98,7 @@ export default () => {
 通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
 
 <code title="手动控制" src="./demo/ref.tsx" />
+
 ## API
 
 ### Props

@@ -1,8 +1,9 @@
-import { CSSProperties } from 'react';
+import React from 'react';
 
 export interface BaseTypeProps {
-  style?: CSSProperties | any;
+  style?: React.CSSProperties | any;
   className?: string;
+  children?: React.ReactNode;
 }
 
 /** 指定挂载的节点 */

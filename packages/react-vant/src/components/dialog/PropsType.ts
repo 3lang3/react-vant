@@ -74,7 +74,7 @@ export interface DialogProps extends BaseTypeProps {
 export type AlertDialogProps = Omit<DialogProps, 'confirmButtonText' | 'onCancel'>;
 
 export type DialogStatic = {
-  (props: DialogProps): JSX.Element;
+  (props: DialogProps): React.ReactNode;
   show: (props: DialogProps) => void;
   confirm: (props: DialogProps) => Promise<boolean>;
   alert: (props: DialogProps) => Promise<React.MouseEvent>;
