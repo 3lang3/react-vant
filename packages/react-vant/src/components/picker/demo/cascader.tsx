@@ -4,7 +4,7 @@ import { Picker, Toast } from 'react-vant';
 export default () => {
   return (
     <Picker
-      onChange={(value: string, index: number) => Toast(`当前值：${value}, 当前索引：${index}`)}
+      onChange={(value, index: number) => Toast(`当前值：${value}, 当前索引：${index}`)}
       columns={[
         {
           text: '江苏',

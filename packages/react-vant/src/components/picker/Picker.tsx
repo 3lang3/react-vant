@@ -16,13 +16,13 @@ import Column from './PickerColumn';
 import useRefs from '../hooks/use-refs';
 import useEventListener from '../hooks/use-event-listener';
 
-import { PickerProps, PickerInstance, PickerObjectColumn } from './PropsType';
+import { PickerProps, PickerInstance,PickerOption, PickerObjectColumn } from './PropsType';
 import { unitToPx, preventDefault, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { raf } from '../utils/raf';
 
-const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
+function PickerInner<T = PickerOption>(props: PickerProps<T>, ref: React.ForwardedRef<PickerInstance> ) {
   const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('picker', prefixCls);
 
@@ -361,15 +361,19 @@ const Picker = forwardRef<PickerInstance, PickerProps>((props, ref) => {
       {props.toolbarPosition === 'bottom' ? renderToolbar() : null}
     </div>
   );
-});
+};
 
-Picker.defaultProps = {
+const Picker = forwardRef(PickerInner) as <T>(
+  props: PickerProps<T> & { ref?: React.ForwardedRef<PickerInstance> }
+) => ReturnType<typeof PickerInner>;
+
+(Picker as React.FC<PickerProps>).defaultProps = {
   itemHeight: 44,
   visibleItemCount: 5,
   swipeDuration: 1000,
   defaultIndex: 0,
   showToolbar: true,
   toolbarPosition: 'top',
-};
+}
 
 export default Picker;
