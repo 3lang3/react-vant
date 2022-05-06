@@ -106,6 +106,7 @@ export default () => {
 | initExpanded | 当前展开面板的 name | 手风琴模式：_number \| string_<br>非手风琴模式：_(number \| string)[]_ | - |
 | accordion | 是否开启手风琴模式 | _boolean_ | `false` |
 | border | 是否显示外边框 | _boolean_ | `true` |
+| nativeRef | 组件根部DOM元素引用 | _Ref_ | - |
 
 ### Collapse Events
 
