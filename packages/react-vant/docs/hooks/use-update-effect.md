@@ -23,7 +23,7 @@ export default () => {
     setEffectCount((c) => c + 1);
   }, [count]);
 
-  React.hooks.useUpdateEffect(() => {
+  hooks.useUpdateEffect(() => {
     setUpdateEffectCount((c) => c + 1);
   }, [count]);
 

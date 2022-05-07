@@ -22,7 +22,7 @@
     "@umijs/fabric": "^2.10.2",
     "all-contributors-cli": "^6.20.0",
     "commitlint": "^16.2.3",
-    "eslint": "8.14.0",
+    "eslint": "8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
