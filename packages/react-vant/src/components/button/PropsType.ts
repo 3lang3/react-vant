@@ -20,7 +20,7 @@ export interface ButtonProps extends BaseTypeProps {
    * 按钮文本
    * 业务内建议使用children代替
    * */
-  text?: string;
+  text?: React.ReactNode;
   /** 左侧图标 */
   icon?: React.ReactNode;
   /** 按钮颜色，支持传入 linear-gradient 渐变色 */

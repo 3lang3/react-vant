@@ -136,6 +136,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       style={{ width: addUnit(width) }}
       aria-labelledby={title || message}
       closeOnClickOverlay={closeOnClickOverlay}
+      onClickCloseIcon={onClickCloseIcon}
       onClose={props.onClose}
       onClosed={props.onClosed}
     >
