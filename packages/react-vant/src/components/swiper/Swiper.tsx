@@ -171,7 +171,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       },
       rubberband: props.rubberband,
       axis,
-      // preventScroll: axis === 'x' ? props.preventScroll : true,
+      preventScroll: axis === 'x' ? props.preventScroll : true,
       pointer: {
         touch: true,
       },
