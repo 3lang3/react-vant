@@ -1,8 +1,5 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable no-plusplus */
 import React, {
   forwardRef,
-  memo,
   useContext,
   useEffect,
   useImperativeHandle,
@@ -15,38 +12,14 @@ import { useSpring, animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import SwiperItem from './SwiperItem';
-import { SwiperProps, SwiperInstance, PageIndicatorProps } from './PropsType';
+import { SwiperProps, SwiperInstance } from './PropsType';
 import useRefs from '../hooks/use-refs';
 import useRefState from '../hooks/use-ref-state';
 import { bound } from '../utils/bound';
 import { devWarning } from '../utils/dev-log';
 import { noop } from '../utils';
-import { getRect } from '../hooks/use-rect';
-
-const PageIndicator = memo<PageIndicatorProps>(({ vertical, ...props }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('indicator', prefixCls);
-
-  const dots: React.ReactElement[] = [];
-  for (let i = 0; i < props.total; i++) {
-    dots.push(
-      <div
-        key={i}
-        className={cls(
-          bem('dot', {
-            active: props.current === i,
-          }),
-        )}
-      />,
-    );
-  }
-
-  return (
-    <div className={cls(props.className, bem({ vertical }))} style={props.style}>
-      {dots}
-    </div>
-  );
-});
+import SwiperPagIndicator from './SwiperPagIndicator';
+import { useIsomorphicLayoutEffect, useUpdateEffect } from '../hooks';
 
 const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -54,39 +27,9 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const { loop: outerLoop, autoplay, vertical, duration, autoHeight } = props;
 
-  const [childrenRefs, setChildrenRefs] = useRefs();
-  const [enabled, setEnabled] = useState<boolean>(() => props.enabled);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [root, setRoot] = useState<HTMLDivElement>(null);
-  const [current, setCurrent] = useState(props.initialSwipe);
-  const [dragging, setDragging, draggingRef] = useRefState(false);
-
-  const axis = useMemo(() => (vertical ? 'y' : 'x'), [vertical]);
-
+  const axis = vertical ? 'y' : 'x';
   const slideRatio = props.slideSize / 100;
   const offsetRatio = props.trackOffset / 100;
-
-  const computedStyle = useMemo(() => {
-    return {
-      [`--${prefixCls}-swipe-slide-size`]: `${props.slideSize}%`,
-      [`--${prefixCls}-swipe-track-offset`]: `${props.trackOffset}%`,
-      ...props.style,
-    };
-  }, [prefixCls, props.slideSize, props.trackOffset, props.style]);
-
-  const trackStyle = useMemo(() => {
-    if (!autoHeight) return {};
-    const target = childrenRefs[current];
-    if (target) return { height: target.getHeight() || 'auto' };
-    return {};
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoHeight, childrenRefs.length, current]);
-
-  const axisDistance = useMemo(() => {
-    if (!vertical) return 100;
-    const rect = getRect(root);
-    return rect.height;
-  }, [vertical, root]);
 
   const { validChildren, count } = useMemo(() => {
     let innerCount = 0;
@@ -105,10 +48,32 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     };
   }, [props.children]);
 
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [childrenRefs, setChildrenRefs] = useRefs();
+  const [enabled, setEnabled] = useState<boolean>(() => props.enabled);
+  const [current, setCurrent] = useState(props.initialSwipe);
+  const [dragging, setDragging, draggingRef] = useRefState(false);
+
+  const computedStyle = useMemo(() => {
+    return {
+      [`--${prefixCls}-swipe-slide-size`]: `${props.slideSize}%`,
+      [`--${prefixCls}-swipe-track-offset`]: `${props.trackOffset}%`,
+      ...props.style,
+    };
+  }, [prefixCls, props.slideSize, props.trackOffset, props.style]);
+
+  const trackStyle = useMemo(() => {
+    if (!autoHeight) return {};
+    const target = childrenRefs[current];
+    if (target) return { height: target.getHeight() || 'auto' };
+    return {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoHeight, childrenRefs.length, current]);
+
   const loop = useMemo(() => {
-    if (count <= 1) return false;
+    if (slideRatio * (count - 1) < 1) return false;
     return outerLoop;
-  }, [count, outerLoop]);
+  }, [count, outerLoop, slideRatio]);
 
   const getSlidePixels = () => {
     const track = trackRef.current;
@@ -134,11 +99,10 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
         tension: 200,
         friction: 30,
         duration,
-        // eslint-disable-next-line no-cond-assign
-        easing: (t) => ((t *= 2) <= 1 ? t * t : --t * (2 - t) + 1) / 2,
       },
       onRest: () => {
         if (draggingRef.current) return;
+        if (!loop) return;
         const rawX = position.get();
         const totalWidth = 100 * count;
         const standardPosition = modulus(rawX, totalWidth);
@@ -158,7 +122,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       if (!slidePixels) return;
       if (
         !props.preventScroll &&
-        isScrollTarget(state.target as any, childrenRefs[current]?.self)
+        isScrollTarget(state.target as HTMLElement, childrenRefs[current]?.self)
       ) {
         return;
       }
@@ -207,7 +171,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       },
       rubberband: props.rubberband,
       axis,
-      preventScroll: axis === 'x' ? props.preventScroll : true,
+      // preventScroll: axis === 'x' ? props.preventScroll : true,
       pointer: {
         touch: true,
       },
@@ -218,7 +182,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     if (props.indicator === undefined || props.indicator === true) {
       return (
         <div className={cls(bem('indicator', { vertical }))}>
-          <PageIndicator
+          <SwiperPagIndicator
             {...props.indicatorProps}
             vertical={vertical}
             total={count}
@@ -233,30 +197,14 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     return null;
   };
 
-  const onClickCapture = (e) => {
-    if (draggingRef.current) {
-      e.stopPropagation();
-    }
-  };
-
   function swipeTo(index: number, immediate = false) {
-    if (loop) {
-      const i = modulus(index, count);
-      setCurrent(i);
-      props.onChange?.(i);
-      api.start({
-        position: index * 100,
-        immediate,
-      });
-    } else {
-      const i = bound(index, 0, count - 1);
-      setCurrent(i);
-      props.onChange?.(i);
-      api.start({
-        position: boundIndex(i) * 100,
-        immediate,
-      });
-    }
+    const roundedIndex = Math.round(index);
+    const targetIndex = loop ? modulus(roundedIndex, count) : bound(roundedIndex, 0, count - 1);
+    setCurrent(targetIndex);
+    api.start({
+      position: (loop ? roundedIndex : boundIndex(roundedIndex)) * 100,
+      immediate,
+    });
   }
 
   const swipeNext = () => {
@@ -280,6 +228,17 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     },
   }));
 
+  useIsomorphicLayoutEffect(() => {
+    const maxIndex = validChildren.length - 1;
+    if (current > maxIndex) {
+      swipeTo(maxIndex, true);
+    }
+  });
+
+  useUpdateEffect(() => {
+    props.onChange?.(current);
+  }, [current]);
+
   useEffect(() => {
     if (!autoplay || dragging) return noop;
     const autoplayInterval = typeof autoplay === 'boolean' ? 5000 : autoplay;
@@ -290,24 +249,11 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
       window.clearInterval(interval);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoplay, dragging, axisDistance]);
+  }, [autoplay, dragging]);
 
-  if (count === 0) {
-    devWarning('Swiper', '`Swiper` needs at least one child.');
-  }
-
-  return (
-    <div ref={setRoot} className={cls(props.className, bem({ vertical }))} style={computedStyle}>
-      <div
-        ref={trackRef}
-        className={cls(
-          bem('track', {
-            'allow-touch-move': props.touchable && enabled && props.preventScroll,
-          }),
-        )}
-        onClickCapture={onClickCapture}
-        {...(props.touchable ? bind() : {})}
-      >
+  const renderTrackInner = () => {
+    if (loop) {
+      return (
         <div
           className={cls(
             bem('track-inner', {
@@ -328,7 +274,7 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
                     finalPosition = modulus(finalPosition + flagWidth, totalWidth) - flagWidth;
                     return `${finalPosition}%`;
                   }),
-                  left: `-${index * 100}%`,
+                  [vertical ? 'top' : 'left']: `-${index * 100}%`,
                 }}
               >
                 {React.cloneElement(child, {
@@ -338,6 +284,49 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
             );
           })}
         </div>
+      );
+    }
+    return (
+      <animated.div
+        className={cls(bem('track-inner'))}
+        style={{
+          [axis]: position.to((position) => `${-position}%`),
+        }}
+      >
+        {React.Children.map(validChildren, (child, index) => {
+          return (
+            <div className={cls(bem('slide'))}>
+              {React.cloneElement(child, {
+                ref: setChildrenRefs(index),
+              } as any)}
+            </div>
+          );
+        })}
+      </animated.div>
+    );
+  };
+
+  if (count === 0) {
+    devWarning('Swiper', '`Swiper` needs at least one child.');
+  }
+
+  return (
+    <div className={cls(props.className, bem({ vertical }))} style={computedStyle}>
+      <div
+        ref={trackRef}
+        className={cls(
+          bem('track', {
+            'allow-touch-move': props.touchable,
+          }),
+        )}
+        onClickCapture={(e) => {
+          if (draggingRef.current) {
+            e.stopPropagation();
+          }
+        }}
+        {...(props.touchable ? bind() : {})}
+      >
+        {renderTrackInner()}
       </div>
       {renderIndicator()}
     </div>
@@ -348,7 +337,6 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 Swiper.defaultProps = {
   initialSwipe: 0,
   touchable: true,
-  loop: true,
   enabled: true,
   rubberband: true,
   autoplay: false,

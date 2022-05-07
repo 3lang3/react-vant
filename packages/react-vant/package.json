@@ -40,7 +40,7 @@
         "import": "./bundle/react-vant.es.js",
         "require": "./bundle/react-vant.js"
       },
-      "require": "./bundle/react-vant.js",
+      "require": "./lib/index.js",
       "import": "./es/index.js",
       "types": "./es/index.d.ts"
     },

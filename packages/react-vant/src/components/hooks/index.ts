@@ -11,6 +11,7 @@ import useInViewport from './use-in-viewport';
 import useTouch from './use-touch';
 import useScrollParent from './use-scroll-parent';
 import useWindowSize from './use-window-size';
+import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect';
 
 export {
   useClickAway,
@@ -26,6 +27,7 @@ export {
   useTouch,
   useScrollParent,
   useWindowSize,
+  useIsomorphicLayoutEffect,
 };
 
 export default {
@@ -42,4 +44,5 @@ export default {
   useTouch,
   useScrollParent,
   useWindowSize,
+  useIsomorphicLayoutEffect,
 };
