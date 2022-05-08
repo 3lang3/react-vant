@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { CSSProperties } from 'react';
 import { isDef, inBrowser } from '..';
 import { isNumeric } from '../validate/number';
 
@@ -25,7 +23,7 @@ export function getSizeStyle(originSize?: string | number) {
 }
 
 export function getZIndexStyle(zIndex?: string | number) {
-  const style: CSSProperties = {};
+  const style: Record<string, any> = {};
   if (zIndex !== undefined) {
     style.zIndex = +zIndex;
   }
