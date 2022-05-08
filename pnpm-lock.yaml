@@ -40,7 +40,7 @@ importers:
 
   packages/react-vant:
     specifiers:
-      '@rcdoc/cli': 0.1.16
+      '@rcdoc/cli': 0.1.17
       '@rcdoc/theme': ^0.1.6
       '@react-spring/web': ^9.3.0
       '@react-vant/icons': workspace:*
@@ -70,7 +70,7 @@ importers:
       react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
       tslib: 2.4.0
     devDependencies:
-      '@rcdoc/cli': 0.1.16_typescript@4.6.4
+      '@rcdoc/cli': 0.1.17_typescript@4.6.4
       '@rcdoc/theme': 0.1.6
       '@types/node': 17.0.31
       '@types/react-dom': 18.0.3
@@ -2135,8 +2135,8 @@ packages:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
 
-  /@rcdoc/build/0.1.9_typescript@4.6.4:
-    resolution: {integrity: sha512-LV9Q7lIhagwODeFJwur85ymqhFnPKdoMuaR4JJ6tn3ONsWYGWQwOmWbmg08SAIwksDdPulYi7MEjmbcEmq2W/w==}
+  /@rcdoc/build/0.1.10_typescript@4.6.4:
+    resolution: {integrity: sha512-U3/mdtl8XA/fNIq9V+PXRQn7ALaQ9jQdB//YXq1N2qNEN5VMENn0AgjSmEeeIDFzgxE2lG5xibvRrm1lIbJEYA==}
     hasBin: true
     dependencies:
       '@babel/core': 7.17.10
@@ -2170,15 +2170,15 @@ packages:
       - typescript
     dev: true
 
-  /@rcdoc/cli/0.1.16_typescript@4.6.4:
-    resolution: {integrity: sha512-y2YcTFdB4xtUYCVtHFdEH9YA7xnpOrPPLcL1uLeuFZzHqQzRGiqDLj7mSfh8CEYaTS8PLI7zGJljHYRDFhBcHA==}
+  /@rcdoc/cli/0.1.17_typescript@4.6.4:
+    resolution: {integrity: sha512-imdknOnLHCnWIZYy4nd0Z7T+P3XsDKbqaB7gZivYvu2aGPU7xOSR9niUHkRqaowaIw/CYW1io1jNqWdwUESdwg==}
     hasBin: true
     dependencies:
       '@babel/core': 7.17.10
       '@babel/preset-env': 7.17.10_@babel+core@7.17.10
       '@babel/preset-react': 7.16.7_@babel+core@7.17.10
       '@babel/runtime': 7.17.9
-      '@rcdoc/build': 0.1.9_typescript@4.6.4
+      '@rcdoc/build': 0.1.10_typescript@4.6.4
       '@rcdoc/plugin-react': 0.0.2
       '@rcdoc/theme': 0.1.6
       '@rcdoc/vitejs-plugin': 0.1.6_253bjb3o3fjal7bxf324y42mva
