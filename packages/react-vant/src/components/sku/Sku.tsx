@@ -13,7 +13,7 @@ import React, {
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SkuActionType, SkuInstance, SkuProps } from './PropsType';
-import ActionBar from '../action-bar';
+import {ActionBar} from '../action-bar';
 import { Image } from '../image';
 import { useSetState } from '../hooks';
 import { BORDER_BOTTOM } from '../utils/constant';

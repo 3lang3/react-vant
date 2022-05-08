@@ -1,19 +1,18 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es6",
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "declaration": true,
-    "sourceMap": true,
     "pretty": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["./src/typings", "./node_modules/@types"],
+    "typeRoots": ["src/typings", "node_modules/@types"],
     "paths": {
       "react-vant": ["src/components/index.ts"]
     }

@@ -270,7 +270,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   const setValue = (value: string) => {
     const { options } = state;
     for (let i = 0; i < options.length; i += 1) {
-      if (getOptionText(options[i]) === value) {
+      if ((getOptionText(options[i]) as unknown as string) === value) {
         return setIndex(i);
       }
     }
