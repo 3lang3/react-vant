@@ -91,7 +91,7 @@
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
-    "@rcdoc/cli": "0.1.12",
+    "@rcdoc/cli": "0.1.17",
     "@rcdoc/theme": "^0.1.6",
     "@types/node": "^17.0.31",
     "@types/react": "^18.0.8",
