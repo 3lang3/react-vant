@@ -107,17 +107,15 @@
   &.active &__menu {
     opacity: 1;
     visibility: visible;
-    &.around {
-      .item-1 { transform: translateY(-150%); }
-      .item-2 { transform: translate(-110%, -110%); }
-      .item-3 { transform: translateX(-150%); }
-      .item-4 { transform: translate(-110%, 110%); }
-      .item-5 { transform: translateY(150%); }
-      &.left {
-        .item-2 { transform: translate(110%, -110%); }
-        .item-3 { transform: translateX(150%); }
-        .item-4 { transform: translate(110%, 110%); }
-      }
+    .item-1 { transform: translateY(-150%); }
+    .item-2 { transform: translate(-110%, -110%); }
+    .item-3 { transform: translateX(-150%); }
+    .item-4 { transform: translate(-110%, 110%); }
+    .item-5 { transform: translateY(150%); }
+    &.left {
+      .item-2 { transform: translate(110%, -110%); }
+      .item-3 { transform: translateX(150%); }
+      .item-4 { transform: translate(110%, 110%); }
     }
     &.vertical {
       .item-1 { transform: translateY(-600%); }
