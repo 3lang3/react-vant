@@ -1,6 +1,6 @@
 import './styles';
 
-export * as hooks from './hooks';
+export { default as hooks } from './hooks';
 export * from './button';
 export { default as Badge } from './badge';
 export * from './field';
