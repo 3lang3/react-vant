@@ -145,6 +145,7 @@ export default defineConfig({
           '/components/sticky',
           '/components/swiper',
           '/components/tag',
+          '/components/floating-ball',
         ],
       },
       {
