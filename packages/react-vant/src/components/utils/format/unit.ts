@@ -1,3 +1,4 @@
+import React from 'react';
 import { isDef, inBrowser } from '..';
 import { isNumeric } from '../validate/number';
 
@@ -23,7 +24,7 @@ export function getSizeStyle(originSize?: string | number) {
 }
 
 export function getZIndexStyle(zIndex?: string | number) {
-  const style: Record<string, any> = {};
+  const style: React.CSSProperties = {};
   if (zIndex !== undefined) {
     style.zIndex = +zIndex;
   }

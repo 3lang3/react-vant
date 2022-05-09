@@ -12,6 +12,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "lib": ["DOM", "ES2015"],
     "typeRoots": ["src/typings", "node_modules/@types"],
     "paths": {
       "react-vant": ["src/components/index.ts"]
