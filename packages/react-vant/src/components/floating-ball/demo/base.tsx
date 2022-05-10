@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { FloatingBall, Cell, Button, FloatingBallInstance, Toast, Form, Switch, Radio, FloatingBallProps, Stepper } from 'react-vant';
-import { StarO, CartCircleO, GoldCoinO, WapHomeO, SettingO } from '@react-vant/icons';
+import { StarO, CartCircleO, GoldCoinO, WapHomeO, Plus } from '@react-vant/icons';
 
 export default () => {
   const [autoAdsorb, setAutoAdsorb] = useState(false)
@@ -65,14 +65,13 @@ export default () => {
         ref={floatingBallInstance}
         onAction={(active) => console.log('悬浮球当前激活状态>>>', active)}
         {...floatingBallConfig}
-        menus={[
-          { icon: <WapHomeO/>, onClick: () => Toast.info('点击了第1个') },
-          { icon: <StarO/>, onClick: () => Toast.info('点击了第2个') },
-          { icon: <CartCircleO/>, onClick: () => Toast.info('点击了第3个') },
-          { icon: <GoldCoinO/>, onClick: () => Toast.info('点击了第4个') },
-          { icon: <SettingO/>, onClick: () => Toast.info('点击了第5个') },
-        ]}
-      />
+      >
+        <FloatingBall.Item onClick={() => Toast.info('点击了第1个')}><WapHomeO/></FloatingBall.Item>
+        <FloatingBall.Item onClick={() => Toast.info('点击了第2个')}><StarO/></FloatingBall.Item>
+        <FloatingBall.Item onClick={() => Toast.info('点击了第3个')}><CartCircleO/></FloatingBall.Item>
+        <FloatingBall.Item onClick={() => Toast.info('点击了第4个')}><GoldCoinO/></FloatingBall.Item>
+        <FloatingBall.Item onClick={() => Toast.info('点击了第5个')}><Button icon={<Plus />} type="primary" round size="mini" /></FloatingBall.Item>
+      </FloatingBall>
       <Cell>
         <Button
           type="primary"

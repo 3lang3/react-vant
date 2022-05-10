@@ -3,14 +3,15 @@ import React, {
   useState,
   useRef,
   useEffect,
-  useMemo,
   useImperativeHandle,
   forwardRef,
+  Children,
 } from 'react';
 import clsx from 'clsx';
 
-import { FloatingBallProps, FloatingBallInstance, menuItem } from './PropsType';
+import { FloatingBallProps, FloatingBallInstance } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import FloatingBallContext from './FloatingBallContext';
 import useClickAway from '../hooks/use-click-away';
 
 const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props, ref) => {
@@ -24,37 +25,6 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
   const baseRef = useRef<HTMLDivElement>();
   const adsorbRef = useRef<HTMLDivElement>();
   const [adsorb, setAdsorb] = useState(false)
-
-  const handleClassName = (item) => {
-    const val = [];
-    item.disabled && val.push('disabled');
-    return val;
-  };
-
-  // 处理 item 的点击事件
-  const handleItemClick = (event, item) => {
-    event.preventDefault();
-    event.stopPropagation();
-    typeof item.onClick === 'function' && !item.disabled && item.onClick();
-    // 触发 item 的点击事件之后收回悬浮球的激活状态
-    setActive(false);
-  };
-
-  // 渲染子节点
-  const childrenList = useMemo(() => {
-    return props.menus
-      .filter(Boolean)
-      // 最多保留5个
-      .slice(0, 5)
-      .map((child: menuItem, index: number) => (
-        <div
-          key={index}
-          style={{ backgroundColor: child.color }}
-          className={clsx(bem('item'), `item-${index + 1}`, ...handleClassName(child))}
-          onClick={event => handleItemClick(event, child)}
-        >{child.icon}</div>
-      ))
-  }, [props.menus]);
 
   // 标记 item 的位置 上下左右
   const handlePosition = () => {
@@ -168,30 +138,32 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
   }
 
   return (
-    <div className={clsx(bem(), active ? 'active' : '', props.position)} ref={containerRef}>
-      <div className={clsx(bem('menu'), `list-${childrenList.length}`, position, props.direction)}>
-        {childrenList}
+    <FloatingBallContext.Provider value={{close: () => setActive(false)}}>
+      <div className={clsx(bem(), active ? 'active' : '', props.position)} ref={containerRef}>
+        <div className={clsx(bem('menu'), `list-${Math.max(Children.toArray(props.children).length, 5)}`, position, props.direction)}>
+          {props.children}
+        </div>
+        <div
+          className={clsx(bem('adsorb'))}
+          style={{
+            display: adsorb ? 'block' : 'none'
+          }}
+          ref={adsorbRef}
+          onClick={handleAdsorb}
+        ></div>
+        <div
+          className={clsx(bem('base'), props.disabled ? 'disabled' : '')}
+          ref={baseRef}
+          style={{
+            backgroundColor: props.color,
+            transform: adsorb ? `translateX(${position.includes('left') ? '-' : ''}200%) scale(0)` : undefined
+          }}
+          onClick={handleBaseClick}
+        >
+          {active || props.icon}
+        </div>
       </div>
-      <div
-        className={clsx(bem('adsorb'))}
-        style={{
-          display: adsorb ? 'block' : 'none'
-        }}
-        ref={adsorbRef}
-        onClick={handleAdsorb}
-      ></div>
-      <div
-        className={clsx(bem('base'), props.disabled ? 'disabled' : '')}
-        ref={baseRef}
-        style={{
-          backgroundColor: props.color,
-          transform: adsorb ? `translateX(${position.includes('left') ? '-' : ''}200%) scale(0)` : undefined
-        }}
-        onClick={handleBaseClick}
-      >
-        {active || props.icon}
-      </div>
-    </div>
+    </FloatingBallContext.Provider>
   )
 });
 

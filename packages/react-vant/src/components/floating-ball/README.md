@@ -26,16 +26,16 @@ import { FloatingBall } from 'react-vant';
 | disdrag            | 是否禁止拖动                  | _boolean_ | `false` |
 | disabled           | 是否禁用                     | _boolean_ | `false` |
 | icon               | 显示图标                     | _ReactNode_ |   -   |
-| menus              | 操作项 (**最多支持5个**)      | _menuItem[]_ |   -   |
 | position           | 位置                        | _top-left \| top-right \| bottom-left \| bottom-right_ |   `bottom-right`   |
 
-#### menuItem
+### FloatingBallItem Props
+
 | 参数                | 说明                   | 类型               |
 | ------------------ | ---------------------- | ------------------ |
 | color              | 颜色                    | _string_          |
 | disabled           | 是否禁用                 | _false_          |
-| icon               | 显示图标                 | _ReactNode_ |
-| onClick            | 点击操作项的触发函数       | _() => void_ |
+
+> 最多可以设置5个操作项 \<FloatingBall.Item\>
 
 
 ### FloatingBall Events
@@ -43,6 +43,12 @@ import { FloatingBall } from 'react-vant';
 | 事件名   | 说明                       | 回调参数 |
 | -------- | -------------------------- | -------- |
 | onAction | 点击悬浮球时触发(只有一个选项/通过实例激活时不会触发) | _active: boolean_  |
+
+### FloatingBallItem Events
+
+| 事件名    | 说明                        | 回调参数 |
+| -------- | -------------------------- | -------- |
+| onClick  | 点击操作项的触发函数           |    -    |
 
 
 ### FloatingBall 方法
@@ -64,3 +70,6 @@ import { FloatingBall } from 'react-vant';
 | --rv-floating-ball-size  | _38px_           | 悬浮球大小  |
 | --rv-floating-ball-background-color  | _rgba(0, 0, 0, .3)_           | 悬浮球背景颜色  |
 | --rv-floating-ball-item-background-color  | _var(--rv-floating-ball-background-color)_           | 悬浮球操作项背景颜色  |
+| --rv-floating-ball-z-index  | _8_           | 悬浮球`z-index`层级  |
+| --rv-floating-ball-padding  | _10%_           | 悬浮球的`padding`  |
+| --rv-floating-ball-item-padding  | _var(--rv-floating-ball-padding)_           | 悬浮球操作项的`padding`  |
