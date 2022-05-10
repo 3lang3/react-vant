@@ -22,6 +22,8 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
   const [position, setPosition] = useState('bottom right');
   const containerRef = useRef<HTMLDivElement>();
   const baseRef = useRef<HTMLDivElement>();
+  const adsorbRef = useRef<HTMLDivElement>();
+  const [adsorb, setAdsorb] = useState(false)
 
   const handleClassName = (item) => {
     const val = [];
@@ -38,7 +40,7 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
     setActive(false);
   };
 
-  // 一份子节点
+  // 渲染子节点
   const childrenList = useMemo(() => {
     return props.menus
       .filter(Boolean)
@@ -83,7 +85,6 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
     if (moving) return;
     setActive(!active);
     typeof props.onAction === 'function' && props.onAction(!active);
-    handlePosition();
   };
 
   // 点击除悬浮球之外的地方自动收回悬浮球
@@ -102,14 +103,15 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
         const windowW =  window.innerWidth;
         const windowH =  window.innerHeight;
         const [touche] = event.touches;
-        const x = touche.clientX - size / 2;
-        const y = touche.clientY - size / 2;
+        const x = touche.clientX - size / 4;
+        const y = touche.clientY - size / 4;
 
-        if (x >= size / 2 && x <= windowW - size * 1.5) {
+        if (x >= size / 4 && x <= windowW - size * 1.25) {
           containerRef.current.style.left = `${x}px`;
         }
         if (y >= size * 3 && y <= windowH - size * 4) {
           containerRef.current.style.top = `${y}px`;
+          adsorbRef.current.style.top = `${y}px`;
         }
         setMoving(true);
       }
@@ -118,6 +120,7 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
     // 悬浮球移动结束
     const handleMoveEnd = () => {
       setMoving(false);
+      handlePosition();
     };
 
     baseRef.current?.addEventListener('touchmove', handleMove);
@@ -126,18 +129,43 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
       baseRef.current?.removeEventListener('touchmove', handleMove);
       baseRef.current?.removeEventListener('touchend', handleMoveEnd);
     };
-  }, [active, props.disdrag]);
+  }, [active, position, props.disdrag]);
+
+  // 自动靠边吸附
+  useEffect(() => {
+    let timer;
+    if (!props.adsorb) {
+      setAdsorb(false);
+      return;
+    }
+    if (!active) {
+      timer = setTimeout(() => {
+        setAdsorb(true);
+        // 最少5秒钟 不然用户操作体验会差
+      }, Math.max(props.adsorb, 5) * 1000);
+    }
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [active, moving, props.adsorb])
 
   // 实例方法
   useImperativeHandle(ref, () => ({
     action: (active: boolean) => {
       // 防止点击悬浮球之外的地方悬浮球收回
       setTimeout((() => {
+        if (active) {
+          setAdsorb(false);
+        }
         setActive(active);
-        active && handlePosition();
       }));
     }
   }));
+
+  const handleAdsorb = () => {
+    setAdsorb(false);
+    setActive(true);
+  }
 
   return (
     <div className={clsx(bem(), active ? 'active' : '', props.position)} ref={containerRef}>
@@ -145,9 +173,20 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props,
         {childrenList}
       </div>
       <div
+        className={clsx(bem('adsorb'))}
+        style={{
+          display: adsorb ? 'block' : 'none'
+        }}
+        ref={adsorbRef}
+        onClick={handleAdsorb}
+      ></div>
+      <div
         className={clsx(bem('base'), props.disabled ? 'disabled' : '')}
         ref={baseRef}
-        style={{backgroundColor: props.color}}
+        style={{
+          backgroundColor: props.color,
+          transform: adsorb ? `translateX(${position.includes('left') ? '-' : ''}200%) scale(0)` : undefined
+        }}
         onClick={handleBaseClick}
       >
         {active || props.icon}

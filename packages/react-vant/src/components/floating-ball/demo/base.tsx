@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { FloatingBall, Cell, Button, FloatingBallInstance, Toast, Form, Switch, Radio, FloatingBallProps } from 'react-vant';
+import { FloatingBall, Cell, Button, FloatingBallInstance, Toast, Form, Switch, Radio, FloatingBallProps, Stepper } from 'react-vant';
 import { StarO, CartCircleO, GoldCoinO, WapHomeO, SettingO } from '@react-vant/icons';
 
 export default () => {
+  const [autoAdsorb, setAutoAdsorb] = useState(false)
   const floatingBallInstance = useRef<FloatingBallInstance>();
   const [floatingBallConfig, setFloatingBallConfig] = useState<FloatingBallProps>({
     disdrag: false,
@@ -14,7 +15,16 @@ export default () => {
   const handleFormChange = (values) => {
     console.log('>>>', values)
     setFloatingBallConfig(state => ({...state, ...values}))
-  }
+  };
+
+  const handleAutoAdsorb = (checked) => {
+    setAutoAdsorb(checked);
+    if (checked) {
+      setFloatingBallConfig({...floatingBallConfig, adsorb: 5})
+    } else {
+      setFloatingBallConfig({...floatingBallConfig, adsorb: null})
+    }
+  };
 
   return (
     <div>
@@ -26,6 +36,15 @@ export default () => {
         <Form.Item name="disdrag" label="禁止拖动">
           <Switch size={20} />
         </Form.Item>
+        <Form.Item label="无操作自动靠边吸附">
+          <Switch size={20} onChange={handleAutoAdsorb} />
+        </Form.Item>
+        {
+          autoAdsorb &&
+          <Form.Item name="adsorb" label="自动靠边时间(单位S)" initialValue={5}>
+            <Stepper />
+          </Form.Item>
+        }
         <Form.Item name="direction" label="方向" initialValue="around">
           <Radio.Group>
             <Radio name="around">around</Radio>

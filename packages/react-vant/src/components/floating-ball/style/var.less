@@ -1,5 +1,12 @@
 @import '../../styles/var.less';
 
-@floating-ball-size: 38 * @hd;
-@floating-ball-background-color: rgba(0, 0, 0, .3);
+:root {
+  --rv-floating-ball-size: calc(38 * @hd);
+  --rv-floating-ball-background-color: rgba(0, 0, 0, .3);
+  --rv-floating-ball-item-background-color: var(--rv-floating-ball-background-color);
+}
+
+@floating-ball-size: var(--rv-floating-ball-size);
+@floating-ball-background-color: var(--rv-floating-ball-background-color);
+@floating-ball-item-background-color: var(--rv-floating-ball-item-background-color);
 @floating-ball-transition: all 0.4s ease;
