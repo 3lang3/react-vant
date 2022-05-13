@@ -17,12 +17,17 @@
   .multi-ellipsis(3);
 }
 
+.@{rv-prefix}-safe-area-top {
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
+}
+
 .@{rv-prefix}-safe-area-bottom {
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-[class*='@{rv-prefix}-hairline'] {
+[class*='rv-hairline'] {
   &::after {
     .hairline();
   }
@@ -67,7 +72,7 @@
   }
 }
 
-[class*='@{rv-prefix}-shadow'] {
+[class*='rv-shadow'] {
   transition: box-shadow 0.2s linear;
 
   &:hover,
