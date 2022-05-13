@@ -1,0 +1,47 @@
+@shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+
+.demo-floating-box {
+  .main-button {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: @shadow;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &-bubble {
+    .main-button {
+      font-size: 28px;
+      color: #fff;
+      background-color: #3f45ff;
+
+      svg {
+        transition: all 0.2s ease-in-out;
+      }
+
+      &:hover {
+        svg {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  &-menu {
+    .main-button {
+      background-color: #fff;
+
+      &--active {
+        transform: scale(0.9) rotate(45deg);
+      }
+    }
+    .menu-item {
+      background-color: #fff;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      box-shadow: @shadow;
+      font-size: 24px;
+    }
+  }
+}
