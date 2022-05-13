@@ -9,7 +9,6 @@ export default ({ menu = {}, ...props}) => {
   return (
     <FloatingBall
       className="demo-floating-box-menu"
-      adsorb={false}
       offset={{
         right: 20,
         bottom: '14vh',

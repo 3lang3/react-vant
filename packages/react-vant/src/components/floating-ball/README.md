@@ -1,4 +1,4 @@
-# FloatingBall 悬浮元素 (beta)
+# FloatingBall 悬浮球 (beta)
 
 ## 介绍
 
