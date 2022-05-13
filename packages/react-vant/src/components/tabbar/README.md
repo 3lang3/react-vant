@@ -52,7 +52,7 @@ import { Tabbar } from 'react-vant';
 | activeColor | 选中标签的颜色 | _string_ | `#3f45ff` |
 | inactiveColor | 未选中标签的颜色 | _string_ | `#7d7e80` |
 | placeholder | 固定在底部时，是否在标签位置生成一个等高的占位元素 | _boolean_ | `false` |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei)，设置 fixed 时默认开启 | _boolean_ | `false` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage)，设置 fixed 时默认开启 | _boolean_ | `false` |
 
 ### Tabbar Events
 
@@ -72,7 +72,7 @@ import { Tabbar } from 'react-vant';
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                     | 默认值                    | 描述 |
 | ---------------------------------------- | ------------------------- | ---- |

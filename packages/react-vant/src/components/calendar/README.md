@@ -91,7 +91,7 @@ import { Calendar } from 'react-vant';
 | round | 是否显示圆角弹窗 | _boolean_ | `true` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `true` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true` |
 
 ### Calendar Range Props
 
@@ -165,7 +165,7 @@ calendarRef.value?.reset();
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                          | 默认值                                 | 描述 |
 | --------------------------------------------- | -------------------------------------- | ---- |

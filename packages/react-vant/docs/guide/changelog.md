@@ -296,7 +296,7 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 **New Component**
 
-- 新增 [Swiper](#/zh-CN/swiper) 轮播组件，用于替换 Swipe 组件 [#127](https://github.com/3lang3/react-vant/pull/127)
+- 新增 [Swiper](/components/swiper) 轮播组件，用于替换 Swipe 组件 [#127](https://github.com/3lang3/react-vant/pull/127)
 
 **Features**
 

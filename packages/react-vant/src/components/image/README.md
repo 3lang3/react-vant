@@ -62,7 +62,7 @@ import { Image } from 'react-vant';
 | height | 高度，默认单位为 `px` | _number \| string_ | - |
 | radius | 圆角大小，默认单位为 `px` | _number \| string_ | `0` |
 | round | 是否显示为圆形 | _boolean_ | `false` |
-| lazyload | 是否开启懒加载 | _boolean\|[Lazyload Props](/#/zh-CN/lazyload)_ | `false` |
+| lazyload | 是否开启懒加载 | _boolean\|[Lazyload Props](/components/lazyload)_ | `false` |
 | showError | 是否展示图片加载失败提示 | _boolean_ | `true` |
 | showLoading | 是否展示图片加载中提示 | _boolean_ | `true` |
 | errorIcon | 失败时提示的图标 | _ReactNode_ | `<PhotoFail />` |
@@ -99,7 +99,7 @@ import type { ImageFit } from 'react-vant';
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                    | 默认值                       | 描述 |
 | --------------------------------------- | ---------------------------- | ---- |

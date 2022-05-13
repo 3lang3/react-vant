@@ -113,15 +113,15 @@ dropdownRef.current?.toggleItem(0);
 
 | 键名  | 说明                                   | 类型               |
 | ----- | -------------------------------------- | ------------------ |
-| text  | 文字                                   | _string_           |
+| text  | 文字                                   | _ReactNode_           |
 | value | 标识符                                 | _number \| string_ |
-| icon  | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_           |
+| icon  | 左侧图标 | _ReactNode_           |
 
 ## 主题定制
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                         | 默认值                                  | 描述 |
 | -------------------------------------------- | --------------------------------------- | ---- |

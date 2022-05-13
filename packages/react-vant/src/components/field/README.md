@@ -216,7 +216,7 @@ export default () => {
 | readonly | 是否只读 | _boolean_ | `false` |
 | colon | 是否在 label 后面添加冒号 | _boolean_ | `false` |
 | intro | 额外的输入框提示信息 | _ReactNode_ | - |
-| tooltip | 字段提示信息 | _ReactNode \|_ [DialogProps & { icon: ReactNode }](/#/zh-CN/dialog#props) | - |
+| tooltip | 字段提示信息 | _ReactNode \|_ [DialogProps & { icon: ReactNode }](/components/dialog#props) | - |
 | required | 是否显示表单必填星号 | _boolean_ | `false` |
 | center | 是否使内容垂直居中 | _boolean_ | `false` |
 | clearable | 是否启用清除图标，点击清除图标后会清空输入框 | _boolean_ | `false` |
@@ -267,7 +267,7 @@ export default () => {
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                 | 默认值                   | 描述 |
 | ------------------------------------ | ------------------------ | ---- |
@@ -300,4 +300,4 @@ HTML 原生的 `type="number"` 属性在 iOS 和 Android 系统上都存在一�
 
 ### 在桌面端点击清除按钮无效？
 
-清除按钮监听是的移动端 Touch 事件，参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+清除按钮监听是的移动端 Touch 事件，参见[桌面端适配](/guide/advanced-usage)。

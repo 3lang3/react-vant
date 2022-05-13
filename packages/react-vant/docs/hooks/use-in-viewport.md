@@ -4,7 +4,7 @@
 
 用于判断 dom 元素是否在可视范围之内
 
-> [Lazyload 懒加载](/#/zh-CN/lazyload)组件基于此 hook 实现
+> [Lazyload 懒加载](/components/lazyload)组件基于此 hook 实现
 
 ## 代码演示
 

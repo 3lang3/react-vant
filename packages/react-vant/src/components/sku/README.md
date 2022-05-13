@@ -266,10 +266,10 @@ export default () => {
 | customStepperConfig | 步进器相关自定义配置 | _object_ | `{}` |
 | customSkuValidator | 自定义 sku 校验规则 | _(type,selectedValue) => void \| boolean \| Promise\<boolean\>_ | - |
 | initialSku | 默认选中的 sku，具体参考高级用法 | _object_ | - |
-| getContainer | 指定挂载的节点，[用法示例](#/zh-CN/popup#zhi-ding-gua-zai-wei-zhi) | _string \| () => Element_ | - |
+| getContainer | 指定挂载的节点，[用法示例](/components/popup#zhi-ding-gua-zai-wei-zhi) | _string \| () => Element_ | - |
 | showSoldoutSku | 是否展示售罄的 sku，默认展示并置灰 | _boolean_ | `true` |
 | disableSoldoutSku | 是否禁用售罄的 sku | _boolean_ | `true` |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `true` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true` |
 | startSaleNum | 起售数量 | _number_ | `1` |
 | properties | 商品属性 | _array_ | - |
 | previewOnClickImage | 是否在点击商品图片时自动预览 | _boolean_ | `true` |

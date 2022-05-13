@@ -16,7 +16,7 @@
 
 ### 快速上手
 
-请参考[快速上手](#/zh-CN/quickstart)章节。
+请参考[快速上手](/guide/quickstart)章节。
 
 ### 浏览器支持
 
@@ -26,13 +26,13 @@
 
 | 项目 | 描述 |
 | --- | --- |
-| [react-vant-cli](https://github.com/3lang3/react-vant/tree/main/packages/react-vant-cli) | 开箱即用的组件库搭建工具 |
+| [rcdoc](https://github.com/3lang3/rcdoc) | 开箱即用的组件库搭建工具 |
 
 ### 链接
 
 - [意见反馈](https://github.com/3lang3/react-vant/issues)
-- [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://lang3.gitee.io/react-vant/#/zh-CN/)
+- [更新日志](/guide/changelog)
+- [码云镜像](https://react-vant-gitee.3lang.dev/)
 
 ### 贡献者
 

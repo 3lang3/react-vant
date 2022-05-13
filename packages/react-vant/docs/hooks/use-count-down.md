@@ -4,7 +4,7 @@
 
 提供倒计时毫秒级管理能力
 
-> [CountDown 倒计时](/#/zh-CN/count-down)组件基于此 hook 实现。
+> [CountDown 倒计时](/components/count-down)组件基于此 hook 实现。
 
 ## 代码演示
 

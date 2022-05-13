@@ -54,7 +54,7 @@ import { ShareSheet } from 'react-vant';
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `true` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true` |
 
 ### Option 数据结构
 
@@ -78,7 +78,7 @@ import { ShareSheet } from 'react-vant';
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称 | 默认值 | 描述 |
 | --- | --- | --- |
@@ -114,4 +114,4 @@ import { ShareSheet } from 'react-vant';
 
 #### 分享海报或二维码
 
-可以通过 [Popup](#/zh-CN/popup) 组件以弹层的形式展示图片，然后引导用户保存图片进行分享。
+可以通过 [Popup](/components/popup) 组件以弹层的形式展示图片，然后引导用户保存图片进行分享。

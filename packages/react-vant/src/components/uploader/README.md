@@ -143,7 +143,7 @@ export default () => (
 | previewSize | 预览图和上传区域的尺寸，默认单位为 `px` | _number \| string_ | `80px` |
 | previewImage | 是否在上传完成后展示预览图 | _boolean_ | `true` |
 | previewFullImage | 是否在点击预览图后展示全屏图片预览 | _boolean_ | `true` |
-| previewOptions | 全屏图片预览的配置项，可选值见 [ImagePreview](#/zh-CN/image-preview) | _object_ | - |
+| previewOptions | 全屏图片预览的配置项，可选值见 [ImagePreview](/components/image-preview) | _object_ | - |
 | multiple | 是否开启图片多选，部分安卓机型不支持 | _boolean_ | `false` |
 | disabled | 是否禁用文件上传 | _boolean_ | `false` |
 | readonly | 是否将上传区域设置为只读状态 | _boolean_ | `false` |
@@ -157,7 +157,7 @@ export default () => (
 | maxCount | 文件上传数量限制 | _number \| string_ | - |
 | resultType | 文件读取结果类型，可选值为 `file` `text` | _string_ | `dataUrl` |
 | uploadText | 上传区域文字提示 | _string_ | - |
-| imageFit | 预览图裁剪模式，可选值见 [Image](#/zh-CN/image) 组件 | _string_ | `cover` |
+| imageFit | 预览图裁剪模式，可选值见 [Image](/components/image) 组件 | _string_ | `cover` |
 | uploadIcon | 上传区域图标 | _ReactNode_ | `<Photograph />` |
 
 > 注意：accept、capture 和 multiple 为浏览器 input 标签的原生属性，移动端各种机型对这些属性的支持程度有所差异，因此在不同机型和 WebView 下可能出现一些兼容性问题。
@@ -215,7 +215,7 @@ uploaderRef.current?.chooseFile();
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                   | 默认值                        | 描述 |
 | -------------------------------------- | ----------------------------- | ---- |

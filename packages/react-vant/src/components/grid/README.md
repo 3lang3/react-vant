@@ -6,7 +6,7 @@
 
 ## 引入
 
-通过以下方式来全局注册组件，更多注册方式请参考[组件注册](#/zh-CN/advanced-usage#zu-jian-zhu-ce)。
+通过以下方式来全局注册组件，更多注册方式请参考[组件注册](/guide/advanced-usage#zu-jian-zhu-ce)。
 
 ```js
 import { Grid } from 'react-vant';
@@ -79,7 +79,7 @@ import { Grid } from 'react-vant';
 | --- | --- | --- | --- |
 | text | 文字 | _string_ | - |
 | icon | 图标 | _React.ReactNode_ | - |
-| iconColor | 图标颜色，等同于 Icon 组件的 [color 属性](#/zh-CN/icon#props) | _string_ | - |
+| iconColor | 图标颜色，等同于 Icon 组件的 [color 属性](/components/icon#props) | _string_ | - |
 | badge | 图标右上角徽标的内容 | _BadgeProps_ | - |
 | className | 类名 | _string_ | - |
 | style | style | _React.CSSProperties_ | - |
@@ -104,7 +104,7 @@ import type { GridDirection } from 'react-vant';
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                    | 默认值                                      | 描述 |
 | --------------------------------------- | ------------------------------------------- | ---- |

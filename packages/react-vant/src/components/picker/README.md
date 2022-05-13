@@ -2,7 +2,7 @@
 
 ## 介绍
 
-提供多个选项集合供用户选择，支持单列选择和多列级联，通常与[弹出层](#/zh-CN/popup)组件配合使用。
+提供多个选项集合供用户选择，支持单列选择和多列级联，通常与[弹出层](/components/popup)组件配合使用。
 
 ## 引入
 
@@ -23,7 +23,7 @@ import { Picker } from 'react-vant';
 
 ### 多列选择
 
-`columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](#/zh-CN/picker#column-shu-ju-jie-gou)。
+`columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](/components/picker#column-shu-ju-jie-gou)。
 
 <code title="多列选择" card src="./demo/columns.tsx" />
 
@@ -103,7 +103,7 @@ import { Picker } from 'react-vant';
 
 ### 方法
 
-通过 ref 可以获取到 Picker 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+通过 ref 可以获取到 Picker 实例并调用实例方法，详见[组件实例方法](/guide/advanced-usage#zu-jian-shi-li-fang-fa)。
 
 | 方法名          | 说明                            | 参数                     | 返回值      |
 | --------------- | ------------------------------- | ------------------------ | ----------- |
@@ -136,7 +136,7 @@ pickerRef.current?.confirm();
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                | 默认值                      | 描述 |
 | ----------------------------------- | --------------------------- | ---- |
@@ -159,4 +159,4 @@ pickerRef.current?.confirm();
 
 ### 在桌面端无法操作组件？
 
-参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+参见[桌面端适配](/guide/advanced-usage)。

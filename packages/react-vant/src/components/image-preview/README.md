@@ -158,7 +158,7 @@ export default () => {
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | images | 需要预览的图片 URL 数组 | _string[]_ | `[]` |
-| lazyload | 是否开启懒加载 | _boolean\|[Lazyload Props](/#/zh-CN/lazyload)_ | `false` |
+| lazyload | 是否开启懒加载 | _boolean\|[Lazyload Props](/components/lazyload)_ | `false` |
 | startPosition | 图片预览起始位置索引 | _number \| string_ | `0` |
 | swipeDuration | 动画时长，单位为 `ms` | _number \| string_ | `300` |
 | showIndex | 是否显示页码 | _boolean_ | `true` |
@@ -187,7 +187,7 @@ export default () => {
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                        | 默认值                       | 描述 |
 | ------------------------------------------- | ---------------------------- | ---- |

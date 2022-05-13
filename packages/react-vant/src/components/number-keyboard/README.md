@@ -2,7 +2,7 @@
 
 ## 介绍
 
-虚拟数字键盘，可以配合[密码输入框组件](#/zh-CN/password-input)或自定义的输入框组件使用。
+虚拟数字键盘，可以配合[密码输入框组件](/components/password-input)或自定义的输入框组件使用。
 
 ## 引入
 
@@ -55,7 +55,7 @@ import { NumberKeyboard } from 'react-vant';
 | showDeleteKey | 是否展示删除图标 | _boolean_ | `true` |
 | blurOnClose | 是否在点击关闭按钮时触发 blur 事件 | _boolean_ | `true` |
 | hideOnClickOutside | 是否在点击外部时收起键盘 | _boolean_ | `true` |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `true` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true` |
 | randomKeyOrder | 是否将通过随机顺序展示按键 | _boolean_ | `false` |
 
 ### Events
@@ -81,7 +81,7 @@ import type { NumberKeyboardTheme } from 'react-vant';
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                         | 默认值                      | 描述 |
 | -------------------------------------------- | --------------------------- | ---- |
@@ -105,4 +105,4 @@ import type { NumberKeyboardTheme } from 'react-vant';
 
 ### 在桌面端无法操作组件？
 
-参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+参见[桌面端适配](/guide/advanced-usage)。

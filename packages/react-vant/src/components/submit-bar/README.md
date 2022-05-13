@@ -90,14 +90,14 @@ export default () => {
 | suffixLabel | 金额右侧文案 | _ReactNode_ | - |
 | textAlign | 金额文案对齐方向，可选值为 `left` | _string_ | `right` |
 | buttonText | 按钮文字 | _string_ | - |
-| buttonType | 按钮类型 | _[ButtonType](/#/zh-CN/button)_ | `danger` |
+| buttonType | 按钮类型 | _[ButtonType](/components/button)_ | `danger` |
 | buttonColor | 自定义按钮颜色 | _string_ | - |
 | tip | 在订单栏上方的提示文案 | _string\|ReactNode_ | - |
-| tipIcon | 提示文案左侧的[图标](#/zh-CN/icon) | _ReactNode_ | - |
+| tipIcon | 提示文案左侧的图标 | _ReactNode_ | - |
 | currency | 货币符号 | _string_ | `¥` |
 | disabled | 是否禁用按钮 | _boolean_ | `false` |
 | loading | 是否显示将按钮显示为加载中状态 | _boolean_ | `false` |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `true` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true` |
 | button | 自定义按钮 | _ReactNode_ | - |
 | top | 自定义订单栏上方内容 | _ReactNode_ | - |
 
@@ -111,7 +111,7 @@ export default () => {
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                    | 默认值                                      | 描述 |
 | --------------------------------------- | ------------------------------------------- | ---- |

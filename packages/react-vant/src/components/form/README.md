@@ -62,7 +62,7 @@ Form.List 为字段提供数组化管理。
 | showValidateMessage | 是否显示验证信息 | _boolean_ | `true` |
 | intro | 额外的提示信息 | _ReactNode_ | - |
 | required | 必填样式设置。如不设置，则会根据校验规则自动生成 | _boolean_ | `false` |
-| tooltip | 字段提示信息 | _ReactNode \|_ [DialogProps & { icon: ReactNode }](/#/zh-CN/dialog#props) | - |
+| tooltip | 字段提示信息 | _ReactNode \|_ [DialogProps & { icon: ReactNode }](/components/dialog#props) | - |
 | customField | 自定义 item，此时不会渲染内置的 field，通常用于自定义表单项 | _boolean_ | `false` |
 | disabled | 是否禁用标单项 | _boolean_ | `false` |
 | labelClass | 左侧文本额外类名 | _any_ | - |

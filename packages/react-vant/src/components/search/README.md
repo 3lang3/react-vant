@@ -220,7 +220,7 @@ searchRef.current?.focus();
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                 | 默认值                      | 描述 |
 | ------------------------------------ | --------------------------- | ---- |
@@ -240,4 +240,4 @@ searchRef.current?.focus();
 
 ### 在桌面端点击清除按钮无效？
 
-清除按钮监听是的移动端 Touch 事件，参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+清除按钮监听是的移动端 Touch 事件，参见[桌面端适配](/guide/advanced-usage)。

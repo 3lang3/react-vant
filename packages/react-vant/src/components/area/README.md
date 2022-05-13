@@ -2,7 +2,7 @@
 
 ## 介绍
 
-省市区三级联动选择，通常与[弹出层](#/zh-CN/popup)组件配合使用。
+省市区三级联动选择，通常与[弹出层](/components/popup)组件配合使用。
 
 ## 引入
 
@@ -153,4 +153,4 @@ areaRef.value?.reset();
 
 ### 在桌面端无法操作组件？
 
-参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+参见[桌面端适配](/guide/advanced-usage)。

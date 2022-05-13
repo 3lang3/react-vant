@@ -105,13 +105,13 @@ ReactDOM.render(<App />, mountNode);
 - [Remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)
 - [Vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
 
-For more information, please refer to [QuickStart](https://3lang3.github.io/react-vant/#/zh-CN/).
+For more information, please refer to [QuickStart](https://react-vant.3lang.dev/guide/quickstart).
 
 ## 🤝 Contributing
 
 Read our contributing guide and let's build a better react-vant together.
 
-We welcome all contributions. Please read our [CONTRIBUTING.md](https://3lang3.github.io/react-vant/#/zh-CN/contribution) first. You can submit any ideas as pull requests or as GitHub issues. :)
+We welcome all contributions. Please read our [CONTRIBUTING.md](https://react-vant.3lang.dev/guide/contribution) first. You can submit any ideas as pull requests or as GitHub issues. :)
 
 ## 💭 Discuss
 

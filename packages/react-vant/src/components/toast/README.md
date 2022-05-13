@@ -99,7 +99,7 @@ Toast.resetDefaultOptions('loading');
 | forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
 | closeOnClick | 是否在点击后关闭 | _boolean_ | `false` |
 | closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `false` |
-| loadingType | [加载图标类型](#/zh-CN/loading), 可选值为 `spinner` | _string_ | `circular` |
+| loadingType | [加载图标类型](/components/loading), 可选值为 `spinner` | _string_ | `circular` |
 | duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` |
 | className | 自定义类名 | _string_ | - |
 | overlay | 是否显示背景遮罩层 | _boolean_ | `false` |
@@ -122,7 +122,7 @@ import type { ToastType, ToastOptions, ToastPosition } from 'react-vant';
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                | 默认值                                      | 描述 |
 | ----------------------------------- | ------------------------------------------- | ---- |

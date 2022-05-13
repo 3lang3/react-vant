@@ -146,8 +146,8 @@ export default () => {
 | color         | 选中时的颜色                                 | _string_           | `#ee0a24` |
 | voidColor     | 未选中时的颜色                               | _string_           | `#c8c9cc` |
 | disabledColor | 禁用时的颜色                                 | _string_           | `#c8c9cc` |
-| icon          | 选中时的[图标名称](#/zh-CN/icon)或图片链接   | _string_           | `star`    |
-| voidIcon      | 未选中时的[图标名称](#/zh-CN/icon)或图片链接 | _string_           | `star-o`  |
+| icon          | 选中时的图标或图片链接   | _ReactNode_           | -    |
+| voidIcon      | 未选中时的图标或图片链接 | _ReactNode_           | -  |
 | allowHalf     | 是否允许半选                                 | _boolean_          | `false`   |
 | readonly      | 是否为只读状态，只读状态下无法修改评分       | _boolean_          | `false`   |
 | disabled      | 是否禁用评分                                 | _boolean_          | `false`   |
@@ -163,7 +163,7 @@ export default () => {
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                          | 默认值                   | 描述 |
 | ----------------------------- | ------------------------ | ---- |

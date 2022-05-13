@@ -9,10 +9,6 @@ export interface DialogProps extends Omit<BaseTypeProps, 'children'> {
   visible?: boolean;
   /** 是否显示右上角关闭按钮 */
   closeable?: boolean;
-  /**
-   * 自定义关闭按钮
-   * @see https://3lang3.github.io/react-vant/#/zh-CN/icon
-   */
   closeIcon?: React.ReactNode;
   /** 标题 */
   title?: string | React.ReactNode;

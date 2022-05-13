@@ -106,7 +106,7 @@ import { Button } from 'react-vant';
 | hairline | 是否使用 0.5px 边框 | _boolean_ | `false` |
 | loading | 是否显示为加载状态 | _boolean_ | `false` |
 | loadingText | 加载状态提示文字 | _string_ | - |
-| loadingType | [加载图标类型](#/zh-CN/loading)，可选值为 `spinner` | _string_ | `circular` |
+| loadingType | [加载图标类型](/components/loading)，可选值为 `spinner` | _string_ | `circular` |
 | loadingSize | 加载图标大小 | _string_ | `20px` |
 
 ### Events
@@ -143,7 +143,7 @@ import type { ButtonType, ButtonSize } from 'react-vant';
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                 | 默认值                        | 描述 |
 | ------------------------------------ | ----------------------------- | ---- |

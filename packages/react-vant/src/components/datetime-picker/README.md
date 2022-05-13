@@ -116,11 +116,11 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 ### 方法
 
-通过 ref 可以获取到 DatetimePicker 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+通过 ref 可以获取到 DatetimePicker 实例并调用实例方法，详见[组件实例方法](/guide/advanced-usage#zu-jian-shi-li-fang-fa)。
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| getPicker | 获取 Picker 实例，用于调用 Picker 的[实例方法](#/zh-CN/picker#fang-fa) | - | - |
+| getPicker | 获取 Picker 实例，用于调用 Picker 的[实例方法](/components/picker#fang-fa) | - | - |
 
 ### 类型定义
 
@@ -151,8 +151,8 @@ datetimePickerRef.current?.getPicker();
 
 ### 在桌面端无法操作组件？
 
-参见[桌面端适配](#/zh-CN/advanced-usage#zhuo-mian-duan-gua-pei)。
+参见[桌面端适配](/guide/advanced-usage)。
 
 ### 是否有年份或月份选择器？
 
-如果仅需要选择年份或者月份，建议直接使用 [Picker](#/zh-CN/picker) 组件。
+如果仅需要选择年份或者月份，建议直接使用 [Picker](/components/picker) 组件。

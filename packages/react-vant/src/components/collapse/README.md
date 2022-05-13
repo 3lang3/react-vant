@@ -133,7 +133,7 @@ export default () => {
 
 ### CollapseItem 方法
 
-通过 ref 可以获取到 CollapseItem 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+通过 ref 可以获取到 CollapseItem 实例并调用实例方法，详见[组件实例方法](/guide/advanced-usage)。
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
@@ -162,7 +162,7 @@ collapseItemRef.current?.toggle();
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
 | 名称                                        | 默认值                                      | 描述 |
 | ------------------------------------------- | ------------------------------------------- | ---- |
