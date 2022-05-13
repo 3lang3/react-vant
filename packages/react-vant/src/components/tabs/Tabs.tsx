@@ -152,10 +152,11 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     setState({ lineStyle });
   };
 
-  const findAvailableTab = (index: number) => {
+  const findAvailableTab = (index: number, initial?: boolean) => {
     const diff = index < state.currentIndex ? -1 : 1;
     while (index >= 0 && index < childrenList.length) {
-      if (!childrenList[index].disabled) {
+      if (initial && childrenList[index]) return index;
+      if (!childrenList[index]?.disabled) {
         return index;
       }
       index += diff;
@@ -163,9 +164,8 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     return null;
   };
 
-  const setCurrentIndex = (currentIndex: number) => {
-    const newIndex = findAvailableTab(currentIndex);
-
+  const setCurrentIndex = (currentIndex: number, initial?: boolean) => {
+    const newIndex = findAvailableTab(currentIndex, initial);
     if (!isDef(newIndex)) {
       return;
     }
@@ -188,11 +188,11 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   };
 
   // correct the index of active tab
-  const setCurrentIndexByName = (name: string | number) => {
+  const setCurrentIndexByName = (name: string | number, initial?: boolean) => {
     const currentIndex = childrenList.findIndex(
       (tab: TabPaneProps, index) => getTabName(tab, index) === name,
     );
-    setCurrentIndex(currentIndex < 0 ? 0 : currentIndex);
+    setCurrentIndex(currentIndex < 0 ? 0 : currentIndex, initial);
   };
 
   const scrollToCurrentContent = (immediate?, current?) => {
@@ -345,18 +345,20 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     setLine();
     // scroll to correct position
     if (stickyFixed.current && props.stickyInitScrollbar && !props.scrollspy) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       setRootScrollTop(Math.ceil(getElementTop(root.current!) - offsetTopPx));
     }
   }, [state.currentIndex]);
 
-  const init = () => {
-    setCurrentIndexByName(props.active);
+  const initialRun = () => {
+    setCurrentIndexByName(props.active, true);
     scrollIntoView(true);
     setState({ inited: true });
   };
 
   useEffect(() => {
-    init();
+    initialRun();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useUpdateEffect(() => {
