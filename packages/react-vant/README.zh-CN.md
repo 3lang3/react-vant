@@ -19,6 +19,9 @@
   <a href="https://github.com/3lang3/react-vant/discussions" target="_blank" referrerpolicy="no-referrer">
     <img src="https://img.shields.io/badge/discussions-on%20github-blue?style=flat-square" alt="discussions" />
   </a>
+    <a href="https://github.com/3lang3/rcdoc" target="_blank" referrerpolicy="no-referrer">
+    <img src="https://img.shields.io/badge/docs%20by-rcdoc-blue?style=flat-square" alt="rcdoc" />
+  </a>
   <a href="https://github.com/3lang3/react-vant/discussions" target="_blank" referrerpolicy="no-referrer">
     <img src="https://img.shields.io/npm/l/react-vant?style=flat-square" alt="license" />
   </a>
