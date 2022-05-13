@@ -31,7 +31,6 @@ function generatePackageJSON() {
           }
           return acc
         }, {})
-        delete parsed.scripts
         delete parsed.devDependencies
         delete parsed.files
         const stringified = JSON.stringify(parsed, null, 2)
