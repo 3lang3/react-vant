@@ -134,7 +134,6 @@ export default defineConfig({
           '/components/count-down',
           '/components/divider',
           '/components/empty',
-          '/components/floating-ball',
           '/components/image-preview',
           '/components/lazyload',
           '/components/list',
