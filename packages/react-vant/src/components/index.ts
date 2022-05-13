@@ -67,4 +67,3 @@ export { default as CouponCell } from './coupon-cell';
 export { default as CouponList } from './coupon-list';
 export * from './sku';
 export * from './swiper';
-export * from './floating-ball';
