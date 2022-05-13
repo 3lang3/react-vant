@@ -1,86 +1,78 @@
-import React, { useRef, useState } from 'react';
-import { FloatingBall, Cell, Button, FloatingBallInstance, Toast, Form, Switch, Radio, FloatingBallProps, Stepper } from 'react-vant';
-import { StarO, CartCircleO, GoldCoinO, WapHomeO, Plus } from '@react-vant/icons';
+import React, { useState } from 'react';
+import { Cell, Field, Stepper, Form, Switch, Radio } from 'react-vant';
+import type { FloatingBallProps } from 'react-vant';
+import Bubble from './bubble';
+import Menu from './menu';
+import './style.less';
 
 export default () => {
-  const [autoAdsorb, setAutoAdsorb] = useState(false)
-  const floatingBallInstance = useRef<FloatingBallInstance>();
-  const [floatingBallConfig, setFloatingBallConfig] = useState<FloatingBallProps>({
-    disdrag: false,
-    disabled: false,
-    direction: 'around',
-    position: 'bottom-right'
-  });
+  const [form] = Form.useForm();
+  const [config, updateConfig] = useState<FloatingBallProps & Record<string, unknown>>({});
 
-  const handleFormChange = (values) => {
-    console.log('>>>', values)
-    setFloatingBallConfig(state => ({...state, ...values}))
-  };
+  const handleFormChange = async () => {
+    const values = await form.getFieldsValue();
+    if (!values.adsorb_show) values.adsorb = false;
+    if (!values.menu_show) delete values.menu;
 
-  const handleAutoAdsorb = (checked) => {
-    setAutoAdsorb(checked);
-    if (checked) {
-      setFloatingBallConfig({...floatingBallConfig, adsorb: 5})
-    } else {
-      setFloatingBallConfig({...floatingBallConfig, adsorb: null})
-    }
+    delete values.adsorb_show;
+    delete values.menu_show;
+    console.log(values);
+    updateConfig(values);
   };
 
   return (
-    <div>
+    <div className="demo-floating-box">
       <Cell title="设置悬浮球" />
-      <Form onValuesChange={handleFormChange}>
-        <Form.Item name="disabled" label="禁用">
-          <Switch size={20} />
-        </Form.Item>
-        <Form.Item name="disdrag" label="禁止拖动">
-          <Switch size={20} />
-        </Form.Item>
-        <Form.Item label="无操作自动靠边吸附">
-          <Switch size={20} onChange={handleAutoAdsorb} />
-        </Form.Item>
-        {
-          autoAdsorb &&
-          <Form.Item name="adsorb" label="自动靠边时间(单位S)" initialValue={5}>
-            <Stepper />
-          </Form.Item>
-        }
-        <Form.Item name="direction" label="方向" initialValue="around">
+      <Form form={form} onValuesChange={handleFormChange}>
+        <Form.Item name="type" label="DEMO" initialValue="0">
           <Radio.Group>
-            <Radio name="around">around</Radio>
-            <Radio name="vertical">vertical</Radio>
-            <Radio name="horizontal">horizontal</Radio>
+            <Radio name="0">普通悬浮球</Radio>
+            <Radio name="1">带菜单的悬浮球</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item name="position" label="位置" initialValue="bottom-right">
-          <Radio.Group>
-            <Radio name="top-left">top-left</Radio>
-            <Radio name="top-right">top-right</Radio>
-            <Radio name="bottom-left">bottom-left</Radio>
-            <Radio name="bottom-right">bottom-right</Radio>
-          </Radio.Group>
+        <Form.Item valuePropName="checked" name="disabled" label="禁用" initialValue={false}>
+          <Switch size={20} />
+        </Form.Item>
+        <Form.Item valuePropName="checked" name="draggable" label="拖动" initialValue={true}>
+          <Switch size={20} />
+        </Form.Item>
+        <Form.Item tooltip="拖动结束后，会吸附在更靠近的屏幕一侧" valuePropName="checked" name="adsorb_show" label="近边停靠" initialValue={true}>
+          <Switch size={20} />
+        </Form.Item>
+        <Form.Item noStyle shouldUpdate={(prev, next) => prev.adsorb_show !== next.adsorb_show}>
+          {() => {
+            const show = form.getFieldValue('adsorb_show');
+            if (!show) return null;
+            return (
+              <>
+                <Form.Item tooltip="吸附在屏幕一侧时距离侧边的距离" name={['adsorb', 'distance']} label="停靠距离" initialValue={20}>
+                  <Field rightIcon={<div>PX</div>} />
+                </Form.Item>
+                <Form.Item tooltip="滚动时悬浮球移动到屏外的比率" name={['adsorb', 'indent']} label="滚动缩进" initialValue={0.5}>
+                  <Stepper min={0} max={1} step={0.1} />
+                </Form.Item>
+              </>
+            );
+          }}
+        </Form.Item>
+        <Form.Item noStyle shouldUpdate={(prev, next) => prev.type !== next.type}>
+          {() => {
+            const type = form.getFieldValue('type');
+            if (+type === 0) return null;
+            return (
+              <Form.Item name={['menu', 'direction']} label="菜单展开方向" initialValue="around">
+                <Radio.Group>
+                  <Radio name="around">around</Radio>
+                  <Radio name="vertical">vertical</Radio>
+                  <Radio name="horizontal">horizontal</Radio>
+                </Radio.Group>
+              </Form.Item>
+            );
+          }}
         </Form.Item>
       </Form>
-      <FloatingBall
-        ref={floatingBallInstance}
-        onAction={(active) => console.log('悬浮球当前激活状态>>>', active)}
-        {...floatingBallConfig}
-      >
-        <FloatingBall.Item onClick={() => Toast.info('点击了第1个')}><WapHomeO/></FloatingBall.Item>
-        <FloatingBall.Item onClick={() => Toast.info('点击了第2个')}><StarO/></FloatingBall.Item>
-        <FloatingBall.Item onClick={() => Toast.info('点击了第3个')}><CartCircleO/></FloatingBall.Item>
-        <FloatingBall.Item onClick={() => Toast.info('点击了第4个')}><GoldCoinO/></FloatingBall.Item>
-        <FloatingBall.Item onClick={() => Toast.info('点击了第5个')}><Button icon={<Plus />} type="primary" round size="mini" /></FloatingBall.Item>
-      </FloatingBall>
-      <Cell>
-        <Button
-          type="primary"
-          block
-          round
-          onClick={() => { floatingBallInstance.current.action(true); }}
-        >激活悬浮球状态</Button>
-      </Cell>
-      <div style={{height: 1000}}></div>
+      {+config.type === 1 ? <Menu {...config} /> : <Bubble {...config} />}
+      <div style={{ height: 1000 }} />
     </div>
   );
 };
