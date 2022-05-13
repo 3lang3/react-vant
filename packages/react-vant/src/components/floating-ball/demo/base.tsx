@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cell, Field, Stepper, Form, Switch, Radio } from 'react-vant';
+import { Cell, Field, Stepper, Form, Switch, Radio, hooks } from 'react-vant';
 import type { FloatingBallProps } from 'react-vant';
 import Bubble from './bubble';
 import Menu from './menu';
@@ -7,18 +7,21 @@ import './style.less';
 
 export default () => {
   const [form] = Form.useForm();
+  const [formUpdated, setFormUpdated] = useState(0);
   const [config, updateConfig] = useState<FloatingBallProps & Record<string, unknown>>({});
 
-  const handleFormChange = async () => {
-    const values = await form.getFieldsValue();
-    if (!values.adsorb_show) values.adsorb = false;
-    if (!values.menu_show) delete values.menu;
+  const handleFormChange = () => setFormUpdated((v) => v + 1);
 
-    delete values.adsorb_show;
-    delete values.menu_show;
-    console.log(values);
-    updateConfig(values);
-  };
+  hooks.useUpdateEffect(() => {
+    const getValue = async () => {
+      const values = await form.getFieldsValue();
+      if (!values.adsorb_show) values.adsorb = false;
+
+      delete values.adsorb_show;
+      updateConfig(values);
+    };
+    getValue();
+  }, [formUpdated]);
 
   return (
     <div className="demo-floating-box">
@@ -36,7 +39,13 @@ export default () => {
         <Form.Item valuePropName="checked" name="draggable" label="拖动" initialValue={true}>
           <Switch size={20} />
         </Form.Item>
-        <Form.Item tooltip="拖动结束后，会吸附在更靠近的屏幕一侧" valuePropName="checked" name="adsorb_show" label="近边停靠" initialValue={true}>
+        <Form.Item
+          tooltip="拖动结束后，会吸附在更靠近的屏幕一侧"
+          valuePropName="checked"
+          name="adsorb_show"
+          label="近边停靠"
+          initialValue={true}
+        >
           <Switch size={20} />
         </Form.Item>
         <Form.Item noStyle shouldUpdate={(prev, next) => prev.adsorb_show !== next.adsorb_show}>
@@ -45,10 +54,20 @@ export default () => {
             if (!show) return null;
             return (
               <>
-                <Form.Item tooltip="吸附在屏幕一侧时距离侧边的距离" name={['adsorb', 'distance']} label="停靠距离" initialValue={20}>
+                <Form.Item
+                  tooltip="吸附在屏幕一侧时距离侧边的距离"
+                  name={['adsorb', 'distance']}
+                  label="停靠距离"
+                  initialValue={20}
+                >
                   <Field rightIcon={<div>PX</div>} />
                 </Form.Item>
-                <Form.Item tooltip="滚动时悬浮球移动到屏外的比率" name={['adsorb', 'indent']} label="滚动缩进" initialValue={0.5}>
+                <Form.Item
+                  tooltip="滚动时悬浮球移动到屏外的比率"
+                  name={['adsorb', 'indent']}
+                  label="滚动缩进"
+                  initialValue={0.5}
+                >
                   <Stepper min={0} max={1} step={0.1} />
                 </Form.Item>
               </>
