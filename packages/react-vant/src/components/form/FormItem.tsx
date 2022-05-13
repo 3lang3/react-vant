@@ -245,7 +245,7 @@ const FormItem: FC<FormItemProps> = (props) => {
           );
 
           if (isFieldChildren) {
-            childProps.value = childProps.value || '';
+            childProps.value = childProps.value ?? '';
             childNode = React.cloneElement(children, childProps);
           }
         } else {
