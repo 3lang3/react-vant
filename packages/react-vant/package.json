@@ -71,7 +71,6 @@
     "docs:build": "rcdoc docs-build",
     "lint": "eslint --fix",
     "lint:tsx": "eslint src --ext ts,tsx",
-    "prepack": "pnpm build",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
     "preview": "rcdoc preview",
     "release": "pnpm publish ./dist --tag next",
