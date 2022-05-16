@@ -166,6 +166,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://koofrank.com/"><img src="https://avatars.githubusercontent.com/u/3366943?v=4?s=100" width="100px;" alt=""/><br /><sub><b>KooFrank</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Aphpmaple" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://songhn.com"><img src="https://avatars.githubusercontent.com/u/47357585?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Songhn</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Asonghn233" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 

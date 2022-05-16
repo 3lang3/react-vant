@@ -280,6 +280,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "songhn233",
+      "name": "Songhn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47357585?v=4",
+      "profile": "http://songhn.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
