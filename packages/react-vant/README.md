@@ -162,6 +162,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ZhaoTim"><img src="https://avatars.githubusercontent.com/u/30540533?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tim Zhao</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=ZhaoTim" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/class-undefined"><img src="https://avatars.githubusercontent.com/u/58300575?v=4?s=100" width="100px;" alt=""/><br /><sub><b>野漫横江</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Aclass-undefined" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://blog.ndc.work"><img src="https://avatars.githubusercontent.com/u/20502666?v=4?s=100" width="100px;" alt=""/><br /><sub><b>NoDocCat</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3ANoDocCat" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/xni220"><img src="https://avatars.githubusercontent.com/u/2124073?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zhong yiqun</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Axni220" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
