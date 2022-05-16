@@ -289,6 +289,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "JR0613",
+      "name": "晚枫",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58196913?v=4",
+      "profile": "https://github.com/JR0613",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
