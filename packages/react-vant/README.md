@@ -164,6 +164,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://blog.ndc.work"><img src="https://avatars.githubusercontent.com/u/20502666?v=4?s=100" width="100px;" alt=""/><br /><sub><b>NoDocCat</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3ANoDocCat" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/xni220"><img src="https://avatars.githubusercontent.com/u/2124073?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zhong yiqun</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Axni220" title="Bug reports">🐛</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://koofrank.com/"><img src="https://avatars.githubusercontent.com/u/3366943?v=4?s=100" width="100px;" alt=""/><br /><sub><b>KooFrank</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Aphpmaple" title="Bug reports">🐛</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
