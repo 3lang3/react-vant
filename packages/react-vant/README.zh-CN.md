@@ -124,6 +124,7 @@ ReactDOM.render(<App />, mountNode);
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -142,7 +143,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://renovate.whitesourcesoftware.com/"><img src="https://avatars.githubusercontent.com/u/25180681?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WhiteSource Renovate</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=renovate-bot" title="Documentation">📖</a> <a href="#security-renovate-bot" title="Security">🛡️</a> <a href="#tool-renovate-bot" title="Tools">🔧</a></td>
     <td align="center"><a href="https://github.com/apps/allcontributors"><img src="https://avatars.githubusercontent.com/in/23186?v=4?s=100" width="100px;" alt=""/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="#tool-allcontributors[bot]" title="Tools">🔧</a></td>
     <td align="center"><a href="https://github.com/apps/dependabot"><img src="https://avatars.githubusercontent.com/in/29110?v=4?s=100" width="100px;" alt=""/><br /><sub><b>dependabot[bot]</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=dependabot[bot]" title="Documentation">📖</a> <a href="#security-dependabot[bot]" title="Security">🛡️</a></td>
-    <td align="center"><a href="https://github.com/AdonLee"><img src="https://avatars.githubusercontent.com/u/5396468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cedong.Lee</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AAdonLee" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/AdonLee"><img src="https://avatars.githubusercontent.com/u/5396468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cedong.Lee</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AAdonLee" title="Bug reports">🐛</a> <a href="#ideas-AdonLee" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/hongmaoxiao/myblog/issues"><img src="https://avatars.githubusercontent.com/u/3943494?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xiaomao Feng</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Ahongmaoxiao" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/xiaojingyuaner"><img src="https://avatars.githubusercontent.com/u/24470322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xiaojingyuaner</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Axiaojingyuaner" title="Bug reports">🐛</a></td>
   </tr>
@@ -151,6 +152,23 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://blog.csdn.net/weixin_42755677"><img src="https://avatars.githubusercontent.com/u/42933010?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zhangYin</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Amytheart" title="Bug reports">🐛</a> <a href="#ideas-mytheart" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.itworker.cn"><img src="https://avatars.githubusercontent.com/u/12168991?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yann</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Afeifanshijie" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/feifaneric"><img src="https://avatars.githubusercontent.com/u/52685056?v=4?s=100" width="100px;" alt=""/><br /><sub><b>feifaneric</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Afeifaneric" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/FJHou"><img src="https://avatars.githubusercontent.com/u/22517598?v=4?s=100" width="100px;" alt=""/><br /><sub><b>FJHou</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AFJHou" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://wangbaoqi.gitbook.io/front/"><img src="https://avatars.githubusercontent.com/u/11024545?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nate Wang</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AWangbaoqi" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Wal1e"><img src="https://avatars.githubusercontent.com/u/20591468?v=4?s=100" width="100px;" alt=""/><br /><sub><b>rook1e</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AWal1e" title="Bug reports">🐛</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/chinieer"><img src="https://avatars.githubusercontent.com/u/5187043?v=4?s=100" width="100px;" alt=""/><br /><sub><b>chinieer</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=chinieer" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/GangYHu"><img src="https://avatars.githubusercontent.com/u/26001209?v=4?s=100" width="100px;" alt=""/><br /><sub><b>GangYHu</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AGangYHu" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Jungzl"><img src="https://avatars.githubusercontent.com/u/35426360?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jungzl</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=Jungzl" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ZhaoTim"><img src="https://avatars.githubusercontent.com/u/30540533?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tim Zhao</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=ZhaoTim" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/class-undefined"><img src="https://avatars.githubusercontent.com/u/58300575?v=4?s=100" width="100px;" alt=""/><br /><sub><b>野漫横江</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Aclass-undefined" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://blog.ndc.work"><img src="https://avatars.githubusercontent.com/u/20502666?v=4?s=100" width="100px;" alt=""/><br /><sub><b>NoDocCat</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3ANoDocCat" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/xni220"><img src="https://avatars.githubusercontent.com/u/2124073?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zhong yiqun</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Axni220" title="Bug reports">🐛</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://koofrank.com/"><img src="https://avatars.githubusercontent.com/u/3366943?v=4?s=100" width="100px;" alt=""/><br /><sub><b>KooFrank</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Aphpmaple" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://songhn.com"><img src="https://avatars.githubusercontent.com/u/47357585?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Songhn</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Asonghn233" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/JR0613"><img src="https://avatars.githubusercontent.com/u/58196913?v=4?s=100" width="100px;" alt=""/><br /><sub><b>晚枫</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3AJR0613" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
