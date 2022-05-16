@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import cls from 'clsx';
 import { NumberKeyboardKeyProps } from './PropsType';
-import useTouch from '../hooks/use-touch';
 import Loading from '../loading';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { useTouch } from '../hooks';
 
 const CollapseIcon = ({ bem }) => (
   <svg className={cls(bem('collapse-icon'))} viewBox="0 0 30 24">
@@ -43,7 +43,7 @@ const NumberKeyboardKey: React.FC<NumberKeyboardKeyProps> = ({
   const onTouchMove = (event) => {
     touch.move(event);
 
-    if (touch.direction) {
+    if (touch.direction.current) {
       setActive(false);
     }
   };
@@ -79,7 +79,8 @@ const NumberKeyboardKey: React.FC<NumberKeyboardKeyProps> = ({
 
   return (
     <div
-      className={cls(bem('wrapper', { wider: props.wider }))}
+      style={style}
+      className={cls(className, bem('wrapper', { wider: props.wider }))}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}

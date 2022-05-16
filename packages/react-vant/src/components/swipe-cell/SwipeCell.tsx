@@ -10,12 +10,12 @@ import React, {
 import cls from 'clsx';
 import { SwipeCellInstance, SwipeCellPosition, SwipeCellProps, SwipeCellSide } from './PropsType';
 import { isDef, preventDefault, range } from '../utils';
-import useTouch from '../hooks/use-touch';
 import { getRect } from '../hooks/use-rect';
 import { callInterceptor } from '../utils/interceptor';
 import useClickAway from '../hooks/use-click-away';
 import useEventListener from '../hooks/use-event-listener';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { useTouch } from '../hooks';
 
 const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>((props, instanceRef) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -102,18 +102,17 @@ const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>((props, instance
       return;
     }
 
-    const { deltaX } = touch;
     touch.move(event);
 
     if (touch.isHorizontal()) {
       lockClick.current = true;
       const newState = { ...state, dragging: true };
-      const isEdge = !opened || deltaX * startOffset.current < 0;
+      const isEdge = !opened || touch.deltaX.current * startOffset.current < 0;
       if (isEdge) {
         preventDefault(event, props.stopPropagation);
       }
 
-      newState.offset = range(deltaX + startOffset.current, -rightWidth, leftWidth);
+      newState.offset = range(touch.deltaX.current + startOffset.current, -rightWidth, leftWidth);
 
       setState(newState);
     }

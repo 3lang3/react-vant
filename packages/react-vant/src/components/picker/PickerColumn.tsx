@@ -9,13 +9,10 @@ import React, {
   useContext,
 } from 'react';
 import clsx from 'clsx';
-
-import useTouch from '../hooks/use-touch';
-
 import { PickerColumnProps, PickerOption } from './PropsType';
 import { isObject, range } from '../utils';
 import { deepClone } from '../utils/deep-clone';
-import { useSetState, useUpdateEffect } from '../hooks';
+import { useSetState, useTouch, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { raf } from '../utils/raf';
 
@@ -188,7 +185,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     }
 
     const offset = range(
-      startOffset.current + touch.deltaY,
+      startOffset.current + touch.deltaY.current,
       -(count * props.itemHeight),
       props.itemHeight,
     );
@@ -284,6 +281,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
   useEffect(() => {
     setIndex(defaultIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultIndex]);
 
   useUpdateEffect(() => {

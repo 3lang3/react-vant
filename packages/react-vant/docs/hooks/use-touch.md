@@ -10,19 +10,19 @@
 
 通过`useTouch`返回的对象可以获取很多直观的信息，例如触摸偏移量、触摸方向。
 
-> 在触摸时根据 touch 返回的数据可以实现很多常见效果，例如[下拉刷新](https://github.com/3lang3/react-vant/blob/main/packages/react-vant/src/pull-refresh/PullRefresh.tsx#L145-L168)
+> 在触摸时根据 touch 返回的数据可以实现很多常见效果，例如[下拉刷新](https://github.com/3lang3/react-vant/blob/main/packages/react-vant/src/components/pull-refresh/PullRefresh.tsx)
 
 ```jsx | pure
 import React from 'react';
 import { hooks } from 'react-vant';
 
 export default () => {
-  const touch = hooks.useTouch(true);
+  const touch = hooks.useTouch();
   const onTouchStart = (event) => {
     touch.start(event);
   };
   const onTouchMove = (event) => {
-    touch.move(event);
+    touch.move(event.nativeEvent);
   };
 
   return (
@@ -71,11 +71,5 @@ type TouchState = {
   isHorizontal: () => boolean;
 };
 
-function useTouch(stateable: boolean): TouchState;
+function useTouch(): TouchState;
 ```
-
-### 参数
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| stateable | 默认 touch 信息是用 ref 存储，避免频繁刷新视图，设为`true`则使用 state 更新，视图将频繁刷新，请根据实际情况选择合适的方案 | _boolean_ | `false` |

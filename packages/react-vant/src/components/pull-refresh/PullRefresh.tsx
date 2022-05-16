@@ -3,12 +3,11 @@ import clsx from 'clsx';
 import { PullRefreshProps, PullRefreshStatus } from './PropsType';
 import { getScrollTop, preventDefault } from '../utils';
 
-import useTouch from '../hooks/use-touch';
 import { getScrollParent } from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
 import Loading from '../loading';
-import { useSetState, useUpdateEffect } from '../hooks';
+import { useSetState, useTouch, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const DEFAULT_HEAD_HEIGHT = 50;
@@ -87,7 +86,7 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
     const { status, distance } = state;
 
     if (typeof props[`${state.status}Text`] === 'function') {
-      return props[`${state.status}Text`]!({ distance });
+      return props[`${state.status}Text`]?.({ distance });
     }
 
     const nodes: React.ReactNode[] = [];
@@ -150,8 +149,8 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
         }
 
         touch.move(event);
-        if (reachTop.current && touch.deltaY >= 0 && touch.isVertical()) {
-          setStatus(ease(touch.deltaY));
+        if (reachTop.current && touch.deltaY.current >= 0 && touch.isVertical()) {
+          setStatus(ease(touch.deltaY.current));
           preventDefault(event);
         } else {
           /**
@@ -164,7 +163,8 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
         }
       }
     },
-    [reachTop.current, touch.deltaY, isTouchable],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [reachTop.current, touch.deltaY.current, isTouchable],
   );
 
   const onTouchEnd = () => {

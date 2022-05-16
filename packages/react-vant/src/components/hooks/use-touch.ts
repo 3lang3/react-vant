@@ -1,104 +1,70 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { useCallback, useRef } from 'react';
-import useSetState from './use-set-state';
+import { useRef } from 'react'
 
-const MIN_DISTANCE = 10;
+const MIN_DISTANCE = 10
 
-type Direction = '' | 'vertical' | 'horizontal';
+type Direction = '' | 'vertical' | 'horizontal'
 
 function getDirection(x: number, y: number) {
   if (x > y && x > MIN_DISTANCE) {
-    return 'horizontal';
+    return 'horizontal'
   }
   if (y > x && y > MIN_DISTANCE) {
-    return 'vertical';
+    return 'vertical'
   }
-  return '';
+  return ''
 }
 
-const INITIAL_STATE = {
-  startX: 0,
-  startY: 0,
-  deltaX: 0,
-  deltaY: 0,
-  offsetX: 0,
-  offsetY: 0,
-  direction: '' as Direction,
-};
+export default function useTouch() {
+  const startX = useRef(0)
+  const startY = useRef(0)
+  const deltaX = useRef(0)
+  const deltaY = useRef(0)
+  const offsetX = useRef(0)
+  const offsetY = useRef(0)
+  const direction = useRef<Direction>('')
 
-type StateType = Partial<typeof INITIAL_STATE>;
-type StateFunctionType = (value: StateType) => typeof INITIAL_STATE;
-
-const useTouch = (stateable?: boolean) => {
-  const refState = useRef(INITIAL_STATE);
-  const state = useSetState(INITIAL_STATE);
-
-  const innerState = stateable ? state[0] : refState.current;
-
-  const update = (value: StateType | StateFunctionType) => {
-    if (stateable) {
-      state[1](value);
-      return;
-    }
-    if (typeof value === 'function') {
-      value = value(refState.current);
-    }
-    Object.entries(value).forEach(([k, v]) => {
-      refState.current[k] = v;
-    });
-  };
-
-  const isVertical = useCallback(() => innerState.direction === 'vertical', [innerState.direction]);
-  const isHorizontal = useCallback(
-    () => innerState.direction === 'horizontal',
-    [innerState.direction],
-  );
+  const isVertical = () => direction.current === 'vertical'
+  const isHorizontal = () => direction.current === 'horizontal'
 
   const reset = () => {
-    update({
-      deltaX: 0,
-      deltaY: 0,
-      offsetX: 0,
-      offsetY: 0,
-      direction: '',
-    });
-  };
+    deltaX.current = 0
+    deltaY.current = 0
+    offsetX.current = 0
+    offsetY.current = 0
+    direction.current = ''
+  }
 
   const start = ((event: TouchEvent) => {
-    reset();
-    update({
-      startX: event.touches[0].clientX,
-      startY: event.touches[0].clientY,
-    });
-  }) as EventListener;
+    reset()
+    startX.current = event.touches[0].clientX
+    startY.current = event.touches[0].clientY
+  }) as EventListener
 
   const move = ((event: TouchEvent) => {
-    const touch = event.touches[0];
+    const touch = event.touches[0]
+    // Fix: Safari back will set clientX to negative number
+    deltaX.current = touch.clientX < 0 ? 0 : touch.clientX - startX.current
+    deltaY.current = touch.clientY - startY.current
+    offsetX.current = Math.abs(deltaX.current)
+    offsetY.current = Math.abs(deltaY.current)
 
-    update((value) => {
-      // Fix: Safari back will set clientX to negative number
-      const newState = { ...value } as typeof innerState;
-
-      newState.deltaX = touch.clientX < 0 ? 0 : touch.clientX - newState.startX;
-      newState.deltaY = touch.clientY - newState.startY;
-      newState.offsetX = Math.abs(newState.deltaX);
-      newState.offsetY = Math.abs(newState.deltaY);
-
-      if (!newState.direction) {
-        newState.direction = getDirection(newState.offsetX, newState.offsetY);
-      }
-      return newState;
-    });
-  }) as EventListener;
+    if (!direction.current) {
+      direction.current = getDirection(offsetX.current, offsetY.current)
+    }
+  }) as EventListener
 
   return {
-    ...innerState,
     move,
     start,
     reset,
+    startX,
+    startY,
+    deltaX,
+    deltaY,
+    offsetX,
+    offsetY,
+    direction,
     isVertical,
     isHorizontal,
-  };
-};
-
-export default useTouch;
+  }
+}

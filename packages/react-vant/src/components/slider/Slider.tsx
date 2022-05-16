@@ -2,10 +2,10 @@ import React, { CSSProperties, useContext, useMemo, useRef, useState } from 'rea
 import cls from 'clsx';
 import { SliderProps, SliderValue } from './PropsType';
 import { addUnit, range, addNumber, preventDefault, getSizeStyle, stopPropagation } from '../utils';
-import useTouch from '../hooks/use-touch';
 import { getRect } from '../hooks/use-rect';
 import useEventListener from '../hooks/use-event-listener';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { useTouch } from '../hooks';
 
 type NumberRange = [number, number];
 
@@ -21,7 +21,7 @@ const Slider: React.FC<SliderProps> = (props) => {
 
   const root = useRef<HTMLDivElement>();
   const dragStatus = useRef<'start' | 'dragging' | ''>();
-  const touch = useTouch(true);
+  const touch = useTouch();
 
   const scope = useMemo(() => Number(props.max) - Number(props.min), [props.max, props.min]);
 
@@ -75,6 +75,7 @@ const Slider: React.FC<SliderProps> = (props) => {
     style[getPositionKey()] = calcOffset();
 
     return style;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calcOffset]);
 
   const format = (value: number) => {
@@ -184,7 +185,7 @@ const Slider: React.FC<SliderProps> = (props) => {
     dragStatus.current = 'dragging';
 
     const rect = getRect(root.current);
-    const delta = props.vertical ? touch.deltaY : touch.deltaX;
+    const delta = props.vertical ? touch.deltaY.current : touch.deltaX.current;
     const total = props.vertical ? rect.height : rect.width;
     let diff = (delta / total) * scope;
     if (props.reverse) {
@@ -275,11 +276,11 @@ const Slider: React.FC<SliderProps> = (props) => {
 
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: buttonRef1,
-    depends: [touch.deltaX, touch.deltaY, props.disabled, props.readonly],
+    depends: [touch.deltaX.current, touch.deltaY.current, props.disabled, props.readonly],
   });
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: buttonRef2,
-    depends: [touch.deltaX, touch.deltaY, props.disabled, props.readonly],
+    depends: [touch.deltaX.current, touch.deltaY.current, props.disabled, props.readonly],
   });
 
   return (

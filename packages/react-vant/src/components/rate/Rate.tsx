@@ -4,11 +4,11 @@ import { Star, StarO } from '@react-vant/icons';
 import clsx from 'clsx';
 import { RateProps } from './PropsType';
 import { addUnit, preventDefault } from '../utils';
-import useTouch from '../hooks/use-touch';
 import useRefs from '../hooks/use-refs';
 import useMergedState from '../hooks/use-merged-state';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import useEventListener from '../hooks/use-event-listener';
+import { useTouch } from '../hooks';
 
 type RateStatus = 'full' | 'half' | 'void';
 
@@ -50,7 +50,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
     defaultValue: props.defaultValue,
   });
   const root = useRef<HTMLDivElement>(null);
-  const touch = useTouch(true);
+  const touch = useTouch();
   const [itemRefs, setItemRefs] = useRefs();
 
   const untouchable = () => props.readonly || props.disabled || !touchable;
@@ -179,7 +179,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
 
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: root.current,
-    depends: [touch.deltaY],
+    depends: [touch.deltaY.current],
   });
 
   return (

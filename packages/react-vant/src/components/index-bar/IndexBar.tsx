@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   forwardRef,
@@ -15,7 +16,6 @@ import clsx from 'clsx';
 
 import useRefs from '../hooks/use-refs';
 import { getRect } from '../hooks/use-rect';
-import useTouch from '../hooks/use-touch';
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
@@ -32,7 +32,7 @@ import {
   getRootScrollTop,
   setScrollTop,
 } from '../utils';
-import { useMount } from '../hooks';
+import { useMount, useTouch } from '../hooks';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
 import { INDEX_ANCHORE_KEY } from './IndexAnchor';
