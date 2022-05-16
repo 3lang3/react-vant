@@ -17,7 +17,7 @@ import { raf, doubleRaf } from '../utils/raf';
 import { useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props, ref) => {
+const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(({ className, style,  ...props}, ref) => {
   const { index } = props;
   const parent = useContext(CollapseContext);
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
@@ -116,8 +116,8 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>((props,
 
   return (
     <div
-      style={props.style}
-      className={clsx(props.className, bem({ border: index && props.border }))}
+      style={style}
+      className={clsx(className, bem({ border: index && props.border }))}
     >
       {renderTitle()}
       {renderContent()}
