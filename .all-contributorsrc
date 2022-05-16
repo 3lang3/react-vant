@@ -262,6 +262,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "xni220",
+      "name": "zhong yiqun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2124073?v=4",
+      "profile": "https://github.com/xni220",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
