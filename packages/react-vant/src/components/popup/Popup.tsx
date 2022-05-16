@@ -22,6 +22,7 @@ import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import PopupContext from './PopupContext';
+import { useLockScroll } from '../hooks/use-lock-scroll';
 
 export const sharedPopupProps = [
   'round',
@@ -71,7 +72,8 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
       initStyle[key] = `${props.duration}ms`;
     }
     return initStyle;
-  }, [zIndex.current, props.style, props.duration]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zIndex.current, props.position, props.style, props.duration]);
 
   const open = () => {
     if (props.zIndex !== undefined) {
@@ -110,7 +112,6 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
       return (
         <Overlay
           visible={visible && rendered}
-          lockScroll={props.lockScroll}
           className={props.overlayClass}
           customStyle={props.overlayStyle}
           zIndex={zIndex.current}
@@ -225,6 +226,8 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
       setAnimatedVisible(true);
     }
   }, [visible, rendered]);
+
+  useLockScroll(popupRef, visible && props.lockScroll);
 
   useImperativeHandle(ref, () => ({
     popupRef,
