@@ -244,6 +244,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "class-undefined",
+      "name": "野漫横江",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58300575?v=4",
+      "profile": "https://github.com/class-undefined",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
