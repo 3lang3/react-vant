@@ -271,6 +271,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "phpmaple",
+      "name": "KooFrank",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3366943?v=4",
+      "profile": "http://koofrank.com/",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
