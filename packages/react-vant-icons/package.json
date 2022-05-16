@@ -31,7 +31,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
     "@types/react": "18.0.9",
-    "del": "6.0.0",
+    "del": "6.1.0",
     "fast-glob": "^3.2.2",
     "fs-extra": "10.1.0",
     "gulp": "^4.0.2",
