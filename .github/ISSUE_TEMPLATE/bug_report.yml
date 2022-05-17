@@ -48,6 +48,9 @@ body:
   - type: input
     attributes:
       label: Reproduce live demo(codesandebox or stackblitz)?
+  - type: markdown
+    attributes:
+      value: 'demo: https://codesandbox.io/s/3mhk4b?resolutionWidth=320&resolutionHeight=675&file=/App.tsx'
   - type: textarea
     attributes:
       label: Descripition
