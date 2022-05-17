@@ -1,6 +1,6 @@
 name: 🐛 Bug Report
 description: Something is wrong with React Vant.
-title: "🐛 [Bug]: "
+title: '🐛 [Bug]: '
 labels:
   - bug
 body:
@@ -38,35 +38,22 @@ body:
     attributes:
       label: Which React Vant packages are impacted?
       options:
-        - label: "`react-vant` (React Vant core)"
-        - label: "`react-vant-icons`(React Vant Icon)"
+        - label: '`react-vant` (React Vant core)'
+        - label: '`react-vant-icons`(React Vant Icon)'
   - type: input
     attributes:
       label: What version of React Vant are you using?
     validations:
       required: true
+  - type: input
+    attributes:
+      label: Reproduce live demo(codesandebox or stackblitz)?
   - type: textarea
     attributes:
-      label: Steps to Reproduce
-      description: Steps to reproduce the behavior.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Expected Behavior
+      label: Descripition
       description: A concise description of what you expected to happen.
     validations:
       required: true
-  - type: textarea
-    attributes:
-      label: Actual Behavior
-      description: A concise description of what you're experiencing.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Context
-      description: In what environment are you using React Vant?
   - type: markdown
     attributes:
-      value: "Thanks for completing our form!"
+      value: 'Thanks for completing our form!'
