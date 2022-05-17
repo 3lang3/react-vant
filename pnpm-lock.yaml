@@ -40,7 +40,7 @@ importers:
 
   packages/react-vant:
     specifiers:
-      '@rcdoc/cli': 0.1.18
+      '@rcdoc/cli': 0.1.20
       '@rcdoc/theme': ^0.1.6
       '@react-spring/web': ^9.3.0
       '@react-vant/icons': workspace:*
@@ -70,7 +70,7 @@ importers:
       react-transition-group: 4.4.2_react-dom@18.1.0+react@18.1.0
       tslib: 2.4.0
     devDependencies:
-      '@rcdoc/cli': 0.1.18_typescript@4.6.4
+      '@rcdoc/cli': 0.1.20_typescript@4.6.4
       '@rcdoc/theme': 0.1.6
       '@types/node': 17.0.31
       '@types/react-dom': 18.0.3
@@ -2170,8 +2170,8 @@ packages:
       - typescript
     dev: true
 
-  /@rcdoc/cli/0.1.18_typescript@4.6.4:
-    resolution: {integrity: sha512-B/bXhC8/+b+k83YzSH0PDZZtzEEwp7GdhXkETtL395j181YvBs943cKKxC3tZDdsre/uCkoNSivHYurgGU9p4w==}
+  /@rcdoc/cli/0.1.20_typescript@4.6.4:
+    resolution: {integrity: sha512-m4C6sL1HIqzAyxSmMt2uVrLqLDMrjRqvkjRJLr/ZyD/0hbOpGbexcNjyjBMQ2DFd2r6ZzZTtASrRMRMhLtW4Lg==}
     hasBin: true
     dependencies:
       '@babel/core': 7.17.10
@@ -2199,7 +2199,7 @@ packages:
       less: 4.1.2
       lodash-es: 4.17.21
       ora: 6.1.0
-      rcdoc-theme-default: 0.1.7
+      rcdoc-theme-default: 0.1.9
       react: 17.0.2
       react-docgen-typescript: 2.2.2_typescript@4.6.4
       react-dom: 17.0.2_react@17.0.2
@@ -2391,7 +2391,7 @@ packages:
     dependencies:
       '@babel/core': 7.17.10
       postcss: 7.0.39
-      postcss-syntax: 0.36.2_5111c4e3f61982716b7e3f1c84e1f773
+      postcss-syntax: 0.36.2_postcss@7.0.39
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2404,7 +2404,7 @@ packages:
       postcss-syntax: '>=0.36.2'
     dependencies:
       postcss: 7.0.39
-      postcss-syntax: 0.36.2_5111c4e3f61982716b7e3f1c84e1f773
+      postcss-syntax: 0.36.2_postcss@7.0.39
       remark: 13.0.0
       unist-util-find-all-after: 3.0.2
     transitivePeerDependencies:
@@ -2965,8 +2965,6 @@ packages:
       stylelint-declaration-block-no-ignored-properties: 2.5.0_stylelint@13.13.1
       typescript: 4.6.4
     transitivePeerDependencies:
-      - postcss-jsx
-      - postcss-markdown
       - supports-color
     dev: true
 
@@ -3208,8 +3206,6 @@ packages:
     dependencies:
       micromatch: 3.1.10
       normalize-path: 2.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /anymatch/3.1.2:
@@ -3370,7 +3366,7 @@ packages:
     optional: true
 
   /assert-plus/1.0.0:
-    resolution: {integrity: sha1-8S4PPF13sLHN2RRpQuTpbB5N1SU=}
+    resolution: {integrity: sha512-NfJ4UzBCcQGLDlQq7nHxH+tv3kyZ0hHQqF5BO6J7tNJeP5do1llPr8dZ8zHonfhAu0PHAdMkSo+8o0wxg9lZWw==}
     engines: {node: '>=0.8'}
     dev: true
     optional: true
@@ -3415,7 +3411,7 @@ packages:
     dev: true
 
   /asynckit/0.4.0:
-    resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
+    resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: true
 
   /atob/2.1.2:
@@ -3438,7 +3434,7 @@ packages:
     dev: true
 
   /aws-sign2/0.7.0:
-    resolution: {integrity: sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=}
+    resolution: {integrity: sha512-08kcGqnYf/YmjoRhfxyu+CLxBjUtHLXLXX/vUfx9l2LYzG3c1m61nrpyFUZI6zeS+Li/wWMMidD9KgrqtGq3mA==}
     dev: true
     optional: true
 
@@ -3615,7 +3611,7 @@ packages:
     dev: true
 
   /bcrypt-pbkdf/1.0.2:
-    resolution: {integrity: sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=}
+    resolution: {integrity: sha512-qeFIXtP4MSoi6NLqO12WfqARWWuCKi2Rn/9hJLEmtB5yTNr9DqFWkJRCf2qShWzPeAMRnOgCrq0sg/KLv5ES9w==}
     dependencies:
       tweetnacl: 0.14.5
     dev: true
@@ -3648,7 +3644,7 @@ packages:
     dev: true
 
   /boolbase/1.0.0:
-    resolution: {integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=}
+    resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
   /boxen/5.1.2:
@@ -3692,8 +3688,6 @@ packages:
       snapdragon-node: 2.1.1
       split-string: 3.1.0
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /braces/3.0.2:
@@ -3841,7 +3835,7 @@ packages:
     dev: true
 
   /caseless/0.12.0:
-    resolution: {integrity: sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=}
+    resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
     dev: true
     optional: true
 
@@ -3938,8 +3932,6 @@ packages:
       upath: 1.2.0
     optionalDependencies:
       fsevents: 1.2.13
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /chokidar/3.5.3:
@@ -4569,22 +4561,12 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
     dependencies:
       ms: 2.0.0
     dev: true
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
     dependencies:
       ms: 2.1.3
     dev: true
@@ -5800,8 +5782,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /expand-tilde/2.0.2:
@@ -5867,8 +5847,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /extsprintf/1.3.0:
@@ -6041,8 +6019,6 @@ packages:
       is-glob: 3.1.0
       micromatch: 3.1.10
       resolve-dir: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /findup-sync/3.0.0:
@@ -6053,8 +6029,6 @@ packages:
       is-glob: 4.0.3
       micromatch: 3.1.10
       resolve-dir: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /fined/1.2.0:
@@ -6366,8 +6340,6 @@ packages:
       just-debounce: 1.1.0
       normalize-path: 3.0.0
       object.defaults: 1.1.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /glob/7.2.0:
@@ -6547,8 +6519,6 @@ packages:
       semver-greatest-satisfied-range: 1.1.0
       v8flags: 3.2.0
       yargs: 7.1.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /gulp-if/3.0.0:
@@ -6569,8 +6539,6 @@ packages:
       replace-ext: 2.0.0
       through2: 4.0.2
       vinyl-sourcemaps-apply: 0.2.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /gulp-match/1.1.0:
@@ -6617,8 +6585,6 @@ packages:
       gulp-cli: 2.3.0
       undertaker: 1.3.0
       vinyl-fs: 3.0.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /gulplog/1.0.0:
@@ -8392,8 +8358,6 @@ packages:
       mime: 1.6.0
       needle: 2.9.1
       source-map: 0.6.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /leven/3.1.0:
@@ -8435,8 +8399,6 @@ packages:
       object.map: 1.0.1
       rechoir: 0.6.2
       resolve: 1.22.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /lilconfig/2.0.4:
@@ -8746,8 +8708,6 @@ packages:
       micromatch: 3.1.10
       resolve: 1.22.0
       stack-trace: 0.0.10
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /mathml-tag-names/2.1.3:
@@ -9252,8 +9212,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /micromatch/4.0.5:
@@ -9420,8 +9378,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /natural-compare/1.4.0:
@@ -9437,8 +9393,6 @@ packages:
       debug: 3.2.7
       iconv-lite: 0.4.24
       sax: 1.2.4
-    transitivePeerDependencies:
-      - supports-color
     dev: true
     optional: true
 
@@ -10227,7 +10181,7 @@ packages:
     dependencies:
       htmlparser2: 3.10.1
       postcss: 7.0.39
-      postcss-syntax: 0.36.2_5111c4e3f61982716b7e3f1c84e1f773
+      postcss-syntax: 0.36.2_postcss@7.0.39
     dev: true
 
   /postcss-js/2.0.3:
@@ -10562,31 +10516,12 @@ packages:
       svgo: 2.8.0
     dev: true
 
-  /postcss-syntax/0.36.2_5111c4e3f61982716b7e3f1c84e1f773:
+  /postcss-syntax/0.36.2_postcss@7.0.39:
     resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
     peerDependencies:
       postcss: '>=5.0.0'
-      postcss-html: '*'
-      postcss-jsx: '*'
-      postcss-less: '*'
-      postcss-markdown: '*'
-      postcss-scss: '*'
-    peerDependenciesMeta:
-      postcss-html:
-        optional: true
-      postcss-jsx:
-        optional: true
-      postcss-less:
-        optional: true
-      postcss-markdown:
-        optional: true
-      postcss-scss:
-        optional: true
     dependencies:
       postcss: 7.0.39
-      postcss-html: 0.36.0_4f7b71a942b8b7a555b8adf78f88122b
-      postcss-less: 3.1.4
-      postcss-scss: 2.1.1
     dev: true
 
   /postcss-unique-selectors/5.1.1:
@@ -10845,8 +10780,8 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /rcdoc-theme-default/0.1.7:
-    resolution: {integrity: sha512-ffgTdyrBIl2zRNcoJyaphiLhmhZBAzyDEseyHPd5dWj3bO7IH7vYzkYYoBoLfdJCTycD3jVQxwQfkp4JTd/syg==}
+  /rcdoc-theme-default/0.1.9:
+    resolution: {integrity: sha512-MLs2a005nyGh1z4r0JO3bbGS4Ai3wpr9635246ycC8DKrZ7ZTWcLLCmCzFiJXf0bRUCb9kuh1/CLiBClnSjI1w==}
     dependencies:
       '@docsearch/css': 3.0.0
       '@docsearch/react': 3.0.0_react-dom@17.0.2+react@17.0.2
@@ -11043,8 +10978,6 @@ packages:
       graceful-fs: 4.2.10
       micromatch: 3.1.10
       readable-stream: 2.3.7
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /readdirp/3.6.0:
@@ -11770,8 +11703,6 @@ packages:
       source-map: 0.5.7
       source-map-resolve: 0.5.3
       use: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /sort-object-keys/1.1.3:
@@ -12228,7 +12159,7 @@ packages:
       postcss-sass: 0.4.4
       postcss-scss: 2.1.1
       postcss-selector-parser: 6.0.10
-      postcss-syntax: 0.36.2_5111c4e3f61982716b7e3f1c84e1f773
+      postcss-syntax: 0.36.2_postcss@7.0.39
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       slash: 3.0.0
@@ -12242,8 +12173,6 @@ packages:
       v8-compile-cache: 2.3.0
       write-file-atomic: 3.0.3
     transitivePeerDependencies:
-      - postcss-jsx
-      - postcss-markdown
       - supports-color
     dev: true
 
