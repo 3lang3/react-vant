@@ -40,7 +40,7 @@ importers:
 
   packages/react-vant:
     specifiers:
-      '@rcdoc/cli': 0.1.20
+      '@rcdoc/cli': 0.1.21
       '@rcdoc/theme': ^0.1.6
       '@react-spring/web': ^9.3.0
       '@react-vant/icons': workspace:*
@@ -70,7 +70,7 @@ importers:
       react-transition-group: 4.4.2_react-dom@18.1.0+react@18.1.0
       tslib: 2.4.0
     devDependencies:
-      '@rcdoc/cli': 0.1.20_typescript@4.6.4
+      '@rcdoc/cli': 0.1.21_typescript@4.6.4
       '@rcdoc/theme': 0.1.6
       '@types/node': 17.0.31
       '@types/react-dom': 18.0.3
@@ -2170,8 +2170,8 @@ packages:
       - typescript
     dev: true
 
-  /@rcdoc/cli/0.1.20_typescript@4.6.4:
-    resolution: {integrity: sha512-m4C6sL1HIqzAyxSmMt2uVrLqLDMrjRqvkjRJLr/ZyD/0hbOpGbexcNjyjBMQ2DFd2r6ZzZTtASrRMRMhLtW4Lg==}
+  /@rcdoc/cli/0.1.21_typescript@4.6.4:
+    resolution: {integrity: sha512-xQfcKo17RiL+GzmMLMH23CXfaxyW6g7o2RcmKXgr4DWNafI4YIjaIhQWJAzZD1Qb7gL1nrCD8glKcKXbW05++Q==}
     hasBin: true
     dependencies:
       '@babel/core': 7.17.10
@@ -2199,7 +2199,7 @@ packages:
       less: 4.1.2
       lodash-es: 4.17.21
       ora: 6.1.0
-      rcdoc-theme-default: 0.1.9
+      rcdoc-theme-default: 0.1.10
       react: 17.0.2
       react-docgen-typescript: 2.2.2_typescript@4.6.4
       react-dom: 17.0.2_react@17.0.2
@@ -10780,8 +10780,8 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /rcdoc-theme-default/0.1.9:
-    resolution: {integrity: sha512-MLs2a005nyGh1z4r0JO3bbGS4Ai3wpr9635246ycC8DKrZ7ZTWcLLCmCzFiJXf0bRUCb9kuh1/CLiBClnSjI1w==}
+  /rcdoc-theme-default/0.1.10:
+    resolution: {integrity: sha512-lt2cwa44gKUY5JG2UCLekwLEl8jegp75Epg97RSGGzc7yuf7lyXOa0U3oDGoMXWDpP4qrARx0WGbtg14jxefrg==}
     dependencies:
       '@docsearch/css': 3.0.0
       '@docsearch/react': 3.0.0_react-dom@17.0.2+react@17.0.2
