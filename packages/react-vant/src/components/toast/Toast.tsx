@@ -37,6 +37,7 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
 
   useEffect(() => {
     toggleClickable();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.visible, props.forbidClick]);
 
   const renderIcon = () => {
@@ -67,7 +68,7 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
 
   return (
     <Popup
-      className={clsx([bem([props.position, { [props.type]: !props.icon }]), props.className])}
+      className={clsx([bem('wrapper', [props.position])])}
       visible={props.visible}
       overlay={props.overlay}
       transition={props.transition}
@@ -81,8 +82,10 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
       onOpened={props.onOpened}
       teleport={props.teleport}
     >
-      {renderIcon()}
-      {renderMessage()}
+      <div className={clsx([bem([{ [props.type]: !props.icon }]), props.className])}>
+        {renderIcon()}
+        {renderMessage()}
+      </div>
     </Popup>
   );
 };
