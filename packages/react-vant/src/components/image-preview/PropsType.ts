@@ -39,6 +39,6 @@ export interface ImagePreviewItemProps {
 }
 
 export type ImagePreviewStatic = {
-  (ImagePreviewProps): React.ReactNode;
+  (props: ImagePreviewProps): React.ReactElement;
   open: (OpenProps: Omit<ImagePreviewProps, 'visible'>) => () => void;
 };

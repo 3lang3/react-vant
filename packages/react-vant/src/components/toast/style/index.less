@@ -42,6 +42,17 @@
   border-radius: var(--rv-toast-border-radius);
   transition: all var(--rv-animation-duration-fast);
 
+  &__wrapper {
+    &--top {
+      top: var(--rv-toast-position-top-distance);
+    }
+
+    &--bottom {
+      top: auto;
+      bottom: var(--rv-toast-position-bottom-distance);
+    }
+  }
+
   &--unclickable {
     // lock scroll
     overflow: hidden;
@@ -64,15 +75,6 @@
     .@{rv-prefix}-toast__info {
       margin-top: 0;
     }
-  }
-
-  &--top {
-    top: var(--rv-toast-position-top-distance);
-  }
-
-  &--bottom {
-    top: auto;
-    bottom: var(--rv-toast-position-bottom-distance);
   }
 
   &__icon {
