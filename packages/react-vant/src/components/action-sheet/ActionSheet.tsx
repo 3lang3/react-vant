@@ -106,19 +106,21 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   return (
     <Popup
       visible={props.visible}
-      className={clsx(bem())}
+      className={clsx(bem('wrapperr'))}
       position="bottom"
       {...pick(props, sharedPopupProps)}
       onClose={onCancel}
       closeable={false}
     >
-      {renderHeader()}
-      {renderDescription()}
-      <div className={clsx(bem('content'))}>
-        {renderOptions()}
-        {props.children}
+      <div className={clsx(bem(), props.className)} style={props.style}>
+        {renderHeader()}
+        {renderDescription()}
+        <div className={clsx(bem('content'))}>
+          {renderOptions()}
+          {props.children}
+        </div>
+        {renderCancel()}
       </div>
-      {renderCancel()}
     </Popup>
   );
 };
