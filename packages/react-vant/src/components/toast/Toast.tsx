@@ -68,7 +68,7 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
 
   return (
     <Popup
-      className={clsx([bem('wrapper', [props.position])])}
+      className={clsx([bem([props.position, { [props.type]: !props.icon }]), props.className])}
       visible={props.visible}
       overlay={props.overlay}
       transition={props.transition}
@@ -82,10 +82,8 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
       onOpened={props.onOpened}
       teleport={props.teleport}
     >
-      <div className={clsx([bem([{ [props.type]: !props.icon }]), props.className])}>
-        {renderIcon()}
-        {renderMessage()}
-      </div>
+      {renderIcon()}
+      {renderMessage()}
     </Popup>
   );
 };
