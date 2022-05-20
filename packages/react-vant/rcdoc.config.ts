@@ -146,6 +146,7 @@ export default defineConfig({
           '/components/sticky',
           '/components/swiper',
           '/components/tag',
+          '/components/water-mark',
         ],
       },
       {
