@@ -68,3 +68,4 @@ export { default as CouponList } from './coupon-list';
 export * from './sku';
 export * from './swiper';
 export * from './floating-ball';
+export * from './water-mark';
