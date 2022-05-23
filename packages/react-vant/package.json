@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "0.0.3-dev.7",
+  "version": "0.0.3-dev.8",
   "description": "React Mobile UI Components base on Vant UI",
   "keywords": [
     "ui",
@@ -30,9 +30,9 @@
     "**/*.css",
     "**/*.less",
     "./es/index.js",
-    "./src/index.ts",
+    "./src/components/index.ts",
     "./es/styles/index.js",
-    "./src/styles/index.ts"
+    "./src/components/styles/index.ts"
   ],
   "exports": {
     ".": {

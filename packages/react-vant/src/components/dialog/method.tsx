@@ -1,4 +1,3 @@
-import './style/index.less';
 import React, { useEffect, useState } from 'react';
 import { Cross } from '@react-vant/icons';
 import { noop } from '../utils';
@@ -138,4 +137,3 @@ Dialog.confirm = (props: DialogProps): Promise<boolean> => {
 };
 
 export default Dialog;
-export { Dialog };

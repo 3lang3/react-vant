@@ -1,4 +1,3 @@
-import './style/index.less';
 import React, { useCallback, useEffect, useState } from 'react';
 import { extend, isObject } from '../utils';
 import { resolveContainer } from '../utils/dom/getContainer';
@@ -165,5 +164,3 @@ ToastObj.resetDefaultOptions = (type?: ToastType) => {
 
 const Toast = ToastObj as ToastInstance;
 export default Toast as ToastInstance;
-export { Toast };
-export type { ToastType, ToastPosition, ToastOptions } from './PropsType';
