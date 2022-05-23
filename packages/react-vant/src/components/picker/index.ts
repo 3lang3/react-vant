@@ -1,6 +1,7 @@
 import './style/index.less';
 import Picker from './Picker';
 
+export default Picker;
 export { Picker };
 export type {
   PickerProps,

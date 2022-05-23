@@ -1,9 +1,11 @@
 import './style/index.less';
 import CheckboxGroup from './CheckboxGroup';
-import Checkbox from './Checkbox';
+import _Checkbox from './Checkbox';
 
-const CheckboxNamespace = Object.assign(Checkbox, { Group: CheckboxGroup });
-export { CheckboxNamespace as Checkbox, CheckboxGroup };
+const Checkbox = Object.assign(_Checkbox, { Group: CheckboxGroup });
+
+export default Checkbox;
+export { Checkbox, CheckboxGroup };
 export type {
   CheckboxGroupInstance,
   CheckboxInstance,

@@ -75,4 +75,5 @@ const ImagePreview = Object.assign(BaseImagePreview, {
   open,
 }) as ImagePreviewStatic;
 
+export default ImagePreview;
 export { ImagePreview };

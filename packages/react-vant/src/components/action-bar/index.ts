@@ -1,12 +1,13 @@
 import './style/index.less';
-import ActionBar from './ActionBar';
+import _ActionBar from './ActionBar';
 import ActionBarIcon from './ActionBarIcon';
 import ActionBarButton from './ActionBarButton';
 
-const ActionBarNamespace = Object.assign(ActionBar, {
+const ActionBar = Object.assign(_ActionBar, {
   Icon: ActionBarIcon,
   Button: ActionBarButton,
 });
 
-export { ActionBarNamespace as ActionBar };
+export default ActionBar;
+export { ActionBar };
 export type { ActionBarProps, ActionBarIconProps, ActionBarButtonProps } from './PropsType';

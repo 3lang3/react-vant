@@ -38,7 +38,7 @@ function nextTickClear() {
 }
 
 // 可返回用于销毁此弹窗的方法
-const Toast = (p: ToastProps): unknown => {
+const Toast = (p: ToastProps | string): unknown => {
   const props = parseOptions(p);
   const update: ToastReturnType = {
     config: () => {},
@@ -163,6 +163,6 @@ Toast.resetDefaultOptions = (type?: ToastType) => {
   }
 };
 
-const combineToast = Toast as ToastInstance;
-export { combineToast as Toast };
+export default Toast as ToastInstance;
+export { Toast };
 export type { ToastType, ToastPosition, ToastOptions } from './PropsType';

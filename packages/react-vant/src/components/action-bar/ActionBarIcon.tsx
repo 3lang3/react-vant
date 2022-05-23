@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import clsx from 'clsx';
 import { ActionBarIconProps } from './PropsType';
-import { Badge } from '../badge';
+import Badge from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ActionBarIcon: React.FC<ActionBarIconProps> = (props) => {

@@ -1,8 +1,9 @@
 import './style/index.less';
-import Button from './Button';
+import _Button from './Button';
 import Group from './ButtonGroup';
 
-const ButtonNameSpace = Object.assign(Button, { Group });
+const Button = Object.assign(_Button, { Group });
 
-export { ButtonNameSpace as Button };
+export default Button
+export { Button };
 export type { ButtonProps, ButtonType, ButtonSize, ButtonIconPosition } from './PropsType';

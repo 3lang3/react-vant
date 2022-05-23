@@ -3,7 +3,7 @@ import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { CouponProps } from './PropsType';
 import { padZero } from '../utils';
-import { Checkbox } from '../checkbox';
+import Checkbox from '../checkbox';
 
 function getDate(timeStamp: number) {
   const date = new Date(timeStamp * 1000);

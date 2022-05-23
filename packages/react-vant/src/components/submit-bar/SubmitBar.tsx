@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SubmitBarProps } from './PropsType';
-import { Button } from '../button';
+import Button from '../button';
 
 const SubmitBar: React.FC<SubmitBarProps> = (props) => {
   const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);

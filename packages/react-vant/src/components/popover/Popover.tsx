@@ -13,7 +13,7 @@ import { extend, pick } from '../utils';
 import { PopupInstanceType } from '../popup/PropsType';
 import { BORDER_BOTTOM } from '../utils/constant';
 import useClickAway from '../hooks/use-click-away';
-import { Popup } from '../popup';
+import Popup from '../popup';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const popupProps = [

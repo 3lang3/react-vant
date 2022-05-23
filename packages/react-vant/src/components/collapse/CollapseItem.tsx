@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import clsx from 'clsx';
 
-import { Cell } from '../cell';
+import Cell from '../cell';
 import CollapseContext from './CollapseContext';
 import useLazyRender from '../hooks/use-lazy-render';
 

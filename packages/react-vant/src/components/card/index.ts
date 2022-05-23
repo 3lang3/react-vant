@@ -1,11 +1,12 @@
 import './style/index.less';
-import Card, { CardHeader, CardBody, CardFooter, CardCover } from './Card';
+import _Card, { CardHeader, CardBody, CardFooter, CardCover } from './Card';
 
-const CareNamespace = Object.assign(Card, {
+const Card = Object.assign(_Card, {
   Header: CardHeader,
   Body: CardBody,
   Footer: CardFooter,
   Cover: CardCover,
 });
 
-export { CareNamespace as Card };
+export default Card;
+export { Card };

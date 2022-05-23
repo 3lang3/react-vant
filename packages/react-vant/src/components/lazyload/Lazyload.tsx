@@ -3,7 +3,7 @@ import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { LazyloadProps } from './PropsType';
 import { useInViewport } from '../hooks';
-import { Skeleton } from '../skeleton';
+import Skeleton from '../skeleton';
 
 const Lazyload: React.FC<LazyloadProps> = (props) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);

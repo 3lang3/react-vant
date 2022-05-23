@@ -1,7 +1,7 @@
 import './style/index.less';
-import IndexBar from './IndexBar';
+import _IndexBar from './IndexBar';
 import IndexAnchor from './IndexAnchor';
 
-const IndexBarNamespace = Object.assign(IndexBar, { Anchor: IndexAnchor });
-export { IndexBarNamespace as IndexBar, IndexAnchor };
+const IndexBar = Object.assign(_IndexBar, { Anchor: IndexAnchor });
+export { IndexBar, IndexAnchor };
 export type { IndexBarProps, IndexAnchorProps, IndexBarInstance } from './PropsType';

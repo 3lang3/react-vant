@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import cls from 'clsx';
 import { ImagePreviewProps } from './PropsType';
 import { pick } from '../utils';
-import { Popup } from '../popup';
+import Popup from '../popup';
 import { Slides } from './slides';
 import type { SlidesRef } from './slides';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

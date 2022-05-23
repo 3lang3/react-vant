@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import clsx from 'clsx';
 
-import { Loading } from '../loading';
+import Loading from '../loading';
 import Column from './PickerColumn';
 
 import useRefs from '../hooks/use-refs';

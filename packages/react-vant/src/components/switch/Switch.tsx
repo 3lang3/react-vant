@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 import clsx from 'clsx';
 
 import useMergedState from '../hooks/use-merged-state';
-import { Loading } from '../loading';
+import Loading from '../loading';
 
 import { SwitchProps } from './PropsType';
 import { addUnit } from '../utils';

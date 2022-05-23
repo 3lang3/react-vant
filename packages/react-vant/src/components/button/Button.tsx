@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import clsx from 'clsx';
-import { Loading } from '../loading';
+import Loading from '../loading';
 import { ButtonProps } from './PropsType';
 import { BORDER_SURROUND, SHADOW, WHITE } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

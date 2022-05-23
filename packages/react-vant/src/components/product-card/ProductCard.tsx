@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { ProductCardProps } from './PropsType';
-import { Tag } from '../tag';
-import { Image } from '../image';
+import Tag from '../tag';
+import Image from '../image';
 import { isDef } from '../utils';
 
 function isStringOrNumber(target) {

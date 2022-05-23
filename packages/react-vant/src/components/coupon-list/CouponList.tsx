@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { CouponListProps } from './PropsType';
-import { Tabs } from '../tabs';
+import Tabs from '../tabs';
 import { useSetState } from '../hooks';
-import { Button } from '../button';
-import { Field } from '../field';
+import Button from '../button';
+import Field from '../field';
 import Coupon from './Coupon';
 
 const CouponList: React.FC<CouponListProps> = (props) => {

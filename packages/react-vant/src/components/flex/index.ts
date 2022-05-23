@@ -1,7 +1,7 @@
 import './style/index.less';
-import Flex from './Flex';
+import _Flex from './Flex';
 import FlexItem from './FlexItem';
 
-const FlexNamespace = Object.assign(Flex, { Item: FlexItem });
-export { FlexNamespace as Flex };
+const Flex = Object.assign(_Flex, { Item: FlexItem });
+export { Flex };
 export type { FlexProps, FlexItemProps } from './PropsType';

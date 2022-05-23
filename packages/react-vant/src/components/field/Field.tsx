@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   useRef,
   useState,
@@ -11,8 +10,8 @@ import React, {
 } from 'react';
 import { Clear, QuestionO } from '@react-vant/icons';
 import clsx from 'clsx';
-import { Cell } from '../cell';
-import { Dialog } from '../dialog';
+import Cell from '../cell';
+import Dialog from '../dialog';
 import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
 import { isDef, addUnit, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle, isValidElement, useContext } from 'react';
 import clsx from 'clsx';
 
-import { Loading } from '../loading';
+import Loading from '../loading';
 import { getRect } from '../hooks/use-rect';
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';

@@ -3,12 +3,12 @@ import React, { useContext, useEffect } from 'react';
 import clsx from 'clsx';
 import { Cross, Success } from '@react-vant/icons';
 
-import { Popup } from '../popup';
-import { Loading } from '../loading';
+import Popup from '../popup';
+import Loading from '../loading';
 
 import { lockClick } from './lock-click';
 import { isDef } from '../utils';
-import { ToastPrivateProps, ToastProps } from './PropsType';
+import type { ToastPrivateProps, ToastProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 // eslint-disable-next-line react/require-default-props

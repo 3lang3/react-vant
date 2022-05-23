@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import { Picker } from '../picker';
+import Picker from '../picker';
 import type { PickerInstance } from '../picker'
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import clsx from 'clsx';
 
-import { Swiper } from '../swiper';
+import Swiper from '../swiper';
 
 import { TabsContentProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

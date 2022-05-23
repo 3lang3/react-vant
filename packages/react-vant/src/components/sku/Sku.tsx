@@ -13,12 +13,12 @@ import React, {
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SkuActionType, SkuInstance, SkuProps } from './PropsType';
-import { ActionBar } from '../action-bar';
-import { Image } from '../image';
+import ActionBar from '../action-bar';
+import Image from '../image';
 import { useSetState } from '../hooks';
 import { BORDER_BOTTOM } from '../utils/constant';
-import { ImagePreview } from '../image-preview';
-import { Popup } from '../popup';
+import ImagePreview from '../image-preview';
+import Popup from '../popup';
 import {
   getSelectedProperties,
   getSelectedPropValues,
@@ -33,7 +33,7 @@ import SkuRow from './components/SkuRow';
 import SkuRowItem from './components/SkuRowItem';
 import SkuRowPropItem from './components/SkuRowPropItem';
 import SkuStepper from './components/SkuStepper';
-import { Toast } from '../toast';
+import Toast from '../toast';
 
 const { QUOTA_LIMIT } = LIMIT_TYPE;
 

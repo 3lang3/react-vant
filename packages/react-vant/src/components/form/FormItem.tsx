@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Field as RcField } from 'rc-field-form';
 import { FieldContext } from 'rc-field-form';
 import type { Meta } from 'rc-field-form/lib/interface';
-import { Field } from '../field';
+import Field from '../field';
 import type {
   FormItemLayoutProps,
   FormItemProps,

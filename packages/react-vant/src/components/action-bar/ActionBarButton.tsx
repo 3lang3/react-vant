@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import clsx from 'clsx';
 import { ActionBarButtonProps } from './PropsType';
-import { Button } from '../button';
+import Button from '../button';
 import ActionBarContext from './ActionBarContext';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
