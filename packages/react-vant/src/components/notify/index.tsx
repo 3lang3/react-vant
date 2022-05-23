@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import React, { useCallback, useEffect, useState } from 'react';
-
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState } from 'react';
 
 import { extend, isObject, noop, once } from '../utils';
 import { NotifyOptions, NotifyProps, NotifyStatic } from './PropsType';
@@ -10,6 +7,7 @@ import Notify from './Notify';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from '../toast/lock-click';
 import './style/index.less';
+import { render, unmount } from '../utils/dom/render';
 
 const NotifyNamespace = {} as NotifyStatic;
 
@@ -56,18 +54,15 @@ const show = (p: string | NotifyProps) => {
 
     // clearDOM after animation
     const internalOnClosed = () => {
-      const unmountResult = ReactDOM.unmountComponentAtNode(container);
+      const unmountResult = unmount(container);
       if (unmountResult && container.parentNode) {
         container.parentNode.removeChild(container);
       }
     };
 
-    const internalAfterClose = useCallback(
-      once(() => {
-        internalOnClosed();
-      }),
-      [onClose, container],
-    );
+    const internalAfterClose = once(() => {
+      internalOnClosed();
+    });
 
     useEffect(() => {
       setVisible(true);
@@ -82,6 +77,7 @@ const show = (p: string | NotifyProps) => {
           window.clearTimeout(timer);
         }
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -95,7 +91,7 @@ const show = (p: string | NotifyProps) => {
     );
   };
 
-  ReactDOM.render(<TempNotify />, container);
+  render(<TempNotify />, container);
 
   return destroy;
 };
