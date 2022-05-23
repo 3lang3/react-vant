@@ -24,7 +24,17 @@ const images = [
 ];
 
 export default () => {
-  return <Cell title="预览图片" isLink onClick={() => ImagePreview.open({ images })} />;
+  return (
+    <Cell
+      title="预览图片"
+      isLink
+      onClick={() =>
+        ImagePreview.open({
+          images,
+        })
+      }
+    />
+  );
 };
 ```
 
@@ -60,6 +70,13 @@ export default () => {
         title="展示关闭按钮"
         isLink
         onClick={() => ImagePreview.open({ images, startPosition: 2, closeable: true })}
+      />
+      <Cell
+        title="只允许点击关闭按钮关闭"
+        isLink
+        onClick={() =>
+          ImagePreview.open({ images, closeable: true, closeOnlyClickCloseIcon: true })
+        }
       />
       <Cell
         title="监听关闭事件"
@@ -149,11 +166,9 @@ export default () => {
 };
 ```
 
-
 ### 指定挂载节点
 
 通过 `teleport` 属性，可以让组件在指定节点内渲染。
-
 
 ```jsx
 /**
@@ -172,7 +187,11 @@ export default () => {
   const ref = React.useRef(null);
   return (
     <>
-      <Cell title="指定挂载节点" isLink onClick={() => ImagePreview.open({ images, teleport: ref.current })} />
+      <Cell
+        title="指定挂载节点"
+        isLink
+        onClick={() => ImagePreview.open({ images, teleport: ref.current })}
+      />
       <div ref={ref} />
     </>
   );

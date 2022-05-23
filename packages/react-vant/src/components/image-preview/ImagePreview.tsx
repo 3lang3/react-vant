@@ -2,18 +2,22 @@ import React, { useContext, useRef, useState } from 'react';
 import cls from 'clsx';
 import { ImagePreviewProps } from './PropsType';
 import { pick } from '../utils';
-import { Swiper } from '../swiper';
-import type { SwiperInstance } from '../swiper';
 import { Popup } from '../popup';
-import ImagePreviewItem from './ImagePreviewItem';
+import { Slides } from './slides';
+import type { SlidesRef } from './slides';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import SwiperPagIndicator from '../swiper/SwiperPagIndicator';
 
-const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
+export type ImagePreviewRef = SlidesRef;
+
+const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('image-preview', prefixCls);
 
-  const swiperRef = useRef<SwiperInstance>(null);
+  const slidesRef = useRef<SlidesRef>(null);
   const [active, setActive] = useState(() => props.startPosition);
+
+  const currentImage = React.useMemo(() => props.images[active], [active, props.images]);
 
   const onSwipeChange = (idx: number) => {
     if (active !== idx) {
@@ -21,53 +25,35 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
       props.onChange?.(idx);
     }
   };
-  const onClose = (image: string, i: number) => {
-    props.onClose && props.onClose?.({ url: image, index: i });
+
+  const onClose = () => {
+    props.onClose?.({ url: currentImage, index: active });
   };
 
-  const renderImages = () => (
-    <Swiper
-      ref={swiperRef}
-      className={cls(bem('swipe'))}
-      loop={props.loop}
-      duration={props.swipeDuration}
-      initialSwipe={active}
-      onChange={onSwipeChange}
-      indicator={props.showIndicators}
-    >
-      {props.images.map((image, i) => (
-        <Swiper.Item
-          className={cls(bem('item'))}
-          key={image}
-          onClick={() => {
-            onClose(image, i);
+  const renderContent = () => (
+    <div className={cls(bem('content'))}>
+      {props.images && (
+        <Slides
+          ref={slidesRef}
+          defaultIndex={active}
+          onIndexChange={onSwipeChange}
+          images={props.images}
+          onTap={() => {
+            if (!props.closeOnlyClickCloseIcon) {
+              onClose();
+            }
           }}
-        >
-          <ImagePreviewItem
-            maxZoom={props.maxZoom}
-            image={image}
-            lazyload={props.lazyload}
-            onTap={() => {
-              onClose(image, i);
-            }}
-            onZoomChange={(zoom) => {
-              if (zoom !== 1) {
-                swiperRef.current?.disable();
-              } else {
-                swiperRef.current?.enable();
-              }
-            }}
-          />
-        </Swiper.Item>
-      ))}
-    </Swiper>
+          maxZoom={props.maxZoom}
+        />
+      )}
+    </div>
   );
 
   const renderClose = () => {
     if (props.closeable) {
       return React.cloneElement(props.closeIcon as React.ReactElement, {
         className: cls(bem('close-icon', props.closeIconPosition)),
-        onClick: props.onClose,
+        onClick: onClose,
       });
     }
     return null;
@@ -86,6 +72,24 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
     return null;
   };
 
+  const renderIndicator = () => {
+    if (props.showIndicators) {
+      return (
+        <div className={cls(bem('indicator'))}>
+          <SwiperPagIndicator total={props.images.length} current={active} />
+        </div>
+      );
+    }
+    return null;
+  };
+
+  React.useImperativeHandle(ref, () => ({
+    swipeTo: (index: number, immediate?: boolean) => {
+      setActive(index);
+      slidesRef.current?.swipeTo(index, immediate);
+    },
+  }));
+
   return (
     <Popup
       className={cls(bem(), props.className)}
@@ -94,18 +98,18 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
         'visible',
         'overlayStyle',
         'closeOnPopstate',
-        'onClose',
         'onClosed',
         'beforeClose',
         'teleport',
       ])}
     >
       {renderClose()}
-      {renderImages()}
+      {renderContent()}
       {renderIndex()}
+      {renderIndicator()}
     </Popup>
   );
-};
+});
 
 ImagePreview.defaultProps = {
   loop: true,
@@ -114,8 +118,9 @@ ImagePreview.defaultProps = {
   images: [],
   swipeDuration: 300,
   startPosition: 0,
-  closeIconPosition: 'top-right',
+  closeIconPosition: 'top-right' as const,
   showIndicators: false,
+  closeOnlyClickCloseIcon: false,
   maxZoom: 3,
 };
 
