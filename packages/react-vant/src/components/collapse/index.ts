@@ -1,6 +1,6 @@
+import './style/index.less';
 import Collapse from './Collapse';
 import CollapseItem from './CollapseItem';
-import './style/index.less';
 
 const CollapseNamespace = Object.assign(Collapse, { Item: CollapseItem });
 export { CollapseNamespace as Collapse, CollapseItem };

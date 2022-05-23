@@ -1,6 +1,6 @@
+import './style/index.less';
 import Swiper from './Swiper';
 import SwiperItem from './SwiperItem';
-import './style/index.less';
 
 const SwiperNamespace = Object.assign(Swiper, { Item: SwiperItem });
 export { SwiperNamespace as Swiper };

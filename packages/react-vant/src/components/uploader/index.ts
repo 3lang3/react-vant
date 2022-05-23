@@ -1,5 +1,5 @@
-import Uploader from './Uploader';
 import './style/index.less';
+import Uploader from './Uploader';
 
 export { Uploader };
 export type {

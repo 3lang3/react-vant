@@ -1,7 +1,7 @@
+import './style/index.less';
 import React from 'react';
 import { TypographyTextProps, TypographyTitleProps, TypographyLinkProps } from './PropsType';
 import Typography from './Typography';
-import './style/index.less';
 
 const Text = (props: TypographyTextProps) => <Typography renderType="text" {...props} />;
 const Title = (props: TypographyTitleProps) => <Typography renderType="title" {...props} />;

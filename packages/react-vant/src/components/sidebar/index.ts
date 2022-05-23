@@ -1,6 +1,6 @@
+import './style/index.less';
 import Sidebar from './Sidebar';
 import SidebarItem from './SidebarItem';
-import './style/index.less';
 
 const SidebarNamespace = Object.assign(Sidebar, { Item: SidebarItem });
 export { SidebarNamespace as Sidebar, SidebarItem };

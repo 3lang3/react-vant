@@ -1,6 +1,6 @@
+import './style/index.less';
 import RadioGroup from './RadioGroup';
 import Radio from './Radio';
-import './style/index.less';
 
 const RadioNamespace = Object.assign(Radio, { Group: RadioGroup });
 export { RadioNamespace as Radio, RadioGroup };

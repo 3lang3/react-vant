@@ -1,5 +1,5 @@
-import Picker from './Picker';
 import './style/index.less';
+import Picker from './Picker';
 
 export { Picker };
 export type {

@@ -1,13 +1,11 @@
+import './style/index.less';
 import React, { useEffect, useState } from 'react';
 import { Cross } from '@react-vant/icons';
-
 import { noop } from '../utils';
 import { AlertDialogProps, DialogProps, DialogStatic } from './PropsType';
-
 import BaseDialog from './Dialog';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { render, unmount } from '../utils/dom/render';
-import './style/index.less';
 
 const Dialog = BaseDialog as DialogStatic;
 

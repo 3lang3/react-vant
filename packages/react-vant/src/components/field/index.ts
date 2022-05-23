@@ -1,5 +1,5 @@
-import Field from './Field';
 import './style/index.less';
+import Field from './Field';
 
 export { Field };
 export type {

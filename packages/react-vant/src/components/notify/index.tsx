@@ -1,13 +1,11 @@
+import './style/index.less';
 import React, { useEffect, useState } from 'react';
-
 import { extend, isObject, noop, once } from '../utils';
 import { NotifyOptions, NotifyProps, NotifyStatic } from './PropsType';
-
 import Notify from './Notify';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from '../toast/lock-click';
 import { render, unmount } from '../utils/dom/render';
-import './style/index.less';
 
 const NotifyNamespace = {} as NotifyStatic;
 

@@ -31,6 +31,7 @@ export default () => {
       onClick={() =>
         ImagePreview.open({
           images,
+          onChange: (index) => console.log(`当前展示第${index + 1}张`),
         })
       }
     />

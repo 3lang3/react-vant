@@ -1,5 +1,5 @@
-import Card, { CardHeader, CardBody, CardFooter, CardCover } from './Card';
 import './style/index.less';
+import Card, { CardHeader, CardBody, CardFooter, CardCover } from './Card';
 
 const CareNamespace = Object.assign(Card, {
   Header: CardHeader,
