@@ -2,7 +2,7 @@ import { BaseTypeProps } from '../utils';
 import { CheckerProps } from '../checkbox/PropsType';
 import React from 'react';
 
-type RadioValueType = number | string;
+export type RadioValueType = number | string;
 
 export interface RadioGroupProps<T = RadioValueType> extends BaseTypeProps {
   /** 是否为禁用状态	 */

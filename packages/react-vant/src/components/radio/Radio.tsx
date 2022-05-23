@@ -3,10 +3,10 @@ import React, { useContext, useMemo } from 'react';
 import RadioContext from './RadioContext';
 import Checker from '../checkbox/Checker';
 
-import { RadioProps } from './PropsType';
+import { RadioProps, RadioValueType } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
-const Radio: React.FC<RadioProps> = (props) => {
+function Radio<T = RadioValueType>(props: RadioProps<T>) {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('radio', prefixCls);
   const { parent, ...context } = useContext(RadioContext);
@@ -30,6 +30,6 @@ const Radio: React.FC<RadioProps> = (props) => {
       onToggle={toggle}
     />
   );
-};
+}
 
 export default Radio;

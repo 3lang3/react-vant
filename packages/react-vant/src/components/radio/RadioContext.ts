@@ -1,10 +1,10 @@
 import { createContext, Context } from 'react';
-import { RadioGroupProps } from './PropsType';
+import { RadioGroupProps, RadioValueType } from './PropsType';
 
-export interface RadioContextState {
-  parent?: { props: RadioGroupProps };
-  toggle?: (name: string | number) => void;
-  checked?: string | number;
+export interface RadioContextState<T = RadioValueType> {
+  parent?: { props: RadioGroupProps<T> };
+  toggle?: (name: T) => void;
+  checked?: T;
 }
 
 const RadioContext: Context<RadioContextState> = createContext({});
