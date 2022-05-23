@@ -90,8 +90,15 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
     <Popup
       className={cls(bem(), props.className)}
       overlayClass={cls(bem('overlay'))}
-      beforeClose={props.beforeClose}
-      {...pick(props, ['visible', 'overlayStyle', 'closeOnPopstate', 'onClose', 'onClosed'])}
+      {...pick(props, [
+        'visible',
+        'overlayStyle',
+        'closeOnPopstate',
+        'onClose',
+        'onClosed',
+        'beforeClose',
+        'teleport',
+      ])}
     >
       {renderClose()}
       {renderImages()}

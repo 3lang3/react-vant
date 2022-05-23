@@ -149,6 +149,36 @@ export default () => {
 };
 ```
 
+
+### 指定挂载节点
+
+通过 `teleport` 属性，可以让组件在指定节点内渲染。
+
+
+```jsx
+/**
+ * title: 指定挂载节点
+ */
+import React from 'react';
+import { ImagePreview, Cell } from 'react-vant';
+
+const images = [
+  'https://img.yzcdn.cn/vant/apple-1.jpg',
+  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://img.yzcdn.cn/vant/apple-3.jpg',
+];
+
+export default () => {
+  const ref = React.useRef(null);
+  return (
+    <>
+      <Cell title="指定挂载节点" isLink onClick={() => ImagePreview.open({ images, teleport: ref.current })} />
+      <div ref={ref} />
+    </>
+  );
+};
+```
+
 ## API
 
 ### Options
