@@ -14,15 +14,17 @@
 }
 
 .@{rv-prefix}-image-preview {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  transform: none;
-  user-select: none;
-  touch-action: none;
+  &.@{rv-prefix}-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transform: none;
+    user-select: none;
+    touch-action: none;
+  }
 
   &__content {
     width: 100vw;
@@ -30,6 +32,7 @@
     max-height: -webkit-fill-available;
     touch-action: none;
     user-select: none;
+    overflow: hidden;
   }
   &__slides {
     height: 100%;
@@ -92,7 +95,9 @@
   }
 
   &__overlay {
-    background-color: var(--rv-image-preview-overlay-background-color);
+    &.@{rv-prefix}-overlay {
+      background-color: var(--rv-image-preview-overlay-background-color);
+    }
   }
 
   &__close-icon {

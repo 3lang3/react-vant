@@ -38,7 +38,7 @@ function nextTickClear() {
 }
 
 // 可返回用于销毁此弹窗的方法
-const Toast = (p: ToastProps | string): unknown => {
+const ToastObj = (p: ToastProps): unknown => {
   const props = parseOptions(p);
   const update: ToastReturnType = {
     config: () => {},
@@ -128,7 +128,7 @@ function parseOptions(message) {
 }
 
 const createMethod = (type) => (options) =>
-  Toast({
+  ToastObj({
     ...currentOptions,
     ...defaultOptionsMap.get(type),
     ...parseOptions(options),
@@ -136,13 +136,13 @@ const createMethod = (type) => (options) =>
   });
 
 ['info', 'loading', 'success', 'fail'].forEach((method) => {
-  Toast[method] = createMethod(method);
+  ToastObj[method] = createMethod(method);
 });
 
-Toast.allowMultiple = (value = true) => {
+ToastObj.allowMultiple = (value = true) => {
   allowMultiple = value;
 };
-Toast.clear = nextTickClear;
+ToastObj.clear = nextTickClear;
 
 function setDefaultOptions(type: ToastType | ToastProps, options?: ToastProps) {
   if (typeof type === 'string') {
@@ -152,9 +152,9 @@ function setDefaultOptions(type: ToastType | ToastProps, options?: ToastProps) {
   }
 }
 
-Toast.setDefaultOptions = setDefaultOptions;
+ToastObj.setDefaultOptions = setDefaultOptions;
 
-Toast.resetDefaultOptions = (type?: ToastType) => {
+ToastObj.resetDefaultOptions = (type?: ToastType) => {
   if (typeof type === 'string') {
     defaultOptionsMap.delete(type);
   } else {
@@ -163,6 +163,7 @@ Toast.resetDefaultOptions = (type?: ToastType) => {
   }
 };
 
+const Toast = ToastObj as ToastInstance;
 export default Toast as ToastInstance;
 export { Toast };
 export type { ToastType, ToastPosition, ToastOptions } from './PropsType';
