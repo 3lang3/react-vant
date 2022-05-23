@@ -23,21 +23,19 @@
 }
 
 .@{rv-prefix}-dialog {
-  &.@{rv-prefix}-popup {
-    top: 45%;
-    left: 50%;
-    width: var(--rv-dialog-width);
-    overflow: hidden;
-    font-size: var(--rv-dialog-font-size);
-    background-color: var(--rv-dialog-background-color);
-    border-radius: var(--rv-dialog-border-radius);
-    backface-visibility: hidden; // avoid blurry text after scale animation
-    transition: var(--rv-dialog-transition);
-    transition-property: transform, opacity;
+  top: 45%;
+  left: 50%;
+  width: var(--rv-dialog-width);
+  overflow: hidden;
+  font-size: var(--rv-dialog-font-size);
+  background-color: var(--rv-dialog-background-color);
+  border-radius: var(--rv-dialog-border-radius);
+  backface-visibility: hidden; // avoid blurry text after scale animation
+  transition: var(--rv-dialog-transition);
+  transition-property: transform, opacity;
 
-    @media (max-width: 321px) {
-      width: var(--rv-dialog-small-screen-width);
-    }
+  @media (max-width: 321px) {
+    width: var(--rv-dialog-small-screen-width);
   }
 
   &__header {
