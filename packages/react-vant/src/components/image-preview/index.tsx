@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, { useEffect, useState } from 'react';
 import { Clear } from '@react-vant/icons';
-import ReactDOM from 'react-dom';
 import { noop } from '../utils';
 import { CloseParams, ImagePreviewProps, ImagePreviewStatic } from './PropsType';
 import BaseImagePreview from './ImagePreview';
 import { resolveContainer } from '../utils/dom/getContainer';
 import './style/index.less';
+import { render, unmount } from '../utils/dom/render';
 
 const ImagePreview = BaseImagePreview as ImagePreviewStatic;
 
@@ -48,7 +48,7 @@ ImagePreview.open = (props: ImagePreviewProps) => {
       if ((await beforeClose?.(0)) !== false) {
         destroy(p);
 
-        const unmountResult = ReactDOM.unmountComponentAtNode(container);
+        const unmountResult = unmount(container);
         if (unmountResult && container.parentNode) {
           container.parentNode.removeChild(container);
         }
@@ -68,7 +68,7 @@ ImagePreview.open = (props: ImagePreviewProps) => {
       />
     );
   };
-  ReactDOM.render(<TempDialog />, container);
+  render(<TempDialog />, container);
 
   return destroy;
 };

@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-
 import { extend, isObject } from '../utils';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from './lock-click';
 import { ToastProps, ToastInstance, ToastReturnType, ToastType } from './PropsType';
-
 import BaseToast from './Toast';
+import { render, unmount } from '../utils/dom/render';
 import './style/index.less';
 
 const defaultOptions: ToastProps = {
@@ -64,10 +62,11 @@ const Toast = (p: ToastProps): unknown => {
       if (state.forbidClick) {
         lockClick(false);
       }
-      const unmountResult = ReactDOM.unmountComponentAtNode(container);
+      const unmountResult = unmount(container);
       if (unmountResult && container.parentNode) {
         container.parentNode.removeChild(container);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [container]);
 
     // close with animation
@@ -102,6 +101,7 @@ const Toast = (p: ToastProps): unknown => {
           window.clearTimeout(timer);
         }
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -115,7 +115,7 @@ const Toast = (p: ToastProps): unknown => {
     );
   };
 
-  ReactDOM.render(<TempToast />, container);
+  render(<TempToast />, container);
 
   return update;
 };
