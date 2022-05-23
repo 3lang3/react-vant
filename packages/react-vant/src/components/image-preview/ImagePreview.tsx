@@ -2,9 +2,9 @@ import React, { useContext, useRef, useState } from 'react';
 import cls from 'clsx';
 import { ImagePreviewProps } from './PropsType';
 import { pick } from '../utils';
-import Swiper from '../swiper';
+import { Swiper } from '../swiper';
 import type { SwiperInstance } from '../swiper';
-import Popup from '../popup';
+import { Popup } from '../popup';
 import ImagePreviewItem from './ImagePreviewItem';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 

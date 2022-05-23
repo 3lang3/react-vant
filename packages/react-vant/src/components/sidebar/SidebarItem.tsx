@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import cls from 'clsx';
 import { SidebarItemProps, SidebarProvide } from './PropsType';
-import Badge from '../badge';
+import { Badge } from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = ({ children, ...props }) => {

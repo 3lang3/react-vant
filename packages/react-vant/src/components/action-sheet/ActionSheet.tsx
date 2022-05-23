@@ -3,8 +3,8 @@ import { Cross } from '@react-vant/icons';
 import clsx from 'clsx';
 import { ActionSheetProps, ActionSheetAction } from './PropsType';
 import { pick } from '../utils';
-import Loading from '../loading';
-import Popup from '../popup';
+import { Loading } from '../loading';
+import { Popup } from '../popup';
 import { sharedPopupProps } from '../popup/Popup';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 

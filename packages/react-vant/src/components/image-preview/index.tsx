@@ -73,4 +73,4 @@ ImagePreview.open = (props: ImagePreviewProps) => {
   return destroy;
 };
 
-export default ImagePreview;
+export { ImagePreview };

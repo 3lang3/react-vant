@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import cls from 'clsx';
-import Popup from '../popup';
+import { Popup } from '../popup';
 import { NotifyPrivateProps, NotifyProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import cls from 'clsx';
 import { NumberKeyboardKeyProps } from './PropsType';
-import Loading from '../loading';
+import { Loading } from '../loading';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useTouch } from '../hooks';
 

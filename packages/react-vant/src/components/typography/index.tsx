@@ -9,7 +9,6 @@ const Link = (props: TypographyLinkProps) => <Typography renderType="link" {...p
 
 const TypographyNamespace = Object.assign(Typography, { Text, Title, Link });
 
-export default TypographyNamespace;
 export { TypographyNamespace as Typography };
 export type {
   TypographyBaseProps as TypographyProps,

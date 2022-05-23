@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import cls from 'clsx';
 import { ShareSheetOption, ShareSheetProps } from './PropsType';
 import { pick } from '../utils';
-import Popup from '../popup';
+import { Popup } from '../popup';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const PRESET_ICONS = [

@@ -12,7 +12,7 @@ import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
 import { Cross } from '@react-vant/icons';
 
-import Overlay from '../overlay';
+import { Overlay } from '../overlay';
 import useEventListener from '../hooks/use-event-listener';
 
 import { isDef } from '../utils';

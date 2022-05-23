@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import clsx from 'clsx';
 
-import Popup from '../popup';
-import Button from '../button';
-import ActionBar from '../action-bar';
+import { Popup } from '../popup';
+import { Button } from '../button';
+import { ActionBar } from '../action-bar';
 
 import { DialogProps, DialogStatic } from './PropsType';
 import { addUnit, noop } from '../utils';

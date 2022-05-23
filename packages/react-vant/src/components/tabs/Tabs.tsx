@@ -13,7 +13,7 @@ import useRefs from '../hooks/use-refs';
 import useScrollParent from '../hooks/use-scroll-parent';
 import useWindowSize from '../hooks/use-window-size';
 
-import Sticky from '../sticky';
+import { Sticky } from '../sticky';
 import TabsTitle from './TabsTitle';
 import TabsContent from './TabsContent';
 import TabsContext from './TabsContext';

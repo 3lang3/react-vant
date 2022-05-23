@@ -8,7 +8,7 @@ import { isOversize, filterFiles, readFileContent, toArray, isImageFile } from '
 import { UploaderFileListItem, UploaderInstance, UploaderProps } from './PropsType';
 import { UploaderPreviewItem } from './UploaderPreviewItem';
 // Components
-import ImagePreview from '../image-preview';
+import { ImagePreview } from '../image-preview';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {

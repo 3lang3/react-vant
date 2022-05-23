@@ -3,7 +3,7 @@ import cls from 'clsx';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { ImagePreviewItemProps } from './PropsType';
-import Image from '../image';
+import { Image } from '../image';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const ImagePreviewItem: React.FC<ImagePreviewItemProps> = (props) => {

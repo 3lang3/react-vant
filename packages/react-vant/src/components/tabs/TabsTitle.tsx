@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { TabsTitleProps } from './PropsType';
 import { isDef } from '../utils';
-import Badge from '../badge';
+import { Badge } from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {

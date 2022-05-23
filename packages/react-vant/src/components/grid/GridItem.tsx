@@ -3,7 +3,7 @@ import cls from 'clsx';
 import { addUnit } from '../utils';
 import { GridProps, GridItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
-import Badge from '../badge';
+import { Badge } from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 type InternalProps = {

@@ -139,4 +139,4 @@ Dialog.confirm = (props: DialogProps): Promise<boolean> => {
   });
 };
 
-export default Dialog;
+export { Dialog };

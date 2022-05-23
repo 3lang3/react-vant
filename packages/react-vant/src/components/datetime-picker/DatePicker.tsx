@@ -7,7 +7,8 @@ import React, {
   useState,
 } from 'react';
 
-import Picker, { PickerInstance } from '../picker';
+import { Picker } from '../picker';
+import type { PickerInstance } from '../picker'
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';
 import { getMonthEndDay, getTrueValue, times } from './utils';

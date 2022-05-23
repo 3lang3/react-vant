@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import cls from 'clsx';
 import { ExpandO } from '@react-vant/icons';
 
-import Image from '../../image';
+import { Image } from '../../image';
 import ConfigProviderContext from '../../config-provider/ConfigProviderContext';
 import { isSkuChoosable } from '../utils';
 

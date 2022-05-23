@@ -6,7 +6,7 @@ import { getScrollTop, preventDefault } from '../utils';
 import { getScrollParent } from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
-import Loading from '../loading';
+import { Loading } from '../loading';
 import { useSetState, useTouch, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 

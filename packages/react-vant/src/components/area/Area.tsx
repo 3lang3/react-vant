@@ -10,7 +10,8 @@ import React, {
 import clsx from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { AreaColumnOption, AreaColumnType, AreaInstance, AreaProps } from './PropsType';
-import Picker, { PickerInstance } from '../picker';
+import { Picker } from '../picker';
+import type { PickerInstance } from '../picker';
 import { useMount, useSetState, useUpdateEffect } from '../hooks';
 import { deepClone } from '../utils/deep-clone';
 import { pick } from '../utils';

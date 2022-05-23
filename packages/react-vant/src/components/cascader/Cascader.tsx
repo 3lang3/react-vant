@@ -5,7 +5,7 @@ import { Cross, Success } from '@react-vant/icons';
 import { CascaderOption, CascaderProps, CascaderTab } from './PropsType';
 import { extend } from '../utils';
 import { useSetState, useUpdateEffect } from '../hooks';
-import Tabs from '../tabs';
+import { Tabs } from '../tabs';
 import { TabsClickTabEventParams } from '../tabs/PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 

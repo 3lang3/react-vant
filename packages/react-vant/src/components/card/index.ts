@@ -8,5 +8,4 @@ const CareNamespace = Object.assign(Card, {
   Cover: CardCover,
 });
 
-export default CareNamespace;
 export { CareNamespace as Card };

@@ -165,5 +165,4 @@ Toast.resetDefaultOptions = (type?: ToastType) => {
 
 const combineToast = Toast as ToastInstance;
 export { combineToast as Toast };
-export default combineToast;
 export type { ToastType, ToastPosition, ToastOptions } from './PropsType';

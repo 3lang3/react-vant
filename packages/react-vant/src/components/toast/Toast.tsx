@@ -3,8 +3,8 @@ import React, { useContext, useEffect } from 'react';
 import clsx from 'clsx';
 import { Cross, Success } from '@react-vant/icons';
 
-import Popup from '../popup';
-import Loading from '../loading';
+import { Popup } from '../popup';
+import { Loading } from '../loading';
 
 import { lockClick } from './lock-click';
 import { isDef } from '../utils';

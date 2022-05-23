@@ -7,8 +7,8 @@ import { isImageFile } from './utils';
 import { isDef, getSizeStyle, extend } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 // Components
-import Image from '../image';
-import Loading from '../loading';
+import { Image } from '../image';
+import { Loading } from '../loading';
 import { UploaderPrviewItemProps } from './PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
