@@ -9,7 +9,6 @@ import { render, unmount } from '../utils/dom/render';
 import './style/index.less';
 
 const defaultConfig: ImagePreviewProps = {
-  loop: true,
   images: [],
   className: '',
   showIndex: true,

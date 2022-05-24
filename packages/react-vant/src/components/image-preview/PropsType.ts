@@ -7,7 +7,6 @@ export type CloseParams = { url: string; index: number };
 
 export interface ImagePreviewProps extends BaseTypeProps {
   visible?: boolean;
-  loop?: boolean;
   overlay?: boolean;
   lazyload?: LazyImageType;
   maxZoom?: number;

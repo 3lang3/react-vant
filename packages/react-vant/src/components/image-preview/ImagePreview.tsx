@@ -112,7 +112,6 @@ const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>((props
 });
 
 ImagePreview.defaultProps = {
-  loop: true,
   overlay: true,
   showIndex: true,
   images: [],

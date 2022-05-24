@@ -213,7 +213,6 @@ export default () => {
 | swipeDuration | 动画时长，单位为 `ms` | _number \| string_ | `300` |
 | showIndex | 是否显示页码 | _boolean_ | `true` |
 | showIndicators | 是否显示轮播指示器 | _boolean_ | `false` |
-| loop | 是否开启循环播放 | _boolean_ | `true` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | className | 自定义类名 | _string \| Array \| object_ | - |
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |
