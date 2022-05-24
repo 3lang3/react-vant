@@ -4,7 +4,6 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 
 import Picker from '../picker';
@@ -15,6 +14,7 @@ import { times } from './utils';
 
 import { range, padZero } from '../utils';
 import { useUpdateEffect } from '../hooks';
+import useRefState from '../hooks/use-ref-state';
 
 const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, ref) => {
   const formatValue = (value) => {
@@ -32,10 +32,7 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   };
 
   const picker = useRef<PickerInstance>(null);
-  const [currentDate, setCurrentDate] = useState(() => formatValue(props.value));
-  const currentDateRef = useRef<string>();
-
-  currentDateRef.current = currentDate;
+  const [currentDate, setCurrentDate, currentDateRef] = useRefState(() => formatValue(props.value));
 
   const ranges = useMemo(
     () => [

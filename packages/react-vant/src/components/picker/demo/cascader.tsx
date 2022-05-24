@@ -4,6 +4,7 @@ import { Picker } from 'react-vant';
 export default () => {
   return (
     <Picker
+      onConfirm={(v, i) => console.log(v, i)}
       onChange={(value, index: number) => console.log(value, index)}
       columns={[
         {
