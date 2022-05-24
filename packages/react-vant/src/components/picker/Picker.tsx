@@ -218,14 +218,18 @@ function PickerInner<T = PickerOption>(
 
   const onChange = (columnIndex: number) => {
     if (dataType === 'cascade') {
-      onCascadeChange(columnIndex);
+      raf(() => {
+        onCascadeChange(columnIndex);
+      });
     }
     if (props.onChange) {
-      if (dataType === 'plain') {
-        props.onChange(getColumnValue(0), getColumnIndex(0));
-      } else {
-        props.onChange(getValues(), columnIndex);
-      }
+      raf(() => {
+        if (dataType === 'plain') {
+          props.onChange(getColumnValue(0), getColumnIndex(0));
+        } else {
+          props.onChange(getValues(), columnIndex);
+        }
+      });
     }
   };
 
@@ -243,11 +247,13 @@ function PickerInner<T = PickerOption>(
   };
 
   const cancel = () => {
-    if (dataType === 'plain') {
-      props.onCancel?.(getColumnValue(0), getColumnIndex(0));
-    } else {
-      props.onCancel?.(getValues(), getIndexes());
-    }
+    raf(() => {
+      if (dataType === 'plain') {
+        props.onCancel?.(getColumnValue(0), getColumnIndex(0));
+      } else {
+        props.onCancel?.(getValues(), getIndexes());
+      }
+    });
   };
 
   const renderTitle = () => {

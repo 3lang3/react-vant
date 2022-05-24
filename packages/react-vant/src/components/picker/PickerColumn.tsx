@@ -14,7 +14,6 @@ import { isObject, range } from '../utils';
 import { deepClone } from '../utils/deep-clone';
 import { useSetState, useTouch, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { raf } from '../utils/raf';
 
 const DEFAULT_DURATION = 200;
 
@@ -89,9 +88,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
         updateState({ index });
 
         if (emitChange && props.onChange) {
-          raf(() => {
-            props.onChange(index);
-          });
+          props.onChange(index);
         }
       }
     };

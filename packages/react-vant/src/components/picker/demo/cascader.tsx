@@ -1,10 +1,10 @@
 import React from 'react';
-import { Picker, Toast } from 'react-vant';
+import { Picker } from 'react-vant';
 
 export default () => {
   return (
     <Picker
-      onChange={(value, index: number) => Toast(`当前值：${value}, 当前索引：${index}`)}
+      onChange={(value, index: number) => console.log(value, index)}
       columns={[
         {
           text: '江苏',
