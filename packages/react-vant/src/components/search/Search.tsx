@@ -12,7 +12,8 @@ import { SearchInstance, SearchProps } from './PropsType';
 import { preventDefault } from '../utils';
 
 // Components
-import Field, { FieldInstance } from '../field';
+import Field from '../field';
+import type { FieldInstance } from '../field';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {

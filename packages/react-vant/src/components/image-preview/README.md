@@ -24,7 +24,18 @@ const images = [
 ];
 
 export default () => {
-  return <Cell title="预览图片" isLink onClick={() => ImagePreview.open({ images })} />;
+  return (
+    <Cell
+      title="预览图片"
+      isLink
+      onClick={() =>
+        ImagePreview.open({
+          images,
+          onChange: (index) => console.log(`当前展示第${index + 1}张`),
+        })
+      }
+    />
+  );
 };
 ```
 
@@ -60,6 +71,13 @@ export default () => {
         title="展示关闭按钮"
         isLink
         onClick={() => ImagePreview.open({ images, startPosition: 2, closeable: true })}
+      />
+      <Cell
+        title="只允许点击关闭按钮关闭"
+        isLink
+        onClick={() =>
+          ImagePreview.open({ images, closeable: true, closeOnlyClickCloseIcon: true })
+        }
       />
       <Cell
         title="监听关闭事件"
@@ -149,6 +167,38 @@ export default () => {
 };
 ```
 
+### 指定挂载节点
+
+通过 `teleport` 属性，可以让组件在指定节点内渲染。
+
+```jsx
+/**
+ * title: 指定挂载节点
+ */
+import React from 'react';
+import { ImagePreview, Cell } from 'react-vant';
+
+const images = [
+  'https://img.yzcdn.cn/vant/apple-1.jpg',
+  'https://img.yzcdn.cn/vant/apple-2.jpg',
+  'https://img.yzcdn.cn/vant/apple-3.jpg',
+];
+
+export default () => {
+  const ref = React.useRef(null);
+  return (
+    <>
+      <Cell
+        title="指定挂载节点"
+        isLink
+        onClick={() => ImagePreview.open({ images, teleport: ref.current })}
+      />
+      <div ref={ref} />
+    </>
+  );
+};
+```
+
 ## API
 
 ### Options
@@ -163,7 +213,6 @@ export default () => {
 | swipeDuration | 动画时长，单位为 `ms` | _number \| string_ | `300` |
 | showIndex | 是否显示页码 | _boolean_ | `true` |
 | showIndicators | 是否显示轮播指示器 | _boolean_ | `false` |
-| loop | 是否开启循环播放 | _boolean_ | `true` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
 | className | 自定义类名 | _string \| Array \| object_ | - |
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |

@@ -24,67 +24,61 @@
   user-select: none;
   touch-action: none;
 
-  &__swipe {
-    display: flex;
-    align-items: center;
-    height: 100%;
-
-    .@{rv-prefix}-swiper__track {
-      height: 100%;
-      &-inner {
-        align-items: center;
-        height: 100%;
-      }
-    }
-  }
-
-  &__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  &__content {
+    width: 100vw;
+    height: 100vh;
+    max-height: -webkit-fill-available;
+    touch-action: none;
+    user-select: none;
     overflow: hidden;
   }
-
-  &__cover {
-    position: absolute;
-    top: 0;
-    left: 0;
+  &__slides {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    cursor: grab;
+    touch-action: none;
+    &-inner {
+      height: 100%;
+      white-space: nowrap;
+      > * {
+        margin-right: 16px;
+      }
+    }
   }
-
+  &__slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
   &__control {
-    user-select: none;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
     touch-action: none;
   }
-
-  &__image {
+  &__image-wrapper {
     width: 100%;
-    transition-property: transform;
-
-    &--vertical {
-      width: auto;
-      height: 100%;
-    }
-
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img {
-      // disable desktop browser image drag
-      -webkit-user-drag: none;
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
     }
-
-    .@{rv-prefix}-image {
-      &__error {
-        top: 30%;
-        height: 40%;
-      }
-
-      &__error-icon {
-        font-size: 36 * @hd;
-      }
-
-      &__loading {
-        background-color: transparent;
-      }
-    }
+  }
+  &__indicator {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &__index {
@@ -99,7 +93,9 @@
   }
 
   &__overlay {
-    background-color: var(--rv-image-preview-overlay-background-color);
+    &.@{rv-prefix}-overlay {
+      background-color: var(--rv-image-preview-overlay-background-color);
+    }
   }
 
   &__close-icon {

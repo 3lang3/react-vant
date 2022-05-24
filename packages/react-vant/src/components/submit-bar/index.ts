@@ -1,5 +1,4 @@
-import SubmitBar from './SubmitBar';
 import './style/index.less';
+import SubmitBar from './SubmitBar';
 
-export default SubmitBar;
 export { SubmitBar };

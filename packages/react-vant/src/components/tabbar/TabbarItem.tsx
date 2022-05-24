@@ -3,7 +3,7 @@ import React, { useContext, useMemo } from 'react';
 import clsx from 'clsx';
 import { TabbarItemProps } from './PropsType';
 import TabbarContext from './TabbarContext';
-import { Badge } from '../badge';
+import Badge from '../badge';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const TabbarItem: React.FC<TabbarItemProps> = (props) => {

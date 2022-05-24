@@ -1,12 +1,10 @@
+import './style/index.less';
 import React, { useEffect, useState } from 'react';
-
 import { extend, isObject, noop, once } from '../utils';
 import { NotifyOptions, NotifyProps, NotifyStatic } from './PropsType';
-
 import Notify from './Notify';
 import { resolveContainer } from '../utils/dom/getContainer';
 import { lockClick } from '../toast/lock-click';
-import './style/index.less';
 import { render, unmount } from '../utils/dom/render';
 
 const NotifyNamespace = {} as NotifyStatic;
@@ -129,6 +127,5 @@ const exportNotifyNamespace = Object.assign(Notify, {
   clear,
 });
 
-export default exportNotifyNamespace;
 export { exportNotifyNamespace as Notify };
 export type { NotifyProps, NotifyType, NotifyStatic } from './PropsType';

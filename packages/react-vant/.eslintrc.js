@@ -27,6 +27,7 @@ module.exports = {
         '@typescript-eslint/restrict-plus-operands': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/restrict-template-expressions': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-misused-promises': 'off',
         'import/no-unresolved': 'off',
         'import/no-extraneous-dependencies': 'off',
@@ -36,7 +37,7 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'react/default-props-match-prop-types': 'off',
         'react/require-default-props': 'off',
-        'react-hooks/exhaustive-deps': 'warn', // Checks deps of Hooks
+        'react-hooks/exhaustive-deps': 'off', // Checks deps of Hooks
         'react/display-name': 'off',
         'react/prop-types': 'off'
       },

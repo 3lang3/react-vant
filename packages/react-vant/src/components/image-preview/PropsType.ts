@@ -7,7 +7,6 @@ export type CloseParams = { url: string; index: number };
 
 export interface ImagePreviewProps extends BaseTypeProps {
   visible?: boolean;
-  loop?: boolean;
   overlay?: boolean;
   lazyload?: LazyImageType;
   maxZoom?: number;
@@ -18,7 +17,7 @@ export interface ImagePreviewProps extends BaseTypeProps {
   closeOnPopstate?: boolean;
   overlayStyle?: React.CSSProperties;
   beforeClose?: (active: string | number) => boolean | Promise<boolean>;
-  onClose?: ({ url, index }?: CloseParams) => void;
+  onClose?: (p?: CloseParams) => void;
   onClosed?: () => void;
   onChange?: (index: number) => void;
   images?: string[];
@@ -26,6 +25,8 @@ export interface ImagePreviewProps extends BaseTypeProps {
   startPosition?: number;
   closeIcon?: React.ReactNode;
   closeIconPosition?: PopupCloseIconPosition;
+  /** 只在点击关闭按钮时关闭ImagePreview组件 */
+  closeOnlyClickCloseIcon?: boolean;
   /** 弹出时的的父容器 */
   teleport?: HTMLElement | (() => HTMLElement);
 }

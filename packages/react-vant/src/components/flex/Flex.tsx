@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useContext, useMemo } from 'react';
 import clsx from 'clsx';
 import FlexContext from './FlexContext';

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import clsx from 'clsx';
 import { Photo, PhotoFail } from '@react-vant/icons';
 import Image from './Image';
-import { Lazyload } from '../lazyload';
+import Lazyload from '../lazyload';
 import { LazyImageProps } from './PropsType';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';

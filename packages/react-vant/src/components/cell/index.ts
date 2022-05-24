@@ -1,9 +1,8 @@
-import CellGroup from './CellGroup';
-import Cell from './Cell';
 import './style/index.less';
+import CellGroup from './CellGroup';
+import _Cell from './Cell';
 
-const CellNamespace = Object.assign(Cell, { Group: CellGroup });
-
-export default CellNamespace;
+const Cell = Object.assign(_Cell, { Group: CellGroup });
+export default Cell;
 export { Cell, CellGroup };
 export type { CellProps, CellGroupProps, CellArrowDirection } from './PropsType';

@@ -1,7 +1,6 @@
-// Components
+import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
 import { Success } from '@react-vant/icons';
 import clsx from 'clsx';
-import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
 import Cell from '../cell';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useSetState } from '../hooks';

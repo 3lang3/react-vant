@@ -7,7 +7,8 @@ import React, {
   useState,
 } from 'react';
 
-import Picker, { PickerInstance } from '../picker';
+import Picker from '../picker';
+import type { PickerInstance } from '../picker';
 
 import { DateTimePickerInstance, TimePickerProps } from './PropsType';
 import { times } from './utils';

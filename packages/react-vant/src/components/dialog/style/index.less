@@ -128,18 +128,20 @@
     }
   }
 
-  &-bounce-enter {
-    transform: translate3d(-50%, -50%, 0) scale(0.7);
-    opacity: 0;
-  }
+  &-bounce {
+    &-enter {
+      transform: translate3d(-50%, -50%, 0) scale(0.7);
+      opacity: 0;
+    }
 
-  &-bounce-exit-active {
-    transform: translate3d(-50%, -50%, 0) scale(0.9);
-    opacity: 0;
-  }
-  &-bounce-enter-active,
-  &-bounce-leave-exit {
-    transform: translate3d(-50%, -50%, 0);
-    opacity: 1;
+    &-exit-active {
+      transform: translate3d(-50%, -50%, 0) scale(0.9);
+      opacity: 0;
+    }
+    &-enter-active,
+    &-leave-exit {
+      transform: translate3d(-50%, -50%, 0);
+      opacity: 1;
+    }
   }
 }

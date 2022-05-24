@@ -3,7 +3,7 @@ import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { CouponCellProps, CouponInfo } from '../coupon-list/PropsType';
 import { isDef } from '../utils';
-import { Cell } from '../cell';
+import Cell from '../cell';
 import { Locale } from '../locale/lang/base';
 
 function formatValue(

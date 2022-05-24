@@ -5,13 +5,10 @@ import { noop } from '../utils';
 import { CloseParams, ImagePreviewProps, ImagePreviewStatic } from './PropsType';
 import BaseImagePreview from './ImagePreview';
 import { resolveContainer } from '../utils/dom/getContainer';
-import './style/index.less';
 import { render, unmount } from '../utils/dom/render';
-
-const ImagePreview = BaseImagePreview as ImagePreviewStatic;
+import './style/index.less';
 
 const defaultConfig: ImagePreviewProps = {
-  loop: true,
   images: [],
   className: '',
   showIndex: true,
@@ -24,7 +21,7 @@ const defaultConfig: ImagePreviewProps = {
 };
 
 // 可返回用于销毁此弹窗的方法
-ImagePreview.open = (props: ImagePreviewProps) => {
+const open = (props: ImagePreviewProps) => {
   const { onClose = noop, beforeClose, ...restProps } = props;
 
   const userContainer = resolveContainer(props.teleport);
@@ -73,4 +70,9 @@ ImagePreview.open = (props: ImagePreviewProps) => {
   return destroy;
 };
 
+const ImagePreview = Object.assign(BaseImagePreview, {
+  open,
+}) as ImagePreviewStatic;
+
 export default ImagePreview;
+export { ImagePreview };
