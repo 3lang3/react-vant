@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { inBrowser } from '.';
+import { reactVersion } from './dom/version';
 
 const root = (inBrowser ? window : global) as unknown as Window;
 
@@ -14,7 +15,8 @@ function rafPolyfill(fn: FrameRequestCallback) {
 }
 
 export function raf(fn: FrameRequestCallback): number {
-  const requestAnimationFrame = root.requestAnimationFrame || rafPolyfill;
+  let requestAnimationFrame = root.requestAnimationFrame || rafPolyfill;
+  if (reactVersion >= 18) requestAnimationFrame = rafPolyfill;
   return requestAnimationFrame.call(root, fn);
 }
 

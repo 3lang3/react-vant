@@ -1,6 +1,7 @@
 import { ReactElement } from 'react'
 import * as ReactDOM from 'react-dom'
 import type { Root } from 'react-dom/client'
+import { reactDomVersion } from './version'
 
 // 移植自rc-util: https://github.com/react-component/util/blob/master/src/React/render.ts
 
@@ -16,12 +17,11 @@ const fullClone = {
   createRoot?: CreateRoot
 }
 
-const { version, render: reactRender, unmountComponentAtNode } = fullClone
+const { render: reactRender, unmountComponentAtNode } = fullClone
 
 let createRoot: CreateRoot
 try {
-  const mainVersion = Number((version || '').split('.')[0])
-  if (mainVersion >= 18 && fullClone.createRoot) {
+  if (reactDomVersion >= 18 && fullClone.createRoot) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     createRoot = fullClone.createRoot
   }
@@ -41,7 +41,7 @@ function toggleWarning(skip: boolean) {
   }
 }
 
-const MARK = '__antd_mobile_root__'
+const MARK = '__react_vant_root__'
 
 // ========================== Render ==========================
 type ContainerType = (Element | DocumentFragment) & {
