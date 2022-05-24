@@ -20,7 +20,6 @@ import { PickerProps, PickerInstance, PickerOption, PickerObjectColumn } from '.
 import { unitToPx, preventDefault, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { raf } from '../utils/raf';
 
 function PickerInner<T = PickerOption>(
   props: PickerProps<T>,
@@ -125,32 +124,35 @@ function PickerInner<T = PickerOption>(
     }
   };
 
-  const onCascadeChange = (columnIndex: number) => {
-    let cursor: PickerObjectColumn = {
-      [childrenKey]: props.columns,
-    };
+  const onCascadeChange = async (columnIndex: number) => {
+    return new Promise((resolve) => {
+      let cursor: PickerObjectColumn = {
+        [childrenKey]: props.columns,
+      };
 
-    const indexes = getIndexes();
+      const indexes = getIndexes();
 
-    for (let i = 0; i <= columnIndex; i += 1) {
-      cursor = cursor[childrenKey][indexes[i]];
-    }
-
-    if (cursor && cursor[childrenKey]) {
-      while (cursor && cursor[childrenKey]) {
-        columnIndex += 1;
-        setColumnValues(columnIndex, cursor[childrenKey]);
-        cursor = cursor[childrenKey]?.[cursor.defaultIndex || 0];
+      for (let i = 0; i <= columnIndex; i += 1) {
+        cursor = cursor[childrenKey][indexes[i]];
       }
-    } else {
-      // Clean unsafe data children value
-      // https://github.com/3lang3/react-vant/issues/378
-      refs.forEach((column, i) => {
-        if (i > columnIndex && columnIndex < refs.length) {
-          column.setOptions([]);
+
+      if (cursor && cursor[childrenKey]) {
+        while (cursor && cursor[childrenKey]) {
+          columnIndex += 1;
+          setColumnValues(columnIndex, cursor[childrenKey]);
+          cursor = cursor[childrenKey]?.[cursor.defaultIndex || 0];
         }
-      });
-    }
+      } else {
+        // Clean unsafe data children value
+        // https://github.com/3lang3/react-vant/issues/378
+        refs.forEach((column, i) => {
+          if (i > columnIndex && columnIndex < refs.length) {
+            column.setOptions([]);
+          }
+        });
+      }
+      resolve(true)
+    });
   };
 
   // get column instance by index
@@ -165,7 +167,6 @@ function PickerInner<T = PickerOption>(
   // set column value by index
   const setColumnValue = (index: number, value: string) => {
     const column = getChild(index);
-
     if (column) {
       column.setValue(value);
 
@@ -216,9 +217,9 @@ function PickerInner<T = PickerOption>(
     });
   };
 
-  const onChange = (columnIndex: number) => {
+  const onChange = async (columnIndex: number) => {
     if (dataType === 'cascade') {
-      onCascadeChange(columnIndex);
+      await onCascadeChange(columnIndex);
     }
     if (props.onChange) {
       if (dataType === 'plain') {
@@ -232,13 +233,11 @@ function PickerInner<T = PickerOption>(
   const confirm = () => {
     refs.forEach((_ref) => _ref.stopMomentum());
     if (props.onConfirm) {
-      raf(() => {
-        if (dataType === 'plain') {
-          props.onConfirm(getColumnValue(0), getColumnIndex(0));
-        } else {
-          props.onConfirm(getValues(), getIndexes());
-        }
-      });
+      if (dataType === 'plain') {
+        props.onConfirm(getColumnValue(0), getColumnIndex(0));
+      } else {
+        props.onConfirm(getValues(), getIndexes());
+      }
     }
   };
 

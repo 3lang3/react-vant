@@ -15,7 +15,6 @@ import type { PickerInstance } from '../picker';
 import { useMount, useSetState, useUpdateEffect } from '../hooks';
 import { deepClone } from '../utils/deep-clone';
 import { pick } from '../utils';
-import { raf } from '../utils/raf';
 
 const EMPTY_CODE = '000000';
 
@@ -231,8 +230,10 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     setValues();
 
     if (pickerRef.current) {
-      const parsedValues = parseValues(pickerRef.current?.getValues());
-      if (props.onChange) props.onChange(parsedValues, index);
+      setTimeout(() => {
+        const parsedValues = parseValues(pickerRef.current?.getValues());
+        if (props.onChange) props.onChange(parsedValues, index);
+      });
     }
   };
 
@@ -257,7 +258,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   }, [props.areaList, props.columnsNum]);
 
   useEffect(() => {
-    raf(() => {
+    setTimeout(() => {
       setValues();
     });
   }, [props.columnsNum]);

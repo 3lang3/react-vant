@@ -4,7 +4,6 @@ import React, {
   useMemo,
   useRef,
   useImperativeHandle,
-  useCallback,
   forwardRef,
   useContext,
 } from 'react';
@@ -14,7 +13,6 @@ import { isObject, range } from '../utils';
 import { deepClone } from '../utils/deep-clone';
 import { useSetState, useTouch, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { raf } from '../utils/raf';
 
 const DEFAULT_DURATION = 200;
 
@@ -51,7 +49,8 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   const touchStartTime = useRef(0);
   const momentumOffset = useRef(0);
 
-  const [state, updateState] = useSetState({
+  const [state, updateState, stateRef] = useSetState({
+    emitChange: false,
     index: defaultIndex,
     offset: 0,
     duration: 0,
@@ -86,13 +85,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     const offset = -index * props.itemHeight;
     const trigger = () => {
       if (index !== state.index) {
-        updateState({ index });
-
-        if (emitChange && props.onChange) {
-          raf(() => {
-            props.onChange(index);
-          });
-        }
+        updateState({ index, emitChange });
       }
     };
 
@@ -106,7 +99,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const setOptions = (options: PickerOption[]) => {
-    if (JSON.stringify(options) !== JSON.stringify(state.options)) {
+    if (JSON.stringify(options) !== JSON.stringify(stateRef.current.options)) {
       updateState({ options: deepClone(options) });
       setIndex(props.defaultIndex);
     }
@@ -265,7 +258,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const setValue = (value: string) => {
-    const { options } = state;
+    const { options } = stateRef.current;
     for (let i = 0; i < options.length; i += 1) {
       if ((getOptionText(options[i]) as unknown as string) === value) {
         return setIndex(i);
@@ -274,10 +267,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     return null;
   };
 
-  const getValue = useCallback<() => PickerOption>(
-    () => state.options[state.index],
-    [state.index, state.options],
-  );
+  const getValue = () => stateRef.current.options[stateRef.current.index];
 
   useEffect(() => {
     setIndex(defaultIndex);
@@ -288,8 +278,14 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     setOptions(initialOptions);
   }, [initialOptions]);
 
+  useEffect(() => {
+    if (state.emitChange && props.onChange) {
+      props.onChange(stateRef.current.index);
+    }
+  }, [state.emitChange, state.index]);
+
   useImperativeHandle(ref, () => ({
-    state,
+    state: stateRef.current,
     setIndex,
     getValue,
     setValue,

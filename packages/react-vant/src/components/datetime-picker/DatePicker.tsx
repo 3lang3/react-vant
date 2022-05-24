@@ -4,7 +4,6 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 
 import Picker from '../picker';
@@ -12,10 +11,10 @@ import type { PickerInstance } from '../picker'
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';
 import { getMonthEndDay, getTrueValue, times } from './utils';
-import { raf } from '../utils/raf';
 import { isDate } from '../utils/validate/date';
 import { padZero } from '../utils';
 import { useUpdateEffect } from '../hooks';
+import useRefState from '../hooks/use-ref-state';
 
 const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, ref) => {
   const formatValue = (value) => {
@@ -30,10 +29,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   };
 
   const picker = useRef<PickerInstance>(null);
-  const [currentDate, setCurrentDate] = useState(() => formatValue(props.value));
-  const currentDateRef = useRef<Date>(undefined);
-
-  currentDateRef.current = currentDate;
+  const [currentDate, setCurrentDate, currentDateRef] = useRefState(() => formatValue(props.value));
 
   const getBoundary = (type: 'max' | 'min', value: Date) => {
     const boundary = props[`${type}Date`];
@@ -165,7 +161,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
       }
     });
 
-    raf(() => {
+    setTimeout(() => {
       picker.current?.setValues(values);
     });
   };
