@@ -316,6 +316,15 @@
       "contributions": [
         "bug"
       ]
+     },
+     {
+      "login": "SingleShadow",
+      "name": "SingleShadow",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18462822?v=4",
+      "profile": "https://github.com/SingleShadow",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
