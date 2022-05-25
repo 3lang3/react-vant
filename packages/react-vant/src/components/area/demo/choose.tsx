@@ -4,5 +4,13 @@ import { areaList } from '@vant/area-data';
 
 export default () => {
   const [value] = useState('330302');
-  return <Area title="标题" areaList={areaList} value={value} />;
+  return (
+    <Area
+      title="标题"
+      areaList={areaList}
+      value={value}
+      onChange={(v) => console.log(v)}
+      onConfirm={(v) => console.log(v)}
+    />
+  );
 };

@@ -1,12 +1,5 @@
 /* eslint-disable no-plusplus */
-import React, {
-  forwardRef,
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { forwardRef, useContext, useImperativeHandle, useMemo, useRef } from 'react';
 import clsx from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { AreaColumnOption, AreaColumnType, AreaInstance, AreaProps } from './PropsType';
@@ -58,7 +51,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
       city: columnsPlaceholder[1] || '',
       county: columnsPlaceholder[2] || '',
     };
-  }, [props.columnsPlaceholder]);
+  }, [JSON.stringify(props.columnsPlaceholder)]);
 
   const getDefaultCode = () => {
     if (props.columnsPlaceholder.length) {
@@ -141,15 +134,15 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     return 0;
   };
 
-  const setValues = () => {
-    let code = stateRef.current.code || getDefaultCode();
+  const setValues = (lazy?: boolean) => {
     const picker = pickerRef.current;
-    const province = getColumnValues('province');
-    const city = getColumnValues('city', code.slice(0, 2));
-
     if (!picker) {
       return;
     }
+
+    let code = stateRef.current.code || getDefaultCode();
+    const province = getColumnValues('province');
+    const city = getColumnValues('city', code.slice(0, 2));
 
     picker.setColumnValues(0, province);
     picker.setColumnValues(1, city);
@@ -157,13 +150,34 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     if (city.length && code.slice(2, 4) === '00' && !props.isOverseaCode(code)) {
       [{ code }] = city;
     }
-
-    picker.setColumnValues(2, getColumnValues('county', code.slice(0, 4)));
-    picker.setIndexes([
+    const county = getColumnValues('county', code.slice(0, 4));
+    picker.setColumnValues(2, county);
+    const [provinceIndex, cityIndex, countyIndex] = [
       getIndex('province', code),
       getIndex('city', code),
       getIndex('county', code),
-    ]);
+    ];
+    if (lazy) {
+      setTimeout(() => picker.setIndexes([provinceIndex, cityIndex, countyIndex]));
+    } else {
+      picker.setIndexes([provinceIndex, cityIndex, countyIndex]);
+    }
+  };
+
+  const getValuesFormCode = (currentCode) => {
+    let code = currentCode;
+    const province = getColumnValues('province');
+    const city = getColumnValues('city', code.slice(0, 2));
+    if (city.length && code.slice(2, 4) === '00' && !props.isOverseaCode(code)) {
+      [{ code }] = city;
+    }
+    const county = getColumnValues('county', code.slice(0, 4));
+    const [provinceIndex, cityIndex, countyIndex] = [
+      getIndex('province', code),
+      getIndex('city', code),
+      getIndex('county', code),
+    ];
+    return [province[provinceIndex], city[cityIndex], county[countyIndex]];
   };
 
   // parse output columns data
@@ -222,23 +236,17 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
 
   const reset = (newCode = '') => {
     updateState({ code: newCode });
-    setValues();
   };
 
   const onChange = (values: AreaColumnOption[], index: number) => {
     updateState({ code: values[index].code });
-    setValues();
-
     if (pickerRef.current) {
-      setTimeout(() => {
-        const parsedValues = parseValues(pickerRef.current?.getValues());
-        if (props.onChange) props.onChange(parsedValues, index);
-      });
+      const currentValues = getValuesFormCode(values[index].code);
+      if (props.onChange) props.onChange(parseValues(currentValues), index);
     }
   };
 
   const onConfirm = (values: AreaColumnOption[], index: number) => {
-    setValues();
     if (props.onConfirm) props.onConfirm(parseValues(values), index);
   };
 
@@ -246,22 +254,21 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     if (props.onCancel) props.onCancel(...args);
   };
 
-  useMount(setValues);
+  useMount(() => {
+    setTimeout(() => setValues(true));
+  });
 
   useUpdateEffect(() => {
     updateState({ code: props.value });
-    setValues();
   }, [props.value]);
 
   useUpdateEffect(() => {
     setValues();
   }, [props.areaList, props.columnsNum]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setValues();
-    });
-  }, [props.columnsNum]);
+  useUpdateEffect(() => {
+    setValues();
+  }, [state.code]);
 
   useImperativeHandle(ref, () => ({
     reset,
@@ -269,8 +276,10 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     getValues,
   }));
 
-  const columns = state.columns.slice(0, +props.columnsNum);
-
+  const columns = useMemo(
+    () => stateRef.current.columns.slice(0, +props.columnsNum),
+    [props.columnsNum],
+  );
   return (
     <Picker
       ref={pickerRef}
