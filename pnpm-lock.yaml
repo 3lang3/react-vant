@@ -90,7 +90,7 @@ importers:
       '@babel/plugin-transform-modules-commonjs': ^7.15.4
       '@svgr/babel-plugin-remove-jsx-attribute': ^6.0.0
       '@types/react': 18.0.9
-      del: 6.1.0
+      del: 6.1.1
       fast-glob: ^3.2.2
       fs-extra: 10.1.0
       gulp: ^4.0.2
@@ -106,7 +106,7 @@ importers:
       '@babel/plugin-transform-modules-commonjs': 7.17.9_@babel+core@7.17.10
       '@svgr/babel-plugin-remove-jsx-attribute': 6.0.0_@babel+core@7.17.10
       '@types/react': 18.0.9
-      del: 6.1.0
+      del: 6.1.1
       fast-glob: 3.2.11
       fs-extra: 10.1.0
       gulp: 4.0.2
@@ -4720,8 +4720,8 @@ packages:
       isobject: 3.0.1
     dev: true
 
-  /del/6.1.0:
-    resolution: {integrity: sha512-OpcRktOt7G7HBfyxP0srBH4Djg4824EQORX8E1qvIhIzthNNArxxhrB/Mm7dRMiLi1nvFyUpDhzD2cTtbBhV8A==}
+  /del/6.1.1:
+    resolution: {integrity: sha512-ua8BhapfP0JUJKC/zV9yHHDW/rDoDxP4Zhn3AkA6/xT6gY7jYXJiaeyBZznYVujhZZET+UgcbZiQ7sN3WqcImg==}
     engines: {node: '>=10'}
     dependencies:
       globby: 11.1.0
