@@ -8,6 +8,8 @@ export default () => {
       title="标题"
       areaList={areaList}
       columnsPlaceholder={['请选择🤔', '请选择🤔', '请选择🤔']}
+      onChange={(v) => console.log(v)}
+      onConfirm={(v) => console.log(v)}
     />
   );
 };
