@@ -6,7 +6,7 @@ type CustomItemProps = {
   value?: any;
   onChange?: (v: any) => void;
   placeholder?: string;
-} & FormItemProps;
+} & Omit<FormItemProps, 'children'>;
 
 export function PickerItem(props: CustomItemProps) {
   const { value, onChange, ...fieldProps } = props;
