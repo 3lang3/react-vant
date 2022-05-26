@@ -23,7 +23,6 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
     if (props.randomKeyOrder) {
       keys.sort(() => (Math.random() > 0.5 ? 1 : -1));
     }
-
     return keys;
   };
 
@@ -41,7 +40,6 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
     const keys = genBasicKeys();
     const { extraKey } = props;
     const extraKeys = Array.isArray(extraKey) ? extraKey : [extraKey];
-
     if (extraKeys.length === 1) {
       keys.push({ text: 0, wider: true }, { text: extraKeys[0], type: 'extra' });
     } else if (extraKeys.length === 2) {
@@ -57,7 +55,7 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
 
   const keys = useMemo(
     () => (props.theme === 'custom' ? genCustomKeys() : genDefaultKeys()),
-    [props.theme, genCustomKeys, genDefaultKeys],
+    [props.theme],
   );
 
   const onBlur = () => {
