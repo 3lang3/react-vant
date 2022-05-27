@@ -65,7 +65,7 @@ import { Popup } from 'react-vant';
 | duration | 动画时长，单位秒 | _number \| string_ | `0.3` |
 | round | 是否显示圆角 | _boolean_ | `false` |
 | title | 弹出层标题 | _string_ | - |
-| descrition | 弹出层描述 | _string_ | - |
+| description | 弹出层描述 | _string_ | - |
 | lockScroll | 是否锁定背景滚动 | _boolean_ | `true` |
 | destroyOnClose | 关闭时销毁 Popup 里的子元素 | _boolean_ | `false` |
 | closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `false` |
@@ -73,7 +73,7 @@ import { Popup } from 'react-vant';
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |
 | closeIcon | 关闭图标名称或图片链接 | _string_ | `cross` |
 | closeIconPosition | 关闭图标位置，可选值为`top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
-| transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的`name`属性 | _string_ | - |
+| transition | 动画类名，等价于 [transition](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的`name`属性 | _string_ | - |
 | teleport | 指定挂载的节点 | _HTMLElement\|(() => HTMLElement)_ | - |
 | safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `false` |
 
@@ -107,8 +107,8 @@ import type { PopupPosition, PopupCloseIconPosition } from 'react-vant';
 | ---------------------------------- | --------------------------------------------- | ---- |
 | --rv-popup-background-color        | _var(--rv-white)_                             | -    |
 | --rv-popup-title-font-size         | _16px_                                        | -    |
-| --rv-popup-descrition-color        | _#969799_                                     | -    |
-| --rv-popup-descrition-font-size    | _14px_                                        | -    |
+| --rv-popup-description-color        | _#969799_                                     | -    |
+| --rv-popup-description-font-size    | _14px_                                        | -    |
 | --rv-popup-transition              | _transform var(--rv-animation-duration-base)_ | -    |
 | --rv-popup-round-border-radius     | _16px_                                        | -    |
 | --rv-popup-close-icon-size         | _22px_                                        | -    |

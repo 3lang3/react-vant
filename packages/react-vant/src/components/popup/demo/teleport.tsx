@@ -18,7 +18,7 @@ export default () => {
           visible={visible}
           closeable
           title="标题"
-          descrition="这是一段很长很长的描述这是一段很长很长的描述这是一段很长很长的描述这是一段很长很长的描述"
+          description="这是一段很长很长的描述这是一段很长很长的描述这是一段很长很长的描述这是一段很长很长的描述"
           style={{ height: '30%' }}
           position="bottom"
           round
