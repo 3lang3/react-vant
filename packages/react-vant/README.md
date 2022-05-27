@@ -171,6 +171,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/lxdaixin128"><img src="https://avatars.githubusercontent.com/u/46842520?v=4?s=100" width="100px;" alt=""/><br /><sub><b>lxdaixin128</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Alxdaixin128" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/zoujpxyz2017"><img src="https://avatars.githubusercontent.com/u/28721603?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zoujpxyz2017</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Azoujpxyz2017" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/SingleShadow"><img src="https://avatars.githubusercontent.com/u/18462822?v=4?s=100" width="100px;" alt=""/><br /><sub><b>SingleShadow</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3ASingleShadow" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://www.lanten.me"><img src="https://avatars.githubusercontent.com/u/16203518?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lanten</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=lanten" title="Documentation">📖</a></td>
   </tr>
 </table>
 
