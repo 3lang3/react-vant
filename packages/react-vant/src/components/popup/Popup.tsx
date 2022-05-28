@@ -53,7 +53,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('popup', prefixCls);
 
-  const { round, visible, closeable, title, descrition, children, duration, closeIcon, position } =
+  const { round, visible, closeable, title, description, children, duration, closeIcon, position } =
     props;
   const opened = useRef(false);
   const zIndex = useRef<number>(props.zIndex ?? globalZIndex);
@@ -152,9 +152,9 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     return null;
   };
 
-  const renderDescrition = () => {
-    if (descrition) {
-      return <div className={clsx(bem('descrition'))}>{descrition}</div>;
+  const renderDescription = () => {
+    if (description) {
+      return <div className={clsx(bem('description'))}>{description}</div>;
     }
     return null;
   };
@@ -179,7 +179,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         onClick={props.onClick}
       >
         {renderTitle()}
-        {renderDescrition()}
+        {renderDescription()}
         {children}
         {renderCloseIcon()}
       </div>

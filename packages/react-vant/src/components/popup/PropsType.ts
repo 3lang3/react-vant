@@ -56,7 +56,7 @@ export interface PopupProps extends BaseTypeProps, SharedPopupProps {
   /** 自定义标题 */
   title?: string | React.ReactNode;
   /** 自定义描述 */
-  descrition?: string | React.ReactNode;
+  description?: string | React.ReactNode;
   /** 是否显示弹出层	 */
   visible?: boolean;
   /** 关闭图标 */
