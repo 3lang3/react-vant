@@ -12,6 +12,9 @@ import useTouch from './use-touch';
 import useScrollParent from './use-scroll-parent';
 import useWindowSize from './use-window-size';
 import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect';
+import useUpdate from './use-update';
+import useMemoizedFn from './use-memoized-fn';
+import usePropsValue from './use-props-value';
 
 export {
   useClickAway,
@@ -28,6 +31,9 @@ export {
   useScrollParent,
   useWindowSize,
   useIsomorphicLayoutEffect,
+  useUpdate,
+  useMemoizedFn,
+  usePropsValue,
 };
 
 export default {
@@ -45,4 +51,7 @@ export default {
   useScrollParent,
   useWindowSize,
   useIsomorphicLayoutEffect,
+  useUpdate,
+  useMemoizedFn,
+  usePropsValue
 };
