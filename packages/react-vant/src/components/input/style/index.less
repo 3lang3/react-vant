@@ -1,0 +1,105 @@
+@import './var.less';
+@import '../../cell/style/var.less';
+
+:root {
+  --rv-input-text-color: @input-text-color;
+  --rv-input-error-text-color: @input-error-text-color;
+  --rv-input-disabled-text-color: @input-disabled-text-color;
+  --rv-input-placeholder-text-color: @input-placeholder-text-color;
+  --rv-input-placeholder-text-font-size: @input-placeholder-text-font-size;
+  --rv-input-background-color: @input-background-color;
+  --rv-input-text-area-min-height: @input-text-area-min-height;
+  --rv-input-disabled-text-color: @input-disabled-text-color;
+  --rv-input-clear-icon-size: @input-clear-icon-size;
+  --rv-input-clear-icon-color: @input-clear-icon-color;
+}
+
+.@{rv-prefix}-input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__control {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0; // for flex-shrink in field__button
+    margin: 0;
+    padding: 0;
+    color: var(--rv-input-text-color);
+    line-height: inherit;
+    text-align: left;
+    background-color: var(--rv-input-background-color);
+    border: 0;
+    resize: none;
+    // https://github.com/youzan/vant/pull/9418
+    user-select: auto;
+
+    &::placeholder {
+      color: var(--rv-input-placeholder-text-color);
+      font-size: var(--rv-input-placeholder-text-font-size);
+    }
+
+    &:disabled {
+      color: var(--rv-input-disabled-text-color);
+      cursor: not-allowed;
+      opacity: 1;
+      // fix disabled color in mobile safari
+      -webkit-text-fill-color: var(--rv-input-disabled-text-color);
+    }
+
+    &:read-only {
+      cursor: default;
+    }
+
+    &--center {
+      justify-content: center;
+      text-align: center;
+    }
+
+    &--right {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    &--error,
+    &--error::placeholder {
+      color: var(--rv-input-error-text-color);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    &--min-height {
+      min-height: var(--rv-input-text-area-min-height);
+    }
+
+    // for ios wechat
+    &[type='date'],
+    &[type='time'],
+    &[type='datetime-local'] {
+      min-height: var(--rv-cell-line-height);
+    }
+
+    // for safari
+    &[type='search'] {
+      -webkit-appearance: none;
+    }
+  }
+
+  &__clear {
+    flex-shrink: 0;
+  }
+
+  &__clear {
+    margin-right: calc(var(--rv-padding-xs) * -1);
+    padding: 0 var(--rv-padding-xs);
+  }
+
+  &__clear {
+    flex-shrink: 0;
+    color: var(--rv-input-clear-icon-color);
+    font-size: var(--rv-input-clear-icon-size);
+    margin-right: calc(var(--rv-padding-xs) * -1);
+    padding: 0 var(--rv-padding-xs);
+    cursor: pointer;
+  }
+}

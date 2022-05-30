@@ -36,6 +36,7 @@ export * from './sticky';
 export * from './nav-bar';
 export * from './tag';
 export * from './grid';
+export * from './input';
 export * from './index-bar';
 export * from './collapse';
 export * from './radio';
