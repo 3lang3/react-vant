@@ -82,15 +82,6 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     adjustSize();
   }, [value]);
 
-  const formatValue = (inputValue, trigger = 'onChange') => {
-    const { formatTrigger, formatter } = props;
-    if (formatter && trigger === formatTrigger) {
-      return formatter(inputValue);
-    }
-
-    return inputValue;
-  };
-
   const renderInput = () => {
     const { align, type, error, name, rows, placeholder, disabled, readonly } = props;
     const controlClass = bem('control', [
@@ -114,8 +105,6 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         const isNumber = type === 'number';
         finalValue = formatNumber(finalValue, isNumber, isNumber);
       }
-
-      finalValue = formatValue(finalValue, 'onChange');
 
       setValue(finalValue);
     };
@@ -237,7 +226,6 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
 Input.defaultProps = {
   clearIcon: <Clear />,
   clearTrigger: 'focus',
-  formatTrigger: 'onChange',
 };
 
 export default Input;

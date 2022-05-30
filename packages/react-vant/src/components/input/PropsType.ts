@@ -66,13 +66,6 @@ export interface InputProps extends Pick<
   clearIcon?: React.ReactNode;
   /** 是否将输入内容标红*/
   error?: boolean;
-  /** 输入内容格式化函数 */
-  formatter?: (val: string | number) => string;
-  /**
-   * 格式化函数触发的时机
-   * @default 'onChange'
-   */
-  formatTrigger?: InputFormatTrigger;
   /**
    * 显示清除图标的时机，
    * always 表示输入框不为空时展示 focus 表示输入框聚焦且不为空时展示
