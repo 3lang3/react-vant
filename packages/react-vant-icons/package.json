@@ -30,7 +30,7 @@
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
-    "@types/react": "18.0.9",
+    "@types/react": "18.0.12",
     "del": "6.1.1",
     "fast-glob": "^3.2.2",
     "fs-extra": "10.1.0",

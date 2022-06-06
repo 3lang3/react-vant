@@ -89,7 +89,7 @@ importers:
       '@babel/core': ^7.15.5
       '@babel/plugin-transform-modules-commonjs': ^7.15.4
       '@svgr/babel-plugin-remove-jsx-attribute': ^6.0.0
-      '@types/react': 18.0.9
+      '@types/react': 18.0.12
       del: 6.1.1
       fast-glob: ^3.2.2
       fs-extra: 10.1.0
@@ -105,7 +105,7 @@ importers:
       '@babel/core': 7.18.0
       '@babel/plugin-transform-modules-commonjs': 7.18.0_@babel+core@7.18.0
       '@svgr/babel-plugin-remove-jsx-attribute': 6.0.0_@babel+core@7.18.0
-      '@types/react': 18.0.9
+      '@types/react': 18.0.12
       del: 6.1.1
       fast-glob: 3.2.11
       fs-extra: 10.1.0
@@ -2611,6 +2611,14 @@ packages:
     resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
     dependencies:
       '@types/react': 18.0.9
+    dev: true
+
+  /@types/react/18.0.12:
+    resolution: {integrity: sha512-duF1OTASSBQtcigUvhuiTB1Ya3OvSy+xORCiEf20H0P0lzx+/KeVsA99U5UjLXSbyo1DRJDlLKqTeM1ngosqtg==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.0
     dev: true
 
   /@types/react/18.0.9:
