@@ -146,7 +146,13 @@ const Button: React.FC<ButtonProps> = (props) => {
   );
 
   return (
-    <TagElement className={classes} style={style} type={nativeType} onClick={onClick}>
+    <TagElement
+      disabled={disabled}
+      className={classes}
+      style={style}
+      type={nativeType}
+      onClick={onClick}
+    >
       {renderContent()}
     </TagElement>
   );
