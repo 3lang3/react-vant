@@ -123,7 +123,7 @@ import { Button } from 'react-vant';
 | size         | 统一设置按钮尺寸               | _string_          | `normal`  |
 | iconPosition | 统一设置按钮图标展示位置       | _string_          | `left`    |
 | tag          | 统一设置按钮根节点的 HTML 标签 | _string_          | `Button`  |
-| nativeType   | 统一设置按钮标签的 type 属性   | _string_          | `Button`  |
+| nativeType   | 统一设置按钮标签的 type 属性   | _string_          | `button`  |
 | block        | 统一设置按钮为块级元素         | _boolean_         | `false`   |
 | plain        | 是否为朴素按钮组               | _boolean_         | `false`   |
 | square       | 是否为方形按钮组               | _boolean_         | `false`   |
