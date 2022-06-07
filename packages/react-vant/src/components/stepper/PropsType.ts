@@ -3,7 +3,7 @@ import { BaseTypeProps } from '../utils';
 
 export type StepperTheme = 'default' | 'round';
 
-export interface StepperProps extends BaseTypeProps {
+export interface StepperProps<T> extends BaseTypeProps {
   theme?: StepperTheme;
   /** 是否只允许输入整数	 */
   integer?: boolean;
@@ -12,7 +12,7 @@ export interface StepperProps extends BaseTypeProps {
   /** 是否允许输入的值为空	 */
   allowEmpty?: boolean;
   /** 当前输入的值	 */
-  value?: number | string;
+  value?: T;
   /** 输入框宽度，默认单位为 px	 */
   inputWidth?: number | string;
   /** 按钮大小以及输入框高度，默认单位为 px	 */
@@ -38,7 +38,7 @@ export interface StepperProps extends BaseTypeProps {
   /** 步长，每次点击时改变的值	 */
   step?: number | string;
   /** 默认值 */
-  defaultValue?: number;
+  defaultValue?: T;
   /** 是否显示增加按钮	 */
   showPlus?: boolean;
   /** 是否显示减少按钮	 */
@@ -50,11 +50,11 @@ export interface StepperProps extends BaseTypeProps {
   /** 输入框点击事件 */
   onClick?: (event: React.MouseEvent) => void;
   /** 当绑定值变化时触发的事件	 */
-  onChange?: (val: number | string, detail?: { name: string }) => void;
+  onChange?: (val: T, detail?: { name: string }) => void;
   /** 点击增加按钮时触发	 */
-  onPlus?: (event: React.MouseEvent, val: number | string) => void;
+  onPlus?: (event: React.MouseEvent, val: T) => void;
   /** 点击减少按钮时触发	 */
-  onMinus?: (event: React.MouseEvent, val: number | string) => void;
+  onMinus?: (event: React.MouseEvent, val: T) => void;
   /** 输入框聚焦时触发	 */
   onFocus?: (event: React.FormEvent) => void;
   /** 输入框失焦时触发	 */
