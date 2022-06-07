@@ -16,7 +16,7 @@ import { List } from 'react-vant';
 
 List 组件滚动到底部时，会触发 `onLoad` 事件，此时可以发起异步操作并更新数据，若数据已全部加载完毕，则直接将 `finished` 设置成 `true` 即可。
 
-> 和 vant 不同的是，react-vant 根据 onLoad 在组件内部维护了 loading 和 error 状态。
+> 和 vant 不同的是，react-vant 在组件内部维护了 loading 和 error 状态。
 
 <code src="./demo/base.tsx" />
 
