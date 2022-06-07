@@ -167,12 +167,13 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
     [reachTop.current, touch.deltaY.current, isTouchable],
   );
 
-  const onTouchEnd = () => {
+  const onTouchEnd = async () => {
     if (reachTop.current && touch.deltaY && isTouchable()) {
       updateState({ duration: +animationDuration });
       if (state.status === 'loosing') {
         setStatus(+props.headHeight, true);
-        onRefresh();
+        await onRefresh();
+        setTimeout(() => props.onRefreshEnd?.())
       } else {
         setStatus(0);
       }
