@@ -49,11 +49,11 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
     if (isReachEdge) {
       try {
         updateState({ loading: true });
-        if (props.onLoad) await props.onLoad();
+        await props.onLoad();
         updateState({ loading: false });
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.warn('onLoad error:', error);
+        console.warn('[React Vant] List: onLoad error', error);
         updateState({ loading: false, error: true });
       }
     }
@@ -68,7 +68,6 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
 
   const clickErrorText = () => {
     updateState({ error: false });
-    check();
   };
 
   const renderErrorText = () => {
@@ -103,7 +102,7 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
     if (props.autoCheck) {
       check();
     }
-  }, [state.loading, props.finished, props.error]);
+  }, [state.loading, state.error]);
 
   useUpdateEffect(() => {
     updateState({ loading: props.loading, error: props.error });
@@ -117,7 +116,7 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
 
   useEventListener('scroll', check, {
     target: scrollParent.current,
-    depends: [state.loading, props.finished, state.error],
+    depends: [state.loading, state.error, props.finished],
   });
 
   useImperativeHandle(ref, () => ({

@@ -191,8 +191,8 @@ export default defineConfig({
       },
     },
     algolia: {
-      appId: 'E3Q32VXBYB',
-      apiKey: 'c286dbe93a56bf25885c5e47cbe8bd4a',
+      appId: 'XTQTEX7VE6',
+      apiKey: 'ce7bcb03b0899b14a9198b12a717f7c4',
       indexName: 'react-vant',
     },
     sitemap: {

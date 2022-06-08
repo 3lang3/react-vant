@@ -14,7 +14,7 @@ export default () => {
             <Image
               width={44}
               height={44}
-              src="https://cdn.jsdelivr.net/gh/3lang3/react-vant@main/public/home-music-card-1.jpg"
+              src="/demo_1.jpg"
               round
             />
           }

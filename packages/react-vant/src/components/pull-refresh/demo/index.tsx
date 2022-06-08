@@ -27,7 +27,10 @@ export default () => {
     <div className="demo-pull-refresh">
       <Tabs>
         <Tabs.TabPane title="基础用法">
-          <PullRefresh onRefresh={() => onRefresh(true)}>
+          <PullRefresh
+            onRefresh={() => onRefresh(true)}
+            onRefreshEnd={() => console.log('onRefreshEnd')}
+          >
             <p>{tips}</p>
           </PullRefresh>
         </Tabs.TabPane>
