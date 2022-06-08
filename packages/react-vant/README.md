@@ -173,6 +173,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/SingleShadow"><img src="https://avatars.githubusercontent.com/u/18462822?v=4?s=100" width="100px;" alt=""/><br /><sub><b>SingleShadow</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3ASingleShadow" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://www.lanten.me"><img src="https://avatars.githubusercontent.com/u/16203518?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lanten</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/commits?author=lanten" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://blog.csdn.net/ahlxt123"><img src="https://avatars.githubusercontent.com/u/6077314?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Lu</b></sub></a><br /><a href="https://github.com/3lang3/react-vant/issues?q=author%3Agislu" title="Bug reports">🐛</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
