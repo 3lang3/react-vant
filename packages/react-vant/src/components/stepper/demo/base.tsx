@@ -5,15 +5,15 @@ import { Stepper, Cell, Toast } from 'react-vant';
 let timer;
 
 export default () => {
-  const [value1, setValue1] = useState<string | number>(1);
-  const [value9, setValue9] = useState<string | number>(0);
-  const [value2, setValue2] = useState<string | number>(1);
-  const [value3, setValue3] = useState<string | number>(1);
-  const [value4, setValue4] = useState<string | number>(1);
-  const [value5, setValue5] = useState<string | number>(1);
-  const [value6, setValue6] = useState<string | number>(1);
-  const [value7, setValue7] = useState<string | number>(1);
-  const [value8, setValue8] = useState<string | number>(1);
+  const [value1, setValue1] = useState(1);
+  const [value9, setValue9] = useState(0);
+  const [value2, setValue2] = useState(1);
+  const [value3, setValue3] = useState(1);
+  const [value4, setValue4] = useState(1);
+  const [value5, setValue5] = useState(1);
+  const [value6, setValue6] = useState(1);
+  const [value7, setValue7] = useState(1);
+  const [value8, setValue8] = useState(1);
 
   return (
     <div className="demo-stepper">
@@ -68,13 +68,11 @@ export default () => {
       <Cell title="异步变更" center>
         <Stepper
           value={value7}
-          onChange={(val) => {
+          beforeChange={(val) => {
             Toast.loading({ forbidClick: true });
-
             clearTimeout(timer);
             timer = setTimeout(() => {
               Toast.clear();
-              // 注意此时修改 value 后会再次触发 change 事件
               setValue7(val);
             }, 500);
           }}

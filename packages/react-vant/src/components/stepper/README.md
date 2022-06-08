@@ -22,42 +22,42 @@ import { Stepper } from 'react-vant';
 
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| value | 当前输入的值 | _number\|string_ | - |
-| min | 最小值 | _number \| string_ | `1` |
-| max | 最大值 | _number \| string_ | - |
-| defaultValue | 初始值，当 value 为空时生效 | _number\|string_ | `1` |
-| step | 步长，每次点击时改变的值 | _number \| string_ | `1` |
-| name | 标识符，可以在 `change` 事件回调参数中获取 | _number \| string_ | - |
-| inputWidth | 输入框宽度，默认单位为 `px` | _number \| string_ | `32px` |
-| buttonSize | 按钮大小以及输入框高度，默认单位为 `px` | _number \| string_ | `28px` |
-| decimalLength | 固定显示的小数位数 | _number \| string_ | - |
-| theme | 样式风格，可选值为 `round` | _string_ | - |
-| placeholder | 输入框占位提示文字 | _string_ | - |
-| integer | 是否只允许输入整数 | _boolean_ | `false` |
-| disabled | 是否禁用步进器 | _boolean_ | `false` |
-| disablePlus | 是否禁用增加按钮 | _boolean_ | `false` |
-| disableMinus | 是否禁用减少按钮 | _boolean_ | `false` |
-| disableInput | 是否禁用输入框 | _boolean_ | `false` |
-| beforeChange | 输入值变化前的回调函数，返回 `false` 可阻止输入，支持返回 Promise | _(value) => boolean \| Promise_ | `false` |
-| showPlus | 是否显示增加按钮 | _boolean_ | `true` |
-| showMinus | 是否显示减少按钮 | _boolean_ | `true` |
-| showInput | 是否显示输入框 | _boolean_ | `true` |
-| longPress | 是否开启长按手势 | _boolean_ | `true` |
-| allowEmpty | 是否允许输入的值为空 | _boolean_ | `false` |
+| 参数          | 说明                                       | 类型               | 默认值  |
+| ------------- | ------------------------------------------ | ------------------ | ------- |
+| value         | 当前输入的值                               | _number\|string_   | -       |
+| min           | 最小值                                     | _number \| string_ | `1`     |
+| max           | 最大值                                     | _number \| string_ | -       |
+| defaultValue  | 初始值，当 value 为空时生效                | _number\|string_   | `1`     |
+| step          | 步长，每次点击时改变的值                   | _number \| string_ | `1`     |
+| name          | 标识符，可以在 `change` 事件回调参数中获取 | _number \| string_ | -       |
+| inputWidth    | 输入框宽度，默认单位为 `px`                | _number \| string_ | `32px`  |
+| buttonSize    | 按钮大小以及输入框高度，默认单位为 `px`    | _number \| string_ | `28px`  |
+| decimalLength | 固定显示的小数位数                         | _number \| string_ | -       |
+| theme         | 样式风格，可选值为 `round`                 | _string_           | -       |
+| placeholder   | 输入框占位提示文字                         | _string_           | -       |
+| integer       | 是否只允许输入整数                         | _boolean_          | `false` |
+| disabled      | 是否禁用步进器                             | _boolean_          | `false` |
+| disablePlus   | 是否禁用增加按钮                           | _boolean_          | `false` |
+| disableMinus  | 是否禁用减少按钮                           | _boolean_          | `false` |
+| disableInput  | 是否禁用输入框                             | _boolean_          | `false` |
+| showPlus      | 是否显示增加按钮                           | _boolean_          | `true`  |
+| showMinus     | 是否显示减少按钮                           | _boolean_          | `true`  |
+| showInput     | 是否显示输入框                             | _boolean_          | `true`  |
+| longPress     | 是否开启长按手势                           | _boolean_          | `true`  |
+| allowEmpty    | 是否允许输入的值为空                       | _boolean_          | `false` |
 
 ### Events
 
-| 事件名      | 说明                     | 回调参数                                  |
-| ----------- | ------------------------ | ----------------------------------------- |
-| onClick     | 点击输入框时触发         | _event: Event_                            |
-| onChange    | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
-| onOverlimit | 点击不可用的按钮时触发   | -                                         |
-| onPlus      | 点击增加按钮时触发       | -                                         |
-| onMinus     | 点击减少按钮时触发       | -                                         |
-| onFocus     | 输入框聚焦时触发         | _event: Event_                            |
-| onBlur      | 输入框失焦时触发         | _event: Event_                            |
+| 事件名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| onClick | 点击输入框时触发 | _event: Event_ |
+| onChange | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
+| beforeChange | 输入值变化前的回调函数，返回 `false` 可阻止输入，支持返回 Promise | _(value) => boolean \| Promise_ |
+| onOverlimit | 点击不可用的按钮时触发 | - |
+| onPlus | 点击增加按钮时触发 | - |
+| onMinus | 点击减少按钮时触发 | - |
+| onFocus | 输入框聚焦时触发 | _event: Event_ |
+| onBlur | 输入框失焦时触发 | _event: Event_ |
 
 ### 类型定义
 
