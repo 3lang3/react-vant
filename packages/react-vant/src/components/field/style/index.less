@@ -71,13 +71,14 @@
 
   &__control-wrapper {
     width: 100%;
+    flex: 1;
   }
 
   &__control {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    min-width: 0; // for flex-shrink in field__button
+    min-width: 0; // for flex-shrink in field__suffix
     margin: 0;
     padding: 0;
     color: var(--rv-field-input-text-color);
@@ -147,7 +148,7 @@
 
   &__clear,
   &__icon,
-  &__button,
+  &__suffix,
   &__right-icon {
     flex-shrink: 0;
   }
@@ -180,7 +181,11 @@
     color: var(--rv-field-right-icon-color);
   }
 
-  &__button {
+  &__prefix {
+    padding-right: var(--rv-padding-xs);
+  }
+
+  &__suffix {
     padding-left: var(--rv-padding-xs);
   }
 
