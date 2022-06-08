@@ -68,13 +68,11 @@ export default () => {
       <Cell title="异步变更" center>
         <Stepper
           value={value7}
-          onChange={(val) => {
+          beforeChange={(val) => {
             Toast.loading({ forbidClick: true });
-
             clearTimeout(timer);
             timer = setTimeout(() => {
               Toast.clear();
-              // 注意此时修改 value 后会再次触发 change 事件
               setValue7(val);
             }, 500);
           }}
