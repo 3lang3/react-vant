@@ -82,32 +82,9 @@ export default () => {
 
 ### 插入按钮
 
-通过 button 插槽可以在输入框尾部插入按钮。
+通过 `prefix` `suffix` 属性可以在输入框前面和尾部插入自定义内容。
 
-```jsx
-/**
- * title: 插入按钮
- * card: true
- */
-import React from 'react';
-import { Field, Button } from 'react-vant';
-
-export default () => {
-  return (
-    <Field
-      center
-      clearable
-      label="短信验证码"
-      placeholder="请输入短信验证码"
-      button={
-        <Button size="small" type="primary">
-          发送
-        </Button>
-      }
-    />
-  );
-};
-```
+<code src="./demo/button.tsx" title="插入按钮" card />
 
 ### 格式化输入内容
 
@@ -239,7 +216,8 @@ export default () => {
 | autosize | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 { maxHeight: 100, minHeight: 50 }，<br>单位为`px` | _boolean \| object_ | `false` |
 | leftIcon | 左侧图标 | _ReactNode_ | - |
 | rightIcon | 右侧图标 | _ReactNode_ | - |
-| button | 自定义输入框尾部按钮 | _ReactNode_ | - |
+| prefix | 自定义输入框前部内容 | _ReactNode_ | - |
+| suffix | 自定义输入框尾部内容 | _ReactNode_ | - |
 
 ### Events
 

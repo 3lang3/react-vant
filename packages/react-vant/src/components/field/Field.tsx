@@ -362,10 +362,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     arrowDirection,
     autosize,
     disabled,
-    button,
     titleStyle,
     error,
   } = props;
+
+  const suffix = props.suffix ?? props.button
 
   return (
     <Cell
@@ -395,6 +396,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       )}
     >
       <div className={clsx(bem('body'))}>
+      {props.prefix && <div className={clsx(bem('prefix'))}>{props.prefix}</div>}
         <div className={clsx(bem('control-wrapper'))} onClick={props.onClickInput}>
           {renderInput()}
         </div>
@@ -405,7 +407,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
             size: ICON_SIZE,
           })}
         {renderRightIcon()}
-        {button && <div className={clsx(bem('button'))}>{button}</div>}
+        {suffix && <div className={clsx(bem('suffix'))}>{suffix}</div>}
       </div>
       {renderWordLimit()}
       {renderMessage()}

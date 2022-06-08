@@ -109,14 +109,18 @@ export interface FieldProps extends FieldCommonProps, Omit<BaseTypeProps, 'child
   border?: boolean;
   /** 错误提示文案对齐方式 */
   errorMessageAlign?: FieldTextAlign;
-  /** 自定义输入框尾部按钮 */
-  button?: React.ReactNode;
   /** 自定义输入框最右侧的额外内容 */
   extra?: React.ReactNode;
   /** 额外的提示信息 */
   intro?: React.ReactNode;
   /** 字段提示信息 */
   tooltip?: React.ReactNode | FieldTooltipProps;
+  /** 自定义输入框尾部按钮 */
+  suffix?: React.ReactNode;
+  /** @deprecated */
+  button?: React.ReactNode;
+  /** 设置前置内容 */
+  prefix?: React.ReactNode;
   onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
