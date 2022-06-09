@@ -334,6 +334,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gislu",
+      "name": "Alex Lu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6077314?v=4",
+      "profile": "http://blog.csdn.net/ahlxt123",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -1,5 +1,6 @@
 import { SetStateAction, useRef } from 'react'
-import { useMemoizedFn, useUpdate } from '.'
+import useMemoizedFn from './use-memoized-fn'
+import useUpdate from './use-update'
 
 type Options<T> = {
   value?: T

@@ -15,11 +15,11 @@ importers:
       eslint-plugin-react: ^7.29.4
       eslint-plugin-react-hooks: ^4.4.0
       husky: 8.0.1
-      lint-staged: 13.0.0
+      lint-staged: 13.0.1
       prettier: 2.4.1
       pretty-quick: 3.1.3
       sort-package-json: 1.56.1
-      stylelint: 14.8.5
+      stylelint: 14.9.0
     devDependencies:
       '@commitlint/config-conventional': 17.0.2
       '@typescript-eslint/eslint-plugin': 5.26.0_6f078bfd66d761d6f8259ecc398515b8
@@ -32,11 +32,11 @@ importers:
       eslint-plugin-react: 7.30.0_eslint@8.17.0
       eslint-plugin-react-hooks: 4.5.0_eslint@8.17.0
       husky: 8.0.1
-      lint-staged: 13.0.0
+      lint-staged: 13.0.1
       prettier: 2.4.1
       pretty-quick: 3.1.3_prettier@2.4.1
       sort-package-json: 1.56.1
-      stylelint: 14.8.5
+      stylelint: 14.9.0
 
   packages/react-vant:
     specifiers:
@@ -1771,6 +1771,17 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+    dev: true
+
+  /@csstools/selector-specificity/2.0.0_e73911252e8c76a7ba13ab9c39479e7d:
+    resolution: {integrity: sha512-rZ6vufeY/UjAgtyiJ4WvfF6XP6HizIyOfbZOg0RnecIwjrvH8Am3nN1BpKnnPZunYAkUcPPXDhwbxOtGop8cfQ==}
+    engines: {node: ^12 || ^14 || >=16}
+    peerDependencies:
+      postcss: ^8.3
+      postcss-selector-parser: ^6.0.10
+    dependencies:
+      postcss: 8.4.14
+      postcss-selector-parser: 6.0.10
     dev: true
 
   /@docsearch/css/3.1.0:
@@ -4171,6 +4182,10 @@ packages:
     resolution: {integrity: sha512-hUewv7oMjCp+wkBv5Rm0v87eJhq4woh5rSR+42YSQJKecCqgIqNkZ6lAlQms/BwHPJA5NKMRlpxPRv0n8HQW6g==}
     dev: true
 
+  /colorette/2.0.17:
+    resolution: {integrity: sha512-hJo+3Bkn0NCHybn9Tu35fIeoOKGOk5OCC32y4Hz2It+qlCO2Q3DeQ1hRn/tDDMQKRYUEzqsl7jbF6dYKjlE60g==}
+    dev: true
+
   /combined-stream/1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -4401,8 +4416,8 @@ packages:
       postcss: ^8.0.9
     dev: true
 
-  /css-functions-list/3.0.1:
-    resolution: {integrity: sha512-PriDuifDt4u4rkDgnqRCLnjfMatufLmWNfQnGCq34xZwpY3oabwhB9SqRBmuvWUgndbemCFlKqg+nO7C2q0SBw==}
+  /css-functions-list/3.1.0:
+    resolution: {integrity: sha512-/9lCvYZaUbBGvYUgYGFJ4dcYiyqdhSjG7IPVluoV8A1ILjkF7ilmhp1OGUz8n+nmBcu0RNrQAzgD8B6FJbrt2w==}
     engines: {node: '>=12.22'}
     dev: true
 
@@ -6407,7 +6422,7 @@ packages:
     dev: true
 
   /globjoin/0.1.4:
-    resolution: {integrity: sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=}
+    resolution: {integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg==}
     dev: true
 
   /glogg/1.0.2:
@@ -8332,13 +8347,13 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/13.0.0:
-    resolution: {integrity: sha512-vWban5utFt78VZohbosUxNIa46KKJ+KOQTDWTQ8oSl1DLEEVl9zhUtaQbiiydAmx+h2wKJK2d0+iMaRmknuWRQ==}
+  /lint-staged/13.0.1:
+    resolution: {integrity: sha512-Ykaf4QTi0a02BF7cnq7JIPGOJxH4TkNMWhSlJdH9wOekd0X+gog47Jfh/0L31DqZe5AiydLGC7LkPqpaNm+Kvg==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
       cli-truncate: 3.1.0
-      colorette: 2.0.16
+      colorette: 2.0.17
       commander: 9.3.0
       debug: 4.3.4
       execa: 6.1.0
@@ -8347,7 +8362,7 @@ packages:
       micromatch: 4.0.5
       normalize-path: 3.0.0
       object-inspect: 1.12.2
-      pidtree: 0.5.0
+      pidtree: 0.6.0
       string-argv: 0.3.1
       yaml: 2.1.1
     transitivePeerDependencies:
@@ -8365,7 +8380,7 @@ packages:
         optional: true
     dependencies:
       cli-truncate: 2.1.0
-      colorette: 2.0.16
+      colorette: 2.0.17
       log-update: 4.0.0
       p-map: 4.0.0
       rfdc: 1.3.0
@@ -8464,7 +8479,7 @@ packages:
     dev: true
 
   /lodash.truncate/4.4.2:
-    resolution: {integrity: sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=}
+    resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
     dev: true
 
   /lodash.uniq/4.5.0:
@@ -9925,8 +9940,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pidtree/0.5.0:
-    resolution: {integrity: sha512-9nxspIM7OpZuhBxPg73Zvyq7j1QMPMPsGKTqRc2XOaFQauDvoNz9fM1Wdkjmeo7l9GXOZiRs97sPkuayl39wjA==}
+  /pidtree/0.6.0:
+    resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
     engines: {node: '>=0.10'}
     hasBin: true
     dev: true
@@ -10125,7 +10140,7 @@ packages:
     dev: true
 
   /postcss-media-query-parser/0.2.3:
-    resolution: {integrity: sha1-J7Ocb02U+Bsac7j3Y1HGCeXO8kQ=}
+    resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
     dev: true
 
   /postcss-merge-longhand/5.1.5:
@@ -10359,7 +10374,7 @@ packages:
     dev: true
 
   /postcss-resolve-nested-selector/0.1.1:
-    resolution: {integrity: sha1-Kcy8fDfe36wwTp//C/FZaz9qDk4=}
+    resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
     dev: true
 
   /postcss-safe-parser/4.0.2:
@@ -12063,15 +12078,16 @@ packages:
       - supports-color
     dev: true
 
-  /stylelint/14.8.5:
-    resolution: {integrity: sha512-e3t4H/hlWlspkcNUrkhf44RU3OpPTA7uBOoREGBzSwdEF+2g/+gbZq7WEpMP7BpopcSe/uLaTvDuL+URL7cdnQ==}
+  /stylelint/14.9.0:
+    resolution: {integrity: sha512-+xsQ4uKS56RQs8AGYx2CXc9nhWyPR7c/G0RqyiKgWZx2LuE3VJnIhGRQXUfnGQXOqBPHxNjMCHiK5NNQRB52sw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
+      '@csstools/selector-specificity': 2.0.0_e73911252e8c76a7ba13ab9c39479e7d
       balanced-match: 2.0.0
       colord: 2.9.2
       cosmiconfig: 7.0.1
-      css-functions-list: 3.0.1
+      css-functions-list: 3.1.0
       debug: 4.3.4
       execall: 2.0.0
       fast-glob: 3.2.11
@@ -12099,7 +12115,6 @@ packages:
       postcss-selector-parser: 6.0.10
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
-      specificity: 0.4.1
       string-width: 4.2.3
       strip-ansi: 6.0.1
       style-search: 0.1.0

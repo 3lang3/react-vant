@@ -22,7 +22,7 @@ function add(num1: number, num2: number) {
   return Math.round((num1 + num2) * cardinal) / cardinal;
 }
 
-const Stepper: React.FC<StepperProps> = (props) => {
+function Stepper<T = string>(props: StepperProps<T>) {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('stepper', prefixCls);
 
@@ -30,28 +30,28 @@ const Stepper: React.FC<StepperProps> = (props) => {
     (value: string | number) => {
       const { min, max, allowEmpty, decimalLength, integer } = props;
 
-      if (allowEmpty && value === '') {
+      if (allowEmpty && typeof value === 'string' && value === '') {
         return value;
       }
 
-      value = formatNumber(String(value), !integer);
-      value = value === '' ? 0 : +value;
-      value = isNaN(value) ? +min : value;
-      value = Math.max(Math.min(+max, value), +min);
+      let _value: any = formatNumber(String(value), !integer);
+      _value = _value === '' ? 0 : +_value;
+      _value = isNaN(_value) ? +min : _value;
+      _value = Math.max(Math.min(+max, _value), +min);
 
       // format decimal
       if (isDef(decimalLength)) {
-        value = value.toFixed(+decimalLength);
+        _value = _value.toFixed(+decimalLength);
       }
 
-      return value;
+      return _value;
     },
     [props.min, props.max, props.allowEmpty, props.decimalLength, props.integer],
   );
 
   const getInitialValue = () => {
     const defaultValue = props.value ?? props.defaultValue;
-    const value = format(defaultValue);
+    const value = format(+defaultValue);
     return value;
   };
 
@@ -80,14 +80,12 @@ const Stepper: React.FC<StepperProps> = (props) => {
 
   const buttonStyle = useMemo(() => getSizeStyle(props.buttonSize), [props.buttonSize]);
 
-  const innerChange = useCallback(
-    (value: number | string) => {
-      innerEffectRef.current = true;
-      setCurrent(value);
-      props.onChange?.(value);
-    },
-    [props, setCurrent],
-  );
+  const innerChange = (value: T) => {
+    innerEffectRef.current = true;
+    setCurrent(value);
+    props.onChange?.(value);
+  };
+
   const check = useCallback(() => {
     const value = format(currentRef.current);
     if (!equal(value, currentRef.current)) {
@@ -95,7 +93,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
     }
   }, [format, currentRef.current]);
 
-  const setValue = (value: string | number) => {
+  const setValue = (value: T) => {
     if (props.beforeChange) {
       callInterceptor({
         args: [value],
@@ -140,7 +138,7 @@ const Stepper: React.FC<StepperProps> = (props) => {
     }
     // prefer number type
     const isNumeric = formatted === String(+formatted);
-    setValue(isNumeric ? +formatted : formatted);
+    setValue((isNumeric ? +formatted : formatted) as any);
   };
 
   const onFocus = useCallback(
@@ -273,7 +271,8 @@ const Stepper: React.FC<StepperProps> = (props) => {
       )}
     </div>
   );
-};
+}
+
 Stepper.defaultProps = {
   theme: 'default',
   max: Number.MAX_VALUE,
