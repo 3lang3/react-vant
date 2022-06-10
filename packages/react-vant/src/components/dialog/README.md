@@ -69,6 +69,32 @@ Dialog 支持 promise
 | Dialog.alert   | 展示消息提示弹窗 | `options` | `Promise`         |
 | Dialog.confirm | 展示消息确认弹窗 | `options` | `Promise`         |
 
+#### 注意
+
+对于指令式创建出来的 `Dialog`，并不会感知父组件的重渲染和其中 `state` 的更新，因此下面这种写法是完全错误的：
+
+```jsx | pure
+export default function App() {
+  const [captcha, setCaptcha] = useState('');
+  const showCaptcha = () => {
+    return Dialog.confirm({
+      title: '短信验证',
+      message: (
+        <Field
+          placeholder="请输入验证码"
+          value={captcha} // App 中 captcha 的更新是不会传递到 Dialog 中的
+          onChange={setCaptcha}
+        />
+      ),
+    });
+  };
+  return <Button onClick={showCaptcha}>Show Dialog</Button>;
+}
+```
+
+> 如果你需要在 `Dialog` 中包含很多复杂的状态和逻辑，那么可以使用**声明式**的语法，或者考虑自己将内部状态和逻辑单独封装一个组件出来([demo](https://stackblitz.com/edit/react-ubsjro-tbmdt8?file=src%2FApp.tsx))
+
+
 ### Props
 
 通过函数调用 `Dialog` 时，支持传入以下选项：

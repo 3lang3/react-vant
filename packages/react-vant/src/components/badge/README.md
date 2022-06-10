@@ -86,13 +86,14 @@ export default () => {
 };
 ```
 
-### 自定义颜色
+### 自定义颜色和偏移量
 
-通过 `color` 属性来设置徽标的颜色。
+- 通过 `color` 属性来设置徽标的颜色
+- 通过 `offset` 属性来调整徽标的偏移量
 
 ```jsx
 /**
- * title: 自定义颜色
+ * title: 自定义颜色和偏移量
  */
 import React from 'react';
 import { Space, Badge } from 'react-vant';
@@ -104,13 +105,19 @@ const Child = () => (
 export default () => {
   return (
     <Space gap={20}>
-      <Badge content={5} color="#3f45ff">
+      <Badge dot offset={['100%', 0]}>
         <Child />
       </Badge>
-      <Badge content={10} color="#3f45ff">
+
+      <Badge dot color="#87d068">
         <Child />
       </Badge>
-      <Badge color="#3f45ff" dot>
+
+      <Badge dot offset={[0, '100%']} color="#3f45ff">
+        <Child />
+      </Badge>
+
+      <Badge dot offset={['100%', '100%']} color="orange">
         <Child />
       </Badge>
     </Space>
