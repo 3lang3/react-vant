@@ -19,7 +19,7 @@ importers:
       prettier: 2.4.1
       pretty-quick: 3.1.3
       sort-package-json: 1.56.1
-      stylelint: 14.9.0
+      stylelint: 14.9.1
     devDependencies:
       '@commitlint/config-conventional': 17.0.2
       '@typescript-eslint/eslint-plugin': 5.26.0_6f078bfd66d761d6f8259ecc398515b8
@@ -36,7 +36,7 @@ importers:
       prettier: 2.4.1
       pretty-quick: 3.1.3_prettier@2.4.1
       sort-package-json: 1.56.1
-      stylelint: 14.9.0
+      stylelint: 14.9.1
 
   packages/react-vant:
     specifiers:
@@ -1773,8 +1773,8 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@csstools/selector-specificity/2.0.0_e73911252e8c76a7ba13ab9c39479e7d:
-    resolution: {integrity: sha512-rZ6vufeY/UjAgtyiJ4WvfF6XP6HizIyOfbZOg0RnecIwjrvH8Am3nN1BpKnnPZunYAkUcPPXDhwbxOtGop8cfQ==}
+  /@csstools/selector-specificity/2.0.1_e73911252e8c76a7ba13ab9c39479e7d:
+    resolution: {integrity: sha512-aG20vknL4/YjQF9BSV7ts4EWm/yrjagAN7OWBNmlbEOUiu0llj4OGrFoOKK3g2vey4/p2omKCoHrWtPxSwV3HA==}
     engines: {node: ^12 || ^14 || >=16}
     peerDependencies:
       postcss: ^8.3
@@ -11956,7 +11956,7 @@ packages:
     dev: true
 
   /style-search/0.1.0:
-    resolution: {integrity: sha1-eVjHk+R+MuB9K1yv5cC/jhLneQI=}
+    resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
   /style-to-object/0.3.0:
@@ -12078,12 +12078,12 @@ packages:
       - supports-color
     dev: true
 
-  /stylelint/14.9.0:
-    resolution: {integrity: sha512-+xsQ4uKS56RQs8AGYx2CXc9nhWyPR7c/G0RqyiKgWZx2LuE3VJnIhGRQXUfnGQXOqBPHxNjMCHiK5NNQRB52sw==}
+  /stylelint/14.9.1:
+    resolution: {integrity: sha512-RdAkJdPiLqHawCSnu21nE27MjNXaVd4WcOHA4vK5GtIGjScfhNnaOuWR2wWdfKFAvcWQPOYe311iveiVKSmwsA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@csstools/selector-specificity': 2.0.0_e73911252e8c76a7ba13ab9c39479e7d
+      '@csstools/selector-specificity': 2.0.1_e73911252e8c76a7ba13ab9c39479e7d
       balanced-match: 2.0.0
       colord: 2.9.2
       cosmiconfig: 7.0.1
@@ -12189,7 +12189,7 @@ packages:
     dev: true
 
   /svg-tags/1.0.0:
-    resolution: {integrity: sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=}
+    resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
     dev: true
 
   /svgo/2.8.0:
