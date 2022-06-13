@@ -98,6 +98,7 @@ export default defineConfig({
           '/components/datetime-picker',
           '/components/field',
           '/components/form',
+          '/components/input',
           '/components/number-keyboard',
           '/components/password-input',
           '/components/picker',

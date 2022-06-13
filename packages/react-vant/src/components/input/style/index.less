@@ -62,16 +62,6 @@
       text-align: right;
     }
 
-    &--error,
-    &--error::placeholder {
-      color: var(--rv-input-error-text-color);
-      -webkit-text-fill-color: currentColor;
-    }
-
-    &--min-height {
-      min-height: var(--rv-input-text-area-min-height);
-    }
-
     // for ios wechat
     &[type='date'],
     &[type='time'],
@@ -83,15 +73,6 @@
     &[type='search'] {
       -webkit-appearance: none;
     }
-  }
-
-  &__clear {
-    flex-shrink: 0;
-  }
-
-  &__clear {
-    margin-right: calc(var(--rv-padding-xs) * -1);
-    padding: 0 var(--rv-padding-xs);
   }
 
   &__clear {

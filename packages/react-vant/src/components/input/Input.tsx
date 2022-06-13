@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useEffect,
   forwardRef,
   useImperativeHandle,
   useMemo,
@@ -10,20 +9,30 @@ import React, {
 import { Clear } from '@react-vant/icons';
 import clsx from 'clsx';
 import { InputInstance, InputProps } from './PropsType';
-import { isDef, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
+import { isDef, formatNumber, preventDefault, resetScroll } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { usePropsValue } from '../hooks';
-
-const ICON_SIZE = '16px';
 
 const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('input', prefixCls);
-  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>();
+  const inputRef = useRef<HTMLInputElement>();
   const [inputFocus, setInputFocus] = useState(false);
+  const compositionStartRef = useRef(false);
   const [value, setValue] = usePropsValue(props);
 
-  const { align, type, name, rows, placeholder, disabled, readOnly, maxLength } = props;
+  const {
+    className,
+    style,
+    align,
+    type,
+    name,
+    placeholder,
+    disabled,
+    readOnly,
+    maxLength,
+    autoFocus,
+  } = props;
 
   const focus = () => {
     if (inputRef?.current) {
@@ -38,8 +47,14 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
   };
 
   useImperativeHandle(ref, () => ({
+    clear: () => {
+      setValue('');
+    },
     focus,
     blur,
+    get nativeElement() {
+      return inputRef.current;
+    },
   }));
 
   const showClear = useMemo(() => {
@@ -53,43 +68,9 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     return false;
   }, [value, props.clearTrigger, inputFocus]);
 
-  const adjustSize = () => {
-    const input = inputRef.current;
-
-    if (!(props.type === 'textarea' && props.autosize) || !input) {
-      return;
-    }
-
-    input.style.height = 'auto';
-
-    let height = input.scrollHeight;
-    if (isObject(props.autosize)) {
-      const { maxHeight, minHeight } = props.autosize;
-      if (maxHeight) {
-        height = Math.min(height, maxHeight);
-      }
-      if (minHeight) {
-        height = Math.max(height, minHeight);
-      }
-    }
-
-    if (height) {
-      input.style.height = `${height}px`;
-    }
-  };
-
-  useEffect(() => {
-    adjustSize();
-  }, [value]);
-
   const controlClass = React.useMemo(() => {
-    return bem('control', [
-      align,
-      {
-        'min-height': props.type === 'textarea' && !props.autosize,
-      },
-    ]);
-  }, [align, props.type, props.autosize]);
+    return bem('control', [align]);
+  }, [align]);
 
   const handleChange = (e) => {
     const inputValue = e?.currentTarget?.value;
@@ -125,9 +106,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
 
   const handleKeypress = (e) => {
     if (e.key === 'Enter' || +e.charCode === 13) {
-      if (props.type !== 'textarea') {
-        preventDefault(e);
-      }
+      preventDefault(e);
       // trigger blur after click keyboard search button
       if (props.type === 'search') {
         blur();
@@ -137,32 +116,6 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
   };
 
   const renderInput = () => {
-    if (type === 'textarea') {
-      return (
-        <textarea
-          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-          name={name}
-          rows={rows}
-          className={clsx(controlClass)}
-          value={value}
-          disabled={disabled}
-          readOnly={readOnly}
-          placeholder={placeholder || ''}
-          onBlur={handleBulr}
-          onFocus={handleFocus}
-          onChange={handleChange}
-          onKeyPress={handleKeypress}
-          autoCapitalize={props.autoCapitalize}
-          autoCorrect={props.autoCorrect}
-          onKeyDown={props.onKeyDown}
-          onKeyUp={props.onKeyUp}
-          onCompositionStart={props.onCompositionStart}
-          onCompositionEnd={props.onCompositionEnd}
-          onClick={props.onClick as unknown as React.HTMLAttributes<HTMLTextAreaElement>['onClick']}
-        />
-      );
-    }
-
     let inputType = type;
     let inputMode;
 
@@ -183,10 +136,11 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         value={value}
         type={inputType}
         inputMode={inputMode}
-        ref={inputRef as React.RefObject<HTMLInputElement>}
+        ref={inputRef}
         name={name}
         className={clsx(controlClass)}
         disabled={disabled}
+        autoFocus={autoFocus}
         readOnly={readOnly}
         placeholder={placeholder || ''}
         onBlur={handleBulr}
@@ -197,8 +151,14 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         autoCorrect={props.autoCorrect}
         onKeyDown={props.onKeyDown}
         onKeyUp={props.onKeyUp}
-        onCompositionStart={props.onCompositionStart}
-        onCompositionEnd={props.onCompositionEnd}
+        onCompositionStart={(e) => {
+          compositionStartRef.current = true;
+          props.onCompositionStart?.(e);
+        }}
+        onCompositionEnd={(e) => {
+          compositionStartRef.current = false;
+          props.onCompositionEnd?.(e);
+        }}
         onClick={props.onClick}
       />
     );
@@ -210,13 +170,12 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
   };
 
   return (
-    <div className={clsx(bem())}>
+    <div className={clsx(bem(), className)} style={style}>
       {renderInput()}
       {showClear &&
         React.cloneElement(props.clearIcon as React.ReactElement, {
           className: clsx(bem('clear')),
           onTouchStart: handleClear,
-          size: ICON_SIZE,
         })}
     </div>
   );

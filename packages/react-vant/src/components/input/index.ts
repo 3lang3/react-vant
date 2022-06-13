@@ -6,5 +6,4 @@ export { Input };
 export type {
   InputProps,
   InputInstance,
-  InputType,
 } from './PropsType';

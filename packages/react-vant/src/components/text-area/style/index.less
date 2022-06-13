@@ -1,0 +1,67 @@
+@import './var.less';
+@import '../../cell/style/var.less';
+
+:root {
+  --rv-textarea-text-color: @input-text-color;
+  --rv-textarea-error-text-color: @input-error-text-color;
+  --rv-textarea-disabled-text-color: @input-disabled-text-color;
+  --rv-textarea-placeholder-text-color: @input-placeholder-text-color;
+  --rv-textarea-placeholder-text-font-size: @input-placeholder-text-font-size;
+  --rv-textarea-background-color: @input-background-color;
+  --rv-textarea-text-area-min-height: @input-text-area-min-height;
+  --rv-textarea-disabled-text-color: @input-disabled-text-color;
+  --rv-textarea-clear-icon-size: @input-clear-icon-size;
+  --rv-textarea-clear-icon-color: @input-clear-icon-color;
+}
+
+.@{rv-prefix}-textarea {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__control {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0; // for flex-shrink in field__button
+    margin: 0;
+    padding: 0;
+    color: var(--rv-textarea-text-color);
+    line-height: inherit;
+    text-align: left;
+    background-color: var(--rv-textarea-background-color);
+    border: 0;
+    resize: none;
+    // https://github.com/youzan/vant/pull/9418
+    user-select: auto;
+
+    &::placeholder {
+      color: var(--rv-textarea-placeholder-text-color);
+      font-size: var(--rv-textarea-placeholder-text-font-size);
+    }
+
+    &:disabled {
+      color: var(--rv-textarea-disabled-text-color);
+      cursor: not-allowed;
+      opacity: 1;
+      // fix disabled color in mobile safari
+      -webkit-text-fill-color: var(--rv-textarea-disabled-text-color);
+    }
+
+    &:read-only {
+      cursor: default;
+    }
+
+    &--min-height {
+      min-height: var(--rv-textarea-min-height);
+    }
+  }
+
+  &__word-limit {
+    margin-top: var(--rv-padding-base);
+    color: var(--rv-textarea-word-limit-color);
+    font-size: var(--rv-textarea-word-limit-font-size);
+    line-height: var(--rv-textarea-word-limit-line-height);
+    text-align: right;
+  }
+}

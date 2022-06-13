@@ -1,14 +1,10 @@
 import React from 'react';
 
-export type InputType = 'tel' | 'text' | 'digit' | 'number' | 'search' | 'password' | 'textarea';
+export type InputType = 'tel' | 'text' | 'digit' | 'number' | 'search' | 'password';
 
 export type InputTextAlign = 'left' | 'center' | 'right';
 
 export type InputClearTrigger = 'always' | 'focus';
-
-export type InputFormatTrigger = 'onBlur' | 'onChange';
-
-export type InputValidateTrigger = 'onBlur' | 'onChange' | 'onSubmit';
 
 export type InputAutosizeConfig = {
   maxHeight?: number;
@@ -16,8 +12,8 @@ export type InputAutosizeConfig = {
 };
 
 type NativeInputProps = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement & HTMLTextAreaElement>,
-  HTMLInputElement & HTMLTextAreaElement
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
 >
 
 export interface InputProps extends Pick<
@@ -53,7 +49,7 @@ export interface InputProps extends Pick<
   /** 是否禁用输入框	 */
   disabled?: boolean;
   /**  是否自动聚焦，iOS 系统不支持该属性	 */
-  autofocus?: boolean;
+  autoFocus?: boolean;
   /** 是否启用清除图标，点击清除图标后会清空输入框	 */
   clearable?: boolean;
   /** 自定义清除图标 */
@@ -64,22 +60,16 @@ export interface InputProps extends Pick<
    * @default 'focus'
    */
   clearTrigger?: InputClearTrigger;
-  /** 获取input dom实例 */
-  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>
-  /**
-   * 是否自适应内容高度，只对 textarea 有效
-   * 可传入对象,如 { maxHeight: 100, minHeight: 50 }，单位为px
-   */
-  autosize?: boolean | InputAutosizeConfig;
+  className?: string;
+  style?: React.CSSProperties;
   onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onFocus?: (e: React.FocusEvent) => void;
-  onBlur?: (e: React.FocusEvent) => void;
   onKeypress?: (e: React.KeyboardEvent) => void;
 }
 
 export type InputInstance = {
   focus: () => void;
   blur: () => void;
+  clear: () => void;
+  nativeElement: HTMLInputElement | null
 };
