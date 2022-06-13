@@ -5,8 +5,7 @@ type Shape = 'round' | 'square';
 
 export interface CheckboxGroupProps extends BaseTypeProps {
   /**
-   * 最大可选数，0 为无限制
-   * @default 0
+   * 最大可选数
    */
   max?: number | string;
   /** 所有选中项的标识符	 */
