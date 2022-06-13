@@ -23,6 +23,8 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
   const [inputFocus, setInputFocus] = useState(false);
   const [value, setValue] = usePropsValue(props);
 
+  const { align, type, name, rows, placeholder, disabled, readOnly, maxLength } = props;
+
   const focus = () => {
     if (inputRef?.current) {
       inputRef.current.focus();
@@ -41,9 +43,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
   }));
 
   const showClear = useMemo(() => {
-    const { readonly } = props;
-
-    if (props.clearable && !readonly) {
+    if (props.clearable && !readOnly) {
       const hasValue = value !== '';
       const trigger =
         props.clearTrigger === 'always' || (props.clearTrigger === 'focus' && inputFocus);
@@ -82,62 +82,61 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     adjustSize();
   }, [value]);
 
-  const renderInput = () => {
-    const { align, type, error, name, rows, placeholder, disabled, readonly } = props;
-    const controlClass = bem('control', [
+  const controlClass = React.useMemo(() => {
+    return bem('control', [
       align,
       {
-        error,
         'min-height': props.type === 'textarea' && !props.autosize,
       },
     ]);
+  }, [align, props.type, props.autosize]);
 
-    const handleChange = (e) => {
-      const { maxlength } = props;
-      const inputValue = e?.currentTarget?.value;
-      let finalValue = inputValue;
+  const handleChange = (e) => {
+    const inputValue = e?.currentTarget?.value;
+    let finalValue = inputValue;
 
-      if (isDef(maxlength) && finalValue.length > +maxlength) {
-        finalValue = finalValue.slice(0, maxlength);
+    if (isDef(maxLength) && finalValue.length > +maxLength) {
+      finalValue = finalValue.slice(0, maxLength);
+    }
+
+    if (type === 'number' || type === 'digit') {
+      const isNumber = type === 'number';
+      finalValue = formatNumber(finalValue, isNumber, isNumber);
+    }
+
+    setValue(finalValue);
+  };
+
+  const handleFocus = (e) => {
+    setInputFocus(true);
+    props.onFocus?.(e);
+
+    // readonly not work in legacy mobile safari
+    if (readOnly) {
+      blur();
+    }
+  };
+
+  const handleBulr = (e) => {
+    setInputFocus(false);
+    props.onBlur?.(e);
+    resetScroll();
+  };
+
+  const handleKeypress = (e) => {
+    if (e.key === 'Enter' || +e.charCode === 13) {
+      if (props.type !== 'textarea') {
+        preventDefault(e);
       }
-
-      if (type === 'number' || type === 'digit') {
-        const isNumber = type === 'number';
-        finalValue = formatNumber(finalValue, isNumber, isNumber);
-      }
-
-      setValue(finalValue);
-    };
-
-    const handleFocus = (e) => {
-      setInputFocus(true);
-      props.onFocus?.(e);
-
-      // readonly not work in legacy mobile safari
-      if (readonly) {
+      // trigger blur after click keyboard search button
+      if (props.type === 'search') {
         blur();
       }
-    };
+    }
+    props.onKeypress?.(e);
+  };
 
-    const handleBulr = (e) => {
-      setInputFocus(false);
-      props.onBlur?.(e);
-      resetScroll();
-    };
-
-    const handleKeypress = (e) => {
-      if (e.key === 'Enter' || +e.charCode === 13) {
-        if (props.type !== 'textarea') {
-          preventDefault(e);
-        }
-        // trigger blur after click keyboard search button
-        if (props.type === 'search') {
-          blur();
-        }
-      }
-      props.onKeypress?.(e);
-    };
-
+  const renderInput = () => {
     if (type === 'textarea') {
       return (
         <textarea
@@ -147,7 +146,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
           className={clsx(controlClass)}
           value={value}
           disabled={disabled}
-          readOnly={readonly}
+          readOnly={readOnly}
           placeholder={placeholder || ''}
           onBlur={handleBulr}
           onFocus={handleFocus}
@@ -188,7 +187,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         name={name}
         className={clsx(controlClass)}
         disabled={disabled}
-        readOnly={readonly}
+        readOnly={readOnly}
         placeholder={placeholder || ''}
         onBlur={handleBulr}
         onFocus={handleFocus}

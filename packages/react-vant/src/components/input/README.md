@@ -30,8 +30,7 @@ export default () => {
     <Cell>
       <Input
         placeholder="请输入文本"
-        value={value}
-        onChange={setValue}
+        defaultValue="helao"
         clearable
       />
     </Cell>
