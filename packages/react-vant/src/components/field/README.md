@@ -110,7 +110,6 @@ export default () => {
   return (
     <Field
       rows={1}
-      autosize
       value={content}
       onChange={setContent}
       label="留言"

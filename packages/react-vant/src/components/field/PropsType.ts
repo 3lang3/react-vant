@@ -2,6 +2,7 @@ import React from 'react';
 import { BaseTypeProps } from '../utils';
 import { CellProps } from '../cell/PropsType';
 import { DialogProps } from '../dialog/PropsType';
+import { TextAreaProps } from '../text-area';
 
 export type FieldType = 'tel' | 'text' | 'digit' | 'number' | 'search' | 'password' | 'textarea';
 
@@ -78,6 +79,7 @@ export interface FieldCommonProps {
 
 export interface FieldProps extends FieldCommonProps, Omit<BaseTypeProps, 'children'>, Partial<Omit<CellProps, 'children'>> {
   value?: string;
+  defaultValue?: string;
   /** 输入框类型 */
   type?: FieldType;
   /** 名称，提交表单的标识符	 */
@@ -98,7 +100,7 @@ export interface FieldProps extends FieldCommonProps, Omit<BaseTypeProps, 'child
   /** 左侧文本对齐方式 */
   labelAlign?: FieldTextAlign;
   /** 是否显示字数统计，需要设置 maxlength 属性 */
-  showWordLimit?: boolean;
+  showWordLimit?: TextAreaProps['showWordLimit'];
   /** 是否在 label 后面添加冒号	 */
   colon?: boolean;
   /** 是否开启点击反馈	 */
@@ -130,11 +132,11 @@ export interface FieldProps extends FieldCommonProps, Omit<BaseTypeProps, 'child
   onClickInput?: (e: React.MouseEvent) => void;
   onClickLeftIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClickRightIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  getFieldRef?: (ref) => void;
-  getInputRef?: (ref) => void;
 }
 
 export type FieldInstance = {
   focus: () => void;
   blur: () => void;
+  clear: () => void;
+  nativeElement: HTMLTextAreaElement | HTMLInputElement | null
 };

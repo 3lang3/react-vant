@@ -3,13 +3,10 @@
 
 :root {
   --rv-input-text-color: @input-text-color;
-  --rv-input-error-text-color: @input-error-text-color;
   --rv-input-disabled-text-color: @input-disabled-text-color;
   --rv-input-placeholder-text-color: @input-placeholder-text-color;
   --rv-input-placeholder-text-font-size: @input-placeholder-text-font-size;
   --rv-input-background-color: @input-background-color;
-  --rv-input-text-area-min-height: @input-text-area-min-height;
-  --rv-input-disabled-text-color: @input-disabled-text-color;
   --rv-input-clear-icon-size: @input-clear-icon-size;
   --rv-input-clear-icon-color: @input-clear-icon-color;
 }
@@ -18,6 +15,22 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  &--center {
+    .@{rv-prefix}-input__control {
+      text-align: center;
+    }
+  }
+
+  &--right {
+    .@{rv-prefix}-input__control {
+      text-align: right;
+    }
+    .@{rv-prefix}-input__clear {
+      order: -1;
+      padding-left: 0;
+    }
+  }
 
   &__control {
     display: block;
@@ -50,16 +63,6 @@
 
     &:read-only {
       cursor: default;
-    }
-
-    &--center {
-      justify-content: center;
-      text-align: center;
-    }
-
-    &--right {
-      justify-content: flex-end;
-      text-align: right;
     }
 
     // for ios wechat

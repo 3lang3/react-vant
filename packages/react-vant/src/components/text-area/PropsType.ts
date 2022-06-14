@@ -1,4 +1,5 @@
 import React from 'react';
+import { InputClearTrigger } from '../input/PropsType';
 
 
 export type AutosizeConfig = {
@@ -28,7 +29,7 @@ export interface TextAreaProps extends Pick<
 > {
   value?: string;
   defaultValue?: string;
-  maxLength?: string;
+  maxLength?: number;
   /** 输入框行数 */
   rows?: number;
   /** 输入框占位提示文字	 */
@@ -38,7 +39,17 @@ export interface TextAreaProps extends Pick<
   /**  是否自动聚焦，iOS 系统不支持该属性	 */
   autoFocus?: boolean;
   /** 是否显示字数统计，需要设置maxlength属性 */
-  showWordLimit?: boolean;
+  showWordLimit?: boolean | (({ currentCount, maxLength }: { currentCount: number; maxLength: number; }) => React.ReactNode);
+  /** 是否启用清除图标，点击清除图标后会清空输入框	 */
+  clearable?: boolean;
+  /** 自定义清除图标 */
+  clearIcon?: React.ReactNode;
+  /**
+   * 显示清除图标的时机，
+   * always 表示输入框不为空时展示 focus 表示输入框聚焦且不为空时展示
+   * @default 'focus'
+   */
+  clearTrigger?: InputClearTrigger;
   className?: string;
   style?: React.CSSProperties;
   /**

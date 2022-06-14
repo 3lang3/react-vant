@@ -1,4 +1,13 @@
-import React, { useEffect, forwardRef, useImperativeHandle, useContext, useRef } from 'react';
+import React, {
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useContext,
+  useRef,
+  useState,
+  useMemo,
+} from 'react';
+import { Clear } from '@react-vant/icons';
 import clsx from 'clsx';
 import { TextAreaInstance, TextAreaProps } from './PropsType';
 import { isDef, isObject, resetScroll } from '../utils';
@@ -8,6 +17,7 @@ import { usePropsValue } from '../hooks';
 const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('textarea', prefixCls);
+  const [hasFocus, setHasFocus] = useState(false);
   const nativeTextAreaRef = useRef<HTMLTextAreaElement>();
   const compositionStartRef = useRef(false);
   const [value, setValue] = usePropsValue(props);
@@ -79,6 +89,7 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
     return bem('control', [
       {
         'min-height': !props.autosize,
+        clear: props.clearable,
       },
     ]);
   }, [props.autosize]);
@@ -95,6 +106,7 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
   };
 
   const handleFocus = (e) => {
+    setHasFocus(true);
     props.onFocus?.(e);
 
     // readonly not work in legacy mobile safari
@@ -104,22 +116,46 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
   };
 
   const handleBulr = (e) => {
+    setHasFocus(false);
     props.onBlur?.(e);
     resetScroll();
   };
 
   const renderWordLimit = () => {
-    if (showWordLimit && maxLength) {
-      const count = (value ? `${value}` : '').length;
+    if (showWordLimit) {
+      const currentCount = (value ? `${value}` : '').length;
       return (
         <div className={clsx(bem('word-limit'))}>
-          <span className={clsx(bem('word-num'))}>{count}</span>/{maxLength}
+          {typeof showWordLimit === 'function' ? (
+            showWordLimit({ currentCount, maxLength })
+          ) : (
+            <>
+              <span className={clsx(bem('word-num'))}>{currentCount}</span>
+              {maxLength ? `/${maxLength}` : false}
+            </>
+          )}
         </div>
       );
     }
 
     return null;
   };
+
+  const handleClear = (e) => {
+    setValue('');
+    props.onClear?.(e);
+  };
+
+  const showClear = useMemo(() => {
+    if (props.clearable && !readOnly) {
+      const hasValue = value !== '';
+      const trigger =
+        props.clearTrigger === 'always' || (props.clearTrigger === 'focus' && hasFocus);
+
+      return hasValue && trigger;
+    }
+    return false;
+  }, [value, props.clearTrigger, hasFocus]);
 
   return (
     <div className={clsx(bem(), className)} style={style}>
@@ -150,13 +186,20 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
         }}
         onClick={props.onClick as unknown as React.HTMLAttributes<HTMLTextAreaElement>['onClick']}
       />
+      {showClear &&
+        React.cloneElement(props.clearIcon as React.ReactElement, {
+          className: clsx(bem('clear')),
+          onTouchStart: handleClear,
+        })}
       {renderWordLimit()}
     </div>
   );
 });
 
 TextArea.defaultProps = {
-  rows: 2
-}
+  rows: 2,
+  clearIcon: <Clear />,
+  clearTrigger: 'focus',
+};
 
 export default TextArea;

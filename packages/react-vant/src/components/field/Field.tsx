@@ -1,52 +1,56 @@
 import React, {
   useRef,
-  useState,
-  useEffect,
   CSSProperties,
   forwardRef,
   useImperativeHandle,
-  useMemo,
   useContext,
 } from 'react';
 import { Clear, QuestionO } from '@react-vant/icons';
 import clsx from 'clsx';
 import Cell from '../cell';
 import Dialog from '../dialog';
+import Input, { InputInstance } from '../input';
+import TextArea, { TextAreaInstance } from '../text-area';
 import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
-import { isDef, addUnit, formatNumber, isObject, preventDefault, resetScroll } from '../utils';
+import { isDef, addUnit } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
-
-const ICON_SIZE = '16px';
+import { usePropsValue } from '../hooks';
 
 const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('field', prefixCls);
+  const [value, setValue] = usePropsValue(props);
+  const inputRef = useRef<InputInstance>(null);
+  const textareaRef = useRef<TextAreaInstance>(null);
 
-  const [inputFocus, setInputFocus] = useState(false);
-  const fieldRef = useRef(null);
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    if (props.getFieldRef) props.getFieldRef(fieldRef);
-    if (props.getInputRef) props.getInputRef(inputRef);
-  }, [props.getFieldRef, props.getInputRef]);
+  const elementRef = props.type === 'textarea' ? textareaRef : inputRef;
 
   const focus = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+    if (elementRef.current) {
+      elementRef.current.focus();
     }
   };
 
   const blur = () => {
-    if (inputRef.current) {
-      inputRef.current.blur();
+    if (elementRef.current) {
+      elementRef.current.blur();
+    }
+  };
+
+  const clear = () => {
+    if (elementRef.current) {
+      elementRef.current.clear();
     }
   };
 
   useImperativeHandle(ref, () => ({
     focus,
     blur,
+    clear,
+    get nativeElement() {
+      return elementRef.current.nativeElement;
+    },
   }));
 
   const getProp = (key) => {
@@ -55,20 +59,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     }
     return null;
   };
-  const getModelValue = () => String(props.value ?? '');
-
-  const showClear = useMemo(() => {
-    const readonly = getProp('readonly');
-
-    if (props.clearable && !readonly) {
-      const hasValue = getModelValue() !== '';
-      const trigger =
-        props.clearTrigger === 'always' || (props.clearTrigger === 'focus' && inputFocus);
-
-      return hasValue && trigger;
-    }
-    return false;
-  }, [props.value, props.clearTrigger, inputFocus]);
 
   const labelStyle = (): CSSProperties => {
     const labelW = getProp('labelWidth');
@@ -79,35 +69,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     return {};
   };
 
-  const adjustSize = () => {
-    const input = inputRef.current;
-
-    if (!(props.type === 'textarea' && props.autosize) || !input) {
-      return;
-    }
-
-    input.style.height = 'auto';
-
-    let height = input.scrollHeight;
-    if (isObject(props.autosize)) {
-      const { maxHeight, minHeight } = props.autosize;
-      if (maxHeight) {
-        height = Math.min(height, maxHeight);
-      }
-      if (minHeight) {
-        height = Math.max(height, minHeight);
-      }
-    }
-
-    if (height) {
-      input.style.height = `${height}px`;
-    }
-  };
-
-  useEffect(() => {
-    adjustSize();
-  }, [props.value]);
-
   const formatValue = (inputValue, trigger = 'onChange') => {
     const { formatTrigger, formatter } = props;
     if (formatter && trigger === formatTrigger) {
@@ -117,14 +78,35 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     return inputValue;
   };
 
+  const onChange = (val: string) => {
+    setValue(formatValue(val));
+  };
+
   const renderInput = () => {
-    const { type, error, name, rows, value, placeholder, disabled, readonly } = props;
+    const {
+      type,
+      error,
+      placeholder,
+      name,
+      defaultValue,
+      maxlength,
+      disabled,
+      readonly,
+      clearable,
+      clearIcon,
+      clearTrigger,
+      autofocus,
+      onClear,
+      onBlur,
+      onFocus,
+      onKeypress,
+    } = props;
     const controlClass = bem('control', [
       getProp('inputAlign'),
       {
         error,
         custom: !!props.children,
-        'min-height': props.type === 'textarea' && !props.autosize,
+        'min-height': props.type === 'textarea' && !props.autosize && !props.children,
       },
     ]);
 
@@ -132,122 +114,33 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       return <div className={clsx(controlClass)}>{props.children}</div>;
     }
 
-    const handleChange = (e) => {
-      const { maxlength, onChange } = props;
-      const inputValue = e?.currentTarget?.value;
-      let finalValue = inputValue;
-
-      if (isDef(maxlength) && finalValue.length > +maxlength) {
-        finalValue = finalValue.slice(0, maxlength);
-      }
-
-      if (type === 'number' || type === 'digit') {
-        const isNumber = type === 'number';
-        finalValue = formatNumber(finalValue, isNumber, isNumber);
-      }
-
-      finalValue = formatValue(finalValue, 'onChange');
-
-      // if (inputRef.value && inputValue !== inputRef.value.value) {
-      //   inputRef.value.value = inputValue;
-      // }
-
-      if (onChange && typeof onChange === 'function') {
-        onChange(finalValue);
-      }
-    };
-
-    const handleFocus = (e) => {
-      const { onFocus } = props;
-      setInputFocus(true);
-      if (onFocus && typeof onFocus === 'function') {
-        onFocus(e);
-      }
-
-      // readonly not work in legacy mobile safari
-      if (readonly) {
-        blur();
-      }
-    };
-
-    const handleBulr = (e) => {
-      const { onBlur } = props;
-      setInputFocus(false);
-      if (onBlur && typeof onBlur === 'function') {
-        onBlur(e);
-      }
-      resetScroll();
-    };
-
-    const handleKeypress = (e) => {
-      const { onKeypress } = props;
-
-      if (e.key === 'Enter' || +e.charCode === 13) {
-        if (props.type !== 'textarea') {
-          preventDefault(e);
-        }
-        // trigger blur after click keyboard search button
-        if (props.type === 'search') {
-          blur();
-        }
-      }
-
-      if (onKeypress && typeof onKeypress === 'function') {
-        onKeypress(e);
-      }
+    const commonProps = {
+      value,
+      onChange,
+      placeholder,
+      name,
+      defaultValue,
+      disabled,
+      clearable,
+      clearIcon,
+      clearTrigger,
+      onClear,
+      onBlur,
+      onFocus,
+      onKeypress,
+      autoFocus: autofocus,
+      readOnly: readonly,
+      maxLength: maxlength,
+      onClick: props.onClickInput,
     };
 
     if (type === 'textarea') {
       return (
-        <textarea
-          ref={inputRef}
-          name={name}
-          rows={rows}
-          className={clsx(controlClass)}
-          value={value}
-          disabled={disabled}
-          readOnly={readonly}
-          placeholder={placeholder || ''}
-          onBlur={handleBulr}
-          onFocus={handleFocus}
-          onChange={handleChange}
-          onKeyPress={handleKeypress}
-        />
+        <TextArea autosize={props.autosize} showWordLimit={props.showWordLimit} {...commonProps} />
       );
     }
 
-    let inputType = type;
-    let inputMode;
-
-    // type="number" is weired in iOS, and can't prevent dot in Android
-    // so use inputmode to set keyboard in mordern browers
-    if (type === 'number') {
-      inputType = 'text';
-      inputMode = 'decimal';
-    }
-
-    if (type === 'digit') {
-      inputType = 'tel';
-      inputMode = 'numeric';
-    }
-
-    return (
-      <input
-        value={value}
-        type={inputType}
-        inputMode={inputMode}
-        ref={inputRef}
-        name={name}
-        className={clsx(controlClass)}
-        disabled={disabled}
-        readOnly={readonly}
-        placeholder={placeholder || ''}
-        onBlur={handleBulr}
-        onFocus={handleFocus}
-        onChange={handleChange}
-        onKeyPress={handleKeypress}
-      />
-    );
+    return <Input align={props.inputAlign} type={type} {...commonProps} />;
   };
 
   const renderLeftIcon = () => {
@@ -268,20 +161,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
         {rightIcon}
       </div>
     );
-  };
-
-  const renderWordLimit = () => {
-    const { value, showWordLimit, maxlength } = props;
-    if (showWordLimit && maxlength) {
-      const count = (value ? `${value}` : '').length;
-      return (
-        <div className={clsx(bem('word-limit'))}>
-          <span className={clsx(bem('word-num'))}>{count}</span>/{maxlength}
-        </div>
-      );
-    }
-
-    return null;
   };
 
   const renderMessage = () => {
@@ -323,12 +202,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
   const renderLabel = () => {
     const { label, colon } = props;
-
     if (label) {
       return (
         <>
           {label}
-          {colon && ':'}
+          {!!colon && ':'}
           {renderTooltip()}
         </>
       );
@@ -336,19 +214,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     return null;
   };
 
-  const handleClear = (e) => {
-    const { onClear, onChange } = props;
-    inputRef.current.value = '';
-    if (onChange && typeof onChange === 'function') {
-      onChange('');
-    }
-    if (onClear && typeof onClear === 'function') {
-      onClear(e);
-    }
-  };
-
   const {
-    type,
     size,
     center,
     border,
@@ -360,13 +226,12 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     labelClass,
     valueClass,
     arrowDirection,
-    autosize,
     disabled,
     titleStyle,
     error,
   } = props;
 
-  const suffix = props.suffix ?? props.button
+  const suffix = props.suffix ?? props.button;
 
   return (
     <Cell
@@ -390,26 +255,16 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           error,
           disabled,
           [`label-${labelAlign}`]: labelAlign,
-          'min-height': type === 'textarea' && !autosize,
         }),
         className,
       )}
     >
       <div className={clsx(bem('body'))}>
-      {props.prefix && <div className={clsx(bem('prefix'))}>{props.prefix}</div>}
-        <div className={clsx(bem('control-wrapper'))} onClick={props.onClickInput}>
-          {renderInput()}
-        </div>
-        {showClear &&
-          React.cloneElement(props.clearIcon as React.ReactElement, {
-            className: clsx(bem('clear')),
-            onTouchStart: handleClear,
-            size: ICON_SIZE,
-          })}
+        {props.prefix && <div className={clsx(bem('prefix'))}>{props.prefix}</div>}
+        <div className={clsx(bem('control-wrapper'))}>{renderInput()}</div>
         {renderRightIcon()}
         {suffix && <div className={clsx(bem('suffix'))}>{suffix}</div>}
       </div>
-      {renderWordLimit()}
       {renderMessage()}
       {renderIntro()}
     </Cell>
@@ -420,6 +275,7 @@ Field.defaultProps = {
   clearIcon: <Clear />,
   clearTrigger: 'focus',
   formatTrigger: 'onChange',
+  defaultValue: '',
 };
 
 export const FIELD_KEY = Symbol('field');

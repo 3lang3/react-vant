@@ -35,6 +35,7 @@ export * from './tabs';
 export * from './sticky';
 export * from './nav-bar';
 export * from './tag';
+export * from './text-area';
 export * from './grid';
 export * from './input';
 export * from './index-bar';

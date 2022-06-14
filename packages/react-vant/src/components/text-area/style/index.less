@@ -1,25 +1,23 @@
 @import './var.less';
-@import '../../cell/style/var.less';
 
 :root {
-  --rv-textarea-text-color: @input-text-color;
-  --rv-textarea-error-text-color: @input-error-text-color;
-  --rv-textarea-disabled-text-color: @input-disabled-text-color;
-  --rv-textarea-placeholder-text-color: @input-placeholder-text-color;
-  --rv-textarea-placeholder-text-font-size: @input-placeholder-text-font-size;
-  --rv-textarea-background-color: @input-background-color;
-  --rv-textarea-text-area-min-height: @input-text-area-min-height;
-  --rv-textarea-disabled-text-color: @input-disabled-text-color;
-  --rv-textarea-clear-icon-size: @input-clear-icon-size;
-  --rv-textarea-clear-icon-color: @input-clear-icon-color;
+  --rv-textarea-text-color: @textarea-text-color;
+  --rv-textarea-disabled-text-color: @textarea-disabled-text-color;
+  --rv-textarea-placeholder-text-color: @textarea-placeholder-text-color;
+  --rv-textarea-placeholder-text-font-size: @textarea-placeholder-text-font-size;
+  --rv-textarea-background-color: @textarea-background-color;
+  --rv-textarea-min-height: @textarea-min-height;
+  --rv-textarea-clear-icon-size: @textarea-clear-icon-size;
+  --rv-textarea-clear-icon-color: @textarea-clear-icon-color;
+  --rv-textarea-word-limit-color: @textarea-word-limit-color;
+  --rv-textarea-word-limit-font-size: @textarea-word-limit-font-size;
+  --rv-textarea-word-limit-line-height: @textarea-word-limit-line-height;
 }
 
 .@{rv-prefix}-textarea {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  position: relative;
 
-  &__control {
+  .@{rv-prefix}-textarea__control {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -55,9 +53,23 @@
     &--min-height {
       min-height: var(--rv-textarea-min-height);
     }
+
+    &--clear {
+      padding-right: var(--rv-padding-md);
+    }
   }
 
-  &__word-limit {
+  .@{rv-prefix}-textarea__clear {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    z-index: 1;
+    color: var(--rv-textarea-clear-icon-color);
+    font-size: var(--rv-textarea-clear-icon-size);
+    cursor: pointer;
+  }
+
+  .@{rv-prefix}-textarea__word-limit {
     margin-top: var(--rv-padding-base);
     color: var(--rv-textarea-word-limit-color);
     font-size: var(--rv-textarea-word-limit-font-size);

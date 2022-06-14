@@ -68,10 +68,6 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     return false;
   }, [value, props.clearTrigger, inputFocus]);
 
-  const controlClass = React.useMemo(() => {
-    return bem('control', [align]);
-  }, [align]);
-
   const handleChange = (e) => {
     const inputValue = e?.currentTarget?.value;
     let finalValue = inputValue;
@@ -138,7 +134,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         inputMode={inputMode}
         ref={inputRef}
         name={name}
-        className={clsx(controlClass)}
+        className={clsx(bem('control'))}
         disabled={disabled}
         autoFocus={autoFocus}
         readOnly={readOnly}
@@ -170,7 +166,13 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
   };
 
   return (
-    <div className={clsx(bem(), className)} style={style}>
+    <div
+      className={clsx(
+        bem([align]),
+        className,
+      )}
+      style={style}
+    >
       {renderInput()}
       {showClear &&
         React.cloneElement(props.clearIcon as React.ReactElement, {
