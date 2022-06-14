@@ -78,7 +78,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     const {
       value,
       type,
-      error,
       placeholder,
       name,
       defaultValue,
@@ -95,17 +94,9 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       onKeypress,
       onOverlimit,
     } = props;
-    const controlClass = bem('control', [
-      getProp('inputAlign'),
-      {
-        error,
-        custom: !!props.children,
-        'min-height': props.type === 'textarea' && !props.autosize && !props.children,
-      },
-    ]);
 
     if (props.children) {
-      return <div className={clsx(controlClass)}>{props.children}</div>;
+      return <div className={clsx(bem('children'))}>{props.children}</div>;
     }
 
     const commonProps = {
@@ -131,7 +122,13 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
     if (type === 'textarea') {
       return (
-        <TextArea ref={textareaRef} autosize={props.autosize} showWordLimit={props.showWordLimit} {...commonProps} />
+        <TextArea
+          ref={textareaRef}
+          autosize={props.autosize}
+          showWordLimit={props.showWordLimit}
+          rows={props.rows}
+          {...commonProps}
+        />
       );
     }
 

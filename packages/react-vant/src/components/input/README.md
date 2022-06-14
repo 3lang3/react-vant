@@ -16,22 +16,7 @@ import { Input } from 'react-vant';
 
 可以通过 `value` 和 `onChange` 双向绑定输入框的值，通过 `placeholder` 设置占位提示文字。
 
-```jsx
-/**
- * title: 基础用法
- */
-import React, { useState } from 'react';
-import { Input, Cell } from 'react-vant';
-
-export default () => {
-  const [value, setValue] = useState('');
-  return (
-    <Cell>
-      <Input type="number" placeholder="请输入文本" value={value} onChange={setValue} />
-    </Cell>
-  );
-};
-```
+<code title="基础用法" title="" src="./demo/base.tsx" />
 
 ### 清除按钮
 
@@ -105,7 +90,7 @@ export default () => {
       <Cell>
         <Input placeholder="内容剧中" value={value} onChange={setValue} align="center" />
       </Cell>
-      <Cell style={{ marginTop: 10 }}>
+      <Cell>
         <Input placeholder="内容右对齐" value={value} onChange={setValue} align="right" />
       </Cell>
     </>
@@ -133,7 +118,7 @@ export default () => {
       <Cell>
         <Input value={value1} onChange={setValue1} readOnly />
       </Cell>
-      <Cell style={{ marginTop: 10 }}>
+      <Cell>
         <Input value={value2} onChange={setValue2} disabled />
       </Cell>
     </>

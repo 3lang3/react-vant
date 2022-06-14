@@ -123,6 +123,7 @@ export default () => {
 | value | 输入值 | _string_ | - |
 | defaultValue | 默认值 | _string_ | - |
 | name | 名称，提交表单的标识符 | _string_ | - |
+| rows | 输入框行数 | _number_ | 2 |
 | maxLength | 输入的最大字符数 | _number_ | - |
 | placeholder | 文本域占位提示文字 | _string_ | - |
 | disabled | 是否禁用文本域 | _boolean_ | `false` |
@@ -136,14 +137,14 @@ export default () => {
 
 ### Events
 
-| 事件     | 说明                   | 回调参数            |
-| -------- | ---------------------- | ------------------- |
-| onChange | 文本域内容变化时触发   | _val: string_       |
-| onFocus  | 文本域获得焦点时触发   | _event: MouseEvent_ |
-| onBlur   | 文本域失去焦点时触发   | _event: MouseEvent_ |
-| onClear  | 点击清除按钮时触发     | _event: MouseEvent_ |
-| onClick  | 点击 `TextArea` 时触发 | _event: MouseEvent_ |
-| onOverlimit  | 当输入值超出 `maxLength` 时触发 | - |
+| 事件        | 说明                            | 回调参数            |
+| ----------- | ------------------------------- | ------------------- |
+| onChange    | 文本域内容变化时触发            | _val: string_       |
+| onFocus     | 文本域获得焦点时触发            | _event: MouseEvent_ |
+| onBlur      | 文本域失去焦点时触发            | _event: MouseEvent_ |
+| onClear     | 点击清除按钮时触发              | _event: MouseEvent_ |
+| onClick     | 点击 `TextArea` 时触发          | _event: MouseEvent_ |
+| onOverlimit | 当输入值超出 `maxLength` 时触发 | -                   |
 
 ### 方法
 

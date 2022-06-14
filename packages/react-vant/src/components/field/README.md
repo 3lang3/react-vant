@@ -1,4 +1,4 @@
-# Field 输入框
+# Field 表单输入框
 
 ## 介绍
 
@@ -14,7 +14,7 @@ import { Field } from 'react-vant';
 
 ### 基础用法
 
-可以通过 `value` 和 `input` 双向绑定输入框的值，通过 `placeholder` 设置占位提示文字。
+可以通过 `value` 和 `onChange` 双向绑定输入框的值，通过 `placeholder` 设置占位提示文字。
 
 ```jsx
 /**
@@ -35,33 +35,6 @@ export default () => {
       value={value}
       onChange={setValue}
     />
-  );
-};
-```
-
-### 自定义类型
-
-根据 `type` 属性定义不同类型的输入框，默认值为 `text`。
-
-<code title="自定义类型" src="./demo/type.tsx" />
-
-### 禁用输入框
-
-通过 `readonly` 将输入框设置为只读状态，通过 `disabled` 将输入框设置为禁用状态。
-
-```jsx
-/**
- * title: 禁用输入框
- */
-import React from 'react';
-import { Cell, Field } from 'react-vant';
-
-export default () => {
-  return (
-    <Cell.Group>
-      <Field label="文本" value="输入框只读" readonly />
-      <Field label="文本" value="输入框已禁用" disabled />
-    </Cell.Group>
   );
 };
 ```
@@ -207,7 +180,8 @@ export default () => {
 | labelAlign | 左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | inputAlign | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | errorMessageAlign | 错误提示文案对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| autosize | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 { maxHeight: 100, minHeight: 50 }，<br>单位为`px` | _boolean \| object_ | `false` |
+| autosize | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 `{ maxHeight: 100, minHeight: 50 }`，<br>单位为`px` | _boolean \| object_ | `false` |
+| rows | 输入框行数，只对 textarea 有效 | _number_ | 2 |
 | leftIcon | 左侧图标 | _ReactNode_ | - |
 | rightIcon | 右侧图标 | _ReactNode_ | - |
 | prefix | 自定义输入框前部内容 | _ReactNode_ | - |
@@ -215,16 +189,16 @@ export default () => {
 
 ### Events
 
-| 事件             | 说明                          | 回调参数                |
-| ---------------- | ----------------------------- | ----------------------- |
-| onChange         | 当值变化时触发                | _val: string \| number_ |
-| onFocus          | 输入框获得焦点时触发          | _event: MouseEvent_     |
-| onBlur           | 输入框失去焦点时触发          | _event: MouseEvent_     |
-| onClear          | 点击清除按钮时触发            | _event: MouseEvent_     |
-| onClick          | 点击 Field 时触发             | _event: MouseEvent_     |
-| onClickInput     | 点击输入区域时触发            | _event: MouseEvent_     |
-| onClickLeftIcon  | 点击左侧图标时触发            | _event: MouseEvent_     |
-| onClickRightIcon | 点击右侧图标时触发            | _event: MouseEvent_     |
+| 事件             | 说明                            | 回调参数                |
+| ---------------- | ------------------------------- | ----------------------- |
+| onChange         | 当值变化时触发                  | _val: string \| number_ |
+| onFocus          | 输入框获得焦点时触发            | _event: MouseEvent_     |
+| onBlur           | 输入框失去焦点时触发            | _event: MouseEvent_     |
+| onClear          | 点击清除按钮时触发              | _event: MouseEvent_     |
+| onClick          | 点击 Field 时触发               | _event: MouseEvent_     |
+| onClickInput     | 点击输入区域时触发              | _event: MouseEvent_     |
+| onClickLeftIcon  | 点击左侧图标时触发              | _event: MouseEvent_     |
+| onClickRightIcon | 点击右侧图标时触发              | _event: MouseEvent_     |
 | onOverlimit      | 当输入值超出 `maxLength` 时触发 | -                       |
 
 ### 方法
@@ -242,34 +216,26 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                 | 默认值                   | 描述 |
-| ------------------------------------ | ------------------------ | ---- |
-| --rv-field-label-width               | _6.2em_                  | -    |
-| --rv-field-label-color               | _var(--rv-gray-7)_       | -    |
-| --rv-field-label-margin-right        | _var(--rv-padding-sm)_   | -    |
-| --rv-field-input-text-color          | _var(--rv-text-color)_   | -    |
-| --rv-field-input-background-color    | _transparent_            | -    |
-| --rv-field-input-error-text-color    | _var(--rv-danger-color)_ | -    |
-| --rv-field-input-disabled-text-color | _var(--rv-gray-5)_       | -    |
-| --rv-field-placeholder-text-color    | _var(--rv-gray-5)_       | -    |
-| --rv-field-icon-size                 | _16px_                   | -    |
-| --rv-field-clear-icon-size           | _16px_                   | -    |
-| --rv-field-clear-icon-color          | _var(--rv-gray-5)_       | -    |
-| --rv-field-right-icon-color          | _var(--rv-gray-6)_       | -    |
-| --rv-field-error-message-color       | _var(--rv-danger-color)_ | -    |
-| --rv-field-error-message-font-size   | _12px_                   | -    |
-| --rv-field-text-area-min-height      | _60px_                   | -    |
-| --rv-field-word-limit-color          | _var(--rv-gray-7)_       | -    |
-| --rv-field-word-limit-font-size      | _var(--rv-font-size-sm)_ | -    |
-| --rv-field-word-limit-line-height    | _16px_                   | -    |
-| --rv-field-disabled-text-color       | _var(--rv-gray-5)_       | -    |
-| --rv-field-required-mark-color       | _var(--rv-red)_          | -    |
+| 名称                               | 默认值                   | 描述 |
+| ---------------------------------- | ------------------------ | ---- |
+| --rv-field-label-width             | _6.2em_                  | -    |
+| --rv-field-label-color             | _var(--rv-gray-7)_       | -    |
+| --rv-field-label-margin-right      | _var(--rv-padding-sm)_   | -    |
+| --rv-field-input-error-text-color  | _var(--rv-danger-color)_ | -    |
+| --rv-field-icon-size               | _16px_                   | -    |
+| --rv-field-right-icon-color        | _var(--rv-gray-6)_       | -    |
+| --rv-field-error-message-color     | _var(--rv-danger-color)_ | -    |
+| --rv-field-error-message-font-size | _12px_                   | -    |
+| --rv-field-disabled-text-color     | _var(--rv-gray-5)_       | -    |
+| --rv-field-required-mark-color     | _var(--rv-red)_          | -    |
+| --rv-field-intro-color             | _var(--rv-gray-6)_          | -    |
+| --rv-field-tooltip-icon-color      | _var(--rv-gray-5)_          | -    |
 
 ## 常见问题
 
 ### 设置 type 为 number 后，为什么 input 标签的类型仍为 text?
 
-HTML 原生的 `type="number"` 属性在 iOS 和 Android 系统上都存在一定问题，比如 maxlength 属性不生效、无法获取到完整的输入内容等。因此设置 type 为 `number` 时，Field 不会使用原生的 `type="number"` 属性，而是用现代浏览器支持的 [inputmode 属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/inputmode)来控制输入键盘的类型。
+HTML 原生的 `type="number"` 属性在 iOS 和 Android 系统上都存在一定问题，比如 maxlength 属性不生效、无法获取到完整的输入内容等。因此设置 type 为 `number` 时，`Field` 不会使用原生的 `type="number"` 属性，而是用现代浏览器支持的 [inputmode 属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/inputmode)来控制输入键盘的类型。
 
 ### 在桌面端点击清除按钮无效？
 
