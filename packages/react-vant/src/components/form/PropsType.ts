@@ -5,6 +5,30 @@ import type { Meta } from 'rc-field-form/lib/interface';
 import type { BaseTypeProps } from '../utils';
 import { FieldProps } from '../field/PropsType';
 
+/** Form.Item 继承自 Field 等属性 */
+export type FieldSharedProps = Pick<
+  FieldProps,
+  | 'style'
+  | 'className'
+  | 'label'
+  | 'name'
+  | 'size'
+  | 'colon'
+  | 'intro'
+  | 'tooltip'
+  | 'required'
+  | 'isLink'
+  | 'errorMessageAlign'
+  | 'arrowDirection'
+  | 'labelClass'
+  | 'labelWidth'
+  | 'labelAlign'
+  | 'leftIcon'
+  | 'rightIcon'
+  | 'prefix'
+  | 'suffix'
+>
+
 export type FormLayout = 'vertical' | 'horizontal';
 export type FormProps = {
   /** 表单布局 */
