@@ -95,7 +95,7 @@ import { Checkbox } from 'react-vant';
 | value          | 所有选中项的标识符                    | _any[]_            | -          |
 | defaultChecked | 默认选中项的标识符                    | _any[]_            | -          |
 | disabled       | 是否禁用所有复选框                    | _boolean_          | `false`    |
-| max            | 最大可选数，`0`为无限制               | _number \| string_ | `0`        |
+| max            | 最大可选数                            | _number \| string_ | -        |
 | direction      | 排列方向，可选值为 `horizontal`       | _string_           | `vertical` |
 | iconSize       | 所有复选框的图标大小，默认单位为 `px` | _number \| string_ | `20px`     |
 | checkedColor   | 所有复选框的选中状态颜色              | _string_           | `#3f45ff`  |
