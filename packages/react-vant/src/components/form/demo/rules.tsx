@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Field, Toast, Form } from 'react-vant';
+import { Button, Input, Toast, Form } from 'react-vant';
 
 export default () => {
   const onFinish = (values) => {
@@ -22,7 +22,7 @@ export default () => {
         label="正则校验"
         rules={[{ pattern: /\d{6}/, message: '请输入6位数字' }]}
       >
-        <Field placeholder="正则校验" />
+        <Input placeholder="正则校验" />
       </Form.Item>
       <Form.Item
         name="text2"
@@ -38,7 +38,7 @@ export default () => {
           },
         ]}
       >
-        <Field placeholder="函数校验" />
+        <Input placeholder="函数校验" />
       </Form.Item>
       <Form.Item
         label="异步函数校验"
@@ -62,7 +62,7 @@ export default () => {
           },
         ]}
       >
-        <Field placeholder="异步函数校验" />
+        <Input placeholder="异步函数校验" />
       </Form.Item>
     </Form>
   );

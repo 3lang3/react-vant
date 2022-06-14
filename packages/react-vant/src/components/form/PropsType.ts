@@ -32,21 +32,22 @@ export type MemoInputProps = {
 
 export interface FormItemProps<Values = any>
   extends Omit<RcFieldProps, 'children'>,
-    Pick<FormProps, 'showValidateMessage' | 'border' | 'layout'>,
-    Pick<
-      FieldProps,
-      | 'style'
-      | 'className'
-      | 'tooltip'
-      | 'intro'
-      | 'colon'
-      | 'labelWidth'
-      | 'labelAlign'
-      | 'labelClass'
-      | 'onClick'
-      | 'inputAlign'
-      | 'errorMessageAlign'
-    > {
+  Pick<FormProps, 'showValidateMessage' | 'border' | 'layout'>,
+  Pick<
+  FieldProps,
+  | 'style'
+  | 'className'
+  | 'tooltip'
+  | 'intro'
+  | 'colon'
+  | 'labelWidth'
+  | 'labelAlign'
+  | 'labelClass'
+  | 'onClick'
+  | 'inputAlign'
+  | 'isLink'
+  | 'errorMessageAlign'
+  > {
   label?: string;
   required?: boolean;
   noStyle?: boolean;
@@ -74,6 +75,7 @@ export type FormItemLayoutProps = Pick<
   | 'showValidateMessage'
   | 'inputAlign'
   | 'errorMessageAlign'
+  | 'isLink'
 > & {
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;

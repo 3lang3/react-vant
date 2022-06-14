@@ -187,6 +187,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
 Input.defaultProps = {
   clearIcon: <Clear />,
   clearTrigger: 'focus',
+  defaultValue: ''
 };
 
 export default Input;

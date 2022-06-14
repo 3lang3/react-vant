@@ -96,6 +96,7 @@ const FormItem: FC<FormItemProps> = (props) => {
     errorMessageAlign,
     border,
     layout,
+    isLink,
     ...fieldProps
   } = props;
 
@@ -139,6 +140,7 @@ const FormItem: FC<FormItemProps> = (props) => {
         inputAlign={inputAlign}
         errorMessageAlign={errorMessageAlign}
         showValidateMessage={showValidateMessage}
+        isLink={isLink}
         onClick={onClick}
       >
         {baseChildren}

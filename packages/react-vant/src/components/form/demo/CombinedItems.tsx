@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Calendar, DatetimePicker, Field, Picker, Popup } from 'react-vant';
+import { Calendar, DatetimePicker, Picker, Popup, Input } from 'react-vant';
 import type { FormItemProps } from 'react-vant';
 
 type CustomItemProps = {
   value?: any;
   onChange?: (v: any) => void;
   placeholder?: string;
+  name?: string;
 } & Omit<FormItemProps, 'children'>;
 
 export function PickerItem(props: CustomItemProps) {
@@ -26,7 +27,7 @@ export function PickerItem(props: CustomItemProps) {
   const columns = ['南京', '苏州', '常州', '淮安', '扬州', '南通', '宿迁', '泰州', '无锡'];
   return (
     <>
-      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
+      <Input {...fieldProps} readOnly value={value} onClick={onShow} />
       <Popup position="bottom" round visible={visible} onClose={onCancel}>
         <Picker title="选择城市" columns={columns} onConfirm={onConfirm} onCancel={onCancel} />
       </Popup>
@@ -50,7 +51,7 @@ export function DatetimePickerItem(props: CustomItemProps) {
   };
   return (
     <>
-      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
+      <Input {...fieldProps} readOnly value={value} onClick={onShow} />
       <Popup position="bottom" round visible={visible} onClose={onCancel}>
         <DatetimePicker
           title="选择年月日"
@@ -69,7 +70,7 @@ export function DatetimePickerItem(props: CustomItemProps) {
 export function CalendarItem(props: CustomItemProps) {
   const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
-
+  console.log(fieldProps)
   const onShow = () => {
     setVisible(true);
   };
@@ -82,7 +83,7 @@ export function CalendarItem(props: CustomItemProps) {
   };
   return (
     <>
-      <Field isLink readonly {...fieldProps} value={value} onClick={onShow} />
+      <Input {...fieldProps} readOnly value={value} onClick={onShow} />
       <Calendar visible={visible} onClose={onCancel} onConfirm={onConfirm} />
     </>
   );

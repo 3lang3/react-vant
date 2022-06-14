@@ -200,6 +200,7 @@ TextArea.defaultProps = {
   rows: 2,
   clearIcon: <Clear />,
   clearTrigger: 'focus',
+  defaultValue: ''
 };
 
 export default TextArea;

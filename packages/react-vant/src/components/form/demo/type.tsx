@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Button,
   Checkbox,
-  Field,
+  TextArea,
   Radio,
   Rate,
   Slider,
@@ -81,15 +81,15 @@ export default () => {
         <Uploader />
       </Form.Item>
       <Form.Item name="textarea" label="详细地址">
-        <Field rows={3} autosize type="textarea" maxlength={140} showWordLimit />
+        <TextArea rows={3} autosize maxLength={140} showWordLimit />
       </Form.Item>
-      <Form.Item name="picker" label="选择器" customField>
+      <Form.Item name="picker" label="选择器" isLink>
         <PickerItem placeholder="选择城市" />
       </Form.Item>
-      <Form.Item name="datetime" label="选择时间" customField>
+      <Form.Item name="datetime" label="选择时间" isLink>
         <DatetimePickerItem placeholder="选择时间" />
       </Form.Item>
-      <Form.Item name="calendar" label="日历" customField>
+      <Form.Item name="calendar" label="日历" isLink>
         <CalendarItem placeholder="选择日期" />
       </Form.Item>
     </Form>
