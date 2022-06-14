@@ -60,6 +60,8 @@ export interface TextAreaProps extends Pick<
   onChange?: (val: string) => void;
   onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onKeypress?: (e: React.KeyboardEvent) => void;
+  /** 当输入值超出maxLength时触发 */
+  onOverlimit?: () => void;
 }
 
 export type TextAreaInstance = {

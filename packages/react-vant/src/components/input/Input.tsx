@@ -74,6 +74,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
 
     if (isDef(maxLength) && finalValue.length > +maxLength) {
       finalValue = finalValue.slice(0, maxLength);
+      props.onOverlimit?.()
     }
 
     if (type === 'number' || type === 'digit') {

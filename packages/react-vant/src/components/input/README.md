@@ -69,13 +69,19 @@ export default () => {
  * title: 最大输入字符
  */
 import React, { useState } from 'react';
-import { Input, Cell } from 'react-vant';
+import { Input, Cell, Toast } from 'react-vant';
 
 export default () => {
   const [value, setValue] = useState('');
   return (
     <Cell>
-      <Input placeholder="最多输入10个字符" value={value} onChange={setValue} maxLength={10} />
+      <Input
+        placeholder="最多输入10个字符"
+        value={value}
+        onChange={setValue}
+        maxLength={10}
+        onOverlimit={() => Toast.info('不能超过10个字符哦🍺')}
+      />
     </Cell>
   );
 };
@@ -157,13 +163,14 @@ export default () => {
 
 ### Events
 
-| 事件     | 说明                 | 回调参数            |
-| -------- | -------------------- | ------------------- |
-| onChange | 当值变化时触发       | _val: string_       |
-| onFocus  | 输入框获得焦点时触发 | _event: MouseEvent_ |
-| onBlur   | 输入框失去焦点时触发 | _event: MouseEvent_ |
-| onClear  | 点击清除按钮时触发   | _event: MouseEvent_ |
-| onClick  | 点击 `Input` 时触发  | _event: MouseEvent_ |
+| 事件        | 说明                          | 回调参数            |
+| ----------- | ----------------------------- | ------------------- |
+| onChange    | 当值变化时触发                | _val: string_       |
+| onFocus     | 输入框获得焦点时触发          | _event: MouseEvent_ |
+| onBlur      | 输入框失去焦点时触发          | _event: MouseEvent_ |
+| onClear     | 点击清除按钮时触发            | _event: MouseEvent_ |
+| onClick     | 点击 `Input` 时触发           | _event: MouseEvent_ |
+| onOverlimit | 当输入值超出 `maxLength` 时触发 | -                   |
 
 ### 方法
 

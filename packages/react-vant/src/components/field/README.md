@@ -19,7 +19,6 @@ import { Field } from 'react-vant';
 ```jsx
 /**
  * title: 基础用法
- * card: true
  */
 import React, { useState } from 'react';
 import { Field } from 'react-vant';
@@ -44,7 +43,7 @@ export default () => {
 
 根据 `type` 属性定义不同类型的输入框，默认值为 `text`。
 
-<code title="自定义类型" card src="./demo/type.tsx" />
+<code title="自定义类型" src="./demo/type.tsx" />
 
 ### 禁用输入框
 
@@ -53,7 +52,6 @@ export default () => {
 ```jsx
 /**
  * title: 禁用输入框
- * card: true
  */
 import React from 'react';
 import { Cell, Field } from 'react-vant';
@@ -72,25 +70,25 @@ export default () => {
 
 通过 `leftIcon` 和 `rightIcon` 配置输入框两侧的图标，通过设置 `clearable` 在输入过程中展示清除图标。
 
-<code title="显示图标" card src="./demo/icon.tsx" />
+<code title="显示图标" src="./demo/icon.tsx" />
 
 ### 错误提示
 
 设置 `required` 属性表示这是一个必填项，可以配合 `error` 或 `errorMessage` 属性显示对应的错误提示。
 
-<code title="错误提示" card src="./demo/error.tsx" />
+<code title="错误提示" src="./demo/error.tsx" />
 
 ### 插入按钮
 
 通过 `prefix` `suffix` 属性可以在输入框前面和尾部插入自定义内容。
 
-<code src="./demo/button.tsx" title="插入按钮" card />
+<code src="./demo/button.tsx" title="插入按钮" />
 
 ### 格式化输入内容
 
 通过 `formatter` 属性可以对输入的内容进行格式化，通过 `format-trigger` 属性可以指定执行格式化的时机，默认在输入时进行格式化。
 
-<code title="格式化输入内容" card src="./demo/formatter.tsx">
+<code title="格式化输入内容" src="./demo/formatter.tsx">
 
 ### 高度自适应
 
@@ -99,7 +97,6 @@ export default () => {
 ```jsx
 /**
  * title: 高度自适应
- * card: true
  */
 import React, { useState } from 'react';
 import { Field } from 'react-vant';
@@ -127,7 +124,6 @@ export default () => {
 ```jsx
 /**
  * title: 显示字数统计
- * card: true
  */
 import React, { useState } from 'react';
 import { Field } from 'react-vant';
@@ -157,8 +153,7 @@ export default () => {
 
 ```jsx
 /**
- * title: 显示字数统计
- * card: true
+ * title: 输入框内容对齐
  */
 import React from 'react';
 import { Field } from 'react-vant';
@@ -172,7 +167,7 @@ export default () => {
 
 通过 ref 可以获取到 Field 实例并调用实例方法。
 
-<code title="ref调用" card src="./demo/ref.tsx" />
+<code title="ref调用" src="./demo/ref.tsx" />
 
 ## API
 
@@ -220,16 +215,17 @@ export default () => {
 
 ### Events
 
-| 事件             | 说明                 | 回调参数                |
-| ---------------- | -------------------- | ----------------------- |
-| onChange         | 当值变化时触发      | _val: string \| number_ |
-| onFocus          | 输入框获得焦点时触发 | _event: MouseEvent_     |
-| onBlur           | 输入框失去焦点时触发 | _event: MouseEvent_     |
-| onClear          | 点击清除按钮时触发   | _event: MouseEvent_     |
-| onClick          | 点击 Field 时触发    | _event: MouseEvent_     |
-| onClickInput     | 点击输入区域时触发   | _event: MouseEvent_     |
-| onClickLeftIcon  | 点击左侧图标时触发   | _event: MouseEvent_     |
-| onClickRightIcon | 点击右侧图标时触发   | _event: MouseEvent_     |
+| 事件             | 说明                          | 回调参数                |
+| ---------------- | ----------------------------- | ----------------------- |
+| onChange         | 当值变化时触发                | _val: string \| number_ |
+| onFocus          | 输入框获得焦点时触发          | _event: MouseEvent_     |
+| onBlur           | 输入框失去焦点时触发          | _event: MouseEvent_     |
+| onClear          | 点击清除按钮时触发            | _event: MouseEvent_     |
+| onClick          | 点击 Field 时触发             | _event: MouseEvent_     |
+| onClickInput     | 点击输入区域时触发            | _event: MouseEvent_     |
+| onClickLeftIcon  | 点击左侧图标时触发            | _event: MouseEvent_     |
+| onClickRightIcon | 点击右侧图标时触发            | _event: MouseEvent_     |
+| onOverlimit      | 当输入值超出 `maxLength` 时触发 | -                       |
 
 ### 方法
 

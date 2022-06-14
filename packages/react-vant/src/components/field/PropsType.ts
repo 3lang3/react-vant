@@ -132,6 +132,7 @@ export interface FieldProps extends FieldCommonProps, Omit<BaseTypeProps, 'child
   onClickInput?: (e: React.MouseEvent) => void;
   onClickLeftIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClickRightIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onOverlimit: () => void;
 }
 
 export type FieldInstance = {

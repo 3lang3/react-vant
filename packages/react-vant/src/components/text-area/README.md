@@ -1,4 +1,4 @@
-# TextArea 文本域
+# TextArea 多行输入框
 
 ## 介绍
 
@@ -143,6 +143,7 @@ export default () => {
 | onBlur   | 文本域失去焦点时触发   | _event: MouseEvent_ |
 | onClear  | 点击清除按钮时触发     | _event: MouseEvent_ |
 | onClick  | 点击 `TextArea` 时触发 | _event: MouseEvent_ |
+| onOverlimit  | 当输入值超出 `maxLength` 时触发 | - |
 
 ### 方法
 

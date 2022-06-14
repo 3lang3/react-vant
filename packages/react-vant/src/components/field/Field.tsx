@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  CSSProperties,
-  forwardRef,
-  useImperativeHandle,
-  useContext,
-} from 'react';
+import React, { useRef, CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
 import { Clear, QuestionO } from '@react-vant/icons';
 import clsx from 'clsx';
 import Cell from '../cell';
@@ -15,12 +9,10 @@ import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
 import { isDef, addUnit } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
-import { usePropsValue } from '../hooks';
 
 const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('field', prefixCls);
-  const [value, setValue] = usePropsValue(props);
   const inputRef = useRef<InputInstance>(null);
   const textareaRef = useRef<TextAreaInstance>(null);
 
@@ -79,11 +71,12 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   };
 
   const onChange = (val: string) => {
-    setValue(formatValue(val));
+    props.onChange?.(formatValue(val));
   };
 
   const renderInput = () => {
     const {
+      value,
       type,
       error,
       placeholder,
@@ -100,6 +93,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       onBlur,
       onFocus,
       onKeypress,
+      onOverlimit,
     } = props;
     const controlClass = bem('control', [
       getProp('inputAlign'),
@@ -128,6 +122,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       onBlur,
       onFocus,
       onKeypress,
+      onOverlimit,
       autoFocus: autofocus,
       readOnly: readonly,
       maxLength: maxlength,
@@ -136,11 +131,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
     if (type === 'textarea') {
       return (
-        <TextArea autosize={props.autosize} showWordLimit={props.showWordLimit} {...commonProps} />
+        <TextArea ref={textareaRef} autosize={props.autosize} showWordLimit={props.showWordLimit} {...commonProps} />
       );
     }
 
-    return <Input align={props.inputAlign} type={type} {...commonProps} />;
+    return <Input ref={inputRef} align={props.inputAlign} type={type} {...commonProps} />;
   };
 
   const renderLeftIcon = () => {
