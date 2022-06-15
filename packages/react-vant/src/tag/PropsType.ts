@@ -24,4 +24,5 @@ export interface TagProps extends BaseTypeProps {
   show?: boolean;
   onClose?: (e: React.MouseEvent) => void;
   onClick?: (e: React.MouseEvent) => void;
+  children?: string;
 }
