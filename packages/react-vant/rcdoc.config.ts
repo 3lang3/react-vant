@@ -99,7 +99,6 @@ export default defineConfig({
           '/components/field',
           '/components/form',
           '/components/input',
-          '/components/text-area',
           '/components/number-keyboard',
           '/components/password-input',
           '/components/picker',

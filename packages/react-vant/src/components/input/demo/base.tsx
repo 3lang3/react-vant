@@ -6,7 +6,7 @@ export default () => {
     text: '',
     tel: '',
     digit: '',
-    number: '',
+    num: '',
     password: '',
   });
   return (
@@ -36,9 +36,9 @@ export default () => {
       </Cell>
       <Cell>
         <Input
-          value={state.number}
+          value={state.num}
           type="number"
-          onChange={(number) => updateState({ number })}
+          onChange={(num) => updateState({ num })}
           placeholder="请输入数字"
         />
       </Cell>

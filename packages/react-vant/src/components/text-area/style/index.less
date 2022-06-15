@@ -1,14 +1,8 @@
 @import './var.less';
+@import '../../input/style/index.less';
 
 :root {
-  --rv-textarea-text-color: @textarea-text-color;
-  --rv-textarea-disabled-text-color: @textarea-disabled-text-color;
-  --rv-textarea-placeholder-text-color: @textarea-placeholder-text-color;
-  --rv-textarea-placeholder-text-font-size: @textarea-placeholder-text-font-size;
-  --rv-textarea-background-color: @textarea-background-color;
   --rv-textarea-min-height: @textarea-min-height;
-  --rv-textarea-clear-icon-size: @textarea-clear-icon-size;
-  --rv-textarea-clear-icon-color: @textarea-clear-icon-color;
   --rv-textarea-word-limit-color: @textarea-word-limit-color;
   --rv-textarea-word-limit-font-size: @textarea-word-limit-font-size;
   --rv-textarea-word-limit-line-height: @textarea-word-limit-line-height;
@@ -26,26 +20,26 @@
     min-width: 0; // for flex-shrink in field__button
     margin: 0;
     padding: 0;
-    color: var(--rv-textarea-text-color);
+    color: var(--rv-input-text-color);
     line-height: inherit;
     text-align: left;
-    background-color: var(--rv-textarea-background-color);
+    background-color: var(--rv-input-background-color);
     border: 0;
     resize: none;
     // https://github.com/youzan/vant/pull/9418
     user-select: auto;
 
     &::placeholder {
-      color: var(--rv-textarea-placeholder-text-color);
-      font-size: var(--rv-textarea-placeholder-text-font-size);
+      color: var(--rv-input-placeholder-text-color);
+      font-size: var(--rv-input-placeholder-text-font-size);
     }
 
     &:disabled {
-      color: var(--rv-textarea-disabled-text-color);
+      color: var(--rv-input-disabled-text-color);
       cursor: not-allowed;
       opacity: 1;
       // fix disabled color in mobile safari
-      -webkit-text-fill-color: var(--rv-textarea-disabled-text-color);
+      -webkit-text-fill-color: var(--rv-input-disabled-text-color);
     }
 
     &:read-only {
@@ -66,8 +60,8 @@
     top: 4px;
     right: 0;
     z-index: 1;
-    color: var(--rv-textarea-clear-icon-color);
-    font-size: var(--rv-textarea-clear-icon-size);
+    color: var(--rv-input-clear-icon-color);
+    font-size: var(--rv-input-clear-icon-size);
     cursor: pointer;
   }
 

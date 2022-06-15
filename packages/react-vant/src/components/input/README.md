@@ -45,29 +45,68 @@ export default () => {
 };
 ```
 
-### 最大输入字符
+### 多行输入
 
-`maxLength` 属性可以控制输入框最大输入字符数量。
+`Input.TextArea` 可用于多行输入， `autosize` 可以使文本域自适应高度，还能设置其最小和最大高度。
 
 ```jsx
 /**
- * title: 最大输入字符
+ * title: 多行输入
  */
 import React, { useState } from 'react';
-import { Input, Cell, Toast } from 'react-vant';
+import { Input, Cell } from 'react-vant';
 
 export default () => {
-  const [value, setValue] = useState('');
   return (
-    <Cell>
-      <Input
-        placeholder="最多输入10个字符"
-        value={value}
-        onChange={setValue}
-        maxLength={10}
-        onOverlimit={() => Toast.info('不能超过10个字符哦🍺')}
-      />
-    </Cell>
+    <>
+      <Cell>
+        <Input.TextArea placeholder="多行输入" />
+      </Cell>
+      <Cell style={{ marginTop: 10 }}>
+        <Input.TextArea placeholder="自适应高度" autosize />
+      </Cell>
+      <Cell style={{ marginTop: 10 }}>
+        <Input.TextArea
+          placeholder="最小高度80，最大高度120"
+          autosize={{ minHeight: 80, maxHeight: 120 }}
+        />
+      </Cell>
+    </>
+  );
+};
+```
+
+### 字数统计
+
+通过 `maxLength` 和 `showWordLimit` 可以开启输入框字数显示。
+
+```jsx
+/**
+ * title: 字数统计
+ */
+import React, { useState } from 'react';
+import { Toast, Input, Cell } from 'react-vant';
+
+export default () => {
+  return (
+    <>
+      <Cell>
+        <Input
+          placeholder="最多输入10个字符"
+          maxLength={10}
+          onOverlimit={() => Toast.info('不能超过10个字符哦🍺')}
+        />
+      </Cell>
+      <Cell style={{ marginTop: 10 }}>
+        <Input.TextArea placeholder="字数统计" maxLength={50} showWordLimit />
+      </Cell>
+      <Cell style={{ marginTop: 10 }}>
+        <Input.TextArea
+          placeholder="自定义输出"
+          showWordLimit={({ currentCount }) => <span>已经输入{currentCount}个字啦 ✍️</span>}
+        />
+      </Cell>
+    </>
   );
 };
 ```
@@ -135,7 +174,7 @@ export default () => {
 | value | 当前输入的值 | _string_ | - |
 | defaultValue | 默认值 | _string_ | - |
 | name | 名称，提交表单的标识符 | _string_ | - |
-| type | 输入框类型, 可选值为 `tel` `digit` `number` `textarea` `password` 等 | _string_ | `text` |
+| type | 输入框类型, 可选值为 `tel` `digit` `number` `textarea` `password` 等, <br /> 对 `Input.TextArea` 无效 | _string_ | `text` |
 | maxLength | 输入的最大字符数 | _number_ | - |
 | placeholder | 输入框占位提示文字 | _string_ | - |
 | disabled | 是否禁用输入框 | _boolean_ | `false` |
@@ -144,29 +183,37 @@ export default () => {
 | clearIcon | 自定义清除图标 | _ReactNode_ | `<Clear />` |
 | clearTrigger | 显示清除图标的时机，<br /> `always` 表示输入框不为空时展示，<br /> `focus` 表示输入框聚焦且不为空时展示 | `always` `focus` | `focus` |
 | autoFocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
-| align | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| align | 输入框对齐方式，可选值为 `center` `right`，对 `Input.TextArea` 无效 | _string_ | `left` |
+
+### Input.TextArea Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| rows | 输入框行数 | _number_ | 2 |
+| showWordLimit | 是否显示字数统计，支持自定义内容 | _boolean\|({ currentCount, maxLengh }) => ReactNode_ | `false` |
+| autosize | 是否自适应内容高度，可传入对象,如 `{ maxHeight: 100, minHeight: 50 }`，单位为`px` | _boolean \| object_ | `false` |
 
 ### Events
 
-| 事件        | 说明                          | 回调参数            |
-| ----------- | ----------------------------- | ------------------- |
-| onChange    | 当值变化时触发                | _val: string_       |
-| onFocus     | 输入框获得焦点时触发          | _event: MouseEvent_ |
-| onBlur      | 输入框失去焦点时触发          | _event: MouseEvent_ |
-| onClear     | 点击清除按钮时触发            | _event: MouseEvent_ |
-| onClick     | 点击 `Input` 时触发           | _event: MouseEvent_ |
+| 事件        | 说明                            | 回调参数            |
+| ----------- | ------------------------------- | ------------------- |
+| onChange    | 当值变化时触发                  | _val: string_       |
+| onFocus     | 输入框获得焦点时触发            | _event: MouseEvent_ |
+| onBlur      | 输入框失去焦点时触发            | _event: MouseEvent_ |
+| onClear     | 点击清除按钮时触发              | _event: MouseEvent_ |
+| onClick     | 点击 `Input` 时触发             | _event: MouseEvent_ |
 | onOverlimit | 当输入值超出 `maxLength` 时触发 | -                   |
 
 ### 方法
 
 通过 `ref` 可以获取到 `Input` 实例并调用实例方法
 
-| 方法名        | 说明                  | 参数                       | 返回值 |
-| ------------- | --------------------- | -------------------------- | ------ |
-| focus         | 获取输入框焦点        | -                          | -      |
-| blur          | 取消输入框焦点        | -                          | -      |
-| clear         | 清空输入内容          | -                          | -      |
-| nativeElement | 获取原始 `input` 元素 | _HtmlInputElement \| null_ | -      |
+| 方法名        | 说明                | 参数                  | 返回值 |
+| ------------- | ------------------- | --------------------- | ------ |
+| focus         | 获取输入框焦点      | -                     | -      |
+| blur          | 取消输入框焦点      | -                     | -      |
+| clear         | 清空输入内容        | -                     | -      |
+| nativeElement | 获取原始 `DOM` 元素 | _HTMLElement \| null_ | -      |
 
 ## 主题定制
 
@@ -174,15 +221,19 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                              | 默认值                 | 描述 |
-| --------------------------------- | ---------------------- | ---- |
-| --rv-input-text-color             | _var(--rv-text-color)_ | -    |
-| --rv-input-background-color       | _transparent_          | -    |
-| --rv-input-disabled-text-color    | _var(--rv-gray-5)_     | -    |
-| --rv-input-placeholder-text-color | _var(--rv-gray-5)_     | -    |
-| --rv-input-clear-icon-size        | _16px_                 | -    |
-| --rv-input-clear-icon-color       | _var(--rv-gray-5)_     | -    |
-| --rv-input-disabled-text-color    | _var(--rv-gray-5)_     | -    |
+| 名称                                | 默认值                   | 描述 |
+| ----------------------------------- | ------------------------ | ---- |
+| --rv-input-text-color               | _var(--rv-text-color)_   | -    |
+| --rv-input-background-color         | _transparent_            | -    |
+| --rv-input-disabled-text-color      | _var(--rv-gray-5)_       | -    |
+| --rv-input-placeholder-text-color   | _var(--rv-gray-5)_       | -    |
+| --rv-input-clear-icon-size          | _16px_                   | -    |
+| --rv-input-clear-icon-color         | _var(--rv-gray-5)_       | -    |
+| --rv-input-disabled-text-color      | _var(--rv-gray-5)_       | -    |
+| --rv-textaea-min-height             | _60px_                   | -    |
+| --rv-textaea-word-limit-color       | _var(--rv-gray-7)_       | -    |
+| --rv-textaea-word-limit-font-size   | _var(--rv-font-size-sm)_ | -    |
+| --rv-textaea-word-limit-line-height | _16px_                   | -    |
 
 ## 常见问题
 

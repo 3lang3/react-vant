@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Button,
   Checkbox,
-  TextArea,
+  Input,
   Radio,
   Rate,
   Slider,
@@ -81,7 +81,7 @@ export default () => {
         <Uploader />
       </Form.Item>
       <Form.Item name="textarea" label="详细地址">
-        <TextArea rows={3} autosize maxLength={140} showWordLimit />
+        <Input.TextArea rows={3} autosize maxLength={140} showWordLimit />
       </Form.Item>
       <Form.Item name="picker" label="选择器" isLink>
         <PickerItem placeholder="选择城市" />
