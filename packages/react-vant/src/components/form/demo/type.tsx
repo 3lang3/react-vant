@@ -24,7 +24,6 @@ export default () => {
   return (
     <Form
       colon
-      border={false}
       form={form}
       onFinish={onFinish}
       footer={

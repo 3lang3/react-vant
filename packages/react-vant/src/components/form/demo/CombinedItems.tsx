@@ -70,7 +70,7 @@ export function DatetimePickerItem(props: CustomItemProps) {
 export function CalendarItem(props: CustomItemProps) {
   const { value, onChange, ...fieldProps } = props;
   const [visible, setVisible] = useState(false);
-  console.log(fieldProps)
+
   const onShow = () => {
     setVisible(true);
   };

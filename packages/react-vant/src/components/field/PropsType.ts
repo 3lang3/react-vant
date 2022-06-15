@@ -99,6 +99,8 @@ export interface FieldProps extends FieldCommonProps, Omit<BaseTypeProps, 'child
   labelWidth?: number | string;
   /** 左侧文本对齐方式 */
   labelAlign?: FieldTextAlign;
+  /** 右侧输入控件容器的对齐方式 */
+  controlAlign?: FieldTextAlign;
   /** 是否显示字数统计，需要设置 maxlength 属性 */
   showWordLimit?: TextAreaProps['showWordLimit'];
   /** 是否在 label 后面添加冒号	 */

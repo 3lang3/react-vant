@@ -16,13 +16,13 @@ import { Form } from 'react-vant';
 
 ### 基础用法
 
-在表单中，每个 Form.Item 组件代表一个表单项，使用 Form.Item 的 `rules` 属性定义校验规则，**Form.Item 是基于 Field 和 [RcField](https://github.com/react-component/field-form#field) 的封装**。
+在表单中，每个 Form.Item 组件代表一个表单项，使用 Form.Item 的 `rules` 属性定义校验规则。
 
 <code title="基础用法" src="./demo/base.tsx" />
 
 ### 校验规则
 
-通过 `rules` 定义表单校验规则，点击此处查看文档[rule](https://github.com/react-component/field-form#rule)。
+通过 `rules` 定义表单校验规则，查看更多[rule文档](https://github.com/react-component/field-form#rule)。
 
 <code title="校验规则" src="./demo/rules.tsx" />
 

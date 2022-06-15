@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Cell from '../cell';
 import Dialog from '../dialog';
 import Input, { InputInstance } from '../input';
-import TextArea, { TextAreaInstance } from '../text-area';
+import { TextAreaInstance } from '../text-area/PropsType';
 import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
 import { isDef, addUnit } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
@@ -122,7 +122,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
 
     if (type === 'textarea') {
       return (
-        <TextArea
+        <Input.TextArea
           ref={textareaRef}
           autosize={props.autosize}
           showWordLimit={props.showWordLimit}
@@ -159,15 +159,14 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     const message = props.errorMessage;
 
     if (message) {
-      const errorMessageAlign = getProp('errorMessageAlign');
-      return <div className={clsx(bem('error-message', errorMessageAlign))}>{message}</div>;
+      return <div className={clsx(bem('error-message'))}>{message}</div>;
     }
     return null;
   };
 
   const renderIntro = () => {
     if (props.intro) {
-      return <div className={clsx(bem('intro', getProp('inputAlign')))}>{props.intro}</div>;
+      return <div className={clsx(bem('intro'))}>{props.intro}</div>;
     }
     return null;
   };
@@ -217,6 +216,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     className,
     labelClass,
     valueClass,
+    controlAlign,
     arrowDirection,
     disabled,
     titleStyle,
@@ -237,7 +237,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       clickable={clickable}
       extra={props.extra}
       titleStyle={{ ...labelStyle(), ...titleStyle }}
-      valueClass={clsx(bem('value'), valueClass)}
+      valueClass={clsx(bem('value', [controlAlign]), valueClass)}
       titleClass={clsx(bem('label', labelAlign), labelClass)}
       arrowDirection={arrowDirection}
       onClick={props.onClick}

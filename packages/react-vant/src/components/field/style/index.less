@@ -61,6 +61,32 @@
 
   &__value {
     overflow: visible;
+
+    &--center {
+      .@{rv-prefix}-field__children,
+      .@{rv-prefix}-field__intro,
+      .@{rv-prefix}-field__error-message {
+        justify-content: center;
+        text-align: center;
+      }
+      .@{rv-prefix}-input,
+      .@{rv-prefix}-textarea {
+        text-align: center;
+      }
+    }
+
+    &--right {
+      .@{rv-prefix}-field__children,
+      .@{rv-prefix}-field__intro,
+      .@{rv-prefix}-field__error-message {
+        justify-content: flex-end;
+        text-align: right;
+      }
+      .@{rv-prefix}-input,
+      .@{rv-prefix}-textarea {
+        text-align: right;
+      }
+    }
   }
 
   &__body {
@@ -118,15 +144,9 @@
     color: var(--rv-field-error-message-color);
     font-size: var(--rv-field-error-message-font-size);
     line-height: 1.4em;
+    display: flex;
+    justify-content: flex-start;
     text-align: left;
-
-    &--center {
-      text-align: center;
-    }
-
-    &--right {
-      text-align: right;
-    }
   }
 
   &__tooltip {
@@ -142,12 +162,7 @@
     font-size: var(--rv-field-error-message-font-size);
     line-height: 1.4em;
     text-align: left;
-
-    &--right {
-      text-align: right;
-    }
-    &--center {
-      text-align: center;
-    }
+    display: flex;
+    justify-content: flex-start;
   }
 }

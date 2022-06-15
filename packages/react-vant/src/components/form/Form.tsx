@@ -19,7 +19,7 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     colon,
     border,
     labelAlign,
-    inputAlign,
+    controlAlign,
     showValidateMessage,
     ...formProps
   } = props;
@@ -31,7 +31,7 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
         colon,
         border,
         showValidateMessage,
-        inputAlign,
+        controlAlign,
         labelAlign,
       }}
     >
