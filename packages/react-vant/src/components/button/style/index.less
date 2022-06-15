@@ -1,0 +1,297 @@
+@import './var.less';
+
+:root {
+  --rv-button-mini-height: @button-mini-height;
+  --rv-button-mini-padding: @button-mini-padding;
+  --rv-button-mini-font-size: @button-mini-font-size;
+  --rv-button-small-height: @button-small-height;
+  --rv-button-small-padding: @button-small-padding;
+  --rv-button-small-font-size: @button-small-font-size;
+  --rv-button-normal-padding: @button-normal-padding;
+  --rv-button-normal-font-size: @button-normal-font-size;
+  --rv-button-large-height: @button-large-height;
+  --rv-button-default-height: @button-default-height;
+  --rv-button-default-line-height: @button-default-line-height;
+  --rv-button-default-font-size: @button-default-font-size;
+  --rv-button-default-color: @button-default-color;
+  --rv-button-default-background-color: @button-default-background-color;
+  --rv-button-default-border-color: @button-default-border-color;
+  --rv-button-primary-color: @button-primary-color;
+  --rv-button-primary-background-color: @button-primary-background-color;
+  --rv-button-primary-border-color: @button-primary-border-color;
+  --rv-button-success-color: @button-success-color;
+  --rv-button-success-background-color: @button-success-background-color;
+  --rv-button-success-border-color: @button-success-border-color;
+  --rv-button-danger-color: @button-danger-color;
+  --rv-button-danger-background-color: @button-danger-background-color;
+  --rv-button-danger-border-color: @button-danger-border-color;
+  --rv-button-warning-color: @button-warning-color;
+  --rv-button-warning-background-color: @button-warning-background-color;
+  --rv-button-warning-border-color: @button-warning-border-color;
+  --rv-button-border-width: @button-border-width;
+  --rv-button-border-radius: @button-border-radius;
+  --rv-button-round-border-radius: @button-round-border-radius;
+  --rv-button-plain-background-color: @button-plain-background-color;
+  --rv-button-disabled-opacity: @button-disabled-opacity;
+  --rv-button-icon-size: @button-icon-size;
+  --rv-button-loading-icon-size: @button-loading-icon-size;
+}
+
+.@{rv-prefix}-button {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: var(--rv-button-default-height);
+  margin: 0;
+  padding: 0;
+  font-size: var(--rv-button-default-font-size);
+  line-height: var(--rv-button-default-line-height);
+  text-align: center;
+  border-radius: var(--rv-button-border-radius);
+  cursor: pointer;
+  transition: opacity var(--rv-animation-duration-fast);
+  -webkit-appearance: none;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: var(--rv-black);
+    border: inherit;
+    border-color: var(--rv-black);
+    border-radius: inherit; /* inherit parent's border radius */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    content: ' ';
+  }
+
+  &:active::before {
+    opacity: 0.1;
+  }
+
+  &--loading,
+  &--disabled {
+    &::before {
+      display: none;
+    }
+  }
+
+  &--default {
+    color: var(--rv-button-default-color);
+    background: var(--rv-button-default-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-default-border-color);
+  }
+
+  &--primary {
+    color: var(--rv-button-primary-color);
+    background: var(--rv-button-primary-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-primary-border-color);
+  }
+
+  &--success,
+  &--info {
+    color: var(--rv-button-success-color);
+    background: var(--rv-button-success-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-success-border-color);
+  }
+
+  &--danger {
+    color: var(--rv-button-danger-color);
+    background: var(--rv-button-danger-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-danger-border-color);
+  }
+
+  &--warning {
+    color: var(--rv-button-warning-color);
+    background: var(--rv-button-warning-background-color);
+    border: var(--rv-button-border-width) solid var(--rv-button-warning-border-color);
+  }
+
+  &--plain {
+    background: var(--rv-button-plain-background-color);
+
+    &.@{rv-prefix}-button--primary {
+      color: var(--rv-button-primary-background-color);
+    }
+
+    &.@{rv-prefix}-button--success,
+    &.@{rv-prefix}-button--info {
+      color: var(--rv-button-success-background-color);
+    }
+
+    &.@{rv-prefix}-button--danger {
+      color: var(--rv-button-danger-background-color);
+    }
+
+    &.@{rv-prefix}-button--warning {
+      color: var(--rv-button-warning-background-color);
+    }
+  }
+
+  &--large {
+    width: 100%;
+    height: var(--rv-button-large-height);
+  }
+
+  &--normal {
+    padding: var(--rv-button-normal-padding);
+    font-size: var(--rv-button-normal-font-size);
+  }
+
+  &--small {
+    height: var(--rv-button-small-height);
+    padding: var(--rv-button-small-padding);
+    font-size: var(--rv-button-small-font-size);
+  }
+
+  &__loading {
+    color: inherit;
+    font-size: inherit;
+
+    .@{rv-prefix}-loading__spinner {
+      width: var(--rv-button-loading-icon-size);
+      height: var(--rv-button-loading-icon-size);
+      color: currentColor;
+    }
+  }
+
+  &--mini {
+    height: var(--rv-button-mini-height);
+    padding: var(--rv-button-mini-padding);
+    font-size: var(--rv-button-mini-font-size);
+
+    & + .@{rv-prefix}-button--mini {
+      margin-left: var(--rv-padding-base);
+    }
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: var(--rv-button-disabled-opacity);
+  }
+
+  &--loading {
+    cursor: default;
+  }
+
+  &--round {
+    border-radius: var(--rv-button-round-border-radius);
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  // align-items are ignored when flex container is a button in legacy safari
+  // see: https://bugs.webkit.org/show_bug.cgi?id=169700
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    // fix icon vertical align
+    // see: https://github.com/youzan/vant/issues/7617
+    &::before {
+      content: ' ';
+    }
+  }
+
+  &__text {
+    max-width: 100%;
+  }
+
+  &__icon {
+    font-size: var(--rv-button-icon-size);
+    line-height: inherit;
+  }
+
+  &__icon + &__text,
+  &__loading + &__text,
+  &__text + &__icon,
+  &__text + &__loading {
+    margin-left: var(--rv-padding-base);
+  }
+
+  &--hairline {
+    border-width: 0;
+
+    &::after {
+      border-color: inherit;
+      border-radius: calc(var(--rv-button-border-radius) * 2);
+    }
+
+    &.@{rv-prefix}-button--round::after {
+      border-radius: var(--rv-button-round-border-radius);
+    }
+
+    &.@{rv-prefix}-button--square::after {
+      border-radius: 0;
+    }
+  }
+
+  &-group {
+    display: inline-flex;
+    overflow: hidden;
+    border: var(--rv-button-border-width) solid var(--rv-button-default-border-color);
+    border-radius: var(--rv-button-border-radius);
+
+    .@{rv-prefix}-button {
+      border-radius: 0;
+      flex: 1;
+
+      &__text {
+        white-space: nowrap;
+      }
+    }
+
+    .@{rv-prefix}-button {
+      border-width: 0 var(--rv-button-border-width) 0 0;
+
+      &:last-child {
+        border-width: 0;
+      }
+    }
+
+    &--primary {
+      border-color: var(--rv-button-primary-border-color);
+    }
+
+    &--danger {
+      border-color: var(--rv-button-danger-border-color);
+    }
+
+    &--warning {
+      border-color: var(--rv-button-warning-border-color);
+    }
+
+    &--success,
+    &--info {
+      border-color: var(--rv-button-success-border-color);
+    }
+
+    &--round {
+      border-radius: var(--rv-button-round-border-radius);
+    }
+
+    &--square {
+      border-radius: 0;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: var(--rv-button-disabled-opacity);
+
+      .@{rv-prefix}-button {
+        --rv-button-disabled-opacity: 1;
+      }
+    }
+  }
+}

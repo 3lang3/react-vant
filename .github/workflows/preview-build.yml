@@ -1,0 +1,46 @@
+name: Preview Build
+
+on:
+  pull_request:
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Run Npm Scripts
+        run: |
+          node -v
+          npm install pnpm -g
+          pnpm -v
+          pnpm i
+          yarn docs:build
+      - name: Generator 404 file
+        run: |
+          cp ./packages/react-vant/docs-dist/index.html ./packages/react-vant/docs-dist/404.html
+      - run: |
+          zip -r dist.zip ./packages/react-vant/docs-dist
+      - name: upload dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist.zip
+          retention-days: 5
+
+      - name: Save PR number
+        if: ${{ always() }}
+        run: echo ${{ github.event.number }} > ./pr-id.txt
+
+      - name: Upload PR number
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: pr
+          path: ./pr-id.txt

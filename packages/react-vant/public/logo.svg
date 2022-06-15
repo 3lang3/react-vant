@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1001px" height="1001px" viewBox="0 0 1001 1001" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Slice 1</title>
+    <defs>
+        <linearGradient x1="42.2598926%" y1="34.4006369%" x2="67.0418957%" y2="78.8224505%" id="linearGradient-1">
+            <stop stop-color="#3F45FF" offset="0%"></stop>
+            <stop stop-color="#7367F0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M501,0 L500.999193,285.967 L748.899394,145 L925,255.047503 L925,748.11717 L500.898193,1000.01638 L500.898193,714.049 L252.998799,855.016381 L76.8981935,744.968878 L76.8981935,251.899211 L501,0 Z M500.999193,286.085 L501,286.168987 L314.798042,394.50834 L314.798042,600.910662 L500.898193,713.931 L500.898193,713.847394 L687.100151,605.508041 L687.100151,399.105719 L500.999193,286.085 Z" id="形状结合" fill="url(#linearGradient-1)"></path>
+    </g>
+</svg>

@@ -244,6 +244,105 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "class-undefined",
+      "name": "野漫横江",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58300575?v=4",
+      "profile": "https://github.com/class-undefined",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "NoDocCat",
+      "name": "NoDocCat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20502666?v=4",
+      "profile": "https://blog.ndc.work",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "xni220",
+      "name": "zhong yiqun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2124073?v=4",
+      "profile": "https://github.com/xni220",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "phpmaple",
+      "name": "KooFrank",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3366943?v=4",
+      "profile": "http://koofrank.com/",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "songhn233",
+      "name": "Songhn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47357585?v=4",
+      "profile": "http://songhn.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "JR0613",
+      "name": "晚枫",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58196913?v=4",
+      "profile": "https://github.com/JR0613",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "lxdaixin128",
+      "name": "lxdaixin128",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46842520?v=4",
+      "profile": "https://github.com/lxdaixin128",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "zoujpxyz2017",
+      "name": "zoujpxyz2017",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28721603?v=4",
+      "profile": "https://github.com/zoujpxyz2017",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "SingleShadow",
+      "name": "SingleShadow",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18462822?v=4",
+      "profile": "https://github.com/SingleShadow",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "lanten",
+      "name": "Lanten",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16203518?v=4",
+      "profile": "https://www.lanten.me",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "gislu",
+      "name": "Alex Lu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6077314?v=4",
+      "profile": "http://blog.csdn.net/ahlxt123",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

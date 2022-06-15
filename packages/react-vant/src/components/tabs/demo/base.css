@@ -1,0 +1,25 @@
+.tabs-item {
+  color: #fff;
+  font-size: 100px;
+  height: 80vh;
+  overflow-x: auto;
+}
+
+.tabs-item > div {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.tabs-0 {
+  /* height: 50vh; */
+  background-color: chocolate;
+}
+
+.tabs-1 {
+  /* height: 150vh; */
+  background-color: cornflowerblue;
+}
+
+.tabs-2 {
+  /* height: 200vh; */
+  background-color: darkmagenta;
+}

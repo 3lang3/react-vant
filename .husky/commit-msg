@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# commitlint config example
+# https://github.com/conventional-changelog/commitlint/blob/master/@commitlint/config-conventional/index.js
+npx commitlint --edit $1

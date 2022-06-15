@@ -1,0 +1,161 @@
+@import './var.less';
+
+.@{rv-prefix}-floating-ball {
+  user-select: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: @floating-ball-z-index;
+
+  &__base {
+    cursor: pointer;
+    position: relative;
+    width: var(--rv-floating-ball-size);
+    height: var(--rv-floating-ball-size);
+  }
+
+  &__menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: @floating-ball-transition;
+    &__item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translate(0);
+      transition: @floating-ball-transition;
+      each(range(0s, 0.2s, 0.05), {
+        &:nth-child(@{index}) {
+          transition-delay: @value;
+        }
+      });
+    }
+  }
+
+  &--active &__menu {
+    opacity: 1;
+    visibility: visible;
+
+    &__item {
+      &:nth-child(1) {
+        transform: translateY(-150%);
+      }
+      &:nth-child(2) {
+        transform: translate(-110%, -110%);
+      }
+      &:nth-child(3) {
+        transform: translateX(-150%);
+      }
+      &:nth-child(4) {
+        transform: translate(-110%, 110%);
+      }
+      &:nth-child(5) {
+        transform: translateY(150%);
+      }
+    }
+
+    &--left {
+      .@{rv-prefix}-floating-ball__menu__item {
+        &:nth-child(2) {
+          transform: translate(110%, -110%);
+        }
+        &:nth-child(3) {
+          transform: translateX(150%);
+        }
+        &:nth-child(4) {
+          transform: translate(110%, 110%);
+        }
+      }
+    }
+
+    &--vertical {
+      .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-600%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateY(@value);
+          }
+        });
+      }
+      &.list-1 .@{rv-prefix}-floating-ball__menu__item {
+        &:nth-child(1) {
+          transform: translateY(-120%);
+        }
+      }
+      &.list-2 .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-240%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateY(@value);
+          }
+        });
+      }
+      &.list-3 .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-360%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateY(@value);
+          }
+        });
+      }
+      &.list-4 .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-480%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateY(@value);
+          }
+        });
+      }
+      &.@{rv-prefix}-floating-ball__menu--top .@{rv-prefix}-floating-ball__menu__item {
+        each(range(120%, 600%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateY(@value);
+          }
+        });
+      }
+    }
+    &--horizontal {
+      .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-600%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateX(@value);
+          }
+        });
+      }
+      &.list-1 .@{rv-prefix}-floating-ball__menu__item {
+        &:nth-child(1) {
+          transform: translateX(-120%);
+        }
+      }
+      &.list-2 .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-240%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateX(@value);
+          }
+        });
+      }
+      &.list-3 .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-360%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateX(@value);
+          }
+        });
+      }
+      &.list-4 .@{rv-prefix}-floating-ball__menu__item {
+        each(range(-480%, -120%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateX(@value);
+          }
+        });
+      }
+      &.@{rv-prefix}-floating-ball__menu--left .@{rv-prefix}-floating-ball__menu__item {
+        each(range(120%, 600%, 120), {
+          &:nth-child(@{index}) {
+            transform: translateX(@value);
+          }
+        });
+      }
+    }
+  }
+}

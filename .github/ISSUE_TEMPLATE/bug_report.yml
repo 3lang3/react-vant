@@ -15,8 +15,8 @@ body:
         support or usage questions. Questions here don't have as much visibility as they do elsewhere. Before
         you ask a question, here are some resources to get help first:
 
-        - Read the docs: https://3lang3.github.io/react-vant/#/zh-CN/home
-        - Explore examples: https://3lang3.github.io/react-vant/mobile.html
+        - Read the docs: https://react-vant.3lang.dev/guide/quickstart
+        - Explore examples: https://react-vant.3lang.dev/components/flex
         - Ask in GitHub Discussions: https://github.com/3lang3/react-vant/discussions
         - Ask in WeChat: add this WeChat, we will invite you to the WeChat discussion group later
         <img src="https://user-images.githubusercontent.com/33956589/144778828-97660d67-69a1-4eee-8ef1-3c7f91ab48b9.png" width = "200" height = "200" alt="WeChat" align=center />
@@ -28,10 +28,10 @@ body:
 
         ### Code Example:
 
-        - [Create React App](https://github.com/3lang3/react-vant-template/tree/main/template/create-react-app)
-        - [Umi](https://github.com/3lang3/react-vant-template/tree/main/template/umi)
-        - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/template/nextjs)
-        - [Vite](https://github.com/3lang3/react-vant-template/tree/main/template/vite)
+        - [Create React App](https://github.com/3lang3/react-vant-template/tree/main/next/create-react-app)
+        - [Umi](https://github.com/3lang3/react-vant-template/tree/main/next/umi)
+        - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs)
+        - [Vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
 
   - type: checkboxes
     id: packages
@@ -39,8 +39,7 @@ body:
       label: Which React Vant packages are impacted?
       options:
         - label: '`react-vant` (React Vant core)'
-        - label: '`@react-vant/cli`'
-        - label: '`create-react-vant-cli-app`'
+        - label: '`react-vant-icons`(React Vant Icon)'
   - type: input
     attributes:
       label: What version of React Vant are you using?
@@ -48,31 +47,16 @@ body:
       required: true
   - type: input
     attributes:
-      label: What version of Node are you using? Minimum supported version is 12.
-    validations:
-      required: true
+      label: Reproduce live demo(codesandebox or stackblitz)?
+  - type: markdown
+    attributes:
+      value: 'demo: https://codesandbox.io/s/3mhk4b?resolutionWidth=320&resolutionHeight=675&file=/App.tsx'
   - type: textarea
     attributes:
-      label: Steps to Reproduce
-      description: Steps to reproduce the behavior.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Expected Behavior
+      label: Descripition
       description: A concise description of what you expected to happen.
     validations:
       required: true
-  - type: textarea
-    attributes:
-      label: Actual Behavior
-      description: A concise description of what you're experiencing.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Context
-      description: In what environment are you using React Vant?
   - type: markdown
     attributes:
       value: 'Thanks for completing our form!'
