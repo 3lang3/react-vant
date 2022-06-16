@@ -178,7 +178,7 @@ export default () => {
 | labelClass | 左侧文本额外类名 | _any_ | - |
 | labelWidth | 左侧文本宽度，默认单位为`px` | _number \| string_ | `6.2em` |
 | labelAlign | 左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| inputAlign | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| controlAlign | 右侧输入控件容器的对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | errorMessageAlign | 错误提示文案对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | autosize | 是否自适应内容高度，只对 textarea 有效，<br>可传入对象,如 `{ maxHeight: 100, minHeight: 50 }`，<br>单位为`px` | _boolean \| object_ | `false` |
 | rows | 输入框行数，只对 textarea 有效 | _number_ | 2 |

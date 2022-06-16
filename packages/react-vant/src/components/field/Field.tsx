@@ -132,7 +132,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       );
     }
 
-    return <Input ref={inputRef} align={props.inputAlign} type={type} {...commonProps} />;
+    return <Input ref={inputRef} type={type} {...commonProps} />;
   };
 
   const renderLeftIcon = () => {
