@@ -156,15 +156,7 @@ const FormItem: FC<FormItemProps> = (props) => {
         const isRequired =
           required !== undefined
             ? required
-            : !!(
-                rules &&
-                rules.some((rule) => {
-                  if (rule && typeof rule === 'object' && rule.required) {
-                    return true;
-                  }
-                  return false;
-                })
-              );
+            : rules && rules.some((rule) => !!(rule && typeof rule === 'object' && rule.required));
 
         const fieldId = (toArray(name).length && meta ? meta.name : []).join('_');
         if (shouldUpdate && dependencies) {
@@ -196,6 +188,12 @@ const FormItem: FC<FormItemProps> = (props) => {
             'Must set `name` or use render props when `dependencies` is set.',
           );
         } else if (React.isValidElement(children)) {
+          if (children.props.defaultValue) {
+            devWarning(
+              'Form.Item',
+              '`defaultValue` will not work on controlled Field. You should use `initialValues` of Form instead.',
+            );
+          }
           const childProps = { ...children.props, ...control };
 
           if (!childProps.id) {
@@ -233,6 +231,7 @@ const FormItem: FC<FormItemProps> = (props) => {
           }
           childNode = children;
         }
+
         return renderLayout(childNode, fieldId, meta, isRequired);
       }}
     </RcField>

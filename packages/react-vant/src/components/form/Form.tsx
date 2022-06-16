@@ -25,21 +25,21 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
   } = props;
 
   return (
-    <FormContext.Provider
-      value={{
-        layout,
-        colon,
-        border,
-        showValidateMessage,
-        controlAlign,
-        labelAlign,
-      }}
-    >
-      <RcForm className={clsx(bem(), className)} style={style} ref={ref} {...formProps}>
+    <RcForm className={clsx(bem(), className)} style={style} ref={ref} {...formProps}>
+      <FormContext.Provider
+        value={{
+          layout,
+          colon,
+          border,
+          showValidateMessage,
+          controlAlign,
+          labelAlign,
+        }}
+      >
         {children}
-        {footer && <div className={clsx(bem('footer'))}>{footer}</div>}
-      </RcForm>
-    </FormContext.Provider>
+      </FormContext.Provider>
+      {footer && <div className={clsx(bem('footer'))}>{footer}</div>}
+    </RcForm>
   );
 });
 

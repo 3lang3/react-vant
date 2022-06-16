@@ -1,8 +1,12 @@
 import './style/index.less';
-import { useForm, List } from 'rc-field-form';
-import Form from './Form';
-import FormItem from './FormItem';
+import { useWatch, useForm, List } from 'rc-field-form';
+import { FormSubscribe as Subscribe } from './FormSubscribe'
+import _Form from './Form';
+import Item from './FormItem';
 
-const FormNamespace = Object.assign(Form, { Item: FormItem, useForm, List });
-export { FormNamespace as Form, FormItem };
+const Form = Object.assign(_Form, { Item, useForm, List, Subscribe, useWatch });
+
+export { Form };
 export type { FormProps, FormItemProps, FormInstance } from './PropsType';
+export type { FormSubscribeProps } from './FormSubscribe'
+
