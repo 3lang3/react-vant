@@ -11,7 +11,6 @@ import {
   Uploader,
   Form,
 } from 'react-vant';
-import { CalendarItem, DatetimePickerItem, PickerItem } from './CombinedItems';
 
 export default () => {
   const [form] = Form.useForm();
@@ -81,15 +80,6 @@ export default () => {
       </Form.Item>
       <Form.Item name="textarea" label="详细地址">
         <Input.TextArea rows={3} autosize maxLength={140} showWordLimit />
-      </Form.Item>
-      <Form.Item name="picker" label="选择器" isLink>
-        <PickerItem placeholder="选择城市" />
-      </Form.Item>
-      <Form.Item name="datetime" label="选择时间" isLink>
-        <DatetimePickerItem placeholder="选择时间" />
-      </Form.Item>
-      <Form.Item name="calendar" label="日历" isLink>
-        <CalendarItem placeholder="选择日期" />
       </Form.Item>
     </Form>
   );

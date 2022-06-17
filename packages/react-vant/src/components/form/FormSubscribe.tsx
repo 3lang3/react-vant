@@ -16,6 +16,7 @@ export interface FormSubscribeProps {
   children: ChildrenType;
 }
 
+//  移植自antd mobile: https://github.com/ant-design/ant-design-mobile/blob/master/src/components/form/form-subscribe.tsx
 export const FormSubscribe: FC<FormSubscribeProps> = (props) => {
   const update = useUpdate();
   const form = useContext(FieldContext);

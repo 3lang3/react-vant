@@ -11,6 +11,7 @@ const DEFAULT_FONT = {
   family: 'sans-serif',
 };
 
+// 移植自antd mobile: https://github.com/ant-design/ant-design-mobile/blob/master/src/components/water-mark/water-mark.tsx
 const WaterMark: React.FC<WaterMarkProps> = (props) => {
   const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
   const [bem] = createNamespace('water-mark', prefixCls);

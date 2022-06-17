@@ -125,6 +125,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     // calculate the position of the elements
     // and find the elements that needs to be rendered
     const onScroll = () => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const top = getScrollTop(bodyRef.current!);
       const bottom = top + bodyHeightRef.current;
 

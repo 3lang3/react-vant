@@ -8,6 +8,7 @@ import { useSetState, useUpdateEffect } from '../hooks';
 import Tabs from '../tabs';
 import { TabsClickTabEventParams } from '../tabs/PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { devWarning } from '../utils/dev-log';
 
 const INITIAL_STATE = {
   tabs: [],
@@ -160,15 +161,14 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         const selectedOption = options.find((tabs) => tabs[valueKey] === v);
         if (!selectedOption)
           throw Error(
-            'Cascader: unable to match options correctly, Please check value or defaultValue props.',
+            'unable to match options correctly, Please check value or defaultValue props.',
           );
         initialState.tabs.push({ options, selectedOption });
         return selectedOption[childrenKey];
       }, props.options);
       return initialState;
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
+      devWarning('Cascader', error.message);
       return INITIAL_STATE;
     }
   };

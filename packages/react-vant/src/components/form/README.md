@@ -4,7 +4,7 @@
 
 用于数据录入、校验，支持输入框、单选框、复选框、文件上传等类型。
 
-> Form 组件是基于[rc-field-form](https://github.com/react-component/field-form)的封装。
+> Form 组件是基于[rc-field-form](https://github.com/react-component/field-form)的封装
 
 ## 引入
 
@@ -30,15 +30,28 @@ import { Form } from 'react-vant';
 
 <code title="表单项类型" src="./demo/type.tsx" />
 
+### 自定义表单项
+
+自定义或第三方的表单控件，也可以与 Form 组件一起使用。只要该组件遵循以下的约定：
+
+- 提供受控属性 `value` 值同名的属性。
+- 提供 `onChange` 事件。
+
+<code src="./demo/custom.tsx" title="自定义表单项" />
+
+### 更新订阅
+
+在某些场景，例如修改某个字段值后出现新的字段选项、或希望表单任意变化都对某一个区域进行渲染，可以通过 `Form.Subscribe` 实现。 
+
+<code title="更新订阅" title="Form.Subscribe" src="./demo/subscribe.tsx" />
+
 ### 动态增减表单项
 
 Form.List 为字段提供数组化管理。
 
 <code title="动态增减表单项" src="./demo/list.tsx" />
 
-## API
-
-### Form Props
+## Form Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -52,13 +65,13 @@ Form.List 为字段提供数组化管理。
 
 > 更多 Form API 参见：[rc-field-form](https://github.com/react-component/field-form#form)
 
-### Form.Item Props
+## Form.Item Props
 
 Form.Item 的布局是基于 `Field` 实现的，所以它支持 [Field](./field#props) 的部分属性
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| dependencies | 设置依赖字段，说明见下 | `NamePath[]` | - |
+| dependencies | 设置依赖字段，说明见下 | `string | number | (string | number)[]` | - |
 | disabled | 是否禁用 | `boolean` | 父级 Form 的 `disabled` |
 | initialValue | 设置子元素默认值，如果与 Form 的 `initialValues` 冲突则以 Form 为准 | `any` | - |
 | messageVariables | 默认验证字段的信息 | `Record<string, string>` | - |
@@ -190,17 +203,9 @@ Form 通过增量更新方式，只更新被修改的字段相关组件以达到
 </Form>
 ```
 
-## 自定义表单字段
-
-自定义或第三方的表单控件，也可以与 Form 组件一起使用。只要该组件遵循以下的约定：
-
-- 提供受控属性 `value` 值同名的属性。
-- 提供 `onChange` 事件。
-
-
 > 更多 Form.Item API 参见：[rc-field-form](https://github.com/react-component/field-form#field)
 
-### Form.List Props
+## Form.List Props
 
 | 参数 | 说明 | 类型 |
 | --- | --- | --- |
@@ -208,7 +213,7 @@ Form 通过增量更新方式，只更新被修改的字段相关组件以达到
 | initialValue | 设置子元素默认值，如果与 Form 的 initialValues 冲突则以 Form 为准 | _any[]_ |
 | name | 字段名，支持数组 | _string \| number \| (string \| number)[]_ |
 
-#### operation
+### operation
 
 | 参数   | 说明       | 类型                                                 |
 | ------ | ---------- | ---------------------------------------------------- |
@@ -216,7 +221,7 @@ Form 通过增量更新方式，只更新被修改的字段相关组件以达到
 | move   | 移动表单项 | _(from: number, to: number) => void_                 |
 | remove | 删除表单项 | _(index: number \| number[]) => void_                |
 
-### Rule 数据结构
+## Rule 数据结构
 
 使用 Field 的`rules`属性可以定义校验规则，可选属性如下:
 
