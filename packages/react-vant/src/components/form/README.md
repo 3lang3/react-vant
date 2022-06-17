@@ -41,7 +41,7 @@ import { Form } from 'react-vant';
 
 ### 更新订阅
 
-在某些场景，例如修改某个字段值后出现新的字段选项、或希望表单任意变化都对某一个区域进行渲染，可以通过 `Form.Subscribe` 实现。 
+在某些场景，例如修改某个字段值后出现新的字段选项、或希望表单任意变化都对某一个区域进行渲染，可以通过 `Form.Subscribe` 实现。
 
 <code title="更新订阅" title="Form.Subscribe" src="./demo/subscribe.tsx" />
 
@@ -99,6 +99,52 @@ Form.Item 的布局是基于 `Field` 实现的，所以它支持 [Field](./field
 | suffix | 自定义控件尾部内容 | _ReactNode_ | - |
 | isLink | 是否展示右侧箭头并开启点击反馈 | _boolean_ | `false` |
 | arrowDirection | 箭头方向，可选值为 `left` `up` `down` | _string_ | `right` |
+
+> 更多 Form.Item API 参见：[rc-field-form](https://github.com/react-component/field-form#field)
+
+## Form.Subscribe
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| children | 渲染函数 | `(changedValues: Record<string, any>, form: FormInstance) => ReactNode` | - |
+| to | 同 Form.Item 的 `dependencies` | `NamePath[]` | - |
+
+## Form.List Props
+
+| 参数 | 说明 | 类型 |
+| --- | --- | --- |
+| children | 渲染函数 | _(fields: Field[], operation: { add, remove, move }, meta: { errors }) => React.ReactNode_ |
+| initialValue | 设置子元素默认值，如果与 Form 的 initialValues 冲突则以 Form 为准 | _any[]_ |
+| name | 字段名，支持数组 | _string \| number \| (string \| number)[]_ |
+
+### operation
+
+| 参数   | 说明       | 类型                                                 |
+| ------ | ---------- | ---------------------------------------------------- |
+| add    | 新增表单项 | _(defaultValue?: any, insertIndex?: number) => void_ |
+| move   | 移动表单项 | _(from: number, to: number) => void_                 |
+| remove | 删除表单项 | _(index: number \| number[]) => void_                |
+
+## Rule 数据结构
+
+使用 Field 的`rules`属性可以定义校验规则，可选属性如下:
+
+| 键名 | 说明 | 类型 |
+| --- | --- | --- |
+| type | 类型，常见有 `string` `number` `boolean` `url` `email`。更多请参考[此处](https://github.com/yiminghe/async-validator#type) | _string_ |
+| enum | 是否匹配枚举中的值（需要将 `type` 设置为 `enum`） | _any[]_ |
+| len | string 类型时为字符串长度；number 类型时为确定数字； array 类型时为数组长度 | _number_ |
+| max | 必须设置 type：string 类型为字符串最大长度；number 类型时为最大值；array 类型时为数组最大长度 | _number_ |
+| min | 必须设置 type：string 类型为字符串最小长度；number 类型时为最小值；array 类型时为数组最小长度 | _number_ |
+| transform | 将字段值转换成目标值后进行校验 | _(value) => any_ |
+| whitespace | 如果字段仅包含空格则校验不通过，只在 type: 'string' 时生效 | _boolean_ |
+| required | 是否为必选字段 | _boolean_ |
+| message | 错误提示文案 | _string_ |
+| validator | 自定义校验，接收 Promise 作为返回值 | _(rule, value, callback: (error?: string) => void, form) => Promise \| void_ |
+| pattern | 正则表达式匹配 | _RegExp_ |
+| validateTrigger | 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集 | _string\| string[]_ |
+
+## FAQ
 
 被设置了 `name` 属性的 `Form.Item` 包装的控件，表单控件会**自动添加** `value`（或 `valuePropName` 指定的其他属性） `onChange`（或 `trigger` 指定的其他属性），数据同步将被 Form 接管，因此，如果你给 `Form.Item` 设置了 `name` 属性，**那么请确保它的 `children` 是一个有效的 `ReactElement` 控件** ，并且能够接受上文中提到的 `value` 和 `onChange` 属性（或指定的其他属性），例如：
 
@@ -202,40 +248,3 @@ Form 通过增量更新方式，只更新被修改的字段相关组件以达到
   </Form.Item>
 </Form>
 ```
-
-> 更多 Form.Item API 参见：[rc-field-form](https://github.com/react-component/field-form#field)
-
-## Form.List Props
-
-| 参数 | 说明 | 类型 |
-| --- | --- | --- |
-| children | 渲染函数 | _(fields: Field[], operation: { add, remove, move }, meta: { errors }) => React.ReactNode_ |
-| initialValue | 设置子元素默认值，如果与 Form 的 initialValues 冲突则以 Form 为准 | _any[]_ |
-| name | 字段名，支持数组 | _string \| number \| (string \| number)[]_ |
-
-### operation
-
-| 参数   | 说明       | 类型                                                 |
-| ------ | ---------- | ---------------------------------------------------- |
-| add    | 新增表单项 | _(defaultValue?: any, insertIndex?: number) => void_ |
-| move   | 移动表单项 | _(from: number, to: number) => void_                 |
-| remove | 删除表单项 | _(index: number \| number[]) => void_                |
-
-## Rule 数据结构
-
-使用 Field 的`rules`属性可以定义校验规则，可选属性如下:
-
-| 键名 | 说明 | 类型 |
-| --- | --- | --- |
-| type | 类型，常见有 `string` `number` `boolean` `url` `email`。更多请参考[此处](https://github.com/yiminghe/async-validator#type) | _string_ |
-| enum | 是否匹配枚举中的值（需要将 `type` 设置为 `enum`） | _any[]_ |
-| len | string 类型时为字符串长度；number 类型时为确定数字； array 类型时为数组长度 | _number_ |
-| max | 必须设置 type：string 类型为字符串最大长度；number 类型时为最大值；array 类型时为数组最大长度 | _number_ |
-| min | 必须设置 type：string 类型为字符串最小长度；number 类型时为最小值；array 类型时为数组最小长度 | _number_ |
-| transform | 将字段值转换成目标值后进行校验 | _(value) => any_ |
-| whitespace | 如果字段仅包含空格则校验不通过，只在 type: 'string' 时生效 | _boolean_ |
-| required | 是否为必选字段 | _boolean_ |
-| message | 错误提示文案 | _string_ |
-| validator | 自定义校验，接收 Promise 作为返回值 | _(rule, value, callback: (error?: string) => void, form) => Promise \| void_ |
-| pattern | 正则表达式匹配 | _RegExp_ |
-| validateTrigger | 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集 | _string\| string[]_ |
