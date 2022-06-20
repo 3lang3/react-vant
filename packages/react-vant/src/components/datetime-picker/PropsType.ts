@@ -14,7 +14,7 @@ export type DatetimePickerExpose = {
   getPicker: () => PickerInstance;
 };
 
-export interface SharedProps extends Omit<PickerProps, 'onConfirm' | 'onChange' | 'columns'> {
+export interface SharedProps extends Omit<PickerProps, 'value' | 'onConfirm' | 'onChange' | 'columns'> {
   /** 时间类型 */
   type?: DatetimePickerType;
   /** 选项过滤函数	 */

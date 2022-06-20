@@ -1,20 +1,13 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { forwardRef, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import Picker from '../picker';
-import type { PickerInstance } from '../picker'
+import type { PickerInstance } from '../picker';
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';
 import { getMonthEndDay, getTrueValue, times } from './utils';
 import { isDate } from '../utils/validate/date';
 import { padZero } from '../utils';
 import { useUpdateEffect } from '../hooks';
-import useRefState from '../hooks/use-ref-state';
 
 const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, ref) => {
   const formatValue = (value) => {
@@ -29,7 +22,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   };
 
   const picker = useRef<PickerInstance>(null);
-  const [currentDate, setCurrentDate, currentDateRef] = useRefState(() => formatValue(props.value));
+  const [currentDate, setCurrentDate] = useState(() => formatValue(props.value));
 
   const getBoundary = (type: 'max' | 'min', value: Date) => {
     const boundary = props[`${type}Date`];
@@ -118,7 +111,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     }
 
     return result;
-  }, [currentDate]);
+  }, [JSON.stringify(currentDate)]);
 
   const originColumns = useMemo(
     () =>
@@ -137,34 +130,31 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
           values,
         };
       }),
-    [ranges],
+    [JSON.stringify(ranges)],
   );
 
-  const updateColumnValue = () => {
+  const pickerValue = useMemo(() => {
     const { formatter } = props;
-
+    const value = currentDate
     const values = originColumns.map((column) => {
       switch (column.type) {
         case 'year':
-          return formatter('year', `${currentDate.getFullYear()}`);
+          return formatter('year', `${value.getFullYear()}`);
         case 'month':
-          return formatter('month', padZero(currentDate.getMonth() + 1));
+          return formatter('month', padZero(value.getMonth() + 1));
         case 'day':
-          return formatter('day', padZero(currentDate.getDate()));
+          return formatter('day', padZero(value.getDate()));
         case 'hour':
-          return formatter('hour', padZero(currentDate.getHours()));
+          return formatter('hour', padZero(value.getHours()));
         case 'minute':
-          return formatter('minute', padZero(currentDate.getMinutes()));
+          return formatter('minute', padZero(value.getMinutes()));
         default:
           // no default
           return '';
       }
     });
-
-    setTimeout(() => {
-      picker.current?.setValues(values);
-    });
-  };
+    return values;
+  }, [currentDate]);
 
   const updateInnerValue = () => {
     const { type } = props;
@@ -209,40 +199,29 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
       minute = +getValue('minute');
     }
 
-    const value = new Date(year, month - 1, day, hour, minute);
-    setCurrentDate(formatValue(value));
+    const value = formatValue(new Date(year, month - 1, day, hour, minute));
+    setCurrentDate(value);
+    return value;
   };
 
   const onChange = () => {
-    updateInnerValue();
-    if (props.onChange) {
-      props.onChange(currentDateRef.current);
-    }
+    const currentValue = updateInnerValue();
+    props.onChange?.(currentValue);
   };
 
   const onConfirm = () => {
-    if (props.onConfirm) {
-      props.onConfirm(currentDate);
-    }
+    props.onConfirm?.(currentDate);
   };
 
   const columns = useMemo(() => {
     return originColumns.map((column) => ({
       values: column.values.map((value) => props.formatter(column.type, value)),
     }));
-  }, [originColumns]);
-
-  useEffect(() => {
-    updateColumnValue();
-  }, [columns]);
+  }, [JSON.stringify(originColumns)]);
 
   useUpdateEffect(() => {
     updateInnerValue();
-  }, [props.filter, props.maxDate]);
-
-  useUpdateEffect(() => {
-    setTimeout(updateInnerValue, 0);
-  }, [props.minDate]);
+  }, [props.filter, props.minDate, props.maxDate]);
 
   useUpdateEffect(() => {
     const value = formatValue(props.value);
@@ -259,6 +238,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   return (
     <Picker
       {...props}
+      value={pickerValue}
       ref={picker}
       columns={columns}
       onChange={onChange}
