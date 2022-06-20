@@ -1,17 +1,9 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useImperativeHandle,
-  forwardRef,
-  useContext,
-} from 'react';
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useContext } from 'react';
 import clsx from 'clsx';
 import { PickerColumnProps, PickerOption } from './PropsType';
 import { isObject, range } from '../utils';
 import { deepClone } from '../utils/deep-clone';
-import { useSetState, useTouch, useUpdateEffect } from '../hooks';
+import { useMount, usePropsValue, useSetState, useTouch, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const DEFAULT_DURATION = 200;
@@ -38,7 +30,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('picker-column', prefixCls);
 
-  const { itemHeight, visibleItemCount, defaultIndex, initialOptions } = props;
+  const { itemHeight, visibleItemCount, options } = props;
 
   const root = useRef(null);
   const wrapper = useRef(null);
@@ -49,17 +41,32 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   const touchStartTime = useRef(0);
   const momentumOffset = useRef(0);
 
+  // Cascade mode will trigger change many times
+  const ignoreChangeRef = useRef(false);
+
+  const [columnIndex, setColumnIndex] = usePropsValue({
+    value: props.index,
+    defaultValue: props.defaultIndex,
+    onChange: (v) => {
+      props.onChange(v, ignoreChangeRef.current);
+      ignoreChangeRef.current = false;
+    },
+  });
+
+  // Save columnIndex value
+  const columnIndexRef = useRef(0);
+
+  columnIndexRef.current = columnIndex;
+
   const [state, updateState, stateRef] = useSetState({
-    emitChange: false,
-    index: defaultIndex,
     offset: 0,
     duration: 0,
-    options: deepClone(initialOptions),
+    options: deepClone(options) as PickerOption[],
   });
 
   const touch = useTouch();
 
-  const count = useMemo(() => state.options.length, [state.options.length]);
+  const count = stateRef.current.options.length;
 
   const baseOffset = useMemo(() => {
     // 默认转入第一个选项的位置
@@ -79,13 +86,15 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     return null;
   };
 
-  const setIndex = (index: number, emitChange?: boolean) => {
+  const setIndex = (index: number, ignoreChange?: boolean) => {
     index = adjustIndex(index) || 0;
 
     const offset = -index * props.itemHeight;
     const trigger = () => {
-      if (index !== state.index) {
-        updateState({ index, emitChange });
+      if (index !== columnIndex) {
+        columnIndexRef.current = index;
+        if (ignoreChange) ignoreChangeRef.current = true;
+        setColumnIndex(index);
       }
     };
 
@@ -98,10 +107,11 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     updateState({ offset });
   };
 
-  const setOptions = (options: PickerOption[]) => {
+  const setOptions = (options: PickerOption[], optionIndex?: number) => {
     if (JSON.stringify(options) !== JSON.stringify(stateRef.current.options)) {
-      updateState({ options: deepClone(options) });
-      setIndex(props.defaultIndex);
+      updateState({ options });
+      // Ignore change when update options
+      setIndex(optionIndex ?? props.defaultIndex, true);
     }
   };
 
@@ -111,10 +121,10 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     }
     transitionEndTrigger.current = null;
     updateState({ duration: DEFAULT_DURATION });
-    setIndex(index, true);
+    setIndex(index);
   };
 
-  const getOptionText = (option: []) => {
+  const getOptionText = (option): string => {
     if (isObject(option) && props.textKey in option) {
       return option[props.textKey];
     }
@@ -131,7 +141,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
     const index = getIndexByOffset(distance);
     updateState({ duration: +props.swipeDuration });
-    setIndex(index, true);
+    setIndex(index);
   };
 
   const stopMomentum = () => {
@@ -211,7 +221,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
     const index = getIndexByOffset(state.offset);
     updateState({ duration: DEFAULT_DURATION });
-    setIndex(index, true);
+    setIndex(index);
 
     // compatible with desktop scenario
     // use setTimeout to skip the click event triggered after touchstart
@@ -236,7 +246,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
         className: clsx(
           bem('item', {
             disabled,
-            selected: index === state.index,
+            selected: index === columnIndex,
           }),
         ),
         onClick: () => {
@@ -257,41 +267,37 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     });
   };
 
-  const setValue = (value: string) => {
+  const setValue = (value) => {
     const { options } = stateRef.current;
     for (let i = 0; i < options.length; i += 1) {
-      if ((getOptionText(options[i]) as unknown as string) === value) {
-        return setIndex(i);
+      if (getOptionText(options[i]) === value) {
+        return setIndex(i, true);
       }
     }
     return null;
   };
 
-  const getValue = () => stateRef.current.options[stateRef.current.index];
-
-  useEffect(() => {
-    setIndex(defaultIndex);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultIndex]);
-
-  useUpdateEffect(() => {
-    setOptions(initialOptions);
-  }, [initialOptions]);
-
-  useEffect(() => {
-    if (state.emitChange && props.onChange) {
-      props.onChange(stateRef.current.index);
-    }
-  }, [state.emitChange, state.index]);
+  const getValue = () => stateRef.current.options[columnIndexRef.current];
 
   useImperativeHandle(ref, () => ({
-    state: stateRef.current,
-    setIndex,
+    get indexRef() {
+      return columnIndexRef;
+    },
+    setIndex: (index: number) => setIndex(index, true),
     getValue,
     setValue,
+    getOptions: () => stateRef.current.options,
     setOptions,
     stopMomentum,
   }));
+
+  useUpdateEffect(() => {
+    setOptions(props.options);
+  }, [JSON.stringify(props.options)]);
+
+  useMount(() => {
+    setIndex(columnIndex);
+  });
 
   return (
     <div
@@ -319,7 +325,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 });
 
 PickerColumn.defaultProps = {
-  initialOptions: [],
+  options: [],
   defaultIndex: 0,
 };
 

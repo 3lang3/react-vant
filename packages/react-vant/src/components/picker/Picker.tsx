@@ -1,8 +1,6 @@
-/* eslint-disable no-plusplus */
 import React, {
   useEffect,
   useMemo,
-  useState,
   useRef,
   useImperativeHandle,
   forwardRef,
@@ -17,9 +15,10 @@ import useRefs from '../hooks/use-refs';
 import useEventListener from '../hooks/use-event-listener';
 
 import { PickerProps, PickerInstance, PickerOption, PickerObjectColumn } from './PropsType';
-import { unitToPx, preventDefault, extend } from '../utils';
+import { unitToPx, preventDefault, extend, isObject } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { useMount } from '../hooks';
 
 function PickerInner<T = PickerOption>(
   props: PickerProps<T>,
@@ -28,9 +27,7 @@ function PickerInner<T = PickerOption>(
   const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('picker', prefixCls);
 
-  const [refs, setRefs, resetRefs] = useRefs();
-
-  const [formattedColumns, setFormattedColumns] = useState([]);
+  const [refs, setRefs] = useRefs();
 
   const {
     text: textKey,
@@ -47,6 +44,29 @@ function PickerInner<T = PickerOption>(
   );
   const wrapper = useRef(null);
 
+  const formatValue = Array.isArray(props.value) ? props.value : [props.value];
+  const formatDefaultValue = Array.isArray(props.defaultValue)
+    ? props.defaultValue
+    : [props.defaultValue];
+
+  const getOptionText = (option): string => {
+    if (isObject(option) && textKey in option) {
+      return option[textKey];
+    }
+    return option;
+  };
+  useMount(() => {
+    if (props.defaultValue !== undefined) setValues(formatDefaultValue.map(getOptionText));
+  });
+
+  // Sync `value` to `innerValue`
+  useEffect(() => {
+    if (props.value === undefined) return; // Uncontrolled mode
+    const innerValue = getValues();
+    if (JSON.stringify(innerValue) === JSON.stringify(formatValue)) return;
+    setValues(formatValue.map(getOptionText));
+  }, [props.value]);
+
   const itemHeight = useMemo(() => unitToPx(props.itemHeight), [props.itemHeight]);
 
   const dataType = useMemo(() => {
@@ -62,7 +82,6 @@ function PickerInner<T = PickerOption>(
       }
     }
     return 'plain';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.columns]);
 
   const formatCascade = () => {
@@ -93,66 +112,62 @@ function PickerInner<T = PickerOption>(
 
       cursor = children[defaultIndex];
     }
-
-    setFormattedColumns(formatted);
+    return formatted;
   };
 
-  const format = () => {
+  function format() {
     const { columns } = props;
 
     if (dataType === 'plain') {
-      setFormattedColumns([
+      return [
         {
           [valuesKey]: columns,
         },
-      ]);
-    } else if (dataType === 'cascade') {
-      formatCascade();
-    } else {
-      setFormattedColumns(columns);
+      ];
     }
-  };
+    if (dataType === 'cascade') {
+      return formatCascade();
+    }
+    return columns;
+  }
 
   // get indexes of all columns
-  const getIndexes = () => refs.map((_ref) => _ref.state.index);
+  const getIndexes = () => refs.map((_ref) => _ref.indexRef.current);
 
   // set options of column by index
-  const setColumnValues = (index: number, options) => {
+  const setColumnOptions = (index: number, options, columnIndex?: number) => {
     const column = refs[index];
     if (column) {
-      column.setOptions(options);
+      column.setOptions(options, columnIndex);
     }
   };
 
-  const onCascadeChange = async (columnIndex: number) => {
-    return new Promise((resolve) => {
-      let cursor: PickerObjectColumn = {
-        [childrenKey]: props.columns,
-      };
+  const onCascadeChange = (columnIndex: number) => {
+    let cursor: PickerObjectColumn = {
+      [childrenKey]: props.columns,
+    };
 
-      const indexes = getIndexes();
+    const indexes = getIndexes();
 
-      for (let i = 0; i <= columnIndex; i += 1) {
-        cursor = cursor[childrenKey][indexes[i]];
+    for (let i = 0; i <= columnIndex; i += 1) {
+      cursor = cursor[childrenKey][indexes[i]];
+    }
+
+    if (cursor && cursor[childrenKey]) {
+      while (cursor && cursor[childrenKey]) {
+        columnIndex += 1;
+        setColumnOptions(columnIndex, cursor[childrenKey]);
+        cursor = cursor[childrenKey]?.[cursor.defaultIndex || 0];
       }
-
-      if (cursor && cursor[childrenKey]) {
-        while (cursor && cursor[childrenKey]) {
-          columnIndex += 1;
-          setColumnValues(columnIndex, cursor[childrenKey]);
-          cursor = cursor[childrenKey]?.[cursor.defaultIndex || 0];
+    } else {
+      // Clean unsafe data children value
+      // https://github.com/3lang3/react-vant/issues/378
+      refs.forEach((column, i) => {
+        if (i > columnIndex && columnIndex < refs.length) {
+          column.setOptions([]);
         }
-      } else {
-        // Clean unsafe data children value
-        // https://github.com/3lang3/react-vant/issues/378
-        refs.forEach((column, i) => {
-          if (i > columnIndex && columnIndex < refs.length) {
-            column.setOptions([]);
-          }
-        });
-      }
-      resolve(true)
-    });
+      });
+    }
   };
 
   // get column instance by index
@@ -166,7 +181,7 @@ function PickerInner<T = PickerOption>(
 
   // set column value by index
   const setColumnValue = (index: number, value: string) => {
-    const column = getChild(index);
+    const column = refs[index];
     if (column) {
       column.setValue(value);
 
@@ -179,7 +194,7 @@ function PickerInner<T = PickerOption>(
   // get column option index by column index
   const getColumnIndex = (index: number) => {
     const column = getChild(index);
-    return column.state.index;
+    return column.indexRef.current;
   };
 
   // set column option index by column index
@@ -195,9 +210,9 @@ function PickerInner<T = PickerOption>(
   };
 
   // get options of column by index
-  const getColumnValues = (index: number) => {
+  const getColumnOptions = (index: number) => {
     const column = getChild(index);
-    return column && column.getValue();
+    return column.getOptions();
   };
 
   // get values of all columns
@@ -217,18 +232,16 @@ function PickerInner<T = PickerOption>(
     });
   };
 
-  const onChange = async (columnIndex: number) => {
+  function onChange(currentColumnIndex: number) {
     if (dataType === 'cascade') {
-      await onCascadeChange(columnIndex);
+      onCascadeChange(currentColumnIndex);
     }
-    if (props.onChange) {
-      if (dataType === 'plain') {
-        props.onChange(getColumnValue(0), getColumnIndex(0));
-      } else {
-        props.onChange(getValues(), columnIndex);
-      }
+    if (dataType === 'plain') {
+      props.onChange?.(getColumnValue(0), getColumnIndex(0));
+    } else {
+      props.onChange?.(getValues(), currentColumnIndex);
     }
-  };
+  }
 
   const confirm = () => {
     refs.forEach((_ref) => _ref.stopMomentum());
@@ -291,10 +304,10 @@ function PickerInner<T = PickerOption>(
     return null;
   };
 
-  const renderColumnItems = () =>
-    formattedColumns.map((item, columnIndex) => (
+  const renderColumnItems = () => {
+    const columns = format();
+    return columns.map((item, columnIndex) => (
       <Column
-        // eslint-disable-next-line react/no-array-index-key
         key={columnIndex}
         optionRender={props.optionRender}
         ref={setRefs(columnIndex)}
@@ -305,12 +318,14 @@ function PickerInner<T = PickerOption>(
         defaultIndex={item.defaultIndex ?? +props.defaultIndex}
         swipeDuration={props.swipeDuration}
         visibleItemCount={props.visibleItemCount}
-        initialOptions={item[valuesKey]}
-        onChange={() => {
+        options={item[valuesKey]}
+        onChange={(_, ignoreChange) => {
+          if (ignoreChange) return;
           onChange(columnIndex);
         }}
       />
     ));
+  };
 
   const renderColumns = () => {
     const wrapHeight = itemHeight * props.visibleItemCount;
@@ -329,14 +344,6 @@ function PickerInner<T = PickerOption>(
     );
   };
 
-  useEffect(() => {
-    if (JSON.stringify(props.columns) !== JSON.stringify(formattedColumns)) {
-      resetRefs();
-      format();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.columns]);
-
   useEventListener('touchmove', preventDefault, {
     target: wrapper.current,
   });
@@ -351,8 +358,8 @@ function PickerInner<T = PickerOption>(
     setColumnIndex,
     getColumnValue,
     setColumnValue,
-    getColumnValues,
-    setColumnValues,
+    getColumnOptions,
+    setColumnOptions,
   }));
 
   return (
