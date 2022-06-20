@@ -80,6 +80,7 @@ export default () => {
         onClick={() => set({ range: true })}
       />
       <Calendar
+        visible={state.range}
         type="range"
         minDate={new Date(2010, 4, 1)}
         maxDate={new Date(2010, 4, 31)}
