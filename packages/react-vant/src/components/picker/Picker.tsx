@@ -15,7 +15,7 @@ import useRefs from '../hooks/use-refs';
 import useEventListener from '../hooks/use-event-listener';
 
 import { PickerProps, PickerInstance, PickerOption, PickerObjectColumn } from './PropsType';
-import { unitToPx, preventDefault, extend, isObject } from '../utils';
+import { unitToPx, preventDefault, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useMount } from '../hooks';
@@ -31,12 +31,14 @@ function PickerInner<T = PickerOption>(
 
   const {
     text: textKey,
+    value: valueKey,
     values: valuesKey,
     children: childrenKey,
   } = extend(
     {
       // compatible with valueKey prop
       text: 'text',
+      value: 'value',
       values: 'values',
       children: 'children',
     },
@@ -49,14 +51,10 @@ function PickerInner<T = PickerOption>(
     ? props.defaultValue
     : [props.defaultValue];
 
-  const getOptionText = (option): string => {
-    if (isObject(option) && textKey in option) {
-      return option[textKey];
-    }
-    return option;
-  };
   useMount(() => {
-    if (props.defaultValue !== undefined) setValues(formatDefaultValue.map(getOptionText));
+    if (props.defaultValue !== undefined) {
+      setValues(formatDefaultValue as any);
+    }
   });
 
   // Sync `value` to `innerValue`
@@ -64,7 +62,7 @@ function PickerInner<T = PickerOption>(
     if (props.value === undefined) return; // Uncontrolled mode
     const innerValue = getValues();
     if (JSON.stringify(innerValue) === JSON.stringify(formatValue)) return;
-    setValues(formatValue.map(getOptionText));
+    setValues(formatValue as any);
   }, [props.value]);
 
   const itemHeight = useMemo(() => unitToPx(props.itemHeight), [props.itemHeight]);
@@ -93,7 +91,7 @@ function PickerInner<T = PickerOption>(
 
     while (cursor && cursor[childrenKey]) {
       const children = cursor[childrenKey];
-      let defaultIndex = cursor.defaultIndex ?? +props.defaultIndex;
+      let defaultIndex = cursor.defaultIndex ?? 0;
 
       while (children[defaultIndex] && children[defaultIndex].disabled) {
         if (defaultIndex < children.length - 1) {
@@ -107,7 +105,7 @@ function PickerInner<T = PickerOption>(
       formatted.push({
         [valuesKey]: cursor[childrenKey],
         className: cursor.className,
-        defaultIndex,
+        // defaultIndex,
       });
 
       cursor = children[defaultIndex];
@@ -184,7 +182,6 @@ function PickerInner<T = PickerOption>(
     const column = refs[index];
     if (column) {
       column.setValue(value);
-
       if (dataType === 'cascade') {
         onCascadeChange(index);
       }
@@ -245,12 +242,10 @@ function PickerInner<T = PickerOption>(
 
   const confirm = () => {
     refs.forEach((_ref) => _ref.stopMomentum());
-    if (props.onConfirm) {
-      if (dataType === 'plain') {
-        props.onConfirm(getColumnValue(0), getColumnIndex(0));
-      } else {
-        props.onConfirm(getValues(), getIndexes());
-      }
+    if (dataType === 'plain') {
+      props.onConfirm?.(getColumnValue(0), getColumnIndex(0));
+    } else {
+      props.onConfirm?.(getValues(), getIndexes());
     }
   };
 
@@ -306,25 +301,28 @@ function PickerInner<T = PickerOption>(
 
   const renderColumnItems = () => {
     const columns = format();
-    return columns.map((item, columnIndex) => (
-      <Column
-        key={columnIndex}
-        optionRender={props.optionRender}
-        ref={setRefs(columnIndex)}
-        textKey={textKey}
-        readonly={props.readonly}
-        className={item.className}
-        itemHeight={itemHeight}
-        defaultIndex={item.defaultIndex ?? +props.defaultIndex}
-        swipeDuration={props.swipeDuration}
-        visibleItemCount={props.visibleItemCount}
-        options={item[valuesKey]}
-        onChange={(_, ignoreChange) => {
-          if (ignoreChange) return;
-          onChange(columnIndex);
-        }}
-      />
-    ));
+    return columns.map((item, columnIndex) => {
+      const options = Array.isArray(item) ? item : item[valuesKey];
+      return (
+        <Column
+          key={columnIndex}
+          optionRender={props.optionRender}
+          ref={setRefs(columnIndex)}
+          textKey={textKey}
+          valueKey={valueKey}
+          readonly={props.readonly}
+          className={item.className}
+          itemHeight={itemHeight}
+          swipeDuration={props.swipeDuration}
+          visibleItemCount={props.visibleItemCount}
+          options={options}
+          onChange={(_, ignoreChange) => {
+            if (ignoreChange) return;
+            onChange(columnIndex);
+          }}
+        />
+      );
+    });
   };
 
   const renderColumns = () => {
@@ -382,7 +380,6 @@ const Picker = forwardRef(PickerInner) as <T>(
   itemHeight: 44,
   visibleItemCount: 5,
   swipeDuration: 1000,
-  defaultIndex: 0,
   showToolbar: true,
   toolbarPosition: 'top',
 };

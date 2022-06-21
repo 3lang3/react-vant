@@ -46,7 +46,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
   const [columnIndex, setColumnIndex] = usePropsValue({
     value: props.index,
-    defaultValue: props.defaultIndex,
+    defaultValue: props.defaultValue,
     onChange: (v) => {
       props.onChange(v, ignoreChangeRef.current);
       ignoreChangeRef.current = false;
@@ -56,17 +56,19 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   // Save columnIndex value
   const columnIndexRef = useRef(0);
 
+  // Options use ref save
+  const optionsRef = useRef(deepClone(options) as PickerOption[]);
+
   columnIndexRef.current = columnIndex;
 
-  const [state, updateState, stateRef] = useSetState({
+  const [state, updateState] = useSetState({
     offset: 0,
     duration: 0,
-    options: deepClone(options) as PickerOption[],
   });
 
   const touch = useTouch();
 
-  const count = stateRef.current.options.length;
+  const count = optionsRef.current.length;
 
   const baseOffset = useMemo(() => {
     // 默认转入第一个选项的位置
@@ -77,10 +79,10 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     index = range(index, 0, count);
 
     for (let i = index; i < count; i += 1) {
-      if (!isOptionDisabled(state.options[i])) return i;
+      if (!isOptionDisabled(optionsRef.current[i])) return i;
     }
     for (let i = index - 1; i >= 0; i -= 1) {
-      if (!isOptionDisabled(state.options[i])) return i;
+      if (!isOptionDisabled(optionsRef.current[i])) return i;
     }
 
     return null;
@@ -108,10 +110,12 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const setOptions = (options: PickerOption[], optionIndex?: number) => {
-    if (JSON.stringify(options) !== JSON.stringify(stateRef.current.options)) {
-      updateState({ options });
+    if (JSON.stringify(options) !== JSON.stringify(optionsRef.current)) {
+      optionsRef.current = options;
+      const nextIndex = optionIndex ?? props.defaultValue;
       // Ignore change when update options
-      setIndex(optionIndex ?? props.defaultIndex, true);
+      setIndex(nextIndex, true);
+      return options[nextIndex];
     }
   };
 
@@ -127,6 +131,14 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   const getOptionText = (option): string => {
     if (isObject(option) && props.textKey in option) {
       return option[props.textKey];
+    }
+    return option;
+  };
+
+  const getOptionValue = (option): string => {
+    if (isObject(option)) {
+      if (props.valueKey in option && option[props.valueKey]) return option[props.valueKey];
+      if (props.textKey in option) return option[props.textKey];
     }
     return option;
   };
@@ -235,7 +247,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
       height: `${props.itemHeight}px`,
     };
 
-    return state.options.map((option, index: number) => {
+    return optionsRef.current.map((option, index: number) => {
       const text = getOptionText(option);
       const disabled = isOptionDisabled(option);
 
@@ -268,16 +280,24 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const setValue = (value) => {
-    const { options } = stateRef.current;
-    for (let i = 0; i < options.length; i += 1) {
-      if (getOptionText(options[i]) === value) {
+    for (let i = 0; i < optionsRef.current.length; i += 1) {
+      if (getOptionValue(optionsRef.current[i]) === value) {
         return setIndex(i, true);
       }
     }
     return null;
   };
 
-  const getValue = () => stateRef.current.options[columnIndexRef.current];
+  const getValue = (returnOption?: boolean) => {
+    const { valueKey, textKey } = props;
+    const currentOption = optionsRef.current[columnIndexRef.current];
+    if (returnOption) return currentOption;
+    if (isObject(currentOption)) {
+      if (valueKey in currentOption && currentOption[valueKey]) return currentOption[valueKey];
+      return currentOption[textKey];
+    }
+    return currentOption;
+  };
 
   useImperativeHandle(ref, () => ({
     get indexRef() {
@@ -286,7 +306,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     setIndex: (index: number) => setIndex(index, true),
     getValue,
     setValue,
-    getOptions: () => stateRef.current.options,
+    getOptions: () => optionsRef.current,
     setOptions,
     stopMomentum,
   }));
@@ -326,7 +346,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
 PickerColumn.defaultProps = {
   options: [],
-  defaultIndex: 0,
+  defaultValue: 0,
 };
 
 export default PickerColumn;

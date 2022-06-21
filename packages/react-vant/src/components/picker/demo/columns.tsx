@@ -2,30 +2,20 @@ import React from 'react';
 import { Picker, Toast } from 'react-vant';
 
 export default () => {
+  const [value, setValue] = React.useState(['周二', '晚上']);
+
   return (
-    <Picker
-      onChange={(value: string, index: number) => {
-        Toast(`当前值：${value}, 当前索引：${index}`)
-        console.log(value, index)
+    <Picker<string>
+      value={value}
+      onChange={(val, index: number) => {
+        Toast(`当前值：${val}, 当前索引：${index}`);
+        setValue(val);
       }}
-      onCancel={(...r) => {
-        Toast.info('点击取消按钮');
-        console.log(r);
-      }}
-      onConfirm={(...r) => {
-        Toast.info('点击确认按钮');
-        console.log(r);
-      }}
+      onCancel={() => Toast.info('点击取消按钮')}
+      onConfirm={() => Toast.info('点击确认按钮')}
       columns={[
-        {
-          values: ['周一', '周二', '周三', '周四', '周五'],
-          defaultIndex: 2,
-        },
-        // 第二列
-        {
-          values: ['上午', '下午', '晚上'],
-          defaultIndex: 1,
-        },
+        ['周一', '周二', '周三', '周四', '周五'],
+        ['上午', '下午', '晚上'],
       ]}
     />
   );

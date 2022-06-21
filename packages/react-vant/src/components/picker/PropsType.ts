@@ -5,6 +5,7 @@ export type PickerToolbarPosition = 'top' | 'bottom';
 
 export type PickerFieldNames = {
   text?: string;
+  value?: string;
   values?: string;
   children?: string;
 };
@@ -23,8 +24,6 @@ export type PickerObjectColumn<T = PickerOption> = {
   children?: PickerColumn<T>;
   /** 为对应列添加额外的类名 */
   className?: unknown;
-  /** 初始选中项的索引，默认为 0 */
-  defaultIndex?: number;
 } & Record<string, any>;
 
 export type PickerColumn<T> = T[] | PickerObjectColumn<T>;
@@ -33,7 +32,7 @@ export type PickerInstance = {
   /** 停止惯性滚动并触发 onConfirm 事件 */
   confirm: () => void;
   /** 获取所有列选中的值 */
-  getValues: <T = PickerOption>() => T[];
+  getValues: <T = PickerOption>(returnOption?: boolean) => T[];
   /** 设置所有列选中的值 */
   setValues: (values: string[]) => void;
   /** 获取所有列选中值对应的索引 */
@@ -56,15 +55,12 @@ export type PickerInstance = {
 
 export interface Column {
   values?: string[];
-  defaultIndex?: number;
   className?: string;
   children?: Column[];
   disabled?: boolean;
 }
 
 export interface PickerCommonProps<T> extends BaseTypeProps {
-  /** 单列选择时，默认选中项的索引 */
-  defaultIndex?: number;
   /** 对象数组，配置每一列显示的数据 */
   columns?: T[] | PickerColumn<T>[];
   /** 自定义 columns 结构中的字段 */
@@ -100,10 +96,10 @@ export interface PickerCommonProps<T> extends BaseTypeProps {
 }
 
 export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T> {
-   /** 选中项 */
-   value?: T;
-   /** 默认选中项 */
-   defaultValue?: T;
+  /** 选中项 */
+  value?: T;
+  /** 默认选中项 */
+  defaultValue?: T;
   /** 选项改变时触发 */
   onChange?: (value: T, index: number) => void;
   /** 点击完成按钮时触发 */
@@ -113,10 +109,10 @@ export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T
 }
 
 export interface PickerMultipleProps<T = PickerOption> extends PickerCommonProps<T> {
-   /** 选中项 */
-   value?: T[];
-   /** 默认选中项 */
-   defaultValue?: T[];
+  /** 选中项 */
+  value?: T[];
+  /** 默认选中项 */
+  defaultValue?: T[];
   /** 选项改变时触发 */
   onChange?: (value: T[], index: number) => void;
   /** 点击完成按钮时触发 */
@@ -129,9 +125,10 @@ export type PickerProps<T = PickerOption> = PickerSingleProps<T> | PickerMultipl
 export interface PickerColumnProps extends BaseTypeProps {
   index?: number;
   textKey: string;
+  valueKey?: string;
   readonly?: boolean;
   itemHeight: number;
-  defaultIndex?: number;
+  defaultValue?: number;
   swipeDuration?: number | string;
   visibleItemCount?: number | string;
   options?: PickerOption[];

@@ -2,9 +2,15 @@ import React from 'react';
 import { Picker } from 'react-vant';
 
 export default () => {
+  const [value, setValue] = React.useState(['福建', '福州', '台江区']);
   return (
     <Picker
       title="标题"
+      value={value}
+      onChange={(val) => {
+        console.log(val);
+        setValue(val);
+      }}
       columnsFieldNames={{
         text: 'cityName',
         children: 'cities',

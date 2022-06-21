@@ -16,20 +16,19 @@ import { Picker } from 'react-vant';
 
 - Picker 组件通过 `columns` 属性配置选项数据，`columns` 是一个包含字符串或对象的数组。
 - 顶部栏包含标题、确认按钮和取消按钮，点击确认按钮触发 `confirm` 事件，点击取消按钮触发 `cancel` 事件。
-- 单列选择时，可以通过 `defaultIndex` 属性设置初始选中项的索引。
 - 选项可以为对象结构，通过设置 `disabled` 来禁用该选项。
 
 <code title="基础用法" card src="./demo/base.tsx" />
 
 ### 多列选择
 
-`columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](/components/picker#column-shu-ju-jie-gou)。
+`columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](/components/picker#column-数据结构)。
 
 <code title="多列选择" card src="./demo/columns.tsx" />
 
 ### 级联选择
 
-使用 `columns` 的 `children` 字段可以实现选项级联的效果。
+使用 `columns` 的 `children` 字段可以实现选项级联的效果，`value` 字段可以指定选项返回值
 
 <code title="级联选择" card src="./demo/cascader.tsx" />
 
@@ -63,8 +62,10 @@ import { Picker } from 'react-vant';
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| value | 选中项 | _PickerOption[]_ | - |
+| value | 默认选中项 | _PickerOption[]_ | - |
 | columns | 对象数组，配置每一列显示的数据 | _Column[]_ | `[]` |
-| columnsFieldNames | 自定义 `columns` 结构中的字段 | _object_ | `{ text: 'text', values: 'values', children: 'children' }` |
+| columnsFieldNames | 自定义 `columns` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', values: 'values', children: 'children' }` |
 | title | 顶部栏标题 | _ReactNode_ | - |
 | confirmButtonText | 确认按钮文字 | _ReactNode_ | `确认` |
 | cancelButtonText | 取消按钮文字 | _ReactNode_ | `取消` |
@@ -75,7 +76,6 @@ import { Picker } from 'react-vant';
 | optionRender | 自定义选项内容 | _(option: string \| object) => ReactNode_ | - |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
 | showToolbar | 是否显示顶部栏 | _boolean_ | `true` |
-| defaultIndex | 单列选择时，默认选中项的索引 | _number \| string_ | `0` |
 | itemHeight | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44` |
 | visibleItemCount | 可见的选项个数 | _number \| string_ | `6` |
 | swipeDuration | 快速滑动时惯性滚动的时长，单位 `ms` | _number \| string_ | `1000` |
@@ -90,34 +90,44 @@ import { Picker } from 'react-vant';
 | onCancel | 点击取消按钮时触发 | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，所有列选中值对应的索引 |
 | onChange | 选项改变时触发 | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，当前列对应的索引 |
 
+### PickerOption 定义
+
+```ts
+type PickerObjectOption = {
+  text?: string | number;
+  disabled?: boolean;
+} & Record<string, {}>;
+
+export type PickerOption = string | number | PickerObjectOption;
+```
+
 ### Column 数据结构
 
 当传入多列数据时，`columns` 为一个对象数组，数组中的每一个对象配置每一列，每一列有以下 `key`:
 
-| 键名         | 说明                       | 类型                        |
-| ------------ | -------------------------- | --------------------------- |
-| values       | 列中对应的备选值           | _Array<string \| number>_   |
-| defaultIndex | 初始选中项的索引，默认为 0 | _number_                    |
-| className    | 为对应列添加额外的类名     | _string \| Array \| object_ |
-| children     | 级联选项                   | _Column_                    |
+| 键名      | 说明                   | 类型                        |
+| --------- | ---------------------- | --------------------------- |
+| values    | 列中对应的备选值       | _Array<string \| number>_   |
+| className | 为对应列添加额外的类名 | _string \| Array \| object_ |
+| children  | 级联选项               | _Column_                    |
 
 ### 方法
 
 通过 ref 可以获取到 Picker 实例并调用实例方法，详见[组件实例方法](/guide/advanced-usage#zu-jian-shi-li-fang-fa)。
 
-| 方法名          | 说明                            | 参数                     | 返回值      |
-| --------------- | ------------------------------- | ------------------------ | ----------- |
-| getValues       | 获取所有列选中的值              | -                        | values      |
-| setValues       | 设置所有列选中的值              | values                   | -           |
-| getIndexes      | 获取所有列选中值对应的索引      | -                        | indexes     |
-| setIndexes      | 设置所有列选中值对应的索引      | indexes                  | -           |
-| getColumnValue  | 获取对应列选中的值              | columnIndex              | value       |
-| setColumnValue  | 设置对应列选中的值              | columnIndex, value       | -           |
-| getColumnIndex  | 获取对应列选中项的索引          | columnIndex              | optionIndex |
-| setColumnIndex  | 设置对应列选中项的索引          | columnIndex, optionIndex | -           |
-| getColumnValues | 获取对应列中所有选项            | columnIndex              | values      |
-| setColumnValues | 设置对应列中所有选项            | columnIndex, values      | -           |
-| confirm         | 停止惯性滚动并触发 confirm 事件 | -                        | -           |
+| 方法名           | 说明                            | 参数                     | 返回值      |
+| ---------------- | ------------------------------- | ------------------------ | ----------- |
+| getValues        | 获取所有列选中的值              | -                        | values      |
+| setValues        | 设置所有列选中的值              | values                   | -           |
+| getIndexes       | 获取所有列选中值对应的索引      | -                        | indexes     |
+| setIndexes       | 设置所有列选中值对应的索引      | indexes                  | -           |
+| getColumnValue   | 获取对应列选中的值              | columnIndex              | value       |
+| setColumnValue   | 设置对应列选中的值              | columnIndex, value       | -           |
+| getColumnIndex   | 获取对应列选中项的索引          | columnIndex              | optionIndex |
+| setColumnIndex   | 设置对应列选中项的索引          | columnIndex, optionIndex | -           |
+| getColumnOptions | 获取对应列中所有选项            | columnIndex              | values      |
+| setColumnOptions | 设置对应列中所有选项            | columnIndex, values      | -           |
+| confirm          | 停止惯性滚动并触发 confirm 事件 | -                        | -           |
 
 ### 类型定义
 
