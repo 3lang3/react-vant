@@ -9,6 +9,7 @@ export default () => {
       areaList={areaList}
       onChange={(v) => console.log(v)}
       onConfirm={(v) => console.log(v)}
+      onCancel={(v) => console.log(v)}
     />
   );
 };

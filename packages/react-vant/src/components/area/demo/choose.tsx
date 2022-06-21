@@ -9,8 +9,8 @@ export default () => {
       title="标题"
       areaList={areaList}
       value={value}
-      onChange={(v) => console.log(v)}
-      onConfirm={(v) => console.log(v)}
+      onChange={(v, options) => console.log(v, options)}
+      onConfirm={(v, options) => console.log(v, options)}
     />
   );
 };

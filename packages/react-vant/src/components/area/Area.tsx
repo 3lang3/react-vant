@@ -239,16 +239,18 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     updateCode(code);
   };
 
-  const onChange = (values: AreaColumnOption[], index: number) => {
-    updateCode(values[index].code);
+  const onChange = (values: string[], index: number) => {
+    updateCode(values[index]);
     if (pickerRef.current) {
-      const currentValues = getValuesFormCode(values[index].code);
-      if (props.onChange) props.onChange(parseValues(currentValues), index);
+      const currentOptions = getValuesFormCode(values[index]);
+      if (props.onChange) props.onChange(currentOptions.map(el => el.code), parseValues(currentOptions), index);
     }
   };
 
-  const onConfirm = (values: AreaColumnOption[], index: number) => {
-    if (props.onConfirm) props.onConfirm(parseValues(values), index);
+  const onConfirm = (values: string[], indexes: number[]) => {
+    const code = values.filter(Boolean).pop();
+    const currentValues = getValuesFormCode(code);
+    if (props.onConfirm) props.onConfirm(values, parseValues(currentValues), indexes);
   };
 
   const onCancel = (...args) => {
@@ -262,7 +264,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   useUpdateEffect(() => {
     if (props.value !== innerCode) {
       updateCode(props.value);
-      setIndexes();
+      setIndexes(props.value);
     }
   }, [props.value]);
 
@@ -286,7 +288,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
       ref={pickerRef}
       className={clsx(bem())}
       columns={columns}
-      columnsFieldNames={{ text: 'name' }}
+      columnsFieldNames={{ text: 'name', value: 'code' }}
       onChange={onChange}
       onCancel={onCancel}
       onConfirm={onConfirm}
