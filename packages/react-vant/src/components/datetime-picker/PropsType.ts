@@ -14,7 +14,7 @@ export type DatetimePickerExpose = {
   getPicker: () => PickerInstance;
 };
 
-export interface SharedProps extends Omit<PickerProps, 'value' | 'onConfirm' | 'onChange' | 'columns'> {
+export interface SharedProps extends Omit<PickerProps, 'value' | 'defaultValue' | 'onConfirm' | 'onChange' | 'columns'> {
   /** 时间类型 */
   type?: DatetimePickerType;
   /** 选项过滤函数	 */
@@ -31,6 +31,7 @@ export interface SharedProps extends Omit<PickerProps, 'value' | 'onConfirm' | '
 
 export interface DatePickerProps extends SharedProps {
   value?: Date;
+  defaultValue?: Date;
   /** 可选的最小时间，精确到分钟	 */
   minDate?: Date;
   /** 可选的最大时间，精确到分钟	 */
@@ -43,6 +44,7 @@ export interface DatePickerProps extends SharedProps {
 
 export interface TimePickerProps extends SharedProps {
   value?: string;
+  defaultValue?: string;
   /** 可选的最小小时	 */
   minHour?: number | string;
   /** 可选的最大小时	 */
