@@ -2,7 +2,6 @@ import React, { useMemo, useRef, useImperativeHandle, forwardRef, useContext } f
 import clsx from 'clsx';
 import { PickerColumnProps, PickerOption } from './PropsType';
 import { isObject, range } from '../utils';
-import { deepClone } from '../utils/deep-clone';
 import { useMount, usePropsValue, useSetState, useTouch, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -57,7 +56,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   const columnIndexRef = useRef(0);
 
   // Options use ref save
-  const optionsRef = useRef(deepClone(options) as PickerOption[]);
+  const optionsRef = useRef(options as PickerOption[]);
 
   columnIndexRef.current = columnIndex;
 
@@ -109,13 +108,22 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
     updateState({ offset });
   };
 
-  const setOptions = (options: PickerOption[], optionIndex?: number) => {
-    if (JSON.stringify(options) !== JSON.stringify(optionsRef.current)) {
-      optionsRef.current = options;
-      const nextIndex = optionIndex ?? props.defaultValue;
+  const setOptions = (nextOptions: PickerOption[], optionIndex?: number) => {
+    if (JSON.stringify(nextOptions) !== JSON.stringify(optionsRef.current)) {
+      const currentOption = optionsRef.current[columnIndex];
+      const nextCurrentOption = nextOptions[columnIndex];
+
+      let nextIndex = optionIndex ?? props.defaultValue;
+
+      // 更新后的option选中项和更新前一样时，无需更新选中index
+      if (getOptionValue(currentOption) === getOptionValue(nextCurrentOption)) {
+        nextIndex = columnIndex;
+      }
+
+      optionsRef.current = nextOptions;
       // Ignore change when update options
       setIndex(nextIndex, true);
-      return options[nextIndex];
+      return nextOptions[nextIndex];
     }
   };
 

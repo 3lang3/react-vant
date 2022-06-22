@@ -15,7 +15,7 @@ export default () => {
       <Picker<string>
         ref={picker}
         value={value}
-        columns={[{ values: Object.keys(cities) }, { values: cities['浙江'] }]}
+        columns={[Object.keys(cities), cities['浙江']]}
         onChange={(values) => {
           // 动态设置第二列数据
           picker.current.setColumnOptions(1, cities[values[0]]);
