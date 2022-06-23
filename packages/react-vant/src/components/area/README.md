@@ -76,7 +76,8 @@ const areaList = {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 当前选中项对应的地区码 | _string_ | - |
+| value | 选中项 | _string[]_ | - |
+| defaultValue | 默认选中项 | _string[]_ | - |
 | title | 顶部栏标题 | _ReactNode_ | - |
 | confirmButtonText | 确认按钮文字 | _ReactNode_ | `确认` |
 | cancelButtonText | 取消按钮文字 | _ReactNode_ | `取消` |
@@ -95,31 +96,21 @@ const areaList = {
 
 ### Events
 
-| 事件      | 说明               | 回调参数                       |
-| --------- | ------------------ | ------------------------------ |
-| onConfirm | 点击完成按钮时触发 | _result: ConfirmResult_        |
-| onCancel  | 点击取消按钮时触发 | -                              |
-| onChange  | 选项改变时触发     | 所有列选中值，当前列对应的索引 |
+| 事件      | 说明             | 回调参数                                       |
+| --------- | ---------------- | ---------------------------------------------- |
+| onChange  | 选项改变触发     | _(val: string[], options: AreaColumnOption[])_ |
+| onConfirm | 点击完成按钮触发 | _(val: string[], options: AreaColumnOption[]_  |
+| onCancel  | 点击取消按钮触发 | -                                              |
 
-### ConfirmResult 格式
+### AreaColumnOption 格式
 
 onConfirm 事件返回的数据整体为一个数组，数组每一项对应一列选项中被选中的数据。
 
-```js
-[
-  {
-    code: '110000',
-    name: '北京市',
-  },
-  {
-    code: '110100',
-    name: '北京市',
-  },
-  {
-    code: '110101',
-    name: '东城区',
-  },
-];
+```ts
+type AreaColumnOption = {
+  code: string;
+  name: string;
+};
 ```
 
 ### 方法

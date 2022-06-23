@@ -67,17 +67,15 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
   const touch = useTouch();
 
-  const count = optionsRef.current.length;
-
   const baseOffset = useMemo(() => {
     // 默认转入第一个选项的位置
     return (itemHeight * (+visibleItemCount - 1)) / 2;
   }, [itemHeight, visibleItemCount]);
 
   const adjustIndex = (index: number) => {
-    index = range(index, 0, count);
+    index = range(index, 0, optionsRef.current.length);
 
-    for (let i = index; i < count; i += 1) {
+    for (let i = index; i < optionsRef.current.length; i += 1) {
       if (!isOptionDisabled(optionsRef.current[i])) return i;
     }
     for (let i = index - 1; i >= 0; i -= 1) {
@@ -89,7 +87,6 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
   const setIndex = (index: number, ignoreChange?: boolean) => {
     index = adjustIndex(index) || 0;
-
     const offset = -index * props.itemHeight;
     const trigger = () => {
       if (index !== columnIndex) {
@@ -152,7 +149,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const getIndexByOffset = (offset: number) =>
-    range(Math.round(-offset / props.itemHeight), 0, count - 1);
+    range(Math.round(-offset / props.itemHeight), 0, optionsRef.current.length - 1);
 
   const momentum = (distance: number, _duration: number) => {
     const speed = Math.abs(distance / _duration);
@@ -209,7 +206,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
 
     const offset = range(
       startOffset.current + touch.deltaY.current,
-      -(count * props.itemHeight),
+      -(optionsRef.current.length * props.itemHeight),
       props.itemHeight,
     );
 
@@ -320,8 +317,8 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   }));
 
   useUpdateEffect(() => {
-    setOptions(props.options);
-  }, [JSON.stringify(props.options)]);
+    setOptions(options);
+  }, [JSON.stringify(options)]);
 
   useMount(() => {
     setIndex(columnIndex);

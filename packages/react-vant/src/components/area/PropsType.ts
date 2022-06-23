@@ -16,21 +16,25 @@ export type AreaColumnType = 'province' | 'county' | 'city';
 
 export interface AreaProps
   extends Pick<
-      PickerProps,
-      | 'title'
-      | 'loading'
-      | 'readonly'
-      | 'itemHeight'
-      | 'swipeDuration'
-      | 'visibleItemCount'
-      | 'cancelButtonText'
-      | 'confirmButtonText'
-      | 'toolbar'
-      | 'columnsTop'
-      | 'columnsBottom'
-      | 'optionRender'
-    >,
-    BaseTypeProps {
+  PickerProps,
+  | 'title'
+  | 'loading'
+  | 'readonly'
+  | 'itemHeight'
+  | 'swipeDuration'
+  | 'visibleItemCount'
+  | 'cancelButtonText'
+  | 'confirmButtonText'
+  | 'toolbar'
+  | 'columnsTop'
+  | 'columnsBottom'
+  | 'optionRender'
+  >,
+  BaseTypeProps {
+  /** 当前选中项对应的地区码	 */
+  value?: string[];
+  /** 默认选中项 */
+  defaultValue?: string[];
   /** 省市区数据 */
   areaList: AreaList;
   /** 显示列数，3-省市区，2-省市，1-省	 */
@@ -39,12 +43,10 @@ export interface AreaProps
   isOverseaCode?: (code: string) => boolean;
   /** 列占位提示文字	 */
   columnsPlaceholder?: string[];
-  /** 当前选中项对应的地区码	 */
-  value?: string;
   /** 选项改变时触发	 */
   onChange?: (value: string[], column: AreaColumnOption[], index: number) => void;
   /** 点击完成按钮时触发	 */
-  onConfirm?: (value: string[],result: AreaColumnOption[], indexes: number[]) => void;
+  onConfirm?: (value: string[], result: AreaColumnOption[], indexes: number[]) => void;
   /** 点击取消按钮时触发	 */
   onCancel?: (...args: unknown[]) => void;
 }

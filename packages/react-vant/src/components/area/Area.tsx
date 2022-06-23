@@ -1,14 +1,21 @@
 /* eslint-disable no-plusplus */
-import React, { forwardRef, useContext, useImperativeHandle, useMemo, useRef } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import clsx from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { AreaColumnOption, AreaColumnType, AreaInstance, AreaProps } from './PropsType';
 import Picker from '../picker';
 import type { PickerInstance } from '../picker';
-import { useMount, useUpdateEffect } from '../hooks';
+import { useUpdateEffect } from '../hooks';
 import { deepClone } from '../utils/deep-clone';
 import { pick } from '../utils';
-import useRefState from '../hooks/use-ref-state';
 
 const EMPTY_CODE = '000000';
 
@@ -27,12 +34,23 @@ const INHERIT_PROPS = [
   'optionRender',
 ] as const;
 
+function getLastCode(str: string[]) {
+  if (!str || !Array.isArray(str)) return undefined;
+  return [...str].filter(Boolean).pop();
+}
+
+function getAreaOptionValue(options: AreaColumnOption[]) {
+  const parsed = options.map((el) => el?.code).filter(Boolean);
+  return parsed.length ? parsed : undefined;
+}
+
 const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('area', prefixCls);
 
+  const changeRef = useRef(false);
   const pickerRef = useRef<PickerInstance>();
-  const [innerCode, updateCode, codeRef] = useRefState(props.value);
+  const [innerCode, updateCode] = useState(() => getLastCode(props.value || props.defaultValue));
 
   const areaList = useMemo(() => {
     return {
@@ -158,6 +176,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     if (city.length && code.slice(2, 4) === '00' && !props.isOverseaCode(code)) {
       [{ code }] = city;
     }
+
     picker.setIndexes([
       getIndex('province', code),
       getIndex('city', code),
@@ -194,7 +213,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
       }
 
       return value;
-    });
+    }).filter(Boolean);
 
   const getValues = () => {
     if (pickerRef.current) {
@@ -240,36 +259,43 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   };
 
   const onChange = (values: string[], index: number) => {
+    changeRef.current = true;
     updateCode(values[index]);
     if (pickerRef.current) {
       const currentOptions = getValuesFormCode(values[index]);
-      if (props.onChange) props.onChange(currentOptions.map(el => el.code), parseValues(currentOptions), index);
+      const parseOptions = parseValues(currentOptions);
+      props.onChange?.(getAreaOptionValue(parseOptions), parseOptions, index);
     }
   };
 
   const onConfirm = (values: string[], indexes: number[]) => {
     const code = values.filter(Boolean).pop();
-    const currentValues = getValuesFormCode(code);
-    if (props.onConfirm) props.onConfirm(values, parseValues(currentValues), indexes);
+    const currentOptions = getValuesFormCode(code);
+    const parseOptions = parseValues(currentOptions);
+    props.onConfirm?.(getAreaOptionValue(parseOptions), parseOptions, indexes);
   };
 
   const onCancel = (...args) => {
-    if (props.onCancel) props.onCancel(...args);
+    props.onCancel?.(...args);
   };
 
-  useMount(() => {
-    setIndexes(props.value);
-  });
-
   useUpdateEffect(() => {
-    if (props.value !== innerCode) {
-      updateCode(props.value);
-      setIndexes(props.value);
+    const nextCode = getLastCode(props.value);
+    if (nextCode !== innerCode) {
+      updateCode(nextCode);
     }
   }, [props.value]);
 
+  useEffect(() => {
+    if (changeRef.current) {
+      changeRef.current = false;
+      return;
+    }
+    setIndexes(innerCode);
+  }, [innerCode]);
+
   useUpdateEffect(() => {
-    setIndexes(codeRef.current);
+    setIndexes(innerCode);
   }, [props.areaList, props.columnsNum]);
 
   useImperativeHandle(ref, () => ({
@@ -279,14 +305,15 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   }));
 
   const columns = useMemo(
-    () => columnsData.slice(0, +props.columnsNum).map((values) => ({ values })),
+    () => columnsData.slice(0, +props.columnsNum),
     [props.columnsNum, columnsData],
   );
 
   return (
     <Picker
       ref={pickerRef}
-      className={clsx(bem())}
+      style={props.style}
+      className={clsx(bem(), props.className)}
       columns={columns}
       columnsFieldNames={{ text: 'name', value: 'code' }}
       onChange={onChange}
