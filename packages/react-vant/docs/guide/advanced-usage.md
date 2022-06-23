@@ -49,7 +49,7 @@ module.exports = {
 
 ```bash
 # 安装模块
-npm i vant/touch-emulator -S
+npm i @vant/touch-emulator -S
 ```
 
 ```js
