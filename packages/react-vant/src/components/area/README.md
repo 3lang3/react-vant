@@ -87,7 +87,7 @@ const areaList = {
 | columnsBottom | 自定义选项下方内容 | _ReactNode_ | - |
 | optionRender | 自定义选项内容 | _(option: string \| object) => ReactNode_ | - |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
-| readonly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
+| readOnly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
 | itemHeight | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44` |
 | columnsNum | 显示列数，3-省市区，2-省市，1-省 | _number \| string_ | `3` |
 | visibleItemCount | 可见的选项个数 | _number \| string_ | `6` |

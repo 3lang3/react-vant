@@ -125,7 +125,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const onClickItem = (index: number) => {
-    if (moving.current || props.readonly) {
+    if (moving.current || props.readOnly) {
       return;
     }
     transitionEndTrigger.current = null;
@@ -172,7 +172,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const onTouchStart = (event) => {
-    if (props.readonly) {
+    if (props.readOnly) {
       return;
     }
 
@@ -194,7 +194,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const onTouchMove = (event: TouchEvent | React.TouchEvent) => {
-    if (props.readonly) {
+    if (props.readOnly) {
       return;
     }
 
@@ -222,7 +222,7 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
   };
 
   const onTouchEnd = () => {
-    if (props.readonly) {
+    if (props.readOnly) {
       return;
     }
     const distance = state.offset - momentumOffset.current;

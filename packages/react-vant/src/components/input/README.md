@@ -47,7 +47,7 @@ export default () => {
 
 ### 多行输入
 
-`Input.TextArea` 可用于多行输入， `autosize` 可以使文本域自适应高度，还能设置其最小和最大高度。
+`Input.TextArea` 可用于多行输入， `autoSize` 可以使文本域自适应高度，还能设置其最小和最大高度。
 
 ```jsx
 /**
@@ -63,12 +63,12 @@ export default () => {
         <Input.TextArea placeholder="多行输入" />
       </Cell>
       <Cell style={{ marginTop: 10 }}>
-        <Input.TextArea placeholder="自适应高度" autosize />
+        <Input.TextArea placeholder="自适应高度" autoSize />
       </Cell>
       <Cell style={{ marginTop: 10 }}>
         <Input.TextArea
           placeholder="最小高度80，最大高度120"
-          autosize={{ minHeight: 80, maxHeight: 120 }}
+          autoSize={{ minHeight: 80, maxHeight: 120 }}
         />
       </Cell>
     </>
@@ -191,7 +191,7 @@ export default () => {
 | --- | --- | --- | --- |
 | rows | 输入框行数 | _number_ | 2 |
 | showWordLimit | 是否显示字数统计，支持自定义内容 | _boolean\|({ currentCount, maxLengh }) => ReactNode_ | `false` |
-| autosize | 是否自适应内容高度，可传入对象,如 `{ maxHeight: 100, minHeight: 50 }`，单位为`px` | _boolean \| object_ | `false` |
+| autoSize | 是否自适应内容高度，可传入对象,如 `{ maxHeight: 100, minHeight: 50 }`，单位为`px` | _boolean \| object_ | `false` |
 
 ### Events
 
@@ -239,7 +239,7 @@ export default () => {
 
 ### 设置 type 为 number 后，为什么 input 标签的类型仍为 text?
 
-HTML 原生的 `type="number"` 属性在 iOS 和 Android 系统上都存在一定问题，比如 maxlength 属性不生效、无法获取到完整的输入内容等。因此设置 type 为 `number` 时，`Input` 不会使用原生的 `type="number"` 属性，而是用现代浏览器支持的 [inputmode 属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/inputmode)来控制输入键盘的类型。
+HTML 原生的 `type="number"` 属性在 iOS 和 Android 系统上都存在一定问题，比如 maxLength 属性不生效、无法获取到完整的输入内容等。因此设置 type 为 `number` 时，`Input` 不会使用原生的 `type="number"` 属性，而是用现代浏览器支持的 [inputmode 属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/inputmode)来控制输入键盘的类型。
 
 ### 在桌面端点击清除按钮无效？
 

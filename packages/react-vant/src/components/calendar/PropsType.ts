@@ -92,7 +92,7 @@ export interface CalendarProps extends BaseTypeProps {
   weekdays?: React.ReactNode[];
   color?: string;
   round?: boolean;
-  readonly?: boolean;
+  readOnly?: boolean;
   poppable?: boolean;
   showMark?: boolean;
   showTitle?: boolean;

@@ -66,8 +66,8 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
     input.style.height = 'auto';
 
     let height = input.scrollHeight;
-    if (isObject(props.autosize)) {
-      const { maxHeight, minHeight } = props.autosize;
+    if (isObject(props.autoSize)) {
+      const { maxHeight, minHeight } = props.autoSize;
       if (maxHeight) {
         height = Math.min(height, maxHeight);
       }
@@ -88,11 +88,11 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
   const controlClass = React.useMemo(() => {
     return bem('control', [
       {
-        'min-height': !props.autosize,
+        'min-height': !props.autoSize,
         clear: props.clearable,
       },
     ]);
-  }, [props.autosize]);
+  }, [props.autoSize]);
 
   const handleChange = (e) => {
     const inputValue = e?.currentTarget?.value;
@@ -109,7 +109,7 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
     setHasFocus(true);
     props.onFocus?.(e);
 
-    // readonly not work in legacy mobile safari
+    // readOnly not work in legacy mobile safari
     if (readOnly) {
       blur();
     }
@@ -172,7 +172,7 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
         onBlur={handleBulr}
         onFocus={handleFocus}
         onChange={handleChange}
-        onKeyPress={props.onKeypress}
+        onKeyPress={props.onKeyPress}
         onKeyDown={props.onKeyDown}
         onKeyUp={props.onKeyUp}
         autoComplete={props.autoComplete}
@@ -200,7 +200,7 @@ TextArea.defaultProps = {
   rows: 2,
   clearIcon: <Clear />,
   clearTrigger: 'focus',
-  defaultValue: ''
+  defaultValue: '',
 };
 
 export default TextArea;

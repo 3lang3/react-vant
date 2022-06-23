@@ -35,7 +35,7 @@ export default () => {
 
 ### 自适应高度
 
-`autosize` 可以使文本域自适应高度，还能设置其最小和最大高度。
+`autoSize` 可以使文本域自适应高度，还能设置其最小和最大高度。
 
 ```jsx
 /**
@@ -48,12 +48,12 @@ export default () => {
   return (
     <>
       <Cell>
-        <TextArea placeholder="自适应高度" autosize />
+        <TextArea placeholder="自适应高度" autoSize />
       </Cell>
       <Cell style={{ marginTop: 10 }}>
         <TextArea
           placeholder="最小高度80，最大高度120"
-          autosize={{ minHeight: 80, maxHeight: 120 }}
+          autoSize={{ minHeight: 80, maxHeight: 120 }}
         />
       </Cell>
     </>
@@ -133,7 +133,7 @@ export default () => {
 | clearTrigger | 显示清除图标的时机，<br /> `always` 表示文本域不为空时展示，<br /> `focus` 表示文本域聚焦且不为空时展示 | `always` `focus` | `focus` |
 | autoFocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
 | showWordLimit | 是否显示字数统计，支持自定义内容 | _boolean\|({ currentCount, maxLengh }) => ReactNode_ | `false` |
-| autosize | 是否自适应内容高度，可传入对象,如 `{ maxHeight: 100, minHeight: 50 }`，单位为`px` | _boolean \| object_ | `false` |
+| autoSize | 是否自适应内容高度，可传入对象,如 `{ maxHeight: 100, minHeight: 50 }`，单位为`px` | _boolean \| object_ | `false` |
 
 ### Events
 

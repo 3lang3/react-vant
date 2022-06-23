@@ -76,14 +76,14 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
     };
 
     const onClickTitle = () => {
-      if (!props.disabled && !props.readonly) {
+      if (!props.disabled && !props.readOnly) {
         toggle();
       }
     };
 
     const renderTitle = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { border, disabled, children, readonly, ...others } = props;
+      const { border, disabled, children, readOnly, ...others } = props;
 
       return (
         <Cell
@@ -97,8 +97,8 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
           aria-expanded={String(expanded)}
           onClick={onClickTitle}
           {...others}
-          isLink={readonly ? false : others.isLink}
-          clickable={disabled || readonly ? false : others.clickable}
+          isLink={readOnly ? false : others.isLink}
+          clickable={disabled || readOnly ? false : others.clickable}
         />
       );
     };

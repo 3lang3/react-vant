@@ -62,7 +62,7 @@ const CouponList: React.FC<CouponListProps> = (props) => {
             border={false}
             className={cls(bem('field'))}
             placeholder={props.inputPlaceholder || locale.vanCouponList.placeholder}
-            maxlength={20}
+            maxLength={20}
           />
           <Button
             plain

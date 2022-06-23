@@ -275,7 +275,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     };
 
     const onClickDay = (item: CalendarDayItem) => {
-      if (props.readonly || !item.date) {
+      if (props.readOnly || !item.date) {
         return;
       }
 

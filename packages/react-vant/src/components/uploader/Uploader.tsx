@@ -209,7 +209,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
       return null;
     }
 
-    const Input = props.readonly ? null : (
+    const Input = props.readOnly ? null : (
       <input
         ref={inputRef}
         type="file"
@@ -233,7 +233,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
 
     return (
       <div
-        className={cls(bem('upload', { readonly: props.readonly }))}
+        className={cls(bem('upload', { readOnly: props.readOnly }))}
         style={getSizeStyle(props.previewSize)}
         onClick={onClickUpload}
       >

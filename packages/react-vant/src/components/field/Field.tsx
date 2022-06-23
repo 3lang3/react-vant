@@ -77,21 +77,22 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
   const renderInput = () => {
     const {
       value,
+      defaultValue,
+      align,
       type,
       placeholder,
       name,
-      defaultValue,
-      maxlength,
+      maxLength,
       disabled,
-      readonly,
+      readOnly,
       clearable,
       clearIcon,
       clearTrigger,
-      autofocus,
+      autoFocus,
       onClear,
       onBlur,
       onFocus,
-      onKeypress,
+      onKeyPress,
       onOverlimit,
     } = props;
 
@@ -112,11 +113,11 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       onClear,
       onBlur,
       onFocus,
-      onKeypress,
+      onKeyPress,
       onOverlimit,
-      autoFocus: autofocus,
-      readOnly: readonly,
-      maxLength: maxlength,
+      autoFocus,
+      readOnly,
+      maxLength,
       onClick: props.onClickInput,
     };
 
@@ -124,7 +125,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       return (
         <Input.TextArea
           ref={textareaRef}
-          autosize={props.autosize}
+          autoSize={props.autoSize}
           showWordLimit={props.showWordLimit}
           rows={props.rows}
           {...commonProps}
@@ -132,7 +133,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       );
     }
 
-    return <Input ref={inputRef} type={type} {...commonProps} />;
+    return <Input ref={inputRef} type={type} align={align} {...commonProps} />;
   };
 
   const renderLeftIcon = () => {

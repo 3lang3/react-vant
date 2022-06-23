@@ -11,7 +11,7 @@ export default () => {
       ref={fieldRef}
       placeholder="请输入文本"
       label="文本"
-      button={
+      suffix={
         <Button
           size="small"
           onClick={() => {

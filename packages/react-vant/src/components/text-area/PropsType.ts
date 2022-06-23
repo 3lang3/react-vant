@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputClearTrigger } from '../input/PropsType';
+import { InputSharedProps } from '../input/PropsType';
 
 
 export type AutosizeConfig = {
@@ -11,6 +11,20 @@ type NativeTextAreaProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLTextAreaElement>,
   HTMLTextAreaElement
 >
+
+export type TextAreaSelfProps = {
+  /** 输入的最大字符数 */
+  maxLength?: number;
+  /** 输入框行数 */
+  rows?: number;
+  /** 是否显示字数统计，需要设置maxlength属性 */
+  showWordLimit?: boolean | (({ currentCount, maxLength }: { currentCount: number; maxLength: number; }) => React.ReactNode);
+  /**
+   * 是否自适应内容高度，只对 textarea 有效
+   * 可传入对象,如 { maxHeight: 100, minHeight: 50 }，单位为px
+   */
+  autoSize?: boolean | AutosizeConfig;
+}
 
 export interface TextAreaProps extends Pick<
   NativeTextAreaProps,
@@ -25,44 +39,9 @@ export interface TextAreaProps extends Pick<
   | 'onCompositionEnd'
   | 'onKeyUp'
   | 'onKeyDown'
+  | 'onKeyPress'
   | 'onClick'
-> {
-  value?: string;
-  defaultValue?: string;
-  maxLength?: number;
-  /** 输入框行数 */
-  rows?: number;
-  /** 输入框占位提示文字	 */
-  placeholder?: string;
-  /** 是否禁用输入框	 */
-  disabled?: boolean;
-  /**  是否自动聚焦，iOS 系统不支持该属性	 */
-  autoFocus?: boolean;
-  /** 是否显示字数统计，需要设置maxlength属性 */
-  showWordLimit?: boolean | (({ currentCount, maxLength }: { currentCount: number; maxLength: number; }) => React.ReactNode);
-  /** 是否启用清除图标，点击清除图标后会清空输入框	 */
-  clearable?: boolean;
-  /** 自定义清除图标 */
-  clearIcon?: React.ReactNode;
-  /**
-   * 显示清除图标的时机，
-   * always 表示输入框不为空时展示 focus 表示输入框聚焦且不为空时展示
-   * @default 'focus'
-   */
-  clearTrigger?: InputClearTrigger;
-  className?: string;
-  style?: React.CSSProperties;
-  /**
-   * 是否自适应内容高度，只对 textarea 有效
-   * 可传入对象,如 { maxHeight: 100, minHeight: 50 }，单位为px
-   */
-  autosize?: boolean | AutosizeConfig;
-  onChange?: (val: string) => void;
-  onClear?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onKeypress?: (e: React.KeyboardEvent) => void;
-  /** 当输入值超出maxLength时触发 */
-  onOverlimit?: () => void;
-}
+>, InputSharedProps, TextAreaSelfProps { }
 
 export type TextAreaInstance = {
   focus: () => void;

@@ -116,7 +116,7 @@ export default () => {
 
 ### 只读状态显示小数
 
-设置 `readonly` 和 `allowHalf` 属性后，Rate 组件可以展示任意小数结果。
+设置 `readOnly` 和 `allowHalf` 属性后，Rate 组件可以展示任意小数结果。
 
 ```jsx
 /**
@@ -128,7 +128,7 @@ import { Rate } from 'react-vant';
 
 export default () => {
   const [value, setValue] = useState(3.3);
-  return <Rate value={value} onChange={setValue} readonly allowHalf />;
+  return <Rate value={value} onChange={setValue} readOnly allowHalf />;
 };
 ```
 
@@ -149,7 +149,7 @@ export default () => {
 | icon          | 选中时的图标或图片链接   | _ReactNode_           | -    |
 | voidIcon      | 未选中时的图标或图片链接 | _ReactNode_           | -  |
 | allowHalf     | 是否允许半选                                 | _boolean_          | `false`   |
-| readonly      | 是否为只读状态，只读状态下无法修改评分       | _boolean_          | `false`   |
+| readOnly      | 是否为只读状态，只读状态下无法修改评分       | _boolean_          | `false`   |
 | disabled      | 是否禁用评分                                 | _boolean_          | `false`   |
 | touchable     | 是否可以通过滑动手势选择评分                 | _boolean_          | `true`    |
 

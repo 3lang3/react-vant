@@ -70,7 +70,7 @@ export interface PickerCommonProps<T> extends BaseTypeProps {
   /** 是否显示加载状态 */
   loading?: boolean;
   /** 是否只读状态 */
-  readonly?: boolean;
+  readOnly?: boolean;
   /**  确认按钮文字 */
   cancelButtonText?: React.ReactNode;
   /** 取消按钮文字 */
@@ -126,7 +126,7 @@ export interface PickerColumnProps extends BaseTypeProps {
   index?: number;
   textKey: string;
   valueKey?: string;
-  readonly?: boolean;
+  readOnly?: boolean;
   itemHeight: number;
   defaultValue?: number;
   swipeDuration?: number | string;

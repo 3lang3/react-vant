@@ -22,7 +22,7 @@ const EMPTY_CODE = '000000';
 const INHERIT_PROPS = [
   'title',
   'loading',
-  'readonly',
+  'readOnly',
   'itemHeight',
   'swipeDuration',
   'visibleItemCount',

@@ -19,7 +19,7 @@ export interface AreaProps
   PickerProps,
   | 'title'
   | 'loading'
-  | 'readonly'
+  | 'readOnly'
   | 'itemHeight'
   | 'swipeDuration'
   | 'visibleItemCount'

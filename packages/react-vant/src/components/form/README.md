@@ -60,7 +60,7 @@ Form.List 为字段提供数组化管理。
 | colon | 配置 Form.Item 的 colon 的默认值。表示是否显示 label 后面的冒号 | _boolean_ | `false` |
 | showValidateMessage | 是否显示验证错误信息 | _boolean_ | `true` |
 | labelAlign | 统一设置左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
-| inputAlign | 统一设置右侧内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| controlAlign | 统一设置右侧内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | footer | 表单底部内容 | _ReactNode_ | - |
 
 > 更多 Form API 参见：[rc-field-form](https://github.com/react-component/field-form#form)

@@ -23,7 +23,7 @@ export interface CollapseItemProps extends CellProps {
   /** 是否禁用面板	 */
   disabled?: boolean;
   /** 是否为只读状态，只读状态下无法操作面板	 */
-  readonly?: boolean;
+  readOnly?: boolean;
   /** @private */
   index?: number;
   children: React.ReactNode;

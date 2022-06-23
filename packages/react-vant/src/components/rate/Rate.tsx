@@ -21,17 +21,17 @@ function getRateStatus(
   value: number,
   index: number,
   allowHalf: boolean,
-  readonly: boolean,
+  readOnly: boolean,
 ): RateListItem {
   if (value >= index) {
     return { status: 'full', value: 1 };
   }
 
-  if (value + 0.5 >= index && allowHalf && !readonly) {
+  if (value + 0.5 >= index && allowHalf && !readOnly) {
     return { status: 'half', value: 0.5 };
   }
 
-  if (value + 1 >= index && allowHalf && readonly) {
+  if (value + 1 >= index && allowHalf && readOnly) {
     const cardinal = 10 ** 10;
     return {
       status: 'half',
@@ -53,14 +53,14 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
   const touch = useTouch();
   const [itemRefs, setItemRefs] = useRefs();
 
-  const untouchable = () => props.readonly || props.disabled || !touchable;
+  const untouchable = () => props.readOnly || props.disabled || !touchable;
 
   const list = useMemo<RateListItem[]>(
     () =>
       Array(count)
         .fill('')
-        .map((_, i) => getRateStatus(value, i + 1, props.allowHalf, props.readonly)),
-    [count, value, props.allowHalf, props.readonly],
+        .map((_, i) => getRateStatus(value, i + 1, props.allowHalf, props.readOnly)),
+    [count, value, props.allowHalf, props.readOnly],
   );
 
   const ranges = useRef<{ left: number; score: number }[]>();
@@ -92,7 +92,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
   };
 
   const select = (index: number) => {
-    if (!props.disabled && !props.readonly && index !== value) {
+    if (!props.disabled && !props.readOnly && index !== value) {
       setValue(index);
       onChange?.(index);
     }
@@ -188,7 +188,7 @@ const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => 
       role="radiogroup"
       className={clsx(
         bem({
-          readonly: props.readonly,
+          readOnly: props.readOnly,
           disabled: props.disabled,
         }),
       )}

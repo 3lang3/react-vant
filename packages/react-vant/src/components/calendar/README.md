@@ -74,7 +74,7 @@ import { Calendar } from 'react-vant';
 | showTitle | 是否展示日历标题 | _boolean_ | `true` |
 | showSubtitle | 是否展示日历副标题（年月） | _boolean_ | `true` |
 | showConfirm | 是否展示确认按钮 | _boolean_ | `true` |
-| readonly | 是否为只读状态，只读状态下不能选择日期 | _boolean_ | `false` |
+| readOnly | 是否为只读状态，只读状态下不能选择日期 | _boolean_ | `false` |
 | confirmText | 确认按钮的文字 | _string_ | `确定` |
 | confirmDisabledText | 确认按钮处于禁用状态时的文字 | _string_ | `确定` |
 | firstDayOfWeek | 设置周起始日 | _0-6_ | `0` |

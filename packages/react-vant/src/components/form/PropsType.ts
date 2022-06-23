@@ -69,7 +69,7 @@ export interface FormItemProps<Values = any>
   ) => void
 }
 
-export type FormItemLayoutProps = FormItemProps & {
+export type FormItemLayoutProps = Omit<FormItemProps, 'name'> & {
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;
   meta?: Meta;

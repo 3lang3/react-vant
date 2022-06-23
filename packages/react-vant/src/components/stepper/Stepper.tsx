@@ -143,7 +143,7 @@ function Stepper<T = string>(props: StepperProps<T>) {
 
   const onFocus = useCallback(
     (event: FormEvent) => {
-      // readonly not work in lagacy mobile safari
+      // readOnly not work in lagacy mobile safari
       if (props.disableInput && inputRef.current) {
         inputRef.current.blur();
       } else {

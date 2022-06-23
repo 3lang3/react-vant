@@ -89,7 +89,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     setInputFocus(true);
     props.onFocus?.(e);
 
-    // readonly not work in legacy mobile safari
+    // readOnly not work in legacy mobile safari
     if (readOnly) {
       blur();
     }
@@ -101,7 +101,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     resetScroll();
   };
 
-  const handleKeypress = (e) => {
+  const handleKeyPress = (e) => {
     if (e.key === 'Enter' || +e.charCode === 13) {
       preventDefault(e);
       // trigger blur after click keyboard search button
@@ -109,7 +109,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         blur();
       }
     }
-    props.onKeypress?.(e);
+    props.onKeyPress?.(e);
   };
 
   const renderInput = () => {
@@ -143,7 +143,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         onBlur={handleBulr}
         onFocus={handleFocus}
         onChange={handleChange}
-        onKeyPress={handleKeypress}
+        onKeyPress={handleKeyPress}
         autoCapitalize={props.autoCapitalize}
         autoCorrect={props.autoCorrect}
         onKeyDown={props.onKeyDown}
