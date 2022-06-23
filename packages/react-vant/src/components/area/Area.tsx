@@ -202,18 +202,20 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
 
   // parse output columns data
   const parseValues = (values: AreaColumnOption[]) =>
-    values.map((value, index) => {
-      if (value) {
-        value = deepClone(value) as AreaColumnOption;
+    values
+      .map((value, index) => {
+        if (value) {
+          value = deepClone(value) as AreaColumnOption;
 
-        if (!value.code || value.name === props.columnsPlaceholder[index]) {
-          value.code = '';
-          value.name = '';
+          if (!value.code || value.name === props.columnsPlaceholder[index]) {
+            value.code = '';
+            value.name = '';
+          }
         }
-      }
 
-      return value;
-    }).filter(Boolean);
+        return value;
+      })
+      .filter(Boolean);
 
   const getValues = () => {
     if (pickerRef.current) {
@@ -258,7 +260,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     updateCode(code);
   };
 
-  const onChange = (values: string[], index: number) => {
+  const onChange = (values: string[], selectedOptions: AreaColumnOption[], index: number) => {
     changeRef.current = true;
     updateCode(values[index]);
     if (pickerRef.current) {
@@ -268,7 +270,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
     }
   };
 
-  const onConfirm = (values: string[], indexes: number[]) => {
+  const onConfirm = (values: string[], selectedOptions: AreaColumnOption[], indexes: number[]) => {
     const code = values.filter(Boolean).pop();
     const currentOptions = getValuesFormCode(code);
     const parseOptions = parseValues(currentOptions);
@@ -310,7 +312,7 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   );
 
   return (
-    <Picker
+    <Picker<AreaColumnOption>
       ref={pickerRef}
       style={props.style}
       className={clsx(bem(), props.className)}

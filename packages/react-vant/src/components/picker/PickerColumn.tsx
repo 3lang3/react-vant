@@ -309,10 +309,15 @@ const PickerColumn = forwardRef<{}, PickerColumnProps>((props, ref) => {
       return columnIndexRef;
     },
     setIndex: (index: number) => setIndex(index, true),
+    // 获取选中项的值
     getValue,
     setValue,
+    // 获取选择项
+    getOption: () => optionsRef.current[columnIndexRef.current],
+    // 获取所以选项
     getOptions: () => optionsRef.current,
     setOptions,
+    // 立即停止滚动
     stopMomentum,
   }));
 

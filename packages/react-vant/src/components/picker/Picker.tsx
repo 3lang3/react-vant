@@ -14,11 +14,18 @@ import Column from './PickerColumn';
 import useRefs from '../hooks/use-refs';
 import useEventListener from '../hooks/use-event-listener';
 
-import { PickerProps, PickerInstance, PickerOption, PickerObjectColumn } from './PropsType';
-import { unitToPx, preventDefault, extend } from '../utils';
+import {
+  PickerProps,
+  PickerInstance,
+  PickerOption,
+  PickerObjectColumn,
+  PickerPopupActions,
+} from './PropsType';
+import { unitToPx, preventDefault, extend, isObject } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { useMount } from '../hooks';
+import { useMount, usePropsValue } from '../hooks';
+import Popup from '../popup';
 
 function PickerInner<T = PickerOption>(
   props: PickerProps<T>,
@@ -172,9 +179,15 @@ function PickerInner<T = PickerOption>(
   const getChild = (index: number) => refs[index];
 
   // get column value by index
-  const getColumnValue = (index: number) => {
+  const getColumnValue = (index: number): string & string[] => {
     const column = getChild(index);
     return column.getValue();
+  };
+
+  // get column value by index
+  const getColumnOption = (index: number): T & T[] => {
+    const column = getChild(index);
+    return column.getOption();
   };
 
   // set column value by index
@@ -214,7 +227,8 @@ function PickerInner<T = PickerOption>(
 
   // get values of all columns
   const getValues = () => refs.map((_ref) => _ref.getValue());
-
+  // get select option of all columns
+  const getOptions = () => refs.map((_ref) => _ref.getOption());
   // set values of all columns
   const setValues = (values: string[]) => {
     values.forEach((value, index) => {
@@ -234,18 +248,18 @@ function PickerInner<T = PickerOption>(
       onCascadeChange(currentColumnIndex);
     }
     if (dataType === 'plain') {
-      props.onChange?.(getColumnValue(0), getColumnIndex(0));
+      props.onChange?.(getColumnValue(0), getColumnOption(0), getColumnIndex(0));
     } else {
-      props.onChange?.(getValues(), currentColumnIndex);
+      props.onChange?.(getValues(), getOptions(), currentColumnIndex);
     }
   }
 
   const confirm = () => {
     refs.forEach((_ref) => _ref.stopMomentum());
     if (dataType === 'plain') {
-      props.onConfirm?.(getColumnValue(0), getColumnIndex(0));
+      props.onConfirm?.(getColumnValue(0), getColumnOption(0), getColumnIndex(0));
     } else {
-      props.onConfirm?.(getValues(), getIndexes());
+      props.onConfirm?.(getValues(), getOptions(), getIndexes());
     }
   };
 
@@ -348,6 +362,7 @@ function PickerInner<T = PickerOption>(
 
   useImperativeHandle(ref, () => ({
     confirm,
+    getOptions,
     getValues,
     setValues,
     getIndexes,
@@ -372,9 +387,97 @@ function PickerInner<T = PickerOption>(
   );
 }
 
-const Picker = forwardRef(PickerInner) as <T>(
+const InnerPickerForward = forwardRef(PickerInner) as <T>(
   props: PickerProps<T> & { ref?: React.ForwardedRef<PickerInstance> },
 ) => ReturnType<typeof PickerInner>;
+
+function PopupPicker<T = PickerOption>(
+  props: PickerProps<T>,
+  ref: React.ForwardedRef<PickerInstance & Partial<PickerPopupActions>>,
+) {
+  const innerRef = useRef<PickerInstance>(null);
+  const { visible: outerVisible, popup, children, ...pickerProps } = props;
+  const [visivle, setVisible] = usePropsValue({
+    value: outerVisible,
+    defaultValue: false,
+    onChange: (v) => {
+      if (v === false) {
+        props.onClose?.();
+      }
+    },
+  });
+
+  const actions: PickerPopupActions = {
+    toggle: () => {
+      setVisible((v) => !v);
+    },
+    open: () => {
+      if (popup) {
+        setVisible(true);
+      }
+    },
+    close: () => {
+      if (popup) {
+        setVisible(false);
+      }
+    },
+  };
+
+  useImperativeHandle(ref, () => ({
+    ...innerRef.current,
+    ...actions,
+  }));
+
+  const onConfirm = (value: string & string[], option: T & T[], index: number & number[]) => {
+    props.onConfirm?.(value, option, index);
+    if (popup) actions.close();
+  };
+
+  const onCancel = (value: string & string[], index: number & number[]) => {
+    props.onCancel?.(value, index);
+    if (popup) actions.close();
+  };
+
+  const popupProps = isObject(popup) ? popup : {};
+  const content = (
+    <InnerPickerForward ref={innerRef} {...pickerProps} onCancel={onCancel} onConfirm={onConfirm} />
+  );
+
+  if (!popup) return content;
+
+  return (
+    <>
+      <Popup
+        position="bottom"
+        visible={visivle}
+        onClickOverlay={() => {
+          if (!popupProps?.closeOnClickOverlay) return;
+          setVisible(false);
+        }}
+        {...popupProps}
+      >
+        {content}
+      </Popup>
+      {(() => {
+        const values = innerRef.current?.getValues<string>();
+        const value = Array.isArray(values) && values.length === 1 ? values[0] : values;
+        const selectedOptions = innerRef.current?.getOptions<T>();
+        const selectedOptionsParsed =
+          Array.isArray(selectedOptions) && selectedOptions.length === 1
+            ? selectedOptions[0]
+            : selectedOptions;
+
+        return children?.(value, selectedOptionsParsed, actions);
+      })()}
+    </>
+  );
+}
+
+const Picker = forwardRef(PopupPicker) as <T>(
+  props: PickerProps<T> & {
+    ref?: React.ForwardedRef<PickerInstance & Partial<PickerPopupActions>>;
+  },
+) => ReturnType<typeof PopupPicker>;
 
 (Picker as React.FC<PickerProps>).defaultProps = {
   itemHeight: 44,

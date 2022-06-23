@@ -21,7 +21,8 @@ export default () => {
           picker.current.setColumnOptions(1, cities[values[0]]);
           // 动态设置后需要重新获取picker值
           const newValues = picker.current.getValues<string>();
-          console.log(newValues);
+          const newSelectedOptions = picker.current.getOptions<string>();
+          console.log(newValues, newSelectedOptions);
           setValue(newValues);
         }}
       />

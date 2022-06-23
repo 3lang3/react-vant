@@ -14,7 +14,7 @@ export default () => {
       <Field
         isLink
         value={state.text}
-        readonly
+        readOnly
         label="地区"
         placeholder="请选择所在地区"
         errorMessage={<div>当前值:{JSON.stringify(state.value)}</div>}

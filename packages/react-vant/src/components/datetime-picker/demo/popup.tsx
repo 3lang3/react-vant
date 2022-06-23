@@ -8,7 +8,7 @@ export default () => {
   return (
     <>
       <Field
-        readonly
+        readOnly
         clickable
         label="日期"
         value={fieldValue}

@@ -7,8 +7,8 @@ export default () => {
     <Picker
       title="标题"
       value={value}
-      onChange={(val) => {
-        console.log(val);
+      onChange={(val, options) => {
+        console.log(val, options);
         setValue(val);
       }}
       columnsFieldNames={{

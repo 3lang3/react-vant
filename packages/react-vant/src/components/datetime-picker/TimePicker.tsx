@@ -114,7 +114,7 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   }));
 
   return (
-    <Picker
+    <Picker<string>
       {...pickerProps}
       ref={picker}
       columns={columns}

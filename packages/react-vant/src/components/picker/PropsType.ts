@@ -1,4 +1,5 @@
 import React from 'react';
+import { SharedPopupProps } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export type PickerToolbarPosition = 'top' | 'bottom';
@@ -28,9 +29,17 @@ export type PickerObjectColumn<T = PickerOption> = {
 
 export type PickerColumn<T> = T[] | PickerObjectColumn<T>;
 
+export type PickerPopupActions = {
+  open: () => void
+  close: () => void
+  toggle: () => void
+}
+
 export type PickerInstance = {
   /** 停止惯性滚动并触发 onConfirm 事件 */
   confirm: () => void;
+  /** 获取所有列选中的option */
+  getOptions: <T = PickerOption>() => T[];
   /** 获取所有列选中的值 */
   getValues: <T = PickerOption>(returnOption?: boolean) => T[];
   /** 设置所有列选中的值 */
@@ -44,7 +53,7 @@ export type PickerInstance = {
   /** 设置对应列选中项的索引 */
   setColumnIndex: (columnIndex: number, optionIndex: number) => void;
   /** 获取对应列选中的值 */
-  getColumnValue: <T = PickerOption>(index: number) => T;
+  getColumnValue: (index: number) => string;
   /** 设置对应列选中的值 */
   setColumnValue: (index: number, value: string) => void;
   /** 获取对应列中所有选项 */
@@ -60,7 +69,10 @@ export interface Column {
   disabled?: boolean;
 }
 
-export interface PickerCommonProps<T> extends BaseTypeProps {
+export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
+  popup?: boolean | SharedPopupProps;
+  visible?: boolean;
+  onClose?: () => void;
   /** 对象数组，配置每一列显示的数据 */
   columns?: T[] | PickerColumn<T>[];
   /** 自定义 columns 结构中的字段 */
@@ -93,6 +105,7 @@ export interface PickerCommonProps<T> extends BaseTypeProps {
   columnsBottom?: React.ReactNode;
   /** 自定义确认按钮内容 */
   optionRender?: (option: string | object) => React.ReactNode;
+  children?: (val: string | string[], options: T | T[], actions: PickerPopupActions) => React.ReactNode;
 }
 
 export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T> {
@@ -101,11 +114,11 @@ export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T
   /** 默认选中项 */
   defaultValue?: T;
   /** 选项改变时触发 */
-  onChange?: (value: T, index: number) => void;
+  onChange?: (value: string, option: T, index?: number) => void;
   /** 点击完成按钮时触发 */
-  onConfirm?: (value: T, index: number) => void;
+  onConfirm?: (value: string, options: T, index: number) => void;
   /** 点击取消按钮时触发 */
-  onCancel?: (value: T, index: number) => void;
+  onCancel?: (value: string, index: number) => void;
 }
 
 export interface PickerMultipleProps<T = PickerOption> extends PickerCommonProps<T> {
@@ -114,11 +127,11 @@ export interface PickerMultipleProps<T = PickerOption> extends PickerCommonProps
   /** 默认选中项 */
   defaultValue?: T[];
   /** 选项改变时触发 */
-  onChange?: (value: T[], index: number) => void;
+  onChange?: (value: string[], options: T[], index?: number) => void;
   /** 点击完成按钮时触发 */
-  onConfirm?: (value: T[], index: number[]) => void;
+  onConfirm?: (value: string[], options: T[], index: number[]) => void;
   /** 点击取消按钮时触发 */
-  onCancel?: (value: T[], index: number[]) => void;
+  onCancel?: (value: string[], index: number[]) => void;
 }
 
 export type PickerProps<T = PickerOption> = PickerSingleProps<T> | PickerMultipleProps<T>;

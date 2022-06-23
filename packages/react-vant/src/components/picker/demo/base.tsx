@@ -17,7 +17,7 @@ const objectCcolumns = columns.map((text, value) => ({ text, value })) as Picker
 
 export default () => {
   const [value, setValue] = React.useState(columns[1]);
-  const onChange = (val: string, index: number) => {
+  const onChange = (val: string, option: string, index: number) => {
     Toast(`当前值：${val}, 当前索引：${index}`);
     setValue(val);
   };

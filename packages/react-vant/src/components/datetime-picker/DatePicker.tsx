@@ -254,7 +254,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   }));
 
   return (
-    <Picker
+    <Picker<string>
       {...pickerProps}
       value={pickerValue}
       ref={picker}
