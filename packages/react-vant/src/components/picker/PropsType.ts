@@ -110,9 +110,9 @@ export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
 
 export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T> {
   /** 选中项 */
-  value?: T;
+  value?: string;
   /** 默认选中项 */
-  defaultValue?: T;
+  defaultValue?: string;
   /** 选项改变时触发 */
   onChange?: (value: string, option: T, index?: number) => void;
   /** 点击完成按钮时触发 */
@@ -123,9 +123,9 @@ export interface PickerSingleProps<T = PickerOption> extends PickerCommonProps<T
 
 export interface PickerMultipleProps<T = PickerOption> extends PickerCommonProps<T> {
   /** 选中项 */
-  value?: T[];
+  value?: string[];
   /** 默认选中项 */
-  defaultValue?: T[];
+  defaultValue?: string[];
   /** 选项改变时触发 */
   onChange?: (value: string[], options: T[], index?: number) => void;
   /** 点击完成按钮时触发 */
