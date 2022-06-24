@@ -38,27 +38,27 @@ export type PickerPopupActions = {
 export type PickerInstance = {
   /** 停止惯性滚动并触发 onConfirm 事件 */
   confirm: () => void;
-  /** 获取所有列选中的option */
+  /** 获取所有列的选中option */
   getOptions: <T = PickerOption>() => T[];
   /** 获取所有列选中的值 */
   getValues: <T = PickerOption>(returnOption?: boolean) => T[];
   /** 设置所有列选中的值 */
   setValues: (values: string[]) => void;
-  /** 获取所有列选中值对应的索引 */
+  /** 获取所有列的索引 */
   getIndexes: () => number[];
-  /** 设置所有列选中值对应的索引 */
+  /** 设置所有列的索引 */
   setIndexes: (indexes: number[]) => void;
   /** 获取对应列选中项的索引 */
   getColumnIndex: (index: number) => number;
   /** 设置对应列选中项的索引 */
   setColumnIndex: (columnIndex: number, optionIndex: number) => void;
-  /** 获取对应列选中的值 */
+  /** 获取对应列的值 */
   getColumnValue: (index: number) => string;
-  /** 设置对应列选中的值 */
+  /** 设置对应列的值 */
   setColumnValue: (index: number, value: string) => void;
-  /** 获取对应列中所有选项 */
+  /** 获取对应列的选项 */
   getColumnOptions: <T = PickerOption>(index: number) => T[];
-  /** 设置对应列中所有选项 */
+  /** 设置对应列的选项 */
   setColumnOptions: (index: number, options: PickerOption[], columnIndex?: number) => void;
 };
 
