@@ -15,7 +15,7 @@ importers:
       eslint-plugin-react: ^7.29.4
       eslint-plugin-react-hooks: ^4.4.0
       husky: 8.0.1
-      lint-staged: 13.0.2
+      lint-staged: 13.0.3
       prettier: 2.7.1
       pretty-quick: 3.1.3
       sort-package-json: 1.56.1
@@ -32,7 +32,7 @@ importers:
       eslint-plugin-react: 7.30.0_eslint@8.18.0
       eslint-plugin-react-hooks: 4.5.0_eslint@8.18.0
       husky: 8.0.1
-      lint-staged: 13.0.2
+      lint-staged: 13.0.3
       prettier: 2.7.1
       pretty-quick: 3.1.3_prettier@2.7.1
       sort-package-json: 1.56.1
@@ -8347,8 +8347,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/13.0.2:
-    resolution: {integrity: sha512-qQLfLTh9z34eMzfEHENC+QBskZfxjomrf+snF3xJ4BzilORbD989NLqQ00ughsF/A+PT41e87+WsMFabf9++pQ==}
+  /lint-staged/13.0.3:
+    resolution: {integrity: sha512-9hmrwSCFroTSYLjflGI8Uk+GWAwMB4OlpU4bMJEAT5d/llQwtYKoim4bLOyLCuWFAhWEupE0vkIFqtw/WIsPug==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
