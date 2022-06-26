@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { inBrowser } from '.';
 
-const root = (inBrowser ? window : global) as unknown as Window;
+export const root = (inBrowser ? window : global) as unknown as Window;
 
 let prev = Date.now();
 
