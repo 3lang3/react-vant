@@ -1,29 +1,49 @@
 import React, { useRef } from 'react';
-import { Picker, PickerInstance } from 'react-vant';
+import { Picker } from 'react-vant';
 
 const cities = {
   浙江: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
   福建: ['福州', '厦门', '莆田', '三明', '泉州'],
 };
 
+async function sleep(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+async function request(key: string) {
+  await sleep(1000);
+  return cities[key];
+}
+
 export default () => {
-  const [value, setValue] = React.useState(['浙江', '温州']);
-  const picker = useRef<PickerInstance>(null);
+  // const [value, setValue] = React.useState();
+  const [columns, setColumns] = React.useState([
+    { text: '浙江', children: [] },
+    { text: '福建', children: [] },
+  ]);
 
   return (
     <>
       <Picker<string>
-        ref={picker}
-        value={value}
-        columns={[Object.keys(cities), cities['浙江']]}
+        // value={value}
+        columns={columns}
         onChange={(values) => {
-          // 动态设置第二列数据
-          picker.current.setColumnOptions(1, cities[values[0]]);
-          // 动态设置后需要重新获取picker值
-          const newValues = picker.current.getValues<string>();
-          const newSelectedOptions = picker.current.getOptions<string>();
-          console.log(newValues, newSelectedOptions);
-          setValue(newValues);
+          const key = values[0];
+          if (!key) return;
+          request(key).then((data) => {
+            setColumns((columns) =>
+              columns.map((column) => {
+                if (column.text === key) {
+                  return {
+                    ...column,
+                    children: data.map((x) => ({ text: x, value: x })),
+                  };
+                }
+                return column;
+              }),
+            );
+          });
+          console.log(values)
         }}
       />
     </>

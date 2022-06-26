@@ -1,5 +1,5 @@
 import React from 'react';
-import { Picker, PickerOption, Toast } from 'react-vant';
+import { Picker, Toast } from 'react-vant';
 
 const columns = [
   '南京',
@@ -11,24 +11,26 @@ const columns = [
   '宿迁',
   '泰州',
   '无锡',
-] as PickerOption[];
-
-const objectCcolumns = columns.map((text, value) => ({ text, value })) as PickerOption[];
+];
 
 export default () => {
-  const [value, setValue] = React.useState(columns[1]);
-  const onChange = (val: string, option: string, index: number) => {
+  const [value, setValue] = React.useState(columns[2]);
+  const onChange = (val, option: string, index: number) => {
+    console.log(val, option, index)
     Toast(`当前值：${val}, 当前索引：${index}`);
     setValue(val);
   };
   return (
     <Picker
       title="基础使用"
-      columns={objectCcolumns}
+      columns={columns}
       value={value}
       onChange={onChange}
       onCancel={() => Toast.info('点击取消按钮')}
-      onConfirm={() => Toast.info('点击确认按钮')}
+      onConfirm={(val, option) => {
+        console.log(val, option)
+        Toast.info('点击确认按钮')
+      }}
     />
   );
 };

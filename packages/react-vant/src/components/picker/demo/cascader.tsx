@@ -55,7 +55,7 @@ export default () => {
       value={value}
       onConfirm={(v, i) => console.log(v, i)}
       onChange={(val, options, index: number) => {
-        console.log(val, options, index);
+        // console.log(val, options, index);
         setValue(val);
       }}
       columns={columns}
