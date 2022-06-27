@@ -84,20 +84,6 @@ export function generateColumnsExtend(
 ) {
   const { textKey, valueKey, childrenKey } = keys;
 
-  const dataType = () => {
-    const firstColumn = rawColumns[0] || {};
-
-    if (typeof firstColumn === 'object') {
-      // 联级
-      if (childrenKey in firstColumn) {
-        return 'cascade';
-      }
-      return 'object';
-    }
-    // 单列
-    return 'plain';
-  };
-
   const columns = withCache(() => {
     let cls = typeof rawColumns === 'function' ? rawColumns(val) : rawColumns;
     if (!Array.isArray(cls[0])) cls = [cls];
@@ -112,11 +98,12 @@ export function generateColumnsExtend(
       }),
     );
   });
+
   const items = withCache(() => {
     return val.map((v, index) => {
       const column = columns()[index];
       if (!column) return null;
-      return column.find((item) => item.value === v) ?? null;
+      return column.find((item) => item[valueKey] === v) ?? null;
     });
   });
 
@@ -124,7 +111,7 @@ export function generateColumnsExtend(
     return val.map((v, index) => {
       const column = columns()[index];
       if (!column) return null;
-      return column.findIndex((item) => item.value === v) ?? null;
+      return column.findIndex((item) => item[valueKey] === v) ?? null;
     });
   });
 
@@ -137,9 +124,6 @@ export function generateColumnsExtend(
     },
     get indexes() {
       return indexes();
-    },
-    get dataType() {
-      return dataType();
     },
   };
   return result;

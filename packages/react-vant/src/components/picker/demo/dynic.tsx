@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Picker } from 'react-vant';
 
 const cities = {
@@ -16,7 +16,8 @@ async function request(key: string) {
 }
 
 export default () => {
-  // const [value, setValue] = React.useState();
+  const [loading, setLoading] = React.useState(false);
+  const [value, setValue] = React.useState<string[]>();
   const [columns, setColumns] = React.useState([
     { text: '浙江', children: [] },
     { text: '福建', children: [] },
@@ -25,25 +26,31 @@ export default () => {
   return (
     <>
       <Picker<string>
-        // value={value}
+        loading={loading}
+        value={value}
         columns={columns}
-        onChange={(values) => {
+        onChange={async (values: string[]) => {
           const key = values[0];
           if (!key) return;
-          request(key).then((data) => {
-            setColumns((columns) =>
-              columns.map((column) => {
-                if (column.text === key) {
-                  return {
-                    ...column,
-                    children: data.map((x) => ({ text: x, value: x })),
-                  };
-                }
-                return column;
-              }),
-            );
-          });
-          console.log(values)
+          // 已请求的忽略request
+          if (columns.some((column) => column.text === key && column.children.length > 0)) {
+            setValue(values);
+            return;
+          }
+          setLoading(true);
+          const data = await request(key);
+          setLoading(false);
+          setColumns((columns) =>
+            columns.map((column) => {
+              if (column.text === key) {
+                return {
+                  ...column,
+                  children: data.map((x) => ({ text: x, value: x })),
+                };
+              }
+              return column;
+            }),
+          );
         }}
       />
     </>

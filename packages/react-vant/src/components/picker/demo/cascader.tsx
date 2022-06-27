@@ -54,8 +54,8 @@ export default () => {
     <Picker
       value={value}
       onConfirm={(v, i) => console.log(v, i)}
-      onChange={(val, options, index: number) => {
-        // console.log(val, options, index);
+      onChange={(val: string[], options, indexes) => {
+        console.log(options, indexes)
         setValue(val);
       }}
       columns={columns}

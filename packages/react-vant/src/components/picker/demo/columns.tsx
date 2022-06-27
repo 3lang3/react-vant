@@ -7,8 +7,7 @@ export default () => {
   return (
     <Picker<string>
       value={value}
-      onChange={(val, option, index) => {
-        console.log(val, option);
+      onChange={(val: string[], _, index) => {
         Toast(`当前值：${val}, 当前索引：${index}`);
         setValue(val);
       }}

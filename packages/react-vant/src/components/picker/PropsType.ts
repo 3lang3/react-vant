@@ -63,7 +63,13 @@ export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
   columnsBottom?: React.ReactNode;
   /** 自定义确认按钮内容 */
   optionRender?: (option: string | object) => React.ReactNode;
-  children?: (options: PickerColumn<T>, actions: PickerPopupActions) => React.ReactNode;
+  children?: (val: string | string[], options: PickerColumn<T>, actions: PickerPopupActions) => React.ReactNode;
+  /** 选项改变时触发 */
+  onChange?: (value: string | string[], options: T | T[], index?: number | number[]) => void;
+  /** 点击完成按钮时触发 */
+  onConfirm?: (value: string | string[], options: T | T[], index: number | number[]) => void;
+  /** 点击取消按钮时触发 */
+  onCancel?: () => void;
 }
 
 export interface PickerSingleProps<T> extends PickerCommonProps<T> {
@@ -71,12 +77,6 @@ export interface PickerSingleProps<T> extends PickerCommonProps<T> {
   value?: string;
   /** 默认选中项 */
   defaultValue?: string;
-  /** 选项改变时触发 */
-  onChange?: (value: string, option: T, index?: number) => void;
-  /** 点击完成按钮时触发 */
-  onConfirm?: (value: string, options: T, index: number) => void;
-  /** 点击取消按钮时触发 */
-  onCancel?: () => void;
 }
 
 export interface PickerMultipleProps<T> extends PickerCommonProps<T> {
@@ -84,12 +84,6 @@ export interface PickerMultipleProps<T> extends PickerCommonProps<T> {
   value?: string[];
   /** 默认选中项 */
   defaultValue?: string[];
-  /** 选项改变时触发 */
-  onChange?: (value: string[], options: T[], index?: number) => void;
-  /** 点击完成按钮时触发 */
-  onConfirm?: (value: string[], options: T[], index: number[]) => void;
-  /** 点击取消按钮时触发 */
-  onCancel?: () => void;
 }
 
 export type PickerProps<T = PickerColumnOption> = PickerSingleProps<T> | PickerMultipleProps<T>;
@@ -107,8 +101,7 @@ export interface PickerColumnProps extends BaseTypeProps {
 }
 
 export type PickerValueExtend = {
-  columns:  PickerColumnOption[][];
-  items: (PickerColumnOption | null)[];
+  columns: PickerColumnOption[][];
+  items: (PickerColumnOption | null | any)[];
   indexes: number[];
-  dataType: string;
 }

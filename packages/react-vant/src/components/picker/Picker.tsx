@@ -13,17 +13,22 @@ import Loading from '../loading';
 import Column from './PickerColumn';
 import useEventListener from '../hooks/use-event-listener';
 
-import { PickerProps, PickerPopupActions, PickerColumnOption } from './PropsType';
+import {
+  PickerProps,
+  PickerMultipleProps,
+  PickerPopupActions,
+  PickerColumnOption,
+} from './PropsType';
 import { unitToPx, preventDefault, isObject, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { usePropsValue } from '../hooks';
+import { useMemoizedFn, usePropsValue } from '../hooks';
 import Popup from '../popup';
 import { useColumnsExtend } from './columnsExtend';
 import useRefs from '../hooks/use-refs';
 import useDebounceEffect from '../hooks/use-debunce-effect';
 
-function PickerInner<T = PickerColumnOption>(props: PickerProps<T>) {
+function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
   const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('picker', prefixCls);
 
@@ -44,20 +49,15 @@ function PickerInner<T = PickerColumnOption>(props: PickerProps<T>) {
     props.columnsFieldNames,
   );
 
-  const formatValue = Array.isArray(props.value) ? props.value : [props.value];
-  const formatDefaultValue = Array.isArray(props.defaultValue)
-    ? props.defaultValue
-    : [props.defaultValue];
-
   const [innerValue, setInnerValue] = useState<string[]>(
-    formatValue === undefined ? formatDefaultValue : formatValue,
+    props.value === undefined ? props.defaultValue : props.value,
   );
 
   // Sync `value` to `innerValue`
   useEffect(() => {
     if (props.value === undefined) return; // Uncontrolled mode
-    if (JSON.stringify(innerValue) === JSON.stringify(formatValue)) return;
-    setInnerValue(formatValue);
+    if (JSON.stringify(innerValue) === JSON.stringify(props.value)) return;
+    setInnerValue(props.value);
   }, [props.value]);
 
   const formatColumns = useColumnsExtend(
@@ -65,15 +65,12 @@ function PickerInner<T = PickerColumnOption>(props: PickerProps<T>) {
     { textKey, valueKey, childrenKey },
     innerValue,
   );
-  const { columns, items, indexes, dataType } = formatColumns;
+  const { columns, items, indexes } = formatColumns;
 
   useDebounceEffect(
     () => {
-      if (JSON.stringify(formatValue) === JSON.stringify(innerValue)) return;
-      const val = dataType === 'plain' ? innerValue[0] : innerValue;
-      const selectedOptions = dataType === 'plain' ? items[0] : items;
-      const index = dataType === 'plain' ? indexes[0] : indexes;
-      props.onChange?.(val as any, selectedOptions as any, index as any);
+      if (JSON.stringify(props.value) === JSON.stringify(innerValue)) return;
+      props.onChange?.(innerValue, items, indexes);
     },
     [innerValue],
     {
@@ -88,17 +85,14 @@ function PickerInner<T = PickerColumnOption>(props: PickerProps<T>) {
   const handleSelect = (val: PickerColumnOption, index: number) => {
     setInnerValue((prev) => {
       const next = [...prev];
-      next[index] = val === null ?  undefined : val?.[valueKey];
+      next[index] = val === null ? undefined : val?.[valueKey];
       return next;
     });
   };
 
   const confirm = () => {
     refs.forEach((_ref) => _ref.stopMomentum());
-    const val = dataType === 'plain' ? innerValue[0] : innerValue;
-    const selectedOptions = dataType === 'plain' ? items[0] : items;
-    const index = dataType === 'plain' ? indexes[0] : indexes;
-    props.onConfirm?.(val as any, selectedOptions as any, index as any);
+    props.onConfirm?.(innerValue, items, indexes);
   };
 
   const cancel = () => {
@@ -204,8 +198,8 @@ function PopupPicker<T = PickerColumnOption>(
   props: PickerProps<T>,
   ref: React.ForwardedRef<PickerPopupActions & Partial<PickerPopupActions>>,
 ) {
-  const { visible: outerVisible, popup, children, ...pickerProps } = props;
-  const [visivle, setVisible] = usePropsValue({
+  const { visible: outerVisible, popup, children, defaultValue, ...pickerProps } = props;
+  const [visible, setVisible] = usePropsValue({
     value: outerVisible,
     defaultValue: false,
     onChange: (v) => {
@@ -233,8 +227,73 @@ function PopupPicker<T = PickerColumnOption>(
 
   useImperativeHandle(ref, () => actions);
 
-  const onConfirm = (value: string & string[], option: T & T[], index: number & number[]) => {
-    props.onConfirm?.(value, option, index);
+  const formatValue = Array.isArray(props.value)
+    ? props.value
+    : props.value !== undefined
+    ? [props.value]
+    : undefined;
+  const formatDefaultValue = Array.isArray(defaultValue)
+    ? defaultValue
+    : defaultValue !== undefined
+    ? [defaultValue]
+    : [];
+
+  const {
+    text: textKey,
+    value: valueKey,
+    children: childrenKey,
+  } = extend(
+    {
+      text: 'text',
+      value: 'value',
+      children: 'children',
+    },
+    props.columnsFieldNames,
+  );
+
+  const dataType = useMemo(() => {
+    const firstColumn = props.columns[0] || {};
+
+    if (typeof firstColumn === 'object') {
+      // 联级
+      if (childrenKey in firstColumn) {
+        return 'cascade';
+      }
+      return 'object';
+    }
+    // 单列
+    return 'plain';
+  }, [props.columns]);
+
+  const parseValue = (target: any[]) => {
+    if (dataType === 'plain') return target[0];
+    return target;
+  };
+
+  const [value, setValue] = usePropsValue({
+    value: formatValue,
+    defaultValue: formatDefaultValue,
+  });
+
+  const formatColumns = useColumnsExtend(props.columns, { textKey, valueKey, childrenKey }, value);
+
+  const [innerValue, setInnerValue] = useState<string[]>(value);
+
+  useEffect(() => {
+    if (JSON.stringify(innerValue) !== JSON.stringify(value)) {
+      setInnerValue(value);
+    }
+  }, [visible]);
+
+  useEffect(() => {
+    if (!visible && JSON.stringify(innerValue) !== JSON.stringify(value)) {
+      setInnerValue(value);
+    }
+  }, [value]);
+
+  const onConfirm = (val, items, indexes) => {
+    setValue(innerValue);
+    props.onConfirm?.(parseValue(val), parseValue(items), parseValue(indexes));
     if (popup) actions.close();
   };
 
@@ -243,8 +302,25 @@ function PopupPicker<T = PickerColumnOption>(
     if (popup) actions.close();
   };
 
+  const onChange = useMemoizedFn((val, ext, indexes) => {
+    setInnerValue(val);
+    if (popup) {
+      if (visible) props.onChange?.(parseValue(val), parseValue(ext), parseValue(indexes));
+    } else {
+      props.onChange?.(parseValue(val), parseValue(ext), parseValue(indexes));
+    }
+  });
+
   const popupProps = isObject(popup) ? popup : {};
-  const content = <PickerInner {...pickerProps} onCancel={onCancel} onConfirm={onConfirm} />;
+  const content = (
+    <PickerInner
+      {...pickerProps}
+      value={innerValue}
+      onCancel={onCancel}
+      onConfirm={onConfirm}
+      onChange={onChange}
+    />
+  );
 
   if (!popup) return content;
 
@@ -252,7 +328,7 @@ function PopupPicker<T = PickerColumnOption>(
     <>
       <Popup
         position="bottom"
-        visible={visivle}
+        visible={visible}
         onClickOverlay={() => {
           if (!popupProps?.closeOnClickOverlay) return;
           setVisible(false);
@@ -261,7 +337,7 @@ function PopupPicker<T = PickerColumnOption>(
       >
         {content}
       </Popup>
-      {children?.('' as any, actions)}
+      {children?.(parseValue(value), parseValue(formatColumns.items), actions)}
     </>
   );
 }

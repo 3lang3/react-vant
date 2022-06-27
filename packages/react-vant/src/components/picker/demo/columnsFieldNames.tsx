@@ -7,7 +7,7 @@ export default () => {
     <Picker
       title="标题"
       value={value}
-      onChange={(val, options) => {
+      onChange={(val: string[], options) => {
         console.log(val, options);
         setValue(val);
       }}
