@@ -10,7 +10,7 @@ export default () => {
         title="标题"
         value={value}
         areaList={areaList}
-        columnsPlaceholder={['请选择🤔', '请选择🤔', '请选择🤔']}
+        placeholder={['请选择🤔', '请选择🤔', '请选择🤔']}
         onChange={(val, options) => {
           console.log('selected value: ', val);
           console.log('selected option: ', options);

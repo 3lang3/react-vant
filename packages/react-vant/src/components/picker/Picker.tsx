@@ -270,7 +270,7 @@ function PopupPicker<T = PickerColumnOption>(
 
   const parseValue = (target: any[]) => {
     if (dataType === 'plain') return target[0];
-    return target;
+    return target.filter(Boolean);
   };
 
   const [value, setValue] = usePropsValue({
@@ -289,10 +289,11 @@ function PopupPicker<T = PickerColumnOption>(
   }, [visible]);
 
   useEffect(() => {
+    if (formatValue === undefined) setInnerValue([]);
     if (!visible && JSON.stringify(innerValue) !== JSON.stringify(value)) {
       setInnerValue(value);
     }
-  }, [value]);
+  }, [value, formatValue]);
 
   const onConfirm = (val, items, indexes) => {
     setValue(innerValue);

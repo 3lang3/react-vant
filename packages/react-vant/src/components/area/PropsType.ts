@@ -27,6 +27,7 @@ export interface AreaProps
   | 'cancelButtonText'
   | 'confirmButtonText'
   | 'toolbar'
+  | 'columns'
   | 'columnsTop'
   | 'columnsBottom'
   | 'optionRender'
@@ -43,8 +44,6 @@ export interface AreaProps
   columnsNum?: number;
   /** 根据地区码校验海外地址，海外地址会划分至单独的分类	 */
   isOverseaCode?: (code: string) => boolean;
-  /** 列占位提示文字	 */
-  columnsPlaceholder?: string[];
   /** 选项改变时触发	 */
   onChange?: (value: string[], column: AreaColumnOption[], indexes: number[]) => void;
   /** 点击完成按钮时触发	 */

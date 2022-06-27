@@ -9,6 +9,8 @@ import { PickerPopupActions } from '../picker/PropsType';
 
 const INHERIT_PROPS = [
   'title',
+  'value',
+  'defaultValue',
   'loading',
   'readOnly',
   'itemHeight',
@@ -65,8 +67,8 @@ const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
   const [bem] = createNamespace('area', prefixCls);
 
   const columns = useMemo(
-    () => parseVanAreaList(props.areaList, +props.columnsNum),
-    [props.columnsNum, props.areaList],
+    () => props.columns ?? parseVanAreaList(props.areaList, +props.columnsNum),
+    [props.columnsNum, props.areaList, props.columns],
   );
 
   const pickerRef = useRef<PickerPopupActions>();
@@ -94,7 +96,6 @@ function isOverseaCode(code: string) {
 Area.defaultProps = {
   areaList: {},
   columnsNum: 3,
-  columnsPlaceholder: [],
   isOverseaCode,
 };
 
