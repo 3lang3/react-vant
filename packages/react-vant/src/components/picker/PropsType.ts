@@ -59,6 +59,7 @@ export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
   toolbar?: React.ReactNode;
   /** 自定义选项上方内容 */
   columnsTop?: React.ReactNode;
+  placeholder?: React.ReactNode | React.ReactNode[];
   /** 自定义选项下方内容 */
   columnsBottom?: React.ReactNode;
   /** 自定义确认按钮内容 */
@@ -93,6 +94,9 @@ export interface PickerColumnProps extends BaseTypeProps {
   readOnly?: boolean;
   itemHeight: number;
   value?: string;
+  valueKey: string;
+  textKey: string;
+  placeholder?: React.ReactNode;
   swipeDuration?: number | string;
   visibleItemCount?: number | string;
   options?: PickerColumnOption[];

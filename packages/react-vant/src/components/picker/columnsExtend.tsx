@@ -49,12 +49,14 @@ function useColumnsFn(options: PickerProps['columns'], keys: KeysProps) {
     while (true) {
       columns.push(
         currentOptions.map((option) => ({
-          text: option[textKey],
-          value: option[valueKey] ?? option[textKey],
+          [textKey]: option[textKey],
+          [valueKey]: option[valueKey] ?? option[textKey],
         })) as any,
       );
       const x = selected[i];
-      const targetOptions = currentOptions.find((option) => (option[valueKey] ?? option[textKey]) === x);
+      const targetOptions = currentOptions.find(
+        (option) => (option[valueKey] ?? option[textKey]) === x,
+      );
       if (!targetOptions || !targetOptions[childrenKey]) break;
       currentOptions = targetOptions[childrenKey];
       i++;
@@ -82,18 +84,15 @@ export function generateColumnsExtend(
   keys: KeysProps,
   val: string[],
 ) {
-  const { textKey, valueKey, childrenKey } = keys;
+  const { textKey, valueKey } = keys;
 
   const columns = withCache(() => {
     let cls = typeof rawColumns === 'function' ? rawColumns(val) : rawColumns;
     if (!Array.isArray(cls[0])) cls = [cls];
     return cls.map((column) =>
       column.map((item) => {
-        if (typeof item === 'string') return { text: item, value: item };
-        if (item[textKey]) item.text = item[textKey];
-        if (item[valueKey]) item.value = item[valueKey];
-        if (item.value === undefined) item.value = item.text;
-        if (item[childrenKey]) item.children = item[childrenKey];
+        if (typeof item === 'string') return { [textKey]: item, [valueKey]: item };
+        if (item[valueKey] === undefined) item[valueKey] = item[textKey];
         return item;
       }),
     );

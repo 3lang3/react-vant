@@ -52,24 +52,6 @@ const areaList = {
 };
 ```
 
-### 选中省市区
-
-如果想选中某个省市区，需要传入一个 `value` 属性，绑定对应的地区码。
-
-<code title="选中省市区" src="./demo/choose.tsx" />
-
-### 配置显示列
-
-可以通过 `columnsNum` 属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为 `2`，则只会显示省市选择。
-
-<code title="配置显示列" src="./demo/column.tsx" />
-
-### 配置列占位提示文字
-
-可以通过 `columnsPlaceholder` 属性配置每一列的占位提示文字。
-
-<code title="占位提示文字" src="./demo/placeholder.tsx" />
-
 ## API
 
 ### Props

@@ -49,9 +49,7 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
     props.columnsFieldNames,
   );
 
-  const [innerValue, setInnerValue] = useState<string[]>(
-    props.value === undefined ? props.defaultValue : props.value,
-  );
+  const [innerValue, setInnerValue] = useState<string[]>(props.value);
 
   // Sync `value` to `innerValue`
   useEffect(() => {
@@ -145,8 +143,13 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
     return columns.map((item, columnIndex) => {
       return (
         <Column
+          textKey={textKey}
+          valueKey={valueKey}
           key={columnIndex}
           ref={setRefs(columnIndex)}
+          placeholder={
+            Array.isArray(props.placeholder) ? props.placeholder[columnIndex] : props.placeholder
+          }
           optionRender={props.optionRender}
           readOnly={props.readOnly}
           value={innerValue[columnIndex] || null}

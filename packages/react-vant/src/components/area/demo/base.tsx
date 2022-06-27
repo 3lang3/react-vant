@@ -7,6 +7,7 @@ export default () => {
     <Area
       title="标题"
       areaList={areaList}
+      placeholder={['请选择🤔', '请选择😍', '请选择😻']}
       onChange={(val, options) => {
         console.log('selected value: ', val);
         console.log('selected option: ', options);

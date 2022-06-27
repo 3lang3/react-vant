@@ -28,7 +28,26 @@ const PickerColumn = memo<
     const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
     const [bem] = createNamespace('picker-column', prefixCls);
 
-    const { itemHeight, visibleItemCount, options = [], value } = props;
+    const {
+      valueKey,
+      textKey,
+      itemHeight,
+      visibleItemCount,
+      placeholder = '请选择',
+      value,
+    } = props;
+    const DEFAULT_OPTION = {
+      [valueKey]: null,
+      [textKey]: placeholder,
+    };
+
+    const options = useMemo(
+      () =>
+        Array.isArray(props.options) && !props.options.length
+          ? []
+          : [DEFAULT_OPTION, ...props.options],
+      [props.options],
+    );
 
     const wrapper = useRef(null);
     const moving = useRef(false);
@@ -39,7 +58,7 @@ const PickerColumn = memo<
 
     // 选中项索引
     const selectedIndex = useMemo(() => {
-      return options.findIndex((item) => item.value === value);
+      return options.findIndex((item) => item[valueKey] === value);
     }, [value, options]);
 
     const [state, updateState] = useSetState({
@@ -203,7 +222,7 @@ const PickerColumn = memo<
       };
 
       return options.map((option, index: number) => {
-        const { text, disabled } = option;
+        const { disabled } = option;
 
         const data = {
           role: 'button',
@@ -222,7 +241,7 @@ const PickerColumn = memo<
 
         const childData = {
           className: 'rv-ellipsis',
-          children: text,
+          children: option[textKey],
         };
 
         return (
@@ -239,7 +258,7 @@ const PickerColumn = memo<
           onSelect(null);
         }
       } else {
-        let targetIndex = options.findIndex((item) => item.value === value);
+        let targetIndex = options.findIndex((item) => item[valueKey] === value);
         if (targetIndex < 0) {
           targetIndex = 0;
         }

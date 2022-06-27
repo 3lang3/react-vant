@@ -1,4 +1,5 @@
 import { PickerProps } from '../picker';
+import { PickerPopupActions } from '../picker/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export type AreaList = {
@@ -29,6 +30,7 @@ export interface AreaProps
   | 'columnsTop'
   | 'columnsBottom'
   | 'optionRender'
+  | 'placeholder'
   >,
   BaseTypeProps {
   /** 当前选中项对应的地区码	 */
@@ -44,22 +46,11 @@ export interface AreaProps
   /** 列占位提示文字	 */
   columnsPlaceholder?: string[];
   /** 选项改变时触发	 */
-  onChange?: (value: string[], column: AreaColumnOption[], index: number) => void;
+  onChange?: (value: string[], column: AreaColumnOption[], indexes: number[]) => void;
   /** 点击完成按钮时触发	 */
   onConfirm?: (value: string[], result: AreaColumnOption[], indexes: number[]) => void;
   /** 点击取消按钮时触发	 */
   onCancel?: (...args: unknown[]) => void;
 }
 
-export type AreaInstance = {
-  /** 根据地区码重置所有选项，若不传地区码，则重置到第一项	 */
-  reset: (newCode?: string) => void;
-  getArea: () => {
-    code: string;
-    country: string;
-    province: string;
-    city: string;
-    county: string;
-  };
-  getValues: () => AreaColumnOption[];
-};
+export type AreaInstance = PickerPopupActions
