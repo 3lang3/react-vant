@@ -13,7 +13,7 @@ export type PickerColumnOption = {
 } & Record<string, any>;
 
 /** 列 */
-export type PickerColumn<T = PickerColumnOption> = (T | PickerColumnOption)[];
+export type PickerColumn<T = PickerColumnOption> = T[];
 
 export type PickerFieldNames = {
   text?: string;
@@ -28,7 +28,7 @@ export type PickerPopupActions = {
 }
 
 export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
-  popup?: boolean | SharedPopupProps;
+  popup?: boolean | Omit<SharedPopupProps, 'closeable'>;
   visible?: boolean;
   onClose?: () => void;
   /** 对象数组，配置每一列显示的数据 */
@@ -59,12 +59,13 @@ export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
   toolbar?: React.ReactNode;
   /** 自定义选项上方内容 */
   columnsTop?: React.ReactNode;
-  placeholder?: React.ReactNode | React.ReactNode[];
+  placeholder?: false | React.ReactNode | React.ReactNode[];
   /** 自定义选项下方内容 */
   columnsBottom?: React.ReactNode;
   /** 自定义确认按钮内容 */
   optionRender?: (option: string | object) => React.ReactNode;
-  children?: (val: string | string[], options: PickerColumn<T>, actions: PickerPopupActions) => React.ReactNode;
+
+  children?: (val: string | string[], options: PickerColumnOption[], actions: PickerPopupActions) => React.ReactNode;
   /** 选项改变时触发 */
   onChange?: (value: string | string[], options: T | T[], index?: number | number[]) => void;
   /** 点击完成按钮时触发 */

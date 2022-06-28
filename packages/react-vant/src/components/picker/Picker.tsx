@@ -270,7 +270,7 @@ function PopupPicker<T = PickerColumnOption>(
 
   const parseValue = (target: any[]) => {
     if (dataType === 'plain') return target[0];
-    return target.filter(Boolean);
+    return target.filter((el) => el !== undefined && el !== null);
   };
 
   const [value, setValue] = usePropsValue({
@@ -315,7 +315,9 @@ function PopupPicker<T = PickerColumnOption>(
     }
   });
 
-  const popupProps = isObject(popup) ? popup : {};
+  const popupProps = isObject(popup)
+    ? { closeOnClickOverlay: true, ...popup }
+    : { closeOnClickOverlay: true };
   const content = (
     <PickerInner
       {...pickerProps}
@@ -333,6 +335,7 @@ function PopupPicker<T = PickerColumnOption>(
       <Popup
         position="bottom"
         visible={visible}
+        closeOnClickOverlay
         onClickOverlay={() => {
           if (!popupProps?.closeOnClickOverlay) return;
           setVisible(false);
@@ -357,6 +360,7 @@ const Picker = forwardRef(PopupPicker) as <T>(
   visibleItemCount: 5,
   swipeDuration: 1000,
   showToolbar: true,
+  placeholder: '请选择',
   toolbarPosition: 'top',
 };
 

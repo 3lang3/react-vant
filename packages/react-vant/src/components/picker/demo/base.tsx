@@ -16,15 +16,16 @@ const columns = [
 export default () => {
   const [value, setValue] = React.useState();
   const onChange = (val, option: string, index: number) => {
-    console.log(val, option, index)
+    // console.log(val, option, index)
     Toast(`当前值：${val}, 当前索引：${index}`);
     setValue(val);
   };
+
   return (
     <Picker
       title="基础使用"
       columns={columns}
-      // value={value}
+      value={value}
       onChange={onChange}
       onCancel={() => Toast.info('点击取消按钮')}
       onConfirm={(val, option) => {

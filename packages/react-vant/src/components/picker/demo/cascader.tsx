@@ -1,5 +1,5 @@
 import React from 'react';
-import { Picker, PickerOption } from 'react-vant';
+import { Picker, PickerColumnOption } from 'react-vant';
 
 const columns = [
   {
@@ -46,7 +46,7 @@ const columns = [
       },
     ],
   },
-] as PickerOption[];
+] as PickerColumnOption[];
 
 export default () => {
   const [value, setValue] = React.useState(['2', '2-2', '2-2-2']);

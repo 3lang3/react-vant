@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 
 import Picker from '../picker';
-import type { PickerInstance } from '../picker';
+import type { PickerPopupActions } from '../picker';
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';
 import { getMonthEndDay, getTrueValue, times } from './utils';
@@ -22,6 +22,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     maxDate,
     ...pickerProps
   } = props;
+
   const formatValue = (date) => {
     if (!isDate(date)) {
       date = minDate;
@@ -33,7 +34,8 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     return new Date(date);
   };
 
-  const picker = useRef<PickerInstance>(null);
+  const picker = useRef<PickerPopupActions>(null);
+
   const [currentDate, setCurrentDate, currentDateRef] = useRefState(() =>
     formatValue(value || defaultValue),
   );
@@ -154,7 +156,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   );
 
   const pickerValue = useMemo(() => {
-    const value = currentDateRef.current;
+    const value = props.popup ? formatValue(props.value) : currentDateRef.current;
     const values = originColumns.map((column) => {
       switch (column.type) {
         case 'year':
@@ -173,11 +175,10 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
       }
     });
     return values;
-  }, [currentDateRef.current]);
+  }, [props.value, currentDateRef.current, formatValue]);
 
-  const updateInnerValue = () => {
+  const updateInnerValue = (indexes: number[]) => {
     const { type } = props;
-    const indexes = picker.current?.getIndexes();
 
     const getValue = (datetimePickerColumnType: DatetimePickerColumnType) => {
       let index = 0;
@@ -223,14 +224,10 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     return formatValue(new Date(year, month - 1, day, hour, minute));
   };
 
-  const onChange = () => {
-    const nextValue = updateInnerValue();
+  const onChange = (val, values, indexes) => {
+    const nextValue = updateInnerValue(indexes);
     setCurrentDate(nextValue);
-
-    Promise.resolve().then(() => {
-      const nextValue = updateInnerValue();
-      props.onChange?.(nextValue);
-    });
+    props.onChange?.(nextValue);
   };
 
   const onConfirm = () => {
@@ -238,23 +235,19 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
   };
 
   useUpdateEffect(() => {
-    updateInnerValue();
-  }, [filter, minDate, maxDate]);
-
-  useUpdateEffect(() => {
     const nextValue = formatValue(value);
 
     if (nextValue && nextValue.valueOf() !== currentDate?.valueOf()) {
       setCurrentDate(nextValue);
     }
-  }, [value]);
+  }, [value, filter, minDate, maxDate]);
 
   useImperativeHandle(ref, () => ({
-    getPicker: () => picker.current,
+    ...picker.current,
   }));
 
   return (
-    <Picker<string>
+    <Picker
       {...pickerProps}
       value={pickerValue}
       ref={picker}
@@ -262,7 +255,9 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
       onChange={onChange}
       onConfirm={onConfirm}
       onCancel={props.onCancel}
-    />
+    >
+      {(_, selectRows, actions) => props.children?.(value, selectRows, actions)}
+    </Picker>
   );
 });
 
@@ -270,6 +265,7 @@ const currentYear = new Date().getFullYear();
 
 DatePicker.defaultProps = {
   type: 'datetime',
+  placeholder: false,
   minDate: new Date(currentYear - 10, 0, 1),
   maxDate: new Date(currentYear + 10, 11, 31),
   formatter: (type: string, value: string) => value,

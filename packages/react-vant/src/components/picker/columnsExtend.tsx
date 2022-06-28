@@ -92,7 +92,7 @@ export function generateColumnsExtend(
     return cls.map((column) =>
       column.map((item) => {
         if (typeof item === 'string') return { [textKey]: item, [valueKey]: item };
-        if (item[valueKey] === undefined) item[valueKey] = item[textKey];
+        if (!(valueKey in item)) item[valueKey] = item[textKey];
         return item;
       }),
     );
@@ -102,7 +102,7 @@ export function generateColumnsExtend(
     return val.map((v, index) => {
       const column = columns()[index];
       if (!column) return null;
-      return column.find((item) => item[valueKey] === v) ?? null;
+      return column.find((item) => item[valueKey] === v) ?? undefined;
     });
   });
 

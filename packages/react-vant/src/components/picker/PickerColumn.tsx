@@ -28,26 +28,19 @@ const PickerColumn = memo<
     const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
     const [bem] = createNamespace('picker-column', prefixCls);
 
-    const {
-      valueKey,
-      textKey,
-      itemHeight,
-      visibleItemCount,
-      placeholder = '请选择',
-      value,
-    } = props;
-    const DEFAULT_OPTION = {
-      [valueKey]: null,
-      [textKey]: placeholder,
-    };
+    const { valueKey, textKey, itemHeight, visibleItemCount, placeholder, value } = props;
 
-    const options = useMemo(
-      () =>
-        Array.isArray(props.options) && !props.options.length
-          ? []
-          : [DEFAULT_OPTION, ...props.options],
-      [props.options],
-    );
+    const options = useMemo(() => {
+      if (Array.isArray(props.options) && !props.options.length) return [];
+      if (placeholder) {
+        const DEFAULT_OPTION = {
+          [valueKey]: null,
+          [textKey]: placeholder,
+        };
+        return [DEFAULT_OPTION, ...props.options];
+      }
+      return props.options;
+    }, [props.options]);
 
     const wrapper = useRef(null);
     const moving = useRef(false);
@@ -55,11 +48,6 @@ const PickerColumn = memo<
     const transitionEndTrigger = useRef(null);
     const touchStartTime = useRef(0);
     const momentumOffset = useRef(0);
-
-    // 选中项索引
-    const selectedIndex = useMemo(() => {
-      return options.findIndex((item) => item[valueKey] === value);
-    }, [value, options]);
 
     const [state, updateState] = useSetState({
       offset: 0,
@@ -94,7 +82,7 @@ const PickerColumn = memo<
       index = adjustIndex(index) || 0;
       const offset = -index * props.itemHeight;
       const trigger = () => {
-        if (index !== selectedIndex) {
+        if (options[index][valueKey] !== value) {
           onSelect(options[index]);
         }
       };
@@ -231,7 +219,7 @@ const PickerColumn = memo<
           className: clsx(
             bem('item', {
               disabled,
-              selected: index === selectedIndex,
+              selected: option[valueKey] === value,
             }),
           ),
           onClick: () => {
@@ -262,10 +250,9 @@ const PickerColumn = memo<
         if (targetIndex < 0) {
           targetIndex = 0;
         }
-        // if (targetIndex === selectedIndex) return;
         setIndex(targetIndex);
       }
-    }, [value, options]);
+    }, [value, JSON.stringify(options)]);
 
     useImperativeHandle(ref, () => ({
       stopMomentum,

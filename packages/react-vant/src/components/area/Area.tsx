@@ -5,7 +5,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { AreaColumnOption, AreaInstance, AreaList, AreaProps } from './PropsType';
 import Picker from '../picker';
 import { pick } from '../utils';
-import { PickerPopupActions } from '../picker/PropsType';
+import { PickerColumn, PickerPopupActions } from '../picker/PropsType';
 
 const INHERIT_PROPS = [
   'title',
@@ -28,7 +28,7 @@ const INHERIT_PROPS = [
   'onConfirm',
 ] as const;
 
-function parseVanAreaList(data: AreaList, columnsNum: number) {
+function parseVanAreaList(data: AreaList, columnsNum: number): PickerColumn<AreaColumnOption> {
   const { province_list = {}, city_list = {}, county_list = {} } = data;
 
   const provinces = Object.entries(province_list).map(([code, name]) => ({
@@ -62,7 +62,7 @@ function parseVanAreaList(data: AreaList, columnsNum: number) {
   return provinces;
 }
 
-const Area = forwardRef<AreaInstance, AreaProps>((props, ref) => {
+const Area = forwardRef<AreaInstance, AreaProps<AreaColumnOption>>((props, ref) => {
   const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('area', prefixCls);
 

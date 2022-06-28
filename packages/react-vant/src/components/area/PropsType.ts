@@ -15,9 +15,9 @@ export type AreaColumnOption = {
 
 export type AreaColumnType = 'province' | 'county' | 'city';
 
-export interface AreaProps
+export interface AreaProps<T>
   extends Pick<
-  PickerProps,
+  PickerProps<T>,
   | 'title'
   | 'loading'
   | 'readOnly'

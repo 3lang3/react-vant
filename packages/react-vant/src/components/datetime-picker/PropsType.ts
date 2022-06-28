@@ -1,4 +1,5 @@
-import { PickerInstance, PickerProps } from '../picker/PropsType';
+import React from 'react';
+import { PickerColumnOption, PickerPopupActions, PickerProps } from '../picker/PropsType';
 
 export type DatetimePickerColumnType = 'year' | 'month' | 'day' | 'hour' | 'minute';
 
@@ -10,11 +11,7 @@ export type DatetimePickerType =
   | 'month-day'
   | 'year-month';
 
-export type DatetimePickerExpose = {
-  getPicker: () => PickerInstance;
-};
-
-export interface SharedProps extends Omit<PickerProps, 'value' | 'defaultValue' | 'onConfirm' | 'onChange' | 'columns'> {
+export interface SharedProps extends Omit<PickerProps, 'value' | 'defaultValue' | 'onConfirm' | 'onChange' | 'columns' | 'children'> {
   /** 时间类型 */
   type?: DatetimePickerType;
   /** 选项过滤函数	 */
@@ -40,6 +37,7 @@ export interface DatePickerProps extends SharedProps {
   onChange?: (value: Date) => void;
   /** 点击完成按钮时触发的事件	 */
   onConfirm?: (value: Date) => void;
+  children?: (val: Date, selectRows: PickerColumnOption[], actions: PickerPopupActions) => React.ReactNode;
 }
 
 export interface TimePickerProps extends SharedProps {
@@ -56,10 +54,9 @@ export interface TimePickerProps extends SharedProps {
   onChange?: (value: string) => void;
   /** 点击完成按钮时触发的事件	 */
   onConfirm?: (value: string) => void;
+  children?: (val: string, selectRows: PickerColumnOption[], actions: PickerPopupActions) => React.ReactNode;
 }
 
 export type DateTimePickerProps = DatePickerProps | TimePickerProps;
 
-export type DateTimePickerInstance = {
-  getPicker: () => PickerInstance;
-};
+export type DateTimePickerInstance = PickerPopupActions

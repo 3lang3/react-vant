@@ -20,42 +20,6 @@ import { Picker } from 'react-vant';
 
 <code title="基础用法" card src="./demo/base.tsx" />
 
-### 多列选择
-
-`columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](/components/picker#column-数据结构)。
-
-<code title="多列选择" card src="./demo/columns.tsx" />
-
-### 级联选择
-
-使用 `columns` 的 `children` 字段可以实现选项级联的效果，`value` 字段可以指定选项返回值
-
-<code title="级联选择" card src="./demo/cascader.tsx" />
-
-> 级联选择的数据嵌套深度需要保持一致，如果部分选项没有子选项，可以使用空字符串进行占位
-
-### 动态设置选项
-
-通过 Picker 上的实例方法可以更灵活地控制选择器，比如使用 `setColumnValues` 方法实现多列联动。
-
-<code title="动态设置选项" card src="./demo/dynic.tsx" />
-
-### 加载状态
-
-若选择器数据是异步获取的，可以通过 `loading` 属性显示加载提示。
-
-<code title="加载状态" card src="./demo/loading.tsx" />
-
-### 搭配弹出层使用
-
-在实际场景中，Picker 通常作为用于辅助表单填写，可以搭配 Popup 和 Field 实现该效果。
-
-<code title="搭配弹出层使用" card src="./demo/popup.tsx" />
-
-### 自定义 Columns 的结构
-
-<code title="自定义 Columns 的结构" card src="./demo/columnsFieldNames.tsx" />
-
 ## API
 
 ### Props

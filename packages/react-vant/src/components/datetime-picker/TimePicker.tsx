@@ -1,7 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import Picker from '../picker';
-import type { PickerInstance } from '../picker';
 
 import { DateTimePickerInstance, TimePickerProps } from './PropsType';
 import { times } from './utils';
@@ -34,7 +33,7 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
     return `${hour}:${minute}`;
   };
 
-  const picker = useRef<PickerInstance>(null);
+  const picker = useRef<DateTimePickerInstance>(null);
   const [currentDate, setCurrentDate] = useState(() => formatValue(value || defaultValue));
 
   const ranges = useMemo(
@@ -77,11 +76,11 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   );
 
   const pickerValue = useMemo(() => {
-    const pair = currentDate.split(':');
+    const pair = props.popup ? formatValue(props.value) : currentDate;
     const values = [formatter('hour', pair[0]), formatter('minute', pair[1])];
 
     return values;
-  }, [currentDate]);
+  }, [props.value, currentDate, formatValue]);
 
   const onConfirm = () => {
     props.onConfirm?.(currentDate);
@@ -110,11 +109,11 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   }, [value]);
 
   useImperativeHandle(ref, () => ({
-    getPicker: () => picker.current,
+    ...picker.current,
   }));
 
   return (
-    <Picker<string>
+    <Picker
       {...pickerProps}
       ref={picker}
       columns={columns}
@@ -122,7 +121,9 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
       onChange={onChange}
       onConfirm={onConfirm}
       onCancel={onCancel}
-    />
+    >
+      {(_, selectRows, actions) => props.children?.(value, selectRows, actions)}
+    </Picker>
   );
 });
 
@@ -131,6 +132,7 @@ TimePicker.defaultProps = {
   maxHour: 23,
   minMinute: 0,
   maxMinute: 59,
+  placeholder: false,
   formatter: (type: string, value: string) => value,
 };
 

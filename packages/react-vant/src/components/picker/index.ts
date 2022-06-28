@@ -5,11 +5,9 @@ export default Picker;
 export { Picker };
 export type {
   PickerProps,
-  PickerInstance,
   PickerColumn,
-  PickerOption,
+  PickerColumnOption,
   PickerFieldNames,
-  PickerObjectColumn,
-  PickerObjectOption,
+  PickerPopupActions,
   PickerToolbarPosition,
 } from './PropsType';
