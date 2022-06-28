@@ -179,7 +179,7 @@ const PickerColumn = memo<
     };
 
     const onTouchEnd = () => {
-      if (props.readOnly) {
+      if (props.readOnly || !moving.current) {
         return;
       }
       const distance = state.offset - momentumOffset.current;

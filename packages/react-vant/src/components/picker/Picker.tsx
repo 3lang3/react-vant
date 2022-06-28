@@ -141,15 +141,14 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
 
   const renderColumnItems = () => {
     return columns.map((item, columnIndex) => {
+      const placeholder = Array.isArray(props.placeholder) ? props.placeholder[columnIndex] : props.placeholder
       return (
         <Column
           textKey={textKey}
           valueKey={valueKey}
           key={columnIndex}
           ref={setRefs(columnIndex)}
-          placeholder={
-            Array.isArray(props.placeholder) ? props.placeholder[columnIndex] : props.placeholder
-          }
+          placeholder={placeholder}
           optionRender={props.optionRender}
           readOnly={props.readOnly}
           value={innerValue[columnIndex] || null}
@@ -270,7 +269,7 @@ function PopupPicker<T = PickerColumnOption>(
 
   const parseValue = (target: any[]) => {
     if (dataType === 'plain') return target[0];
-    return target.filter((el) => el !== undefined && el !== null);
+    return target;
   };
 
   const [value, setValue] = usePropsValue({
