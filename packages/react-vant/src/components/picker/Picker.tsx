@@ -83,7 +83,7 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
   const handleSelect = (val: PickerColumnOption, index: number) => {
     setInnerValue((prev) => {
       const next = [...prev];
-      next[index] = val === null ? undefined : val?.[valueKey];
+      next[index] = val?.[valueKey];
       return next;
     });
   };
@@ -141,7 +141,9 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
 
   const renderColumnItems = () => {
     return columns.map((item, columnIndex) => {
-      const placeholder = Array.isArray(props.placeholder) ? props.placeholder[columnIndex] : props.placeholder
+      const placeholder = Array.isArray(props.placeholder)
+        ? props.placeholder[columnIndex]
+        : props.placeholder;
       return (
         <Column
           textKey={textKey}
@@ -151,7 +153,7 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
           placeholder={placeholder}
           optionRender={props.optionRender}
           readOnly={props.readOnly}
-          value={innerValue[columnIndex] || null}
+          value={innerValue[columnIndex]}
           itemHeight={itemHeight}
           index={columnIndex}
           swipeDuration={props.swipeDuration}
@@ -288,7 +290,10 @@ function PopupPicker<T = PickerColumnOption>(
   }, [visible]);
 
   useEffect(() => {
-    if (formatValue === undefined) setInnerValue([]);
+    if (formatValue === undefined) {
+      setInnerValue([]);
+      return;
+    }
     if (!visible && JSON.stringify(innerValue) !== JSON.stringify(value)) {
       setInnerValue(value);
     }

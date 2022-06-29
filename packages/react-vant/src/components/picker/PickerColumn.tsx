@@ -34,7 +34,7 @@ const PickerColumn = memo<
       if (Array.isArray(props.options) && !props.options.length) return [];
       if (placeholder) {
         const DEFAULT_OPTION = {
-          [valueKey]: null,
+          [valueKey]: undefined,
           [textKey]: placeholder,
         };
         return [DEFAULT_OPTION, ...props.options];
@@ -104,13 +104,14 @@ const PickerColumn = memo<
 
     useIsomorphicLayoutEffect(() => {
       if (options.length === 0) {
-        if (value !== null) {
-          onSelect(null);
+        if (value !== undefined) {
+          onSelect(undefined);
         }
       } else {
         let targetIndex = options.findIndex((item) => item[valueKey] === value);
         if (targetIndex < 0) {
           targetIndex = 0;
+          onSelect(options[0]);
         }
         animate(targetIndex);
       }
@@ -289,10 +290,7 @@ const PickerColumn = memo<
   }),
   (prev, next) => {
     if (prev.index !== next.index) return false;
-    if (prev.value !== next.value) {
-      console.log('memo:', prev.value, next.value)
-      return false;
-    }
+    if (prev.value !== next.value) return false;
     if (prev.onSelect !== next.onSelect) return false;
     if (JSON.stringify(prev.options) !== JSON.stringify(next.options)) {
       return false;
