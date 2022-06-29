@@ -96,6 +96,26 @@ const PickerColumn = memo<
       updateState({ offset });
     };
 
+    const animate = (index: number) => {
+      index = adjustIndex(index) || 0;
+      const offset = -index * props.itemHeight;
+      updateState({ offset });
+    };
+
+    useIsomorphicLayoutEffect(() => {
+      if (options.length === 0) {
+        if (value !== null) {
+          onSelect(null);
+        }
+      } else {
+        let targetIndex = options.findIndex((item) => item[valueKey] === value);
+        if (targetIndex < 0) {
+          targetIndex = 0;
+        }
+        animate(targetIndex);
+      }
+    }, [value, JSON.stringify(options)]);
+
     const onClickItem = (index: number) => {
       if (moving.current || props.readOnly) {
         return;
@@ -240,20 +260,6 @@ const PickerColumn = memo<
       });
     };
 
-    useIsomorphicLayoutEffect(() => {
-      if (options.length === 0) {
-        if (value !== null) {
-          onSelect(null);
-        }
-      } else {
-        let targetIndex = options.findIndex((item) => item[valueKey] === value);
-        if (targetIndex < 0) {
-          targetIndex = 0;
-        }
-        setIndex(targetIndex);
-      }
-    }, [value, JSON.stringify(options)]);
-
     useImperativeHandle(ref, () => ({
       stopMomentum,
     }));
@@ -283,7 +289,10 @@ const PickerColumn = memo<
   }),
   (prev, next) => {
     if (prev.index !== next.index) return false;
-    if (prev.value !== next.value) return false;
+    if (prev.value !== next.value) {
+      console.log('memo:', prev.value, next.value)
+      return false;
+    }
     if (prev.onSelect !== next.onSelect) return false;
     if (JSON.stringify(prev.options) !== JSON.stringify(next.options)) {
       return false;
