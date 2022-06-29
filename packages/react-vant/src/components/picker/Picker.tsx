@@ -255,24 +255,9 @@ function PopupPicker<T = PickerColumnOption>(
     props.columnsFieldNames,
   );
 
-  const dataType = useMemo(() => {
-    const firstColumn = props.columns[0] || {};
+  const isPlainType = useMemo(() => typeof (props.columns[0] || {}) !== 'object', [props.columns]);
 
-    if (typeof firstColumn === 'object') {
-      // 联级
-      if (childrenKey in firstColumn) {
-        return 'cascade';
-      }
-      return 'object';
-    }
-    // 单列
-    return 'plain';
-  }, [props.columns]);
-
-  const parseValue = (target: any[]) => {
-    if (dataType === 'plain') return target?.[0];
-    return target;
-  };
+  const parseValue = (target: any[]) => (isPlainType ? target?.[0] : target);
 
   const [value, setValue] = usePropsValue({
     value: formatValue,

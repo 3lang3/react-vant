@@ -26,7 +26,7 @@ function useColumnsFn(options: PickerProps['columns'], keys: KeysProps) {
 
   const depth = useMemo(() => {
     let depth = 0;
-    function traverse(options: PickerColumnOption[], currentDepth: number) {
+    function traverse(options: PickerProps['columns'], currentDepth: number) {
       if (currentDepth > depth) depth = currentDepth;
       const nextDepth = currentDepth + 1;
       options.forEach((option) => {
