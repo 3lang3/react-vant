@@ -25,7 +25,7 @@ const PickerColumn = memo<
   PickerColumnProps & { ref?: React.ForwardedRef<{ stopMomentum: () => void }> }
 >(
   forwardRef<{ stopMomentum: () => void }, PickerColumnProps>((props, ref) => {
-    const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
+    const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
     const [bem] = createNamespace('picker-column', prefixCls);
 
     const { valueKey, textKey, itemHeight, visibleItemCount, placeholder, value } = props;
@@ -35,7 +35,7 @@ const PickerColumn = memo<
       if (placeholder) {
         const DEFAULT_OPTION = {
           [valueKey]: undefined,
-          [textKey]: placeholder,
+          [textKey]: placeholder === true ? locale.vanPicker.select : placeholder,
         };
         return [DEFAULT_OPTION, ...props.options];
       }
@@ -49,7 +49,7 @@ const PickerColumn = memo<
     const touchStartTime = useRef(0);
     const momentumOffset = useRef(0);
 
-    const [state, updateState] = useSetState({
+    const [state, updateState, stateRef] = useSetState({
       offset: 0,
       duration: 0,
     });
@@ -88,7 +88,7 @@ const PickerColumn = memo<
       };
 
       // trigger the change event after transitionend when moving
-      if (moving.current && offset !== state.offset) {
+      if (moving.current && offset !== stateRef.current.offset) {
         transitionEndTrigger.current = trigger;
       } else {
         trigger();
@@ -132,7 +132,7 @@ const PickerColumn = memo<
     const momentum = (distance: number, _duration: number) => {
       const speed = Math.abs(distance / _duration);
 
-      distance = state.offset + (speed / 0.003) * (distance < 0 ? -1 : 1);
+      distance = stateRef.current.offset + (speed / 0.003) * (distance < 0 ? -1 : 1);
 
       const index = getIndexByOffset(distance);
       updateState({ duration: +props.swipeDuration });
@@ -203,7 +203,7 @@ const PickerColumn = memo<
       if (props.readOnly || !moving.current) {
         return;
       }
-      const distance = state.offset - momentumOffset.current;
+      const distance = stateRef.current.offset - momentumOffset.current;
       const duration = Date.now() - touchStartTime.current;
 
       const allowMomentum =
@@ -214,7 +214,7 @@ const PickerColumn = memo<
         return;
       }
 
-      const index = getIndexByOffset(state.offset);
+      const index = getIndexByOffset(stateRef.current.offset);
       updateState({ duration: DEFAULT_DURATION });
       setIndex(index);
 
@@ -290,7 +290,10 @@ const PickerColumn = memo<
   }),
   (prev, next) => {
     if (prev.index !== next.index) return false;
-    if (prev.value !== next.value) return false;
+    if (prev.value !== next.value) {
+      // console.log(prev.value, next.value)
+      return false;
+    }
     if (prev.onSelect !== next.onSelect) return false;
     if (JSON.stringify(prev.options) !== JSON.stringify(next.options)) {
       return false;

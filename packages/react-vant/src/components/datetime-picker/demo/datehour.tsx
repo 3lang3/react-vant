@@ -2,8 +2,7 @@ import React from 'react';
 import { DatetimePicker } from 'react-vant';
 
 export default () => {
-  const [value, setValue] = React.useState(new Date())
-  console.log(value)
+  const [value, setValue] = React.useState(new Date());
   return (
     <DatetimePicker
       type="datehour"

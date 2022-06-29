@@ -236,7 +236,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     const { options, selectedOption } = tab;
     const title = selectedOption
       ? selectedOption[textKey]
-      : props.placeholder || locale.vanCascader.select;
+      : props.placeholder || locale.vanPicker.select;
     return (
       <Tabs.TabPane
         key={tabIndex}

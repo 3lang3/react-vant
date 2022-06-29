@@ -25,7 +25,7 @@ export default () => {
 
   return (
     <>
-      <Picker<string>
+      <Picker
         loading={loading}
         value={value}
         columns={columns}

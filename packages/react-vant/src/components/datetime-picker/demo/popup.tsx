@@ -3,27 +3,26 @@ import { DatetimePicker, Field } from 'react-vant';
 
 export default () => {
   const [value, setValue] = useState(new Date());
-  console.log(value);
   return (
     <DatetimePicker
       popup={{
         round: true,
       }}
       type="date"
-      title="请选择日期"
-      onConfirm={setValue}
+      title="选择年月日"
       minDate={new Date(2021, 0, 1)}
       maxDate={new Date(2025, 10, 1)}
       value={value}
+      onConfirm={setValue}
     >
-      {(v, p, actions) => {
+      {(val, _, actions) => {
         return (
           <Field
             readOnly
             clickable
-            label="日期"
-            value={v.toDateString()}
-            placeholder="选择选择日期"
+            label="选择年月日"
+            value={val.toLocaleDateString()}
+            placeholder="请选择日期"
             onClick={() => actions.open()}
           />
         );

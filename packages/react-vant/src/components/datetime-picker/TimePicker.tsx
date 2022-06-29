@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
 
 import Picker from '../picker';
 
@@ -21,20 +21,21 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
     ...pickerProps
   } = props;
 
-  const formatValue = (value) => {
-    if (!value) {
-      value = `${padZero(minHour)}:${padZero(minMinute)}`;
+  const formatValue = (str) => {
+    if (!str) {
+      str = `${padZero(minHour)}:${padZero(minMinute)}`;
     }
 
-    let [hour, minute] = value.split(':');
+    let [hour, minute] = str.split(':');
     hour = padZero(range(hour, +minHour, +maxHour));
     minute = padZero(range(minute, +minMinute, +maxMinute));
 
     return `${hour}:${minute}`;
   };
 
-  const picker = useRef<DateTimePickerInstance>(null);
-  const [currentDate, setCurrentDate] = useState(() => formatValue(value || defaultValue));
+  const [currentDate, setCurrentDate] = useState(() =>
+    formatValue(value === undefined ? defaultValue : value),
+  );
 
   const ranges = useMemo(
     () => [
@@ -76,10 +77,8 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
   );
 
   const pickerValue = useMemo(() => {
-    const pair = props.popup ? formatValue(props.value) : currentDate;
-    const values = [formatter('hour', pair[0]), formatter('minute', pair[1])];
-
-    return values;
+    const pair = (props.popup ? formatValue(props.value) : currentDate).split(':');
+    return [formatter('hour', pair[0]), formatter('minute', pair[1])];
   }, [props.value, currentDate, formatValue]);
 
   const onConfirm = () => {
@@ -108,14 +107,10 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
     }
   }, [value]);
 
-  useImperativeHandle(ref, () => ({
-    ...picker.current,
-  }));
-
   return (
     <Picker
       {...pickerProps}
-      ref={picker}
+      ref={ref}
       columns={columns}
       value={pickerValue}
       onChange={onChange}
@@ -133,6 +128,7 @@ TimePicker.defaultProps = {
   minMinute: 0,
   maxMinute: 59,
   placeholder: false,
+  defaultValue: '',
   formatter: (type: string, value: string) => value,
 };
 

@@ -1,7 +1,6 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 
 import Picker from '../picker';
-import type { PickerPopupActions } from '../picker';
 
 import { DatePickerProps, DatetimePickerColumnType, DateTimePickerInstance } from './PropsType';
 import { getMonthEndDay, getTrueValue, times } from './utils';
@@ -33,8 +32,6 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
 
     return new Date(date);
   };
-
-  const picker = useRef<PickerPopupActions>(null);
 
   const [currentDate, setCurrentDate, currentDateRef] = useRefState(() =>
     formatValue(value || defaultValue),
@@ -242,15 +239,11 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>((props, r
     }
   }, [value, filter, minDate, maxDate]);
 
-  useImperativeHandle(ref, () => ({
-    ...picker.current,
-  }));
-
   return (
     <Picker
       {...pickerProps}
       value={pickerValue}
-      ref={picker}
+      ref={ref}
       columns={columns}
       onChange={onChange}
       onConfirm={onConfirm}

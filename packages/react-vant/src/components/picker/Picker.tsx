@@ -22,7 +22,7 @@ import {
 import { unitToPx, preventDefault, isObject, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { useMemoizedFn, usePropsValue } from '../hooks';
+import { useMemoizedFn, usePropsValue, useUpdateEffect } from '../hooks';
 import Popup from '../popup';
 import { useColumnsExtend } from './columnsExtend';
 import useRefs from '../hooks/use-refs';
@@ -270,7 +270,7 @@ function PopupPicker<T = PickerColumnOption>(
   }, [props.columns]);
 
   const parseValue = (target: any[]) => {
-    if (dataType === 'plain') return target[0];
+    if (dataType === 'plain') return target?.[0];
     return target;
   };
 
@@ -284,23 +284,31 @@ function PopupPicker<T = PickerColumnOption>(
   const [innerValue, setInnerValue] = useState<string[]>(value);
 
   useEffect(() => {
-    if (JSON.stringify(innerValue) !== JSON.stringify(value)) {
+    if (popup && JSON.stringify(innerValue) !== JSON.stringify(value)) {
       setInnerValue(value);
     }
   }, [visible]);
 
-  useEffect(() => {
-    if (formatValue === undefined) {
-      setInnerValue([]);
-      return;
+  useUpdateEffect(() => {
+    if (popup && !visible && props.value === undefined) {
+      setValue([], true);
     }
-    if (!visible && JSON.stringify(innerValue) !== JSON.stringify(value)) {
+  }, [props.value, visible]);
+
+  useEffect(() => {
+    if (!popup && JSON.stringify(innerValue) !== JSON.stringify(value)) {
       setInnerValue(value);
     }
-  }, [value, formatValue]);
+  }, [value]);
+
+  useUpdateEffect(() => {
+    if (!popup && props.value === undefined) {
+      setInnerValue([]);
+    }
+  }, [props.value]);
 
   const onConfirm = (val, items, indexes) => {
-    setValue(innerValue);
+    setValue(innerValue, true);
     props.onConfirm?.(parseValue(val), parseValue(items), parseValue(indexes));
     if (popup) actions.close();
   };
@@ -333,7 +341,6 @@ function PopupPicker<T = PickerColumnOption>(
   );
 
   if (!popup) return content;
-
   return (
     <>
       <Popup
@@ -360,11 +367,12 @@ const Picker = forwardRef(PopupPicker) as <T>(
 ) => ReturnType<typeof PopupPicker>;
 
 (Picker as React.FC<PickerProps>).defaultProps = {
+  columns: [],
   itemHeight: 44,
   visibleItemCount: 5,
-  swipeDuration: 1000,
+  swipeDuration: 300,
   showToolbar: true,
-  placeholder: '请选择',
+  placeholder: true,
   toolbarPosition: 'top',
 };
 

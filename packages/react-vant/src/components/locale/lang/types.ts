@@ -19,7 +19,7 @@ export declare const base: {
     monthTitle: (year: number, month: number) => string;
     rangePrompt: (maxRange: number) => string;
   };
-  vanCascader: {
+  vanPicker: {
     select: string;
   };
   vanContactCard: {

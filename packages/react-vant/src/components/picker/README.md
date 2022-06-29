@@ -20,17 +20,57 @@ import { Picker } from 'react-vant';
 
 <code title="基础用法" card src="./demo/base.tsx" />
 
+### 多列选择
+
+`columns` 属性可以通过对象数组的形式配置多列选择，对象中可以配置选项数据、初始选中项等，详细格式见[下方表格](/components/picker#pickercolumn-数据结构)。
+
+<code title="多列选择" card src="./demo/columns.tsx" />
+
+### 级联选择
+
+使用 `columns` 的 `children` 字段可以实现选项级联的效果，`value` 字段可以指定选项返回值
+
+<code title="级联选择" card src="./demo/cascader.tsx" />
+
+> 级联选择的数据嵌套深度需要保持一致，如果部分选项没有子选项，可以使用空字符串进行占位
+
+### 动态设置选项
+
+通过 Picker 上的实例方法可以更灵活地控制选择器，比如使用 `setColumnValues` 方法实现多列联动。
+
+<code title="动态设置选项" card src="./demo/dynic.tsx" />
+
+### 加载状态
+
+若选择器数据是异步获取的，可以通过 `loading` 属性显示加载提示。
+
+<code title="加载状态" card src="./demo/loading.tsx" />
+
+### 启用弹出层
+
+可以通过 `popup` 属性启用弹出层特性
+
+<code title="启用弹出层" src="./demo/popup.tsx">
+
+> 启用 `popup` 属性后，一般使用 `onConfirm` 事件代替 `onChange` 更新外部值
+
+
+### 自定义 Columns 的结构
+
+<code title="自定义 Columns 的结构" card src="./demo/columnsFieldNames.tsx" />
+
 ## API
 
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 选中项 | _PickerOption[]_ | - |
-| value | 默认选中项 | _PickerOption[]_ | - |
-| columns | 对象数组，配置每一列显示的数据 | _Column[]_ | `[]` |
-| columnsFieldNames | 自定义 `columns` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', values: 'values', children: 'children' }` |
+| value | 选中项 | _string\|string[]_ | - |
+| value | 默认选中项 | _string\|string[]_ | - |
+| columns | 对象数组，配置每一列显示的数据 | _PickerColumn\| PickerColumn[]_ | `[]` |
+| columnsFieldNames | 自定义 `columns` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', children: 'children' }` |
 | title | 顶部栏标题 | _ReactNode_ | - |
+| placeholder | 占位符内容 | _ReactNode\|ReactNode[]_ | `请选择` |
 | confirmButtonText | 确认按钮文字 | _ReactNode_ | `确认` |
 | cancelButtonText | 取消按钮文字 | _ReactNode_ | `取消` |
 | toolbar | 自定义整个顶部栏的内容 | _ReactNode_ | - |
@@ -42,7 +82,7 @@ import { Picker } from 'react-vant';
 | showToolbar | 是否显示顶部栏 | _boolean_ | `true` |
 | itemHeight | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44` |
 | visibleItemCount | 可见的选项个数 | _number \| string_ | `6` |
-| swipeDuration | 快速滑动时惯性滚动的时长，单位 `ms` | _number \| string_ | `1000` |
+| swipeDuration | 快速滑动时惯性滚动的时长，单位 `ms` | _number \| string_ | `300` |
 
 ### Events
 
@@ -50,48 +90,32 @@ import { Picker } from 'react-vant';
 
 | 事件名 | 说明 | 回调参数 |
 | --- | --- | --- |
-| onConfirm | 点击完成按钮时触发 | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，所有列选中值对应的索引 |
-| onCancel | 点击取消按钮时触发 | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，所有列选中值对应的索引 |
-| onChange | 选项改变时触发 | 单列：选中值，选中值对应的索引<br>多列：所有列选中值，当前列对应的索引 |
+| onConfirm | 点击完成按钮时触发 | 单列：选中值，选择项，选中项对应的索引<br>多列：所有列选中值，所有列选中项，所有列选中项对应的索引 |
+| onChange | 选项改变时触发 | 单列：选中值，选择项，选中项对应的索引<br>多列：所有列选中值，所有列选中项，所有列选中项对应的索引 |
+| onCancel | 点击取消按钮时触发 | - |
 
-### PickerOption 定义
+### PickerColumn 数据结构
 
-```ts
-type PickerObjectOption = {
-  text?: string | number;
+```ts | pure
+export type PickerColumnOption = {
+  text?: React.ReactNode;
+  value?: string;
+  children?: PickerColumnOption[];
   disabled?: boolean;
-} & Record<string, {}>;
+} & Record<string, any>;
 
-export type PickerOption = string | number | PickerObjectOption;
+export type PickerColumn<T = PickerColumnOption> = (string | T)[];
 ```
-
-### Column 数据结构
-
-当传入多列数据时，`columns` 为一个对象数组，数组中的每一个对象配置每一列，每一列有以下 `key`:
-
-| 键名      | 说明                   | 类型                        |
-| --------- | ---------------------- | --------------------------- |
-| values    | 列中对应的备选值       | _Array<string \| number>_   |
-| className | 为对应列添加额外的类名 | _string \| Array \| object_ |
-| children  | 级联选项               | _Column_                    |
 
 ### 方法
 
-通过 ref 可以获取到 Picker 实例并调用实例方法，详见[组件实例方法](/guide/advanced-usage#zu-jian-shi-li-fang-fa)。
+开启 `popup` 属性后, 通过 `ref` 可以获取到 `Picker` 实例并调用实例方法，详见[组件实例方法](/guide/advanced-usage#zu-jian-shi-li-fang-fa)。
 
-| 方法名           | 说明                            | 参数                     | 返回值      |
-| ---------------- | ------------------------------- | ------------------------ | ----------- |
-| getValues        | 获取所有列选中的值              | -                        | values      |
-| setValues        | 设置所有列选中的值              | values                   | -           |
-| getIndexes       | 获取所有列选中值对应的索引      | -                        | indexes     |
-| setIndexes       | 设置所有列选中值对应的索引      | indexes                  | -           |
-| getColumnValue   | 获取对应列选中的值              | columnIndex              | value       |
-| setColumnValue   | 设置对应列选中的值              | columnIndex, value       | -           |
-| getColumnIndex   | 获取对应列选中项的索引          | columnIndex              | optionIndex |
-| setColumnIndex   | 设置对应列选中项的索引          | columnIndex, optionIndex | -           |
-| getColumnOptions | 获取对应列中所有选项            | columnIndex              | values      |
-| setColumnOptions | 设置对应列中所有选项            | columnIndex, values      | -           |
-| confirm          | 停止惯性滚动并触发 confirm 事件 | -                        | -           |
+| 方法名 | 说明                         | 类型         |
+| ------ | ---------------------------- | ------------ |
+| open   | 显示 Picker                  | _() => void_ |
+| close  | 关闭 Picker                  | _() => void_ |
+| toggle | 切换 Picker 的显示和隐藏状态 | _() => void_ |
 
 ### 类型定义
 
@@ -103,7 +127,7 @@ import type { PickerInstance } from 'react-vant';
 
 const pickerRef = useRef<PickerInstance>();
 
-pickerRef.current?.confirm();
+pickerRef.current?.open();
 ```
 
 ## 主题定制

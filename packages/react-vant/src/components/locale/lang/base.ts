@@ -19,7 +19,7 @@ export const base = {
     monthTitle: (year: number, month: number) => `${year}年${month}月`,
     rangePrompt: (maxRange: number) => `最多选择 ${maxRange} 天`,
   },
-  vanCascader: {
+  vanPicker: {
     select: '请选择',
   },
   vanContactCard: {

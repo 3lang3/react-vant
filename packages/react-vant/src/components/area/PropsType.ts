@@ -9,8 +9,8 @@ export type AreaList = {
 };
 
 export type AreaColumnOption = {
-  name: string;
-  code: string;
+  text: string;
+  value: string;
 };
 
 export type AreaColumnType = 'province' | 'county' | 'city';
@@ -20,6 +20,9 @@ export interface AreaProps<T>
   PickerProps<T>,
   | 'title'
   | 'loading'
+  | 'columnsFieldNames'
+  | 'visible'
+  | 'popup'
   | 'readOnly'
   | 'itemHeight'
   | 'swipeDuration'
@@ -32,8 +35,9 @@ export interface AreaProps<T>
   | 'columnsBottom'
   | 'optionRender'
   | 'placeholder'
+  | 'children'
   >,
-  BaseTypeProps {
+  Omit<BaseTypeProps, 'children'> {
   /** 当前选中项对应的地区码	 */
   value?: string[];
   /** 默认选中项 */
@@ -42,8 +46,6 @@ export interface AreaProps<T>
   areaList: AreaList;
   /** 显示列数，3-省市区，2-省市，1-省	 */
   columnsNum?: number;
-  /** 根据地区码校验海外地址，海外地址会划分至单独的分类	 */
-  isOverseaCode?: (code: string) => boolean;
   /** 选项改变时触发	 */
   onChange?: (value: string[], column: AreaColumnOption[], indexes: number[]) => void;
   /** 点击完成按钮时触发	 */
