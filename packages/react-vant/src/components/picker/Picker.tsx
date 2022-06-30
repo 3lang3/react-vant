@@ -22,7 +22,7 @@ import {
 import { unitToPx, preventDefault, isObject, extend } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { useMemoizedFn, usePropsValue, useUpdateEffect } from '../hooks';
+import { useMemoizedFn, usePropsValue } from '../hooks';
 import Popup from '../popup';
 import { useColumnsExtend } from './columnsExtend';
 import useRefs from '../hooks/use-refs';
@@ -215,7 +215,7 @@ function PopupPicker<T = PickerColumnOption>(
 
   const actions: PickerPopupActions = {
     toggle: () => {
-      setVisible((v) => !v);
+      if (popup) setVisible((v) => !v);
     },
     open: () => {
       if (popup) {
@@ -274,23 +274,11 @@ function PopupPicker<T = PickerColumnOption>(
     }
   }, [visible]);
 
-  useUpdateEffect(() => {
-    if (popup && !visible && props.value === undefined) {
-      setValue([], true);
-    }
-  }, [props.value, visible]);
-
   useEffect(() => {
     if (!popup && JSON.stringify(innerValue) !== JSON.stringify(value)) {
       setInnerValue(value);
     }
   }, [value]);
-
-  useUpdateEffect(() => {
-    if (!popup && props.value === undefined) {
-      setInnerValue([]);
-    }
-  }, [props.value]);
 
   const onConfirm = (val, items, indexes) => {
     setValue(innerValue, true);
@@ -352,6 +340,7 @@ const Picker = forwardRef(PopupPicker) as <T>(
 ) => ReturnType<typeof PopupPicker>;
 
 (Picker as React.FC<PickerProps>).defaultProps = {
+  defaultValue: [],
   columns: [],
   itemHeight: 44,
   visibleItemCount: 5,

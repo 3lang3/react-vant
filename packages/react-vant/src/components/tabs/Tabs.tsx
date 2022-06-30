@@ -216,6 +216,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
       title,
       event,
       disabled,
+      index
     });
     if (disabled) return;
 

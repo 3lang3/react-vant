@@ -1,27 +1,27 @@
 /* eslint-disable no-plusplus */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useImperativeHandle, useState } from 'react';
 import cls from 'clsx';
 import { Cross, Success } from '@react-vant/icons';
-import { CascaderOption, CascaderProps, CascaderTab } from './PropsType';
-import { extend } from '../utils';
-import { useSetState, useUpdateEffect } from '../hooks';
+import { PopupCascaderProps, CascaderOption, CascaderProps, CascaderTab } from './PropsType';
+import { extend, isObject } from '../utils';
+import { useMemoizedFn, usePropsValue, useUpdateEffect } from '../hooks';
 import Tabs from '../tabs';
 import { TabsClickTabEventParams } from '../tabs/PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { devWarning } from '../utils/dev-log';
-
-const INITIAL_STATE = {
-  tabs: [],
-  activeTab: 0,
-};
+import { PickerPopupActions } from '../picker';
+import Popup from '../popup';
+import { useCascaderExtend } from './useCascaderExtend';
+import useDebounceEffect from '../hooks/use-debunce-effect';
 
 const Cascader: React.FC<CascaderProps> = (props) => {
   const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
   const [bem] = createNamespace('cascader', prefixCls);
 
-  const [internalValue, updateInternalValue] = useState(undefined);
-  const [state, updateState] =
-    useSetState<{ tabs: CascaderTab[]; activeTab: number }>(INITIAL_STATE);
+  const [value, setValue] = useState(() =>
+    props.value === undefined ? props.defaultValue : props.value,
+  );
+
+  const [activeTab, updateActiveTab] = useState(0);
 
   const {
     text: textKey,
@@ -36,141 +36,61 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     props.fieldNames,
   );
 
-  const getSelectedOptionsByValue = (
-    options: CascaderOption[],
-    value: string | number,
-  ): CascaderOption[] | undefined => {
-    for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+  const { tabs, items, depth } = useCascaderExtend(
+    props.options,
+    { textKey, valueKey, childrenKey },
+    value || [],
+  );
 
-      if (option[valueKey] === value) {
-        return [option];
-      }
-
-      if (option[childrenKey]) {
-        const selectedOptions = getSelectedOptionsByValue(option[childrenKey], value);
-        if (selectedOptions) {
-          return [option, ...selectedOptions];
-        }
-      }
+  // sync props.value to inner value
+  useUpdateEffect(() => {
+    if (props.value === undefined) return; // uncontroll mode
+    if (JSON.stringify(value) !== JSON.stringify(props.value)) {
+      setValue(props.value);
     }
-    return undefined;
-  };
+  }, [props.value]);
 
-  const updateTabs = () => {
-    if (internalValue || internalValue === 0) {
-      const selectedOptions = getSelectedOptionsByValue(props.options, internalValue);
+  // update active tab index from value
+  useEffect(() => {
+    let tabIndex = 0;
+    if (Array.isArray(value) && value.length > 0) tabIndex = value.length;
+    if (tabIndex >= depth) tabIndex = depth - 1;
+    if (tabIndex === activeTab) return;
 
-      if (selectedOptions) {
-        let optionsCursor = props.options;
+    updateActiveTab(tabIndex);
+  }, [value]);
 
-        const tabs = selectedOptions.map((option) => {
-          const tab = {
-            options: optionsCursor,
-            selectedOption: option,
-          };
+  useDebounceEffect(
+    () => {
+      if (JSON.stringify(props.value) === JSON.stringify(value)) return;
+      props.onChange?.(value, items);
 
-          const next = optionsCursor.find((item) => item[valueKey] === option[valueKey]);
-          if (next) {
-            optionsCursor = next[childrenKey];
-          }
-
-          return tab;
-        });
-
-        if (optionsCursor) {
-          tabs.push({
-            options: optionsCursor,
-            selectedOption: null,
-          });
-        }
-
-        updateState({ tabs });
-        setTimeout(() => {
-          updateState({ activeTab: tabs.length - 1 });
-        }, 0);
-
-        return;
+      if (value.length >= depth) {
+        props.onFinish?.(value, items);
       }
-    }
-
-    updateState({
-      tabs: [
-        {
-          options: props.options,
-          selectedOption: null,
-        },
-      ],
-    });
-  };
+    },
+    [value],
+    {
+      wait: 0,
+      leading: false,
+      trailing: true,
+    },
+  );
 
   const onSelect = (option: CascaderOption, tabIndex: number) => {
     if (option.disabled) {
       return;
     }
-    let tabs = JSON.parse(JSON.stringify(state.tabs));
-
-    tabs[tabIndex].selectedOption = option;
-
-    if (tabs.length > tabIndex + 1) {
-      tabs = tabs.slice(0, tabIndex + 1);
-    }
-
-    if (option[childrenKey]) {
-      const nextTab = {
-        options: option[childrenKey],
-        selectedOption: null,
-      };
-
-      if (tabs[tabIndex + 1]) {
-        tabs[tabIndex + 1] = nextTab;
-      } else {
-        tabs.push(nextTab);
-      }
-      updateState({ tabs, activeTab: state.activeTab + 1 });
-    }
-
-    const selectedOptions = tabs.map((tab) => tab.selectedOption).filter(Boolean);
-
-    const eventParams = {
-      value: option[valueKey],
-      tabIndex,
-      selectedOptions,
-    };
-
-    updateInternalValue(option[valueKey]);
-    props.onChange?.(eventParams);
-
-    if (!option[childrenKey]) {
-      props.onFinish?.(eventParams);
-    }
+    setValue((prev) => {
+      const next = [...prev];
+      next[tabIndex] = option?.[valueKey];
+      return next.slice(0, tabIndex + 1);
+    });
   };
 
-  const onClose = () => props.onClose?.();
-
-  const onClickTab = ({ name, title }: TabsClickTabEventParams) => {
-    updateState({ activeTab: +name });
+  const onClickTab = ({ name, title, index }: TabsClickTabEventParams) => {
     props.onClickTab?.(+name, title);
-  };
-
-  const getStateFromValue = (value: (number | string)[]) => {
-    if (!value || !value.length) return INITIAL_STATE;
-    try {
-      const initialState = { activeTab: value.length - 1, tabs: [] } as typeof state;
-      value.reduce((options, v) => {
-        const selectedOption = options.find((tabs) => tabs[valueKey] === v);
-        if (!selectedOption)
-          throw Error(
-            'unable to match options correctly, Please check value or defaultValue props.',
-          );
-        initialState.tabs.push({ options, selectedOption });
-        return selectedOption[childrenKey];
-      }, props.options);
-      return initialState;
-    } catch (error) {
-      devWarning('Cascader', error.message);
-      return INITIAL_STATE;
-    }
+    updateActiveTab(index);
   };
 
   const renderCloseIcon = () => {
@@ -178,10 +98,10 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     if (props.closeIcon) {
       return React.cloneElement(props.closeIcon as React.ReactElement, {
         className: cls(bem('close-icon')),
-        onClick: onClose,
+        onClick: props.onClose,
       });
     }
-    return <Cross className={cls(bem('close-icon'))} onClick={onClose} />;
+    return <Cross className={cls(bem('close-icon'))} onClick={props.onClose} />;
   };
 
   const renderHeader = () => (
@@ -191,12 +111,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     </div>
   );
 
-  const renderOption = (
-    option: CascaderOption,
-    selectedOption: CascaderOption | null,
-    tabIndex: number,
-  ) => {
-    const selected = selectedOption && option[valueKey] === selectedOption[valueKey];
+  const renderOption = (option: CascaderOption, selected: boolean, tabIndex: number) => {
     const color = option.color || (selected ? props.activeColor : undefined);
     const Text = props.optionRender ? (
       props.optionRender({ option, selected })
@@ -228,15 +143,18 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     tabIndex: number,
   ) => (
     <ul key={tabIndex} className={cls(bem('options'))}>
-      {options.map((option) => renderOption(option, selectedOption, tabIndex))}
+      {options.map((option) =>
+        renderOption(option, option[valueKey] === selectedOption?.[valueKey], tabIndex),
+      )}
     </ul>
   );
 
-  const renderTab = (tab: CascaderTab, tabIndex: number) => {
-    const { options, selectedOption } = tab;
+  const renderTab = (options: CascaderTab['options'], tabIndex: number) => {
+    const selectedOption = items[tabIndex];
     const title = selectedOption
       ? selectedOption[textKey]
       : props.placeholder || locale.vanPicker.select;
+
     return (
       <Tabs.TabPane
         key={tabIndex}
@@ -255,55 +173,156 @@ const Cascader: React.FC<CascaderProps> = (props) => {
   const renderTabs = () => (
     <Tabs
       animated
-      active={state.activeTab}
+      active={activeTab}
       className={cls(bem('tabs'))}
       color={props.activeColor}
       swipeThreshold={0}
       swipeable={props.swipeable}
+      duration={300}
       onClickTab={onClickTab}
     >
-      {state.tabs.map(renderTab)}
+      {tabs.map(renderTab)}
     </Tabs>
   );
-
-  useEffect(() => {
-    updateTabs();
-  }, [JSON.stringify(props.options)]);
-
-  useEffect(() => {
-    const value = props.value ?? props.defaultValue;
-    if (!value || (Array.isArray(value) && !value.length)) return;
-    const initialState = getStateFromValue(value);
-    updateState(initialState);
-  }, []);
-
-  useUpdateEffect(() => {
-    const initialState = getStateFromValue(props.value);
-    updateState(initialState);
-  }, [props.value]);
-
-  useUpdateEffect(() => {
-    if (internalValue || internalValue === 0) {
-      const values = state.tabs.map((tab) => tab.selectedOption?.[valueKey]);
-      if (values.includes(internalValue)) {
-        return;
-      }
-    }
-    updateTabs();
-  }, [internalValue]);
 
   return (
     <div className={cls(bem())}>
       {renderHeader()}
-      {state.tabs.length ? renderTabs() : null}
+      {tabs.length ? renderTabs() : null}
     </div>
   );
 };
 
-Cascader.defaultProps = {
+const CascaderPopup = React.forwardRef<PickerPopupActions, PopupCascaderProps>((props, ref) => {
+  const { visible: outerVisible, popup, ...cascaderProps } = props;
+
+  const [visible, setVisible] = usePropsValue({ value: outerVisible, defaultValue: false });
+
+  const [value, setValue] = useState(() =>
+    props.value === undefined ? props.defaultValue : props.value,
+  );
+
+  const [innerValue, setInnerValue] = useState<string[]>(value);
+
+  const {
+    text: textKey,
+    value: valueKey,
+    children: childrenKey,
+  } = extend(
+    {
+      text: 'text',
+      value: 'value',
+      children: 'children',
+    },
+    props.fieldNames,
+  );
+
+  const { items } = useCascaderExtend(
+    props.options,
+    { textKey, valueKey, childrenKey },
+    value || [],
+  );
+
+  // sync props.value to inner value
+  useUpdateEffect(() => {
+    if (props.value === undefined) return; // uncontroll mode
+    if (JSON.stringify(value) !== JSON.stringify(props.value)) {
+      setValue(props.value);
+    }
+  }, [props.value]);
+
+  // sync value to cascader value
+  useEffect(() => {
+    if (!popup && JSON.stringify(innerValue) !== JSON.stringify(value)) {
+      setInnerValue(value);
+    }
+  }, [value]);
+
+  // only sync value to popup cascader value when visible change
+  useEffect(() => {
+    if (popup && JSON.stringify(innerValue) !== JSON.stringify(value)) {
+      setInnerValue(value);
+    }
+  }, [visible]);
+
+  const actions: PickerPopupActions = {
+    toggle: () => {
+      if (popup) setVisible((v) => !v);
+    },
+    open: () => {
+      if (popup) {
+        setVisible(true);
+      }
+    },
+    close: () => {
+      if (popup) {
+        setVisible(false);
+      }
+    },
+  };
+
+  const onClose = () => {
+    props.onClose?.();
+    actions.close();
+  };
+
+  const onFinish = useMemoizedFn((val, selectedRows) => {
+    setValue(val);
+    props.onFinish?.(val, selectedRows);
+    actions.close();
+  });
+
+  const onChange = useMemoizedFn((val, selectedRows) => {
+    setInnerValue(val);
+    if (popup) {
+      if (visible) props.onChange?.(val, selectedRows);
+    } else {
+      props.onChange?.(val, selectedRows);
+    }
+  });
+
+  useImperativeHandle(ref, () => actions);
+
+  const content = (
+    <Cascader
+      value={innerValue}
+      {...cascaderProps}
+      onChange={onChange}
+      onFinish={onFinish}
+      onClose={onClose}
+    />
+  );
+
+  if (!popup) return content;
+
+  const popupProps = isObject(popup)
+    ? { closeOnClickOverlay: true, ...popup }
+    : { closeOnClickOverlay: true };
+
+  return (
+    <>
+      <Popup
+        position="bottom"
+        visible={visible}
+        closeOnClickOverlay
+        onClickOverlay={() => {
+          if (!popupProps?.closeOnClickOverlay) return;
+          setVisible(false);
+        }}
+        {...popupProps}
+      >
+        {content}
+      </Popup>
+      {props.children?.(value, items, actions)}
+    </>
+  );
+});
+
+CascaderPopup.defaultProps = {
   closeable: true,
-  swipeable: true,
+  swipeable: false,
+  defaultValue: [],
   options: [],
 };
 
-export default Cascader;
+export default CascaderPopup;

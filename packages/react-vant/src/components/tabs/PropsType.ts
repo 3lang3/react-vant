@@ -77,6 +77,7 @@ export interface TabsProps extends BaseTypeProps {
     title: string;
     event: React.MouseEvent;
     disabled: boolean;
+    index: number;
   }) => void;
   /** 当前激活的标签改变时触发	 */
   onChange?: (name: string | number, title: string) => void;
@@ -145,6 +146,7 @@ export type TabsClickTabEventParams = {
   title: string;
   event: React.MouseEvent;
   disabled: boolean;
+  index: number;
 };
 
 export type TabsInstance = {
