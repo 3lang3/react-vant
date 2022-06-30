@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import React, {
   forwardRef,
   useContext,
@@ -32,11 +31,23 @@ import Popup from '../popup';
 import useSetState from '../hooks/use-set-state';
 import useUpdateEffect from '../hooks/use-update-effect';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { usePropsValue } from '../hooks';
+import { PickerPopupActions } from '../picker/PropsType';
 
 const Calendar = forwardRef<CalendarInstance, CalendarProps>(
   ({ className, style, ...props }, ref) => {
     const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
     const [bem] = createNamespace('calendar', prefixCls);
+
+    const [visible, setVisible] = usePropsValue({
+      value: props.visible,
+      defaultValue: false,
+      onChange: (v) => {
+        if (v === false) {
+          props.onClose?.();
+        }
+      },
+    });
 
     const limitDateRange = (date: Date, minDate = props.minDate, maxDate = props.maxDate) => {
       if (compareDay(date, minDate) === -1) {
@@ -48,7 +59,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
       return date;
     };
 
-    const getInitialDate = (defaultDate = props.defaultDate) => {
+    const getInitialDate = (defaultDate = props.defaultValue) => {
       const { type, minDate, maxDate } = props;
 
       if (defaultDate === null) {
@@ -81,10 +92,29 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     const bodyRef = useRef<HTMLDivElement>();
     const bodyHeightRef = useRef<number>(0);
 
+    const [value, setValue] = React.useState(
+      getInitialDate(props.value === undefined ? props.defaultValue : props.value),
+    );
+
     const [state, updateState] = useSetState({
       subtitle: '',
-      currentDate: getInitialDate(),
+      currentDate: value,
     });
+
+    // sync props.value to inner value
+    useUpdateEffect(() => {
+      if (props.value === undefined) return; // uncontroll mode
+      if (JSON.stringify(value) !== JSON.stringify(props.value)) {
+        setValue(props.value);
+      }
+    }, [props.value]);
+
+    // sync value to cascader value
+    useEffect(() => {
+      if (JSON.stringify(state.currentDate) !== JSON.stringify(value)) {
+        updateState({ currentDate: value });
+      }
+    }, [value]);
 
     const [monthRefs, setMonthRefs] = useRefs();
 
@@ -171,7 +201,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
       });
 
       /* istanbul ignore else */
-      if (currentMonth) {
+      if (currentMonth && currentMonth.getTitle() !== state.subtitle) {
         updateState({ subtitle: currentMonth.getTitle() });
       }
     };
@@ -195,11 +225,12 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
 
     // scroll to current month
     const scrollIntoView = () => {
-      if (props.poppable && !props.visible) {
+      if (props.poppable && !visible) {
         return;
       }
 
       const { currentDate } = state;
+      console.log(currentDate);
       if (currentDate) {
         const targetDate = props.type === 'single' ? currentDate : (currentDate as Date[])[0];
         scrollToDate(targetDate);
@@ -209,9 +240,6 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     };
 
     const init = () => {
-      if (props.poppable && !props.visible) {
-        return;
-      }
       raf(() => {
         // add Math.floor to avoid decimal height issues
         // https://github.com/youzan/vant/issues/5640
@@ -240,7 +268,12 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     };
 
     const onConfirm = () => {
-      props.onConfirm?.(cloneDates(state.currentDate));
+      const nextCurrentDate = cloneDates(state.currentDate);
+      if (props.poppable) {
+        setValue(nextCurrentDate);
+      }
+      props.onConfirm?.(nextCurrentDate);
+      actions.close();
     };
 
     const select = (date: Date | Date[], complete?: boolean) => {
@@ -404,7 +437,7 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
           showTitle={props.showTitle}
           showSubtitle={props.showSubtitle}
           firstDayOfWeek={dayOffset}
-          onClick-subtitle={(event) => {
+          onClickSubtitle={(event) => {
             props.onClickSubtitle?.(event);
           }}
         />
@@ -415,39 +448,67 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
       </div>
     );
 
+    const actions: PickerPopupActions = {
+      toggle: () => {
+        if (props.poppable) setVisible((v) => !v);
+      },
+      open: () => {
+        if (props.poppable) {
+          setVisible(true);
+        }
+      },
+      close: () => {
+        if (props.poppable) {
+          setVisible(false);
+        }
+      },
+    };
+
     useEffect(() => {
-      init();
-    }, [props.visible]);
+      if (!props.poppable) {
+        init();
+      }
+    }, []);
+
+    useEffect(() => {
+      if (props.poppable && visible) {
+        init();
+      }
+    }, [visible]);
 
     useUpdateEffect(() => {
       reset(getInitialDate(state.currentDate));
     }, [props.type, props.minDate, props.maxDate]);
 
-    useUpdateEffect(() => {
-      updateState({ currentDate: props.defaultDate });
-      scrollIntoView();
-    }, [props.defaultDate]);
-
     useImperativeHandle(ref, () => ({
       reset,
       scrollToDate,
+      ...actions,
     }));
 
     if (props.poppable) {
       return (
-        <Popup
-          visible={props.visible}
-          className={cls(bem('popup'))}
-          round={props.round}
-          position={props.position}
-          closeable={props.showTitle || props.showSubtitle}
-          closeOnPopstate={props.closeOnPopstate}
-          closeOnClickOverlay={props.closeOnClickOverlay}
-          onClose={props.onClose}
-          onClosed={props.onClosed}
-        >
-          {renderCalendar()}
-        </Popup>
+        <>
+          <Popup
+            visible={visible}
+            className={cls(bem('popup'))}
+            round={props.round}
+            position={props.position}
+            closeable={props.showTitle || props.showSubtitle}
+            closeOnPopstate={props.closeOnPopstate}
+            closeOnClickOverlay={props.closeOnClickOverlay}
+            onClose={actions.close}
+            onClosed={() => {
+              if (props.poppable && JSON.stringify(state.currentDate) !== JSON.stringify(value)) {
+                updateState({ currentDate: value });
+              }
+              props.onClosed?.();
+            }}
+          >
+            {renderCalendar()}
+          </Popup>
+          {props.children?.(value, actions)}
+        </>
       );
     }
 
@@ -462,7 +523,6 @@ Calendar.defaultProps = {
   showTitle: true,
   showConfirm: true,
   showSubtitle: true,
-  lazyRender: true,
   closeOnPopstate: true,
   closeOnClickOverlay: true,
   safeAreaInsetBottom: true,

@@ -1,7 +1,5 @@
 import React from 'react';
-import { hooks, Calendar, Cell } from 'react-vant';
-
-const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
+import { Calendar, Cell } from 'react-vant';
 
 const formatter = (day) => {
   const month = day.date.getMonth() + 1;
@@ -27,85 +25,79 @@ const formatter = (day) => {
 };
 
 export default () => {
-  const [state, set] = hooks.useSetState({
-    single: false,
-    singleText: '',
-    multi: false,
-    multiText: '',
-    range: false,
-    rangeText: '',
-    title: false,
-    titleText: '',
-  });
-
   return (
     <>
-      <Cell
-        title="自定义颜色"
-        value={state.singleText}
-        isLink
-        onClick={() => set({ single: true })}
-      />
-      <Calendar
-        color="#1989fa"
-        type="range"
-        visible={state.single}
-        onClose={() => set({ single: false })}
-        onConfirm={(v) => {
-          set({ single: false, singleText: formatDate(v) });
-        }}
-      />
+      <Calendar type="range" color="#1989fa">
+        {(val: Date[], actions) => (
+          <Cell
+            isLink
+            title="颜色"
+            titleStyle={{ flex: 'none' }}
+            value={val.map((el) => el.toLocaleDateString()).join('~')}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
 
-      <Cell
-        title="自定义日期范围"
-        value={state.multiText}
-        isLink
-        onClick={() => set({ multi: true })}
-      />
-      <Calendar
-        minDate={new Date(2010, 0, 1)}
-        maxDate={new Date(2010, 0, 31)}
-        visible={state.multi}
-        type="multiple"
-        onClose={() => set({ multi: false })}
-        onConfirm={(v: any[]) => {
-          set({ multi: false, multiText: `选择了 ${v.length} 个日期` });
-        }}
-      />
+      <Calendar type="multiple" minDate={new Date(2010, 0, 1)} maxDate={new Date(2010, 0, 31)}>
+        {(val: Date[], actions) => (
+          <Cell
+            isLink
+            title="日期范围"
+            value={`已选${val.length}个日期`}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
 
-      <Cell
-        title="自定义日期文案"
-        value={state.rangeText}
-        isLink
-        onClick={() => set({ range: true })}
-      />
-      <Calendar
-        visible={state.range}
-        type="range"
-        minDate={new Date(2010, 4, 1)}
-        maxDate={new Date(2010, 4, 31)}
-        formatter={formatter}
-        onClose={() => set({ range: false })}
-        onConfirm={(v) => {
-          set({ range: false, rangeText: `${formatDate(v[0])} - ${formatDate(v[1])}` });
-        }}
-      />
+      <Calendar type="range" maxRange={3}>
+        {(val: Date[], actions) => (
+          <Cell
+            isLink
+            title="区间范围"
+            titleStyle={{ flex: 'none' }}
+            value={val.map((el) => el.toLocaleDateString()).join('~')}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
 
-      <Cell
-        title="自定义周/月文案"
-        value={state.titleText}
-        isLink
-        onClick={() => set({ title: true })}
-      />
+      <Calendar firstDayOfWeek={1}>
+        {(val: Date, actions) => (
+          <Cell
+            isLink
+            title="周起始日"
+            value={val.toLocaleDateString()}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
+
+      <Calendar type="range" formatter={formatter}>
+        {(val: Date[], actions) => (
+          <Cell
+            isLink
+            title="日期文案"
+            titleStyle={{ flex: 'none' }}
+            value={val.map((el) => el.toLocaleDateString()).join('~')}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
+
       <Calendar
         formatMonthTitle={(date) => `${date.getFullYear()}🥑${date.getMonth() + 1}🍪`}
         weekdays={['🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓']}
-        visible={state.title}
-        onClose={() => set({ title: false })}
-        onConfirm={(v) => {
-          set({ title: false, titleText: formatDate(v) });
-        }}
-      />
+      >
+        {(val: Date, actions) => (
+          <Cell
+            isLink
+            title="周/月文案"
+            value={val.toLocaleDateString()}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
     </>
   );
 };

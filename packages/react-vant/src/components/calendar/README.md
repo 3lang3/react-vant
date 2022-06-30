@@ -18,7 +18,7 @@ import { Calendar } from 'react-vant';
 
 <code src="./demo/base.tsx" title="选择单个日期" />
 
-> Tips: 默认情况下，日期区间的起止时间不能为同一天，可以通过设置 allowSameDay 属性来允许选择同一天。
+> Tips: 默认情况下，日期区间的起止时间不能为同一天，可以通过设置 `allowSameDay` 属性来允许选择同一天。
 
 ### 快捷选择
 
@@ -31,16 +31,9 @@ import { Calendar } from 'react-vant';
 - 通过 `color` 属性可以自定义日历的颜色，对选中日期和底部按钮生效
 - 通过 `minDate` 和 `maxDate` 定义日历的范围
 - 通过传入 `formatter` 函数来对日历上每一格的内容进行格式化
-- 通过 weekdays 属性可以实现周标题自定义，通过 formatMonthTitle 函数可以实现月标题自定义
+- 通过 `weekdays` 属性可以实现周标题自定义，通过 formatMonthTitle 函数可以实现月标题自定义
 
 <code title="自定义" src="./demo/custom.tsx" />
-
-### 日期范围
-
-- 选择日期区间时，可以通过 `maxRange` 属性来指定最多可选天数，选择的范围超过最多可选天数时，会弹出相应的提示文案
-- 通过 `firstDayOfWeek` 属性设置一周从哪天开始
-
-<code title="日期范围" src="./demo/range.tsx" />
 
 ### 平铺展示
 
@@ -54,6 +47,8 @@ import { Calendar } from 'react-vant';
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| value | 选中的日期，`type` 为 `multiple` 或 `range` 时为数组，传入 `null` 表示默认不选择 | _Date \| Date[] \| null_ | - |
+| defaultValue | 默认选中的日期，同 `value` | _Date \| Date[] \| null_ | `new Date()` |
 | type | 选择类型:<br>`single` 表示选择单个日期，<br>`multiple` 表示选择多个日期，<br>`range` 表示选择日期区间 | _string_ | `single` |
 | title | 日历标题 | _string\|React.ReactNode_ | `日期选择` |
 | subtitle | 自定义日历副标题 | _string\|React.ReactNode_ | - |
@@ -65,11 +60,10 @@ import { Calendar } from 'react-vant';
 | color | 主题色，对底部按钮和选中日期生效 | _string_ | `#ee0a24` |
 | minDate | 可选择的最小日期 | _Date_ | 当前日期 |
 | maxDate | 可选择的最大日期 | _Date_ | 当前日期的六个月后 |
-| defaultDate | 默认选中的日期，`type` 为 `multiple` 或 `range` 时为数组，传入 `null` 表示默认不选择 | _Date \| Date[] \| null_ | 今天 |
 | rowHeight | 日期行高 | _number \| string_ | `64` |
 | formatter | 日期格式化函数 | _(day: Day) => Day_ | - |
 | poppable | 是否以弹层的形式展示日历 | _boolean_ | `true` |
-| lazyRender | 是否只渲染可视区域的内容 | _boolean_ | `true` |
+| lazyRender | 是否只渲染可视区域的内容 | _boolean_ | `false` |
 | showMark | 是否显示月份背景水印 | _boolean_ | `true` |
 | showTitle | 是否展示日历标题 | _boolean_ | `true` |
 | showSubtitle | 是否展示日历副标题（年月） | _boolean_ | `true` |
@@ -78,20 +72,21 @@ import { Calendar } from 'react-vant';
 | confirmText | 确认按钮的文字 | _string_ | `确定` |
 | confirmDisabledText | 确认按钮处于禁用状态时的文字 | _string_ | `确定` |
 | firstDayOfWeek | 设置周起始日 | _0-6_ | `0` |
-| firstDayOfWeek | 设置周起始日 | _0-6_ | `0` |
+| children | 渲染函数 | _(val: Date\|Date[], actions: PickerActions) => ReactNode_ | - |
+
 
 ### Calendar Poppable Props
 
 当 Calendar 的 `poppable` 为 `true` 时，支持以下 props:
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| visible | 是否显示日历弹窗 | _boolean_ | `false` |
-| position | 弹出位置，可选值为 `top` `right` `left` | _string_ | `bottom` |
-| round | 是否显示圆角弹窗 | _boolean_ | `true` |
-| closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
-| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true` |
+| 参数                | 说明                                            | 类型      | 默认值   |
+| ------------------- | ----------------------------------------------- | --------- | -------- |
+| visible             | 是否显示日历弹窗                                | _boolean_ | `false`  |
+| position            | 弹出位置，可选值为 `top` `right` `left`         | _string_  | `bottom` |
+| round               | 是否显示圆角弹窗                                | _boolean_ | `true`   |
+| closeOnPopstate     | 是否在页面回退时自动关闭                        | _boolean_ | `true`   |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭                          | _boolean_ | `true`   |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true`   |
 
 ### Calendar Range Props
 
@@ -110,7 +105,7 @@ import { Calendar } from 'react-vant';
 
 | 参数        | 说明                             | 类型               | 默认值                   |
 | ----------- | -------------------------------- | ------------------ | ------------------------ |
-| max-Range   | 日期最多可选天数                 | _number \| string_ | 无限制                   |
+| maxRange    | 日期最多可选天数                 | _number \| string_ | 无限制                   |
 | rangePrompt | 选择超过最多可选天数时的提示文案 | _string_           | `选择天数不能超过 xx 天` |
 
 ### Day 数据结构
@@ -143,10 +138,13 @@ import { Calendar } from 'react-vant';
 
 通过 ref 可以获取到 Calendar 实例并调用实例方法。
 
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| reset | 将选中的日期重置到指定日期，未传参时会重置到默认日期 | _date?: Date \| Date[]_ | - |
-| scrollToDate | 滚动到某个日期 | _date: Date_ | - |
+| 方法名 | 说明 | 类型 |
+| --- | --- | --- |
+| reset | 将选中的日期重置到指定日期，未传参时会重置到默认日期 | _(date?: Date \| Date[]) => void_ |
+| scrollToDate | 滚动到某个日期 | _(date: Date) => void_ |
+| open | `poppable` 开启时， 显示 `Calendar` | _() => void_ |
+| close | `poppable` 开启时，关闭 `Calendar` | _() => void_ |
+| toggle | `poppable` 开启时，切换 `Calendar` 的显示和隐藏状态 | _() => void_ |
 
 ### 类型定义
 

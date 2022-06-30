@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import React, {
   forwardRef,
   useContext,
@@ -60,7 +59,7 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
     const el = props.showSubtitle ? daysRef.current : monthRef;
 
     const scrollTop =
-      el!.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop;
+      el?.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop;
 
     setScrollTop(body, scrollTop);
   };

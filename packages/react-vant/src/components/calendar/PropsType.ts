@@ -1,4 +1,5 @@
 import React from 'react';
+import { PickerPopupActions } from '../picker/PropsType';
 import { PopupPosition } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
 
@@ -30,7 +31,7 @@ export type CalendarDayItem = {
 export type CalendarExpose = {
   reset: (date?: Date | Date[]) => void;
   scrollToDate: (targetDate: Date) => void;
-};
+} & PickerPopupActions;
 
 export type CalendarInstance = CalendarExpose;
 
@@ -84,7 +85,7 @@ export interface CalendarMonthProps extends BaseTypeProps {
   onClick?: (item: CalendarDayItem) => void;
 }
 
-export interface CalendarProps extends BaseTypeProps {
+export interface CalendarProps extends Omit<BaseTypeProps, 'children'> {
   visible?: boolean;
   title?: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
@@ -104,11 +105,8 @@ export interface CalendarProps extends BaseTypeProps {
   rangePrompt?: string;
   showConfirm?: boolean;
   lazyRender?: boolean;
-  /**
-   * @todo
-   * Date | Date[] | null
-   */
-  defaultDate?: any;
+  value?: CalendarValue;
+  defaultValue?: any;
   allowSameDay?: boolean;
   showSubtitle?: boolean;
   closeOnPopstate?: boolean;
@@ -133,4 +131,5 @@ export interface CalendarProps extends BaseTypeProps {
   onMonthShow?: (value: { date: Date; title: string }) => void;
   onOverRange?: () => void;
   onClickSubtitle?: (e: React.MouseEvent) => void;
+  children?: (value: CalendarValue, actions: PickerPopupActions) => React.ReactNode;
 }
