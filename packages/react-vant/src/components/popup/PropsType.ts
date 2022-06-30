@@ -36,6 +36,7 @@ export interface SharedPopupProps {
   closeOnClickOverlay?: boolean;
   /** 是否在页面回退时自动关闭	 */
   closeOnPopstate?: boolean;
+  stopPropagation?: string[];
   /** 点击遮罩层时触发 */
   onClickOverlay?: (e: React.MouseEvent) => void;
   /** 打开弹出层时触发	 */

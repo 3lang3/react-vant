@@ -15,7 +15,7 @@ import { Cross } from '@react-vant/icons';
 import Overlay from '../overlay';
 import useEventListener from '../hooks/use-event-listener';
 
-import { isDef } from '../utils';
+import { isDef, withStopPropagation } from '../utils';
 import { PopupInstanceType, PopupProps } from './PropsType';
 import { callInterceptor } from '../utils/interceptor';
 import { renderToContainer } from '../utils/dom/renderToContainer';
@@ -161,7 +161,8 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 
   const renderPopup = () => {
     const { safeAreaInsetBottom } = props;
-    return (
+    return withStopPropagation(
+      props.stopPropagation,
       <div
         ref={popupRef}
         style={{
@@ -182,7 +183,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         {renderDescription()}
         {children}
         {renderCloseIcon()}
-      </div>
+      </div>,
     );
   };
 
@@ -252,6 +253,7 @@ Popup.defaultProps = {
   closeIcon: <Cross />,
   closeIconPosition: 'top-right',
   closeOnClickOverlay: true,
+  stopPropagation: ['click'],
   teleport: () => document.body,
 };
 

@@ -2,7 +2,7 @@ import React, { CSSProperties, useContext, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import clsx from 'clsx';
 import { OverlayProps } from './PropsType';
-import { isDef, preventDefault } from '../utils';
+import { isDef, preventDefault, withStopPropagation } from '../utils';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useEventListener } from '../hooks';
 
@@ -29,15 +29,20 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       style.animationDuration = `${duration}ms`;
     }
 
-    return (
+    return withStopPropagation(
+      props.stopPropagation,
       <div
         ref={nodeRef}
         style={style}
-        onClick={props.onClick}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            props.onClick?.(e);
+          }
+        }}
         className={clsx(bem(), props.className)}
       >
         {props.children}
-      </div>
+      </div>,
     );
   };
 
@@ -58,6 +63,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
 };
 
 Overlay.defaultProps = {
+  stopPropagation: ['click'],
   lockScroll: true,
   duration: 300,
 };
