@@ -230,7 +230,6 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
       }
 
       const { currentDate } = state;
-      console.log(currentDate);
       if (currentDate) {
         const targetDate = props.type === 'single' ? currentDate : (currentDate as Date[])[0];
         scrollToDate(targetDate);
@@ -526,6 +525,7 @@ Calendar.defaultProps = {
   closeOnPopstate: true,
   closeOnClickOverlay: true,
   safeAreaInsetBottom: true,
+  defaultValue: null,
   type: 'single',
   position: 'bottom',
   maxRange: null,

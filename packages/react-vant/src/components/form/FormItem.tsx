@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { FC } from 'react';
 import clsx from 'clsx';
 import { Field as RcField } from 'rc-field-form';
@@ -16,6 +15,15 @@ import { FormContext } from './FormContext';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { devWarning } from '../utils/dev-log';
 import { pick } from '../utils';
+import { isSafeSetRefComponent } from './utils';
+
+function undefinedFallback(...items: any[]) {
+  let i: number;
+  for (i = 0; i < items.length; i++) {
+    if (items[i] !== undefined) break;
+  }
+  return items[i];
+}
 
 const MemoInput = React.memo(
   ({ children, ...props }: MemoInputProps) =>
@@ -26,7 +34,7 @@ const MemoInput = React.memo(
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
   const { meta, ...fieldProps } = props;
   const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('form', prefixCls);
+  const [bem] = createNamespace('form-item', prefixCls);
   const context = React.useContext(FormContext);
 
   const layout = props.layout ?? context.layout;
@@ -70,6 +78,7 @@ const FormItem: FC<FormItemProps> = (props) => {
     required,
     disabled,
     children,
+    onClick,
     ...rcFieldProps
   } = props;
 
@@ -95,12 +104,13 @@ const FormItem: FC<FormItemProps> = (props) => {
     'rightIcon',
     'prefix',
     'suffix',
-    'onClick',
   ]);
 
   const { validateTrigger: contextValidateTrigger } = React.useContext(FieldContext);
-  const mergedValidateTrigger =
-    validateTrigger !== undefined ? validateTrigger : contextValidateTrigger;
+
+  const mergedValidateTrigger = undefinedFallback(validateTrigger, contextValidateTrigger, trigger);
+
+  const widgetRef = React.useRef<any>(null);
 
   const updateRef = React.useRef(0);
   updateRef.current += 1;
@@ -122,6 +132,7 @@ const FormItem: FC<FormItemProps> = (props) => {
         required={isRequired}
         label={label}
         disabled={disabled}
+        onClick={(e) => onClick?.(e, widgetRef)}
       >
         {baseChildren}
       </FormItemLayout>
@@ -196,6 +207,21 @@ const FormItem: FC<FormItemProps> = (props) => {
             );
           }
           const childProps = { ...children.props, ...control };
+
+          if (isSafeSetRefComponent(children)) {
+            childProps.ref = (instance: any) => {
+              const originRef = (children as any).ref;
+              if (originRef) {
+                if (typeof originRef === 'function') {
+                  originRef(instance);
+                }
+                if ('current' in originRef) {
+                  originRef.current = instance;
+                }
+              }
+              widgetRef.current = instance;
+            };
+          }
 
           if (!childProps.id) {
             childProps.id = fieldId;

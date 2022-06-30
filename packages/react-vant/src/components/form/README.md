@@ -20,37 +20,6 @@ import { Form } from 'react-vant';
 
 <code title="基础用法" src="./demo/base.tsx" />
 
-### 校验规则
-
-通过 `rules` 定义表单校验规则，查看更多[rule 文档](https://github.com/react-component/field-form#rule)。
-
-<code title="校验规则" src="./demo/rules.tsx" />
-
-### 表单项类型
-
-<code title="表单项类型" src="./demo/type.tsx" />
-
-### 自定义表单项
-
-自定义或第三方的表单控件，也可以与 Form 组件一起使用。只要该组件遵循以下的约定：
-
-- 提供受控属性 `value` 值同名的属性。
-- 提供 `onChange` 事件。
-
-<code src="./demo/custom.tsx" title="自定义表单项" />
-
-### 更新订阅
-
-在某些场景，例如修改某个字段值后出现新的字段选项、或希望表单任意变化都对某一个区域进行渲染，可以通过 `Form.Subscribe` 实现。
-
-<code title="更新订阅" title="Form.Subscribe" src="./demo/subscribe.tsx" />
-
-### 动态增减表单项
-
-Form.List 为字段提供数组化管理。
-
-<code title="动态增减表单项" src="./demo/list.tsx" />
-
 ## Form Props
 
 | 参数 | 说明 | 类型 | 默认值 |

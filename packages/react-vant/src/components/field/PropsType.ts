@@ -48,7 +48,6 @@ export interface FieldCommonProps extends InputSharedProps, TextAreaSelfProps {
 export interface FieldProps extends FieldCommonProps, Partial<Omit<CellProps, 'value' | 'style' | 'children'>> {
   /** Field 类型 */
   type?: FieldType;
-
   /** 左侧文本额外类名	 */
   labelClass?: string;
   /** 左侧文本宽度，默认单位为 px	 */

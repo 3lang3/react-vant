@@ -317,6 +317,7 @@ function PopupPicker<T = PickerColumnOption>(
   return (
     <>
       <Popup
+        round
         position="bottom"
         visible={visible}
         closeOnClickOverlay
