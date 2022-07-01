@@ -67,7 +67,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
     }
 
     return items;
-  }, [props.showPageSize, props.forceEllipses, props.value]);
+  }, [props.showPageSize, props.forceEllipses, props.value, count]);
 
   const select = (page: number, emitChange?: boolean) => {
     page = Math.min(count, Math.max(1, page));

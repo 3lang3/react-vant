@@ -314,7 +314,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
           className={clsx(bem('nav', [type, { complete: scrollable, start: align === 'start' }]))}
           style={navStyle}
         >
-          {props.navRight}
+          {props.navLeft}
           {renderNav()}
           {type === 'line' && <div className={clsx(bem('line'))} style={state.lineStyle} />}
           {props.navRight}
