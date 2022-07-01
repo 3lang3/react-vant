@@ -55,7 +55,7 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
   }));
 
   return (
-    <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked }}>
+    <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked: checked || [] }}>
       <div className={clsx(props.className, bem([props.direction]))}>
         {React.Children.toArray(props.children)
           .filter(Boolean)
@@ -67,9 +67,5 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
     </CheckBoxContext.Provider>
   );
 });
-
-CheckBoxGroup.defaultProps = {
-  defaultValue: [],
-};
 
 export default CheckBoxGroup;

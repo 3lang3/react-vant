@@ -5,7 +5,6 @@ import { Stepper, Cell, Toast } from 'react-vant';
 let timer;
 
 export default () => {
-  const [value1, setValue1] = useState(1);
   const [value9, setValue9] = useState(0);
   const [value2, setValue2] = useState(1);
   const [value3, setValue3] = useState(1);
@@ -19,18 +18,10 @@ export default () => {
     <div className="demo-stepper">
       <Cell title="基础用法" center>
         <Stepper
-          min={0}
-          value={value1}
+          onOverlimit={() => console.log('overlimit')}
           onMinus={() => console.log('minus')}
           onPlus={() => console.log('plus')}
-          onFocus={() => console.log('focus')}
-          onBlur={() => console.log('blur')}
-          onOverlimit={() => console.log('overlimit')}
-          onChange={(v) => {
-            console.log('change', v, typeof v);
-            setValue1(v);
-          }}
-          onClick={(e) => console.log('click', e)}
+          onChange={(v) => console.log(v)}
         />
       </Cell>
       <Cell title="设置最小值" center>
@@ -43,10 +34,10 @@ export default () => {
         />
       </Cell>
       <Cell title="步长设置" center>
-        <Stepper value={value2} step="2" onChange={(val) => setValue2(val)} />
+        <Stepper value={value2} step={2} onChange={(val) => setValue2(val)} />
       </Cell>
       <Cell title="设置输入范围" center>
-        <Stepper value={value3} step="2" min="5" max="8" onChange={(val) => setValue3(val)} />
+        <Stepper value={value3} step={2} min={5} max={8} onChange={(val) => setValue3(val)} />
       </Cell>
       <Cell title="禁用状态" center>
         <Stepper value={1} disabled />
@@ -55,7 +46,7 @@ export default () => {
         <Stepper value={value4} onChange={(val) => setValue4(val)} disableInput />
       </Cell>
       <Cell title="固定小数位数" center>
-        <Stepper value={value5} onChange={(val) => setValue5(val)} step="0.2" decimalLength="1" />
+        <Stepper value={value5} onChange={(val) => setValue5(val)} step={0.2} decimalLength={1} />
       </Cell>
       <Cell title="自定义大小" center>
         <Stepper
@@ -68,7 +59,7 @@ export default () => {
       <Cell title="异步变更" center>
         <Stepper
           value={value7}
-          beforeChange={(val) => {
+          onChange={(val) => {
             Toast.loading({ forbidClick: true });
             clearTimeout(timer);
             timer = setTimeout(() => {
