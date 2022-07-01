@@ -59,6 +59,7 @@ export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
   toolbar?: React.ReactNode;
   /** 自定义选项上方内容 */
   columnsTop?: React.ReactNode;
+  /** 占位符 */
   placeholder?: false | React.ReactNode | React.ReactNode[];
   /** 自定义选项下方内容 */
   columnsBottom?: React.ReactNode;

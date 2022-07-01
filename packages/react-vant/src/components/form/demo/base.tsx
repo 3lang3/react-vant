@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input, Form, Calendar, DatetimePicker } from 'react-vant';
+import { Button, Input, Form } from 'react-vant';
 
 export default () => {
   const [form] = Form.useForm();
@@ -34,28 +34,6 @@ export default () => {
       </Form.Item>
       <Form.Item rules={[{ required: true, message: '请填写密码' }]} name="password" label="密码">
         <Input placeholder="请输入密码" />
-      </Form.Item>
-      <Form.Item
-        name="date"
-        label="选择日期"
-        trigger="onConfirm"
-        onClick={(_, action) => {
-          action.current?.open();
-        }}
-      >
-        <DatetimePicker popup type="date">
-          {(val: Date) => (val ? val.toDateString() : '请选择日期')}
-        </DatetimePicker>
-      </Form.Item>
-      <Form.Item
-        name="calendar"
-        label="选择日历"
-        trigger="onConfirm"
-        onClick={(_, action) => {
-          action.current?.open();
-        }}
-      >
-        <Calendar>{(val: Date) => (val ? val.toDateString() : '选择日历')}</Calendar>
       </Form.Item>
     </Form>
   );

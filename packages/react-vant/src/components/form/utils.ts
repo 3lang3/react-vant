@@ -1,4 +1,4 @@
-import { isMemo, isFragment } from 'react-is'
+import { isMemo, isFragment, isForwardRef } from 'react-is'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 function shouldConstruct(Component: Function) {
@@ -15,6 +15,7 @@ function isSimpleFunctionComponent(type: any) {
 }
 
 export function isSafeSetRefComponent(component: any): boolean {
+  if (!isForwardRef(component)) return false
   if (isFragment(component)) return false
   if (isMemo(component)) return isSafeSetRefComponent(component.type)
 

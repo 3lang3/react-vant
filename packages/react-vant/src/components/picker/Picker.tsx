@@ -202,7 +202,7 @@ function PopupPicker<T = PickerColumnOption>(
   props: PickerProps<T>,
   ref: React.ForwardedRef<PickerPopupActions & Partial<PickerPopupActions>>,
 ) {
-  const { visible: outerVisible, popup, children, defaultValue, ...pickerProps } = props;
+  const { visible: outerVisible, popup, children, defaultValue = [], ...pickerProps } = props;
   const [visible, setVisible] = usePropsValue({
     value: outerVisible,
     defaultValue: false,
@@ -255,7 +255,7 @@ function PopupPicker<T = PickerColumnOption>(
     props.columnsFieldNames,
   );
 
-  const isPlainType = useMemo(() => typeof (props.columns[0] || {}) !== 'object', [props.columns]);
+  const isPlainType = useMemo(() => !Array.isArray(props.columns[0]), [props.columns]);
 
   const parseValue = (target: any[]) => (isPlainType ? target?.[0] : target);
 
@@ -312,7 +312,6 @@ function PopupPicker<T = PickerColumnOption>(
       onChange={onChange}
     />
   );
-
   if (!popup) return content;
   return (
     <>
@@ -341,7 +340,6 @@ const Picker = forwardRef(PopupPicker) as <T>(
 ) => ReturnType<typeof PopupPicker>;
 
 (Picker as React.FC<PickerProps>).defaultProps = {
-  defaultValue: [],
   columns: [],
   itemHeight: 44,
   visibleItemCount: 5,

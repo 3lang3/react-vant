@@ -20,6 +20,44 @@ import { Form } from 'react-vant';
 
 <code title="基础用法" src="./demo/base.tsx" />
 
+### 校验规则
+
+通过 `rules` 定义表单校验规则，查看更多[rule 文档](https://github.com/react-component/field-form#rule)。
+
+<code title="校验规则" src="./demo/rules.tsx" />
+
+### 表单项类型
+
+<code title="表单项类型" src="./demo/type.tsx" />
+
+### 自定义表单项
+
+自定义或第三方的表单控件，也可以与 Form 组件一起使用。只要该组件遵循以下的约定：
+
+- 提供受控属性 `value` 值同名的属性。
+- 提供 `onChange` 事件。
+
+<code src="./demo/custom.tsx" title="自定义表单项" />
+
+### 更新订阅
+
+在某些场景，例如修改某个字段值后出现新的字段选项、或希望表单任意变化都对某一个区域进行渲染，可以通过 `Form.Subscribe` 实现。
+
+<code title="更新订阅"  src="./demo/subscribe.tsx" />
+
+### 复杂联动
+
+大部分场景下，你只需要编写代码或者与 `dependencies` 属性配合校验即可。而在某些特定场景，例如修改某个字段值后出现新的字段选项、或者纯粹希望表单任意变化都对某一个区域进行渲染。你可以通过 `shouldUpdate` 修改 `Form.Item` 的更新逻辑
+
+<code title="复杂联动" src="./demo/shouldUpdate.tsx" />
+
+### 动态增减表单项
+
+Form.List 为字段提供数组化管理。
+
+<code title="动态增减表单项" src="./demo/list.tsx" />
+
+
 ## Form Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -82,7 +120,7 @@ Form.Item 的布局是基于 `Field` 实现的，所以它支持 [Field](./field
 
 | 参数 | 说明 | 类型 |
 | --- | --- | --- |
-| children | 渲染函数 | _(fields: Field[], operation: { add, remove, move }, meta: { errors }) => React.ReactNode_ |
+| children | 渲染函数 | _(fields: Field[], [operation](#operation), meta: { errors }) => React.ReactNode_ |
 | initialValue | 设置子元素默认值，如果与 Form 的 initialValues 冲突则以 Form 为准 | _any[]_ |
 | name | 字段名，支持数组 | _string \| number \| (string \| number)[]_ |
 
