@@ -35,7 +35,6 @@ const WaterMark: React.FC<WaterMarkProps> = (props) => {
 
     if (ctx) {
       if (image) {
-        console.log(image)
         const { width, height, src } = image;
         ctx.translate(markWidth / 2, markHeight / 2);
         ctx.rotate((Math.PI / 180) * Number(rotate));
@@ -56,7 +55,8 @@ const WaterMark: React.FC<WaterMarkProps> = (props) => {
           setBase64Url(canvas.toDataURL());
         };
       } else if (content) {
-        const { size, family, style, weight, color } = { ...font, ...DEFAULT_FONT };
+        const frontProps = { ...font, ...DEFAULT_FONT }
+        const { size, family, style, weight, color } = frontProps;
         ctx.textBaseline = 'middle';
         ctx.textAlign = 'center';
         // 文字绕中间旋转
