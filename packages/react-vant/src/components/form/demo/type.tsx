@@ -63,7 +63,7 @@ export default () => {
       <Form.Item name="rate" label="评分" initialValue={3}>
         <Rate />
       </Form.Item>
-      <Form.Item name="slider" label="滑块" initialValue={50}>
+      <Form.Item name="slider" label="滑块" initialValue={25}>
         <Slider />
       </Form.Item>
       <Form.Item

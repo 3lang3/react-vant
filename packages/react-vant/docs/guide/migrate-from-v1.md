@@ -4,12 +4,16 @@
 
 本文档提供了从 React Vant `1.x` 到 `2.x` 的升级指南。
 
-### Breaking Change
+### 新增组件
 
-#### 新增组件
+- `Space` [间距](/components/space)
+- `Card` [卡片](/components/card)
+- `FloatingBall` [悬浮球](/components/floating-ball)
+- `Input` [输入框](/components/input)
+- `Swiper` [轮播](/components/swiper)
+- `WaterMask` [水印组件](/components/water-mask)
 
-- `Space`
-- `Card`
+### 不兼容的变化
 
 #### 废弃组件
 
@@ -19,8 +23,72 @@
 
 #### API 调整
 
-- 组件 `icon` 属性类型从 `string|ReactNode` 调准为 `ReactNode`
-- 组件 `iconPrefix` `iconClass` 属性移除
+- 移除 `readonly` 属性，使用 `readOnly` 替代
+- 移除 `maxLength` 属性，使用 `maxLength` 代替
+- 移除 `autofocus` 属性，使用 `autoFocus` 代替
+- `Search` 移除 `inputAlign` 属性，使用 `align` 代替
+
+#### 组件重构
+
+- `Field` 组件:
+  - 现在内部由 `Input` 实现
+  - 移除 `autosize` 属性，使用 `autoSize` 替代
+  - 移除 `inputAlign` 属性，使用 `align` 代替
+  - 新增 `controlAlign` 属性，控制右侧内容区域对齐
+  - 调整 `showWordLimit` 类型，现支持自定义输出
+  - 新增 `prefix` 属性，自定义输入框前置内容
+  - 移除 `button` 属性，使用 `suffix` 代替
+
+- `Form` 组件:
+  - 移除 `inputAlign` 属性，使用 `controlAlign` 代替
+  - 新增 `Form.Subscribe`
+  - 新增 `Form.useWatch`
+  
+- `Form.Item` 组件:
+    - `Form.Item` 移除 `inputAlign` 属性，使用 `controlAlign` 代替
+    - `Form.Item` 移除 `customField` 属性
+    - `Form.Item` 调整 `onClick` 属性，支持获取子组件 `ref` 实例
+
+- `Picker` 组件:
+  - 支持 [受控](https://reactjs.org/docs/forms.html#controlled-components)和[非受控模式](https://reactjs.org/docs/uncontrolled-components.html)
+  - 调整 `value` 类型
+  - 调整 `columns` 类型
+  - 移除 `columnsPlaceholder` 属性，现继承 `Picker` 的 `placeholder` 属性
+  - 调整 `ref` 类型(实例方法调整)
+  - 调整 `onChange` 类型
+  - 调整 `onConfirm` 类型
+  - 调整 `children` 类型，仅支持 `Function`
+  - 新增 `defaultValue` 类型同 `value`
+  - 新增 `popup` 属性
+  - 新增 `visible` 属性，需开启 `popup` 生效
+
+
+- `Area` 组件:
+  - 受 `Picker` 变更影响
+  - 移除 `isOverseaCode` 属性
+  - 移除 `columnsPlaceholder` 属性，现继承 `Picker` 的 `placeholder` 属性
+  - 移除原实例方法，现继承 `Picker` 实例方法
+  - `value` 类型调整
+  - 新增 `defaultValue` 类型同 `value`
+  - 调整 `onChange` 类型
+  - 调整 `onConfirm` 类型
+  - 调整 `children` 类型，仅支持 `Function`
+
+- `Calendar` 组件:
+  - 支持 [受控](https://reactjs.org/docs/forms.html#controlled-components)和[非受控模式](https://reactjs.org/docs/uncontrolled-components.html)
+  - 将 `defaultDate` 改为 `defaultValue`
+  - 新增 `Picker` 实例方法
+  - 调整 `children` 类型，仅支持 `Function`
+
+- `DatetimePicker` 组件:
+  - 支持 [受控](https://reactjs.org/docs/forms.html#controlled-components)和[非受控模式](https://reactjs.org/docs/uncontrolled-components.html)
+  - 新增 `defaultValue`
+  - 新增 `Picker` 实例方法
+  - 调整 `children` 类型，仅支持 `Function`
+
+- `Icon` 组件:
+  - 属性类型从 `string|ReactNode` 调准为 `ReactNode`
+  - `iconPrefix` `iconClass` 属性移除
 
 ### 图标升级
 

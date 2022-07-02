@@ -346,6 +346,7 @@ const Picker = forwardRef(PopupPicker) as <T>(
   swipeDuration: 300,
   showToolbar: true,
   placeholder: true,
+
   toolbarPosition: 'top',
 };
 
