@@ -44,6 +44,7 @@ export default () => {
                 <Form.Item
                   name="area"
                   label="区域"
+                  trigger="onConfirm"
                   onClick={(_, actions) => actions.current?.open()}
                 >
                   <Picker popup columns={columns}>
