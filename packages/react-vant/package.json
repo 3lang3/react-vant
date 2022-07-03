@@ -85,7 +85,7 @@
     "@react-vant/icons": "workspace:*",
     "@use-gesture/react": "^10.1.1",
     "@vant/popperjs": "^1.1.0",
-    "clsx": "1.1.1",
+    "clsx": "1.2.0",
     "rc-field-form": "^1.26.4",
     "react-transition-group": "^4.4.1",
     "tslib": "^2.4.0"
