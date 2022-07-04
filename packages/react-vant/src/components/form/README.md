@@ -41,9 +41,15 @@ import { Form } from 'react-vant';
 
 ### 更新订阅
 
-在某些场景，例如修改某个字段值后出现新的字段选项、或希望表单任意变化都对某一个区域进行渲染，可以通过 `Form.Subscribe` 实现。
+在某些场景，例如修改某个字段值后出现新的字段选项、或希望表单任意变化都对某一个区域进行渲染，可以通过 `Form.Subscribe` 或者 `Form.useWatch` hook 实现。
 
-<code title="更新订阅"  src="./demo/subscribe.tsx" />
+#### Form.Subscribe 实现更新订阅
+
+<code title="Form.Subscribe"  src="./demo/subscribe.tsx" />
+
+#### Form.useWatch 实现更新订阅
+
+<code title="Form.useWatch"  src="./demo/watch.tsx" />
 
 ### 复杂联动
 

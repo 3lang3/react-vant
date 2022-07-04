@@ -3,7 +3,7 @@ import { Form, Input, Button, Radio, Space, NoticeBar } from 'react-vant';
 
 export default function () {
   const [form] = Form.useForm();
-
+  console.log('rerender')
   return (
     <Form
       form={form}
