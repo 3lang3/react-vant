@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { WaterMarkProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
 
 const DEFAULT_FONT = {
   style: 'normal',
@@ -11,10 +11,10 @@ const DEFAULT_FONT = {
   family: 'sans-serif',
 };
 
+const [bem] = createNamespace('water-mark');
+
 // 移植自antd mobile: https://github.com/ant-design/ant-design-mobile/blob/master/src/components/water-mark/water-mark.tsx
 const WaterMark: React.FC<WaterMarkProps> = (props) => {
-  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('water-mark', prefixCls);
   const { zIndex, gapX, gapY, width, height, rotate, image, content, font } = props;
 
   const [base64Url, setBase64Url] = React.useState('');
@@ -56,7 +56,7 @@ const WaterMark: React.FC<WaterMarkProps> = (props) => {
           setBase64Url(canvas.toDataURL());
         };
       } else if (content) {
-        const frontProps = { ...font, ...DEFAULT_FONT }
+        const frontProps = { ...font, ...DEFAULT_FONT };
         const { size, family, style, weight, color } = frontProps;
         ctx.textBaseline = 'middle';
         ctx.textAlign = 'center';

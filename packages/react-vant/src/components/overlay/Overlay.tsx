@@ -1,14 +1,13 @@
-import React, { CSSProperties, useContext, useRef } from 'react';
+import React, { CSSProperties, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import clsx from 'clsx';
 import { OverlayProps } from './PropsType';
-import { isDef, preventDefault, withStopPropagation } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace, isDef, preventDefault, withStopPropagation } from '../utils';
 import { useEventListener } from '../hooks';
 
+const [bem] = createNamespace('overlay');
+
 const Overlay: React.FC<OverlayProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('overlay', prefixCls);
   const nodeRef = useRef(null);
   const { visible, duration } = props;
 
@@ -55,7 +54,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       unmountOnExit
       in={visible}
       timeout={duration}
-      classNames={`${prefixCls}-fade`}
+      classNames="rv-fade"
     >
       {renderOverlay()}
     </CSSTransition>

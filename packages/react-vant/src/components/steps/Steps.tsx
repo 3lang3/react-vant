@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
 import { Checked } from '@react-vant/icons';
 import { StepsProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('steps');
 
 const Steps: React.FC<StepsProps> = ({ children, className, style, ...props }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('steps', prefixCls);
-
   return (
     <div className={cls(className, bem([props.direction]))} style={style}>
       <div className={cls(bem('items'))}>

@@ -1,16 +1,13 @@
-/* eslint-disable no-console */
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-
 import useMergedState from '../hooks/use-merged-state';
 import RadioContext, { RadioContextState } from './RadioContext';
 import { RadioGroupProps, RadioValueType } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('radio-group');
 
 function RadioGroup<T = RadioValueType>(props: RadioGroupProps<T>) {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('radio-group', prefixCls);
-
   const [checked, setChecked] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,

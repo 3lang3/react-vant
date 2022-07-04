@@ -1,19 +1,17 @@
-import React, { CSSProperties, useRef, useMemo, useContext } from 'react';
+import React, { CSSProperties, useRef, useMemo } from 'react';
 import clsx from 'clsx';
 
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
-import { getScrollTop, unitToPx, isHidden, getZIndexStyle, extend } from '../utils';
+import { getScrollTop, unitToPx, isHidden, getZIndexStyle, extend, createNamespace } from '../utils';
 import { StickyProps } from './PropsType';
 import { useSetState, useUpdateEffect, useVisibilityChange } from '../hooks';
 import { getRect } from '../hooks/use-rect';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('sticky');
 
 const Sticky: React.FC<StickyProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sticky', prefixCls);
-
   const [state, updateState] = useSetState({
     fixed: false,
     width: 0, // root width

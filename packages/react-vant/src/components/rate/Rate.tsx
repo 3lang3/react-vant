@@ -1,12 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React, { useRef, useContext, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Star, StarO } from '@react-vant/icons';
 import clsx from 'clsx';
 import { RateProps } from './PropsType';
-import { addUnit, preventDefault } from '../utils';
+import { addUnit, createNamespace, preventDefault } from '../utils';
 import useRefs from '../hooks/use-refs';
 import useMergedState from '../hooks/use-merged-state';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import useEventListener from '../hooks/use-event-listener';
 import { useTouch } from '../hooks';
 
@@ -42,9 +41,9 @@ function getRateStatus(
   return { status: 'void', value: 0 };
 }
 
+const [bem] = createNamespace('rate');
+
 const Rate: React.FC<RateProps> = ({ count, touchable, onChange, ...props }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('rate', prefixCls);
   const [value, setValue] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,

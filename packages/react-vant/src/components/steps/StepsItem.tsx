@@ -1,18 +1,18 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import cls from 'clsx';
 import { StepsItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+import { devWarning } from '../utils/dev-log';
+
+const [bem] = createNamespace('step');
 
 const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
   const { index, parent: parentProps } = props;
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('step', prefixCls);
 
   if (!parentProps) {
     if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
-      console.error('[React Vant] <Step> must be a child component of <Steps>.');
+      devWarning('Steps', '<Steps.Step> must be a child component of <Steps>.')
     }
   }
 

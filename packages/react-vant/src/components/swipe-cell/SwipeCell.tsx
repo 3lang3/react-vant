@@ -1,7 +1,6 @@
 import React, {
   forwardRef,
   useCallback,
-  useContext,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -9,18 +8,16 @@ import React, {
 } from 'react';
 import cls from 'clsx';
 import { SwipeCellInstance, SwipeCellPosition, SwipeCellProps, SwipeCellSide } from './PropsType';
-import { isDef, preventDefault, range } from '../utils';
+import { createNamespace, isDef, preventDefault, range } from '../utils';
 import { getRect } from '../hooks/use-rect';
 import { callInterceptor } from '../utils/interceptor';
 import useClickAway from '../hooks/use-click-away';
 import useEventListener from '../hooks/use-event-listener';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useTouch } from '../hooks';
 
-const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>((props, instanceRef) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('swipe-cell', prefixCls);
+const [bem] = createNamespace('swipe-cell');
 
+const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>((props, instanceRef) => {
   const opened = useRef(false);
   const lockClick = useRef(false);
   const startOffset = useRef(0);

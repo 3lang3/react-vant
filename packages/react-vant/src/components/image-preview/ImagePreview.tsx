@@ -1,19 +1,17 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import cls from 'clsx';
 import { ImagePreviewProps } from './PropsType';
-import { pick } from '../utils';
+import { createNamespace, pick } from '../utils';
 import Popup from '../popup';
 import { Slides } from './slides';
 import type { SlidesRef } from './slides';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import SwiperPagIndicator from '../swiper/SwiperPagIndicator';
 
 export type ImagePreviewRef = SlidesRef;
 
-const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('image-preview', prefixCls);
+const [bem] = createNamespace('image-preview');
 
+const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>((props, ref) => {
   const slidesRef = useRef<SlidesRef>(null);
   const [active, setActive] = useState(() => props.startPosition);
 

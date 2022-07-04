@@ -4,6 +4,7 @@ import useLatest from './use-latest';
 import useUnmount from './use-unmount';
 import { isFunction } from '../utils';
 import { debounce } from '../utils/debunce';
+import { devWarning } from '../utils/dev-log';
 
 export interface DebounceOptions {
   wait?: number;
@@ -17,7 +18,7 @@ type noop = (...args: any) => any;
 function useDebounceFn<T extends noop>(fn: T, options?: DebounceOptions) {
   if (process.env.NODE_ENV === 'development') {
     if (!isFunction(fn)) {
-      console.error(`useDebounceFn expected parameter is a function, got ${typeof fn}`);
+      devWarning('useDebounceFn', `expected parameter is a function, got ${typeof fn}`)
     }
   }
 

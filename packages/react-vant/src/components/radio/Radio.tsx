@@ -4,11 +4,11 @@ import RadioContext from './RadioContext';
 import Checker from '../checkbox/Checker';
 
 import { RadioProps, RadioValueType } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('radio');
 
 function Radio<T = RadioValueType>(props: RadioProps<T>) {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('radio', prefixCls);
   const { parent, ...context } = useContext(RadioContext);
 
   const checked = useMemo(() => {

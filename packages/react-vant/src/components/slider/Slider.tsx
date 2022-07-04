@@ -1,18 +1,17 @@
-import React, { CSSProperties, useContext, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useMemo, useRef, useState } from 'react';
 import cls from 'clsx';
 import { SliderProps, SliderValue } from './PropsType';
-import { addUnit, range, addNumber, preventDefault, getSizeStyle, stopPropagation } from '../utils';
+import { addUnit, range, addNumber, preventDefault, getSizeStyle, stopPropagation, createNamespace } from '../utils';
 import { getRect } from '../hooks/use-rect';
 import useEventListener from '../hooks/use-event-listener';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useTouch } from '../hooks';
 
 type NumberRange = [number, number];
 
-const Slider: React.FC<SliderProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('slider', prefixCls);
+const [bem] = createNamespace('slider');
 
+
+const Slider: React.FC<SliderProps> = (props) => {
   const [buttonRef1, setButtonRef1] = useState<HTMLDivElement>(null);
   const [buttonRef2, setButtonRef2] = useState<HTMLDivElement>(null);
   const buttonIndex = useRef<0 | 1>();

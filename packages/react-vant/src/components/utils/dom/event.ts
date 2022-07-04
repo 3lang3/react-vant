@@ -23,7 +23,7 @@ const eventToPropRecord: Record<PropagationEvent, string> = {
 
 // https://github.com/ant-design/ant-design-mobile/blob/master/src/utils/with-stop-propagation.tsx
 export function withStopPropagation(
-  events: PropagationEvent[],
+  events: string[],
   element: ReactElement
 ) {
   const props: Record<string, any> = { ...element.props }

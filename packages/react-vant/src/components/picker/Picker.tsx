@@ -19,7 +19,7 @@ import {
   PickerPopupActions,
   PickerColumnOption,
 } from './PropsType';
-import { unitToPx, preventDefault, isObject, extend } from '../utils';
+import { unitToPx, preventDefault, isObject, extend, createNamespace } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useMemoizedFn, usePropsValue } from '../hooks';
@@ -28,9 +28,10 @@ import { useColumnsExtend } from './columnsExtend';
 import useRefs from '../hooks/use-refs';
 import useDebounceEffect from '../hooks/use-debunce-effect';
 
+const [bem] = createNamespace('picker');
+
 function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('picker', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const wrapper = useRef(null);
 

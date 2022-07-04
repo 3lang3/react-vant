@@ -1,15 +1,13 @@
-import React, { useMemo, CSSProperties, forwardRef, useContext } from 'react';
+import React, { useMemo, CSSProperties, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { TabsTitleProps } from './PropsType';
-import { isDef } from '../utils';
+import { createNamespace, isDef } from '../utils';
 import Badge from '../badge';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('tab');
 
 const TabsTitle = forwardRef<HTMLDivElement, TabsTitleProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('tab', prefixCls);
-
   const { type, color, isActive, activeColor, inactiveColor, disabled, className } = props;
 
   const customStyle = useMemo(() => {

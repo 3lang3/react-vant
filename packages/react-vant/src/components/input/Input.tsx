@@ -3,19 +3,17 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useMemo,
-  useContext,
   useRef,
 } from 'react';
 import { Clear } from '@react-vant/icons';
 import clsx from 'clsx';
 import { InputInstance, InputProps } from './PropsType';
-import { isDef, formatNumber, preventDefault, resetScroll } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { isDef, formatNumber, preventDefault, resetScroll, createNamespace } from '../utils';
 import { usePropsValue } from '../hooks';
 
+const [bem] = createNamespace('input');
+
 const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('input', prefixCls);
   const inputRef = useRef<HTMLInputElement>();
   const [inputFocus, setInputFocus] = useState(false);
   const compositionStartRef = useRef(false);

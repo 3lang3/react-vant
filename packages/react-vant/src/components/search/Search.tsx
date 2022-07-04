@@ -9,16 +9,17 @@ import React, {
 import clsx from 'clsx';
 import { Search as SearchIco } from '@react-vant/icons';
 import { SearchInstance, SearchProps } from './PropsType';
-import { preventDefault } from '../utils';
+import { createNamespace, preventDefault } from '../utils';
 
 // Components
 import Field from '../field';
 import type { FieldInstance } from '../field';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
+const [bem] = createNamespace('search');
+
 const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('search', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const filedRef = useRef<FieldInstance>();
   const innerEffect = useRef<boolean>(false);

@@ -1,4 +1,4 @@
-import React, { useRef, CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
+import React, { useRef, CSSProperties, forwardRef, useImperativeHandle } from 'react';
 import { Clear, QuestionO } from '@react-vant/icons';
 import clsx from 'clsx';
 import Cell from '../cell';
@@ -6,13 +6,12 @@ import Dialog from '../dialog';
 import Input, { InputInstance } from '../input';
 import { TextAreaInstance } from '../text-area/PropsType';
 import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
-import { isDef, addUnit } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { isDef, addUnit, createNamespace } from '../utils';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
 
+const [bem] = createNamespace('field');
+
 const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('field', prefixCls);
   const inputRef = useRef<InputInstance>(null);
   const textareaRef = useRef<TextAreaInstance>(null);
 

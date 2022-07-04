@@ -3,7 +3,6 @@
 import React, {
   forwardRef,
   useCallback,
-  useContext,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -11,7 +10,6 @@ import React, {
   useState,
 } from 'react';
 import cls from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SkuActionType, SkuInstance, SkuProps } from './PropsType';
 import ActionBar from '../action-bar';
 import Image from '../image';
@@ -34,13 +32,13 @@ import SkuRowItem from './components/SkuRowItem';
 import SkuRowPropItem from './components/SkuRowPropItem';
 import SkuStepper from './components/SkuStepper';
 import Toast from '../toast';
+import { createNamespace } from '../utils';
 
 const { QUOTA_LIMIT } = LIMIT_TYPE;
 
-const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sku', prefixCls);
+const [bem] = createNamespace('sku');
 
+const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
   const stepperError = useRef<boolean>(false);
   const [visible, setVisible] = useState(false);
   const [state, updateState] = useSetState({

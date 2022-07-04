@@ -1,15 +1,17 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import cls from 'clsx';
-import { addUnit } from '../utils';
+import { addUnit, createNamespace } from '../utils';
 import { GridProps, GridItemProps } from './PropsType';
 import { BORDER } from '../utils/constant';
 import Badge from '../badge';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { devWarning } from '../utils/dev-log';
 
 type InternalProps = {
   parent?: GridProps;
   index?: number;
 };
+
+const [bem] = createNamespace('grid-item');
 
 const GridItem: React.FC<GridItemProps & InternalProps> = ({
   children,
@@ -17,13 +19,10 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
   style,
   ...props
 }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('grid-item', prefixCls);
   const { index, parent } = props;
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
-      console.error('[React Vant] <GridItem> must be a child component of <Grid>.');
+      devWarning('GridItem', ' <GridItem> must be a child component of <Grid>.');
     }
   }
 

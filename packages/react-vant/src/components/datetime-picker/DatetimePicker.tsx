@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import DatePicker from './DatePicker';
@@ -10,11 +10,11 @@ import {
   TimePickerProps,
   DatePickerProps,
 } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('datetime-picker');
 
 const DateTimePicker = forwardRef<DateTimePickerInstance, DateTimePickerProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('datetime-picker', prefixCls);
 
   const isTimePicker = props.type === 'time';
 

@@ -6,13 +6,14 @@ import Button from '../button';
 import ActionBar from '../action-bar';
 
 import { DialogProps, DialogStatic } from './PropsType';
-import { addUnit, noop } from '../utils';
+import { addUnit, createNamespace, noop } from '../utils';
 import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
+const [bem] = createNamespace('dialog');
+
 const Dialog: React.FC<DialogProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('dialog', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const {
     width,

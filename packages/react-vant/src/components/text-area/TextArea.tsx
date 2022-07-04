@@ -2,7 +2,6 @@ import React, {
   useEffect,
   forwardRef,
   useImperativeHandle,
-  useContext,
   useRef,
   useState,
   useMemo,
@@ -10,13 +9,13 @@ import React, {
 import { Clear } from '@react-vant/icons';
 import clsx from 'clsx';
 import { TextAreaInstance, TextAreaProps } from './PropsType';
-import { isDef, isObject, resetScroll } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace, isDef, isObject, resetScroll } from '../utils';
 import { usePropsValue } from '../hooks';
 
+const [bem] = createNamespace('textarea');
+
 const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('textarea', prefixCls);
+
   const [hasFocus, setHasFocus] = useState(false);
   const nativeTextAreaRef = useRef<HTMLTextAreaElement>();
   const compositionStartRef = useRef(false);

@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
-import { addUnit } from '../utils';
+import { addUnit, createNamespace } from '../utils';
 
 import { GridProps } from './PropsType';
 import { BORDER_TOP } from '../utils/constant';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('grid');
 
 const Grid: React.FC<GridProps> = ({ children, className, style, ...props }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('grid', prefixCls);
   return (
     <div
       style={{ paddingLeft: addUnit(props.gutter), ...style }}

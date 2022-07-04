@@ -12,9 +12,8 @@ import type {
 } from './PropsType';
 import { toArray } from '../uploader/utils';
 import { FormContext } from './FormContext';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { devWarning } from '../utils/dev-log';
-import { pick } from '../utils';
+import { createNamespace, pick } from '../utils';
 import { isSafeSetRefComponent } from './utils';
 
 function undefinedFallback(...items: any[]) {
@@ -31,10 +30,10 @@ const MemoInput = React.memo(
   (prev, next) => prev.value === next.value && prev.update === next.update,
 );
 
+const [bem] = createNamespace('form-item');
+
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
   const { meta, ...fieldProps } = props;
-  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('form-item', prefixCls);
   const context = React.useContext(FormContext);
 
   const layout = props.layout ?? context.layout;

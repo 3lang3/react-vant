@@ -1,15 +1,13 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import type { FormInstance } from 'rc-field-form';
 import RcForm from 'rc-field-form';
 import { FormProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { FormContext } from './FormContext';
+import { createNamespace } from '../utils';
 
+const [bem] = createNamespace('form');
 const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('form', prefixCls);
-
   const {
     className,
     style,

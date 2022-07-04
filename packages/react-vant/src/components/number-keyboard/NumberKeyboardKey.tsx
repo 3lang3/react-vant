@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import cls from 'clsx';
 import { NumberKeyboardKeyProps } from './PropsType';
 import Loading from '../loading';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useTouch } from '../hooks';
+import { createNamespace } from '../utils';
 
 const CollapseIcon = ({ bem }) => (
   <svg className={cls(bem('collapse-icon'))} viewBox="0 0 30 24">
@@ -23,15 +23,14 @@ const DeleteIcon = ({ bem }) => (
   </svg>
 );
 
+const [bem] = createNamespace('key');
+
 const NumberKeyboardKey: React.FC<NumberKeyboardKeyProps> = ({
   children,
   className,
   style,
   ...props
 }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('key', prefixCls);
-
   const [active, setActive] = useState(false);
   const touch = useTouch();
 

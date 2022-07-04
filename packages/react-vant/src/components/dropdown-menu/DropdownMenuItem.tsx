@@ -2,11 +2,10 @@ import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } fro
 import { Success } from '@react-vant/icons';
 import clsx from 'clsx';
 import Cell from '../cell';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useSetState } from '../hooks';
 import useSsrCompat from '../hooks/use-ssr-compat';
 import Popup from '../popup';
-import { getZIndexStyle, pick } from '../utils';
+import { createNamespace, getZIndexStyle, pick } from '../utils';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import DropdownMenuContext from './DropdownMenuContext';
 import { DropdownMenuItemProps, DropdownMenuItemOption, DropdownItemInstance } from './PropsType';
@@ -28,15 +27,14 @@ function inheritProps(parentProps, props) {
   return { ...parentProps, ...props };
 }
 
+const [bem] = createNamespace('dropdown-item');
+
 const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>((props, ref) => {
   const [state, setState] = useSetState({
     transition: true,
     showWrapper: false,
   });
   const [ssrCompatRender] = useSsrCompat();
-
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('dropdown-item', prefixCls);
   const parent = useContext(DropdownMenuContext);
   const currentValue = parent.value?.[props.name];
 

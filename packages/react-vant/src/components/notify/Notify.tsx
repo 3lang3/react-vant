@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
 import Popup from '../popup';
 import { NotifyPrivateProps, NotifyProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('notify');
 
 const Notify: React.FC<NotifyProps & NotifyPrivateProps> = ({ children, ...props }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('notify', prefixCls);
 
   const style = {
     color: props.color,

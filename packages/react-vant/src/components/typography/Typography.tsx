@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { TypographyBaseProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('typography');
 
 const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = ({
   type,
@@ -18,9 +20,6 @@ const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = (
   delete: del,
   ...props
 }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('typography', prefixCls);
-
   const elli = ellipsis === true ? 1 : (ellipsis as number);
   return (
     <div

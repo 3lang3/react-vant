@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import type { CSSProperties } from 'react';
 import clsx from 'clsx';
 
@@ -6,13 +6,11 @@ import useMergedState from '../hooks/use-merged-state';
 import Loading from '../loading';
 
 import { SwitchProps } from './PropsType';
-import { addUnit } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { addUnit, createNamespace } from '../utils';
+
+const [bem] = createNamespace('switch');
 
 const Swtich: React.FC<SwitchProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('switch', prefixCls);
-
   const { loading, disabled, size, activeColor, inactiveColor } = props;
 
   const [checked, setChecked] = useMergedState({

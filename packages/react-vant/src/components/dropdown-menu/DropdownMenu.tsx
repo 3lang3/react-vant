@@ -3,7 +3,6 @@ import React, {
   cloneElement,
   forwardRef,
   ReactElement,
-  useContext,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -12,7 +11,7 @@ import React, {
 } from 'react';
 import clsx from 'clsx';
 import { DropdownItemInstance, DropdownMenuInstance, DropdownMenuProps } from './PropsType';
-import { isDef } from '../utils';
+import { createNamespace, isDef } from '../utils';
 import useEventListener from '../hooks/use-event-listener';
 import useScrollParent from '../hooks/use-scroll-parent';
 import { getRect } from '../hooks/use-rect';
@@ -20,12 +19,11 @@ import useRefs from '../hooks/use-refs';
 import DropdownMenuContext from './DropdownMenuContext';
 import { useUpdateEffect } from '../hooks';
 import useClickAway from '../hooks/use-click-away';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import useMergedState from '../hooks/use-merged-state';
 
+const [bem] = createNamespace('dropdown-menu');
+
 const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('dropdown-menu', prefixCls);
   const [innerValue = {}, setInnerValue] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,

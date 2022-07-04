@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { Photo, PhotoFail } from '@react-vant/icons';
 import Image from './Image';
 import Lazyload from '../lazyload';
 import { LazyImageProps } from './PropsType';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { BEM } from '../utils/create/bem';
+import { createNamespace } from '../utils';
 
 export const getLazyImagePlaceholder = (bem: BEM): React.ReactNode => (
   <div className={clsx(bem('loading'))}>
@@ -14,10 +14,9 @@ export const getLazyImagePlaceholder = (bem: BEM): React.ReactNode => (
   </div>
 );
 
-const LazyImage: React.FC<LazyImageProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('image', prefixCls);
+const [bem] = createNamespace('image');
 
+const LazyImage: React.FC<LazyImageProps> = (props) => {
   const { lazyload, ...imageProps } = props;
   const renderPlaceholder = () => {
     if (typeof lazyload === 'boolean') return getLazyImagePlaceholder(bem);

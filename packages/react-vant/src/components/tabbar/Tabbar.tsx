@@ -1,16 +1,15 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import clsx from 'clsx';
 import { TabbarProps } from './PropsType';
-import { getZIndexStyle } from '../utils';
+import { createNamespace, getZIndexStyle } from '../utils';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import useHeight from '../hooks/use-height';
 import TabbarContext from './TabbarContext';
 import useMergedState from '../hooks/use-merged-state';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('tabbar');
 
 const Tabbar: React.FC<TabbarProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('tabbar', prefixCls);
 
   const [current, setCurrent] = useMergedState({
     value: props.value,

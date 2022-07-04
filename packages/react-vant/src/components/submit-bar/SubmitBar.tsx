@@ -3,10 +3,12 @@ import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SubmitBarProps } from './PropsType';
 import Button from '../button';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('submit-bar');
 
 const SubmitBar: React.FC<SubmitBarProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('submit-bar', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const renderText = () => {
     const { price, label, currency, textAlign, suffixLabel, decimalLength } = props;

@@ -1,8 +1,8 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import cls from 'clsx';
-import ConfigProviderContext from '../../config-provider/ConfigProviderContext';
 import { LIMIT_TYPE } from '../constants';
 import { Stepper } from '../../stepper';
+import { createNamespace } from '../../utils';
 
 type SkuStepperProps = {
   currentNum: number;
@@ -21,9 +21,9 @@ type SkuStepperProps = {
 
 const { QUOTA_LIMIT, STOCK_LIMIT } = LIMIT_TYPE;
 
+const [bem] = createNamespace('sku');
+
 const SkuStepper: React.FC<SkuStepperProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sku', prefixCls);
   const [limitType, setLimitType] = useState(STOCK_LIMIT);
 
   const stepperLimit = useMemo(() => {

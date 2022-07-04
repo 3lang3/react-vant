@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
-import ConfigProviderContext from '../../config-provider/ConfigProviderContext';
 import { BORDER_BOTTOM } from '../../utils/constant';
+import { createNamespace } from '../../utils';
 
 type SkuRowProps = {
   skuRow: Record<any, any>;
   children?: React.ReactNode;
 };
 
+const [bem] = createNamespace('sku-row');
+
 const SkuRow: React.FC<SkuRowProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sku-row', prefixCls);
   const { skuRow } = props;
 
   const renderTitle = () => {

@@ -1,20 +1,18 @@
-import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import cls from 'clsx';
 import { Photograph } from '@react-vant/icons';
 // Utils
-import { isPromise, getSizeStyle, extend, pick } from '../utils';
+import { isPromise, getSizeStyle, extend, pick, createNamespace } from '../utils';
 import { isOversize, filterFiles, readFileContent, toArray, isImageFile } from './utils';
 // Types
 import { UploaderFileListItem, UploaderInstance, UploaderProps } from './PropsType';
 import { UploaderPreviewItem } from './UploaderPreviewItem';
 // Components
 import ImagePreview from '../image-preview';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('uploader');
 
 const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('uploader', prefixCls);
-
   const imagePreview = useRef(null);
   const inputRef = useRef<HTMLInputElement>();
 

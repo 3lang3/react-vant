@@ -31,20 +31,20 @@ import {
   scrollTopTo,
   getVisibleTop,
   setRootScrollTop,
+  createNamespace,
 } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import { useSetState, useUpdateEffect } from '../hooks';
 import useEventListener from '../hooks/use-event-listener';
 import { isReachBottom } from './utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import PopupContext from '../popup/PopupContext';
 import type { SwiperInstance } from '../swiper/PropsType';
 
+const [bem] = createNamespace('tabs');
+
 const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const popupContext = useContext(PopupContext);
-  const [bem] = createNamespace('tabs', prefixCls);
 
   const { children, color, align, background } = props;
 

@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useContext, forwardRef, memo, useImperativeHandle } from 'react';
 import clsx from 'clsx';
 import { PickerColumnOption, PickerColumnProps } from './PropsType';
-import { range } from '../utils';
+import { createNamespace, range } from '../utils';
 import { useIsomorphicLayoutEffect, useSetState, useTouch } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -21,12 +21,13 @@ function getElementTranslateY(element) {
   return Number(translateY);
 }
 
+const [bem] = createNamespace('picker-column');
+
 const PickerColumn = memo<
   PickerColumnProps & { ref?: React.ForwardedRef<{ stopMomentum: () => void }> }
 >(
   forwardRef<{ stopMomentum: () => void }, PickerColumnProps>((props, ref) => {
-    const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-    const [bem] = createNamespace('picker-column', prefixCls);
+    const { locale } = useContext(ConfigProviderContext);
 
     const { valueKey, textKey, itemHeight, visibleItemCount, placeholder, value } = props;
 
@@ -291,7 +292,6 @@ const PickerColumn = memo<
   (prev, next) => {
     if (prev.index !== next.index) return false;
     if (prev.value !== next.value) {
-      // console.log(prev.value, next.value)
       return false;
     }
     if (prev.onSelect !== next.onSelect) return false;

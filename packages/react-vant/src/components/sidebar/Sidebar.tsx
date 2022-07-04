@@ -1,15 +1,15 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import cls from 'clsx';
 
 import { SidebarItemProps, SidebarProps } from './PropsType';
 import useMergedState from '../hooks/use-merged-state';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import SidebarItem from './SidebarItem';
+import { createNamespace } from '../utils';
+import { devWarning } from '../utils/dev-log';
+
+const [bem] = createNamespace('sidebar');
 
 const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sidebar', prefixCls);
-
   const [active, updateActive] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,
@@ -32,8 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
           if (!React.isValidElement(child)) return null;
           if (child.type !== SidebarItem) {
             if (process.env.NODE_ENV !== 'production') {
-              // eslint-disable-next-line no-console
-              console.error('[React Vant] <SidebarItem> must be a child component of <Sidebar>.');
+              devWarning('Sidebar', ' <SidebarItem> must be a child component of <Sidebar>.')
             }
             return null;
           }

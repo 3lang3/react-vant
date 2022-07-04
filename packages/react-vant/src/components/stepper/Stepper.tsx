@@ -1,10 +1,16 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent, FormEvent, TouchEvent } from 'react';
 import clsx from 'clsx';
 import { StepperProps } from './PropsType';
 import { isNaN } from '../utils/validate/number';
-import { addUnit, getSizeStyle, formatNumber, resetScroll, preventDefault } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import {
+  addUnit,
+  getSizeStyle,
+  formatNumber,
+  resetScroll,
+  preventDefault,
+  createNamespace,
+} from '../utils';
 import { usePropsValue } from '../hooks';
 import { bound } from '../utils/bound';
 import useRefState from '../hooks/use-ref-state';
@@ -18,10 +24,9 @@ function add(num1: number, num2: number) {
   return Math.round((num1 + num2) * cardinal) / cardinal;
 }
 
-function Stepper(props: StepperProps) {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('stepper', prefixCls);
+const [bem] = createNamespace('stepper');
 
+function Stepper(props: StepperProps) {
   const { defaultValue = 0 } = props;
 
   let actionType: 'plus' | 'minus';
