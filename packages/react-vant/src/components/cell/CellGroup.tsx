@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { CellGroupProps } from './PropsType';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('cell-group');
 
 const CellGroup: React.FC<CellGroupProps> = (props) => {
   const { title, border, inset: insetP, card } = props;
   const inset = card || insetP;
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('cell-group', prefixCls);
 
   const renderGroup = () => (
     <div className={clsx(bem({ inset }), { [BORDER_TOP_BOTTOM]: !inset && border })}>

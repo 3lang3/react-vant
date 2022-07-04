@@ -9,12 +9,14 @@ import React, {
 } from 'react';
 import cls from 'clsx';
 import { CalendarDayItem, CalendarDayType, CalendarMonthProps } from './PropsType';
-import { addUnit, setScrollTop } from '../utils';
+import { addUnit, createNamespace, setScrollTop } from '../utils';
 import { compareDay, formatMonthTitle, getNextDay, getPrevDay } from './utils';
 import { getMonthEndDay } from '../datetime-picker/utils';
 import CalendarDay from './CalendarDay';
 import { getRect } from '../hooks/use-rect';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('calendar');
 
 const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
   const [visible, setVisible] = useState();
@@ -22,8 +24,7 @@ const CalenderMonth = forwardRef<unknown, CalendarMonthProps>((props, ref) => {
   const [monthRef, setMonthRef] = useState<HTMLDivElement>();
   const height = useRef<number>(0);
 
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('calendar', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   useEffect(() => {
     if (monthRef) {

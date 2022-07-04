@@ -7,10 +7,12 @@ import { useSetState } from '../hooks';
 import Button from '../button';
 import Field from '../field';
 import Coupon from './Coupon';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('coupon-list');
 
 const CouponList: React.FC<CouponListProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('coupon-list', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const innerEffect = useRef(false);
   const [state, updateState] = useSetState({

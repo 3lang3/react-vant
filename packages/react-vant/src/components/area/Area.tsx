@@ -1,10 +1,8 @@
-/* eslint-disable no-plusplus */
-import React, { forwardRef, useContext, useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import clsx from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { AreaColumnOption, AreaInstance, AreaList, AreaProps } from './PropsType';
 import Picker from '../picker';
-import { pick } from '../utils';
+import { createNamespace, pick } from '../utils';
 import { PickerColumn } from '../picker/PropsType';
 
 const INHERIT_PROPS = [
@@ -61,9 +59,9 @@ function parseVanAreaList(data: AreaList, columnsNum: number): PickerColumn<Area
   return provinces;
 }
 
+const [bem] = createNamespace('area');
+
 const Area = forwardRef<AreaInstance, AreaProps<AreaColumnOption>>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('area', prefixCls);
 
   const columns = useMemo(
     () => props.columns ?? parseVanAreaList(props.areaList, +props.columnsNum),

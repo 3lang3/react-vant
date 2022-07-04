@@ -15,14 +15,14 @@ import useLazyRender from '../hooks/use-lazy-render';
 import { CollapseItemInstance, CollapseItemProps } from './PropsType';
 import { raf, doubleRaf } from '../utils/raf';
 import { useUpdateEffect } from '../hooks';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('collapse-item');
 
 const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
   ({ className, style, ...props }, ref) => {
     const { index } = props;
     const parent = useContext(CollapseContext);
-    const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-    const [bem] = createNamespace('collapse-item', prefixCls);
 
     const wrapperRef = useRef(null);
     const contentRef = useRef(null);

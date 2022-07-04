@@ -1,19 +1,19 @@
-import React, { FC, useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { ButtonGroupProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import ButtonContext from './ButtonContext';
 import { SHADOW } from '../utils/constant';
+import { createNamespace } from '../utils';
 
-export const ButtonGroup: FC<ButtonGroupProps> = ({
+const [bem] = createNamespace('button-group');
+
+export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   className,
   style,
   children,
   onClick,
   ...props
 }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('button-group', prefixCls);
 
   const internalClick = (e) => {
     if (props.disabled) return;

@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { CouponProps } from './PropsType';
-import { padZero } from '../utils';
+import { createNamespace, padZero } from '../utils';
 import Checkbox from '../checkbox';
 
 function getDate(timeStamp: number) {
@@ -19,9 +19,10 @@ function formatAmount(amount: number) {
   return (amount / 100).toFixed(amount % 100 === 0 ? 0 : amount % 10 === 0 ? 1 : 2);
 }
 
+const [bem] = createNamespace('coupon');
+
 const Coupon: React.FC<CouponProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('coupon', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const validPeriod = useMemo(() => {
     const { startAt, endAt } = props.coupon;

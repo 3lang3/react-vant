@@ -1,12 +1,12 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import clsx from 'clsx';
 import { ActionBarProps } from './PropsType';
 import ActionBarContext from './ActionBarContext';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('action-bar');
 
 const ActionBar: React.FC<ActionBarProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('action-bar', prefixCls);
 
   const children = useMemo(() => React.Children.toArray(props.children), [props.children]);
 

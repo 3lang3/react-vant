@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import {
   CardProps,
   CardHeaderProps,
@@ -9,10 +8,10 @@ import {
   CardCoverProps,
 } from './PropsType';
 import { BORDER_BOTTOM, BORDER_TOP } from '../utils/constant';
+import { createNamespace } from '../utils';
 
 export const CardHeader: React.FC<CardHeaderProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('card-header', prefixCls);
+  const [bem] = createNamespace('card-header');
   return (
     <div
       className={cls(props.className, bem(), { [BORDER_BOTTOM]: props.border })}
@@ -26,8 +25,7 @@ export const CardHeader: React.FC<CardHeaderProps> = (props) => {
 };
 
 export const CardBody: React.FC<CardBodyProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('card-body', prefixCls);
+  const [bem] = createNamespace('card-body');
   return (
     <div className={cls(props.className, bem())} style={props.style} onClick={props.onClick}>
       {props.children}
@@ -36,8 +34,7 @@ export const CardBody: React.FC<CardBodyProps> = (props) => {
 };
 
 export const CardFooter: React.FC<CardFooterProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('card-footer', prefixCls);
+  const [bem] = createNamespace('card-footer');
   return (
     <div
       className={cls(props.className, bem({ compact: props.compact }), {
@@ -52,8 +49,7 @@ export const CardFooter: React.FC<CardFooterProps> = (props) => {
 };
 
 export const CardCover: React.FC<CardCoverProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('card-cover', prefixCls);
+  const [bem] = createNamespace('card-cover');
   return (
     <div className={cls(props.className, bem())} style={props.style} onClick={props.onClick}>
       {props.children}
@@ -62,8 +58,7 @@ export const CardCover: React.FC<CardCoverProps> = (props) => {
 };
 
 const Card: React.FC<CardProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('card', prefixCls);
+  const [bem] = createNamespace('card');
 
   const { className, style, round, border, children } = props;
 

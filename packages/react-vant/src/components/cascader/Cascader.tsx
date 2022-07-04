@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useImperativeHandle, useState } from 'rea
 import cls from 'clsx';
 import { Cross, Success } from '@react-vant/icons';
 import { PopupCascaderProps, CascaderOption, CascaderProps, CascaderTab } from './PropsType';
-import { extend, isObject } from '../utils';
+import { createNamespace, extend, isObject } from '../utils';
 import { useMemoizedFn, usePropsValue, useUpdateEffect } from '../hooks';
 import Tabs from '../tabs';
 import { TabsClickTabEventParams } from '../tabs/PropsType';
@@ -13,9 +13,10 @@ import Popup from '../popup';
 import { useCascaderExtend } from './useCascaderExtend';
 import useDebounceEffect from '../hooks/use-debunce-effect';
 
+const [bem] = createNamespace('cascader');
+
 const Cascader: React.FC<CascaderProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('cascader', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const [value, setValue] = useState(() =>
     props.value === undefined ? props.defaultValue : props.value,

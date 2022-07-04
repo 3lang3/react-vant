@@ -3,14 +3,13 @@ import clsx from 'clsx';
 import Loading from '../loading';
 import { ButtonProps } from './PropsType';
 import { BORDER_SURROUND, SHADOW, WHITE } from '../utils/constant';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import ButtonContext from './ButtonContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('button');
 
 const Button: React.FC<ButtonProps> = (props) => {
   const { color, loading, className, hairline, loadingText } = props;
-
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('button', prefixCls);
 
   const { parent } = useContext(ButtonContext);
 

@@ -1,15 +1,14 @@
-import React, { CSSProperties, useContext } from 'react';
+import React, { CSSProperties } from 'react';
 import clsx from 'clsx';
 import { BadgeProps } from './PropsType';
-import { isDef, addUnit } from '../utils';
+import { isDef, addUnit, createNamespace } from '../utils';
 import { isNumeric } from '../utils/validate/number';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('badge');
 
 const Badge: React.FC<BadgeProps> = (props) => {
   const { content, max, dot, showZero, tag = 'div' } = props;
 
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('badge', prefixCls);
 
   const TagElement = tag as React.ElementType;
 

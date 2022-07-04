@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import cls from 'clsx';
 import { CalendarDayItem, CalendarInstance, CalendarProps } from './PropsType';
-import { getScrollTop, pick } from '../utils';
+import { createNamespace, getScrollTop, pick } from '../utils';
 import {
   calcDateNum,
   cloneDate,
@@ -34,10 +34,11 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { usePropsValue } from '../hooks';
 import { PickerPopupActions } from '../picker/PropsType';
 
+const [bem] = createNamespace('calendar');
+
 const Calendar = forwardRef<CalendarInstance, CalendarProps>(
   ({ className, style, ...props }, ref) => {
-    const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-    const [bem] = createNamespace('calendar', prefixCls);
+    const { locale } = useContext(ConfigProviderContext);
 
     const [visible, setVisible] = usePropsValue({
       value: props.visible,
