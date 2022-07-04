@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
 import { SidebarItemProps, SidebarProvide } from './PropsType';
 import Badge from '../badge';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
 
-const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = ({ children, ...props }) => {
+const [bem] = createNamespace('sidebar-item');
+
+
+const SidebarItem: React.FC<SidebarItemProps & SidebarProvide> = (props) => {
   const { parent, index } = props;
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sidebar-item', prefixCls);
 
   const onClick = () => {
     if (props.disabled) {

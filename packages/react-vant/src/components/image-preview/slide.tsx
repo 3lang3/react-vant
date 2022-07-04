@@ -3,8 +3,8 @@ import { useSpring, animated } from '@react-spring/web';
 import { useDragAndPinch } from '../hooks/use-drag-and-pinch';
 import { bound } from '../utils/bound';
 import { rubberbandIfOutOfBounds } from '../utils/rubberband';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import clsx from 'clsx';
+import { createNamespace } from '../utils';
 
 type Props = {
   image: string;
@@ -14,10 +14,10 @@ type Props = {
   dragLockRef?: MutableRefObject<boolean>;
 };
 
+const [bem] = createNamespace('image-preview');
+
 export const Slide: FC<Props> = (props) => {
   const { dragLockRef } = props;
-  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('image-preview', prefixCls);
   const controlRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const [{ zoom, x, y }, api] = useSpring(() => ({
