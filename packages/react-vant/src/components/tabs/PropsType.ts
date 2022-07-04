@@ -9,6 +9,8 @@ type ScrollspyConfig = {
   reachBottomThreshold?: number;
 };
 
+type TabPaneTitle =  React.ReactNode | ((active: boolean) => React.ReactNode);
+
 export interface TabsProps extends BaseTypeProps {
   /**
    * 标签栏对齐方式
@@ -70,17 +72,11 @@ export interface TabsProps extends BaseTypeProps {
   /** 标签栏下方内容 */
   navBottom?: React.ReactNode;
   /** @deprecated */
-  onClick?: (name: string | number, title: string) => void;
+  onClick?: (name: string | number, title: any) => void;
   /** 点击标签时触发	 */
-  onClickTab?: (tab: {
-    name: string | number;
-    title: string;
-    event: React.MouseEvent;
-    disabled: boolean;
-    index: number;
-  }) => void;
+  onClickTab?: (tab: any) => void;
   /** 当前激活的标签改变时触发	 */
-  onChange?: (name: string | number, title: string) => void;
+  onChange?: (name: string | number, tabIndex: number) => void;
   /** 滚动时触发，仅在 sticky 模式下生效	 */
   onScroll?: (params: { scrollTop: number; isFixed: boolean }) => void;
   children?: React.ReactNode;
@@ -91,13 +87,12 @@ export interface TabsTitleProps extends BaseTypeProps {
   dot: boolean;
   type: string;
   color: string;
-  title: React.ReactNode;
+  title: TabPaneTitle;
   badge: number | string;
   isActive: boolean;
   disabled: boolean;
   scrollable: boolean;
   activeColor: string;
-  renderTitle?: React.ReactNode | ((active: boolean) => React.ReactNode);
   showZeroBadge?: boolean;
   inactiveColor: string;
   onClick: (event) => void;
@@ -129,21 +124,18 @@ export interface TabPaneProps {
   /** 当 badge 为数字 0 时，是否展示徽标	 */
   showZeroBadge?: boolean;
   /** 标题 */
-  title?: string;
+  title?: React.ReactNode | ((active: boolean) => React.ReactNode);
   /** 自定义标题样式	 */
   titleStyle?: React.CSSProperties;
   /** 自定义标题类名	 */
   titleClass?: string;
   /** 是否禁用标签	 */
   disabled?: boolean;
-  /** 自定义渲染title */
-  renderTitle?: React.ReactNode | ((active: boolean) => React.ReactNode);
   children?: React.ReactNode;
 }
 
 export type TabsClickTabEventParams = {
   name: string | number;
-  title: string;
   event: React.MouseEvent;
   disabled: boolean;
   index: number;

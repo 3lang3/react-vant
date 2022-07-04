@@ -182,7 +182,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
     if (initChange.current) {
       if (shouldEmitChange) {
-        props.onChange?.(newName, newTab.title);
+        props.onChange?.(newName, newIndex);
       }
     }
   };
@@ -209,11 +209,10 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   };
 
   const onClickTab = (item, index: number, event: React.MouseEvent) => {
-    const { title, disabled = false } = item;
+    const { disabled = false } = item;
     const name = getTabName(item, index);
     props.onClickTab?.({
       name,
-      title,
       event,
       disabled,
       index
@@ -286,7 +285,6 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
           isActive={index === state.currentIndex}
           disabled={item.disabled}
           scrollable={scrollable}
-          renderTitle={item.renderTitle}
           activeColor={props.titleActiveColor}
           inactiveColor={props.titleInactiveColor}
           showZeroBadge={item.showZeroBadge}

@@ -23,13 +23,13 @@ import './demo/style.less';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs active={0}>
-      {[1, 2, 3].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs active={0}>
+        {[1, 2, 3].map((item) => (
+          <Tabs.TabPane key={item} title={<>标签{item}</>}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -49,13 +49,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs active="c">
-      {['a', 'b', 'c'].map((item, index) => (
-        <Tabs.TabPane name={item} key={item} title={`标签${index + 1}`}>
-          内容 {index + 1}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs active="c">
+        {['a', 'b', 'c'].map((item, index) => (
+          <Tabs.TabPane name={item} key={item} title={`标签${index + 1}`}>
+            内容 {index + 1}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -75,13 +75,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -101,13 +101,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs active="c">
-      <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
-      <Tabs.TabPane title="标签2" disabled>
-        内容2
-      </Tabs.TabPane>
-      <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
-    </Tabs>
+      <Tabs active="c">
+        <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
+        <Tabs.TabPane title="标签2" disabled>
+          内容2
+        </Tabs.TabPane>
+        <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
+      </Tabs>
     </div>
   );
 };
@@ -127,13 +127,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs align="start">
-      {[1, 2, 3].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs align="start">
+        {[1, 2, 3].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -153,13 +153,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs type="card">
-      {[1, 2, 3].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs type="card">
+        {[1, 2, 3].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -179,13 +179,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs sticky swipeable>
-      {[1, 2, 3, 4].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs sticky swipeable>
+        {[1, 2, 3, 4].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -205,13 +205,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs sticky scrollspy={{ autoFocusLast: true, reachBottomThreshold: 50 }}>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          <div style={{ height: '50vh' }}>内容 {item}</div>
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs sticky scrollspy={{ autoFocusLast: true, reachBottomThreshold: 50 }}>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            <div style={{ height: '50vh' }}>内容 {item}</div>
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -264,7 +264,7 @@ export default () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 标题 | _string_ | - |
+| title | 标题 | _ReactNode_ | - |
 | renderTitle | 自定义标题 | _ReactNode \|(active: boolean) => ReactNode_ | - |
 | disabled | 是否禁用标签 | _boolean_ | `false` |
 | dot | 是否在标题右上角显示小红点 | _boolean_ | `false` |
@@ -279,10 +279,10 @@ export default () => {
 | 事件名 | 说明 | 回调参数 |
 | --- | --- | --- |
 | onClickTab | 点击标签时触发 | _{ name: string \| number, title: string, event: MouseEvent, disabled: boolean }_ |
-| onChange | 当前激活的标签改变时触发 | _name: string \| number, title: string_ |
+| onChange | 当前激活的标签改变时触发 | _name: string \| number, tabIndex: number_ |
 | onScroll | 滚动时触发，仅在 sticky 模式下生效 | _{ scrollTop: number, isFixed: boolean }_ |
 
-> 提示：click 和 disabled 事件已废弃，请使用 click-tab 事件代替。
+> `提示：onClick` 已废弃，请使用 `onClickTab` 事件代替。
 
 ### Tabs 方法
 
