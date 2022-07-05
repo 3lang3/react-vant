@@ -60,7 +60,7 @@
 - `Form.Item` 组件:
     - `Form.Item` 移除 `inputAlign` 属性，使用 `controlAlign` 代替
     - `Form.Item` 移除 `customField` 属性
-    - `Form.Item` 调整 `onClick` 属性，支持获取子组件 `ref` 实例
+    - `Form.Item` 调整 `onClick` 属性，现第二个参数为子组件 `ref` 的实例
 
 - `Picker` 组件:
   - 支持 [受控](https://reactjs.org/docs/forms.html#controlled-components)和[非受控模式](https://reactjs.org/docs/uncontrolled-components.html)
