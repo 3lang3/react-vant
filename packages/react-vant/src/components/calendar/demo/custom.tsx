@@ -33,7 +33,7 @@ export default () => {
             isLink
             title="颜色"
             titleStyle={{ flex: 'none' }}
-            value={val.map((el) => el.toLocaleDateString()).join('~')}
+            value={val ? val.map((el) => el.toLocaleDateString()).join('~') : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}
@@ -44,7 +44,7 @@ export default () => {
           <Cell
             isLink
             title="日期范围"
-            value={`已选${val.length}个日期`}
+            value={val ? `已选${val.length}个日期` : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}
@@ -56,7 +56,7 @@ export default () => {
             isLink
             title="区间范围"
             titleStyle={{ flex: 'none' }}
-            value={val.map((el) => el.toLocaleDateString()).join('~')}
+            value={val ? val.map((el) => el.toLocaleDateString()).join('~') : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}
@@ -67,7 +67,7 @@ export default () => {
           <Cell
             isLink
             title="周起始日"
-            value={val.toLocaleDateString()}
+            value={val ? val.toLocaleDateString() : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}
@@ -79,7 +79,7 @@ export default () => {
             isLink
             title="日期文案"
             titleStyle={{ flex: 'none' }}
-            value={val.map((el) => el.toLocaleDateString()).join('~')}
+            value={val ? val.map((el) => el.toLocaleDateString()).join('~') : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}
@@ -93,7 +93,7 @@ export default () => {
           <Cell
             isLink
             title="周/月文案"
-            value={val.toLocaleDateString()}
+            value={val ? val.toLocaleDateString() : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}

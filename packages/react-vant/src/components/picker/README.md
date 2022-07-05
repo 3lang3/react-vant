@@ -66,7 +66,7 @@ import { Picker } from 'react-vant';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 选中项 | _string\|string[]_ | - |
-| value | 默认选中项 | _string\|string[]_ | - |
+| defaultValue | 默认选中项 | _string\|string[]_ | - |
 | columns | 对象数组，配置每一列显示的数据 | _PickerColumn\| PickerColumn[]_ | `[]` |
 | columnsFieldNames | 自定义 `columns` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', children: 'children' }` |
 | title | 顶部栏标题 | _ReactNode_ | - |

@@ -30,7 +30,7 @@ export default () => {
         active={0}
       >
         {[1, 2, 3].map((item, index) => (
-          <Tabs.TabPane key={item} title={`标签${item}`}>
+          <Tabs.TabPane key={item} title={<div>标签${item}</div>}>
             <Item item={item} index={index} />
           </Tabs.TabPane>
         ))}

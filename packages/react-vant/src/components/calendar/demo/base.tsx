@@ -9,7 +9,7 @@ export default () => {
           <Cell
             isLink
             title="单个日期"
-            value={val.toLocaleDateString()}
+            value={val ? val.toLocaleDateString() : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}
@@ -19,7 +19,7 @@ export default () => {
           <Cell
             isLink
             title="多个日期"
-            value={`已选${val.length}个日期`}
+            value={val ? `已选${val.length}个日期` : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}
@@ -30,7 +30,7 @@ export default () => {
             isLink
             title="日期区间"
             titleStyle={{ flex: 'none' }}
-            value={val.map((el) => el.toLocaleDateString()).join('~')}
+            value={val ? val.map((el) => el.toLocaleDateString()).join('~') : '请选择日期'}
             onClick={() => actions.open()}
           />
         )}

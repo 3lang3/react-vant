@@ -26,9 +26,22 @@
 - 移除 `readonly` 属性，使用 `readOnly` 替代
 - 移除 `maxLength` 属性，使用 `maxLength` 代替
 - 移除 `autofocus` 属性，使用 `autoFocus` 代替
+- `Stepper` 圆角风格按钮颜色调整为主题色
 - `Search` 移除 `inputAlign` 属性，使用 `align` 代替
 
 #### 组件重构
+
+- `Tabs` 组件:
+  - `Tabs.TabPane` 调整 `title` 类型
+  - `Tabs.TabPane` 移除 `renderTitle` 类型，现可通过 `title` 实现
+  - 调整 `onChange` 类型
+  - 调整 `onClickTab` 类型
+
+- `Cascader` 组件:
+  - 调整 `title` 类型
+  - 调整 `value`，`defaultValue` 类型
+  - 调整 `onChange` 类型
+  - 调整 `onFinish` 类型
 
 - `Field` 组件:
   - 现在内部由 `Input` 实现
