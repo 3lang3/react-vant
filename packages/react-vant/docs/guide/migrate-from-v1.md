@@ -11,7 +11,7 @@
 - `FloatingBall` [悬浮球](/components/floating-ball)
 - `Input` [输入框](/components/input)
 - `Swiper` [轮播](/components/swiper)
-- `WaterMask` [水印组件](/components/water-mask)
+- `WaterMask` [水印组件](/components/water-mark)
 
 ### 不兼容的变化
 
