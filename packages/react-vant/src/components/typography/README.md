@@ -77,19 +77,45 @@ export default () => {
 import React from 'react';
 import { Typography } from 'react-vant';
 
+const content = `In the process of internal desktop applications development, many different design specs and implementations would be involved`;
+
 export default () => {
   return (
     <>
-      <Typography.Text ellipsis>
-        In the process of internal desktop applications development, many different design specs and
-        implementations would be involved
-      </Typography.Text>
+      <Typography.Text ellipsis>{content}</Typography.Text>
 
       <br />
-      <Typography.Text ellipsis={2}>
-        In the process of internal desktop applications development, many different design specs and
-        implementations would be involved
-      </Typography.Text>
+      <Typography.Text ellipsis={2}>{content}</Typography.Text>
+    </>
+  );
+};
+```
+
+### 复杂的文本省略
+
+使用 `Typography.Ellipsis` 可以生成更复杂的文本省略形式
+
+```tsx
+/**
+ * title: 复杂的文本省略
+ */
+import React from 'react';
+import { Typography } from 'react-vant';
+
+const content = `In the process of internal desktop applications development, many different design specs and implementations would be involved`;
+
+export default () => {
+  return (
+    <>
+      <Typography.Ellipsis
+        style={{ fontSize: 14 }}
+        direction="end"
+        expandText="more"
+        collapseText="up"
+        rows={2}
+      >
+        {content}
+      </Typography.Ellipsis>
     </>
   );
 };
@@ -114,6 +140,7 @@ export default () => {
       <Typography.Title level={3}>三级测试标题</Typography.Title>
       <Typography.Title level={4}>四级测试标题</Typography.Title>
       <Typography.Title level={5}>五级测试标题</Typography.Title>
+      <Typography.Title level={6}>六级测试标题</Typography.Title>
     </>
   );
 };
@@ -131,7 +158,11 @@ import React from 'react';
 import { Typography } from 'react-vant';
 
 export default () => {
-  return <Typography.Link>测试Link</Typography.Link>;
+  return (
+    <Typography.Link href="https://github.com/3lang3/react-vant" target="_blank">
+      测试Link
+    </Typography.Link>
+  );
 };
 ```
 
@@ -153,9 +184,9 @@ export default () => {
 
 ### Typography.Title Props
 
-| 参数  | 说明                                 | 类型     | 默认值 |
-| ----- | ------------------------------------ | -------- | ------ |
-| level | 重要程度，可选值 `1` `2` `3` `4` `5` | _number_ | `4`    |
+| 参数  | 说明                                     | 类型     | 默认值 |
+| ----- | ---------------------------------------- | -------- | ------ |
+| level | 重要程度，可选值 `1` `2` `3` `4` `5` `6` | _number_ | `5`    |
 
 ## 主题定制
 
