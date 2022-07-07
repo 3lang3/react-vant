@@ -205,7 +205,7 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-      <Tabs ref={ref} sticky scrollspy={{ autoFocusLast: true, reachBottomThreshold: 50 }}>
+      <Tabs sticky scrollspy={{ autoFocusLast: true, reachBottomThreshold: 50 }}>
         {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
           <Tabs.TabPane key={item} title={`标签${item}`}>
             <div style={{ height: '50vh' }}>内容 {item}</div>
