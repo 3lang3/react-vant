@@ -70,7 +70,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   tabHeightRef.current = tabHeight;
 
-  const [state, setState] = useSetState({
+  const [state, setState, stateRef] = useSetState({
     inited: false,
     position: '',
     currentIndex: -1,
@@ -197,7 +197,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const scrollToCurrentContent = (immediate?, current?) => {
     if (props.scrollspy) {
-      const target = contentRefs[current ?? state.currentIndex];
+      const target = contentRefs[current ?? stateRef.current.currentIndex];
       if (target && scroller) {
         const to = getElementTop(target, scroller) - (offsetTopPx + tabHeightRef.current);
         lockScroll.current = true;
