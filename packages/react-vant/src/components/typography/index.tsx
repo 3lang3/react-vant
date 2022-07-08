@@ -2,7 +2,6 @@ import './style/index.less';
 import React from 'react';
 import { TypographyTextProps, TypographyTitleProps, TypographyLinkProps } from './PropsType';
 import Typography from './Typography';
-import Ellipsis from './Ellipsis';
 
 const Text = (props: TypographyTextProps) => <Typography renderType="text" tag="span" {...props} />;
 const Title = (props: TypographyTitleProps) => (
@@ -10,7 +9,7 @@ const Title = (props: TypographyTitleProps) => (
 );
 const Link = (props: TypographyLinkProps) => <Typography renderType="link" tag="a" {...props} />;
 
-const TypographyNamespace = Object.assign(Typography, { Text, Title, Link, Ellipsis });
+const TypographyNamespace = Object.assign(Typography, { Text, Title, Link });
 
 export { TypographyNamespace as Typography };
 export type {

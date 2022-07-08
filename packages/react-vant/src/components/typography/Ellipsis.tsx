@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import { useIsomorphicLayoutEffect } from '../hooks';
 import { useResizeEffect } from '../hooks/use-resize-effect';
 import { withStopPropagation } from '../utils/dom/event';
@@ -16,6 +16,14 @@ const Ellipsis: FC<EllipsisProps> = (props) => {
   const [ellipsised, setEllipsised] = useState<EllipsisedValue>({});
   const [expanded, setExpanded] = useState(false);
   const [exceeded, setExceeded] = useState(false);
+
+  const suffixStr = useMemo(() => {
+    if (props.suffixText) return props.suffixText;
+    if (props.suffixCount > 0) {
+      return props.children.slice(-props.suffixCount).trim();
+    }
+    return ''
+  }, [props.suffixCount, props.suffixText])
 
   function calcEllipsised() {
     const root = rootRef.current;
@@ -37,6 +45,7 @@ const Ellipsis: FC<EllipsisProps> = (props) => {
     container.style.whiteSpace = 'normal';
     container.style.webkitLineClamp = 'unset';
     container.style.display = 'block';
+
     const lineHeight = pxToNumber(originStyle.lineHeight);
     const maxHeight = Math.floor(
       lineHeight * (props.rows + 0.5) +
@@ -44,7 +53,7 @@ const Ellipsis: FC<EllipsisProps> = (props) => {
         pxToNumber(originStyle.paddingBottom),
     );
 
-    container.innerText = props.children;
+    container.innerHTML = props.children;
     document.body.appendChild(container);
 
     if (container.offsetHeight <= maxHeight) {
@@ -56,66 +65,22 @@ const Ellipsis: FC<EllipsisProps> = (props) => {
       // eslint-disable-next-line no-inner-declarations
       function check(left: number, right: number): EllipsisedValue {
         if (right - left <= 1) {
-          if (props.direction === 'end') {
-            return {
-              leading: props.children.slice(0, left) + '...',
-            };
-          } else {
-            return {
-              tailing: '...' + props.children.slice(right, end),
-            };
-          }
-        }
-        const middle = Math.round((left + right) / 2);
-        if (props.direction === 'end') {
-          container.innerText = props.children.slice(0, middle) + '...' + actionText;
-        } else {
-          container.innerText = actionText + '...' + props.children.slice(middle, end);
-        }
-        if (container.offsetHeight <= maxHeight) {
-          if (props.direction === 'end') {
-            return check(middle, right);
-          } else {
-            return check(left, middle);
-          }
-        } else {
-          if (props.direction === 'end') {
-            return check(left, middle);
-          } else {
-            return check(middle, right);
-          }
-        }
-      }
-
-      // eslint-disable-next-line no-inner-declarations
-      function checkMiddle(
-        leftPart: [number, number],
-        rightPart: [number, number],
-      ): EllipsisedValue {
-        if (leftPart[1] - leftPart[0] <= 1 && rightPart[1] - rightPart[0] <= 1) {
           return {
-            leading: props.children.slice(0, leftPart[0]) + '...',
-            tailing: '...' + props.children.slice(rightPart[1], end),
+            leading: props.children.slice(0, left) + props.symbol,
           };
         }
-        const leftPartMiddle = Math.floor((leftPart[0] + leftPart[1]) / 2);
-        const rightPartMiddle = Math.ceil((rightPart[0] + rightPart[1]) / 2);
-        container.innerText =
-          props.children.slice(0, leftPartMiddle) +
-          '...' +
-          actionText +
-          '...' +
-          props.children.slice(rightPartMiddle, end);
+        const middle = Math.round((left + right) / 2);
+
+        container.innerHTML =
+          props.children.slice(0, middle) + props.symbol + suffixStr + actionText;
+
         if (container.offsetHeight <= maxHeight) {
-          return checkMiddle([leftPartMiddle, leftPart[1]], [rightPart[0], rightPartMiddle]);
-        } else {
-          return checkMiddle([leftPart[0], leftPartMiddle], [rightPartMiddle, rightPart[1]]);
+          return check(middle, right);
         }
+        return check(left, middle);
       }
 
-      const middle = Math.floor((0 + end) / 2);
-      const ellipsised =
-        props.direction === 'middle' ? checkMiddle([0, middle], [middle, end]) : check(0, end);
+      const ellipsised = check(0, end);
       setEllipsised(ellipsised);
     }
     document.body.removeChild(container);
@@ -124,15 +89,19 @@ const Ellipsis: FC<EllipsisProps> = (props) => {
   useResizeEffect(calcEllipsised, rootRef);
   useIsomorphicLayoutEffect(() => {
     calcEllipsised();
-  }, [props.children, props.direction, props.rows, props.expandText, props.collapseText]);
+  }, [props.children, props.rows, suffixStr, props.expandText, props.collapseText]);
 
+  const onExpandClick = (isExpend: boolean) => {
+    props.onExpend?.(isExpend);
+    setExpanded(isExpend);
+  };
   const expandActionElement =
     exceeded && props.expandText
       ? withStopPropagation(
           props.stopPropagationForActionButtons,
           <a
             onClick={() => {
-              setExpanded(true);
+              onExpandClick(true);
             }}
           >
             {props.expandText}
@@ -146,7 +115,7 @@ const Ellipsis: FC<EllipsisProps> = (props) => {
           props.stopPropagationForActionButtons,
           <a
             onClick={() => {
-              setExpanded(false);
+              onExpandClick(false);
             }}
           >
             {props.collapseText}
@@ -169,17 +138,16 @@ const Ellipsis: FC<EllipsisProps> = (props) => {
       return (
         <>
           {ellipsised.leading}
+          {suffixStr}
           {expandActionElement}
-          {ellipsised.tailing}
         </>
       );
     }
   };
-
   return (
     <div
       ref={rootRef}
-      className={clsx('rv-typography--ellipsis', props.className)}
+      className={clsx('rv-typography__ellipsis', props.className)}
       style={props.style}
     >
       {renderContent()}
@@ -194,10 +162,11 @@ function pxToNumber(value: string | null): number {
 }
 
 Ellipsis.defaultProps = {
-  direction: 'end',
   rows: 1,
   expandText: '',
   collapseText: '',
+  suffixText: '',
+  symbol: '...',
   stopPropagationForActionButtons: [],
 };
 

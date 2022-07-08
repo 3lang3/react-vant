@@ -3,11 +3,14 @@ import { BaseTypeProps, PropagationEvent } from '../utils';
 
 export type EllipsisProps = {
   children: string;
-  direction?: 'start' | 'end' | 'middle';
   rows?: number;
+  symbol?: string;
   expandText?: string;
   collapseText?: string;
+  suffixText?: string;
+  suffixCount?: number;
   stopPropagationForActionButtons?: PropagationEvent[];
+  onExpend?: (isExpend: boolean) => void;
   onContentClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 } & Omit<BaseTypeProps, 'children'>;
 
@@ -25,7 +28,7 @@ export interface TypographyBaseProps extends BaseTypeProps {
   underline?: boolean;
   center?: boolean;
   strong?: boolean;
-  ellipsis?: boolean | number;
+  ellipsis?: boolean | number | Omit<EllipsisProps, 'children'>;
   onClick?: (event: React.MouseEvent) => void;
   tag?: string;
 }
