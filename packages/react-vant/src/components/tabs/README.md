@@ -1,5 +1,7 @@
 # Tabs 标签页
 
+选项卡切换组件，提供平级的区域将大块内容进行收纳和展现，保持界面整洁。
+
 ## 引入
 
 ```js
@@ -10,31 +12,14 @@ import { Tabs } from 'react-vant';
 
 ### 基础用法
 
-通过 `active` 绑定当前激活标签对应的索引值，默认情况下启用第一个标签。
+提供了 4 种展现形式
 
-```jsx
-/**
- * title: 基础用法
- */
-import React from 'react';
-import { Tabs } from 'react-vant';
-import './demo/style.less';
+- `line` 下划线风格
+- `capsule` 胶囊风格
+- `jumbo` 带描述信息展示
+- `card` 卡片风格
 
-export default () => {
-  const ref = React.useRef(null);
-  return (
-    <div className="demo-tabs">
-    <Tabs active={0}>
-      {[1, 2, 3].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
-    </div>
-  );
-};
-```
+<code title="基础用法" src="./demo/base.tsx" />
 
 ### 通过名称匹配
 
@@ -50,13 +35,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs active="c">
-      {['a', 'b', 'c'].map((item, index) => (
-        <Tabs.TabPane name={item} key={item} title={`标签${index + 1}`}>
-          内容 {index + 1}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs active="c">
+        {['a', 'b', 'c'].map((item, index) => (
+          <Tabs.TabPane name={item} key={item} title={`标签${index + 1}`}>
+            内容 {index + 1}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -76,13 +61,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -102,13 +87,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs active="c">
-      <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
-      <Tabs.TabPane title="标签2" disabled>
-        内容2
-      </Tabs.TabPane>
-      <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
-    </Tabs>
+      <Tabs active="c">
+        <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
+        <Tabs.TabPane title="标签2" disabled>
+          内容2
+        </Tabs.TabPane>
+        <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
+      </Tabs>
     </div>
   );
 };
@@ -128,39 +113,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs align="start">
-      {[1, 2, 3].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
-    </div>
-  );
-};
-```
-
-### 样式风格
-
-`Tab` 支持两种样式风格：`line` 和`card`，默认为 `line` 样式，可以通过 `type` 属性切换样式风格。
-
-```jsx
-/**
- * title: 样式风格
- */
-import React from 'react';
-import { Tabs } from 'react-vant';
-
-export default () => {
-  return (
-    <div className="demo-tabs">
-    <Tabs type="card">
-      {[1, 2, 3].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs align="start">
+        {[1, 2, 3].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -180,13 +139,13 @@ import { Tabs } from 'react-vant';
 export default () => {
   return (
     <div className="demo-tabs">
-    <Tabs sticky swipeable>
-      {[1, 2, 3, 4].map((item) => (
-        <Tabs.TabPane key={item} title={`标签${item}`}>
-          内容 {item}
-        </Tabs.TabPane>
-      ))}
-    </Tabs>
+      <Tabs sticky swipeable>
+        {[1, 2, 3, 4].map((item) => (
+          <Tabs.TabPane key={item} title={`标签${item}`}>
+            内容 {item}
+          </Tabs.TabPane>
+        ))}
+      </Tabs>
     </div>
   );
 };
@@ -225,16 +184,16 @@ export default () => {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | active | 绑定当前选中标签的标识符 | _number \| string_ | `0` |
-| type | 样式风格类型，可选值为 `card` | _string_ | `line` |
+| type | 样式风格类型 | _line\|card\|capsule\|jumbo_ | `line` |
 | align | 标签栏对齐方式, 可选值 `start` `center` | _string_ | `center` |
-| color | 标签主题色 | _string_ | `#ee0a24` |
+| color | 标签主题色 <br/> `type` 为 `line` 时，下划线颜色和选中项颜色<br/> `type` 为 `capsule` 时，选中项背景色<br/> `type` 为 `jumbo` 时，选中项颜色和描述信息背景色<br/> `type` 为 `card` 时，线框色和选中项背景色 | _string_ | `#ee0a24` |
 | background | 标签栏背景色 | _string_ | `white` |
 | duration | 动画时间，单位秒 | _number \| string_ | `0.3` |
-| lineWidth | 底部条宽度，默认单位 `px` | _number \| string_ | `40px` |
-| lineHeight | 底部条高度，默认单位 `px` | _number \| string_ | `3px` |
+| lineWidth | `type` 为 `line` 时生效，底部条宽度，默认单位 `px` | _number \| string_ | `40px` |
+| lineHeight | `type` 为 `line` 时生效，底部条高度，默认单位 `px` | _number \| string_ | `3px` |
 | animated | 是否开启切换标签内容时的转场动画 | _boolean_ | `false` |
 | border | 是否显示标签栏外边框，仅在 `type="line"` 时有效 | _boolean_ | `false` |
-| ellipsis | 是否省略过长的标题文字 | _boolean_ | `true` |
+| ellipsis | 是否省略过长的标题文字，对 `jumbo` 无效， | _boolean_ | `true` |
 | sticky | 是否使用粘性定位布局 | _boolean_ | `false` |
 | stickyInitScrollbar | `sticky` 模式下点击标签重置滚动条位置 | _boolean_ | `true` |
 | swipeable | 是否开启手势滑动切换 | _boolean\|TabsSwiperProps_ | `false` |
@@ -265,15 +224,13 @@ export default () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 标题 | _ReactNode_ | - |
-| renderTitle | 自定义标题 | _ReactNode \|(active: boolean) => ReactNode_ | - |
+| title | 标题 | _ReactNode \|(active: boolean) => ReactNode_ | - |
+| description | 描述信息，`type` 为 `jumbo` 时生效 | _ReactNode \|(active: boolean) => ReactNode_ | - |
 | disabled | 是否禁用标签 | _boolean_ | `false` |
-| dot | 是否在标题右上角显示小红点 | _boolean_ | `false` |
-| badge | 图标右上角徽标的内容 | _number \| string_ | - |
+| badge | 图标右上角徽标的内容 | _number \| string\|[BadgeProps](/components/badge#props)_ | - |
 | name | 标签名称，作为匹配的标识符 | _number \| string_ | 标签的索引值 |
 | titleStyle | 自定义标题样式 | _CSSProperties_ | - |
 | titleClass | 自定义标题类名 | _string_ | - |
-| showZeroBadge | 当 badge 为数字 0 时，是否展示徽标 | _boolean_ | `true` |
 
 ### Tabs Events
 
@@ -302,17 +259,23 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                           | 默认值                     | 描述 |
-| ------------------------------ | -------------------------- | ---- |
-| --rv-tab-text-color            | _var(--rv-gray-7)_         | -    |
-| --rv-tab-active-text-color     | _var(--rv-text-color)_     | -    |
-| --rv-tab-disabled-text-color   | _var(--rv-gray-5)_         | -    |
-| --rv-tab-font-size             | _var(--rv-font-size-md)_   | -    |
-| --rv-tab-line-height           | _var(--rv-line-height-md)_ | -    |
-| --rv-tabs-default-color        | _var(--rv-danger-color)_   | -    |
-| --rv-tabs-line-height          | _44px_                     | -    |
-| --rv-tabs-card-height          | _30px_                     | -    |
-| --rv-tabs-nav-background-color | _var(--rv-white)_          | -    |
-| --rv-tabs-bottom-bar-width     | _40px_                     | -    |
-| --rv-tabs-bottom-bar-height    | _3px_                      | -    |
-| --rv-tabs-bottom-bar-color     | _var(--rv-danger-color)_   | -    |
+| 名称                                  | 默认值                                      | 描述 |
+| ------------------------------------- | ------------------------------------------- | ---- |
+| --rv-tab-text-color                   | _var(--rv-gray-7)_                          | -    |
+| --rv-tab-active-text-color            | _var(--rv-text-color)_                      | -    |
+| --rv-tab-disabled-text-color          | _var(--rv-gray-5)_                          | -    |
+| --rv-tab-font-size                    | _var(--rv-font-size-md)_                    | -    |
+| --rv-tab-line-height                  | _var(--rv-line-height-md)_                  | -    |
+| --rv-tabs-default-color               | _var(--rv-danger-color)_                    | -    |
+| --rv-tabs-line-height                 | _44px_                                      | -    |
+| --rv-tabs-card-height                 | _30px_                                      | -    |
+| --rv-tabs-nav-background-color        | _var(--rv-white)_                           | -    |
+| --rv-tabs-bottom-bar-width            | _40px_                                      | -    |
+| --rv-tabs-bottom-bar-height           | _3px_                                       | -    |
+| --rv-tabs-bottom-bar-color            | _var(--rv-danger-color)_                    | -    |
+| --rv-tabs-jumbo-height                | _64px_                                      | -    |
+| --rv-tab-capsule-padding              | _var(--rv-padding-xs) var(--rv-padding-sm)_ | -    |
+| --rv-tab-jumbo-title-size             | _var(--rv-font-size-lg)_                    | -    |
+| --rv-tab-description-font-size        | _var(--rv-font-size-sm)_                    | -    |
+| --rv-tab-description-color            | _var(--rv-grey-6)_                          | -    |
+| --rv-tab-description-background-color | _var(--rv-grey-6)_                          | -    |

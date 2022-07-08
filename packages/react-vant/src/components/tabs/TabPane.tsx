@@ -61,8 +61,4 @@ const TabPane = forwardRef<HTMLDivElement, TabPaneProps>((props, ref) => {
   );
 });
 
-TabPane.defaultProps = {
-  showZeroBadge: true,
-};
-
 export default TabPane;

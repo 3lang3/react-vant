@@ -75,7 +75,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     position: '',
     currentIndex: -1,
     lineStyle: {
-      backgroundColor: props.color,
+      backgroundColor: color,
     } as React.CSSProperties,
   });
 
@@ -92,7 +92,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const navStyle = useMemo(
     () => ({
-      borderColor: color,
+      borderColor: props.type === 'card' && color,
       background,
     }),
     [color, background],
@@ -132,10 +132,9 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     const title = titles[state.currentIndex];
     const { lineWidth, lineHeight } = props;
     const left = title.offsetLeft + title.offsetWidth / 2;
-
     const lineStyle = {
       width: addUnit(lineWidth),
-      backgroundColor: props.color,
+      backgroundColor: color,
       transform: `translateX(${left}px) translateX(-50%)`,
     } as React.CSSProperties;
 
@@ -215,7 +214,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
       name,
       event,
       disabled,
-      index
+      index,
     });
     if (disabled) return;
 
@@ -275,11 +274,11 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
         <TabsTitle
           ref={setTitleRefs(index)}
           key={item.key}
-          dot={item.dot}
           type={props.type}
           badge={item.badge}
           title={item.title}
-          color={props.color}
+          description={item.description}
+          color={color}
           style={item.titleStyle}
           className={item.titleClass}
           isActive={index === state.currentIndex}
@@ -287,7 +286,6 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
           scrollable={scrollable}
           activeColor={props.titleActiveColor}
           inactiveColor={props.titleInactiveColor}
-          showZeroBadge={item.showZeroBadge}
           onClick={(event) => {
             onClickTab(item, index, event);
           }}
@@ -303,7 +301,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
         ref={setWrapRef}
         className={clsx([
           bem('wrap', { scrollable }),
-          { [BORDER_TOP_BOTTOM]: type === 'line' && border },
+          { [BORDER_TOP_BOTTOM]: type !== 'card' && border },
         ])}
       >
         <div
@@ -323,7 +321,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   useUpdateEffect(() => {
     setLine();
-  }, [props.color, windowSize.width]);
+  }, [color, windowSize.width]);
 
   useUpdateEffect(() => {
     if (props.active !== currentName) {

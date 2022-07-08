@@ -1,4 +1,5 @@
 import React from 'react';
+import { BadgeProps } from '../badge';
 import { SwiperInstance, SwiperProps } from '../swiper/PropsType';
 import { BaseTypeProps } from '../utils';
 
@@ -9,9 +10,11 @@ type ScrollspyConfig = {
   reachBottomThreshold?: number;
 };
 
-type TabPaneTitle =  React.ReactNode | ((active: boolean) => React.ReactNode);
+type TabPaneTitle = React.ReactNode | ((active: boolean) => React.ReactNode);
 
 export interface TabsProps extends BaseTypeProps {
+  /** 样式风格类型 */
+  type?: 'line' | 'card' | 'capsule' | 'jumbo';
   /**
    * 标签栏对齐方式
    * @default 'center'
@@ -46,8 +49,6 @@ export interface TabsProps extends BaseTypeProps {
   titleActiveColor?: string;
   /** 标题默认态颜色	 */
   titleInactiveColor?: string;
-  /** 样式风格类型，可选值为 card	 */
-  type?: 'line' | 'card';
   /** 绑定当前选中标签的标识符	 */
   active?: number | string;
   /** 是否省略过长的标题文字	 */
@@ -84,16 +85,16 @@ export interface TabsProps extends BaseTypeProps {
 
 export interface TabsTitleProps extends BaseTypeProps {
   key?: React.Key;
-  dot: boolean;
   type: string;
   color: string;
   title: TabPaneTitle;
-  badge: number | string;
+  description?: TabPaneTitle;
+  /** 图标右上角徽标的内容	 */
+  badge?: number | string | Omit<BadgeProps, 'children' | 'onClick' | 'onTouchStart'>;
   isActive: boolean;
   disabled: boolean;
   scrollable: boolean;
   activeColor: string;
-  showZeroBadge?: boolean;
   inactiveColor: string;
   onClick: (event) => void;
 }
@@ -113,18 +114,16 @@ export interface TabsContentProps {
 
 export interface TabPaneProps {
   key?: React.Key;
-  /** 是否禁用标签	 */
-  dot?: boolean;
   /** @private */
   index?: number;
   /** 标签名称，作为匹配的标识符	 */
   name?: number | string;
   /** 图标右上角徽标的内容	 */
-  badge?: number | string;
-  /** 当 badge 为数字 0 时，是否展示徽标	 */
-  showZeroBadge?: boolean;
+  badge?: number | string | Omit<BadgeProps, 'children' | 'onClick' | 'onTouchStart'>;
   /** 标题 */
-  title?: React.ReactNode | ((active: boolean) => React.ReactNode);
+  title?: TabPaneTitle;
+  /** 描述信息 */
+  description?: TabPaneTitle;
   /** 自定义标题样式	 */
   titleStyle?: React.CSSProperties;
   /** 自定义标题类名	 */

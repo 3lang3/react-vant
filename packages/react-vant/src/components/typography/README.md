@@ -98,14 +98,14 @@ export default () => {
 
 ## API
 
-### Typography.Text Typography.Link Props
+### Typography Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 文本类型，可选值`danger` ` secondary` `light` `primary` `success` `warning ` | _string_ | - |
 | size | 文本大小，可选值`xs` `sm` `md` `lg` `xl` `xxl` | _boolean_ | `md` |
 | disabled | 禁用文本 | _boolean_ | `false` |
-| ellipsis | 文本省略 | _boolean\|number\|EllipsisConfig_ | `false` |
+| ellipsis | 文本省略 | _boolean\|number\|[EllipsisConfig](#ellipsisconfig)_ | `false` |
 | delete | 添加删除线样式 | _boolean_ | `false` |
 | underline | 添加下划线样式 | _boolean_ | `false` |
 | center | 文本居中 | _boolean_ | `false` |
