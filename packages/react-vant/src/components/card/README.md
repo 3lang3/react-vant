@@ -68,7 +68,7 @@ export default () => {
     <Card round>
       <Card.Header>卡片标题</Card.Header>
       <Card.Body>
-        想到生的乐趣，生固然可以留恋；但想到生的苦趣，无常也不一定是恶客。 ——鲁迅《朝花夕拾》
+        React Vant 是一套轻量、可靠的移动端 React 组件库，提供了丰富的基础组件和业务组件，帮助开发者快速搭建移动应用。
       </Card.Body>
       <Card.Footer>
         <Button type="primary" round block size="small">
