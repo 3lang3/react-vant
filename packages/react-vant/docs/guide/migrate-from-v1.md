@@ -1,4 +1,4 @@
-# 从 v1 升级
+# 升级到 v2
 
 ### 介绍
 
@@ -10,7 +10,7 @@
 
 ### 架构调整
 
-`v2` 支持基于 Tree Shaking 的按需加载，大部分的构建工具（例如 webpack 4+、vite 和 rollup）都支持 Tree Shaking，所以**绝大多数情况下你无需做额外的配置**即可拥有较小的包体积。
+`v2` 起支持基于 Tree Shaking 的按需加载，大部分的构建工具（例如 webpack 4+、vite 和 rollup）都支持 Tree Shaking，所以**绝大多数情况下你无需做额外的配置**即可拥有较小的包体积。
 
 > 建议移除 `v1` 项目中按需加载的逻辑代码，例如 `babel-plugin-import` 插件方式、手动按需引入组件样式方式和导入所有组件样式方式。
 
@@ -20,6 +20,7 @@
 - `Card` [卡片](/components/card)
 - `FloatingBall` [悬浮球](/components/floating-ball)
 - `Input` [输入框](/components/input)
+- `Selector` [选择组](/components/selector)
 - `Swiper` [轮播](/components/swiper)
 - `WaterMask` [水印组件](/components/water-mark)
 
@@ -36,6 +37,7 @@
 - 移除 `readonly` 属性，使用 `readOnly` 替代
 - 移除 `maxLength` 属性，使用 `maxLength` 代替
 - 移除 `autofocus` 属性，使用 `autoFocus` 代替
+- `Steps` 图标尺寸调整
 - `Stepper` 圆角风格按钮颜色调整为主题色
 - `Search` 移除 `inputAlign` 属性，使用 `align` 代替
 - `Typography` 调整 `ellipsis` 属性，现在支持更多形式配置

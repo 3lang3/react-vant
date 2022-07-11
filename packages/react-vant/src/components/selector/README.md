@@ -2,17 +2,17 @@
 
 在一组选项中选择一个或多个。
 
-## 何时使用
+## 代码演示
+
+### 基础用法
 
 提供多个选项供用户选择，一般在筛选和表单中使用。
 
-## 示例
-
 <code src="./demo/base.tsx"></code>
 
-## Selector
+## API
 
-### 属性
+### Props
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -41,6 +41,12 @@ type SelectorValue = string | number;
 | label       | 文字     | `ReactNode`     | -       |
 | value       | 选项的值 | `SelectorValue` | -       |
 
+### SelectorValue
+
+```ts | pure
+type SelectorValue = string | number;
+```
+
 ## 泛型
 
 `Selector` 支持泛型，你可以通过下面的这种方式手动控制 `value` `onChange` 等属性的类型：
@@ -51,14 +57,6 @@ type SelectorValue = string | number;
   defaultValue={['a']}
   onChange={(arr) => console.log(arr)}
 />
-```
-
-## 类型定义
-
-### SelectorValue
-
-```ts | pure
-type SelectorValue = string | number;
 ```
 
 ### SelectorOption
