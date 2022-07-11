@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/react-vant" target="_blank" referrerpolicy="no-referrer">
-    <img src="https://img.shields.io/npm/v/react-vant/next?style=flat-square" alt="npm version" />
+    <img src="https://img.shields.io/npm/v/react-vant/latest?style=flat-square" alt="npm version" />
   </a>
   <a href="https://npmjs.org/package/react-vant" target="_blank" referrerpolicy="no-referrer">
     <img src="https://img.shields.io/npm/dm/react-vant.svg?style=flat-square" alt="npm download" />
