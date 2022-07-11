@@ -159,6 +159,9 @@ Form.Item 的布局是基于 `Field` 实现的，所以它支持 [Field](./field
 
 ## FAQ
 
+- 摘自 [antd-mobile](https://mobile.ant.design/zh/components/form#formitem-%E5%A6%82%E4%BD%95%E9%85%8D%E5%90%88-picker--datepicker--cascadepicker-%E4%BD%BF%E7%94%A8)
+
+
 被设置了 `name` 属性的 `Form.Item` 包装的控件，表单控件会**自动添加** `value`（或 `valuePropName` 指定的其他属性） `onChange`（或 `trigger` 指定的其他属性），数据同步将被 Form 接管，因此，如果你给 `Form.Item` 设置了 `name` 属性，**那么请确保它的 `children` 是一个有效的 `ReactElement` 控件** ，并且能够接受上文中提到的 `value` 和 `onChange` 属性（或指定的其他属性），例如：
 
 ```jsx | pure
@@ -260,4 +263,93 @@ Form 通过增量更新方式，只更新被修改的字段相关组件以达到
     <Input />
   </Form.Item>
 </Form>
+```
+
+### Form.Item 如何配合 Picker / DatePicker / CascadePicker 使用？
+
+首先，我们可以通过 Picker 的 `children` 渲染函数，来渲染当前已经选择的值，这里我们已 DatePicker 为例，但是对于其他两种 Picker，也是大同小异的：
+
+```jsx | pure
+<DatetimePicker>
+  {value =>
+    value ? dayjs(value).format('YYYY-MM-DD') : 'Please select'
+  }
+</DatetimePicker>
+```
+
+接下来我们需要处理 Picker 的显示/隐藏状态，这是 Picker 组件和其他表单组件差异最大、也最容易让人迷惑的地方了。如果我们直接把 Picker 放在 Form.Item 里面，是没有办法展示给用户的，无论怎么点击，都不会让 Picker 弹出来：
+
+```tsx | pure
+<Form.Item
+  name='birthday'
+  label='Birthday'
+>
+  <DatePicker>
+    {value =>
+      value ? dayjs(value).format('YYYY-MM-DD') : 'Please select'
+    }
+  </DatePicker>
+</Form.Item>
+```
+
+在绝大多数情况下，我们需要实现的效果是，点击外层的 Form.Item，会触发内部 Picker 的显示。但是，在 Form.Item 上，怎么才能控制到 Picker 呢？或许你会想自己声明一个 state 来手动控制，例如：
+
+```tsx | pure
+const [visible, setVisible] = useState(false)
+```
+
+```tsx | pure
+<Form.Item
+  name='birthday'
+  label='Birthday'
+  onClick={() => {
+    setVisible(true)
+  }}
+>
+  <DatetimePicker
+    visible={visible}
+    onClose={() => {
+      setVisible(false)
+    }}
+  >
+    {value =>
+      value ? dayjs(value).format('YYYY-MM-DD') : 'Please select'
+    }
+  </DatetimePicker>
+</Form.Item>
+```
+
+但是这样写实在是太繁琐了，而且如果一个表单内存在多个 Picker 或者要配合 Form.Array 使用时，简直会令人崩溃。
+
+所以 antd-mobile 提供了一个便捷方法，你可以在 Form.Item 的 `onClick` 事件中，直接获取到内部 `children` 的 ref，因此我们可以这么写：
+
+```tsx | pure
+<Form.Item
+  name='birthday'
+  label='Birthday'
+  onClick={(e, datePickerRef: RefObject<PickerPopupActions>) => {
+    datePickerRef.current?.open() // ⬅️
+  }}
+>
+  <DatetimePicker>
+    {value =>
+      value ? dayjs(value).format('YYYY-MM-DD') : 'Please select'
+    }
+  </DatetimePicker>
+</Form.Item>
+```
+
+最后，别忘了 Picker 组件的确认事件是 `onConfirm` 而不是 `onChange`，因此你需要配置一下 `trigger`：
+
+```tsx | pure
+<Form.Item
+  name='birthday'
+  label='Birthday'
+  trigger='onConfirm'  // ⬅️
+  onClick={(e, datePickerRef: RefObject<PickerPopupActions>) => {
+    datePickerRef.current?.open()
+  }}
+>
+  ...
+</Form.Item>
 ```
