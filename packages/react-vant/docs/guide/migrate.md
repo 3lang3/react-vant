@@ -80,6 +80,7 @@
   - 支持 [受控](https://reactjs.org/docs/forms.html#controlled-components)和[非受控模式](https://reactjs.org/docs/uncontrolled-components.html)
   - 调整 `title` 类型
   - 调整 `value`，`defaultValue` 类型
+  - 调整 `onClickTab` 类型
   - 调整 `onChange` 类型
   - 调整 `onFinish` 类型
 

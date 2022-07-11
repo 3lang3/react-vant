@@ -15,6 +15,7 @@ import {
   Tabs,
   Cell,
   Steps,
+  NoticeBar,
 } from 'react-vant';
 import clsx from 'clsx';
 import {
@@ -55,6 +56,7 @@ const Home = () => {
 
   return (
     <div className="_home-container">
+      <NoticeBar mode="closeable" className='_home-notice' leftIcon={<>👀</>} text={<div style={{ textAlign: 'right' }}>当前为 v3 文档，v2 alpha 版本文档请在右上角版本下拉框中选择 👈</div>} />
       <div className="_home-container-left">
         <Space direction="vertical" block align="end">
           <Typography.Title level={1}>React Vant</Typography.Title>

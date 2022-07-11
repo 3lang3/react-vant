@@ -67,7 +67,7 @@ export interface CascaderProps extends Omit<BaseTypeProps, 'children'> {
   /** 全部选项选择完成后触发	 */
   onFinish?: (value: string[], selectedRows: CascaderOption[] ) => void;
   /** 点击标签时触发 */
-  onClickTab?: (tabIndex: number, title: string) => void;
+  onClickTab?: (tabIndex: number) => void;
 }
 
 export interface PopupCascaderProps extends CascaderProps {

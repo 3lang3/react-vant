@@ -8,7 +8,7 @@ import { useMemoizedFn, usePropsValue, useUpdateEffect } from '../hooks';
 import Tabs from '../tabs';
 import { TabsClickTabEventParams } from '../tabs/PropsType';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { PickerPopupActions } from '../picker';
+import type { PickerPopupActions } from '../picker';
 import Popup from '../popup';
 import { useCascaderExtend } from './useCascaderExtend';
 import useDebounceEffect from '../hooks/use-debunce-effect';
@@ -89,8 +89,8 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     });
   };
 
-  const onClickTab = ({ name, title, index }: TabsClickTabEventParams) => {
-    props.onClickTab?.(+name, title);
+  const onClickTab = ({ name, index }: TabsClickTabEventParams) => {
+    props.onClickTab?.(+name);
     updateActiveTab(index);
   };
 
