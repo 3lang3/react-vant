@@ -105,6 +105,7 @@ export default defineConfig({
           '/components/radio',
           '/components/rate',
           '/components/search',
+          '/components/selector',
           '/components/slider',
           '/components/stepper',
           '/components/switch',

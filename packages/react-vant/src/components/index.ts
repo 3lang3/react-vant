@@ -6,6 +6,7 @@ export * from './badge';
 export * from './field';
 export * from './flex';
 export * from './space';
+export * from './selector';
 export * from './typography';
 export * from './cell';
 export * from './count-down';
