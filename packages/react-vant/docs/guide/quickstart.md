@@ -6,11 +6,13 @@
 
 ```bash
 # 通过 npm 安装
-npm i react-vant@next
+npm i react-vant
 
 # 通过 yarn 安装
-yarn add react-vant@next
+yarn add react-vant
 ```
+
+> 当前为rc版本，API 可能出现 break change，推荐使用 `lockfile` 锁定版本
 
 ### 引入
 
@@ -20,7 +22,7 @@ yarn add react-vant@next
 import { Button } from 'react-vant';
 ```
 
-### 模版(todo)
+### 模版
 
 #### 在 create-react-app 中使用
 

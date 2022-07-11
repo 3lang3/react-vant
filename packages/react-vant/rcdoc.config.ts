@@ -67,7 +67,13 @@ export default defineConfig({
   menus: {
     '/guide': [
       {
-        children: ['/guide/about', '/guide/quickstart'],
+        children: [
+          '/guide/about',
+          '/guide/quickstart',
+          '/guide/migrate',
+          '/guide/theme',
+          '/guide/advanced-usage',
+        ],
       },
     ],
     '/components': [
@@ -185,7 +191,10 @@ export default defineConfig({
     injectComponentCss: false,
     favicon: '/favicon.png',
     github: 'https://github.com/3lang3/react-vant',
-    versions: [{ title: 'v1', path: 'https://react-vant-v1.3lang.dev' }],
+    versions: [
+      { title: 'v1', path: 'https://react-vant-v1.3lang.dev' },
+      { title: 'v2 alpha', path: 'https://react-vant-v2.surge.sh' },
+    ],
     themeConfig: {
       simulator: {
         include: ['/components', '/en/components'],
