@@ -73,8 +73,8 @@
     "lint:tsx": "eslint src --ext ts,tsx",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
     "preview": "rcdoc preview",
-    "release": "pnpm publish ./dist",
-    "release:next": "pnpm publish ./dist --tag next"
+    "pub": "pnpm publish ./dist",
+    "pub:dev": "pnpm publish ./dist --tag dev"
   },
   "browserslist": [
     "Android >= 4.0",
