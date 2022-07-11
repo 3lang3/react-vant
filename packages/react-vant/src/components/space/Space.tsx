@@ -1,15 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
 import { SpaceProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
 
 const formatGap = (gap: string | number) => (typeof gap === 'number' ? `${gap}px` : gap);
 
+const [bem] = createNamespace('space');
+
 const Space: React.FC<SpaceProps> = (props) => {
   const { wrap, block, direction, align, justify } = props;
-  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('space', prefixCls);
-
   const style = React.useMemo(() => {
     if (props.gap) {
       if (Array.isArray(props.gap)) {

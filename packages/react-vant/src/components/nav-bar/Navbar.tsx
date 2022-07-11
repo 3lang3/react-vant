@@ -1,4 +1,4 @@
-import React, { CSSProperties, isValidElement, MouseEvent, useContext, useRef } from 'react';
+import React, { CSSProperties, isValidElement, MouseEvent, useRef } from 'react';
 import clsx from 'clsx';
 import { ArrowLeft } from '@react-vant/icons';
 
@@ -6,12 +6,11 @@ import { NavBarProps } from './PropsType';
 import { BORDER_BOTTOM } from '../utils/constant';
 
 import useHeight from '../hooks/use-height';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('nav-bar');
 
 const NavBar: React.FC<NavBarProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('nav-bar', prefixCls);
-
   const navBarRef = useRef(null);
 
   const navBarHeight = useHeight(navBarRef);

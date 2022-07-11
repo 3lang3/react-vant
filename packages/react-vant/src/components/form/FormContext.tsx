@@ -6,14 +6,14 @@ export type FormContextType = {
   colon?: boolean;
   border?: boolean;
   showValidateMessage?: boolean;
-} & Pick<FormItemProps, 'labelAlign' | 'inputAlign' | 'border'>;
+} & Pick<FormItemProps, 'labelAlign' | 'controlAlign' | 'border'>;
 
 export const DEFAULT_FORM_CONTEXT: FormContextType = {
   colon: false,
   showValidateMessage: true,
   border: true,
   labelAlign: 'left',
-  inputAlign: 'left',
+  controlAlign: 'left',
 };
 
 export const FormContext = React.createContext<FormContextType>(DEFAULT_FORM_CONTEXT);

@@ -1,11 +1,11 @@
-import React, { CSSProperties, useContext, useMemo } from 'react';
+import React, { CSSProperties, useMemo } from 'react';
 import cls from 'clsx';
 import { CalendarDayProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('calendar');
 
 const CalenderDay: React.FC<CalendarDayProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('calendar', prefixCls);
 
   const style = useMemo(() => {
     const { item, index, color, offset, rowHeight } = props;

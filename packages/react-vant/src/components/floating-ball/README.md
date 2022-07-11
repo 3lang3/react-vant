@@ -1,4 +1,4 @@
-# FloatingBall 悬浮球 (beta)
+# FloatingBall 悬浮球
 
 ## 介绍
 

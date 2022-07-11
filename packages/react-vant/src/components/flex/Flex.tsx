@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { useContext, useMemo } from 'react';
+import React, {  useMemo } from 'react';
 import clsx from 'clsx';
 import FlexContext from './FlexContext';
 import { FlexProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('flexbox');
 
 const Flex: React.FC<FlexProps> = (props) => {
   const { direction, wrap, justify, align, gutter, style, className, children, ...rest } = props;
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('flexbox', prefixCls);
   const getGutter: [number, number] = useMemo(
     () => (Array.isArray(gutter) ? gutter : [gutter, 0]),
     [gutter],

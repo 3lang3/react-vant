@@ -1,9 +1,11 @@
 import React from 'react';
+import { PickerPopupActions } from '../picker/PropsType';
+import { SharedPopupProps } from '../popup/PropsType';
 import { BaseTypeProps } from '../utils';
 
 export type CascaderOption = {
   /** 选项文字 */
-  text?: string;
+  text?: React.ReactNode;
   /** 选项对应的值 */
   value?: string | number;
   /** 选项文字颜色	 */
@@ -29,7 +31,7 @@ export type CascaderFieldNames = {
   children?: string;
 };
 
-export interface CascaderProps extends BaseTypeProps {
+export interface CascaderProps extends Omit<BaseTypeProps, 'children'> {
   /** 顶部标题	 */
   title?: React.ReactNode;
   /** 是否显示关闭图标	 */
@@ -37,9 +39,9 @@ export interface CascaderProps extends BaseTypeProps {
   /** 是否开启手势左右滑动切换	 */
   swipeable?: boolean;
   /** 选中项 */
-  value?: (number | string)[];
+  value?: string[];
   /** 默认选中项 */
-  defaultValue?: (number | string)[];
+  defaultValue?: string[];
   /** 自定义 options 结构中的字段	 */
   fieldNames?: CascaderFieldNames;
   /** 未选中时的提示文案	 */
@@ -61,9 +63,15 @@ export interface CascaderProps extends BaseTypeProps {
   /** 点击关闭图标时触发	 */
   onClose?: () => void;
   /** 选中项变化时触发	 */
-  onChange?: ({ value, selectedOptions, tabIndex }) => void;
+  onChange?: (value: string[], selectedRows: CascaderOption[] ) => void;
   /** 全部选项选择完成后触发	 */
-  onFinish?: ({ value, selectedOptions, tabIndex }) => void;
+  onFinish?: (value: string[], selectedRows: CascaderOption[] ) => void;
   /** 点击标签时触发 */
   onClickTab?: (tabIndex: number, title: string) => void;
+}
+
+export interface PopupCascaderProps extends CascaderProps {
+  visible?: boolean;
+  popup?: boolean | Omit<SharedPopupProps, 'closeable'>;
+  children?: (value: string[], selectedRows: CascaderOption[], actions: PickerPopupActions) => React.ReactNode;
 }

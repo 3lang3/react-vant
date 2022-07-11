@@ -1,21 +1,18 @@
-/* eslint-disable no-console */
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
 import { Close, Cross, Description } from '@react-vant/icons';
 // Utils
 import { isImageFile } from './utils';
-import { isDef, getSizeStyle, extend } from '../utils';
+import { isDef, getSizeStyle, extend, createNamespace } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 // Components
 import Image from '../image';
 import Loading from '../loading';
 import { UploaderPrviewItemProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('uploader');
 
 export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('uploader', prefixCls);
-
   const renderMask = () => {
     const { status, message } = props.item;
 

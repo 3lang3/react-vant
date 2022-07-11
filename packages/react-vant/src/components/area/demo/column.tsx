@@ -8,7 +8,10 @@ export default () => {
       title="标题"
       areaList={areaList}
       columnsNum={2}
-      onChange={(v) => console.log(v)}
+      onChange={(val, options) => {
+        console.log('selected value: ', val);
+        console.log('selected option: ', options);
+      }}
       onConfirm={(v) => console.log(v)}
     />
   );

@@ -1,13 +1,12 @@
-import React, { CSSProperties, useRef, useMemo, useEffect, useContext } from 'react';
+import React, { CSSProperties, useRef, useMemo, useEffect } from 'react';
 import clsx from 'clsx';
 import { ImageProps } from './PropsType';
-import { isDef, addUnit } from '../utils';
+import { isDef, addUnit, createNamespace } from '../utils';
 import { useSetState } from '../hooks';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('image');
 
 const Image: React.FC<ImageProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('image', prefixCls);
   const [status, setStatus] = useSetState({ loading: true, error: false });
   const imgRef = useRef<HTMLImageElement>(null);
 

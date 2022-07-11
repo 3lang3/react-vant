@@ -19,7 +19,7 @@ export default {
     monthTitle: (year: number, month: number) => `${year}年${month}月`,
     rangePrompt: (maxRange: number) => `最多選擇 ${maxRange} 天`,
   },
-  vanCascader: {
+  vanPicker: {
     select: '請選擇',
   },
   vanContactCard: {

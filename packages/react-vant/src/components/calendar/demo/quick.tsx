@@ -1,48 +1,31 @@
 import React from 'react';
-import { hooks, Calendar, Cell } from 'react-vant';
-
-const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
+import { Calendar, Cell } from 'react-vant';
 
 export default () => {
-  const [state, set] = hooks.useSetState({
-    single: false,
-    singleText: '',
-    multi: false,
-    multiText: '',
-  });
-
   return (
     <>
-      <Cell
-        title="选择单个日期"
-        value={state.singleText}
-        isLink
-        onClick={() => set({ single: true })}
-      />
-      <Calendar
-        showConfirm={false}
-        visible={state.single}
-        onClose={() => set({ single: false })}
-        onConfirm={(v) => {
-          set({ single: false, singleText: formatDate(v) });
-        }}
-      />
+      <Calendar showConfirm={false}>
+        {(val: Date, actions) => (
+          <Cell
+            isLink
+            title="单个日期"
+            value={val ? val.toLocaleDateString() : '请选择日期'}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
 
-      <Cell
-        title="选择日期区间"
-        value={state.multiText}
-        isLink
-        onClick={() => set({ multi: true })}
-      />
-      <Calendar
-        showConfirm={false}
-        visible={state.multi}
-        type="range"
-        onClose={() => set({ multi: false })}
-        onConfirm={(v: any[]) => {
-          set({ multi: false, multiText: `选择了 ${v.length} 个日期` });
-        }}
-      />
+      <Calendar showConfirm={false} type="range">
+        {(val: Date[], actions) => (
+          <Cell
+            isLink
+            title="日期区间"
+            titleStyle={{ flex: 'none' }}
+            value={val ? val.map((el) => el.toLocaleDateString()).join('~') : '请选择日期'}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
     </>
   );
 };

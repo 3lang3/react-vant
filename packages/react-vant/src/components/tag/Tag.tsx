@@ -1,14 +1,13 @@
-import React, { useMemo, MouseEvent, useRef, useContext } from 'react';
+import React, { useMemo, MouseEvent, useRef } from 'react';
 import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
 import { Cross } from '@react-vant/icons';
 import { TagProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('tag');
 
 const Tag: React.FC<TagProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('tag', prefixCls);
-
   const nodeRef = useRef(null);
 
   const onClose = (event: MouseEvent) => {

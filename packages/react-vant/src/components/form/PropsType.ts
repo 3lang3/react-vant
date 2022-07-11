@@ -5,6 +5,31 @@ import type { Meta } from 'rc-field-form/lib/interface';
 import type { BaseTypeProps } from '../utils';
 import { FieldProps } from '../field/PropsType';
 
+/** Form.Item 继承自 Field 等属性 */
+export type FieldSharedProps = Pick<
+  FieldProps,
+  | 'style'
+  | 'className'
+  | 'disabled'
+  | 'label'
+  | 'size'
+  | 'colon'
+  | 'intro'
+  | 'tooltip'
+  | 'required'
+  | 'isLink'
+  | 'errorMessageAlign'
+  | 'arrowDirection'
+  | 'controlAlign'
+  | 'labelClass'
+  | 'labelWidth'
+  | 'labelAlign'
+  | 'leftIcon'
+  | 'rightIcon'
+  | 'prefix'
+  | 'suffix'
+>
+
 export type FormLayout = 'vertical' | 'horizontal';
 export type FormProps = {
   /** 表单布局 */
@@ -17,7 +42,7 @@ export type FormProps = {
   showValidateMessage?: boolean;
 } & Omit<RcFormProps, 'style'> &
   BaseTypeProps &
-  Pick<FieldProps, 'labelAlign' | 'inputAlign' | 'border'>;
+  Pick<FieldProps, 'labelAlign' | 'controlAlign' | 'border'>;
 
 export type RenderChildren<Values = any> = (form: RcFormInstance<Values>) => React.ReactNode;
 type ChildrenType<Values = any> = RenderChildren<Values> | React.ReactNode;
@@ -32,53 +57,21 @@ export type MemoInputProps = {
 
 export interface FormItemProps<Values = any>
   extends Omit<RcFieldProps, 'children'>,
-    Pick<FormProps, 'showValidateMessage' | 'border' | 'layout'>,
-    Pick<
-      FieldProps,
-      | 'style'
-      | 'className'
-      | 'tooltip'
-      | 'intro'
-      | 'colon'
-      | 'labelWidth'
-      | 'labelAlign'
-      | 'labelClass'
-      | 'onClick'
-      | 'inputAlign'
-      | 'errorMessageAlign'
-    > {
-  label?: string;
-  required?: boolean;
+  Pick<FormProps, 'showValidateMessage' | 'border' | 'layout'>,
+  FieldSharedProps {
   noStyle?: boolean;
-  disabled?: boolean;
-  /** 自定义item，此时不会渲染内置的field */
-  customField?: boolean;
   children?: ChildrenType<Values>;
+  onClick?: (
+    e: React.MouseEvent,
+    // Not yet implemented
+    // https://mobile.ant.design/zh/components/form#faq
+    widgetRef?: React.MutableRefObject<any>
+  ) => void
 }
 
-export type FormItemLayoutProps = Pick<
-  FormItemProps,
-  | 'required'
-  | 'disabled'
-  | 'label'
-  | 'style'
-  | 'className'
-  | 'tooltip'
-  | 'intro'
-  | 'colon'
-  | 'border'
-  | 'layout'
-  | 'labelWidth'
-  | 'labelAlign'
-  | 'labelClass'
-  | 'showValidateMessage'
-  | 'inputAlign'
-  | 'errorMessageAlign'
-> & {
+export type FormItemLayoutProps = Omit<FormItemProps, 'name'> & {
   onClick?: (e?: React.MouseEvent) => void;
   htmlFor?: string;
   meta?: Meta;
-  /** @private */
-  isFieldChildren?: boolean;
   children?: React.ReactNode
 };

@@ -1,18 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import cls from 'clsx';
 import { CSSTransition } from 'react-transition-group';
-import { getZIndexStyle, noop, stopPropagation } from '../utils';
+import { createNamespace, getZIndexStyle, noop, stopPropagation } from '../utils';
 import { KeyType, KeyConfig, NumberKeyboardProps } from './PropsType';
 import NumberKeyboardKey from './NumberKeyboardKey';
 import { useUpdateEffect } from '../hooks';
 import useClickAway from '../hooks/use-click-away';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('number-keyboard');
 
 const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...props }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('number-keyboard', prefixCls);
-
   const root = useRef<HTMLDivElement>();
 
   const genBasicKeys = () => {

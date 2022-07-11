@@ -1,14 +1,13 @@
-import React, { forwardRef, useContext, useEffect, useImperativeHandle, useMemo } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react';
 import cls from 'clsx';
 import { CountDownProps, CountDownInstance } from './PropsType';
-import { noop } from '../utils';
+import { createNamespace, noop } from '../utils';
 import useCountDown from '../hooks/use-count-down';
 import { parseFormat } from './utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('count-down');
 
 const CountDown = forwardRef<CountDownInstance, CountDownProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('count-down', prefixCls);
 
   const { start, pause, reset, current } = useCountDown({
     time: +props.time,

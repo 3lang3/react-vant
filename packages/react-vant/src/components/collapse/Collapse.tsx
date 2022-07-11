@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import React, { ReactElement, useContext, useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import CollapseContext from './CollapseContext';
@@ -7,26 +6,27 @@ import CollapseContext from './CollapseContext';
 import { CollapseProps } from './PropsType';
 import { BORDER_TOP_BOTTOM } from '../utils/constant';
 import { useUpdateEffect } from '../hooks';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+import { devWarning } from '../utils/dev-log';
 
 function validateModelValue(
   modelValue: string | number | Array<string | number>,
   accordion: boolean,
 ) {
   if (accordion && Array.isArray(modelValue)) {
-    console.error('[React Vant] Collapse: "value" should not be Array in accordion mode');
+    devWarning('Collapse', '"value" should not be Array in accordion mode');
     return false;
   }
   if (!accordion && !Array.isArray(modelValue)) {
-    console.error('[React Vant] Collapse: "value" should be Array in non-accordion mode');
+    devWarning('Collapse', '"value" should be Array in non-accordion mode');
     return false;
   }
   return true;
 }
 
+const [bem] = createNamespace('collapse');
+
 const Collapse: React.FC<CollapseProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('collapse', prefixCls);
   const { accordion } = props;
   const initExpandedDefault = accordion ? '' : [];
   const { initExpanded = initExpandedDefault } = props;

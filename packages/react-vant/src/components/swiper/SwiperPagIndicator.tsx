@@ -1,12 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { PageIndicatorProps } from './PropsType';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('indicator');
 
 const SwiperPagIndicator = React.memo<PageIndicatorProps>(({ vertical, ...props }) => {
-  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('indicator', prefixCls);
-
   const dots: React.ReactElement[] = [];
   for (let i = 0; i < props.total; i++) {
     dots.push(

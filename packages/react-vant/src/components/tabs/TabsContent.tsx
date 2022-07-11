@@ -1,15 +1,14 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect } from 'react';
 import clsx from 'clsx';
 
 import Swiper from '../swiper';
 
 import { TabsContentProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('tabs');
 
 const TabsContent: React.FC<TabsContentProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('tabs', prefixCls);
-
   const innerEffect = useRef(false);
   const { animated, swipeable, duration, swiperRef } = props;
 

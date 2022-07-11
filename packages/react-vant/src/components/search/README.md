@@ -70,7 +70,7 @@ export default () => {
 
 ### 搜索框内容对齐
 
-通过 `inputAlign` 属性设置搜索框内容的对齐方式，可选值为 `center`、`right`。
+通过 `align` 属性设置搜索框内容的对齐方式，可选值为 `center`、`right`。
 
 ```jsx
 /**
@@ -82,7 +82,7 @@ import { Search } from 'react-vant';
 export default () => {
   const [value, setValue] = useState('');
   return (
-    <Search value={value} onChange={setValue} inputAlign="center" placeholder="请输入搜索关键词" />
+    <Search value={value} onChange={setValue} align="center" placeholder="请输入搜索关键词" />
   );
 };
 ```
@@ -164,21 +164,21 @@ export default () => {
 | label | 搜索框左侧文本 | _ReactNode_ | - |
 | shape | 搜索框形状，可选值为 `round` | _string_ | `square` |
 | background | 搜索框外部背景色 | _string_ | `#f2f2f2` |
-| maxlength | 输入的最大字符数 | _number \| string_ | - |
+| maxLength | 输入的最大字符数 | _number \| string_ | - |
 | placeholder | 占位提示文字 | _string_ | - |
 | clearable | 是否启用清除图标，点击清除图标后会清空输入框 | _boolean_ | `true` |
 | clearIcon | 清除图标 | _ReactNode_ | `clear` |
 | clearTrigger | 显示清除图标的时机，`always` 表示输入框不为空时展示，<br>`focus` 表示输入框聚焦且不为空时展示 | _string_ | `focus` |
-| autofocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
+| autoFocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
 | showAction | 是否在搜索框右侧显示取消按钮 | _boolean_ | `false` |
 | actionText | 取消按钮文字 | _ReactNode_ | `取消` |
 | disabled | 是否禁用输入框 | _boolean_ | `false` |
-| readonly | 是否将输入框设为只读状态，只读状态下无法输入内容 | _boolean_ | `false` |
+| readOnly | 是否将输入框设为只读状态，只读状态下无法输入内容 | _boolean_ | `false` |
 | error | 是否将输入内容标红 | _boolean_ | `false` |
 | errorMessage | 底部错误提示文案，为空时不展示 | _string_ | - |
 | formatter | 输入内容格式化函数 | _(val: string) => string_ | - |
 | formatTrigger | 格式化函数触发的时机，可选值为 `onBlur` | _string_ | `onChange` |
-| inputAlign | 输入框内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| align | 输入框内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | leftIcon | 输入框左侧 | _ReactNode_ | `search` |
 | rightIcon | 输入框右侧 | _ReactNode_ | - |
 

@@ -15,14 +15,14 @@ import useLazyRender from '../hooks/use-lazy-render';
 import { CollapseItemInstance, CollapseItemProps } from './PropsType';
 import { raf, doubleRaf } from '../utils/raf';
 import { useUpdateEffect } from '../hooks';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('collapse-item');
 
 const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
   ({ className, style, ...props }, ref) => {
     const { index } = props;
     const parent = useContext(CollapseContext);
-    const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-    const [bem] = createNamespace('collapse-item', prefixCls);
 
     const wrapperRef = useRef(null);
     const contentRef = useRef(null);
@@ -76,14 +76,14 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
     };
 
     const onClickTitle = () => {
-      if (!props.disabled && !props.readonly) {
+      if (!props.disabled && !props.readOnly) {
         toggle();
       }
     };
 
     const renderTitle = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { border, disabled, children, readonly, ...others } = props;
+      const { border, disabled, children, readOnly, ...others } = props;
 
       return (
         <Cell
@@ -97,8 +97,8 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
           aria-expanded={String(expanded)}
           onClick={onClickTitle}
           {...others}
-          isLink={readonly ? false : others.isLink}
-          clickable={disabled || readonly ? false : others.clickable}
+          isLink={readOnly ? false : others.isLink}
+          clickable={disabled || readOnly ? false : others.clickable}
         />
       );
     };

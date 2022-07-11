@@ -1,20 +1,20 @@
-/* eslint-disable no-console */
 import React, { useContext, useMemo } from 'react';
 import clsx from 'clsx';
 import { TabbarItemProps } from './PropsType';
 import TabbarContext from './TabbarContext';
 import Badge from '../badge';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+import { devWarning } from '../utils/dev-log';
+
+const [bem] = createNamespace('tabbar-item');
 
 const TabbarItem: React.FC<TabbarItemProps> = (props) => {
   const { setActive, index } = props;
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('tabbar-item', prefixCls);
   const { parent } = useContext(TabbarContext);
   const { activeColor, inactiveColor } = parent;
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {
-      console.error('[React Vant] <TabbarItem> must be a child component of <Tabbar>.');
+      devWarning('Tabbar.Item', '<TabbarItem> must be a child component of <Tabbar>.');
     }
   }
 

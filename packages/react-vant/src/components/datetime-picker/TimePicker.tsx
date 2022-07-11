@@ -1,51 +1,54 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
 
 import Picker from '../picker';
-import type { PickerInstance } from '../picker';
 
 import { DateTimePickerInstance, TimePickerProps } from './PropsType';
 import { times } from './utils';
 
 import { range, padZero } from '../utils';
 import { useUpdateEffect } from '../hooks';
-import useRefState from '../hooks/use-ref-state';
 
 const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, ref) => {
-  const formatValue = (value) => {
-    const { minHour, maxHour, maxMinute, minMinute } = props;
+  const {
+    value,
+    defaultValue,
+    formatter,
+    filter,
+    minHour,
+    maxHour,
+    minMinute,
+    maxMinute,
+    ...pickerProps
+  } = props;
 
-    if (!value) {
-      value = `${padZero(minHour)}:${padZero(minMinute)}`;
+  const formatValue = (str) => {
+    if (!str) {
+      str = `${padZero(minHour)}:${padZero(minMinute)}`;
     }
 
-    let [hour, minute] = value.split(':');
+    let [hour, minute] = str.split(':');
     hour = padZero(range(hour, +minHour, +maxHour));
     minute = padZero(range(minute, +minMinute, +maxMinute));
 
     return `${hour}:${minute}`;
   };
 
-  const picker = useRef<PickerInstance>(null);
-  const [currentDate, setCurrentDate, currentDateRef] = useRefState(() => formatValue(props.value));
+  const [currentDate, setCurrentDate] = useState(() =>
+    formatValue(value === undefined ? defaultValue : value),
+  );
 
   const ranges = useMemo(
     () => [
       {
         type: 'hour',
-        range: [+props.minHour, +props.maxHour],
+        range: [+minHour, +maxHour],
       },
       {
         type: 'minute',
-        range: [+props.minMinute, +props.maxMinute],
+        range: [+minMinute, +maxMinute],
       },
     ],
-    [props.minHour, props.maxHour, props.minMinute, props.maxMinute],
+    [minHour, maxHour, minMinute, maxMinute],
   );
 
   const originColumns = useMemo(
@@ -55,8 +58,8 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
           padZero(rangeArr[0] + index),
         ) as string[];
 
-        if (props.filter) {
-          values = props.filter(type, values);
+        if (filter) {
+          values = filter(type, values);
         }
 
         return {
@@ -69,88 +72,53 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>((props, r
 
   const columns = useMemo(
     () =>
-      originColumns.map((column) => ({
-        values: column.values.map((value) => props.formatter(column.type, value)),
-      })),
+      originColumns.map((column) => column.values.map((value) => formatter(column.type, value))),
     [originColumns],
   );
 
-  const updateColumnValue = () => {
-    const pair = currentDateRef.current.split(':');
-    const values = [props.formatter('hour', pair[0]), props.formatter('minute', pair[1])];
-
-    setTimeout(() => {
-      picker.current.setValues(values);
-    }, 0);
-  };
-
-  const updateInnerValue = () => {
-    const [hourIndex, minuteIndex] = picker.current.getIndexes();
-    const [hourColumn, minuteColumn] = originColumns;
-
-    const hour = hourColumn.values[hourIndex] || hourColumn.values[0];
-    const minute = minuteColumn.values[minuteIndex] || minuteColumn.values[0];
-
-    setCurrentDate(formatValue(`${hour}:${minute}`));
-    updateColumnValue();
-  };
+  const pickerValue = useMemo(() => {
+    const pair = (props.popup ? formatValue(props.value) : currentDate).split(':');
+    return [formatter('hour', pair[0]), formatter('minute', pair[1])];
+  }, [props.value, currentDate, formatValue]);
 
   const onConfirm = () => {
-    if (props.onConfirm) props.onConfirm(currentDateRef.current);
+    props.onConfirm?.(currentDate);
   };
   const onCancel = () => {
-    if (props.onCancel) props.onCancel();
+    props.onCancel?.();
   };
 
-  const onChange = () => {
-    updateInnerValue();
-    if (props.onChange) {
-      props.onChange(currentDateRef.current);
-    }
+  const onChange = (val: string[]) => {
+    const nextValue = formatValue(val.join(':'));
+    setCurrentDate(nextValue);
+    props.onChange?.(nextValue);
   };
 
-  useEffect(() => {
-    updateColumnValue();
-  }, [columns]);
+  useUpdateEffect(() => {
+    const nextValue = formatValue(currentDate);
+    setCurrentDate(nextValue);
+  }, [filter, minHour, maxHour, minMinute, maxMinute]);
 
   useUpdateEffect(() => {
-    updateInnerValue();
-  }, [props.filter, props.maxHour, props.minMinute, props.maxMinute]);
+    const nextValue = formatValue(value);
 
-  useUpdateEffect(() => {
-    setTimeout(updateInnerValue, 0);
-  }, [props.minHour]);
-
-  useUpdateEffect(() => {
-    const value = formatValue(props.value);
-
-    if (value !== currentDate) {
-      setCurrentDate(value);
-      updateColumnValue();
+    if (nextValue !== currentDate) {
+      setCurrentDate(nextValue);
     }
-  }, [props.value]);
-
-  useImperativeHandle(ref, () => ({
-    getPicker: () => picker.current,
-  }));
+  }, [value]);
 
   return (
     <Picker
-      ref={picker}
+      {...pickerProps}
+      ref={ref}
       columns={columns}
-      readonly={props.readonly}
+      value={pickerValue}
       onChange={onChange}
       onConfirm={onConfirm}
       onCancel={onCancel}
-      title={props.title}
-      loading={props.loading}
-      showToolbar={props.showToolbar}
-      cancelButtonText={props.cancelButtonText}
-      confirmButtonText={props.confirmButtonText}
-      itemHeight={props.itemHeight}
-      visibleItemCount={props.visibleItemCount}
-      swipeDuration={props.swipeDuration}
-    />
+    >
+      {(_, selectRows, actions) => props.children?.(value, selectRows, actions)}
+    </Picker>
   );
 });
 
@@ -159,6 +127,8 @@ TimePicker.defaultProps = {
   maxHour: 23,
   minMinute: 0,
   maxMinute: 59,
+  placeholder: false,
+  defaultValue: '',
   formatter: (type: string, value: string) => value,
 };
 

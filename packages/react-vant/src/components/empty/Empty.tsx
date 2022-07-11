@@ -1,16 +1,13 @@
-import React, { isValidElement, useContext } from 'react';
+import React, { isValidElement } from 'react';
 import clsx from 'clsx';
 import { EmptyProps } from './PropsType';
-import { getSizeStyle } from '../utils';
+import { createNamespace, getSizeStyle } from '../utils';
 import { Network } from './Network';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const PRESET_IMAGES = ['error', 'search', 'default'];
+const [bem] = createNamespace('empty');
 
 const Empty: React.FC<EmptyProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('empty', prefixCls);
-
   const renderImage = () => {
     let { image } = props;
 

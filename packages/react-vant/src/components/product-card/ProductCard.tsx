@@ -1,19 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { ProductCardProps } from './PropsType';
 import Tag from '../tag';
 import Image from '../image';
-import { isDef } from '../utils';
+import { createNamespace, isDef } from '../utils';
 
 function isStringOrNumber(target) {
   return typeof target === 'string' || typeof target === 'number';
 }
 
-const ProductCard: React.FC<ProductCardProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('product-card', prefixCls);
+const [bem] = createNamespace('product-card');
 
+const ProductCard: React.FC<ProductCardProps> = (props) => {
   const renderTitle = () => {
     if (props.title) {
       return <div className={cls(bem('title'), 'rv-multi-ellipsis--l2')}>{props.title}</div>;

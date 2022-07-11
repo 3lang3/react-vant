@@ -35,7 +35,7 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
   const onClick = (event: MouseEvent<HTMLDivElement>) => {
     const { target } = event;
     const icon = iconRef.current;
-    const iconClicked = icon === target || icon!.contains(target as Node);
+    const iconClicked = icon === target || icon?.contains(target as Node);
 
     if (!disabled && (iconClicked || !props.labelDisabled)) {
       if (props.onToggle) {

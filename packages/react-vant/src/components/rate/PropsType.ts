@@ -18,7 +18,7 @@ export interface RateProps extends BaseTypeProps {
    */
   gutter?: number | string;
   /** 是否为只读状态，只读状态下无法修改评分	 */
-  readonly?: boolean;
+  readOnly?: boolean;
   /** 是否禁用评分	 */
   disabled?: boolean;
   /** 是否允许半选	 */

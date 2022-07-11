@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "2.0.0-alpha.48",
+  "version": "3.0.0-rc.0",
   "description": "React Mobile UI Components base on Vant UI",
   "keywords": [
     "ui",
@@ -73,8 +73,8 @@
     "lint:tsx": "eslint src --ext ts,tsx",
     "prettier": "npx prettier --write vant.config.js src/index.ts",
     "preview": "rcdoc preview",
-    "release": "pnpm publish ./dist --tag next",
-    "release:dev": "pnpm publish ./dist --tag dev"
+    "release": "pnpm publish ./dist",
+    "release:next": "pnpm publish ./dist --tag next"
   },
   "browserslist": [
     "Android >= 4.0",
@@ -87,6 +87,7 @@
     "@vant/popperjs": "^1.1.0",
     "clsx": "1.2.1",
     "rc-field-form": "^1.26.4",
+    "react-is": "^18.2.0",
     "react-transition-group": "^4.4.1",
     "tslib": "^2.4.0"
   },

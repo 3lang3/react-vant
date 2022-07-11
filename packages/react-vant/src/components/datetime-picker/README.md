@@ -18,6 +18,14 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 <code title="选择年月日" src="./demo/date.tsx">
 
+### 启用弹出层
+
+可以通过 `popup` 属性启用弹出层特性
+
+<code title="启用弹出层" src="./demo/popup.tsx">
+
+> 启用 `popup` 属性后，一般使用 `onConfirm` 事件代替 `onChange` 更新外部值
+
 ### 选择年月
 
 将 type 设置为 `year-month` 即可选择年份和月份。通过传入 `formatter` 函数，可以对选项文字进行格式化处理。
@@ -58,10 +66,6 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 
 <code title="自定义列排序" src="./demo/columnsOrder.tsx" />
 
-### 搭配弹出层使用
-
-<code title="搭配弹出层使用" src="./demo/popup.tsx" />
-
 ## API
 
 ### Props
@@ -74,7 +78,7 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 | cancelButtonText | 取消按钮文字 | _string_ | `取消` |
 | showToolbar | 是否显示顶部栏 | _boolean_ | `true` |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
-| readonly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
+| readOnly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
 | filter | 选项过滤函数 | _(type: string, values: string[]) => string[]_ | - |
 | formatter | 选项格式化函数 | _(type: string, value: string) => string_ | - |
 | columnsOrder | 自定义列排序数组, 子项可选值为<br> `year`、`month`、`day`、`hour`、`minute` | _string[]_ | - |
@@ -114,26 +118,6 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 | onCancel  | 点击取消按钮时触发的事件 | -                     |
 |           |
 
-### 方法
-
-通过 ref 可以获取到 DatetimePicker 实例并调用实例方法，详见[组件实例方法](/guide/advanced-usage#zu-jian-shi-li-fang-fa)。
-
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| getPicker | 获取 Picker 实例，用于调用 Picker 的[实例方法](/components/picker#fang-fa) | - | - |
-
-### 类型定义
-
-通过 `DatetimePickerInstance` 获取 DatetimePicker 实例的类型定义。
-
-```ts
-import { useRef } from 'react';
-import type { DatetimePickerInstance } from 'react-vant';
-
-const datetimePickerRef = useRef<DatetimePickerInstance>();
-
-datetimePickerRef.current?.getPicker();
-```
 
 ## 常见问题
 

@@ -1,10 +1,10 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import cls from 'clsx';
 import { ExpandO } from '@react-vant/icons';
-
 import { Image } from '../../image';
-import ConfigProviderContext from '../../config-provider/ConfigProviderContext';
 import { isSkuChoosable } from '../utils';
+import { createNamespace } from '../../utils';
+
 
 type SkuRowItemProps = {
   lazyload?: boolean;
@@ -19,10 +19,9 @@ type SkuRowItemProps = {
   onSkuPreviewImage?: (params: any) => void;
 };
 
-const SkuRowItem: React.FC<SkuRowItemProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('sku-row', prefixCls);
+const [bem] = createNamespace('sku-row');
 
+const SkuRowItem: React.FC<SkuRowItemProps> = (props) => {
   const classPrefix = props.largeImageMode ? 'image-item' : 'item';
 
   const imgUrl = useMemo(() => {

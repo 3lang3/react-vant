@@ -3,8 +3,7 @@ import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { Slide } from './slide';
 import { bound } from '../utils/bound';
-import { unitToPx } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace, unitToPx } from '../utils';
 import clsx from 'clsx';
 
 export type SlidesType = {
@@ -14,13 +13,14 @@ export type SlidesType = {
   defaultIndex: number;
   onIndexChange?: (index: number) => void;
 };
+
 export type SlidesRef = {
   swipeTo: (index: number, immediate?: boolean) => void;
 };
 
+const [bem] = createNamespace('image-preview');
+
 export const Slides = forwardRef<SlidesRef, SlidesType>((props, ref) => {
-  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('image-preview', prefixCls);
 
   const slideWidth = window.innerWidth + unitToPx(16);
   const [{ x }, api] = useSpring(() => ({

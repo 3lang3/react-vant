@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { ActionBarIconProps } from './PropsType';
 import Badge from '../badge';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('action-bar-icon');
 
 const ActionBarIcon: React.FC<ActionBarIconProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('action-bar-icon', prefixCls);
 
   const renderIcon = () => {
     const { badge, icon } = props;

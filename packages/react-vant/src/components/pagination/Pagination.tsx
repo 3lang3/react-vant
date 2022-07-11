@@ -3,14 +3,16 @@ import clsx from 'clsx';
 import { PageItem, PaginationProps } from './PropsType';
 import { BORDER } from '../utils/constant';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
 
 function makePage(number: number, text: string | number, active?: boolean): PageItem {
   return { number, text, active };
 }
 
+const [bem] = createNamespace('pagination');
+
 const Pagination: React.FC<PaginationProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('pagination', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const count = useMemo(() => {
     const { pageCount, totalItems, itemsPerPage } = props;

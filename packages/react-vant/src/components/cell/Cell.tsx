@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { Arrow, ArrowDown, ArrowLeft, ArrowUp } from '@react-vant/icons';
-import { isDef } from '../utils';
+import { createNamespace, isDef } from '../utils';
 import { CellProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('cell');
 
 const Cell: React.FC<CellProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('cell', prefixCls);
 
   const renderLabel = () => {
     const showLabel = isDef(props.label);

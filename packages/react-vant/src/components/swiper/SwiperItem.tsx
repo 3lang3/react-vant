@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { SwiperItemProps, SwiperItemInstance } from './PropsType';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('swiper-item');
 
 const SwiperItem = React.forwardRef<SwiperItemInstance, SwiperItemProps>((props, ref) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('swiper-item', prefixCls);
-
   const getHeight = () => {
     return wrapperRef.current?.clientHeight;
   };

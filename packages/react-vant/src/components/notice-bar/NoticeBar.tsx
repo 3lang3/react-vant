@@ -4,17 +4,16 @@ import { Arrow, Cross } from '@react-vant/icons';
 import { getRect } from '../hooks/use-rect';
 import useEventListener from '../hooks/use-event-listener';
 import { NoticeBarInstance, NoticeBarProps } from './PropsType';
-import { isDef, noop } from '../utils';
+import { createNamespace, isDef, noop } from '../utils';
 import { raf, doubleRaf } from '../utils/raf';
 import { useSetState, useUpdateEffect } from '../hooks';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import PopupContext from '../popup/PopupContext';
+
+const [bem] = createNamespace('notice-bar');
 
 const NoticeBar = forwardRef<NoticeBarInstance, NoticeBarProps>((props, ref) => {
   const { text, color, background, wrapable, scrollable, speed, delay = 1 } = props;
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
   const popupContext = useContext(PopupContext);
-  const [bem] = createNamespace('notice-bar', prefixCls);
 
   const [state, setState] = useSetState({
     show: true,

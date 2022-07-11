@@ -37,7 +37,7 @@
 ### 贡献者
 
 <a href="https://github.com/3lang3/react-vant/graphs/contributors">
-  <img style="width: 420px;"  src="https://contrib.rocks/image?repo=3lang3/react-vant"/>
+  <img style="width: 420px;" src="https://opencollective.com/react-vant/contributors.svg?width=620"/>
 </a>
 
 - 部分图形设计来自[BiscuitCoder](https://biscuitcoder.github.io)

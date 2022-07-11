@@ -12,7 +12,7 @@ export interface SliderBaseProps<T> extends BaseTypeProps {
   /** 是否将进度条反转	 */
   reverse?: boolean;
   /** 是否为只读状态，只读状态下无法修改滑块的值	 */
-  readonly?: boolean;
+  readOnly?: boolean;
   /** 是否垂直展示	 */
   vertical?: boolean;
   /** 进度条高度，默认单位为 `px` */

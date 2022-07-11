@@ -6,14 +6,15 @@ import { getRect } from '../hooks/use-rect';
 import useScrollParent from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
 
-import { isHidden } from '../utils';
+import { createNamespace, isHidden } from '../utils';
 import { ListInstance, ListProps } from './PropsType';
 import { useSetState, useUpdateEffect } from '../hooks';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
+const [bem] = createNamespace('list');
+
 const List = forwardRef<ListInstance, ListProps>((props, ref) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('list', prefixCls);
+  const {locale } = useContext(ConfigProviderContext);
   const [state, updateState] = useSetState({
     loading: props.loading,
     error: props.error,

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { FC } from 'react';
 import clsx from 'clsx';
 import { Field as RcField } from 'rc-field-form';
@@ -12,11 +11,18 @@ import type {
   RenderChildren,
 } from './PropsType';
 import { toArray } from '../uploader/utils';
-import { FIELD_KEY } from '../field/Field';
-import { COMPONENT_TYPE_KEY } from '../utils/constant';
 import { FormContext } from './FormContext';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { devWarning } from '../utils/dev-log';
+import { createNamespace, pick } from '../utils';
+import { isSafeSetRefComponent } from './utils';
+
+function undefinedFallback(...items: any[]) {
+  let i: number;
+  for (i = 0; i < items.length; i++) {
+    if (items[i] !== undefined) break;
+  }
+  return items[i];
+}
 
 const MemoInput = React.memo(
   ({ children, ...props }: MemoInputProps) =>
@@ -24,90 +30,89 @@ const MemoInput = React.memo(
   (prev, next) => prev.value === next.value && prev.update === next.update,
 );
 
+const [bem] = createNamespace('form-item');
+
 const FormItemLayout: React.FC<FormItemLayoutProps> = (props) => {
-  const {
-    className,
-    meta,
-    children,
-    isFieldChildren,
-    showValidateMessage,
-    colon,
-    layout,
-    labelAlign,
-    inputAlign,
-    border,
-    ...fieldProps
-  } = props;
-  const { prefixCls, createNamespace } = React.useContext(ConfigProviderContext);
-  const [bem] = createNamespace('form', prefixCls);
+  const { meta, ...fieldProps } = props;
   const context = React.useContext(FormContext);
-  const itemLayout = layout ?? context.layout;
-  const itemBorder = border ?? context.border;
-  const itemColon = colon ?? context.colon;
-  const itemShowValidateMessage = showValidateMessage ?? context.showValidateMessage;
-  const itemLabelAlign = labelAlign ?? context.labelAlign;
-  const itemInputAlign = inputAlign ?? context.inputAlign;
+
+  const layout = props.layout ?? context.layout;
+  const border = props.border ?? context.border;
+  const colon = props.colon ?? context.colon;
+  const showValidateMessage = props.showValidateMessage ?? context.showValidateMessage;
+  const labelAlign = props.labelAlign ?? context.labelAlign;
+  const controlAlign = props.controlAlign ?? context.controlAlign;
 
   const error = meta && meta.errors.length > 0;
-  const errorMessage = itemShowValidateMessage && error ? meta.errors[0] : null;
+  const errorMessage = showValidateMessage && error ? meta.errors[0] : null;
 
   const attrs = {
     ...fieldProps,
-    className: clsx(bem({ vertical: itemLayout === 'vertical' }), className),
-    colon: itemColon,
-    error,
+    className: clsx(bem({ vertical: layout === 'vertical' }), props.className),
+    colon,
+    error: showValidateMessage ? false : error,
     errorMessage,
-    labelAlign: itemLabelAlign,
-    inputAlign: itemInputAlign,
-    border: itemBorder,
+    labelAlign,
+    controlAlign,
+    border,
   };
 
-  if (isFieldChildren) return React.cloneElement(children as React.ReactElement, attrs);
-
-  return <Field {...attrs}>{children}</Field>;
+  return <Field {...attrs}>{props.children}</Field>;
 };
 
+// 移植自antd mobile: https://github.com/ant-design/ant-design-mobile/blob/master/src/components/form/form-item.tsx
 const FormItem: FC<FormItemProps> = (props) => {
   const {
-    className,
-    style,
-    label,
+    // RcFiled props
     name,
-    required,
     noStyle,
-    tooltip,
-    intro,
-    customField,
-    disabled,
-    colon,
     rules,
-    children,
-    messageVariables,
     trigger = 'onChange',
     validateTrigger,
-    onClick,
     shouldUpdate,
     dependencies,
-    labelWidth,
-    labelAlign,
-    labelClass,
-    showValidateMessage,
-    inputAlign,
-    errorMessageAlign,
-    border,
-    layout,
-    ...fieldProps
+    messageVariables,
+    // Field props
+    label,
+    required,
+    disabled,
+    children,
+    onClick,
+    ...rcFieldProps
   } = props;
 
+  // Pick Field props
+  const fieldProps = pick(props, [
+    'style',
+    'className',
+    'tooltip',
+    'intro',
+    'colon',
+    'labelWidth',
+    'labelAlign',
+    'labelClass',
+    'showValidateMessage',
+    'controlAlign',
+    'errorMessageAlign',
+    'border',
+    'layout',
+    'isLink',
+    'size',
+    'arrowDirection',
+    'leftIcon',
+    'rightIcon',
+    'prefix',
+    'suffix',
+  ]);
+
   const { validateTrigger: contextValidateTrigger } = React.useContext(FieldContext);
-  const mergedValidateTrigger =
-    validateTrigger !== undefined ? validateTrigger : contextValidateTrigger;
+
+  const mergedValidateTrigger = undefinedFallback(validateTrigger, contextValidateTrigger, trigger);
+
+  const widgetRef = React.useRef<any>(null);
 
   const updateRef = React.useRef(0);
   updateRef.current += 1;
-
-  const isFieldChildren =
-    (children as { type: unknown }).type?.[COMPONENT_TYPE_KEY] === FIELD_KEY || customField;
 
   function renderLayout(
     baseChildren: React.ReactNode,
@@ -120,26 +125,13 @@ const FormItem: FC<FormItemProps> = (props) => {
     }
     return (
       <FormItemLayout
-        isFieldChildren={isFieldChildren}
-        className={className}
-        style={style}
-        label={label}
-        tooltip={tooltip}
-        intro={intro}
-        required={isRequired}
-        disabled={disabled}
         htmlFor={fieldId}
         meta={meta}
-        colon={colon}
-        border={border}
-        layout={layout}
-        labelWidth={labelWidth}
-        labelAlign={labelAlign}
-        labelClass={labelClass}
-        inputAlign={inputAlign}
-        errorMessageAlign={errorMessageAlign}
-        showValidateMessage={showValidateMessage}
-        onClick={onClick}
+        {...fieldProps}
+        required={isRequired}
+        label={label}
+        disabled={disabled}
+        onClick={(e) => onClick?.(e, widgetRef)}
       >
         {baseChildren}
       </FormItemLayout>
@@ -162,7 +154,7 @@ const FormItem: FC<FormItemProps> = (props) => {
 
   return (
     <RcField
-      {...fieldProps}
+      {...rcFieldProps}
       name={name}
       shouldUpdate={shouldUpdate}
       dependencies={dependencies}
@@ -175,15 +167,7 @@ const FormItem: FC<FormItemProps> = (props) => {
         const isRequired =
           required !== undefined
             ? required
-            : !!(
-                rules &&
-                rules.some((rule) => {
-                  if (rule && typeof rule === 'object' && rule.required) {
-                    return true;
-                  }
-                  return false;
-                })
-              );
+            : rules && rules.some((rule) => !!(rule && typeof rule === 'object' && rule.required));
 
         const fieldId = (toArray(name).length && meta ? meta.name : []).join('_');
         if (shouldUpdate && dependencies) {
@@ -215,7 +199,28 @@ const FormItem: FC<FormItemProps> = (props) => {
             'Must set `name` or use render props when `dependencies` is set.',
           );
         } else if (React.isValidElement(children)) {
+          if (children.props.defaultValue) {
+            devWarning(
+              'Form.Item',
+              '`defaultValue` will not work on controlled Field. You should use `initialValues` of Form instead.',
+            );
+          }
           const childProps = { ...children.props, ...control };
+
+          if (isSafeSetRefComponent(children)) {
+            childProps.ref = (instance: any) => {
+              const originRef = (children as any).ref;
+              if (originRef) {
+                if (typeof originRef === 'function') {
+                  originRef(instance);
+                }
+                if ('current' in originRef) {
+                  originRef.current = instance;
+                }
+              }
+              widgetRef.current = instance;
+            };
+          }
 
           if (!childProps.id) {
             childProps.id = fieldId;
@@ -243,11 +248,6 @@ const FormItem: FC<FormItemProps> = (props) => {
               {React.cloneElement(children, childProps)}
             </MemoInput>
           );
-
-          if (isFieldChildren) {
-            childProps.value = childProps.value ?? '';
-            childNode = React.cloneElement(children, childProps);
-          }
         } else {
           if (name) {
             devWarning(
@@ -257,6 +257,7 @@ const FormItem: FC<FormItemProps> = (props) => {
           }
           childNode = children;
         }
+
         return renderLayout(childNode, fieldId, meta, isRequired);
       }}
     </RcField>

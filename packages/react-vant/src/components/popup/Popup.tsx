@@ -6,7 +6,6 @@ import React, {
   useRef,
   forwardRef,
   useImperativeHandle,
-  useContext,
 } from 'react';
 import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
@@ -15,12 +14,11 @@ import { Cross } from '@react-vant/icons';
 import Overlay from '../overlay';
 import useEventListener from '../hooks/use-event-listener';
 
-import { isDef } from '../utils';
+import { createNamespace, isDef, withStopPropagation } from '../utils';
 import { PopupInstanceType, PopupProps } from './PropsType';
 import { callInterceptor } from '../utils/interceptor';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import PopupContext from './PopupContext';
 import { useLockScroll } from '../hooks/use-lock-scroll';
 
@@ -49,10 +47,10 @@ export const sharedPopupProps = [
 
 let globalZIndex = 2000;
 
-const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('popup', prefixCls);
+const [bem] = createNamespace('popup');
 
+
+const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const { round, visible, closeable, title, description, children, duration, closeIcon, position } =
     props;
   const opened = useRef(false);
@@ -161,7 +159,8 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
 
   const renderPopup = () => {
     const { safeAreaInsetBottom } = props;
-    return (
+    return withStopPropagation(
+      props.stopPropagation,
       <div
         ref={popupRef}
         style={{
@@ -182,14 +181,14 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         {renderDescription()}
         {children}
         {renderCloseIcon()}
-      </div>
+      </div>,
     );
   };
 
   const renderTransition = () => {
     const { transition, destroyOnClose, forceRender } = props;
     const name =
-      position === 'center' ? `${prefixCls}-fade` : `${prefixCls}-popup-slide-${position}`;
+      position === 'center' ? 'rv-fade' : `rv-popup-slide-${position}`;
 
     return (
       <CSSTransition
@@ -252,6 +251,7 @@ Popup.defaultProps = {
   closeIcon: <Cross />,
   closeIconPosition: 'top-right',
   closeOnClickOverlay: true,
+  stopPropagation: ['click'],
   teleport: () => document.body,
 };
 

@@ -2,7 +2,7 @@
 
 ## 介绍
 
-步进器由增加按钮、减少按钮和输入框组成，用于在一定范围内输入、调整数字。
+步进器由增加按钮、减少按钮和输入框组成，用于在一定范围内输入、调整数字，支持长按调整。
 
 ## 引入
 
@@ -24,12 +24,12 @@ import { Stepper } from 'react-vant';
 
 | 参数          | 说明                                       | 类型               | 默认值  |
 | ------------- | ------------------------------------------ | ------------------ | ------- |
-| value         | 当前输入的值                               | _number\|string_   | -       |
-| min           | 最小值                                     | _number \| string_ | `1`     |
-| max           | 最大值                                     | _number \| string_ | -       |
-| defaultValue  | 初始值，当 value 为空时生效                | _number\|string_   | `1`     |
-| step          | 步长，每次点击时改变的值                   | _number \| string_ | `1`     |
-| name          | 标识符，可以在 `change` 事件回调参数中获取 | _number \| string_ | -       |
+| value         | 当前输入的值                               | _number\|null_   | -       |
+| defaultValue  | 默认值	                | _number\|null_   | `0`     |
+| min           | 最小值                                     | _number_ | -     |
+| max           | 最大值                                     | _number_ | -       |
+| step          | 步长，每次点击时改变的值                   | _number_ | `1`     |
+| name          | 标识符，可以在 `change` 事件回调参数中获取 | _string_ | -       |
 | inputWidth    | 输入框宽度，默认单位为 `px`                | _number \| string_ | `32px`  |
 | buttonSize    | 按钮大小以及输入框高度，默认单位为 `px`    | _number \| string_ | `28px`  |
 | decimalLength | 固定显示的小数位数                         | _number \| string_ | -       |
@@ -51,8 +51,7 @@ import { Stepper } from 'react-vant';
 | 事件名 | 说明 | 回调参数 |
 | --- | --- | --- |
 | onClick | 点击输入框时触发 | _event: Event_ |
-| onChange | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
-| beforeChange | 输入值变化前的回调函数，返回 `false` 可阻止输入，支持返回 Promise | _(value) => boolean \| Promise_ |
+| onChange | 当绑定值变化时触发的事件 | _value: number\|null, detail: { name: string }_ |
 | onOverlimit | 点击不可用的按钮时触发 | - |
 | onPlus | 点击增加按钮时触发 | - |
 | onMinus | 点击减少按钮时触发 | - |

@@ -1,0 +1,76 @@
+@import './var.less';
+@import '../../input/style/index.less';
+
+:root {
+  --rv-textarea-min-height: @textarea-min-height;
+  --rv-textarea-word-limit-color: @textarea-word-limit-color;
+  --rv-textarea-word-limit-font-size: @textarea-word-limit-font-size;
+  --rv-textarea-word-limit-line-height: @textarea-word-limit-line-height;
+}
+
+.@{rv-prefix}-textarea {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+
+  .@{rv-prefix}-textarea__control {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0; // for flex-shrink in field__button
+    margin: 0;
+    padding: 0;
+    color: var(--rv-input-text-color);
+    line-height: inherit;
+    text-align: inherit;
+    background-color: var(--rv-input-background-color);
+    border: 0;
+    resize: none;
+    // https://github.com/youzan/vant/pull/9418
+    user-select: auto;
+
+    &::placeholder {
+      color: var(--rv-input-placeholder-text-color);
+      font-size: var(--rv-input-placeholder-text-font-size);
+    }
+
+    &:disabled {
+      color: var(--rv-input-disabled-text-color);
+      cursor: not-allowed;
+      opacity: 1;
+      // fix disabled color in mobile safari
+      -webkit-text-fill-color: var(--rv-input-disabled-text-color);
+    }
+
+    &:read-only {
+      cursor: default;
+    }
+
+    &--min-height {
+      min-height: var(--rv-textarea-min-height);
+    }
+
+    &--clear {
+      padding-right: var(--rv-padding-md);
+    }
+  }
+
+  .@{rv-prefix}-textarea__clear {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    z-index: 1;
+    color: var(--rv-input-clear-icon-color);
+    font-size: var(--rv-input-clear-icon-size);
+    cursor: pointer;
+  }
+
+  .@{rv-prefix}-textarea__word-limit {
+    margin-top: var(--rv-padding-base);
+    color: var(--rv-textarea-word-limit-color);
+    font-size: var(--rv-textarea-word-limit-font-size);
+    line-height: var(--rv-textarea-word-limit-line-height);
+    text-align: right;
+  }
+}

@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import React from 'react';
 import clsx from 'clsx';
 import FlexContext from './FlexContext';
 import { FlexItemProps, FlexType } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('flexitem');
 
 const FlexItem: React.FC<FlexItemProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('flexitem', prefixCls);
   const { style, className, span, children, flex, ...others } = props;
 
   const classes = clsx(bem([span?.toString()]), className);

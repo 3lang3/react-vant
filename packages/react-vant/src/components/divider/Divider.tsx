@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cls from 'clsx';
 import { DividerProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { createNamespace } from '../utils';
+
+const [bem] = createNamespace('divider');
 
 const Divider: React.FC<DividerProps> = ({
   children,
@@ -11,8 +13,6 @@ const Divider: React.FC<DividerProps> = ({
   contentPosition,
   ...props
 }) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('divider', prefixCls);
 
   return (
     <div

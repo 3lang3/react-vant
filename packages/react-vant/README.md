@@ -77,10 +77,10 @@ Recommended **pin** version:
 
 ```bash
 # npm
-npm i react-vant@next -S -E
+npm i react-vant -S -E
 
 # pnpm
-pnpm i react-vant@next -S -E
+pnpm i react-vant -S -E
 ```
 
 ## 🚀 Quick start

@@ -1,18 +1,17 @@
-import React, { CSSProperties, useContext, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useMemo, useRef, useState } from 'react';
 import cls from 'clsx';
 import { SliderProps, SliderValue } from './PropsType';
-import { addUnit, range, addNumber, preventDefault, getSizeStyle, stopPropagation } from '../utils';
+import { addUnit, range, addNumber, preventDefault, getSizeStyle, stopPropagation, createNamespace } from '../utils';
 import { getRect } from '../hooks/use-rect';
 import useEventListener from '../hooks/use-event-listener';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { useTouch } from '../hooks';
 
 type NumberRange = [number, number];
 
-const Slider: React.FC<SliderProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('slider', prefixCls);
+const [bem] = createNamespace('slider');
 
+
+const Slider: React.FC<SliderProps> = (props) => {
   const [buttonRef1, setButtonRef1] = useState<HTMLDivElement>(null);
   const [buttonRef2, setButtonRef2] = useState<HTMLDivElement>(null);
   const buttonIndex = useRef<0 | 1>();
@@ -117,7 +116,7 @@ const Slider: React.FC<SliderProps> = (props) => {
   const onClick = (event) => {
     event.stopPropagation();
 
-    if (props.disabled || props.readonly) {
+    if (props.disabled || props.readOnly) {
       return;
     }
 
@@ -155,7 +154,7 @@ const Slider: React.FC<SliderProps> = (props) => {
   };
 
   const onTouchStart = (event) => {
-    if (props.disabled || props.readonly) {
+    if (props.disabled || props.readOnly) {
       return;
     }
 
@@ -172,7 +171,7 @@ const Slider: React.FC<SliderProps> = (props) => {
   };
 
   const onTouchMove = (event) => {
-    if (props.disabled || props.readonly) {
+    if (props.disabled || props.readOnly) {
       return;
     }
 
@@ -202,7 +201,7 @@ const Slider: React.FC<SliderProps> = (props) => {
   };
 
   const onTouchEnd = (event) => {
-    if (props.disabled || props.readonly) {
+    if (props.disabled || props.readOnly) {
       return;
     }
 
@@ -253,7 +252,7 @@ const Slider: React.FC<SliderProps> = (props) => {
         key={index}
         role="slider"
         className={cls(getButtonClassName(index))}
-        tabIndex={props.disabled || props.readonly ? -1 : 0}
+        tabIndex={props.disabled || props.readOnly ? -1 : 0}
         aria-valuemin={props.min}
         aria-valuenow={value}
         aria-valuemax={props.max}
@@ -276,11 +275,11 @@ const Slider: React.FC<SliderProps> = (props) => {
 
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: buttonRef1,
-    depends: [touch.deltaX.current, touch.deltaY.current, props.disabled, props.readonly],
+    depends: [touch.deltaX.current, touch.deltaY.current, props.disabled, props.readOnly],
   });
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: buttonRef2,
-    depends: [touch.deltaX.current, touch.deltaY.current, props.disabled, props.readonly],
+    depends: [touch.deltaX.current, touch.deltaY.current, props.disabled, props.readOnly],
   });
 
   return (

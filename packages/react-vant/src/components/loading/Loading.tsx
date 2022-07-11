@@ -1,8 +1,7 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import clsx from 'clsx';
-import { addUnit, getSizeStyle } from '../utils';
+import { addUnit, createNamespace, getSizeStyle } from '../utils';
 import { LoadingProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
 const SpinIcon = ({ bem }) => (
   <>
@@ -35,9 +34,9 @@ const Icon = (bem) => ({
   ball: <BallIcon bem={bem} />,
 });
 
+const [bem] = createNamespace('loading');
+
 const Loading: React.FC<LoadingProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('loading', prefixCls);
   const { className, type, vertical, color, size, textColor, children, textSize } = props;
 
   const spinnerStyle = useMemo(

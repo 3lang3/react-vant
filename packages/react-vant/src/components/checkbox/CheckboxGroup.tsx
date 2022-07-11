@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import clsx from 'clsx';
 
 import useMergedState from '../hooks/use-merged-state';
@@ -10,13 +10,12 @@ import {
   CheckboxGroupInstance,
   CheckboxInstance,
 } from './PropsType';
-import { WithDisplayNameReactElement } from '../utils';
+import { createNamespace, WithDisplayNameReactElement } from '../utils';
 import useRefs from '../hooks/use-refs';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+
+const [bem] = createNamespace('checkbox-group');
 
 const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('checkbox-group', prefixCls);
   const [childrenRefs, setChildrenRefs] = useRefs();
   const [checked, setChecked] = useMergedState({
     value: props.value,
@@ -55,7 +54,7 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
   }));
 
   return (
-    <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked }}>
+    <CheckBoxContext.Provider value={{ parent: { props }, toggle, checked: checked || [] }}>
       <div className={clsx(props.className, bem([props.direction]))}>
         {React.Children.toArray(props.children)
           .filter(Boolean)
@@ -67,9 +66,5 @@ const CheckBoxGroup = forwardRef<CheckboxGroupInstance, CheckboxGroupProps>((pro
     </CheckBoxContext.Provider>
   );
 });
-
-CheckBoxGroup.defaultProps = {
-  defaultValue: [],
-};
 
 export default CheckBoxGroup;

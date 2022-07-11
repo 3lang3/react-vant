@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useMemo, useRef } from 'react';
 import clsx from 'clsx';
 import { PullRefreshProps, PullRefreshStatus } from './PropsType';
-import { getScrollTop, preventDefault } from '../utils';
+import { createNamespace, getScrollTop, preventDefault } from '../utils';
 
 import { getScrollParent } from '../hooks/use-scroll-parent';
 import useEventListener from '../hooks/use-event-listener';
@@ -13,9 +13,10 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 const DEFAULT_HEAD_HEIGHT = 50;
 const TEXT_STATUS = ['pulling', 'loosing', 'success'];
 
+const [bem] = createNamespace('pull-refresh');
+
 const PullRefresh: React.FC<PullRefreshProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('pull-refresh', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const { disabled, animationDuration } = props;
 

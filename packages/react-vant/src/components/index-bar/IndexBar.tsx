@@ -31,18 +31,18 @@ import {
   setRootScrollTop,
   getRootScrollTop,
   setScrollTop,
+  createNamespace,
 } from '../utils';
 import { useMount, useTouch } from '../hooks';
 import { renderToContainer } from '../utils/dom/renderToContainer';
 import useSsrCompat from '../hooks/use-ssr-compat';
 import { INDEX_ANCHORE_KEY } from './IndexAnchor';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { COMPONENT_TYPE_KEY } from '../utils/constant';
+
+const [bem] = createNamespace('index-bar');
 
 const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   const popupContext = useContext(PopupContext);
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('index-bar', prefixCls);
   const { children, sticky, zIndex, highlightColor } = props;
 
   const [activeAnchor, setActiveAnchor] = useState<string | number>(null);

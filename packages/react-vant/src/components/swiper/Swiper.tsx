@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  useContext,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -10,21 +9,19 @@ import React, {
 import cls from 'clsx';
 import { useSpring, animated } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import SwiperItem from './SwiperItem';
 import { SwiperProps, SwiperInstance } from './PropsType';
 import useRefs from '../hooks/use-refs';
 import useRefState from '../hooks/use-ref-state';
 import { bound } from '../utils/bound';
 import { devWarning } from '../utils/dev-log';
-import { noop } from '../utils';
+import { createNamespace, noop } from '../utils';
 import SwiperPagIndicator from './SwiperPagIndicator';
 import { useIsomorphicLayoutEffect, useUpdateEffect } from '../hooks';
 
-const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('swiper', prefixCls);
+const [bem] = createNamespace('swiper');
 
+const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
   const { loop: outerLoop, autoplay, vertical, duration, autoHeight } = props;
 
   const axis = vertical ? 'y' : 'x';
@@ -56,11 +53,11 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
 
   const computedStyle = useMemo(() => {
     return {
-      [`--${prefixCls}-swipe-slide-size`]: `${props.slideSize}%`,
-      [`--${prefixCls}-swipe-track-offset`]: `${props.trackOffset}%`,
+      [`--rv-swipe-slide-size`]: `${props.slideSize}%`,
+      [`--rv-swipe-track-offset`]: `${props.trackOffset}%`,
       ...props.style,
     };
-  }, [prefixCls, props.slideSize, props.trackOffset, props.style]);
+  }, [props.slideSize, props.trackOffset, props.style]);
 
   const trackStyle = useMemo(() => {
     if (!autoHeight) return {};

@@ -1,13 +1,11 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import clsx from 'clsx';
 import { ProgressProps } from './PropsType';
-import { addUnit } from '../utils';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { addUnit, createNamespace } from '../utils';
+
+const [bem] = createNamespace('progress');
 
 const Progress: React.FC<ProgressProps> = (props) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('progress', prefixCls);
-
   const background = useMemo(
     () => (props.inactive ? '#cacaca' : props.color),
     [props.inactive, props.color],

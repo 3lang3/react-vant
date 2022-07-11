@@ -1,7 +1,6 @@
-import React, { useContext, useState, useImperativeHandle, forwardRef } from 'react';
+import React, { useState, useImperativeHandle, forwardRef } from 'react';
 import clsx from 'clsx';
 import { FloatingBallProps, FloatingBallInstance, AdsorbProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import FloatingBallContext from './FloatingBallContext';
 import useClickAway from '../hooks/use-click-away';
 import FloatingBallItem from './FloatingBallItem';
@@ -10,14 +9,15 @@ import { throttle } from '../utils/throttle';
 import useFloatingTouch from './useFloatingTouch';
 import useMergedState from '../hooks/use-merged-state';
 import { raf } from '../utils/raf';
+import { createNamespace } from '../utils';
 
 const TOUCH_DURATION = 0;
 const TRANSITION_DURATION = 300;
 const DEFAULT_ADSORB = { indent: 0.5, distance: 0 };
 
+const [bem] = createNamespace('floating-ball');
+
 const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('floating-ball', prefixCls);
   const timer = React.useRef(null);
   const [position, setPosition] = useState('bottom right');
   const [container, setContainer] = React.useState<HTMLDivElement>();

@@ -17,16 +17,16 @@ import useHeight from '../hooks/use-height';
 import IndexBarContext from './IndexBarContext';
 
 import { IndexAnchorProps } from './PropsType';
-import { getScrollTop, getRootScrollTop } from '../utils';
+import { getScrollTop, getRootScrollTop, createNamespace } from '../utils';
 import { BORDER_BOTTOM, COMPONENT_TYPE_KEY } from '../utils/constant';
 import { useSetState } from '../hooks';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { devWarning } from '../utils/dev-log';
 
 export const INDEX_ANCHORE_KEY = Symbol('index-anchor');
 
+const [bem] = createNamespace('index-anchor');
+
 const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
-  const { prefixCls, createNamespace } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('index-anchor', prefixCls);
   const root = useRef();
   const height = useHeight(root);
 
@@ -34,8 +34,7 @@ const IndexAnchor: React.FC<IndexAnchorProps> = forwardRef((props, ref) => {
 
   if (!context) {
     if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
-      console.error('[React Vant] <IndexAnchor> must be a child component of <IndexBar>.');
+      devWarning('IndexBar', '<IndexAnchor> must be a child component of <IndexBar>.')
     }
   }
   const [state, updateState] = useSetState({

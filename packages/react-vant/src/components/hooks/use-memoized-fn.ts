@@ -1,5 +1,6 @@
 import { useMemo, useRef } from 'react';
 import { isFunction } from '../utils';
+import { devWarning } from '../utils/dev-log';
 
 type noop = (this: any, ...args: any[]) => any;
 
@@ -11,7 +12,7 @@ type PickFunction<T extends noop> = (
 function useMemoizedFn<T extends noop>(fn: T) {
   if (process.env.NODE_ENV === 'development') {
     if (!isFunction(fn)) {
-      console.error(`useMemoizedFn expected parameter is a function, got ${typeof fn}`);
+      devWarning('useMemoizedFn', `expected parameter is a function, got ${typeof fn}`)
     }
   }
 

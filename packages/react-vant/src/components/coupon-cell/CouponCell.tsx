@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import cls from 'clsx';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 import { CouponCellProps, CouponInfo } from '../coupon-list/PropsType';
-import { isDef } from '../utils';
+import { createNamespace, isDef } from '../utils';
 import Cell from '../cell';
 import { Locale } from '../locale/lang/base';
 
@@ -29,9 +29,10 @@ function formatValue(
   return coupons.length === 0 ? locale.noCoupon : locale.vanCouponCell.count(coupons.length);
 }
 
+const [bem] = createNamespace('coupon-cell');
+
 const CouponCell: React.FC<CouponCellProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('coupon-cell', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const selected = props.coupons[+props.chosenCoupon];
   const value = formatValue(props.coupons, props.chosenCoupon, props.currency, locale);

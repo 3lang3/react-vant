@@ -146,7 +146,7 @@ export default () => (
 | previewOptions | 全屏图片预览的配置项，可选值见 [ImagePreview](/components/image-preview) | _object_ | - |
 | multiple | 是否开启图片多选，部分安卓机型不支持 | _boolean_ | `false` |
 | disabled | 是否禁用文件上传 | _boolean_ | `false` |
-| readonly | 是否将上传区域设置为只读状态 | _boolean_ | `false` |
+| readOnly | 是否将上传区域设置为只读状态 | _boolean_ | `false` |
 | deletable | 是否展示删除按钮 | _boolean_ | `true` |
 | showUpload | 是否展示上传区域 | _boolean_ | `true` |
 | capture | 图片选取模式，可选值为 `camera` (直接调起摄像头) | _string_ | - |

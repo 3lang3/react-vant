@@ -8,7 +8,7 @@ export default () => {
   });
   return (
     <>
-      <Field label="双向绑定" value={state.value} readonly onClick={() => set({ visible: true })} />
+      <Field label="双向绑定" value={state.value} readOnly onClick={() => set({ visible: true })} />
       <NumberKeyboard
         value={state.value}
         visible={state.visible}

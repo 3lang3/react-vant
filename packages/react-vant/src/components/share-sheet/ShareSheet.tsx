@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import cls from 'clsx';
 import { ShareSheetOption, ShareSheetProps } from './PropsType';
-import { pick } from '../utils';
+import { createNamespace, pick } from '../utils';
 import Popup from '../popup';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
@@ -23,9 +23,10 @@ function getIconURL(icon: string) {
   return icon;
 }
 
+const [bem] = createNamespace('share-sheet');
+
 const ShareSheet: React.FC<ShareSheetProps> = (props) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('share-sheet', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const onCancel = () => {
     props.onCancel?.();

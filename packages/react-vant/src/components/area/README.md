@@ -2,7 +2,7 @@
 
 ## 介绍
 
-省市区三级联动选择，通常与[弹出层](/components/popup)组件配合使用。
+省市区三级联动选择，适配 `@vant/area-data` 数据包，当然你也可以通过 `columns` [定制自己的省市区内容](/components/picker#级联选择)。
 
 ## 引入
 
@@ -52,23 +52,20 @@ const areaList = {
 };
 ```
 
-### 选中省市区
-
-如果想选中某个省市区，需要传入一个 `value` 属性，绑定对应的地区码。
-
-<code title="选中省市区" src="./demo/choose.tsx" />
-
 ### 配置显示列
 
 可以通过 `columnsNum` 属性配置省市区显示的列数，默认情况下会显示省市区，当你设置为 `2`，则只会显示省市选择。
 
 <code title="配置显示列" src="./demo/column.tsx" />
 
-### 配置列占位提示文字
+### 搭配弹出层使用
 
-可以通过 `columnsPlaceholder` 属性配置每一列的占位提示文字。
+可以通过 `popup` 属性启用弹出层特性。
 
-<code title="占位提示文字" src="./demo/placeholder.tsx" />
+<code title="搭配弹出层使用" src="./demo/popup.tsx" />
+
+> 启用 `popup` 属性后，一般使用 `onConfirm` 事件代替 `onChange` 更新外部值
+
 
 ## API
 
@@ -76,8 +73,11 @@ const areaList = {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 当前选中项对应的地区码 | _string_ | - |
+| value | 选中项 | _string[]_ | - |
+| defaultValue | 默认选中项 | _string[]_ | - |
 | title | 顶部栏标题 | _ReactNode_ | - |
+| columns | 对象数组，配置每一列显示的数据 | _PickerColumn\| PickerColumn[]_ | `[]` |
+| columnsFieldNames | 自定义 `columns` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', children: 'children' }` |
 | confirmButtonText | 确认按钮文字 | _ReactNode_ | `确认` |
 | cancelButtonText | 取消按钮文字 | _ReactNode_ | `取消` |
 | areaList | 省市区数据，格式见下方 | _object_ | - |
@@ -86,67 +86,27 @@ const areaList = {
 | columnsBottom | 自定义选项下方内容 | _ReactNode_ | - |
 | optionRender | 自定义选项内容 | _(option: string \| object) => ReactNode_ | - |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
-| readonly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
+| readOnly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
 | itemHeight | 选项高度，支持 `px` `vw` `vh` `rem` 单位，默认 `px` | _number \| string_ | `44` |
 | columnsNum | 显示列数，3-省市区，2-省市，1-省 | _number \| string_ | `3` |
 | visibleItemCount | 可见的选项个数 | _number \| string_ | `6` |
-| swipeDuration | 快速滑动时惯性滚动的时长，单位 `ms` | _number \| string_ | `1000` |
-| isOverseaCode | 根据地区码校验海外地址，海外地址会划分至单独的分类 | _() => boolean_ | - |
+| swipeDuration | 快速滑动时惯性滚动的时长，单位 `ms` | _number \| string_ | `300` |
 
 ### Events
 
-| 事件      | 说明               | 回调参数                       |
-| --------- | ------------------ | ------------------------------ |
-| onConfirm | 点击完成按钮时触发 | _result: ConfirmResult_        |
-| onCancel  | 点击取消按钮时触发 | -                              |
-| onChange  | 选项改变时触发     | 所有列选中值，当前列对应的索引 |
+| 事件      | 说明             | 回调参数                                       |
+| --------- | ---------------- | ---------------------------------------------- |
+| onChange  | 选项改变触发     | _(val: string[], options: AreaColumnOption[])_ |
+| onConfirm | 点击完成按钮触发 | _(val: string[], options: AreaColumnOption[]_  |
+| onCancel  | 点击取消按钮触发 | -                                              |
 
-### ConfirmResult 格式
-
-onConfirm 事件返回的数据整体为一个数组，数组每一项对应一列选项中被选中的数据。
-
-```js
-[
-  {
-    code: '110000',
-    name: '北京市',
-  },
-  {
-    code: '110100',
-    name: '北京市',
-  },
-  {
-    code: '110101',
-    name: '东城区',
-  },
-];
-```
-
-### 方法
-
-通过 ref 可以获取到 Area 实例并调用实例方法。
-
-| 方法名 | 说明                                                 | 参数            | 返回值 |
-| ------ | ---------------------------------------------------- | --------------- | ------ |
-| reset  | 根据地区码重置所有选项，若不传地区码，则重置到第一项 | _code?: string_ | -      |
-
-### 类型定义
-
-组件导出以下类型定义：
+### AreaColumnOption 格式
 
 ```ts
-import type { AreaList, AreaInstance, AreaColumnOption } from 'react-vant';
-```
-
-`AreaInstance` 是组件实例的类型，用法如下：
-
-```ts
-import { useRef } from 'react';
-import type { AreaInstance } from 'react-vant';
-
-const areaRef = useRef<AreaInstance>(null);
-
-areaRef.value?.reset();
+type AreaColumnOption = {
+  value: string;
+  text: string;
+};
 ```
 
 ## 常见问题

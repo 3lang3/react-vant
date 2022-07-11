@@ -14,4 +14,5 @@ export interface OverlayProps extends BaseTypeProps {
   lockScroll?: boolean;
   /** 点击时触发 */
   onClick?: (e: React.MouseEvent) => void;
+  stopPropagation?: string[];
 }

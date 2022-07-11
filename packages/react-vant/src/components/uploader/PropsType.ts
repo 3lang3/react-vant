@@ -76,7 +76,7 @@ export interface UploaderProps extends BaseTypeProps {
   /** 是否禁用文件上传	 */
   disabled?: boolean;
   /** 是否将上传区域设置为只读状态	 */
-  readonly?: boolean;
+  readOnly?: boolean;
   /** 上传区域文字提示	 */
   uploadText?: string;
   /** 是否展示删除按钮	 */

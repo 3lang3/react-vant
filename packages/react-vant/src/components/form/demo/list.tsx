@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Cell, Field, Form } from 'react-vant';
+import { Space, Button, Cell, Input, Form } from 'react-vant';
 import { AddO, Delete } from '@react-vant/icons';
 import './style.less';
 
@@ -26,7 +26,12 @@ export default () => {
               <>
                 {fields.map((field, idx) => (
                   <div className="form-list-item" key={field.key}>
-                    <h6>用户{idx + 1}:</h6>
+                    <h6>
+                      <Space block align='center' justify='between'>
+                        <strong>用户{idx + 1}:</strong>
+                        <Delete color='grey' fontSize={18} onClick={() => remove(idx)} />
+                      </Space>
+                    </h6>
                     <div className="form-list-item__control">
                       <Form.Item
                         label="姓名"
@@ -40,7 +45,7 @@ export default () => {
                           },
                         ]}
                       >
-                        <Field placeholder="请输入用户姓名" />
+                        <Input placeholder="请输入用户姓名" />
                       </Form.Item>
                       <Form.Item
                         label="年龄"
@@ -49,10 +54,7 @@ export default () => {
                           { type: 'number', message: '请输入数字', transform: (v) => Number(v) },
                         ]}
                       >
-                        <Field
-                          placeholder="请输入用户年龄"
-                          rightIcon={<Delete onClick={() => remove(idx)} />}
-                        />
+                        <Input placeholder="请输入用户年龄" />
                       </Form.Item>
                     </div>
                   </div>

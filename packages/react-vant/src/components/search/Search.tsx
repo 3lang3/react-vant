@@ -9,16 +9,17 @@ import React, {
 import clsx from 'clsx';
 import { Search as SearchIco } from '@react-vant/icons';
 import { SearchInstance, SearchProps } from './PropsType';
-import { preventDefault } from '../utils';
+import { createNamespace, preventDefault } from '../utils';
 
 // Components
 import Field from '../field';
 import type { FieldInstance } from '../field';
 import ConfigProviderContext from '../config-provider/ConfigProviderContext';
 
+const [bem] = createNamespace('search');
+
 const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
-  const { prefixCls, createNamespace, locale } = useContext(ConfigProviderContext);
-  const [bem] = createNamespace('search', prefixCls);
+  const { locale } = useContext(ConfigProviderContext);
 
   const filedRef = useRef<FieldInstance>();
   const innerEffect = useRef<boolean>(false);
@@ -80,15 +81,16 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   };
 
   const {
+    autoFocus,
+    align,
     disabled = false,
-    maxlength,
+    maxLength,
     leftIcon,
     rightIcon,
     clearable = true,
     clearTrigger,
     placeholder,
-    inputAlign,
-    readonly,
+    readOnly,
     error,
     errorMessage,
     formatter,
@@ -97,15 +99,16 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   } = props;
 
   const fieldPropNames = {
+    align,
     leftIcon,
     rightIcon,
     clearable,
     clearTrigger,
     placeholder,
     disabled,
-    maxlength,
-    inputAlign,
-    readonly,
+    maxLength,
+    readOnly,
+    autoFocus,
     error,
     errorMessage,
     formatter,
@@ -122,7 +125,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
         rows={1}
         value={value || ''}
         border={false}
-        onKeypress={onKeypress}
+        onKeyPress={onKeypress}
         onFocus={props.onFocus}
         onBlur={props.onBlur}
         onChange={change}
@@ -163,7 +166,6 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
 Search.defaultProps = {
   shape: 'square',
   leftIcon: <SearchIco />,
-  inputAlign: 'left',
 } as const;
 
 export default Search;
