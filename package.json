@@ -1,4 +1,5 @@
 {
+  "version": "0.0.1-rc.0",
   "private": true,
   "scripts": {
     "build": "pnpm --dir ./packages/react-vant build",
@@ -7,6 +8,7 @@
     "docs:build": "pnpm --dir ./packages/react-vant docs:build",
     "docs:deploy": "pnpm --dir ./packages/react-vant site:deploy",
     "lint-staged": "lint-staged",
+    "prepare": "husky install",
     "react-vant:lint": "pnpm --dir ./packages/react-vant lint:tsx"
   },
   "lint-staged": {
@@ -34,6 +36,5 @@
     "stylelint": "14.9.1",
     "typescript": "^4.5.2"
   },
-  "packageManager": "pnpm",
-  "version": "0.0.1-rc.0"
+  "packageManager": "pnpm"
 }
