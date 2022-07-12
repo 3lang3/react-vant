@@ -13,10 +13,10 @@ categories:
       - '🕵️‍♂️ bug'
 autolabeler:
   - label: '🧑‍🎄 feature'
-      branch:
-        - '/feat-.+/'
-      title:
-        - '/feat/i'
+    branch:
+      - '/feat-.+/'
+    title:
+      - '/feat/i'
   - label: '🕵️‍♂️ bug'
     branch:
       - '/fix-.+/'
