@@ -12,14 +12,10 @@ React Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范
 
 ## 更新内容
 
-### 3.0.0
+### 3.0.0-rc.1
 
-`2022-07-11`
+`2022-07-12`
 
 **Bug Fixes**
 
-- none
-
-**Features**
-
-- none
+- `Picker` 组件联级模式下 `value` 关联不正确的问题
