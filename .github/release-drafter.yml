@@ -28,10 +28,12 @@ autolabeler:
   - label: '💄UI'
     branch:
       - '/style-.+/'
+exclude-contributors:
+  - '3lang3'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 template: |
-  ## Changes
+  ## 发布内容
 
   $CHANGES
 
