@@ -1,9 +1,9 @@
-import React, { createContext, Context } from 'react';
+import { createContext, Context } from 'react'
 
 export interface FloatingBallItemState {
-  close?: () => void;
+  close?: () => void
 }
 
-const FloatingBallItem: Context<FloatingBallItemState> = createContext({});
+const FloatingBallItem: Context<FloatingBallItemState> = createContext({})
 
-export default FloatingBallItem;
+export default FloatingBallItem
