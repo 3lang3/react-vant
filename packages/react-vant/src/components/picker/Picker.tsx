@@ -256,7 +256,19 @@ function PopupPicker<T = PickerColumnOption>(
     props.columnsFieldNames,
   );
 
-  const isPlainType = useMemo(() => !Array.isArray(props.columns[0]), [props.columns]);
+  const isPlainType = useMemo(() => {
+    const firstColumn = props.columns[0] || {};
+
+    if (typeof firstColumn === 'object') {
+      // 联级
+      if (childrenKey in firstColumn) {
+        return false
+      }
+      return false
+    }
+    // 单列
+    return true;
+  }, [props.columns, childrenKey]);
 
   const parseValue = (target: any[]) => (isPlainType ? target?.[0] : target);
 
