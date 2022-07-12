@@ -152,6 +152,7 @@ pickerRef.current?.open();
 | --rv-picker-option-disabled-opacity | _0.3_                       | -    |
 | --rv-picker-loading-icon-color      | _var(--rv-primary-color)_   | -    |
 | --rv-picker-loading-mask-color      | _rgba(255, 255, 255, 0.9)_  | -    |
+| --rv-picker-mask-background-image      | _linear-gradient(180deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4)),<br> linear-gradient(0deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4))_  | -    |
 
 ## 常见问题
 

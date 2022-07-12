@@ -1,0 +1,36 @@
+name-template: 'v$RESOLVED_VERSION 🌈'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: '⭐ 新特性'
+    labels:
+      - 'feat'
+      - 'enhance'
+  - title: '💄 优化'
+    labels:
+      - 'refactor'
+      - 'style'
+      - 'perf'
+  - title: '🐛 修复'
+    labels:
+      - 'fix'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ***
+
+  完整内容，请参见 [comparison between $PREVIOUS_TAG and v$NEXT_MINOR_VERSION](https://github.com/3lang3/react-vant/compare/$PREVIOUS_TAG...v$NEXT_MINOR_VERSION)

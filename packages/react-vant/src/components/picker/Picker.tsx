@@ -259,12 +259,12 @@ function PopupPicker<T = PickerColumnOption>(
   const isPlainType = useMemo(() => {
     const firstColumn = props.columns[0] || {};
 
+    if (Array.isArray(firstColumn)) return false;
     if (typeof firstColumn === 'object') {
       // 联级
       if (childrenKey in firstColumn) {
-        return false
+        return false;
       }
-      return false
     }
     // 单列
     return true;
