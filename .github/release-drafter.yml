@@ -3,16 +3,33 @@ tag-template: 'v$RESOLVED_VERSION'
 categories:
   - title: '⭐ 新特性'
     labels:
-      - 'feat'
-      - 'enhance'
+      - '🧑‍🎄 feature'
   - title: '💄 优化'
     labels:
-      - 'refactor'
-      - 'style'
-      - 'perf'
+      - '🧑‍🚀 enhance'
+      - '💄UI'
   - title: '🐛 修复'
     labels:
-      - 'fix'
+      - '🕵️‍♂️ bug'
+
+autolabeler:
+  - label: '🧑‍🎄 feature'
+      branch:
+        - '/feat-.+/'
+      title:
+        - '/feat/i'
+  - label: '🕵️‍♂️ bug'
+    branch:
+      - '/fix-.+/'
+    title:
+      - '/fix/i'
+  - label: '🧑‍🚀 enhance'
+    branch:
+      - '/enhance-.+/'
+  - label: '💄UI'
+    branch:
+      - '/style-.+/'
+
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 
