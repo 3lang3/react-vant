@@ -102,13 +102,14 @@ export default () => (
 
 ### Props
 
-| 参数            | 说明                              | 类型                  | 默认值   |
-| --------------- | --------------------------------- | --------------------- | -------- |
-| dashed          | 是否使用虚线                      | _boolean_             | `false`  |
-| hairline        | 是否使用 0.5px 线                 | _boolean_             | `true`   |
-| contentPosition | 内容位置，可选值为 `left` `right` | _string_              | `center` |
-| className       | 类名                              | _string_              | -        |
-| style           | style                             | _React.CSSProperties_ | -        |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| dashed | 是否使用虚线 | _boolean_ | `false` |
+| type | 水平还是垂直类型 | _`horizontal`\|`vertical`_ | `horizontal` |
+| hairline | 是否使用 0.5px 线 | _boolean_ | `true` |
+| contentPosition | 内容位置，可选值为 `left` `right` | _string_ | `center` |
+| className | 类名 | _string_ | - |
+| style | style | _React.CSSProperties_ | - |
 
 ## 主题定制
 
