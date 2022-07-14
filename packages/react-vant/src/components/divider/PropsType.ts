@@ -1,20 +1,25 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
-export type DividerContentPosition = 'left' | 'center' | 'right';
+export type DividerContentPosition = 'left' | 'center' | 'right'
 export interface DividerProps
   extends BaseTypeProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'style'> {
   /** 是否使用虚线	 */
-  dashed?: boolean;
+  dashed?: boolean
   /**
    * 是否使用 0.5px 线
    * @default true
    */
-  hairline?: boolean;
+  hairline?: boolean
+  /**
+   * 水平还是垂直类型
+   * @default 'horizontal'
+   */
+  type?: 'horizontal' | 'vertical'
   /**
    * 内容位置
    * @default 'center'
    */
-  contentPosition?: DividerContentPosition;
+  contentPosition?: DividerContentPosition
 }

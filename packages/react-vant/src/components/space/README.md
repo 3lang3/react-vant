@@ -41,6 +41,29 @@ export default () => {
 };
 ```
 
+
+### 分隔符
+
+相邻组件分隔符。
+
+```jsx
+/**
+ * title: 分隔符
+ */
+import React from 'react';
+import { Space, Typography, Divider } from 'react-vant';
+
+export default () => {
+  return (
+    <Space align="center" divider={<Divider type="vertical" />}>
+      <Typography.Link>Info</Typography.Link>
+      <Typography.Link>Edit</Typography.Link>
+      <Typography.Link type="danger">Delete</Typography.Link>
+    </Space>
+  );
+};
+```
+
 ### 垂直间距
 
 相邻组件垂直间距，可以设置 width: 100% 独占一行。
@@ -144,7 +167,7 @@ import { Space, Button } from 'react-vant';
 
 export default () => {
   return (
-    <Space wrap>
+    <Space wrap gap={[8, 20]}>
       {new Array(6).fill(null).map((_, index) => (
         <Button key={index}>Button</Button>
       ))}
@@ -165,6 +188,7 @@ export default () => {
 | direction | 间距方向 | _'vertical' \| 'horizontal'_ | `horizontal` |
 | wrap | 是否自动换行，仅在 horizontal 时有效 | _boolean_ | `false` |
 | block | 是否渲染为块级元素 | _boolean_ | `false` |
+| divider | 分隔符 | _ReactNode_ | - |
 
 ### 事件
 
