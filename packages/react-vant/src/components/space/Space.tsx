@@ -1,28 +1,39 @@
-import React from 'react';
-import clsx from 'clsx';
-import { SpaceProps } from './PropsType';
-import { createNamespace } from '../utils';
+import React, { useMemo } from 'react'
+import clsx from 'clsx'
+import { SpaceProps } from './PropsType'
+import { createNamespace } from '../utils'
 
-const formatGap = (gap: string | number) => (typeof gap === 'number' ? `${gap}px` : gap);
+const formatGap = (gap: string | number) =>
+  typeof gap === 'number' ? `${gap}px` : gap
 
-const [bem] = createNamespace('space');
+const [bem] = createNamespace('space')
 
-const Space: React.FC<SpaceProps> = (props) => {
-  const { wrap, block, direction, align, justify } = props;
+const Space: React.FC<SpaceProps> = props => {
+  const { wrap, block, direction, align, justify } = props
   const style = React.useMemo(() => {
     if (props.gap) {
       if (Array.isArray(props.gap)) {
-        const [gapH, gapV] = props.gap;
+        const [gapV, gapH] = props.gap
         return {
           ...props.style,
-          '--gap-vertical': formatGap(gapV),
-          '--gap-horizontal': formatGap(gapH),
-        };
+          '--gap': `${formatGap(gapV)} ${formatGap(gapH)}`,
+        }
       }
-      return { ...props.style, '--gap': formatGap(props.gap as string | number) };
+      return {
+        ...props.style,
+        '--gap': formatGap(props.gap as string | number),
+      }
     }
-    return props.style;
-  }, [props.style, props.gap]);
+    return props.style
+  }, [props.style, props.gap])
+
+  const childList = useMemo(
+    () =>
+      React.Children.map(props.children, c => c).filter(
+        c => c !== null && c !== undefined
+      ),
+    [props.children]
+  )
 
   return (
     <div
@@ -34,22 +45,27 @@ const Space: React.FC<SpaceProps> = (props) => {
           [`${direction}`]: !!direction,
           [`align-${align}`]: !!align,
           [`justify-${justify}`]: !!justify,
-        }),
+        })
       )}
       style={style}
       onClick={props.onClick}
     >
-      {React.Children.map(props.children, (child) => {
+      {childList.map((child, idx) => {
         return (
-          child !== null && child !== undefined && <div className={clsx(bem('item'))}>{child}</div>
-        );
+          <React.Fragment key={idx}>
+            <div className={clsx(bem('item'))}>{child}</div>
+            {!!props.divider && idx !== childList.length - 1 && (
+              <div className={clsx(bem('item-divider'))}>{props.divider}</div>
+            )}
+          </React.Fragment>
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
 Space.defaultProps = {
   direction: 'horizontal',
-};
+}
 
-export default Space;
+export default Space
