@@ -5,7 +5,7 @@
 ## 引入
 
 ```js
-import { Tabs } from 'react-vant';
+import { Tabs } from 'react-vant'
 ```
 
 ## 代码演示
@@ -29,13 +29,13 @@ import { Tabs } from 'react-vant';
 /**
  * title: 通过名称匹配
  */
-import React from 'react';
-import { Tabs } from 'react-vant';
+import React from 'react'
+import { Tabs } from 'react-vant'
 
 export default () => {
   return (
-    <div className="demo-tabs">
-      <Tabs active="c">
+    <div className='demo-tabs'>
+      <Tabs active='c'>
         {['a', 'b', 'c'].map((item, index) => (
           <Tabs.TabPane name={item} key={item} title={`标签${index + 1}`}>
             内容 {index + 1}
@@ -43,8 +43,8 @@ export default () => {
         ))}
       </Tabs>
     </div>
-  );
-};
+  )
+}
 ```
 
 ### 标签栏滚动
@@ -55,22 +55,22 @@ export default () => {
 /**
  * title: 标签栏滚动
  */
-import React from 'react';
-import { Tabs } from 'react-vant';
+import React from 'react'
+import { Tabs } from 'react-vant'
 
 export default () => {
   return (
-    <div className="demo-tabs">
+    <div className='demo-tabs'>
       <Tabs>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8].map(item => (
           <Tabs.TabPane key={item} title={`标签${item}`}>
             内容 {item}
           </Tabs.TabPane>
         ))}
       </Tabs>
     </div>
-  );
-};
+  )
+}
 ```
 
 ### 禁用标签
@@ -81,22 +81,22 @@ export default () => {
 /**
  * title: 禁用标签
  */
-import React from 'react';
-import { Tabs } from 'react-vant';
+import React from 'react'
+import { Tabs } from 'react-vant'
 
 export default () => {
   return (
-    <div className="demo-tabs">
-      <Tabs active="c">
-        <Tabs.TabPane title="标签1">内容1</Tabs.TabPane>
-        <Tabs.TabPane title="标签2" disabled>
+    <div className='demo-tabs'>
+      <Tabs active={1}>
+        <Tabs.TabPane title='标签1'>内容1</Tabs.TabPane>
+        <Tabs.TabPane title='标签2' disabled>
           内容2
         </Tabs.TabPane>
-        <Tabs.TabPane title="标签3">内容3</Tabs.TabPane>
+        <Tabs.TabPane title='标签3'>内容3</Tabs.TabPane>
       </Tabs>
     </div>
-  );
-};
+  )
+}
 ```
 
 ### 对齐方式
@@ -107,22 +107,22 @@ export default () => {
 /**
  * title: 对齐方式
  */
-import React from 'react';
-import { Tabs } from 'react-vant';
+import React from 'react'
+import { Tabs } from 'react-vant'
 
 export default () => {
   return (
-    <div className="demo-tabs">
-      <Tabs align="start">
-        {[1, 2, 3].map((item) => (
+    <div className='demo-tabs'>
+      <Tabs align='start'>
+        {[1, 2, 3].map(item => (
           <Tabs.TabPane key={item} title={`标签${item}`}>
             内容 {item}
           </Tabs.TabPane>
         ))}
       </Tabs>
     </div>
-  );
-};
+  )
+}
 ```
 
 ### 粘性布局
@@ -133,22 +133,22 @@ export default () => {
 /**
  * title: 粘性布局
  */
-import React from 'react';
-import { Tabs } from 'react-vant';
+import React from 'react'
+import { Tabs } from 'react-vant'
 
 export default () => {
   return (
-    <div className="demo-tabs">
+    <div className='demo-tabs'>
       <Tabs sticky swipeable>
-        {[1, 2, 3, 4].map((item) => (
+        {[1, 2, 3, 4].map(item => (
           <Tabs.TabPane key={item} title={`标签${item}`}>
             内容 {item}
           </Tabs.TabPane>
         ))}
       </Tabs>
     </div>
-  );
-};
+  )
+}
 ```
 
 ### 滚动导航
@@ -159,22 +159,25 @@ export default () => {
 /**
  * title: 滚动导航
  */
-import React from 'react';
-import { Tabs } from 'react-vant';
+import React from 'react'
+import { Tabs } from 'react-vant'
 
 export default () => {
   return (
-    <div className="demo-tabs">
-      <Tabs sticky scrollspy={{ autoFocusLast: true, reachBottomThreshold: 50 }}>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+    <div className='demo-tabs'>
+      <Tabs
+        sticky
+        scrollspy={{ autoFocusLast: true, reachBottomThreshold: 50 }}
+      >
+        {[1, 2, 3, 4, 5, 6, 7, 8].map(item => (
           <Tabs.TabPane key={item} title={`标签${item}`}>
             <div style={{ height: '50vh' }}>内容 {item}</div>
           </Tabs.TabPane>
         ))}
       </Tabs>
     </div>
-  );
-};
+  )
+}
 ```
 
 ## API
@@ -183,12 +186,13 @@ export default () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| active | 绑定当前选中标签的标识符 | _number \| string_ | `0` |
+| active | 当前选中项的标识符 | _number \| string_ | - |
+| defaultActive | 默认选中项的标识符 | _number \| string_ | `0` |
 | type | 样式风格类型 | _line\|card\|capsule\|jumbo_ | `line` |
 | align | 标签栏对齐方式, 可选值 `start` `center` | _string_ | `center` |
 | color | 标签主题色 <br/> `type` 为 `line` 时，下划线颜色和选中项颜色<br/> `type` 为 `capsule` 时，选中项背景色<br/> `type` 为 `jumbo` 时，选中项颜色和描述信息背景色<br/> `type` 为 `card` 时，线框色和选中项背景色 | _string_ | `#ee0a24` |
 | background | 标签栏背景色 | _string_ | `white` |
-| duration | 动画时间，单位秒 | _number \| string_ | `0.3` |
+| duration | 动画时间，单位秒 | _number \| string_ | `300ms` |
 | lineWidth | `type` 为 `line` 时生效，底部条宽度，默认单位 `px` | _number \| string_ | `40px` |
 | lineHeight | `type` 为 `line` 时生效，底部条高度，默认单位 `px` | _number \| string_ | `3px` |
 | animated | 是否开启切换标签内容时的转场动画 | _boolean_ | `false` |
@@ -219,6 +223,7 @@ export default () => {
 | --- | --- | --- | --- |
 | autoFocusLast | 滚动导航模式下，容器滚动触底时是否将最后一个 tab 转为 Active 状态 | _boolean_ | - |
 | reachBottomThreshold | 触底偏移量 | _number_ | - |
+| scrollImmediate | 点击标签，立即展示对应内容区域，取消滚动动画 | _boolean_ | `true` |
 
 ### TabPane Props
 
@@ -236,7 +241,7 @@ export default () => {
 
 | 事件名 | 说明 | 回调参数 |
 | --- | --- | --- |
-| onClickTab | 点击标签时触发 | _{ name: string \| number, title: string, event: MouseEvent, disabled: boolean }_ |
+| onClickTab | 点击标签时触发 | _{ name: string \| number, event: MouseEvent, disabled: boolean }_ |
 | onChange | 当前激活的标签改变时触发 | _name: string \| number, tabIndex: number_ |
 | onScroll | 滚动时触发，仅在 sticky 模式下生效 | _{ scrollTop: number, isFixed: boolean }_ |
 
@@ -259,23 +264,23 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                  | 默认值                                      | 描述 |
-| ------------------------------------- | ------------------------------------------- | ---- |
-| --rv-tab-text-color                   | _var(--rv-gray-7)_                          | -    |
-| --rv-tab-active-text-color            | _var(--rv-text-color)_                      | -    |
-| --rv-tab-disabled-text-color          | _var(--rv-gray-5)_                          | -    |
-| --rv-tab-font-size                    | _var(--rv-font-size-md)_                    | -    |
-| --rv-tab-line-height                  | _var(--rv-line-height-md)_                  | -    |
-| --rv-tabs-default-color               | _var(--rv-danger-color)_                    | -    |
-| --rv-tabs-line-height                 | _44px_                                      | -    |
-| --rv-tabs-card-height                 | _30px_                                      | -    |
-| --rv-tabs-nav-background-color        | _var(--rv-white)_                           | -    |
-| --rv-tabs-bottom-bar-width            | _40px_                                      | -    |
-| --rv-tabs-bottom-bar-height           | _3px_                                       | -    |
-| --rv-tabs-bottom-bar-color            | _var(--rv-danger-color)_                    | -    |
-| --rv-tabs-jumbo-height                | _64px_                                      | -    |
-| --rv-tab-capsule-padding              | _var(--rv-padding-xs) var(--rv-padding-sm)_ | -    |
-| --rv-tab-jumbo-title-size             | _var(--rv-font-size-lg)_                    | -    |
-| --rv-tab-description-font-size        | _var(--rv-font-size-sm)_                    | -    |
-| --rv-tab-description-color            | _var(--rv-grey-6)_                          | -    |
-| --rv-tab-description-background-color | _var(--rv-grey-6)_                          | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-tab-text-color | _var(--rv-gray-7)_ | - |
+| --rv-tab-active-text-color | _var(--rv-text-color)_ | - |
+| --rv-tab-disabled-text-color | _var(--rv-gray-5)_ | - |
+| --rv-tab-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-tab-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-tabs-default-color | _var(--rv-danger-color)_ | - |
+| --rv-tabs-line-height | _44px_ | - |
+| --rv-tabs-card-height | _30px_ | - |
+| --rv-tabs-nav-background-color | _var(--rv-white)_ | - |
+| --rv-tabs-bottom-bar-width | _40px_ | - |
+| --rv-tabs-bottom-bar-height | _3px_ | - |
+| --rv-tabs-bottom-bar-color | _var(--rv-danger-color)_ | - |
+| --rv-tabs-jumbo-height | _64px_ | - |
+| --rv-tab-capsule-padding | _var(--rv-padding-xs) var(--rv-padding-sm)_ | - |
+| --rv-tab-jumbo-title-size | _var(--rv-font-size-lg)_ | - |
+| --rv-tab-description-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-tab-description-color | _var(--rv-grey-6)_ | - |
+| --rv-tab-description-background-color | _var(--rv-grey-6)_ | - |

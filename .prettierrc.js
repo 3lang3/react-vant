@@ -13,6 +13,7 @@ module.exports = {
       'files': ['*.md'],
       'options': {
         embeddedLanguageFormatting: 'off',
+        proseWrap: 'never'
       },
     },
   ],
