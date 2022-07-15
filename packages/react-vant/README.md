@@ -36,7 +36,7 @@ English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages
 ## ✨ Feature
 
 - 🚀 The average component size is less than 1KB（min+gzip）.
-- 💎 60+ high-quality components, covering mainstream mobile scenes.
+- 💎 70+ high-quality components, covering mainstream mobile scenes.
 - 💪 Written in TypeScript, providing a complete type definition.
 - 📝 Provide complete documentation and component examples.
 - 🎨 Support theme customization, built-in 700+ theme designers.

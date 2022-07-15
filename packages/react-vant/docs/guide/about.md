@@ -31,7 +31,7 @@
 ### 链接
 
 - [意见反馈](https://github.com/3lang3/react-vant/issues)
-- [更新日志](/guide/changelog)
+- [更新日志](https://github.com/3lang3/react-vant/releases)
 - [码云镜像](https://react-vant-gitee.3lang.dev/)
 
 ### 贡献者

@@ -8,28 +8,17 @@ html {
   --rv-page-home-component-bg: #fff;
   --rv-page-home-calendar-month-mark-color: rgba(242, 243, 245, 0.8);
 }
-html[data-theme="dark"] {
-  --rv-page-home-bg-main:  rgb(10, 25, 41);
+html[data-theme='dark'] {
+  --rv-page-home-bg-main: rgb(10, 25, 41);
   --rv-page-home-component-bg: #001e3c;
   --rv-page-home-calendar-month-mark-color: rgba(17, 54, 101, 0.8);
   --rv-page-footer-bg: #131313;
 }
 
 ._home {
-
   color: var(--mdoc-font-color-base);
   &-wrapper {
     margin: 20px auto;
-  }
-
-  &-notice {
-    position: fixed !important;
-    top: 60px;
-    left: 50%;
-    width: 100%;
-    max-width: 480px;
-    transform: translateX(-50%);
-    z-index: 9;
   }
 
   &-box {
@@ -41,13 +30,14 @@ html[data-theme="dark"] {
   }
 
   &-container {
-
     --rv-border-color: var(--mdoc-border-color);
     --rv-typography-color: var(--mdoc-font-color-base);
     --rv-cell-border-color: var(--mdoc-border-color);
     --rv-cell-text-color: var(--mdoc-font-color-base);
     --rv-cell-background-color: var(--rv-page-home-component-bg);
-    --rv-collapse-item-content-background-color: var(--rv-page-home-component-bg);
+    --rv-collapse-item-content-background-color: var(
+      --rv-page-home-component-bg
+    );
     --rv-collapse-item-content-text-color: var(--mdoc-font-color-base);
     --rv-calendar-background-color: var(--rv-page-home-component-bg);
 
@@ -61,7 +51,9 @@ html[data-theme="dark"] {
     --rv-button-plain-background-color: var(--rv-page-home-component-bg);
 
     --rv-checkbox-label-color: var(--mdoc-font-color-base);
-    --rv-calendar-month-mark-color: var(--rv-page-home-calendar-month-mark-color);
+    --rv-calendar-month-mark-color: var(
+      --rv-page-home-calendar-month-mark-color
+    );
 
     [class*='rv-hairline']::after {
       --rv-gray-3: var(--mdoc-border-color);

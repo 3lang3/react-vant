@@ -26,6 +26,19 @@
 
 ### 不兼容的变化
 
+`Form.Item` 不再支持 `Field` 组件，请使用 `Input` 代替
+
+```diff
+<Form.Item label="输入框">
+-  <Field />
++  <Input />
+<Form.Item>
+
+<Form.Item label="文本框">
+-  <Field type="textarea" />
++  <Input.TextArea />
+<Form.Item>
+```
 #### 废弃组件
 
 - 移除了 `Swipe` 组件
@@ -72,9 +85,9 @@
   - 新增 `Form.useWatch`
   
 - `Form.Item` 组件:
-    - `Form.Item` 移除 `inputAlign` 属性，使用 `controlAlign` 代替
-    - `Form.Item` 移除 `customField` 属性
-    - `Form.Item` 调整 `onClick` 属性，现第二个参数为子组件 `ref` 的实例
+  - `Form.Item` 移除 `inputAlign` 属性，使用 `controlAlign` 代替
+  - `Form.Item` 移除 `customField` 属性
+  - `Form.Item` 调整 `onClick` 属性，现第二个参数为子组件 `ref` 的实例
 
 - `Cascader` 组件:
   - 支持 [受控](https://reactjs.org/docs/forms.html#controlled-components)和[非受控模式](https://reactjs.org/docs/uncontrolled-components.html)
