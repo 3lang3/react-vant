@@ -1,9 +1,8 @@
-
 html {
   --rv-page-footer-bg: #f6f8fc;
   --rv-page-footer-color: #666;
 }
-html[data-theme="dark"] {
+html[data-theme='dark'] {
   --rv-page-footer-bg: #131313;
   --rv-page-footer-color: #999;
 }
@@ -31,13 +30,12 @@ html[data-theme="dark"] {
       text-decoration: underline;
     }
   }
-  
+
   img {
     width: 44px;
-    opacity: .35;
+    opacity: 0.35;
     filter: grayscale(1);
   }
-
 
   p {
     max-width: 50rem;
@@ -47,5 +45,20 @@ html[data-theme="dark"] {
 
   a {
     color: var(--mdoc-link-color);
+  }
+}
+
+.rv-site-header__extra {
+  flex: 1;
+  font-size: 13px;
+  &__content {
+    background-color: var(--mdoc-md-quote-background-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+
+    a {
+      color: var(--mdoc-link-color);
+    }
   }
 }

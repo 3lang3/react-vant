@@ -38,8 +38,8 @@ importers:
 
   packages/react-vant:
     specifiers:
-      '@rcdoc/cli': 0.1.23
-      '@rcdoc/theme': ^0.1.6
+      '@rcdoc/cli': 0.1.24
+      '@rcdoc/theme': ^0.1.8
       '@react-spring/web': ^9.3.0
       '@react-vant/icons': workspace:*
       '@types/node': ^17.0.31
@@ -70,8 +70,8 @@ importers:
       react-transition-group: 4.4.2_biqbaboplfbrettd7655fr4n2y
       tslib: 2.4.0
     devDependencies:
-      '@rcdoc/cli': 0.1.23_@types+react@18.0.15
-      '@rcdoc/theme': 0.1.7_biqbaboplfbrettd7655fr4n2y
+      '@rcdoc/cli': 0.1.24_@types+react@18.0.15
+      '@rcdoc/theme': 0.1.8_biqbaboplfbrettd7655fr4n2y
       '@types/node': 17.0.35
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.5
@@ -2126,8 +2126,8 @@ packages:
       - typescript
     dev: true
 
-  /@rcdoc/cli/0.1.23_@types+react@18.0.15:
-    resolution: {integrity: sha512-Pr1ZX0S6i7qvKHS+y0oNZdMzOAUOetV322nEs5solPWI7q+/Qx0YTHn5ldaw7cxOSdUzUhzAADGSBTXc5Rt4lg==}
+  /@rcdoc/cli/0.1.24_@types+react@18.0.15:
+    resolution: {integrity: sha512-elE/HIv0o9Wkr3WPBhO+iBs53kf1K7/+IWK8At+Aq7hJDwQLRpWqssaumEt14CbFbMY5lIgIaqXRNCn4xatiLg==}
     hasBin: true
     dependencies:
       '@babel/core': 7.18.0
@@ -2136,8 +2136,8 @@ packages:
       '@babel/runtime': 7.18.0
       '@rcdoc/build': 0.1.11
       '@rcdoc/plugin-react': 0.0.2
-      '@rcdoc/theme': 0.1.7_biqbaboplfbrettd7655fr4n2y
-      '@rcdoc/vitejs-plugin': 0.1.7_gqfgot6hpsaqb5flcqsq74ak5q
+      '@rcdoc/theme': 0.1.8_biqbaboplfbrettd7655fr4n2y
+      '@rcdoc/vitejs-plugin': 0.1.8_gqfgot6hpsaqb5flcqsq74ak5q
       babel-jest: 27.5.1_@babel+core@7.18.0
       bundle-require: 3.0.4_esbuild@0.14.39
       chalk: 5.0.1
@@ -2155,7 +2155,7 @@ packages:
       less: 4.1.2
       lodash-es: 4.17.21
       ora: 6.1.0
-      rcdoc-theme-default: 0.1.12_bb2bxwco6ptpubzwpazr52qf6i
+      rcdoc-theme-default: 0.1.13_bb2bxwco6ptpubzwpazr52qf6i
       react: 18.2.0
       react-docgen-typescript: 2.2.2
       react-dom: 18.2.0_react@18.2.0
@@ -2180,8 +2180,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@rcdoc/parser/0.1.5:
-    resolution: {integrity: sha512-KY674b2CZGHkVjeF+28mwlPKh6s+/wVSg+cPm63nrPZS3+Mgf5HsHZnffGo1SswrjDo0cx7dEQoJ/o8WQb+rYQ==}
+  /@rcdoc/parser/0.1.6:
+    resolution: {integrity: sha512-w/ydJ/oIce9Vtkk6FCE5A72seNjShNSUMmsA5ARttq0TfJoOlx2lwpRvG9gUISc2IU2Z4ykKdhpC0tY0X8wn4g==}
     dependencies:
       '@babel/core': 7.18.0
       '@babel/plugin-syntax-jsx': 7.17.12_@babel+core@7.18.0
@@ -2230,8 +2230,8 @@ packages:
       - supports-color
     dev: true
 
-  /@rcdoc/theme/0.1.7_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-purNssbf2fGLfv2hQv0h0AACUqTnZ9rLJvPWAEUDD4MAAKMNvqF/FhjUwTgPU7sd5CwQiQ/DHexNeVblzMWQkA==}
+  /@rcdoc/theme/0.1.8_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-T4ODyVqbVU4WTWEo1xIHq8dTeVFxCMsRhOYW7vSiT12Fitjk1yZlrkluWTU5Mp/JbdqT8XuTsvnfdTehGWAYAg==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
@@ -2243,10 +2243,10 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
-  /@rcdoc/vitejs-plugin/0.1.7_gqfgot6hpsaqb5flcqsq74ak5q:
-    resolution: {integrity: sha512-X3jrNmJqQFty4spcT5VJWp+nfL8Mt0yuOSTeaBbO+6VGHKSE7606FDOuLrNjINfD0JCpdBMiSj342S1sX8XTkQ==}
+  /@rcdoc/vitejs-plugin/0.1.8_gqfgot6hpsaqb5flcqsq74ak5q:
+    resolution: {integrity: sha512-E3e12IByljmw7vRd3y80EvFeVID9lrTwJ+b7f+zRvmBE3J71Len6DMuhhRsMte2zXbWgdzaLazco0h0D4SvPOg==}
     dependencies:
-      '@rcdoc/parser': 0.1.5
+      '@rcdoc/parser': 0.1.6
       '@rollup/pluginutils': 4.2.1
       debug: 4.3.4
       slash2: 2.0.0
@@ -7760,7 +7760,7 @@ packages:
     dev: true
 
   /lz-string/1.4.4:
-    resolution: {integrity: sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=}
+    resolution: {integrity: sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==}
     hasBin: true
     dev: true
 
@@ -9660,15 +9660,15 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /rcdoc-theme-default/0.1.12_bb2bxwco6ptpubzwpazr52qf6i:
-    resolution: {integrity: sha512-KwC1bv/jVjGWNf5bZ18PZ7w5tR9qKuQ6zAxH9mc+S/igGfI+gFOqLTe2RDKin+uuLyEfPvUkQdpxSLJW7RiWZA==}
+  /rcdoc-theme-default/0.1.13_bb2bxwco6ptpubzwpazr52qf6i:
+    resolution: {integrity: sha512-hJj348mEcAjplIf0d/FPvHees0nxprPhI6aOy36MSAUXqY3Pn76pK2q6Ge0louQG4LcTkFs13GlrbF2jAB0hqA==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
       '@docsearch/css': 3.1.0
       '@docsearch/react': 3.1.0_bb2bxwco6ptpubzwpazr52qf6i
-      '@rcdoc/theme': 0.1.7_biqbaboplfbrettd7655fr4n2y
+      '@rcdoc/theme': 0.1.8_biqbaboplfbrettd7655fr4n2y
       '@vant/touch-emulator': 1.3.2
       clsx: 1.2.1
       prism-react-renderer: 1.3.3_react@18.2.0
