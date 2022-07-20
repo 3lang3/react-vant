@@ -2,36 +2,32 @@
   "name": "@react-vant/icons",
   "version": "0.0.6",
   "description": "react vant icons",
-  "scripts": {
-    "export": "node ./scripts/export.js && npx @svgr/cli -d src/icons src/svg",
-    "build": "gulp",
-    "prepare": "pnpm build",
-    "prepack": "npm run build"
-  },
+  "license": "MIT",
+  "sideEffects": [],
   "main": "./lib/index.js",
+  "jsdelivr": "./lib/index.js",
+  "unpkg": "./lib/index.js",
   "module": "./es/index.js",
   "types": "./es/index.d.ts",
   "typings": "./es/index.d.ts",
-  "jsdelivr": "./lib/index.js",
-  "unpkg": "./lib/index.js",
-  "sideEffects": [],
   "files": [
     "es/",
     "lib/",
     "README.md"
   ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+  "scripts": {
+    "build": "gulp",
+    "export": "node ./scripts/export.js && npx @svgr/cli -d src/icons src/svg",
+    "prepack": "npm run build",
+    "prepare": "pnpm build"
   },
-  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
     "@types/react": "18.0.15",
-    "del": "7.0.0",
+    "del": "6.1.1",
     "fast-glob": "^3.2.2",
     "fs-extra": "10.1.0",
     "gulp": "^4.0.2",
@@ -44,5 +40,9 @@
   },
   "peerDependencies": {
     "react": ">=16.14.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
