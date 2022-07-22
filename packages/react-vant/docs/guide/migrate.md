@@ -58,6 +58,17 @@
 
 #### 组件重构
 
+- `Uploader` 组件:
+  - 新增 `upload` 属性，解决上传以及动态状态问题
+  - 新增 `statusTextRender` 属性，支持上传是自定义文案
+  - 新增 `deleteRender` 属性，支持自定义上传按钮视图
+  - 调整 `value` 类型，新增 `defaultValue` 属性 支持 [受控](https://reactjs.org/docs/forms.html#controlled-components)和[非受控模式](https://reactjs.org/docs/uncontrolled-components.html)
+  - 调整 `onChange` 类型
+  - 调整 `onDelete` 类型
+  - 调整 `beforeRead` 类型
+  - 移除 `beforeDelete` 属性，现可通过 `onDelete` 实现
+  - 移除 `afterRead` 属性，现可通过 `upload` 实现
+  
 - `Tabs` 组件:
   - 调整 `type` 属性，新增 `capsule` `jumbo` 类型
   - 调整 `color` 属性定义，适配 `type` 属性

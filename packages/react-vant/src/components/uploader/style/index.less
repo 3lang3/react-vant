@@ -26,6 +26,7 @@
   --rv-uploader-loading-icon-size: @uploader-loading-icon-size;
   --rv-uploader-loading-icon-color: @uploader-loading-icon-color;
   --rv-uploader-disabled-opacity: @uploader-disabled-opacity;
+  --rv-uploader-gap: var(--rv-padding-xs);
 }
 
 .@{rv-prefix}-uploader {
@@ -35,6 +36,8 @@
   &__wrapper {
     display: flex;
     flex-wrap: wrap;
+    gap: var(--rv-uploader-gap);
+    padding-bottom: var(--rv-uploader-gap);
 
     &--disabled {
       opacity: var(--rv-uploader-disabled-opacity);
@@ -69,7 +72,6 @@
     box-sizing: border-box;
     width: var(--rv-uploader-size);
     height: var(--rv-uploader-size);
-    margin: 0 var(--rv-padding-xs) var(--rv-padding-xs) 0;
     background-color: var(--rv-uploader-upload-background-color);
 
     &:active {
@@ -94,7 +96,6 @@
 
   &__preview {
     position: relative;
-    margin: 0 var(--rv-padding-xs) var(--rv-padding-xs) 0;
     cursor: pointer;
 
     &-image {

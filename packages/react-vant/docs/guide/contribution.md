@@ -12,11 +12,11 @@
 
 按照下面的步骤操作，即可在本地开发组
 
-> react vant使用 [pnpm-workspace](https://pnpm.io/workspaces)， 请使用[pnpm](https://pnpm.io/)安装依赖
+> react vant 使用 [pnpm-workspace](https://pnpm.io/workspaces)， 请使用[pnpm](https://pnpm.io/)安装依赖
 
 ```bash
 # 克隆仓库
-https://github.com/3lang3/react-vant.git
+git clone https://github.com/3lang3/react-vant.git
 
 # 安装依赖
 cd react-vant && pnpm install
@@ -27,18 +27,17 @@ pnpm dev
 
 ### 目录结构
 
-- 仓库的组件代码位于 src 下，每个组件一个文件夹
-- docs 目录下是文档网站的代码，本地开发时可以在目录下运行 npm run start 开启文档网站
+- 仓库的组件代码位于 `src/components` 下，每个组件一个文件夹
+- `docs` 目录下是文档网站的代码
 
 项目主要目录如下：
 
 ```
 react-vant
-├─ build     # 构建
+├─ docs-dist  # 文档构建产物
+├─ dist  # 组件构建产物
 ├─ docs      # 文档
 ├─ src       # 组件
-├─ packages  # 子包
-├─ test      # 单测
 └─ typings     # 类型
 ```
 
@@ -50,17 +49,17 @@ react-vant
 
 ```
 src
-└─ button
-   ├─ demo              # 示例代码
-   ├─ __test__          # 单元测试
-   ├─ index.js          # 组件入口
-   ├─ style/index.less  # 组件样式
-   ├─ README.md         # 中文文档
-   └─ README.en-US.md   # 英文文档
+└─components
+  └─ button
+    ├─ demo              # 示例代码
+    ├─ __test__          # 单元测试
+    ├─ index.js          # 组件入口
+    ├─ style/index.less  # 组件样式
+    ├─ README.md         # 中文文档
+    └─ README.en-US.md   # 英文文档
 ```
 
 ## 提交 PR
-
 ### Pull Request 规范
 
 如果你是第一次在 GitHub 上提 Pull Request ，可以阅读下面这两篇文章来学习：
