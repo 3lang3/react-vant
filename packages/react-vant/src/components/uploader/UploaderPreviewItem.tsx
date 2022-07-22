@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import cls from 'clsx'
 import { Close, Cross, Description } from '@react-vant/icons'
 // Utils
@@ -13,6 +13,18 @@ const [bem] = createNamespace('uploader')
 
 export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = props => {
   const { onPreview, statusTextRender, status, file, url } = props
+
+  const isImage = useMemo(() => isImageFile({ file, url }), [file, url])
+  const imageSrc = useMemo(() => {
+    if (isImage) {
+      if (url) return url
+      if (file) {
+        return URL.createObjectURL(file)
+      }
+    }
+    return ''
+  }, [isImage, file, url])
+
   const renderMask = () => {
     if (status === 'failed' || status === 'pending') {
       const MaskIcon =
@@ -38,7 +50,9 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = props => {
 
   const renderDeleteIcon = () => {
     if (props.deletable) {
-      return (
+      return props.deleteRender ? (
+        props.deleteRender(props.onDelete)
+      ) : (
         <div className={cls(bem('preview-delete'))} onClick={props.onDelete}>
           <Cross className={cls(bem('preview-delete-icon'))} />
         </div>
@@ -50,12 +64,11 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = props => {
   const renderCover = () => props.previewCoverRender?.()
 
   const renderPreview = () => {
-    if (isImageFile({ file, url })) {
-      const src = (file && URL.createObjectURL(file)) || url
+    if (isImage) {
       return (
         <Image
           fit={props.imageFit}
-          src={src}
+          src={imageSrc}
           className={cls(bem('preview-image'))}
           width={props.previewSize}
           height={props.previewSize}

@@ -35,12 +35,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
     setTasks(prev =>
       prev.filter(task => {
         if (task.url === undefined) return true
-        return !value
-          .map(fileItem => ({
-            ...fileItem,
-            key: fileItem.key ?? idCountRef.current++,
-          }))
-          .some(fileItem => fileItem.url === task.url)
+        return !value.some(fileItem => fileItem.url === task.url)
       })
     )
   }, [value])
@@ -179,12 +174,13 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
     return (
       <UploaderPreviewItem
         file={item.file}
-        key={item.key ?? index}
+        key={item.key ?? `-${index}`}
         name={props.name}
         url={item.thumbnail ?? item.url}
         imageFit={props.imageFit}
         deletable={props.deletable}
         previewSize={props.previewSize}
+        deleteRender={props.deleteRender}
         previewCoverRender={() => props.previewCoverRender?.(item)}
         onClick={() => props.onClickPreview?.(item, index)}
         onDelete={async () => {
@@ -211,6 +207,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
                 status={task.status}
                 statusTextRender={props.statusTextRender}
                 deletable={task.status !== 'pending'}
+                deleteRender={props.deleteRender}
                 imageFit={props.imageFit}
                 onDelete={() => {
                   setTasks(tasks.filter(x => x.id !== task.id))

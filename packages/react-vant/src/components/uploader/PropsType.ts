@@ -40,7 +40,12 @@ export type UploaderBeforeRead = (
 export interface UploaderPrviewItemProps
   extends Pick<
     UploaderProps,
-    'deletable' | 'statusTextRender' | 'name' | 'imageFit' | 'previewSize'
+    | 'deletable'
+    | 'statusTextRender'
+    | 'name'
+    | 'imageFit'
+    | 'previewSize'
+    | 'deleteRender'
   > {
   status?: TaskStatus
   /** 删除文件预览时触发	 */
@@ -67,8 +72,6 @@ export interface UploaderProps extends BaseTypeProps {
   deletable?: boolean
   /** 是否展示上传区域	 */
   showUpload?: boolean
-  /** 自定义状态文案 */
-  statusTextRender?: (status: TaskStatus) => React.ReactNode
   /** 文件读取前的回调函数，返回 false 可终止文件读取，支持返回 Promise */
   beforeRead?: (
     file: File,
@@ -84,6 +87,10 @@ export interface UploaderProps extends BaseTypeProps {
   previewFullImage?: boolean
   /** 自定义覆盖在预览区域上方的内容	 */
   previewCoverRender?: (item: UploaderValueItem) => React.ReactNode
+  /** 自定义状态文案 */
+  statusTextRender?: (status: TaskStatus) => React.ReactNode
+  /** 自定义删除按钮视图 */
+  deleteRender?: (del: () => void) => React.ReactNode
   /** 标识符，可以在回调函数的第二项参数中获取	*/
   name?: number | string
   /**
@@ -126,7 +133,7 @@ export interface UploaderProps extends BaseTypeProps {
   onChange?: (value: UploaderValueItem[]) => void
   /** 关闭全屏图片预览时触发	 */
   onClosePreview?: () => void
-  /** 删除文件预览时触发	 */
+  /** 删除文件预览时触发 */
   onDelete?: (item: UploaderValueItem) => boolean | Promise<boolean> | void
   /** 文件大小超过限制时触发	 */
   onOversize?: (files: File[]) => void

@@ -20,6 +20,11 @@ export function readFileContent(file: File, resultType: UploaderResultType) {
       return
     }
 
+    if (isImageFile(file)) {
+      resolve(URL.createObjectURL(file))
+      return
+    }
+
     const reader = new FileReader()
 
     reader.onload = event => {
