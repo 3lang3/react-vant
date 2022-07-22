@@ -1,84 +1,60 @@
-# 定制主题
+# 主题定制
 
-### 废弃提示
+在组件文档的 "样式变量" 表格中，你可以查阅到每个组件暴露了都哪些[CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties)。
 
-本文档已废弃，React Vant 提供了更方便的 [ConfigProvider](/components/config-provider) 全局配置组件进行主题配置。基于 Less 变量进行定制的方式**将在下个大版本废弃**。
+以 `Button` 组件为例，我们可以在它的文档上找到类似于下面这样的表格：
 
-### 介绍
+| 变量名称                             | 默认值                    | 描述 |
+| ------------------------------------ | ------------------------- | ---- |
+| --rv-button-primary-border-color     | _var(--rv-primary-color)_ | -    |
+| --rv-button-primary-background-color | _var(--rv-primary-color)_ | -    |
 
-react-vant 提供了一套默认主题，CSS 命名采用 BEM 的风格，方便使用者覆盖样式。如果你想完全替换主题色或者其他样式，可以使用下面提供的方法。
+接下来，我们需要设置 CSS 变量的值，有两种方法：
 
-### 样式变量
+#### 方法一：使用 ConfigProvider
 
-react-vant 使用了 [Less](http://lesscss.org/) 对样式进行预处理，并内置了一些样式变量，通过替换样式变量即可定制你自己需要的主题。
+`ConfigProvider` 组件提供了覆盖 CSS 变量的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `themeVars` 属性来配置一些主题变量。
 
-下面是一些基本的样式变量，所有可用的颜色变量请参考 [配置文件](https://github.com/youzan/vant/blob/dev/src/style/var.less)。
-
-```less
-// Component Colors
-@text-color: #333333;
-@border-color: #ebedf0;
-@active-color: #f2f3f5;
-@background-color: #f7f8fa;
-@background-color-light: #fafafa;
-```
-
-## 定制方法
-
-### 步骤一 引入样式源文件
-
-定制主题时，需要引入组件对应的 Less 样式文件，支持按需引入和手动引入两种方式。
-
-#### 按需引入样式（推荐）
-
-在 babel.config.js 中配置按需引入样式源文件，注意 babel6 不支持按需引入样式，请手动引入样式。
-
-```js
-module.exports = {
-  plugins: [
-    [
-      'import',
-      {
-        libraryName: 'react-vant',
-        libraryDirectory: 'es',
-        // 指定样式路径
-        style: (name) => `${name}/style/less`,
-      },
-      'react-vant',
-    ],
-  ],
+```tsx | pure
+const themeVars = {
+  buttonPrimaryBorderColor: '#951fff',
+  buttonPrimaryBackgroundColor: '#951fff',
 };
+<ConfigProvider themeVars={themeVars}>
+  <Button type="primary">
+    提交
+  </Button>
+</ConfigProvider>
 ```
 
-### 步骤二 修改样式变量
+#### 方法二：在 CSS 文件中设置
 
-使用 Less 提供的 [modifyVars](http://lesscss.org/usage/#using-less-in-the-browser-modify-variables) 即可对变量进行修改，下面是参考的 webpack 配置。
-
-```js
-// webpack.config.js
-module.exports = {
-  rules: [
-    {
-      test: /\.less$/,
-      use: [
-        // ...其他 loader 配置
-        {
-          loader: 'less-loader',
-          options: {
-            // 若使用 less-loader@5，请移除 lessOptions 这一级，直接配置选项。
-            lessOptions: {
-              modifyVars: {
-                // 直接覆盖变量
-                'text-color': '#111',
-                'border-color': '#eee',
-                // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
-                hack: `true; @import "your-less-file-path.less";`,
-              },
-            },
-          },
-        },
-      ],
-    },
-  ],
-};
+```css
+.my-button {
+  --rv-button-primary-background-color: red;
+}
 ```
+
+#### 方法三：直接通过 style 属性设置
+
+直接通过组件的 `style` 属性，简单粗暴，适合小范围的调整：
+
+```jsx | pure
+<Button style={{
+  '--rv-button-primary-background-color': 'red'
+}}/>
+```
+
+#### 方法四：通过全局变量进行设置
+
+假如你需要对整个项目中所有的 `Button` 都进行样式的调整，你可以通过"全局 CSS 变量" 进行统一的设置：
+
+```css
+:root:root {
+  --rv-button-primary-background-color: red;
+}
+```
+
+这样页面上全部的 Button 都会受到调整。
+
+当然，你也可以"局部性"地进行调整，只需要把对应的 CSS 变量添加到对应的父级节点上。
