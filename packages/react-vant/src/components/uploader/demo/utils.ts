@@ -10,7 +10,6 @@ export const upload = async (file: File) => {
       body,
     })
     const json = await resp.json()
-    delete json.image.status
     return json.image
   } catch (error) {
     return { url: `demo_path/${file.name}` }
