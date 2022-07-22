@@ -3,12 +3,12 @@ import { Form, Uploader, UploaderValueItem, Button } from 'react-vant'
 import { upload } from './utils'
 import './style.less'
 
-type AvatarUploadProps = {
+type AvatarUploaderProps = {
   value?: string
   onChange?: (val: string) => void
 }
 
-const AvatarUpload = (props: AvatarUploadProps) => {
+const AvatarUploader = (props: AvatarUploaderProps) => {
   const [tasks, setTasks] = React.useState<UploaderValueItem[]>([])
   const idCountRef = React.useRef(0)
 
@@ -39,7 +39,7 @@ export default () => {
   const [form] = Form.useForm()
 
   const onFinish = async () => {
-    const values = await form.getFieldsValue()
+    const values = await form.validateFields()
     console.log(values)
   }
   return (
@@ -47,7 +47,13 @@ export default () => {
       colon
       form={form}
       footer={
-        <Button onClick={onFinish} type='primary' round block>
+        <Button
+          style={{ marginTop: 20 }}
+          onClick={onFinish}
+          type='primary'
+          round
+          block
+        >
           确认
         </Button>
       }
@@ -58,7 +64,15 @@ export default () => {
         name='avatar'
         initialValue='https://iili.io/NZiS9e.png'
       >
-        <AvatarUpload />
+        {/* 通过封装自定义表单组件，按需实现实际业务逻辑 */}
+        <AvatarUploader />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: '请上传头像' }]}
+        label='上传附件'
+        name='files'
+      >
+        <Uploader accept='*' />
       </Form.Item>
     </Form>
   )

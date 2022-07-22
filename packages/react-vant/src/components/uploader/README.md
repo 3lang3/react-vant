@@ -54,6 +54,7 @@ import { Uploader } from 'react-vant';
 
 <code title="表单中使用" src="./demo/form.tsx" />
 
+
 ## API
 
 ### Props
@@ -73,6 +74,7 @@ import { Uploader } from 'react-vant';
 | disabled | 是否禁用文件上传 | _boolean_ | `false` |
 | readOnly | 是否将上传区域设置为只读状态 | _boolean_ | `false` |
 | deletable | 是否展示删除按钮 | _boolean_ | `true` |
+| deleteRender | 自定义删除按钮视图 | _(del: () => void) => ReactNode_ | - |
 | showUpload | 是否展示上传区域 | _boolean_ | `true` |
 | capture | 图片选取模式，可选值为 `camera` (直接调起摄像头) | _string_ | - |
 | maxSize | 文件大小限制，单位为 `byte` | _number \| string \| (file: File) => boolean_ | - |
@@ -144,7 +146,8 @@ uploaderRef.current?.chooseFile();
 
 | 名称 | 默认值 | 描述 |
 | --- | --- | --- |
-| --rv-uploader-size | _80px_ | - |
+| --rv-uploader-gap | _var(--rv-padding-xs)_ | `上传视图间距` |
+| --rv-uploader-size | _80px_ | `上传视图尺寸` |
 | --rv-uploader-icon-size | _24px_ | - |
 | --rv-uploader-icon-color | _var(--rv-gray-4)_ | - |
 | --rv-uploader-text-color | _var(--rv-gray-6)_ | - |

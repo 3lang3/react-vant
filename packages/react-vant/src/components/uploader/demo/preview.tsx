@@ -9,9 +9,11 @@ export default () => {
     <Uploader
       defaultValue={demoData}
       upload={upload}
-      previewSize={60}
-      uploadIcon={<Fire />}
-      previewCoverRender={item =>
+      previewSize={60} // 自定义视图尺寸
+      uploadIcon={<Fire />} // 自定义上传图标
+      previewCoverRender={(
+        item // 自定义预览内容
+      ) =>
         item.filename && (
           <div
             style={{
