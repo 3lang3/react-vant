@@ -1,4 +1,4 @@
-const DEMO_UPLOAD_API = 'http://nextjs-upload-service.vercel.app/api/upload'
+const DEMO_UPLOAD_API = 'https://nextjs-upload-service.vercel.app/api/upload'
 
 // 实际业务中需要自己实现对应上传逻辑
 export const upload = async (file: File) => {
