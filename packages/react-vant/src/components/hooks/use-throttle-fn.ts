@@ -2,24 +2,21 @@ import { useMemo } from 'react'
 import useLatest from './use-latest'
 import useUnmount from './use-unmount'
 import { isFunction } from '../utils'
-import { debounce } from '../utils/debounce'
-import { devWarning } from '../utils/dev-log'
+import throttle from '../utils/throttle'
 
-export interface DebounceOptions {
+interface ThrottleOptions {
   wait?: number
   leading?: boolean
   trailing?: boolean
-  maxWait?: number
 }
 
 type noop = (...args: any) => any
 
-function useDebounceFn<T extends noop>(fn: T, options?: DebounceOptions) {
+function useThrottleFn<T extends noop>(fn: T, options?: ThrottleOptions) {
   if (process.env.NODE_ENV === 'development') {
     if (!isFunction(fn)) {
-      devWarning(
-        'useDebounceFn',
-        `expected parameter is a function, got ${typeof fn}`
+      console.error(
+        `useThrottleFn expected parameter is a function, got ${typeof fn}`
       )
     }
   }
@@ -28,9 +25,9 @@ function useDebounceFn<T extends noop>(fn: T, options?: DebounceOptions) {
 
   const wait = options?.wait ?? 1000
 
-  const debounced = useMemo(
+  const throttled = useMemo(
     () =>
-      debounce(
+      throttle(
         (...args: Parameters<T>): ReturnType<T> => {
           return fnRef.current(...(args as any))
         },
@@ -41,14 +38,14 @@ function useDebounceFn<T extends noop>(fn: T, options?: DebounceOptions) {
   )
 
   useUnmount(() => {
-    debounced.cancel()
+    throttled.cancel()
   })
 
   return {
-    run: debounced,
-    cancel: debounced.cancel,
-    flush: debounced.flush,
+    run: throttled,
+    cancel: throttled.cancel,
+    flush: throttled.flush,
   }
 }
 
-export default useDebounceFn
+export default useThrottleFn

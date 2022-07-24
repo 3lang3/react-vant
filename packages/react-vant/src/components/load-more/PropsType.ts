@@ -4,6 +4,9 @@ import { BaseTypeProps } from '../utils'
 export interface LoadMoreProps extends Omit<BaseTypeProps, 'children'> {
   onLoad: (isRetry: boolean) => Promise<void>
   done?: boolean
+  /**
+   * @default 300
+   */
   threshold?: number
   loadingText?: React.ReactNode
   doneText?: React.ReactNode
