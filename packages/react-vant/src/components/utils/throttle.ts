@@ -1,21 +1,23 @@
+import { isObject } from './base'
+import { debounce } from './debounce'
 
-export function throttle(fn: () => void, delay: number): () => void {
-  let timeout: number;
-  let called = false;
+// https://github.com/lodash/lodash/blob/master/throttle.js
+function throttle(func, wait, options?) {
+  let leading = true
+  let trailing = true
 
-  return () => {
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-
-    if (!called) {
-      fn();
-      called = true;
-      setTimeout(() => {
-        called = false;
-      }, delay);
-    } else {
-      timeout = setTimeout(fn, delay) as unknown as number;
-    }
-  };
+  if (typeof func !== 'function') {
+    throw new TypeError('Expected a function')
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading
+    trailing = 'trailing' in options ? !!options.trailing : trailing
+  }
+  return debounce(func, wait, {
+    leading,
+    trailing,
+    'maxWait': wait,
+  })
 }
+
+export default throttle

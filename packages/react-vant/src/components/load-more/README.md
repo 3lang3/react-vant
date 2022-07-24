@@ -1,10 +1,3 @@
----
-simulator:
-  compact: false
-  style:
-    background: '#fff'
----
-
 # LoadMore 加载更多
 
 ## 介绍
@@ -21,7 +14,7 @@ import { LoadMore } from 'react-vant';
 
 ### 基础用法
 
-
+<code title="基础用法" src="./demo/base.tsx" />
 
 ## API
 

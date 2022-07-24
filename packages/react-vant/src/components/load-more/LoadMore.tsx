@@ -6,8 +6,9 @@ import useLockFn from '../hooks/use-lock-fn'
 import { getScrollParent } from '../hooks/use-scroll-parent'
 import Loading from '../loading'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import useThrottleFn from '../hooks/use-throttle-fn'
 
-const [bem] = createNamespace('badge')
+const [bem] = createNamespace('load-more')
 
 function isWindow(element: any | Window): element is Window {
   return element === window
@@ -16,6 +17,7 @@ function isWindow(element: any | Window): element is Window {
 const LoadMore: React.FC<LoadMoreProps> = props => {
   const { locale } = React.useContext(ConfigProviderContext)
   const [failed, setFailed] = React.useState(false)
+
   const doLoadMore = useLockFn(async (isRetry: boolean) => {
     try {
       await props.onLoad(isRetry)
@@ -35,27 +37,35 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
     Window | Element | null | undefined
   >()
 
-  const check = async () => {
-    if (nextFlagRef.current !== flag) return
-    if (!props.onLoad) return
-    const element = elementRef.current
-    if (!element) return
-    if (!element.offsetParent) return
-    const parent = getScrollParent(element)
-    setScrollParent(parent)
-    if (!parent) return
-    const rect = element.getBoundingClientRect()
-    const elementTop = rect.top
-    const current = isWindow(parent)
-      ? window.innerHeight
-      : parent.getBoundingClientRect().bottom
-    if (current >= elementTop - props.threshold) {
-      const nextFlag = {}
-      nextFlagRef.current = nextFlag
-      await doLoadMore(false)
-      setFlag(nextFlag)
+  const { run: check } = useThrottleFn(
+    async () => {
+      if (nextFlagRef.current !== flag) return
+      if (props.done) return
+      const element = elementRef.current
+      if (!element) return
+      if (!element.offsetParent) return
+      const parent = getScrollParent(element)
+      setScrollParent(parent)
+      if (!parent) return
+      const rect = element.getBoundingClientRect()
+      const elementTop = rect.top
+      const current = isWindow(parent)
+        ? window.innerHeight
+        : parent.getBoundingClientRect().bottom
+
+      if (current >= elementTop - props.threshold) {
+        const nextFlag = {}
+        nextFlagRef.current = nextFlag
+        await doLoadMore(false)
+        setFlag(nextFlag)
+      }
+    },
+    {
+      wait: 100,
+      leading: true,
+      trailing: true,
     }
-  }
+  )
 
   // Make sure to trigger `loadMore` when content changes
   React.useEffect(() => {
@@ -73,7 +83,7 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
     return () => {
       scrollParent.removeEventListener('scroll', onScroll)
     }
-  }, [scrollParent])
+  }, [scrollParent, check])
 
   async function retry() {
     setFailed(false)
@@ -83,7 +93,7 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
 
   const renderDone = () => {
     if (props.doneText) return props.doneText
-    return null
+    return <div className={clsx(bem('done'))}>没有更多了</div>
   }
   const renderFailed = () => {
     if (props.failedRender) return props.failedRender(retry)
@@ -91,7 +101,7 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
     return (
       <div className={clsx(bem('failed'))}>
         加载失败
-        <a onClick={() => retry()}>重新加载</a>
+        <a onClick={retry}>重新加载</a>
       </div>
     )
   }
@@ -105,11 +115,20 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
   }
   return (
     <div className={clsx(bem())} ref={elementRef}>
-      {typeof props.children === 'function'
-        ? props.children(props.done, failed, retry)
-        : props.children}
+      {(() => {
+        if (typeof props.children === 'function')
+          return props.children(props.done, failed, retry)
+        if (props.children) return props.children
+        if (props.done) return renderDone()
+        if (failed) return renderFailed()
+        return renderLoading()
+      })()}
     </div>
   )
+}
+
+LoadMore.defaultProps = {
+  threshold: 300,
 }
 
 export default LoadMore
