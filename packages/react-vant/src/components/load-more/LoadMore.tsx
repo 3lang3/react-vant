@@ -14,7 +14,7 @@ function isWindow(element: any | Window): element is Window {
   return element === window
 }
 
-const LoadMore: React.FC<LoadMoreProps> = props => {
+const LoadMore = React.forwardRef<any, LoadMoreProps>((props, ref) => {
   const { locale } = React.useContext(ConfigProviderContext)
   const [failed, setFailed] = React.useState(false)
 
@@ -40,7 +40,7 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
   const { run: check } = useThrottleFn(
     async () => {
       if (nextFlagRef.current !== flag) return
-      if (props.done) return
+      if (props.finished) return
       const element = elementRef.current
       if (!element) return
       if (!element.offsetParent) return
@@ -53,7 +53,8 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
         ? window.innerHeight
         : parent.getBoundingClientRect().bottom
 
-      if (current >= elementTop - props.threshold) {
+      const isReachEdge = current >= elementTop - props.threshold
+      if (isReachEdge) {
         const nextFlag = {}
         nextFlagRef.current = nextFlag
         await doLoadMore(false)
@@ -83,7 +84,7 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
     return () => {
       scrollParent.removeEventListener('scroll', onScroll)
     }
-  }, [scrollParent, check])
+  }, [scrollParent])
 
   async function retry() {
     setFailed(false)
@@ -92,40 +93,52 @@ const LoadMore: React.FC<LoadMoreProps> = props => {
   }
 
   const renderDone = () => {
-    if (props.doneText) return props.doneText
-    return <div className={clsx(bem('done'))}>没有更多了</div>
+    if (props.finishedText) {
+      return <div className={clsx(bem('finished'))}>{props.finishedText}</div>
+    }
+    return null
   }
   const renderFailed = () => {
-    if (props.failedRender) return props.failedRender(retry)
+    if (props.errorText) {
+      if (typeof props.errorText === 'function') return props.errorText(retry)
+      return (
+        <div onClick={retry} className={clsx(bem('error'))}>
+          {props.errorText}
+        </div>
+      )
+    }
 
-    return (
-      <div className={clsx(bem('failed'))}>
-        加载失败
-        <a onClick={retry}>重新加载</a>
-      </div>
-    )
+    return null
   }
   const renderLoading = () => {
-    if (props.loadingText) return props.loadingText
     return (
       <Loading className={clsx(bem('loading'))} size={16}>
         {props.loadingText || locale.loading}
       </Loading>
     )
   }
+
+  const renderPlaceholder = () => {
+    if (props.finished) return renderDone()
+    if (failed) return renderFailed()
+    return renderLoading()
+  }
+
+  React.useImperativeHandle(ref, () => ({ check }))
+
   return (
-    <div className={clsx(bem())} ref={elementRef}>
-      {(() => {
-        if (typeof props.children === 'function')
-          return props.children(props.done, failed, retry)
-        if (props.children) return props.children
-        if (props.done) return renderDone()
-        if (failed) return renderFailed()
-        return renderLoading()
-      })()}
+    <div
+      className={clsx(props.className, bem())}
+      ref={elementRef}
+      style={props.style}
+    >
+      {typeof props.children === 'function'
+        ? props.children(props.finished, failed, retry)
+        : props.children}
+      {renderPlaceholder()}
     </div>
   )
-}
+})
 
 LoadMore.defaultProps = {
   threshold: 300,

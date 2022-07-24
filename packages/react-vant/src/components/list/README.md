@@ -26,15 +26,11 @@ List 组件滚动到底部时，会触发 `onLoad` 事件，此时可以发起�
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| loading | 是否处于加载状态，加载过程中不触发`load`事件 | _boolean_ | `false` |
 | finished | 是否已加载完成，加载完成后不再触发`load`事件 | _boolean_ | `false` |
-| error | 是否加载失败，加载失败后点击错误提示可以重新<br>触发`load`事件，必须使用`sync`修饰符 | _boolean_ | `false` |
 | offset | 滚动条与底部距离小于 offset 时触发`load`事件 | _number \| string_ | `300` |
 | loadingText | 加载过程中的提示文案 | _ReactNode_ | `加载中...` |
 | finishedText | 加载完成后的提示文案 | _ReactNode_ | - |
 | errorText | 加载失败后的提示文案 | _ReactNode_ | - |
-| immediateCheck | 是否在初始化时立即执行滚动位置检查 | _boolean_ | `true` |
-| autoCheck | 是否在 onLoad 执行后再次检查滚动位置 | _boolean_ | `true` |
 
 ### Events
 

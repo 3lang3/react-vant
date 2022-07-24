@@ -5,8 +5,7 @@ async function sleep(time) {
 let count = 0
 
 export async function mockRequest() {
-  console.log('request~')
-  if (count >= 5) {
+  if (count >= 3) {
     return []
   }
   await sleep(2000)

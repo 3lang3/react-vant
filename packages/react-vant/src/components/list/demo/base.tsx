@@ -1,7 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { PullRefresh, List, Tabs, Cell } from 'react-vant'
-import type { ListInstance } from 'react-vant'
 import './style.less'
 
 // 模拟异步请求
@@ -12,7 +11,7 @@ async function getData(throwError?) {
         reject(new Error('error'))
       }
       resolve(Array.from({ length: 10 }, (_, i) => i))
-    }, 1000)
+    }, 2000)
   })
 }
 
@@ -68,7 +67,6 @@ const ErrorDemo = () => {
 
 // 下拉刷新
 const PullRefreshDemo = () => {
-  const listRef = useRef<ListInstance>(null)
   const [list, setList] = useState<Array<number>>([])
   const [finished, setFinished] = useState<boolean>(false)
 
@@ -89,13 +87,9 @@ const PullRefreshDemo = () => {
   }
 
   return (
-    <PullRefresh
-      onRefresh={onRefresh}
-      // 刷新结束后检查是否继续请求
-      onRefreshEnd={() => listRef.current?.check()}
-    >
+    <PullRefresh onRefresh={onRefresh}>
       {/* List 组件可以与 PullRefresh 组件结合使用，实现下拉刷新的效果 */}
-      <List ref={listRef} finished={finished} onLoad={onLoadRefresh}>
+      <List finished={finished} onLoad={onLoadRefresh}>
         {list.map((_, i) => (
           <Cell key={i} title={i + 1} />
         ))}

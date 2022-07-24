@@ -2,4 +2,4 @@ import './style/index.less'
 import LoadMore from './LoadMore'
 
 export { LoadMore }
-export type { LoadMoreProps } from './PropsType'
+export type { LoadMoreProps, LoadMoreInstance } from './PropsType'
