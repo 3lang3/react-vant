@@ -4,11 +4,11 @@ import { mockRequest } from './mock-request'
 
 export default () => {
   const [data, setData] = useState<string[]>([])
-  const [done, setDone] = useState(false)
+  const [finished, setFinished] = useState(false)
   async function loadMore() {
     const append = await mockRequest()
     setData(val => [...val, ...append])
-    setDone(append.length === 0)
+    setFinished(append.length === 0)
   }
 
   return (
@@ -16,7 +16,7 @@ export default () => {
       {data.map((item, index) => (
         <Cell key={index} title={item} />
       ))}
-      <LoadMore onLoad={loadMore} done={done} threshold={10} />
+      <LoadMore onLoad={loadMore} finished={finished} threshold={10} />
     </>
   )
 }
