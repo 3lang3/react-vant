@@ -10,6 +10,7 @@ export const upload = async (file: File) => {
       body,
     })
     const json = await resp.json()
+    // return包含 url 的一个对象 例如: {url:'https://img.yzcdn.cn/vant/sand.jpg'}
     return json.image
   } catch (error) {
     return { url: `demo_path/${file.name}` }
