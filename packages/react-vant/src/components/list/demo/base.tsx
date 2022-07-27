@@ -100,7 +100,7 @@ const PullRefreshDemo = () => {
 
 export default () => (
   <div className='demo-list'>
-    <Tabs sticky>
+    <Tabs sticky swipeable>
       <Tabs.TabPane title='基本用法'>
         <BaseDemo />
       </Tabs.TabPane>
