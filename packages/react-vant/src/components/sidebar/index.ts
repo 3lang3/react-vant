@@ -1,7 +1,7 @@
-import './style/index.less';
-import Sidebar from './Sidebar';
-import SidebarItem from './SidebarItem';
+import './style/index.less'
+import _Sidebar from './Sidebar'
+import SidebarItem from './SidebarItem'
 
-const SidebarNamespace = Object.assign(Sidebar, { Item: SidebarItem });
-export { SidebarNamespace as Sidebar, SidebarItem };
-export type { SidebarProps, SidebarItemProps } from './PropsType';
+const Sidebar = Object.assign(_Sidebar, { Item: SidebarItem })
+export { Sidebar, SidebarItem }
+export type { SidebarProps, SidebarItemProps } from './PropsType'

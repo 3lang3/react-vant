@@ -86,12 +86,14 @@
   }
 
   &__button {
-    width: var(--rv-submit-bar-button-width);
-    height: var(--rv-submit-bar-button-height);
-    font-weight: var(--rv-font-weight-bold);
-    border: none;
+    &.@{rv-prefix}-button {
+      width: var(--rv-submit-bar-button-width);
+      height: var(--rv-submit-bar-button-height);
+      font-weight: var(--rv-font-weight-bold);
+      border: none;
+    }
 
-    &--danger {
+    &&--danger {
       background: var(--rv-gradient-red);
     }
   }

@@ -17,10 +17,12 @@
 }
 
 .@{rv-prefix}-popover {
-  position: absolute;
-  overflow: visible;
-  background-color: transparent;
-  transition: opacity 0.15s, transform 0.15s;
+  &.@{rv-prefix}-popup {
+    position: absolute;
+    overflow: visible;
+    background-color: transparent;
+    transition: opacity 0.15s, transform 0.15s;
+  }
 
   &__wrapper {
     display: inline-block;
