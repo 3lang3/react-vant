@@ -41,8 +41,8 @@
 ```
 #### 废弃组件
 
-- 移除了 `Swipe` 组件
-- 移除了 `Icon` 组件
+- 移除了 `Swipe` 组件，现由 `Swiper` 代替
+- 移除了 `Icon` 组件，现由 `@react-vant/icons` 包引入。
 - 原 `Card` 组件改名为 `ProductCard`
 
 #### API 调整
@@ -57,6 +57,12 @@
 - `Typography` 移除 `--rv-typography-line-height` css 变量，同时新增部分变量
 
 #### 组件重构
+
+- `List` 组件:
+  - 调整 `errorText` 类型
+  - 调整 `children` 类型，现支持自定义指引内容
+  - 移除 `loading` `error` `immediateCheck` `autoCheck` 属性，现由内部维护。
+  - `onLoad` 方法新增 `isRetry` 参数，用来区分请求出错后用户点击底部重试场景。
 
 - `Uploader` 组件:
   - 新增 `upload` 属性，解决上传以及动态状态问题
