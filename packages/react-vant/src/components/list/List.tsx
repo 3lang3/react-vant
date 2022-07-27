@@ -1,16 +1,13 @@
 import React, { forwardRef } from 'react'
 import clsx from 'clsx'
-import { createNamespace } from '../utils'
 import { ListInstance, ListProps } from './PropsType'
-import { LoadMore } from '../load-more'
-
-const [bem] = createNamespace('list')
+import LoadMore from './LoadMore'
 
 const List = forwardRef<ListInstance, ListProps>((props, ref) => {
   return (
     <LoadMore
       ref={ref}
-      className={clsx(bem(), props.className)}
+      className={clsx(props.className)}
       style={props.style}
       onLoad={props.onLoad}
       threshold={props.offset}

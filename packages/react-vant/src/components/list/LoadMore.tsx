@@ -8,7 +8,7 @@ import Loading from '../loading'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 import useThrottleFn from '../hooks/use-throttle-fn'
 
-const [bem] = createNamespace('load-more')
+const [bem] = createNamespace('list')
 
 function isWindow(element: any | Window): element is Window {
   return element === window
