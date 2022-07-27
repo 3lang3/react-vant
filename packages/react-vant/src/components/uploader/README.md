@@ -92,6 +92,7 @@ import { Uploader } from 'react-vant';
 
 | 事件名 | 说明 | 回调参数 |
 | --- | --- | --- | 
+| upload | 上传方法 | _(file: File) => Promise\<UploaderValueItem\>_ |
 | onChange | 组件值更新时调用 | _UploaderValueItem[]_ |
 | onOversize | 文件大小超过限制时触发 | _(files: File[]) => void_ |
 | onClickUpload | 点击上传区域时触发 | _event: MouseEvent_ |
@@ -105,7 +106,7 @@ import { Uploader } from 'react-vant';
 | 属性      | 说明       | 类型               | 默认值   |
 | --------- | ---------- | ------------------ | -------- |
 | key       | 唯一标识   | `string \| number` | 数组下标 |
-| url       | 资源地址   |
+| url       | 资源地址   | `string` | - |
 | thumbnail | 缩略图地址 | `string`           | `url`    |
 | file      | 源文件     | `File`             | -        |
 
