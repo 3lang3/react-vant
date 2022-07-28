@@ -1,7 +1,7 @@
-import './style/index.less';
-import Steps from './Steps';
-import StepsItem from './StepsItem';
+import './style/index.less'
+import _Steps from './Steps'
+import StepsItem from './StepsItem'
 
-const StepsNamespace = Object.assign(Steps, { Item: StepsItem });
-export { StepsNamespace as Steps, StepsItem };
-export type { StepsProps } from './PropsType';
+const Steps = Object.assign(_Steps, { Item: StepsItem })
+export { Steps, StepsItem }
+export type { StepsProps } from './PropsType'

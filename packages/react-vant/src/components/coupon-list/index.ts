@@ -1,4 +1,4 @@
-import './style/index.less';
-import CouponList from './CouponList';
+import './style/index.less'
+import CouponList from './CouponList'
 
-export { CouponList };
+export { CouponList }

@@ -1,55 +1,58 @@
-import React, { useMemo, useRef } from 'react';
-import type { MouseEvent } from 'react';
-import clsx from 'clsx';
-import { Success } from '@react-vant/icons';
-import { CheckerProps } from './PropsType';
-import { addUnit } from '../utils';
+import React, { useMemo, useRef } from 'react'
+import type { MouseEvent } from 'react'
+import clsx from 'clsx'
+import { Success } from '@react-vant/icons'
+import { CheckerProps } from './PropsType'
+import { addUnit } from '../utils'
 
-const Checker: React.FC<CheckerProps<{}>> = (props) => {
-  const iconRef = useRef(null);
+const Checker: React.FC<CheckerProps<{}>> = props => {
+  const iconRef = useRef(null)
 
   const getParentProp = (name: string) => {
     if (props.parent && props.bindGroup) {
-      return props.parent.props[name];
+      return props.parent.props[name]
     }
-    return null;
-  };
+    return null
+  }
 
   const disabled = useMemo(
     () => getParentProp('disabled') || props.disabled,
-    [props.parent, props.disabled],
-  );
-  const direction = useMemo(() => getParentProp('direction') || null, [props.parent]);
+    [props.parent, props.disabled]
+  )
+  const direction = useMemo(
+    () => getParentProp('direction') || null,
+    [props.parent]
+  )
 
   const iconStyle = useMemo(() => {
-    const checkedColor = props.checkedColor || getParentProp('checkedColor');
+    const checkedColor = props.checkedColor || getParentProp('checkedColor')
     if (checkedColor && props.checked && !disabled) {
       return {
         borderColor: checkedColor,
         backgroundColor: checkedColor,
-      };
+      }
     }
-    return {};
-  }, [props.checkedColor, props.checked, disabled]);
+    return {}
+  }, [props.checkedColor, props.checked, disabled])
 
   const onClick = (event: MouseEvent<HTMLDivElement>) => {
-    const { target } = event;
-    const icon = iconRef.current;
-    const iconClicked = icon === target || icon?.contains(target as Node);
+    const { target } = event
+    const icon = iconRef.current
+    const iconClicked = icon === target || icon?.contains(target as Node)
 
     if (!disabled && (iconClicked || !props.labelDisabled)) {
       if (props.onToggle) {
-        props.onToggle();
+        props.onToggle()
       }
     }
     if (props.onClick) {
-      props.onClick(event);
+      props.onClick(event)
     }
-  };
+  }
 
   const renderIcon = () => {
-    const { bem, shape, checked } = props;
-    const iconSize = props.iconSize || getParentProp('iconSize');
+    const { bem, shape, checked } = props
+    const iconSize = props.iconSize || getParentProp('iconSize')
 
     return (
       <div
@@ -57,21 +60,27 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
         className={clsx(bem('icon', [shape, { disabled, checked }]))}
         style={{ fontSize: addUnit(iconSize) }}
       >
-        {props.iconRender ? props.iconRender({ checked, disabled }) : <Success style={iconStyle} />}
+        {props.iconRender ? (
+          props.iconRender({ checked, disabled })
+        ) : (
+          <Success style={iconStyle} />
+        )}
       </div>
-    );
-  };
+    )
+  }
 
   const renderLabel = () => {
     if (props.children) {
       return (
-        <span className={props.bem('label', [props.labelPosition, { disabled }])}>
+        <span
+          className={props.bem('label', [props.labelPosition, { disabled }])}
+        >
           {props.children}
         </span>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <div
@@ -84,8 +93,9 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
           },
           direction,
         ]),
-        props.className,
+        props.className
       )}
+      style={props.style}
       tabIndex={disabled ? -1 : 0}
       aria-checked={props.checked}
       onClick={onClick}
@@ -94,12 +104,12 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
       {renderIcon()}
       {props.labelPosition !== 'left' && renderLabel()}
     </div>
-  );
-};
+  )
+}
 
 Checker.defaultProps = {
   shape: 'round',
   bindGroup: true,
-};
+}
 
-export default Checker;
+export default Checker
