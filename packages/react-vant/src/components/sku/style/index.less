@@ -6,14 +6,16 @@
 
 .@{rv-prefix}-sku {
   &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    min-height: 50%;
-    max-height: 80%;
-    overflow-y: visible;
-    font-size: @font-size-md;
-    background: @white;
+    &.@{rv-prefix}-popup {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 50%;
+      max-height: 80%;
+      overflow-y: visible;
+      font-size: @font-size-md;
+      background: @white;
+    }
   }
 
   &__body {
@@ -33,12 +35,14 @@
     margin: 0 @padding-md;
 
     &__img-wrap {
-      flex-shrink: 0;
-      width: 96px;
-      height: 96px;
-      margin: @padding-sm @padding-sm @padding-sm 0;
-      overflow: hidden;
-      border-radius: @border-radius-md;
+      &.@{rv-prefix}-image {
+        flex-shrink: 0;
+        width: 96px;
+        height: 96px;
+        margin: @padding-sm @padding-sm @padding-sm 0;
+        overflow: hidden;
+        border-radius: @border-radius-md;
+      }
     }
 
     &__goods-info {
@@ -154,12 +158,14 @@
       vertical-align: middle;
 
       &-img {
-        z-index: 1;
-        width: 24px;
-        height: 24px;
-        margin: 4px 0 4px 4px;
-        object-fit: cover;
-        border-radius: @border-radius-sm;
+        &.@{rv-prefix}-image {
+          z-index: 1;
+          width: 24px;
+          height: 24px;
+          margin: 4px 0 4px 4px;
+          object-fit: cover;
+          border-radius: @border-radius-sm;
+        }
       }
 
       &-name {
@@ -193,8 +199,10 @@
         }
 
         &-img {
-          width: 100%;
-          height: 110px;
+          &.@{rv-prefix}-image {
+            width: 100%;
+            height: 110px;
+          }
 
           &-icon {
             position: absolute;

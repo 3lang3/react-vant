@@ -1,5 +1,5 @@
-import './style/index.less';
-import Dialog from './method';
+import './style/index.less'
+import Dialog from './method'
 
-export default Dialog;
-export { Dialog };
+export default Dialog
+export { Dialog }

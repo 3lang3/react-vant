@@ -88,7 +88,8 @@
   &__body {
     position: relative;
     flex: 1;
-    border-radius: 0 var(--rv-coupon-border-radius) var(--rv-coupon-border-radius) 0;
+    border-radius: 0 var(--rv-coupon-border-radius)
+      var(--rv-coupon-border-radius) 0;
   }
 
   &__name {
@@ -167,11 +168,13 @@
   }
 
   &__exchange {
-    flex: none;
-    height: var(--rv-coupon-list-exchange-button-height);
-    font-size: var(--rv-font-size-lg);
-    line-height: calc(var(--rv-coupon-list-exchange-button-height) - 2px);
-    border: 0;
+    &.@{rv-prefix}-button {
+      flex: none;
+      height: var(--rv-coupon-list-exchange-button-height);
+      font-size: var(--rv-font-size-lg);
+      line-height: calc(var(--rv-coupon-list-exchange-button-height) - 2px);
+      border: 0;
+    }
   }
 
   .@{rv-prefix}-tabs__wrap {
@@ -207,7 +210,9 @@
   }
 
   &__close {
-    height: var(--rv-coupon-list-close-button-height);
+    &.@{rv-prefix}-button {
+      height: var(--rv-coupon-list-close-button-height);
+    }
   }
 
   &__empty {

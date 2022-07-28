@@ -205,7 +205,9 @@
   }
 
   &__confirm {
-    height: var(--rv-calendar-confirm-button-height);
-    margin: var(--rv-calendar-confirm-button-margin);
+    &.@{rv-prefix}-button {
+      height: var(--rv-calendar-confirm-button-height);
+      margin: var(--rv-calendar-confirm-button-margin);
+    }
   }
 }

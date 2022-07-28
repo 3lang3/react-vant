@@ -1,2 +1,1 @@
-import './base.less';
-import '../popup/style/index.less';
+import './base.less'

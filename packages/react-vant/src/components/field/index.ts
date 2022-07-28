@@ -1,8 +1,8 @@
-import Field from './Field';
-import './style/index.less';
+import './style/index.less'
+import Field from './Field'
 
-export default Field;
-export { Field };
+export default Field
+export { Field }
 export type {
   FieldProps,
   FieldInstance,
@@ -10,4 +10,4 @@ export type {
   FieldClearTrigger,
   FieldFormatTrigger,
   FieldAutosizeConfig,
-} from './PropsType';
+} from './PropsType'

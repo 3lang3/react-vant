@@ -29,35 +29,37 @@
 }
 
 .@{rv-prefix}-action-bar-button {
-  flex: 1;
-  height: var(--rv-action-bar-button-height);
-  font-weight: var(--rv-font-weight-bold);
-  font-size: var(--rv-font-size-md);
-  border: none;
-  border-radius: 0;
+  &.@{rv-prefix}-button {
+    flex: 1;
+    height: var(--rv-action-bar-button-height);
+    font-weight: var(--rv-font-weight-bold);
+    font-size: var(--rv-font-size-md);
+    border: none;
+    border-radius: 0;
 
-  &--first {
+    @media (max-width: 321px) {
+      font-size: 13 * @hd;
+    }
+  }
+
+  &&--first {
     margin-left: 5 * @hd;
     border-top-left-radius: var(--rv-border-radius-max);
     border-bottom-left-radius: var(--rv-border-radius-max);
   }
 
-  &--last {
+  &&--last {
     margin-right: 5 * @hd;
     border-top-right-radius: var(--rv-border-radius-max);
     border-bottom-right-radius: var(--rv-border-radius-max);
   }
 
-  &--warning {
+  &&--warning {
     background: var(--rv-action-bar-button-warning-color);
   }
 
-  &--danger {
+  &&--danger {
     background: var(--rv-action-bar-button-danger-color);
-  }
-
-  @media (max-width: 321px) {
-    font-size: 13 * @hd;
   }
 }
 
