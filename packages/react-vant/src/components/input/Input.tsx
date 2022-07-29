@@ -4,20 +4,26 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
-} from 'react';
-import { Clear } from '@react-vant/icons';
-import clsx from 'clsx';
-import { InputInstance, InputProps } from './PropsType';
-import { isDef, formatNumber, preventDefault, resetScroll, createNamespace } from '../utils';
-import { usePropsValue } from '../hooks';
+} from 'react'
+import { Clear } from '@react-vant/icons'
+import clsx from 'clsx'
+import { InputInstance, InputProps } from './PropsType'
+import {
+  isDef,
+  formatNumber,
+  preventDefault,
+  resetScroll,
+  createNamespace,
+} from '../utils'
+import { usePropsValue } from '../hooks'
 
-const [bem] = createNamespace('input');
+const [bem] = createNamespace('input')
 
 const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
-  const inputRef = useRef<HTMLInputElement>();
-  const [inputFocus, setInputFocus] = useState(false);
-  const compositionStartRef = useRef(false);
-  const [value, setValue] = usePropsValue(props);
+  const inputRef = useRef<HTMLInputElement>()
+  const [inputFocus, setInputFocus] = useState(false)
+  const compositionStartRef = useRef(false)
+  const [value, setValue] = usePropsValue(props)
 
   const {
     className,
@@ -30,100 +36,101 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     readOnly,
     maxLength,
     autoFocus,
-  } = props;
+  } = props
 
   const focus = () => {
     if (inputRef?.current) {
-      inputRef.current.focus();
+      inputRef.current.focus()
     }
-  };
+  }
 
   const blur = () => {
     if (inputRef?.current) {
-      inputRef.current.blur();
+      inputRef.current.blur()
     }
-  };
+  }
 
   useImperativeHandle(ref, () => ({
     clear: () => {
-      setValue('');
+      setValue('')
     },
     focus,
     blur,
     get nativeElement() {
-      return inputRef.current;
+      return inputRef.current
     },
-  }));
+  }))
 
   const showClear = useMemo(() => {
     if (props.clearable && !readOnly) {
-      const hasValue = value !== '';
+      const hasValue = value !== ''
       const trigger =
-        props.clearTrigger === 'always' || (props.clearTrigger === 'focus' && inputFocus);
+        props.clearTrigger === 'always' ||
+        (props.clearTrigger === 'focus' && inputFocus)
 
-      return hasValue && trigger;
+      return hasValue && trigger
     }
-    return false;
-  }, [value, props.clearTrigger, inputFocus]);
+    return false
+  }, [value, props.clearTrigger, inputFocus])
 
-  const handleChange = (e) => {
-    const inputValue = e?.currentTarget?.value;
-    let finalValue = inputValue;
+  const handleChange = e => {
+    const inputValue = e?.currentTarget?.value
+    let finalValue = inputValue
 
     if (isDef(maxLength) && finalValue.length > +maxLength) {
-      finalValue = finalValue.slice(0, maxLength);
+      finalValue = finalValue.slice(0, maxLength)
       props.onOverlimit?.()
     }
 
     if (type === 'number' || type === 'digit') {
-      const isNumber = type === 'number';
-      finalValue = formatNumber(finalValue, isNumber, isNumber);
+      const isNumber = type === 'number'
+      finalValue = formatNumber(finalValue, isNumber, isNumber)
     }
 
-    setValue(finalValue);
-  };
+    setValue(finalValue)
+  }
 
-  const handleFocus = (e) => {
-    setInputFocus(true);
-    props.onFocus?.(e);
+  const handleFocus = e => {
+    setInputFocus(true)
+    props.onFocus?.(e)
 
     // readOnly not work in legacy mobile safari
     if (readOnly) {
-      blur();
+      blur()
     }
-  };
+  }
 
-  const handleBulr = (e) => {
-    setInputFocus(false);
-    props.onBlur?.(e);
-    resetScroll();
-  };
+  const handleBulr = e => {
+    setInputFocus(false)
+    props.onBlur?.(e)
+    resetScroll()
+  }
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = e => {
     if (e.key === 'Enter' || +e.charCode === 13) {
-      preventDefault(e);
+      preventDefault(e)
       // trigger blur after click keyboard search button
       if (props.type === 'search') {
-        blur();
+        blur()
       }
     }
-    props.onKeyPress?.(e);
-  };
+    props.onKeyPress?.(e)
+  }
 
   const renderInput = () => {
-    let inputType = type;
-    let inputMode;
+    let inputType = type
+    let inputMode
 
     // type="number" is weired in iOS, and can't prevent dot in Android
     // so use inputmode to set keyboard in mordern browers
     if (type === 'number') {
-      inputType = 'text';
-      inputMode = 'decimal';
+      inputType = 'text'
+      inputMode = 'decimal'
     }
 
     if (type === 'digit') {
-      inputType = 'tel';
-      inputMode = 'numeric';
+      inputType = 'tel'
+      inputMode = 'numeric'
     }
 
     return (
@@ -146,46 +153,46 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         autoCorrect={props.autoCorrect}
         onKeyDown={props.onKeyDown}
         onKeyUp={props.onKeyUp}
-        onCompositionStart={(e) => {
-          compositionStartRef.current = true;
-          props.onCompositionStart?.(e);
+        onCompositionStart={e => {
+          compositionStartRef.current = true
+          props.onCompositionStart?.(e)
         }}
-        onCompositionEnd={(e) => {
-          compositionStartRef.current = false;
-          props.onCompositionEnd?.(e);
+        onCompositionEnd={e => {
+          compositionStartRef.current = false
+          props.onCompositionEnd?.(e)
         }}
         onClick={props.onClick}
       />
-    );
-  };
+    )
+  }
 
-  const handleClear = (e) => {
-    setValue('');
-    props.onClear?.(e);
-  };
+  const handleClear = e => {
+    setValue('')
+    props.onClear?.(e)
+  }
 
   return (
-    <div
-      className={clsx(
-        bem([align]),
-        className,
+    <div className={clsx(bem([align]), className)} style={style}>
+      {props.prefix && (
+        <div className={clsx(bem('prefix'))}>{props.prefix}</div>
       )}
-      style={style}
-    >
       {renderInput()}
       {showClear &&
         React.cloneElement(props.clearIcon as React.ReactElement, {
           className: clsx(bem('clear')),
           onTouchStart: handleClear,
         })}
+      {props.suffix && (
+        <div className={clsx(bem('suffix'))}>{props.suffix}</div>
+      )}
     </div>
-  );
-});
+  )
+})
 
 Input.defaultProps = {
   clearIcon: <Clear />,
   clearTrigger: 'focus',
-  defaultValue: ''
-};
+  defaultValue: '',
+}
 
-export default Input;
+export default Input
