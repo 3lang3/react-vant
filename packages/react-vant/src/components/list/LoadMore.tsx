@@ -127,15 +127,14 @@ const LoadMore = React.forwardRef<LoadMoreInstance, LoadMoreProps>(
     React.useImperativeHandle(ref, () => ({ check }))
 
     return (
-      <div
-        className={clsx(props.className, bem())}
-        ref={elementRef}
-        style={props.style}
-      >
-        {typeof props.children === 'function'
-          ? props.children(props.finished, failed, retry)
-          : props.children}
-        {renderPlaceholder()}
+      <div className={clsx(props.className, bem())} style={props.style}>
+        {props.children}
+        <div
+          className={clsx(props.className, bem('loadmore'))}
+          ref={elementRef}
+        >
+          {renderPlaceholder()}
+        </div>
       </div>
     )
   }

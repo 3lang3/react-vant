@@ -36,7 +36,6 @@ List 组件滚动到底部时，会触发 `onLoad` 事件，此时可以发起�
 | loadingText | 加载过程中的提示文案 | _ReactNode_ | `加载中...` |
 | finishedText | 加载完成后的提示文案 | _ReactNode_ | - |
 | errorText | 加载失败后的提示文案 | _React.ReactNode \| ((retry: () => void) => React.ReactNode)_ | - |
-| children | 渲染自定义指引内容 | _React.ReactNode \|  ((finished: boolean, failed: boolean, <br/>retry: () => void ) => React.ReactNode)_ | - |
 
 ### 方法
 
