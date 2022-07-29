@@ -1,33 +1,32 @@
-import React, { useLayoutEffect } from 'react'
+import React from 'react'
 import cls from 'clsx'
 import { SwiperItemProps, SwiperItemInstance } from './PropsType'
 import { createNamespace } from '../utils'
-import { useIsomorphicLayoutEffect, useVisibilityChange } from '../hooks'
+import { useInViewport } from '../hooks'
 
 const [bem] = createNamespace('swiper-item')
 
 const SwiperItem = React.forwardRef<SwiperItemInstance, SwiperItemProps>(
   (props, ref) => {
     const wrapperRef = React.useRef<HTMLDivElement>(null)
-    const getHeight = () => {
-      return wrapperRef.current?.clientHeight
-    }
 
     React.useImperativeHandle(ref, () => ({
-      getHeight,
       self: wrapperRef.current,
     }))
 
-    const [show] = useVisibilityChange(wrapperRef)
+    const [show] = useInViewport(wrapperRef, {
+      rootMargin: '-0.1px',
+      threshold: 0,
+      root: () => props.trackRef?.current,
+    })
 
-    console.log(show)
     return (
       <div
         ref={wrapperRef}
         className={cls(
           props.className,
           bem({
-            hidden: show === false,
+            hidden: props.autoHeight && show === false,
           })
         )}
         onClick={props.onClick}

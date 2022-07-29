@@ -1,66 +1,48 @@
-import { useEffect, useState } from 'react';
-import { inBrowser } from '../utils';
-import { getTargetElement, BasicTarget } from '../utils/dom/getTargetElement';
+import { useState } from 'react'
+import { BasicTarget, getTargetElement } from '../utils/dom/getTargetElement'
+import useEffectWithTarget from './use-effect-with-target'
 
-type InViewport = boolean | undefined;
-
-function isInViewPort(el: HTMLElement): InViewport {
-  if (!el) {
-    return undefined;
-  }
-
-  const viewPortWidth =
-    window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  const viewPortHeight =
-    window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  const rect = el.getBoundingClientRect();
-
-  if (rect) {
-    const { top, bottom, left, right } = rect;
-    return bottom > 0 && top <= viewPortHeight && left <= viewPortWidth && right > 0;
-  }
-
-  return false;
+export interface Options {
+  rootMargin?: string
+  threshold?: number | number[]
+  root?: BasicTarget<Element>
 }
 
-function useInViewport(target: BasicTarget): InViewport {
-  const [inViewPort, setInViewport] = useState<InViewport>(() => {
-    if (!inBrowser || !window.IntersectionObserver) return true;
-    const el = getTargetElement(target);
-    return isInViewPort(el as HTMLElement);
-  });
+function useInViewport(target: BasicTarget, options?: Options) {
+  const [state, setState] = useState<boolean>()
+  const [ratio, setRatio] = useState<number>()
 
-  useEffect(() => {
-    const el = getTargetElement(target);
-    // compatibility: https://caniuse.com/#feat=intersectionobserver
-    if (!el || !inBrowser || !window.IntersectionObserver) {
-      return () => {};
-    }
+  useEffectWithTarget(
+    () => {
+      const el = getTargetElement(target) as Element
+      if (!el) {
+        return
+      }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.some((entry) => {
-          if (entry.intersectionRatio > 0) {
-            setInViewport(true);
-            observer.disconnect();
-            return true;
+      const observer = new IntersectionObserver(
+        entries => {
+          for (const entry of entries) {
+            setRatio(entry.intersectionRatio)
+            setState(entry.isIntersecting)
           }
-          return false;
-        });
-      },
-      {
-        threshold: [0.0001],
-      },
-    );
+        },
+        {
+          ...options,
+          root: getTargetElement(options?.root) as Element,
+        }
+      )
 
-    observer.observe(el as HTMLElement);
+      observer.observe(el)
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [target]);
+      return () => {
+        observer.disconnect()
+      }
+    },
+    [],
+    target
+  )
 
-  return inViewPort;
+  return [state, ratio] as const
 }
 
-export default useInViewport;
+export default useInViewport

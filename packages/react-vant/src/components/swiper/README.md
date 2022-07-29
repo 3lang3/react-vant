@@ -34,6 +34,178 @@ export default () => {
 };
 ```
 
+### 懒加载
+
+当 Swiper 中含有图片时，可以通过设置图片 `lazyload` 属性来开启懒加载模式。在懒加载模式下，只会渲染当前页，上一页和下一页。
+
+```jsx
+/**
+ * title: 懒加载
+ */
+import React from 'react';
+import { Swiper, Image } from 'react-vant';
+import { images } from './demo/images';
+import './demo/images.less';
+
+export default () => {
+  return (
+    <div className="demo-swiper">
+      <Swiper>
+        {images.map((image) => (
+          <Swiper.Item key={image}>
+            <Image lazyload src={image} />
+          </Swiper.Item>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
+```
+
+### 监听 onChange 事件
+
+在每一页轮播结束后，会触发 `onChange` 事件。
+
+```jsx
+/**
+ * title: 监听 onChange 事件
+ */
+import React from 'react';
+import { Swiper, Toast } from 'react-vant';
+import { items } from './demo/items';
+import './demo/base.less';
+
+export default () => {
+  return (
+    <div className="demo-swiper">
+      <Swiper onChange={(i) => Toast(`当前索引${i}`)}>{items}</Swiper>
+    </div>
+  );
+};
+```
+
+### 纵向滚动
+
+设置 `vertical` 属性后滑块会纵向排列，此时需要指定滑块容器的高度。
+
+```jsx
+/**
+ * title: 纵向滚动
+ */
+import React from 'react';
+import { Swiper, Toast } from 'react-vant';
+import { items } from './demo/items';
+import './demo/base.less';
+
+export default () => {
+  return (
+    <div className="demo-swiper">
+      <Swiper autoplay={5000} vertical style={{ height: 150 }}>
+        {items}
+      </Swiper>
+    </div>
+  );
+};
+```
+
+### 自定义滑块大小
+
+滑块默认宽度为 `100%`，可以通过 `slideSize` 属性改变滑块宽度。
+
+```jsx
+/**
+ * title: 自定义滑块大小
+ */
+import React from 'react';
+import { Swiper, Toast } from 'react-vant';
+import { items } from './demo/items';
+import './demo/base.less';
+
+export default () => {
+  return (
+    <div className="demo-swiper">
+      <Swiper slideSize={80}>{items}</Swiper>
+    </div>
+  );
+};
+```
+
+### 滑块居中
+
+通过 `trackOffset` 改变滑块偏移量实现居中展示。
+
+```jsx
+/**
+ * title: 滑块居中
+ */
+import React from 'react';
+import { Swiper, Toast } from 'react-vant';
+import { items } from './demo/items';
+import './demo/base.less';
+
+export default () => {
+  return (
+    <div className="demo-swiper">
+      <Swiper slideSize={80} trackOffset={10}>
+        {items}
+      </Swiper>
+    </div>
+  );
+};
+```
+
+### 垂直滑块居中
+
+```jsx
+/**
+ * title: 垂直滑块居中
+ */
+import React from 'react';
+import { Swiper, Toast } from 'react-vant';
+import { items } from './demo/items';
+import './demo/base.less';
+
+export default () => {
+  return (
+    <div className="demo-swiper">
+      <Swiper style={{ height: 150 }} vertical slideSize={80} trackOffset={10}>
+        {items}
+      </Swiper>
+    </div>
+  );
+};
+```
+
+### 自定义指示器
+
+通过 `indicator` 属性可以自定义指示器的样式。
+
+```jsx
+/**
+ * title: 自定义指示器
+ */
+import React from 'react';
+import { Swiper, Toast } from 'react-vant';
+import { items } from './demo/items';
+import './demo/indicator.less';
+
+export default () => {
+  return (
+    <div className="demo-swiper">
+      <Swiper
+        indicator={(total, current) => (
+          <div className="custom-indicator">
+            {current + 1}/{total}
+          </div>
+        )}
+      >
+        {items}
+      </Swiper>
+    </div>
+  );
+};
+```
+
 ## API
 
 ### Swipe Props
@@ -106,14 +278,14 @@ swipeRef.current?.swipeNext();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                           | 默认值                    | 描述 |
-| ---------------------------------------------- | ------------------------- | ---- |
-| --rv-swipe-slide-size                          | _100%_                    | -    |
-| --rv-swipe-track-offset                        | _0%_                      | -    |
-| --rv-swipe-border-radius                       | _0px_                     | -    |
-| --rv-swipe-indicator-size                      | _6px_                     | -    |
-| --rv-swipe-indicator-margin                    | _var(--rv-padding-sm)_    | -    |
-| --rv-swipe-indicator-active-opacity            | _1_                       | -    |
-| --rv-swipe-indicator-inactive-opacity          | _0.3_                     | -    |
-| --rv-swipe-indicator-active-background-color   | _var(--rv-primary-color)_ | -    |
-| --rv-swipe-indicator-inactive-background-color | _var(--rv-border-color)_  | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-swipe-slide-size | _100%_ | - |
+| --rv-swipe-track-offset | _0%_ | - |
+| --rv-swipe-border-radius | _0px_ | - |
+| --rv-swipe-indicator-size | _6px_ | - |
+| --rv-swipe-indicator-margin | _var(--rv-padding-sm)_ | - |
+| --rv-swipe-indicator-active-opacity | _1_ | - |
+| --rv-swipe-indicator-inactive-opacity | _0.3_ | - |
+| --rv-swipe-indicator-active-background-color | _var(--rv-primary-color)_ | - |
+| --rv-swipe-indicator-inactive-background-color | _var(--rv-border-color)_ | - |
