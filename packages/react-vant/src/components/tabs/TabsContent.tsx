@@ -18,7 +18,6 @@ const TabsContent: React.FC<TabsContentProps> = props => {
     if (animated || swipeable) {
       return (
         <Swiper
-          autoHeight
           {...swiperProps}
           ref={swiperRef}
           rubberband={false}

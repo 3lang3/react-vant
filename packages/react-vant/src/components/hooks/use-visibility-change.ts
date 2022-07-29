@@ -1,37 +1,43 @@
-import React, { useEffect } from 'react';
-import { inBrowser } from '../utils';
+import React, { useEffect, useState } from 'react'
+import { inBrowser } from '../utils'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useVisibilityChange(
   target: React.MutableRefObject<Element | undefined>,
-  onChange: (visible: boolean) => void,
+  onChange?: (visible: boolean) => void
 ) {
+  const [state, setState] = useState<boolean>()
   useEffect(() => {
     // compatibility: https://caniuse.com/#feat=intersectionobserver
     if (!inBrowser || !window.IntersectionObserver) {
-      return null;
+      return null
     }
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         // visibility changed
-        onChange(entries[0].intersectionRatio > 0);
+        onChange?.(entries[0].intersectionRatio > 0)
+        for (const entry of entries) {
+          setState(entry.isIntersecting)
+        }
       },
-      { root: document.body },
-    );
+      { root: document.body }
+    )
 
     const observe = () => {
       if (target.current) {
-        observer.observe(target.current);
+        observer.observe(target.current)
       }
-    };
+    }
 
     const unobserve = () => {
       if (target.current) {
-        observer.unobserve(target.current);
+        observer.unobserve(target.current)
       }
-    };
+    }
 
-    observe();
-    return unobserve;
-  }, [target.current]);
+    observe()
+    return unobserve
+  }, [target.current])
+
+  return [state] as const
 }

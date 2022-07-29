@@ -40,12 +40,12 @@ importers:
     specifiers:
       '@rcdoc/cli': 0.1.24
       '@rcdoc/theme': ^0.1.8
-      '@react-spring/web': ^9.3.0
+      '@react-spring/web': ^9.4.5
       '@react-vant/icons': workspace:*
       '@types/node': ^17.0.31
       '@types/react': 18.0.15
       '@types/react-dom': ^18.0.3
-      '@use-gesture/react': ^10.1.1
+      '@use-gesture/react': 10.2.17
       '@vant/area-data': 1.3.1
       '@vant/popperjs': ^1.1.0
       clsx: 1.2.1
@@ -62,7 +62,7 @@ importers:
     dependencies:
       '@react-spring/web': 9.4.5_biqbaboplfbrettd7655fr4n2y
       '@react-vant/icons': link:../react-vant-icons
-      '@use-gesture/react': 10.2.15_react@18.2.0
+      '@use-gesture/react': 10.2.17_react@18.2.0
       '@vant/popperjs': 1.2.0
       clsx: 1.2.1
       rc-field-form: 1.26.6_biqbaboplfbrettd7655fr4n2y
@@ -2686,16 +2686,16 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@use-gesture/core/10.2.15:
-    resolution: {integrity: sha512-R8k5GHKR6J3n48K1xiWCBSnTsxmfiVCp+MYPMhFaoHT1/oIjrFA6SeMmWDl0REwP/CpBfNdQ0FwOo/0dGjPhwA==}
+  /@use-gesture/core/10.2.17:
+    resolution: {integrity: sha512-62hCybe4x6oGZ1/JA9gSYIdghV1FqxCdvYWt9SqCEAAikwT1OmVl2Q/Uu8CP636L57D+DfXtw6PWM+fdhr4oJQ==}
     dev: false
 
-  /@use-gesture/react/10.2.15_react@18.2.0:
-    resolution: {integrity: sha512-Hdfp17a3iHDo33jasd8GIPlIjM4wxNzn1O9apNX2VrF7X2ewzXp4wCCQ4aPqsnyvBA1WhR8KHMrBS/XWQZxTHQ==}
+  /@use-gesture/react/10.2.17_react@18.2.0:
+    resolution: {integrity: sha512-Vfrp1KgdYn/kOEUAYNXtGBCl2dr38s3G6rru1TOPs+cVUjfNyNxvJK56grUyJ336N3rQLK8F9G7+FfrHuc3g/Q==}
     peerDependencies:
       react: '>= 16.8.0'
     dependencies:
-      '@use-gesture/core': 10.2.15
+      '@use-gesture/core': 10.2.17
       react: 18.2.0
     dev: false
 

@@ -278,14 +278,14 @@ swipeRef.current?.swipeNext();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                           | 默认值                    | 描述 |
-| ---------------------------------------------- | ------------------------- | ---- |
-| --rv-swipe-slide-size                          | _100%_                    | -    |
-| --rv-swipe-track-offset                        | _0%_                      | -    |
-| --rv-swipe-border-radius                       | _0px_                     | -    |
-| --rv-swipe-indicator-size                      | _6px_                     | -    |
-| --rv-swipe-indicator-margin                    | _var(--rv-padding-sm)_    | -    |
-| --rv-swipe-indicator-active-opacity            | _1_                       | -    |
-| --rv-swipe-indicator-inactive-opacity          | _0.3_                     | -    |
-| --rv-swipe-indicator-active-background-color   | _var(--rv-primary-color)_ | -    |
-| --rv-swipe-indicator-inactive-background-color | _var(--rv-border-color)_  | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-swipe-slide-size | _100%_ | - |
+| --rv-swipe-track-offset | _0%_ | - |
+| --rv-swipe-border-radius | _0px_ | - |
+| --rv-swipe-indicator-size | _6px_ | - |
+| --rv-swipe-indicator-margin | _var(--rv-padding-sm)_ | - |
+| --rv-swipe-indicator-active-opacity | _1_ | - |
+| --rv-swipe-indicator-inactive-opacity | _0.3_ | - |
+| --rv-swipe-indicator-active-background-color | _var(--rv-primary-color)_ | - |
+| --rv-swipe-indicator-inactive-background-color | _var(--rv-border-color)_ | - |
