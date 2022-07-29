@@ -45,6 +45,31 @@ export default () => {
 };
 ```
 
+### 插入内容
+
+可以通过 `prefix` `suffix` 可以插入内容。
+
+```jsx
+/**
+ * title: 插入内容
+ */
+import React, { useState } from 'react';
+import { CommentO } from '@react-vant/icons'
+import { Input, Cell, Button } from 'react-vant';
+
+export default () => {
+  return (
+    <Cell>
+      <Input
+        prefix="💁"
+        suffix={<Button size="small" type="primary">发送</Button>}
+        placeholder="请输入短信验证码"
+      />
+    </Cell>
+  );
+};
+```
+
 ### 多行输入
 
 `Input.TextArea` 可用于多行输入， `autoSize` 可以使文本域自适应高度，还能设置其最小和最大高度。
@@ -184,6 +209,8 @@ export default () => {
 | clearTrigger | 显示清除图标的时机，<br /> `always` 表示输入框不为空时展示，<br /> `focus` 表示输入框聚焦且不为空时展示 | `always` `focus` | `focus` |
 | autoFocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
 | align | 输入框对齐方式，可选值为 `center` `right`，对 `Input.TextArea` 无效 | _string_ | `left` |
+| prefix | 插入前置内容， 对 `Input.TextArea` 无效 | _ReactNodec_ | - |
+| suffix | 插入后置内容， 对 `Input.TextArea` 无效 | _ReactNodec_ | - |
 
 ### Input.TextArea Props
 

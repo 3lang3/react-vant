@@ -36,6 +36,7 @@
   &__control {
     display: block;
     box-sizing: border-box;
+    flex: 1;
     width: 100%;
     min-width: 0; // for flex-shrink in field__button
     margin: 0;
@@ -86,5 +87,17 @@
     margin-right: calc(var(--rv-padding-xs) * -1);
     padding: 0 var(--rv-padding-xs);
     cursor: pointer;
+  }
+
+  &__prefix,
+  &__suffix {
+    display: flex;
+    align-items: center;
+  }
+  &__prefix {
+    padding-right: var(--rv-padding-xs);
+  }
+  &__suffix {
+    padding-left: var(--rv-padding-xs);
   }
 }
