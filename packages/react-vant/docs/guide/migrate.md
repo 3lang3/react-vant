@@ -60,7 +60,6 @@
 
 - `List` 组件:
   - 调整 `errorText` 类型
-  - 调整 `children` 类型，现支持自定义指引内容
   - 移除 `loading` `error` `immediateCheck` `autoCheck` 属性，现由内部维护。
   - `onLoad` 方法新增 `isRetry` 参数，用来区分请求出错后用户点击底部重试场景。
 

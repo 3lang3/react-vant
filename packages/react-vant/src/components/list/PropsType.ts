@@ -17,13 +17,7 @@ export interface LoadMoreProps extends Omit<BaseTypeProps, 'children'> {
   finishedText?: React.ReactNode
   /** 加载失败后的提示文案 */
   errorText?: React.ReactNode | ((retry: () => void) => React.ReactNode)
-  children?:
-    | React.ReactNode
-    | ((
-        finished: boolean,
-        failed: boolean,
-        retry: () => void
-      ) => React.ReactNode)
+  children?: React.ReactNode
 }
 
 export type LoadMoreInstance = {
