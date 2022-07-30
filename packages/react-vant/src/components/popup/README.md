@@ -103,16 +103,17 @@ import type { PopupPosition, PopupCloseIconPosition } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                               | 默认值                                        | 描述 |
-| ---------------------------------- | --------------------------------------------- | ---- |
-| --rv-popup-background-color        | _var(--rv-white)_                             | -    |
-| --rv-popup-title-font-size         | _16px_                                        | -    |
-| --rv-popup-description-color        | _#969799_                                     | -    |
-| --rv-popup-description-font-size    | _14px_                                        | -    |
-| --rv-popup-transition              | _transform var(--rv-animation-duration-base)_ | -    |
-| --rv-popup-round-border-radius     | _16px_                                        | -    |
-| --rv-popup-close-icon-size         | _22px_                                        | -    |
-| --rv-popup-close-icon-color        | _var(--rv-gray-5)_                            | -    |
-| --rv-popup-close-icon-active-color | _var(--rv-gray-6)_                            | -    |
-| --rv-popup-close-icon-margin       | _16px_                                        | -    |
-| --rv-popup-close-icon-z-index      | _1_                                           | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-popup-background-color | _var(--rv-white)_ | - |
+| --rv-popup-title-color | _inherit_ | - |
+| --rv-popup-title-font-size | _16px_ | - |
+| --rv-popup-description-color | _#969799_ | - |
+| --rv-popup-description-font-size | _14px_ | - |
+| --rv-popup-transition | _transform var(--rv-animation-duration-base)_ | - |
+| --rv-popup-round-border-radius | _16px_ | - |
+| --rv-popup-close-icon-size | _22px_ | - |
+| --rv-popup-close-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-popup-close-icon-active-color | _var(--rv-gray-6)_ | - |
+| --rv-popup-close-icon-margin | _16px_ | - |
+| --rv-popup-close-icon-z-index | _1_ | - |
