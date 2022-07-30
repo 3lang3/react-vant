@@ -1,14 +1,22 @@
-import React, { CSSProperties, forwardRef, useImperativeHandle, useContext } from 'react';
-import { Success } from '@react-vant/icons';
-import clsx from 'clsx';
-import Cell from '../cell';
-import { useSetState } from '../hooks';
-import useSsrCompat from '../hooks/use-ssr-compat';
-import Popup from '../popup';
-import { createNamespace, getZIndexStyle, pick } from '../utils';
-import { renderToContainer } from '../utils/dom/renderToContainer';
-import DropdownMenuContext from './DropdownMenuContext';
-import { DropdownMenuItemProps, DropdownMenuItemOption, DropdownItemInstance } from './PropsType';
+import React, {
+  CSSProperties,
+  forwardRef,
+  useImperativeHandle,
+  useContext,
+} from 'react'
+import { Success } from '@react-vant/icons'
+import clsx from 'clsx'
+import Cell from '../cell'
+import { useSetState } from '../hooks'
+import Popup from '../popup'
+import { createNamespace, getZIndexStyle, pick } from '../utils'
+import { renderToContainer } from '../utils/dom/renderToContainer'
+import DropdownMenuContext from './DropdownMenuContext'
+import {
+  DropdownMenuItemProps,
+  DropdownMenuItemOption,
+  DropdownItemInstance,
+} from './PropsType'
 
 const inheritPropsKey = [
   'overlay',
@@ -21,73 +29,78 @@ const inheritPropsKey = [
   'onOpened',
   'teleport',
   'closeOnClickOverlay',
-] as const;
+] as const
 
 function inheritProps(parentProps, props) {
-  return { ...parentProps, ...props };
+  return { ...parentProps, ...props }
 }
 
-const [bem] = createNamespace('dropdown-item');
+const [bem] = createNamespace('dropdown-item')
 
-const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>((props, ref) => {
+const DropdownMenuItem = forwardRef<
+  DropdownItemInstance,
+  DropdownMenuItemProps
+>((props, ref) => {
   const [state, setState] = useSetState({
     transition: true,
     showWrapper: false,
-  });
-  const [ssrCompatRender] = useSsrCompat();
-  const parent = useContext(DropdownMenuContext);
-  const currentValue = parent.value?.[props.name];
+  })
+  const parent = useContext(DropdownMenuContext)
+  const currentValue = parent.value?.[props.name]
 
   const onClosed = () => {
-    setState({ showWrapper: false });
-    (props.onClosed ?? parent.props.onClosed)?.();
-  };
+    setState({ showWrapper: false })
+    ;(props.onClosed ?? parent.props.onClosed)?.()
+  }
 
-  const onClickWrapper = (event) => {
+  const onClickWrapper = event => {
     // prevent being identified as clicking outside and closed when using teleport
     if (props.teleport) {
-      event.stopPropagation();
+      event.stopPropagation()
     }
-  };
+  }
 
   const onClose = () => {
-    parent.close();
-    (props.onClose ?? parent.props.onClose)?.();
-  };
+    parent.close()
+    ;(props.onClose ?? parent.props.onClose)?.()
+  }
 
-  const toggle = (show = !props.showPopup, options: { immediate?: boolean } = {}) => {
+  const toggle = (
+    show = !props.showPopup,
+    options: { immediate?: boolean } = {}
+  ) => {
     if (show === props.showPopup) {
-      return;
+      return
     }
-    const newState = {} as typeof state;
-    newState.transition = !options.immediate;
+    const newState = {} as typeof state
+    newState.transition = !options.immediate
 
     if (show) {
-      newState.showWrapper = true;
+      newState.showWrapper = true
     } else {
-      onClose();
+      onClose()
     }
-    setState(newState);
-  };
+    setState(newState)
+  }
 
-  const renderTitle = (itemValue) => {
+  const renderTitle = itemValue => {
     if (props.title) {
-      return props.title;
+      return props.title
     }
-    const match = props.options.find((option) => option.value === itemValue);
-    return match ? match.text : props.placeholder;
-  };
+    const match = props.options.find(option => option.value === itemValue)
+    return match ? match.text : props.placeholder
+  }
 
   const renderOption = (option: DropdownMenuItemOption) => {
-    const { activeColor } = parent.props;
-    const active = option.value === currentValue;
+    const { activeColor } = parent.props
+    const active = option.value === currentValue
 
     const onClick = () => {
       if (option.value !== currentValue) {
-        parent.onChange({ [props.name]: option.value });
+        parent.onChange({ [props.name]: option.value })
       }
-      onClose();
-    };
+      onClose()
+    }
 
     return (
       <Cell
@@ -99,23 +112,25 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
         style={{ color: active ? activeColor : '' }}
         onClick={onClick}
       >
-        {active && <Success className={clsx(bem('icon'))} color={activeColor} />}
+        {active && (
+          <Success className={clsx(bem('icon'))} color={activeColor} />
+        )}
       </Cell>
-    );
-  };
+    )
+  }
 
   const renderContent = () => {
-    const { offset } = props;
-    const { zIndex, overlayStyle, duration, direction } = parent.props;
+    const { offset } = props
+    const { zIndex, overlayStyle, duration, direction } = parent.props
 
-    const style: CSSProperties = getZIndexStyle(zIndex);
+    const style: CSSProperties = getZIndexStyle(zIndex)
     if (direction === 'down') {
-      style.top = `${offset}px`;
+      style.top = `${offset}px`
     } else {
-      style.bottom = `${offset}px`;
+      style.bottom = `${offset}px`
     }
 
-    const attrs = pick(inheritProps(parent.props, props), inheritPropsKey);
+    const attrs = pick(inheritProps(parent.props, props), inheritPropsKey)
     return (
       <div
         style={{ ...style, display: state.showWrapper ? 'block' : 'none' }}
@@ -137,8 +152,8 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
           {props.children}
         </Popup>
       </div>
-    );
-  };
+    )
+  }
 
   useImperativeHandle(ref, () => ({
     toggle,
@@ -148,16 +163,15 @@ const DropdownMenuItem = forwardRef<DropdownItemInstance, DropdownMenuItemProps>
     disabled: props.disabled,
     name: props.name,
     options: props.options,
-  }));
+  }))
 
-  if (props.teleport)
-    return ssrCompatRender(() => renderToContainer(props.teleport, renderContent()));
-  return renderContent();
-});
+  if (props.teleport) return renderToContainer(props.teleport, renderContent())
+  return renderContent()
+})
 
 DropdownMenuItem.defaultProps = {
   placeholder: '请选择',
   options: [],
-};
+}
 
-export default DropdownMenuItem;
+export default DropdownMenuItem

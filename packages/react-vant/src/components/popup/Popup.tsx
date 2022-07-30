@@ -6,21 +6,20 @@ import React, {
   useRef,
   forwardRef,
   useImperativeHandle,
-} from 'react';
-import clsx from 'clsx';
-import { CSSTransition } from 'react-transition-group';
-import { Cross } from '@react-vant/icons';
+} from 'react'
+import clsx from 'clsx'
+import { CSSTransition } from 'react-transition-group'
+import { Cross } from '@react-vant/icons'
 
-import Overlay from '../overlay';
-import useEventListener from '../hooks/use-event-listener';
+import Overlay from '../overlay'
+import useEventListener from '../hooks/use-event-listener'
 
-import { createNamespace, isDef, withStopPropagation } from '../utils';
-import { PopupInstanceType, PopupProps } from './PropsType';
-import { callInterceptor } from '../utils/interceptor';
-import { renderToContainer } from '../utils/dom/renderToContainer';
-import useSsrCompat from '../hooks/use-ssr-compat';
-import PopupContext from './PopupContext';
-import { useLockScroll } from '../hooks/use-lock-scroll';
+import { createNamespace, isDef, withStopPropagation } from '../utils'
+import { PopupInstanceType, PopupProps } from './PropsType'
+import { callInterceptor } from '../utils/interceptor'
+import { renderToContainer } from '../utils/dom/renderToContainer'
+import PopupContext from './PopupContext'
+import { useLockScroll } from '../hooks/use-lock-scroll'
 
 export const sharedPopupProps = [
   'round',
@@ -43,122 +42,131 @@ export const sharedPopupProps = [
   'onOpened',
   'onClosed',
   'beforeClose',
-] as const;
+] as const
 
-let globalZIndex = 2000;
+let globalZIndex = 2000
 
-const [bem] = createNamespace('popup');
-
+const [bem] = createNamespace('popup')
 
 const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
-  const { round, visible, closeable, title, description, children, duration, closeIcon, position } =
-    props;
-  const opened = useRef(false);
-  const zIndex = useRef<number>(props.zIndex ?? globalZIndex);
-  const popupRef = useRef<HTMLDivElement>();
-  const [animatedVisible, setAnimatedVisible] = useState(visible);
-  const [ssrCompatRender, rendered] = useSsrCompat();
+  const {
+    round,
+    visible,
+    closeable,
+    title,
+    description,
+    children,
+    duration,
+    closeIcon,
+    position,
+  } = props
+  const opened = useRef(false)
+  const zIndex = useRef<number>(props.zIndex ?? globalZIndex)
+  const popupRef = useRef<HTMLDivElement>()
+  const [animatedVisible, setAnimatedVisible] = useState(visible)
 
   const style = useMemo(() => {
     const initStyle = {
       zIndex: zIndex.current,
       ...props.style,
-    };
+    }
 
     if (isDef(props.duration)) {
-      const key = props.position === 'center' ? 'animationDuration' : 'transitionDuration';
-      initStyle[key] = `${props.duration}ms`;
+      const key =
+        props.position === 'center' ? 'animationDuration' : 'transitionDuration'
+      initStyle[key] = `${props.duration}ms`
     }
-    return initStyle;
+    return initStyle
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [zIndex.current, props.position, props.style, props.duration]);
+  }, [zIndex.current, props.position, props.style, props.duration])
 
   const open = () => {
     if (props.zIndex !== undefined) {
-      zIndex.current = +props.zIndex;
+      zIndex.current = +props.zIndex
     } else {
-      zIndex.current = globalZIndex++;
+      zIndex.current = globalZIndex++
     }
 
-    opened.current = true;
-    props.onOpen?.();
-  };
+    opened.current = true
+    props.onOpen?.()
+  }
 
   const close = () => {
-    if (opened.current) {
-      callInterceptor({
-        interceptor: props.beforeClose,
-        args: ['close'],
-        done: () => {
-          opened.current = false;
-          props.onClose?.();
-        },
-      });
-    }
-  };
+    callInterceptor({
+      interceptor: props.beforeClose,
+      args: ['close'],
+      done: () => {
+        opened.current = false
+        props.onClose?.()
+      },
+    })
+  }
 
-  const onClickOverlay = (event) => {
-    props.onClickOverlay?.(event);
+  const onClickOverlay = event => {
+    props.onClickOverlay?.(event)
 
     if (props.closeOnClickOverlay) {
-      close();
+      close()
     }
-  };
+  }
 
   const renderOverlay = () => {
     if (props.overlay) {
       return (
         <Overlay
-          visible={visible && rendered}
+          visible={visible}
           className={props.overlayClass}
           customStyle={props.overlayStyle}
           zIndex={zIndex.current}
           duration={duration}
           onClick={onClickOverlay}
         />
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
-  const onClickCloseIcon = (e) => {
+  const onClickCloseIcon = e => {
     if (props.onClickCloseIcon) {
-      props.onClickCloseIcon(e);
+      props.onClickCloseIcon(e)
     }
-    close();
-  };
+    close()
+  }
 
   const renderCloseIcon = () => {
     if (closeable) {
-      const { closeIconPosition } = props;
+      const { closeIconPosition } = props
       if (closeIcon) {
         return (
-          <div className={clsx(bem('close-icon', closeIconPosition))} onClick={onClickCloseIcon}>
+          <div
+            className={clsx(bem('close-icon', closeIconPosition))}
+            onClick={onClickCloseIcon}
+          >
             {closeIcon}
           </div>
-        );
+        )
       }
-      return null;
+      return null
     }
-    return null;
-  };
+    return null
+  }
 
   const renderTitle = () => {
     if (title) {
-      return <div className={clsx(bem('title'))}>{title}</div>;
+      return <div className={clsx(bem('title'))}>{title}</div>
     }
-    return null;
-  };
+    return null
+  }
 
   const renderDescription = () => {
     if (description) {
-      return <div className={clsx(bem('description'))}>{description}</div>;
+      return <div className={clsx(bem('description'))}>{description}</div>
     }
-    return null;
-  };
+    return null
+  }
 
   const renderPopup = () => {
-    const { safeAreaInsetBottom } = props;
+    const { safeAreaInsetBottom } = props
     return withStopPropagation(
       props.stopPropagation,
       <div
@@ -173,7 +181,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
             [position]: position,
           }),
           { 'rv-safe-area-bottom': safeAreaInsetBottom },
-          props.className,
+          props.className
         )}
         onClick={props.onClick}
       >
@@ -181,18 +189,18 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         {renderDescription()}
         {children}
         {renderCloseIcon()}
-      </div>,
-    );
-  };
+      </div>
+    )
+  }
 
   const renderTransition = () => {
-    const { transition, destroyOnClose, forceRender } = props;
+    const { transition, destroyOnClose, forceRender } = props
     const name =
-      position === 'center' ? 'rv-fade' : `rv-popup-slide-${position}`;
+      position === 'center' ? 'rv-fade' : `rv-popup-slide-${position}`
 
     return (
       <CSSTransition
-        in={visible && rendered}
+        in={visible}
         /**
          * https://github.com/reactjs/react-transition-group/pull/559
          */
@@ -204,44 +212,41 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
         onEnter={open}
         onEntered={props.onOpened}
         onExited={() => {
-          setAnimatedVisible(false);
-          props.onClosed?.();
+          setAnimatedVisible(false)
+          props.onClosed?.()
         }}
       >
         {renderPopup()}
       </CSSTransition>
-    );
-  };
+    )
+  }
 
   useEventListener('popstate', () => {
     if (props.closeOnPopstate) {
-      close();
+      close()
     }
-  });
+  })
 
   useEffect(() => {
-    if (!rendered) return;
     if (visible) {
-      setAnimatedVisible(true);
+      setAnimatedVisible(true)
     }
-  }, [visible, rendered]);
+  }, [visible])
 
-  useLockScroll(popupRef, visible && props.lockScroll);
+  useLockScroll(popupRef, visible && props.lockScroll)
 
   useImperativeHandle(ref, () => ({
     popupRef,
-  }));
+  }))
 
-  return ssrCompatRender(() =>
-    renderToContainer(
-      props.teleport,
-      <PopupContext.Provider value={{ visible }}>
-        {renderOverlay()}
-        {renderTransition()}
-      </PopupContext.Provider>,
-    ),
-  );
-});
+  return renderToContainer(
+    props.teleport,
+    <PopupContext.Provider value={{ visible }}>
+      {renderOverlay()}
+      {renderTransition()}
+    </PopupContext.Provider>
+  )
+})
 
 Popup.defaultProps = {
   duration: 300,
@@ -253,6 +258,6 @@ Popup.defaultProps = {
   closeOnClickOverlay: true,
   stopPropagation: ['click'],
   teleport: () => document.body,
-};
+}
 
-export default Popup;
+export default Popup
