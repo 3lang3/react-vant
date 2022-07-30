@@ -106,7 +106,9 @@
   &__confirm {
     &,
     &:active {
-      color: var(--rv-dialog-confirm-button-text-color);
+      &.@{rv-prefix}-button {
+        color: var(--rv-dialog-confirm-button-text-color);
+      }
     }
   }
 
