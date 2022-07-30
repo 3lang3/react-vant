@@ -5,6 +5,7 @@ import { CloseParams, ImagePreviewProps, ImagePreviewStatic } from './PropsType'
 import BaseImagePreview from './ImagePreview'
 import { resolveContainer } from '../utils/dom/getContainer'
 import { render, unmount } from '../utils/dom/render'
+import canUseDom from '../utils/dom/canUseDom'
 
 const defaultConfig: ImagePreviewProps = {
   images: [],
@@ -20,6 +21,7 @@ const defaultConfig: ImagePreviewProps = {
 
 // 可返回用于销毁此弹窗的方法
 const open = (props: ImagePreviewProps) => {
+  if (!canUseDom()) return null
   const { onClose = noop, beforeClose, ...restProps } = props
 
   const userContainer = resolveContainer(props.teleport)
