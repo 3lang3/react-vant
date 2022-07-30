@@ -5,6 +5,7 @@ import Notify from './Notify'
 import { resolveContainer } from '../utils/dom/getContainer'
 import { lockClick } from '../toast/lock-click'
 import { render, unmount } from '../utils/dom/render'
+import canUseDom from '../utils/dom/canUseDom'
 
 const NotifyNamespace = {} as NotifyStatic
 
@@ -31,6 +32,7 @@ function nextTickClear() {
 
 // 可返回用于销毁此弹窗的方法
 const show = (p: string | NotifyProps) => {
+  if (!canUseDom()) return null
   const props = parseOptions(p)
   const interProps = { ...NotifyNamespace.currentOptions, ...props }
   const { onClose = noop, duration, ...restProps } = interProps

@@ -18,6 +18,38 @@ import { Popup } from 'react-vant';
 
 <code title="基础用法" src="./demo/base.tsx"></code>
 
+### 弹出位置
+
+通过 `position` 属性设置弹出位置，默认居中弹出，可以设置为 `top`、`bottom`、`left`、`right`。
+
+<code title="弹出位置" src="./demo/position.tsx"></code>
+
+### 关闭图标
+
+设置 `closeable` 属性后，会在弹出层的右上角显示关闭图标，并且可以通过 `closeIcon` 属性自定义图标，使用 `closeIconPosition` 属性可以自定义图标位置。
+
+<code title="关闭图标" src="./demo/close.tsx"></code>
+
+### 圆角弹窗
+
+设置 `round` 属性后，弹窗会根据弹出位置添加不同的圆角样式。
+
+<code title="圆角弹窗" src="./demo/round.tsx"></code>
+
+### 标题弹窗
+
+设置 `title` 和 `description` 属性后，弹窗会显示标题和描述文字，建议在 `bottom` 弹框下使用。
+
+<code title="标题弹窗" src="./demo/title.tsx"></code>
+
+### ConfigProvider 配置
+
+通过设置 `teleport` 属性，弹窗会挂载在指定的节点下，`ConfigProvider` 即可生效。
+
+<code title="ConfigProvider配置" src="./demo/teleport.tsx"></code>
+
+> 如果想实现全局配置 `Popup` 样式变量，请使用 [css :root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root#examples)
+
 ## API
 
 ### Props

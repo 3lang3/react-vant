@@ -2,7 +2,6 @@
 import React, {
   useMemo,
   useState,
-  useEffect,
   useRef,
   forwardRef,
   useImperativeHandle,
@@ -20,6 +19,7 @@ import { callInterceptor } from '../utils/interceptor'
 import { renderToContainer } from '../utils/dom/renderToContainer'
 import PopupContext from './PopupContext'
 import { useLockScroll } from '../hooks/use-lock-scroll'
+import { useIsomorphicLayoutEffect } from '../hooks'
 
 export const sharedPopupProps = [
   'round',
@@ -51,7 +51,6 @@ const [bem] = createNamespace('popup')
 const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const {
     round,
-    visible,
     closeable,
     title,
     description,
@@ -63,6 +62,7 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
   const opened = useRef(false)
   const zIndex = useRef<number>(props.zIndex ?? globalZIndex)
   const popupRef = useRef<HTMLDivElement>()
+  const [visible, setVisible] = useState(props.visible)
   const [animatedVisible, setAnimatedVisible] = useState(visible)
 
   const style = useMemo(() => {
@@ -227,11 +227,15 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     }
   })
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (visible) {
       setAnimatedVisible(true)
     }
   }, [visible])
+
+  useIsomorphicLayoutEffect(() => {
+    setVisible(props.visible)
+  }, [props.visible])
 
   useLockScroll(popupRef, visible && props.lockScroll)
 

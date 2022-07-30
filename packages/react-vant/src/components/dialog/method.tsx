@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Cross } from '@react-vant/icons';
-import { noop } from '../utils';
-import { AlertDialogProps, DialogProps, DialogStatic } from './PropsType';
-import BaseDialog from './Dialog';
-import { resolveContainer } from '../utils/dom/getContainer';
-import { render, unmount } from '../utils/dom/render';
+import React, { useEffect, useState } from 'react'
+import { Cross } from '@react-vant/icons'
+import { noop } from '../utils'
+import { AlertDialogProps, DialogProps, DialogStatic } from './PropsType'
+import BaseDialog from './Dialog'
+import { resolveContainer } from '../utils/dom/getContainer'
+import { render, unmount } from '../utils/dom/render'
+import canUseDom from '../utils/dom/canUseDom'
 
-const Dialog = BaseDialog as DialogStatic;
+const Dialog = BaseDialog as DialogStatic
 
 // 可返回用于销毁此弹窗的方法
 Dialog.show = (props: DialogProps) => {
+  if (!canUseDom()) return null
   const defaultOptions = {
     overlay: true,
     closeable: false,
@@ -19,7 +21,7 @@ Dialog.show = (props: DialogProps) => {
     showConfirmButton: true,
     showCancelButton: false,
     closeOnClickOverlay: false,
-  };
+  }
   const {
     onClosed,
     onCancel = noop,
@@ -28,60 +30,60 @@ Dialog.show = (props: DialogProps) => {
     cancelProps,
     confirmProps,
     ...restProps
-  } = props;
+  } = props
 
-  const userContainer = resolveContainer(props.teleport);
-  const container = document.createElement('div');
-  userContainer.appendChild(container);
-  let destroy = noop;
+  const userContainer = resolveContainer(props.teleport)
+  const container = document.createElement('div')
+  userContainer.appendChild(container)
+  let destroy = noop
 
   const TempDialog = () => {
-    const [visible, setVisible] = useState(false);
-    const [cancelLoading, setCancelLoading] = useState(false);
-    const [okLoading, setOkLoading] = useState(false);
+    const [visible, setVisible] = useState(false)
+    const [cancelLoading, setCancelLoading] = useState(false)
+    const [okLoading, setOkLoading] = useState(false)
 
     useEffect(() => {
-      setVisible(true);
-    }, []);
+      setVisible(true)
+    }, [])
 
     destroy = () => {
-      setVisible(false);
-      if (onClose) onClose();
-    };
+      setVisible(false)
+      if (onClose) onClose()
+    }
     const _afterClose = () => {
       if (onClosed) {
-        onClosed();
+        onClosed()
       }
-      const unmountResult = unmount(container);
+      const unmountResult = unmount(container)
       if (unmountResult && container.parentNode) {
-        container.parentNode.removeChild(container);
+        container.parentNode.removeChild(container)
       }
-    };
+    }
 
-    const _onConfirm = async (e) => {
-      const i = setTimeout(() => setOkLoading(true));
+    const _onConfirm = async e => {
+      const i = setTimeout(() => setOkLoading(true))
       if ((await onConfirm(e)) !== false) {
-        clearTimeout(i);
-        destroy();
+        clearTimeout(i)
+        destroy()
       } else {
-        clearTimeout(i);
-        setOkLoading(false);
+        clearTimeout(i)
+        setOkLoading(false)
       }
-    };
+    }
     const _onCancel = async (e, clickOverlay?) => {
       if (clickOverlay) {
-        destroy();
-        return;
+        destroy()
+        return
       }
-      const i = setTimeout(() => setCancelLoading(true));
+      const i = setTimeout(() => setCancelLoading(true))
       if ((await onCancel(e)) !== false) {
-        clearTimeout(i);
-        destroy();
+        clearTimeout(i)
+        destroy()
       } else {
-        clearTimeout(i);
-        setCancelLoading(false);
+        clearTimeout(i)
+        setCancelLoading(false)
       }
-    };
+    }
 
     return (
       <BaseDialog
@@ -96,44 +98,44 @@ Dialog.show = (props: DialogProps) => {
         onConfirm={_onConfirm}
         onClosed={_afterClose}
       />
-    );
-  };
-  render(<TempDialog />, container);
+    )
+  }
+  render(<TempDialog />, container)
 
-  return destroy;
-};
+  return destroy
+}
 
 // 可使用 async/await 的方式
 Dialog.alert = (props: AlertDialogProps) => {
-  const { onConfirm = noop } = props;
-  return new Promise((resolve) => {
+  const { onConfirm = noop } = props
+  return new Promise(resolve => {
     Dialog.show({
       ...props,
-      onConfirm: (e) => {
-        onConfirm(e);
-        resolve(e);
+      onConfirm: e => {
+        onConfirm(e)
+        resolve(e)
       },
-    });
-  });
-};
+    })
+  })
+}
 
 Dialog.confirm = (props: DialogProps): Promise<boolean> => {
-  const { onCancel = noop, onConfirm = noop } = props;
+  const { onCancel = noop, onConfirm = noop } = props
   return new Promise((resolve, reject) => {
     Dialog.show({
       // 强制显示 OK Btn
       showCancelButton: true,
       ...props,
-      onCancel: (e) => {
-        onCancel(e);
-        reject();
+      onCancel: e => {
+        onCancel(e)
+        reject()
       },
-      onConfirm: (e) => {
-        onConfirm(e);
-        resolve(true);
+      onConfirm: e => {
+        onConfirm(e)
+        resolve(true)
       },
-    });
-  });
-};
+    })
+  })
+}
 
-export default Dialog;
+export default Dialog
