@@ -1,13 +1,46 @@
-### 高清适配
+## 浏览器适配
 
-在部分项目中，你可能希望使用 2 倍大小的样式文件，react-vant 为了降低你的接入成本，内置了一套经过预处理的 2 倍大小的代码，放置在 2x 子目录下。
+`react-vant` 默认使用 `px` 作为样式单位，如果需要使用 `viewport` 单位 (vw, vh, vmin, vmax)，推荐使用 [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport) 进行转换。
 
-你可以把项目中对 react-vant 的 import 替换为 react-vant/2x，这样加载的就是 2 倍大小版本的组件了，例如：
+下面提供了一份基本的 PostCSS 示例配置，可以在此配置的基础上根据项目需求进行修改。
 
-```diff
-- import { Button } from 'react-vant';
-// ⬇️
-+ import { Button } from 'react-vant/2x';
+```js
+// postcss.config.js
+module.exports = {
+  plugins: {
+    'postcss-px-to-viewport': {
+      viewportWidth: 375,
+      viewportUnit: "vw",
+      fontViewportUnit: "vw",
+    },
+  },
+};
 ```
 
-如果你觉得每次引入都要额外加个 2x 太麻烦，可以考虑在 webpack/vite 中配置一个从 react-vant 到 react-vant/2x 的别名，具体的配置方法请参考 [webpack](https://webpack.js.org/configuration/resolve/#resolvealias)/[vite](https://vitejs.dev/config/#resolve-alias) 文档。
+由于 `react-vant` 是按照 `375px` 来开发的， 如果你的设计稿是 `750px` 的话，则需要调整配置（其他尺寸同理）
+
+```js
+// postcss.config.js
+const px2viewport = require('postcss-px-to-viewport');
+
+module.exports = () => {
+  return {
+    plugins: [
+      px2viewport({
+        viewportUnit: "vw",
+        fontViewportUnit: "vw",
+        viewportWidth: 375,
+        exclude: [/^(?!.*node_modules\/react-vant)/]
+      }),
+      px2viewport({
+        viewportUnit: "vw",
+        fontViewportUnit: "vw",
+        viewportWidth: 750,
+        exclude: [/node_modules\/react-vant/i]
+      })
+    ]
+  }
+}
+```
+
+> Tips: 在配置 postcss-loader 时，应避免 ignore `node_modules` 目录，否则将导致 `react-vant` 样式无法被编译。

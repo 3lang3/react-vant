@@ -68,5 +68,4 @@ exports.default = gulp.series(
   generatePackageJSON,
   generateREADME,
   copyBundleCssToLib,
-  gulp.series(create2xFolder, build2xCSS),
 )
