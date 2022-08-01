@@ -43,4 +43,6 @@ module.exports = () => {
 }
 ```
 
+- **[postcss config demo](https://github.com/3lang3/react-vant-template/blob/main/next/vite/postcss.config.js)**
+
 > Tips: 在配置 postcss-loader 时，应避免 ignore `node_modules` 目录，否则将导致 `react-vant` 样式无法被编译。
