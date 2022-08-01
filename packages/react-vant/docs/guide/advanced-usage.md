@@ -18,29 +18,6 @@ export default () => {
 };
 ```
 
-### 浏览器适配
-
-React Vant 默认使用 `px` 作为样式单位，如果需要使用 `viewport` 单位 (vw, vh, vmin, vmax)，推荐使用 [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport) 进行转换。
-
-[postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport) 是一款 PostCSS 插件，用于将 px 单位转化为 vw/vh 单位。
-
-#### PostCSS PostCSS 示例配置
-
-下面提供了一份基本的 PostCSS 示例配置，可以在此配置的基础上根据项目需求进行修改。
-
-```js
-// postcss.config.js
-module.exports = {
-  plugins: {
-    'postcss-px-to-viewport': {
-      viewportWidth: 375,
-    },
-  },
-};
-```
-
-> Tips: 在配置 postcss-loader 时，应避免 ignore node_modules 目录，否则将导致 React Vant 样式无法被编译。
-
 ### 触摸事件模拟
 
 这是一个面向移动端的组件库，因此默认只适配了移动端设备，这意味着组件只监听了移动端的 `touch` 事件，没有监听桌面端的 `mouse` 事件。

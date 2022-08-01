@@ -35,14 +35,16 @@ const themeVars = {
 }
 ```
 
-#### 方法三：直接通过 style 属性设置
+#### 方法三：通过父级 style, className 属性设置
 
-直接通过组件的 `style` 属性，简单粗暴，适合小范围的调整：
+直接通过组件父级的 `style` `className` 属性，简单粗暴，适合小范围的调整：
 
 ```jsx | pure
-<Button style={{
+<div style={{
   '--rv-button-primary-background-color': 'red'
-}}/>
+}}>
+  <Button/>
+</div>
 ```
 
 #### 方法四：通过全局变量进行设置
