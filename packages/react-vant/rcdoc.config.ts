@@ -1,4 +1,4 @@
-import { defineConfig } from '@rcdoc/cli';
+import { defineConfig } from '@rcdoc/cli'
 
 export default defineConfig({
   title: 'react vant',
@@ -103,7 +103,6 @@ export default defineConfig({
           '/components/checkbox',
           '/components/datetime-picker',
           '/components/form',
-          '/components/field',
           '/components/input',
           '/components/number-keyboard',
           '/components/password-input',
@@ -143,6 +142,7 @@ export default defineConfig({
           '/components/divider',
           '/components/empty',
           '/components/floating-ball',
+          '/components/field',
           '/components/image-preview',
           '/components/lazyload',
           '/components/list',
@@ -237,4 +237,4 @@ export default defineConfig({
       host: true,
     },
   },
-});
+})

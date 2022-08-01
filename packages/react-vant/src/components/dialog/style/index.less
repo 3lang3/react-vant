@@ -129,8 +129,12 @@
       height: var(--rv-dialog-round-button-height);
     }
 
-    .@{rv-prefix}-dialog__confirm {
-      color: var(--rv-white);
+    .@{rv-prefix}-dialog__confirm,
+    &,
+    &:active {
+      &.@{rv-prefix}-button {
+        color: var(--rv-white);
+      }
     }
   }
 
