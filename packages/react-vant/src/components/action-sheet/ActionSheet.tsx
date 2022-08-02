@@ -105,7 +105,7 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   return (
     <Popup
       visible={props.visible}
-      className={clsx(bem('wrapperr'))}
+      className={clsx(bem('wrapper'))}
       position="bottom"
       {...pick(props, sharedPopupProps)}
       onClose={onCancel}
