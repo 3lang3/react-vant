@@ -38,7 +38,7 @@ importers:
 
   packages/react-vant:
     specifiers:
-      '@rcdoc/cli': 0.1.27
+      '@rcdoc/cli': 0.1.28
       '@rcdoc/theme': ^0.1.8
       '@react-spring/web': ^9.4.5
       '@react-vant/icons': workspace:*
@@ -70,7 +70,7 @@ importers:
       react-transition-group: 4.4.2_biqbaboplfbrettd7655fr4n2y
       tslib: 2.4.0
     devDependencies:
-      '@rcdoc/cli': 0.1.27_@types+react@18.0.15
+      '@rcdoc/cli': 0.1.28_@types+react@18.0.15
       '@rcdoc/theme': 0.1.8_biqbaboplfbrettd7655fr4n2y
       '@types/node': 17.0.35
       '@types/react': 18.0.15
@@ -2130,8 +2130,8 @@ packages:
       - typescript
     dev: true
 
-  /@rcdoc/cli/0.1.27_@types+react@18.0.15:
-    resolution: {integrity: sha512-nAlQUd74mGc3i/WL4HCUgPvNdHZr4l0iiQZpGaGQD1vQfZP9Nq2cV+ECOQAq+SyA9AXfjrOL6GvIitCQ8wWEjg==}
+  /@rcdoc/cli/0.1.28_@types+react@18.0.15:
+    resolution: {integrity: sha512-ezfp/uGYaivll52uE3aIWXQonSHeVp7KVFkCcDKzwClNwP6NHf+ydTFmkAoWmvlPIsDllZEB+6r6YNA1BSpX1Q==}
     hasBin: true
     dependencies:
       '@babel/core': 7.18.0
@@ -2159,7 +2159,7 @@ packages:
       less: 4.1.2
       lodash-es: 4.17.21
       ora: 6.1.0
-      rcdoc-theme-default: 0.1.16_bb2bxwco6ptpubzwpazr52qf6i
+      rcdoc-theme-default: 0.1.17_bb2bxwco6ptpubzwpazr52qf6i
       react: 18.2.0
       react-docgen-typescript: 2.2.2
       react-dom: 18.2.0_react@18.2.0
@@ -9672,8 +9672,8 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /rcdoc-theme-default/0.1.16_bb2bxwco6ptpubzwpazr52qf6i:
-    resolution: {integrity: sha512-oJGUC83lE89tbZFqRIun9bSYnA2pp//icCXRLN1yw0qpyOOmDoNeXcMUE4Xdbwjka5X2AWrtenjuATxTF37vEw==}
+  /rcdoc-theme-default/0.1.17_bb2bxwco6ptpubzwpazr52qf6i:
+    resolution: {integrity: sha512-BvqQCAHLcRvKL+b9I6YtY9J+Zl6wVQm9qX5kAYj5WTgtWI4S1kkIBhAQE1JAZTP9HnJWiKGACIaefdQ+w8VMiw==}
     peerDependencies:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'

@@ -1,4 +1,4 @@
-### 💁 介绍
+# 💁 介绍
 
 参照 [Vant](https://vant-contrib.gitee.io/vant) 打造的 React 框架移动端组件库。
 
@@ -37,7 +37,7 @@
 ### 贡献者
 
 <a href="https://github.com/3lang3/react-vant/graphs/contributors">
-  <img style="width: 420px;" src="https://opencollective.com/react-vant/contributors.svg?width=620"/>
+  <img style="max-width: 100%;" src="https://opencollective.com/react-vant/contributors.svg?width=960"/>
 </a>
 
 - 部分图形设计来自[BiscuitCoder](https://biscuitcoder.github.io)

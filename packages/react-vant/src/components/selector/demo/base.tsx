@@ -1,11 +1,11 @@
-import React from 'react';
-import { Form, Selector } from 'react-vant';
-import { options } from './options';
+import React from 'react'
+import { Form, Selector } from 'react-vant'
+import { options } from './options'
 
 export default () => {
   return (
-    <Form layout="vertical">
-      <Form.Item name="single" label="单选">
+    <Form layout='vertical'>
+      <Form.Item name='single' label='单选'>
         <Selector
           options={options}
           defaultValue={['1']}
@@ -13,7 +13,7 @@ export default () => {
         />
       </Form.Item>
 
-      <Form.Item name="mulit" label="多选">
+      <Form.Item name='mulit' label='多选'>
         <Selector
           options={options}
           defaultValue={['2', '3']}
@@ -22,7 +22,7 @@ export default () => {
         />
       </Form.Item>
 
-      <Form.Item name="disabled" label="禁用状态">
+      <Form.Item name='disabled' label='禁用状态'>
         <Selector
           options={[
             {
@@ -41,7 +41,7 @@ export default () => {
           ]}
         />
       </Form.Item>
-      <Form.Item name="description" label="描述选项">
+      <Form.Item name='description' label='描述选项'>
         <Selector
           options={[
             {
@@ -57,11 +57,12 @@ export default () => {
           ]}
         />
       </Form.Item>
-      <Form.Item name="style" label="描述选项">
+      <Form.Item name='style' label='自定义样式'>
         <Selector
           style={{
             '--rv-selector-border-radius': '100px',
-            '--rv-selector-checked-border': 'solid var(--adm-color-primary) 1px',
+            '--rv-selector-checked-border':
+              'solid var(--adm-color-primary) 1px',
             '--rv-selector-padding': '8px 24px',
           }}
           showCheckMark={false}
@@ -70,5 +71,5 @@ export default () => {
         />
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
