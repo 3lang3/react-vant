@@ -1,5 +1,5 @@
 html {
-  --rv-page-footer-bg: #f6f8fc;
+  --rv-page-footer-bg: #fff;
   --rv-page-footer-color: #666;
 }
 html[data-theme='dark'] {
@@ -8,15 +8,16 @@ html[data-theme='dark'] {
 }
 
 .rv-site-footer {
-  padding: 64px 100px;
+  margin-top: 100px;
+  padding: 40px 100px;
   font-size: 14px;
   text-align: center;
   color: var(--rv-page-footer-color);
+  background-color: var(--rv-page-footer-bg);
 
   &__wrapper {
-    padding: 40px;
+    margin: 0 auto;
     border-radius: 64px;
-    background-color: var(--rv-page-footer-bg);
   }
 
   &__links {

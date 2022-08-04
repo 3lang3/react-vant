@@ -2,7 +2,6 @@
 @shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px, rgba(0, 0, 0, 0.04) 0px 10px 10px;
 
 html {
-  --rv-page-footer-bg: #f6f8fc;
   --rv-page-home-bg-main: #f5f5f5;
   --rv-page-home-bg-light: var(--mdoc-background-color);
   --rv-page-home-component-bg: #fff;
@@ -12,7 +11,6 @@ html[data-theme='dark'] {
   --rv-page-home-bg-main: rgb(10, 25, 41);
   --rv-page-home-component-bg: #001e3c;
   --rv-page-home-calendar-month-mark-color: rgba(17, 54, 101, 0.8);
-  --rv-page-footer-bg: #131313;
 }
 
 ._home {
@@ -23,7 +21,6 @@ html[data-theme='dark'] {
 
   &-box {
     box-sizing: border-box;
-    background-color: var(--rv-page-home-component-bg);
     border: 1px solid var(--mdoc-border-color);
     border-radius: 10px;
     padding: 10px;
@@ -61,7 +58,6 @@ html[data-theme='dark'] {
 
     display: flex;
     align-items: stretch;
-    background: var(--rv-page-home-bg-main);
 
     &-left,
     &-right {
@@ -76,7 +72,6 @@ html[data-theme='dark'] {
       padding: 50px;
       align-items: center;
       justify-content: center;
-      background-color: var(--rv-page-home-bg-light);
 
       .rv-typography--l1 {
         font-size: 72px;
