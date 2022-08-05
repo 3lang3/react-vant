@@ -201,11 +201,11 @@ export default defineConfig({
         compact: true,
       },
     },
-    algolia: {
-      appId: 'XTQTEX7VE6',
-      apiKey: 'ce7bcb03b0899b14a9198b12a717f7c4',
-      indexName: 'react-vant',
-    },
+    // algolia: {
+    //   appId: 'XTQTEX7VE6',
+    //   apiKey: 'ce7bcb03b0899b14a9198b12a717f7c4',
+    //   indexName: 'react-vant',
+    // },
     sitemap: {
       hostname: 'https://react-vant.3lang.dev',
     },

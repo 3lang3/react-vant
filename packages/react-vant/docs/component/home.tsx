@@ -102,6 +102,7 @@ const Home = () => {
           <Space gap={16} style={{ marginTop: 30 }}>
             <Button
               round
+              type='default'
               size='large'
               icon={<AppsO />}
               style={{ width: 148 }}
@@ -164,7 +165,7 @@ const Home = () => {
                 </Card.Body>
               </Card>
 
-              <Flex className='_home-music-card'>
+              <Flex className='_home-music-card' align='center'>
                 <Image
                   fit='cover'
                   style={{
@@ -177,11 +178,7 @@ const Home = () => {
                   }}
                   src='/demo_1.jpg'
                 />
-                <Space
-                  style={{ padding: '10px 0' }}
-                  direction='vertical'
-                  justify='between'
-                >
+                <Space direction='vertical' justify='between'>
                   <div>
                     <Typography.Title level={4}>Ultraviolet</Typography.Title>
                     <Typography.Text>Basement • Beside Myself</Typography.Text>

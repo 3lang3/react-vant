@@ -82,8 +82,8 @@ import { Space, Progress } from 'react-vant';
 export default () => {
   return (
     <Space block gap={[0, 20]} direction="vertical">
-      <Progress color="#f2826a" percentage="25" pivotText="橙色" />
-      <Progress color="#ee0a24" percentage="50" pivotText="红色" />
+      <Progress style={{ marginBottom: 20 }} color="#f2826a" percentage="25" pivotText="橙色" />
+      <Progress style={{ marginBottom: 20 }} color="#ee0a24" percentage="50" pivotText="红色" />
       <Progress
         color="linear-gradient(to right, #be99ff, #7232dd)"
         percentage="75"
