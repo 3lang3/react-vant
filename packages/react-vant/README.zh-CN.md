@@ -179,6 +179,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+## ☕ 赞助
+
+一起喝杯咖啡吗？你买单 😘 
+
+<img width="200" alt="wechat_pay" src="https://user-images.githubusercontent.com/7098719/183117353-fe7ae07d-cabd-4886-8a11-2f2411d16586.png">
+
 ## 🙏 鸣谢
 
 [Vant](https://github.com/youzan/vant) - Thanks to the Vant team for years of continuous maintenance, allowing me to stand on the shoulders of giants.
