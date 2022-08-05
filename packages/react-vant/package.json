@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "3.0.0-rc.7",
+  "version": "3.0.0-rc.8",
   "description": "React Mobile UI Components base on Vant UI",
   "keywords": [
     "ui",
@@ -88,7 +88,7 @@
     "clsx": "1.2.1",
     "rc-field-form": "^1.26.4",
     "react-is": "^18.2.0",
-    "react-transition-group": "^4.4.1",
+    "react-transition-group": "4.4.2",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
