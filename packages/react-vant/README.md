@@ -58,19 +58,6 @@ Scan the QR code on your mobile phone to access the demo:
 
 <img src="https://github.com/3lang3/react-vant/blob/main/public/preview_qrcode.png?raw=true" width="200" />
 
-<details>
-  <summary>View some screenshots.</summary>
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/c6034f01-b534-4e01-9b43-d28259ea77ea.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/b8c56952-943b-4e8e-b4cb-274d5ac62f7b.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/20a5ea40-6470-4156-b244-a4cbd8cef9d2.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/9cd23768-e2d5-45c7-b80b-be6367c157b9.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/87f8d07c-bdeb-46de-b64a-eaf78f062c6a.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/e8cf6bdd-96b3-4d89-84af-606ab443a6fd.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/02abb81a-4c80-4468-815f-b11076b16524.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/ecf39bd8-f933-4f62-89b2-574845696bc0.png" width="200" />
-  <img src="https://pic.stackoverflow.wiki/uploadImages/222/66/151/135/2021/11/17/17/17/6e2800b6-1675-467d-be48-f5e876c19e0f.png" width="200" />
-</details>
-
 ## 📦 Install
 
 Recommended **pin** version:
@@ -184,6 +171,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+## ☕ Coffee
+
+Buy me a coffee or beer 🍺
+
+<img width="200" alt="wechat_pay" src="https://user-images.githubusercontent.com/7098719/183117353-fe7ae07d-cabd-4886-8a11-2f2411d16586.png">
 
 ## 🙏 Thanks
 
