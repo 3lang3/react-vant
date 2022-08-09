@@ -63,7 +63,7 @@ export default () => {
             '--rv-selector-border-radius': '100px',
             '--rv-selector-checked-border':
               'solid var(--adm-color-primary) 1px',
-            '--rv-selector-padding': '8px 24px',
+            '--rv-selector-padding': '5px 15px',
           }}
           showCheckMark={false}
           options={options}
