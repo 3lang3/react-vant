@@ -13,7 +13,7 @@ function buildES() {
     .pipe(
       ts({
         moduleResolution: 'node',
-        target: 'esnext',
+        target: 'es2016',
         jsx: 'react',
         declaration: true,
         skipLibCheck: true,
