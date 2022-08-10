@@ -154,7 +154,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>(
           values,
         }
       })
-    }, [columnsOrder, currentDateRef.current])
+    }, [columnsOrder, currentDateRef.current, minDate, maxDate])
 
     const columns = useMemo(
       () =>
