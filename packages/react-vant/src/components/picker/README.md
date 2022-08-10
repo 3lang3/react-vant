@@ -54,7 +54,6 @@ import { Picker } from 'react-vant';
 
 > 启用 `popup` 属性后，一般使用 `onConfirm` 事件代替 `onChange` 更新外部值
 
-
 ### 自定义 Columns 的结构
 
 <code title="自定义 Columns 的结构" card src="./demo/columnsFieldNames.tsx" />
@@ -136,23 +135,23 @@ pickerRef.current?.open();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                | 默认值                      | 描述 |
-| ----------------------------------- | --------------------------- | ---- |
-| --rv-picker-background-color        | _var(--rv-white)_           | -    |
-| --rv-picker-toolbar-height          | _44px_                      | -    |
-| --rv-picker-title-font-size         | _var(--rv-font-size-lg)_    | -    |
-| --rv-picker-title-line-height       | _var(--rv-line-height-md)_  | -    |
-| --rv-picker-action-padding          | _0 var(--rv-padding-md)_    | -    |
-| --rv-picker-action-font-size        | _var(--rv-font-size-md)_    | -    |
-| --rv-picker-confirm-action-color    | _var(--rv-text-link-color)_ | -    |
-| --rv-picker-cancel-action-color     | _var(--rv-gray-6)_          | -    |
-| --rv-picker-option-padding          | _0 var(--rv-padding-base)_  | -    |
-| --rv-picker-option-font-size        | _var(--rv-font-size-lg)_    | -    |
-| --rv-picker-option-text-color       | _var(--rv-black)_           | -    |
-| --rv-picker-option-disabled-opacity | _0.3_                       | -    |
-| --rv-picker-loading-icon-color      | _var(--rv-primary-color)_   | -    |
-| --rv-picker-loading-mask-color      | _rgba(255, 255, 255, 0.9)_  | -    |
-| --rv-picker-mask-background-image      | _linear-gradient(180deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4)),<br> linear-gradient(0deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4))_  | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-picker-background-color | _var(--rv-white)_ | - |
+| --rv-picker-toolbar-height | _44px_ | - |
+| --rv-picker-title-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-picker-title-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-picker-action-padding | _0 var(--rv-padding-md)_ | - |
+| --rv-picker-action-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-picker-confirm-action-color | _var(--rv-text-link-color)_ | - |
+| --rv-picker-cancel-action-color | _var(--rv-gray-6)_ | - |
+| --rv-picker-option-padding | _0 var(--rv-padding-base)_ | - |
+| --rv-picker-option-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-picker-option-text-color | _var(--rv-black)_ | - |
+| --rv-picker-option-disabled-opacity | _0.3_ | - |
+| --rv-picker-loading-icon-color | _var(--rv-primary-color)_ | - |
+| --rv-picker-loading-mask-color | _rgba(255, 255, 255, 0.9)_ | - |
+| --rv-picker-mask-background-image | _linear-gradient(180deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4)),<br> linear-gradient(0deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4))_ | - |
 
 ## 常见问题
 

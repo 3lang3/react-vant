@@ -1,45 +1,53 @@
-import React, { useMemo } from 'react';
-import cls from 'clsx';
+import React, { useMemo } from 'react'
+import cls from 'clsx'
 
-import { SidebarItemProps, SidebarProps } from './PropsType';
-import useMergedState from '../hooks/use-merged-state';
-import SidebarItem from './SidebarItem';
-import { createNamespace } from '../utils';
-import { devWarning } from '../utils/dev-log';
+import { SidebarItemProps, SidebarProps } from './PropsType'
+import useMergedState from '../hooks/use-merged-state'
+import SidebarItem from './SidebarItem'
+import { createNamespace } from '../utils'
+import { devWarning } from '../utils/dev-log'
 
-const [bem] = createNamespace('sidebar');
+const [bem] = createNamespace('sidebar')
 
-const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  children,
+  className,
+  style,
+  ...props
+}) => {
   const [active, updateActive] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,
-  });
+  })
 
-  const getActive = () => active;
+  const getActive = () => active
 
   const setActive = (value: number) => {
     if (value !== getActive()) {
-      updateActive(value);
-      props.onChange?.(value);
+      updateActive(value)
+      props.onChange?.(value)
     }
-  };
+  }
 
   const validChildren = useMemo(
     () =>
       React.Children.toArray(children)
         .filter(Boolean)
-        .map((child) => {
-          if (!React.isValidElement(child)) return null;
+        .map(child => {
+          if (!React.isValidElement(child)) return null
           if (child.type !== SidebarItem) {
             if (process.env.NODE_ENV !== 'production') {
-              devWarning('Sidebar', ' <SidebarItem> must be a child component of <Sidebar>.')
+              devWarning(
+                'Sidebar',
+                ' <SidebarItem> must be a child component of <Sidebar>.'
+              )
             }
-            return null;
+            return null
           }
-          return child;
+          return child
         }),
-    [children],
-  );
+    [children]
+  )
 
   return (
     <div className={cls(className, bem('wrapper'))} style={style}>
@@ -51,27 +59,29 @@ const Sidebar: React.FC<SidebarProps> = ({ children, className, style, ...props 
               setActive,
               getActive,
             },
-          }),
+          })
         )}
       </div>
-      {validChildren.map((child: React.ReactElement<SidebarItemProps>, index: number) => {
-        return (
-          <div
-            className={cls(child.props.contentClassName, bem('content'))}
-            key={child.key}
-            style={{
-              ...child.props.contentStyle,
-              display: index === getActive() ? undefined : 'none',
-            }}
-          >
-            {child.props.children}
-          </div>
-        );
-      })}
+      {validChildren.map(
+        (child: React.ReactElement<SidebarItemProps>, index: number) => {
+          return (
+            <div
+              className={cls(child.props.contentClassName, bem('content'))}
+              key={child.key}
+              style={{
+                ...child.props.contentStyle,
+                display: index === getActive() ? undefined : 'none',
+              }}
+            >
+              {child.props.children}
+            </div>
+          )
+        }
+      )}
     </div>
-  );
-};
+  )
+}
 Sidebar.defaultProps = {
   defaultValue: 0,
-};
-export default Sidebar;
+}
+export default Sidebar

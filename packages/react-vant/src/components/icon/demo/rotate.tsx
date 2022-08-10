@@ -1,6 +1,6 @@
-import React from 'react';
-import { Space } from 'react-vant';
-import { ChatO, FireO } from '@react-vant/icons';
+import React from 'react'
+import { Space } from 'react-vant'
+import { ChatO, FireO } from '@react-vant/icons'
 
 export default () => {
   return (
@@ -8,5 +8,5 @@ export default () => {
       <ChatO spin />
       <FireO spin />
     </Space>
-  );
-};
+  )
+}

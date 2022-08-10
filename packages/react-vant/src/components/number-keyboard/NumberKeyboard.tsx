@@ -1,27 +1,36 @@
-import React, { useMemo, useRef } from 'react';
-import cls from 'clsx';
-import { CSSTransition } from 'react-transition-group';
-import { createNamespace, getZIndexStyle, noop, stopPropagation } from '../utils';
-import { KeyType, KeyConfig, NumberKeyboardProps } from './PropsType';
-import NumberKeyboardKey from './NumberKeyboardKey';
-import { useUpdateEffect } from '../hooks';
-import useClickAway from '../hooks/use-click-away';
+import React, { useMemo, useRef } from 'react'
+import cls from 'clsx'
+import { CSSTransition } from 'react-transition-group'
+import {
+  createNamespace,
+  getZIndexStyle,
+  noop,
+  stopPropagation,
+} from '../utils'
+import { KeyType, KeyConfig, NumberKeyboardProps } from './PropsType'
+import NumberKeyboardKey from './NumberKeyboardKey'
+import { useUpdateEffect } from '../hooks'
+import useClickAway from '../hooks/use-click-away'
 
-const [bem] = createNamespace('number-keyboard');
+const [bem] = createNamespace('number-keyboard')
 
-const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...props }) => {
-  const root = useRef<HTMLDivElement>();
+const NumberKeyboard: React.FC<NumberKeyboardProps> = ({
+  className,
+  style,
+  ...props
+}) => {
+  const root = useRef<HTMLDivElement>()
 
   const genBasicKeys = () => {
     const keys: KeyConfig[] = Array(9)
       .fill('')
-      .map((_, i) => ({ text: i + 1 }));
+      .map((_, i) => ({ text: i + 1 }))
 
     if (props.randomKeyOrder) {
-      keys.sort(() => (Math.random() > 0.5 ? 1 : -1));
+      keys.sort(() => (Math.random() > 0.5 ? 1 : -1))
     }
-    return keys;
-  };
+    return keys
+  }
 
   const genDefaultKeys = (): KeyConfig[] => [
     ...genBasicKeys(),
@@ -31,102 +40,102 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
       text: props.showDeleteKey ? props.deleteButtonText : '',
       type: props.showDeleteKey ? 'delete' : '',
     },
-  ];
+  ]
 
   const genCustomKeys = () => {
-    const keys = genBasicKeys();
-    const { extraKey } = props;
-    const extraKeys = Array.isArray(extraKey) ? extraKey : [extraKey];
+    const keys = genBasicKeys()
+    const { extraKey } = props
+    const extraKeys = Array.isArray(extraKey) ? extraKey : [extraKey]
     if (extraKeys.length === 1) {
-      keys.push({ text: 0, wider: true }, { text: extraKeys[0], type: 'extra' });
+      keys.push({ text: 0, wider: true }, { text: extraKeys[0], type: 'extra' })
     } else if (extraKeys.length === 2) {
       keys.push(
         { text: extraKeys[0], type: 'extra' },
         { text: 0 },
-        { text: extraKeys[1], type: 'extra' },
-      );
+        { text: extraKeys[1], type: 'extra' }
+      )
     }
 
-    return keys;
-  };
+    return keys
+  }
 
   const keys = useMemo(
     () => (props.theme === 'custom' ? genCustomKeys() : genDefaultKeys()),
-    [props.theme],
-  );
+    [props.theme]
+  )
 
   const onBlur = () => {
     if (props.visible) {
-      props.onBlur?.();
+      props.onBlur?.()
     }
-  };
+  }
 
   const onClose = () => {
-    props.onClose?.();
+    props.onClose?.()
     if (props.blurOnClose) {
-      onBlur();
+      onBlur()
     }
-  };
+  }
 
   const onAnimationEnd = () => {
-    props[props.visible ? 'onShow' : 'onHide']?.();
-  };
+    props[props.visible ? 'onShow' : 'onHide']?.()
+  }
 
   const onPress = (text: string, type: KeyType) => {
     if (text === '') {
       if (type === 'extra') {
-        onBlur();
+        onBlur()
       }
-      return;
+      return
     }
 
-    const { value } = props;
+    const { value } = props
 
     if (type === 'delete') {
-      props.onDelete?.();
-      props.onChange?.(value.slice(0, value.length - 1));
+      props.onDelete?.()
+      props.onChange?.(value.slice(0, value.length - 1))
     } else if (type === 'close') {
-      onClose();
+      onClose()
     } else if (value.length < props.maxlength) {
-      props.onInput?.(text);
-      props.onChange?.(value + text);
+      props.onInput?.(text)
+      props.onChange?.(value + text)
     }
-  };
+  }
 
   const renderTitle = () => {
-    const { title, theme, closeButtonText } = props;
-    const showClose = closeButtonText && theme === 'default';
-    const showTitle = title || showClose;
+    const { title, theme, closeButtonText } = props
+    const showClose = closeButtonText && theme === 'default'
+    const showTitle = title || showClose
 
     if (!showTitle) {
-      return null;
+      return null
     }
 
     return (
       <div className={cls(bem('header'))}>
         {title && <h2 className={cls(bem('title'))}>{title}</h2>}
         {showClose && (
-          <button type="button" className={cls(bem('close'))} onClick={onClose}>
+          <button type='button' className={cls(bem('close'))} onClick={onClose}>
             {closeButtonText}
           </button>
         )}
       </div>
-    );
-  };
+    )
+  }
 
   const renderKeys = () =>
     keys.map((key, i) => {
-      let keySlots = null;
+      let keySlots = null
 
       if (!key.type) {
-        keySlots = props.numberKeyRender?.(key);
+        keySlots = props.numberKeyRender?.(key)
       }
 
       if (key.type === 'delete') {
-        keySlots = props.deleteRender?.();
+        keySlots = props.deleteRender?.()
       }
       if (key.type === 'extra') {
-        keySlots = props.extraKeyRender?.();
+        keySlots = props.extraKeyRender?.()
       }
       return (
         <NumberKeyboardKey
@@ -140,8 +149,8 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
           // eslint-disable-next-line react/no-children-prop
           children={keySlots}
         />
-      );
-    });
+      )
+    })
 
   const renderSidebar = () => {
     if (props.theme === 'custom') {
@@ -151,33 +160,33 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
             <NumberKeyboardKey
               large
               text={props.deleteButtonText}
-              type="delete"
+              type='delete'
               onPress={onPress}
             />
           )}
           <NumberKeyboardKey
             large
             text={props.closeButtonText}
-            type="close"
-            color="blue"
+            type='close'
+            color='blue'
             loading={props.closeButtonLoading}
             onPress={onPress}
           />
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   useUpdateEffect(() => {
     if (!props.transition) {
-      props[props.visible ? 'onShow' : 'onHide']?.();
+      props[props.visible ? 'onShow' : 'onHide']?.()
     }
-  }, [props.visible]);
+  }, [props.visible])
 
-  useClickAway(root, props.hideOnClickOutside ? onBlur : noop, 'touchstart');
+  useClickAway(root, props.hideOnClickOutside ? onBlur : noop, 'touchstart')
 
-  const Title = renderTitle();
+  const Title = renderTitle()
 
   const Content = (
     <CSSTransition
@@ -197,7 +206,7 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
           bem({
             unfit: !props.safeAreaInsetBottom,
             'with-title': !!Title,
-          }),
+          })
         )}
         onTouchStart={stopPropagation}
       >
@@ -208,10 +217,10 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({ className, style, ...pr
         </div>
       </div>
     </CSSTransition>
-  );
+  )
 
-  return Content;
-};
+  return Content
+}
 
 NumberKeyboard.defaultProps = {
   transition: true,
@@ -223,6 +232,6 @@ NumberKeyboard.defaultProps = {
   value: '',
   extraKey: '',
   maxlength: Number.MAX_VALUE,
-};
+}
 
-export default NumberKeyboard;
+export default NumberKeyboard

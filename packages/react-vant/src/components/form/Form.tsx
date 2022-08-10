@@ -1,12 +1,12 @@
-import React, { forwardRef } from 'react';
-import clsx from 'clsx';
-import type { FormInstance } from 'rc-field-form';
-import RcForm from 'rc-field-form';
-import { FormProps } from './PropsType';
-import { FormContext } from './FormContext';
-import { createNamespace } from '../utils';
+import React, { forwardRef } from 'react'
+import clsx from 'clsx'
+import type { FormInstance } from 'rc-field-form'
+import RcForm from 'rc-field-form'
+import { FormProps } from './PropsType'
+import { FormContext } from './FormContext'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('form');
+const [bem] = createNamespace('form')
 const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
   const {
     className,
@@ -20,10 +20,15 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     controlAlign,
     showValidateMessage,
     ...formProps
-  } = props;
+  } = props
 
   return (
-    <RcForm className={clsx(bem(), className)} style={style} ref={ref} {...formProps}>
+    <RcForm
+      className={clsx(bem(), className)}
+      style={style}
+      ref={ref}
+      {...formProps}
+    >
       <FormContext.Provider
         value={{
           layout,
@@ -38,11 +43,11 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
       </FormContext.Provider>
       {footer && <div className={clsx(bem('footer'))}>{footer}</div>}
     </RcForm>
-  );
-});
+  )
+})
 
 Form.defaultProps = {
   showValidateMessage: true,
-};
+}
 
-export default Form;
+export default Form

@@ -3,7 +3,6 @@ simulator:
   compact: false
 ---
 
-
 # Radio 单选框
 
 ## 介绍
@@ -205,26 +204,26 @@ export default () => {
 
 ### Radio Props
 
-| 参数          | 说明                      | 类型                                   | 默认值    |
-| ------------- | ------------------------- | -------------------------------------- | --------- |
-| name          | 标识符                    | _any_                                  | -         |
-| shape         | 形状，可选值为 `square`   | _string_                               | `round`   |
-| disabled      | 是否为禁用状态            | _boolean_                              | `false`   |
-| labelDisabled | 是否禁用文本内容点击      | _boolean_                              | `false`   |
-| labelPosition | 文本位置，可选值为 `left` | _string_                               | `right`   |
-| iconSize      | 图标大小，默认单位为`px`  | _number \| string_                     | `21px`    |
-| checkedColor  | 选中状态颜色              | _string_                               | `#3f45ff` |
-| iconRender    | 自定义图标                | _({ checked, disabled }) => ReactNode_ | -         |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| name | 标识符 | _any_ | - |
+| shape | 形状，可选值为 `square` | _string_ | `round` |
+| disabled | 是否为禁用状态 | _boolean_ | `false` |
+| labelDisabled | 是否禁用文本内容点击 | _boolean_ | `false` |
+| labelPosition | 文本位置，可选值为 `left` | _string_ | `right` |
+| iconSize | 图标大小，默认单位为`px` | _number \| string_ | `21px` |
+| checkedColor | 选中状态颜色 | _string_ | `#3f45ff` |
+| iconRender | 自定义图标 | _({ checked, disabled }) => ReactNode_ | - |
 
 ### RadioGroup Props
 
-| 参数         | 说明                                 | 类型               | 默认值     |
-| ------------ | ------------------------------------ | ------------------ | ---------- |
-| value        | 当前选中项的标识符                   | _any_              | -          |
-| disabled     | 是否禁用所有单选框                   | _boolean_          | `false`    |
-| direction    | 排列方向，可选值为`horizontal`       | _string_           | `vertical` |
-| iconSize     | 所有单选框的图标大小，默认单位为`px` | _number \| string_ | `21px`     |
-| checkedColor | 所有单选框的选中状态颜色             | _string_           | `#3f45ff`  |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 当前选中项的标识符 | _any_ | - |
+| disabled | 是否禁用所有单选框 | _boolean_ | `false` |
+| direction | 排列方向，可选值为`horizontal` | _string_ | `vertical` |
+| iconSize | 所有单选框的图标大小，默认单位为`px` | _number \| string_ | `21px` |
+| checkedColor | 所有单选框的选中状态颜色 | _string_ | `#3f45ff` |
 
 ### Radio Events
 
@@ -244,14 +243,14 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                 | 默认值                              | 描述 |
-| ------------------------------------ | ----------------------------------- | ---- |
-| --rv-radio-size                      | _20px_                              | -    |
-| --rv-radio-border-color              | _var(--rv-gray-5)_                  | -    |
-| --rv-radio-transition-duration       | _var(--rv-animation-duration-fast)_ | -    |
-| --rv-radio-label-margin              | _var(--rv-padding-xs)_              | -    |
-| --rv-radio-label-color               | _var(--rv-text-color)_              | -    |
-| --rv-radio-checked-icon-color        | _var(--rv-primary-color)_           | -    |
-| --rv-radio-disabled-icon-color       | _var(--rv-gray-5)_                  | -    |
-| --rv-radio-disabled-label-color      | _var(--rv-gray-5)_                  | -    |
-| --rv-radio-disabled-background-color | _var(--rv-border-color)_            | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-radio-size | _20px_ | - |
+| --rv-radio-border-color | _var(--rv-gray-5)_ | - |
+| --rv-radio-transition-duration | _var(--rv-animation-duration-fast)_ | - |
+| --rv-radio-label-margin | _var(--rv-padding-xs)_ | - |
+| --rv-radio-label-color | _var(--rv-text-color)_ | - |
+| --rv-radio-checked-icon-color | _var(--rv-primary-color)_ | - |
+| --rv-radio-disabled-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-radio-disabled-label-color | _var(--rv-gray-5)_ | - |
+| --rv-radio-disabled-background-color | _var(--rv-border-color)_ | - |

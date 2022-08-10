@@ -215,12 +215,12 @@ export default () => {
 
 `SliderValue`指`props.value`
 
-| 事件名        | 说明                         | 回调参数                                  |
-| ------------- | ---------------------------- | ----------------------------------------- |
-| onChange      | 进度变化时**实时触发**       | _value: SliderValue_                      |
-| onChangeAfter | 进度变化且**结束拖动后触发** | _value: SliderValue_                      |
-| onDragStart   | 开始拖动时触发               | _event: TouchEvent_, _value: SliderValue_ |
-| onDragEnd     | 结束拖动时触发               | _event: TouchEvent_, _value: SliderValue_ |
+| 事件名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| onChange | 进度变化时**实时触发** | _value: SliderValue_ |
+| onChangeAfter | 进度变化且**结束拖动后触发** | _value: SliderValue_ |
+| onDragStart | 开始拖动时触发 | _event: TouchEvent_, _value: SliderValue_ |
+| onDragEnd | 结束拖动时触发 | _event: TouchEvent_, _value: SliderValue_ |
 
 ## 主题定制
 
@@ -228,14 +228,14 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                  | 默认值                         | 描述 |
-| ------------------------------------- | ------------------------------ | ---- |
-| --rv-slider-active-background-color   | _var(--rv-primary-color)_      | -    |
-| --rv-slider-inactive-background-color | _var(--rv-gray-3)_             | -    |
-| --rv-slider-disabled-opacity          | _var(--rv-disabled-opacity)_   | -    |
-| --rv-slider-bar-height                | _2px_                          | -    |
-| --rv-slider-button-width              | _24px_                         | -    |
-| --rv-slider-button-height             | _24px_                         | -    |
-| --rv-slider-button-border-radius      | _50%_                          | -    |
-| --rv-slider-button-background-color   | _var(--rv-white)_              | -    |
-| --rv-slider-button-box-shadow         | _0 1px 2px rgba(0, 0, 0, 0.5)_ | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-slider-active-background-color | _var(--rv-primary-color)_ | - |
+| --rv-slider-inactive-background-color | _var(--rv-gray-3)_ | - |
+| --rv-slider-disabled-opacity | _var(--rv-disabled-opacity)_ | - |
+| --rv-slider-bar-height | _2px_ | - |
+| --rv-slider-button-width | _24px_ | - |
+| --rv-slider-button-height | _24px_ | - |
+| --rv-slider-button-border-radius | _50%_ | - |
+| --rv-slider-button-background-color | _var(--rv-white)_ | - |
+| --rv-slider-button-box-shadow | _0 1px 2px rgba(0, 0, 0, 0.5)_ | - |

@@ -21,14 +21,14 @@ import { IndexBar } from 'react-vant';
 
 ### IndexBar Props
 
-| 参数            | 说明                       | 类型                     | 默认值    |
-| --------------- | -------------------------- | ------------------------ | --------- |
-| indexList       | 索引字符列表               | _string[] \| number[]_   | `A-Z`     |
-| zIndex          | z-index 层级               | _number \| string_       | `1`       |
-| sticky          | 是否开启锚点自动吸顶       | _boolean_                | `true`    |
-| stickyOffsetTop | 锚点自动吸顶时与顶部的距离 | _number_                 | `0`       |
-| highlightColor  | 索引字符高亮颜色           | _string_                 | `#3f45ff` |
-| teleport        | 指定索引栏挂载的节点       | _Element\|() => Element_ | -         |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| indexList | 索引字符列表 | _string[] \| number[]_ | `A-Z` |
+| zIndex | z-index 层级 | _number \| string_ | `1` |
+| sticky | 是否开启锚点自动吸顶 | _boolean_ | `true` |
+| stickyOffsetTop | 锚点自动吸顶时与顶部的距离 | _number_ | `0` |
+| highlightColor | 索引字符高亮颜色 | _string_ | `#3f45ff` |
+| teleport | 指定索引栏挂载的节点 | _Element\|() => Element_ | - |
 
 ### IndexAnchor Props
 
@@ -76,18 +76,18 @@ indexBarRef.current?.scrollTo('B');
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                      | 默认值                       | 描述 |
-| ----------------------------------------- | ---------------------------- | ---- |
-| --rv-index-bar-sidebar-z-index            | _2_                          | -    |
-| --rv-index-bar-index-font-size            | _var(--rv-font-size-xs)_     | -    |
-| --rv-index-bar-index-line-height          | _var(--rv-line-height-xs)_   | -    |
-| --rv-index-bar-index-active-color         | _var(--rv-danger-color)_     | -    |
-| --rv-index-anchor-z-index                 | _1_                          | -    |
-| --rv-index-anchor-padding                 | _0 var(--rv-padding-md)_     | -    |
-| --rv-index-anchor-text-color              | _var(--rv-text-color)_       | -    |
-| --rv-index-anchor-font-weight             | _var(--rv-font-weight-bold)_ | -    |
-| --rv-index-anchor-font-size               | _var(--rv-font-size-md)_     | -    |
-| --rv-index-anchor-line-height             | _32px_                       | -    |
-| --rv-index-anchor-background-color        | _transparent_                | -    |
-| --rv-index-anchor-sticky-text-color       | _var(--rv-danger-color)_     | -    |
-| --rv-index-anchor-sticky-background-color | _var(--rv-white)_            | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-index-bar-sidebar-z-index | _2_ | - |
+| --rv-index-bar-index-font-size | _var(--rv-font-size-xs)_ | - |
+| --rv-index-bar-index-line-height | _var(--rv-line-height-xs)_ | - |
+| --rv-index-bar-index-active-color | _var(--rv-danger-color)_ | - |
+| --rv-index-anchor-z-index | _1_ | - |
+| --rv-index-anchor-padding | _0 var(--rv-padding-md)_ | - |
+| --rv-index-anchor-text-color | _var(--rv-text-color)_ | - |
+| --rv-index-anchor-font-weight | _var(--rv-font-weight-bold)_ | - |
+| --rv-index-anchor-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-index-anchor-line-height | _32px_ | - |
+| --rv-index-anchor-background-color | _transparent_ | - |
+| --rv-index-anchor-sticky-text-color | _var(--rv-danger-color)_ | - |
+| --rv-index-anchor-sticky-background-color | _var(--rv-white)_ | - |

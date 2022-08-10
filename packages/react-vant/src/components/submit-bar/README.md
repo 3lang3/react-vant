@@ -113,23 +113,23 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                    | 默认值                                      | 描述 |
-| --------------------------------------- | ------------------------------------------- | ---- |
-| --rv-submit-bar-height                  | _50px_                                      | -    |
-| --rv-submit-bar-z-index                 | _100_                                       | -    |
-| --rv-submit-bar-background-color        | _var(--rv-white)_                           | -    |
-| --rv-submit-bar-button-width            | _110px_                                     | -    |
-| --rv-submit-bar-price-color             | _var(--rv-danger-color)_                    | -    |
-| --rv-submit-bar-price-font-size         | _var(--rv-font-size-sm)_                    | -    |
-| --rv-submit-bar-price-integer-font-size | _20px_                                      | -    |
-| --rv-submit-bar-price-font-family       | _var(--rv-price-integer-font-family)_       | -    |
-| --rv-submit-bar-text-color              | _var(--rv-text-color)_                      | -    |
-| --rv-submit-bar-text-font-size          | _var(--rv-font-size-md)_                    | -    |
-| --rv-submit-bar-tip-padding             | _var(--rv-padding-xs) var(--rv-padding-sm)_ | -    |
-| --rv-submit-bar-tip-font-size           | _var(--rv-font-size-sm)_                    | -    |
-| --rv-submit-bar-tip-line-height         | _1.5_                                       | -    |
-| --rv-submit-bar-tip-color               | _#f56723_                                   | -    |
-| --rv-submit-bar-tip-background-color    | _#fff7cc_                                   | -    |
-| --rv-submit-bar-tip-icon-size           | _12px_                                      | -    |
-| --rv-submit-bar-button-height           | _40px_                                      | -    |
-| --rv-submit-bar-padding                 | _0 var(--rv-padding-md)_                    | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-submit-bar-height | _50px_ | - |
+| --rv-submit-bar-z-index | _100_ | - |
+| --rv-submit-bar-background-color | _var(--rv-white)_ | - |
+| --rv-submit-bar-button-width | _110px_ | - |
+| --rv-submit-bar-price-color | _var(--rv-danger-color)_ | - |
+| --rv-submit-bar-price-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-submit-bar-price-integer-font-size | _20px_ | - |
+| --rv-submit-bar-price-font-family | _var(--rv-price-integer-font-family)_ | - |
+| --rv-submit-bar-text-color | _var(--rv-text-color)_ | - |
+| --rv-submit-bar-text-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-submit-bar-tip-padding | _var(--rv-padding-xs) var(--rv-padding-sm)_ | - |
+| --rv-submit-bar-tip-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-submit-bar-tip-line-height | _1.5_ | - |
+| --rv-submit-bar-tip-color | _#f56723_ | - |
+| --rv-submit-bar-tip-background-color | _#fff7cc_ | - |
+| --rv-submit-bar-tip-icon-size | _12px_ | - |
+| --rv-submit-bar-button-height | _40px_ | - |
+| --rv-submit-bar-padding | _0 var(--rv-padding-md)_ | - |

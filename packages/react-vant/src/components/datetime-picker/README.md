@@ -118,7 +118,6 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 | onCancel  | 点击取消按钮时触发的事件 | -                     |
 |           |
 
-
 ## 常见问题
 
 ### 设置 minDate 或 maxDate 后出现页面卡死的情况？

@@ -1,77 +1,90 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
 export interface DialogBtnProps {
-  loading?: boolean;
-  disabled?: boolean;
+  loading?: boolean
+  disabled?: boolean
 }
 export interface DialogProps extends Omit<BaseTypeProps, 'children'> {
-  visible?: boolean;
+  visible?: boolean
   /** 是否显示右上角关闭按钮 */
-  closeable?: boolean;
-  closeIcon?: React.ReactNode;
+  closeable?: boolean
+  closeIcon?: React.ReactNode
   /** 标题 */
-  title?: string | React.ReactNode;
+  title?: string | React.ReactNode
   /** 样式风格，可选值为`round-button`	 */
-  theme?: string;
+  theme?: string
   /** 设置宽度 */
-  width?: string | number;
+  width?: string | number
   /** 设置主题内容 */
-  message?: React.ReactNode;
+  message?: React.ReactNode
   /** 动画类名 @see https://reactcommunity.org/react-transition-group/ */
-  transition?: string;
+  transition?: string
   /** message内容对齐 */
-  messageAlign?: string;
+  messageAlign?: string
   /** 是否显示取消按钮 */
-  showCancelButton?: boolean;
+  showCancelButton?: boolean
   /** 取消按钮文本设置 */
-  cancelButtonText?: React.ReactNode;
+  cancelButtonText?: React.ReactNode
   /** 取消按钮文字颜色 */
-  cancelButtonColor?: string;
+  cancelButtonColor?: string
   /** 是否显示确认按钮 */
-  showConfirmButton?: boolean;
+  showConfirmButton?: boolean
   /** 确认按钮文本设置 */
-  confirmButtonText?: React.ReactNode;
+  confirmButtonText?: React.ReactNode
   /** 确认按钮文本颜色 */
-  confirmButtonColor?: string;
+  confirmButtonColor?: string
   /** 是否显示背景遮罩层	 */
-  overlay?: boolean;
-  overlayClass?: string;
-  overlayStyle?: React.CSSProperties;
+  overlay?: boolean
+  overlayClass?: string
+  overlayStyle?: React.CSSProperties
   /** 是否在页面回退时自动关闭	 */
-  closeOnPopstate?: boolean;
+  closeOnPopstate?: boolean
   /** 点击背景关闭 */
-  closeOnClickOverlay?: boolean;
+  closeOnClickOverlay?: boolean
   /** 点击关闭icon按钮时调用方法 */
-  onClickCloseIcon?: () => void;
-  children?: React.ReactNode;
+  onClickCloseIcon?: () => void
+  children?: React.ReactNode
   /** 取消按钮的状态 */
-  cancelProps?: DialogBtnProps;
+  cancelProps?: DialogBtnProps
   /** 确认按钮的状态 */
-  confirmProps?: DialogBtnProps;
+  confirmProps?: DialogBtnProps
   /** Dialog弹出时的的父容器 */
-  teleport?: HTMLElement | (() => HTMLElement);
+  teleport?: HTMLElement | (() => HTMLElement)
   /** 自定义底部按钮区域 */
-  footer?: React.ReactNode;
+  footer?: React.ReactNode
   /** Dialog关闭时的回调 */
-  onClose?: () => void;
+  onClose?: () => void
   /** Dialog完全关闭后的回调 */
-  onClosed?: () => void;
+  onClosed?: () => void
   /** 点击确认的回调 */
   onConfirm?: (
-    e: React.MouseEvent,
-  ) => void | boolean | Promise<boolean> | Promise<void> | Promise<void | boolean>;
+    e: React.MouseEvent
+  ) =>
+    | void
+    | boolean
+    | Promise<boolean>
+    | Promise<void>
+    | Promise<void | boolean>
   /** 是否支持点击遮罩关闭对话框 */
   onCancel?: (
-    e: React.MouseEvent,
-  ) => void | boolean | Promise<boolean> | Promise<void> | Promise<void | boolean>;
+    e: React.MouseEvent
+  ) =>
+    | void
+    | boolean
+    | Promise<boolean>
+    | Promise<void>
+    | Promise<void | boolean>
 }
 
-export type AlertDialogProps = Omit<DialogProps, 'confirmButtonText' | 'onCancel'>;
+export type AlertDialogProps = Omit<
+  DialogProps,
+  'confirmButtonText' | 'onCancel'
+>
 
 export type DialogStatic = {
-  (props: DialogProps): React.ReactElement;
-  show: (props: DialogProps) => void;
-  confirm: (props: DialogProps) => Promise<boolean>;
-  alert: (props: DialogProps) => Promise<React.MouseEvent>;
-};
+  (props: DialogProps): React.ReactElement
+  show: (props: DialogProps) => void
+  confirm: (props: DialogProps) => Promise<boolean>
+  alert: (props: DialogProps) => Promise<React.MouseEvent>
+}

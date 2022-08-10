@@ -71,6 +71,6 @@ export const base = {
   vanAddressList: {
     add: '新增地址',
   },
-};
+}
 
-export type Locale = Partial<typeof base>;
+export type Locale = Partial<typeof base>

@@ -1,38 +1,45 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
-export type LoadingType = 'circular' | 'spinner';
-export type PullRefreshStatus = 'normal' | 'loading' | 'loosing' | 'pulling' | 'success';
+export type LoadingType = 'circular' | 'spinner'
+export type PullRefreshStatus =
+  | 'normal'
+  | 'loading'
+  | 'loosing'
+  | 'pulling'
+  | 'success'
 
-type StatusTextType = React.ReactNode | (({ distance }: { distance: number }) => React.ReactNode);
+type StatusTextType =
+  | React.ReactNode
+  | (({ distance }: { distance: number }) => React.ReactNode)
 export interface PullRefreshProps extends BaseTypeProps {
   /** 是否禁用下拉刷新	 */
-  disabled?: boolean;
+  disabled?: boolean
   /** 刷新成功提示文案	 */
-  successText?: StatusTextType;
+  successText?: StatusTextType
   /** 下拉过程提示文案	 */
-  pullingText?: StatusTextType;
+  pullingText?: StatusTextType
   /** 释放过程提示文案	 */
-  loosingText?: StatusTextType;
+  loosingText?: StatusTextType
   /** 加载过程提示文案	 */
-  loadingText?: StatusTextType;
+  loadingText?: StatusTextType
   /** 刷新成功提示展示时长(ms)	 */
-  successDuration?: number | string;
+  successDuration?: number | string
   /** 动画时长	 */
-  animationDuration?: number | string;
+  animationDuration?: number | string
   /**
    * 顶部内容高度
    * @default 50
    */
-  headHeight?: number | string;
+  headHeight?: number | string
   /**
    * 触发下拉刷新的距离
    * @default '与 headHeight 一致'
    */
-  pullDistance?: number | string;
+  pullDistance?: number | string
   /** 下拉刷新时触发 */
-  onRefresh: () => Promise<unknown> | void;
+  onRefresh: () => Promise<unknown> | void
   /** 刷新完成后触发 */
-  onRefreshEnd?: () => void;
-  children?: React.ReactNode;
+  onRefreshEnd?: () => void
+  children?: React.ReactNode
 }

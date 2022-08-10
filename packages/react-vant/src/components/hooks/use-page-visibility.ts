@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { useEffect, useState } from 'react';
-import { inBrowser } from '../utils';
-import useEventListener from './use-event-listener';
+import { useEffect, useState } from 'react'
+import { inBrowser } from '../utils'
+import useEventListener from './use-event-listener'
 
-type VisibilityState = 'hidden' | 'visible';
+type VisibilityState = 'hidden' | 'visible'
 
 function usePageVisibility(): VisibilityState {
-  const [visibility, _setVisibility] = useState<VisibilityState>('visible');
+  const [visibility, _setVisibility] = useState<VisibilityState>('visible')
 
   const setVisibility = () => {
     if (inBrowser) {
-      _setVisibility(document.hidden ? 'hidden' : 'visible');
+      _setVisibility(document.hidden ? 'hidden' : 'visible')
     }
-  };
+  }
 
   useEffect(() => {
-    setVisibility();
-  }, []);
+    setVisibility()
+  }, [])
 
-  useEventListener('visibilitychange', setVisibility, { depends: [visibility] });
+  useEventListener('visibilitychange', setVisibility, { depends: [visibility] })
 
-  return visibility;
+  return visibility
 }
 
-export default usePageVisibility;
+export default usePageVisibility

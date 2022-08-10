@@ -1,30 +1,30 @@
-import { MutableRefObject } from 'react';
+import { MutableRefObject } from 'react'
 
 export type BasicTarget<T = HTMLElement> =
   | (() => T | null)
   | T
   | null
-  | MutableRefObject<T | null | undefined>;
+  | MutableRefObject<T | null | undefined>
 
-export type TargetElement = HTMLElement | Element | Document | Window;
+export type TargetElement = HTMLElement | Element | Document | Window
 
 export function getTargetElement(
   target?: BasicTarget<TargetElement>,
-  defaultElement?: TargetElement,
+  defaultElement?: TargetElement
 ): TargetElement | undefined | null {
   if (!target) {
-    return defaultElement;
+    return defaultElement
   }
 
-  let targetElement: TargetElement | undefined | null;
+  let targetElement: TargetElement | undefined | null
 
   if (typeof target === 'function') {
-    targetElement = target();
+    targetElement = target()
   } else if ('current' in target) {
-    targetElement = target.current;
+    targetElement = target.current
   } else {
-    targetElement = target;
+    targetElement = target
   }
 
-  return targetElement;
+  return targetElement
 }

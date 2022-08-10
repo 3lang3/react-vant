@@ -1,25 +1,25 @@
-import { RefObject } from 'react';
-import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect';
-import useMemoizedFn from './use-memoized-fn';
+import { RefObject } from 'react'
+import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect'
+import useMemoizedFn from './use-memoized-fn'
 
 export function useResizeEffect<T extends HTMLElement>(
   effect: (target: T) => void,
-  targetRef: RefObject<T>,
+  targetRef: RefObject<T>
 ) {
-  const fn = useMemoizedFn(effect);
+  const fn = useMemoizedFn(effect)
   useIsomorphicLayoutEffect(() => {
-    const target = targetRef.current;
-    if (!target) return;
+    const target = targetRef.current
+    if (!target) return
     if (window.ResizeObserver) {
       const observer = new ResizeObserver(() => {
-        fn(target);
-      });
-      observer.observe(target);
+        fn(target)
+      })
+      observer.observe(target)
       return () => {
-        observer.disconnect();
-      };
+        observer.disconnect()
+      }
     } else {
-      fn(target);
+      fn(target)
     }
-  }, [targetRef]);
+  }, [targetRef])
 }

@@ -1,53 +1,62 @@
 /* eslint-disable no-param-reassign */
-import { useState, useEffect } from 'react';
-import { inBrowser } from '../utils';
-import { BasicTarget, getTargetElement } from '../utils/dom/getTargetElement';
+import { useState, useEffect } from 'react'
+import { inBrowser } from '../utils'
+import { BasicTarget, getTargetElement } from '../utils/dom/getTargetElement'
 
-type ScrollElement = Element | HTMLElement | Window;
+type ScrollElement = Element | HTMLElement | Window
 
-const overflowScrollReg = /scroll|auto/i;
-const defaultRoot = inBrowser ? window : undefined;
+const overflowScrollReg = /scroll|auto/i
+const defaultRoot = inBrowser ? window : undefined
 
 function isElement(node: Element) {
-  const ELEMENT_NODE_TYPE = 1;
-  return node.tagName !== 'HTML' && node.tagName !== 'BODY' && node.nodeType === ELEMENT_NODE_TYPE;
+  const ELEMENT_NODE_TYPE = 1
+  return (
+    node.tagName !== 'HTML' &&
+    node.tagName !== 'BODY' &&
+    node.nodeType === ELEMENT_NODE_TYPE
+  )
 }
 
-export function getScrollParent(el: Element, root: ScrollElement = defaultRoot): ScrollElement {
+export function getScrollParent(
+  el: Element,
+  root: ScrollElement = defaultRoot
+): ScrollElement {
   if (root === undefined) {
-    root = window;
+    root = window
   }
-  let node = el;
+  let node = el
   while (node && node !== root && isElement(node)) {
-    const { overflowY } = window.getComputedStyle(node);
+    const { overflowY } = window.getComputedStyle(node)
     if (overflowScrollReg.test(overflowY)) {
       if (node.tagName !== 'BODY') {
-        return node;
+        return node
       }
 
-      const htmlOverflowY = window.getComputedStyle(node.parentNode as Element).overflowY;
+      const htmlOverflowY = window.getComputedStyle(
+        node.parentNode as Element
+      ).overflowY
       if (overflowScrollReg.test(htmlOverflowY)) {
-        return node;
+        return node
       }
     }
-    node = node.parentNode as Element;
+    node = node.parentNode as Element
   }
-  return root;
+  return root
 }
 
 function useScrollParent(
-  el: BasicTarget<HTMLElement | Element | Window | Document>,
+  el: BasicTarget<HTMLElement | Element | Window | Document>
 ): Element | Window {
-  const [scrollParent, setScrollParent] = useState<Element | Window>();
+  const [scrollParent, setScrollParent] = useState<Element | Window>()
 
   useEffect(() => {
     if (el) {
-      const element = getTargetElement(el) as Element;
-      setScrollParent(getScrollParent(element));
+      const element = getTargetElement(el) as Element
+      setScrollParent(getScrollParent(element))
     }
-  }, []);
+  }, [])
 
-  return scrollParent;
+  return scrollParent
 }
 
-export default useScrollParent;
+export default useScrollParent

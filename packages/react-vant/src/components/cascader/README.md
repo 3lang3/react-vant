@@ -54,12 +54,12 @@ import { Cascader } from 'react-vant';
 
 ### Events
 
-| 事件       | 说明                   | 类型                                                      |
-| ---------- | ---------------------- | --------------------------------------------------------- |
-| onChange   | 选中项变化时触发       | _(val: string[], selectedRows: CascaderOption[]) => void_ |
-| onFinish   | 全部选项选择完成后触发 | _(val: string[], selectedRows: CascaderOption[]) => void_ |
-| onClose    | 点击关闭图标时触发     | _() => void_                                              |
-| onClickTab | 点击标签时触发         | _(tabIndex: number, title: string) => void_               |
+| 事件 | 说明 | 类型 |
+| --- | --- | --- |
+| onChange | 选中项变化时触发 | _(val: string[], selectedRows: CascaderOption[]) => void_ |
+| onFinish | 全部选项选择完成后触发 | _(val: string[], selectedRows: CascaderOption[]) => void_ |
+| onClose | 点击关闭图标时触发 | _() => void_ |
+| onClickTab | 点击标签时触发 | _(tabIndex: number, title: string) => void_ |
 
 ### CascaderOption 数据结构
 

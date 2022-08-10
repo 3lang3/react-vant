@@ -1,5 +1,5 @@
-import './style/index.less';
-import Lazyload from './Lazyload';
+import './style/index.less'
+import Lazyload from './Lazyload'
 
-export default Lazyload;
-export { Lazyload };
+export default Lazyload
+export { Lazyload }

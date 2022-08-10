@@ -1,35 +1,35 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react'
 
-import RadioContext from './RadioContext';
-import Checker from '../checkbox/Checker';
+import RadioContext from './RadioContext'
+import Checker from '../checkbox/Checker'
 
-import { RadioProps, RadioValueType } from './PropsType';
-import { createNamespace } from '../utils';
+import { RadioProps, RadioValueType } from './PropsType'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('radio');
+const [bem] = createNamespace('radio')
 
 function Radio<T = RadioValueType>(props: RadioProps<T>) {
-  const { parent, ...context } = useContext(RadioContext);
+  const { parent, ...context } = useContext(RadioContext)
 
   const checked = useMemo(() => {
-    return parent ? context.checked === props.name : props.checked;
-  }, [context.checked]);
+    return parent ? context.checked === props.name : props.checked
+  }, [context.checked])
 
   const toggle = () => {
-    const emitter = parent ? context.toggle : () => {};
-    emitter(props.name);
-  };
+    const emitter = parent ? context.toggle : () => {}
+    emitter(props.name)
+  }
 
   return (
     <Checker
       {...props}
       bem={bem}
-      role="radio"
+      role='radio'
       parent={parent}
       checked={checked}
       onToggle={toggle}
     />
-  );
+  )
 }
 
-export default Radio;
+export default Radio

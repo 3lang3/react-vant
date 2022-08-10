@@ -1,6 +1,6 @@
-import React from 'react';
-import { Space } from 'react-vant';
-import { LocationO, LikeO, StarO } from '@react-vant/icons';
+import React from 'react'
+import { Space } from 'react-vant'
+import { LocationO, LikeO, StarO } from '@react-vant/icons'
 
 export default () => {
   return (
@@ -9,5 +9,5 @@ export default () => {
       <LikeO />
       <StarO />
     </Space>
-  );
-};
+  )
+}

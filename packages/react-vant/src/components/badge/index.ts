@@ -1,6 +1,6 @@
-import './style/index.less';
-import Badge from './Badge';
+import './style/index.less'
+import Badge from './Badge'
 
-export default Badge;
-export { Badge };
-export type { BadgeProps } from './PropsType';
+export default Badge
+export { Badge }
+export type { BadgeProps } from './PropsType'

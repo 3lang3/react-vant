@@ -6,36 +6,42 @@ import React, {
   forwardRef,
   useContext,
   useState,
-} from 'react';
-import clsx from 'clsx';
+} from 'react'
+import clsx from 'clsx'
 
-import Loading from '../loading';
-import Column from './PickerColumn';
-import useEventListener from '../hooks/use-event-listener';
+import Loading from '../loading'
+import Column from './PickerColumn'
+import useEventListener from '../hooks/use-event-listener'
 
 import {
   PickerProps,
   PickerMultipleProps,
   PickerPopupActions,
   PickerColumnOption,
-} from './PropsType';
-import { unitToPx, preventDefault, isObject, extend, createNamespace } from '../utils';
-import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { useMemoizedFn, usePropsValue } from '../hooks';
-import Popup from '../popup';
-import { useColumnsExtend } from './columnsExtend';
-import useRefs from '../hooks/use-refs';
-import useDebounceEffect from '../hooks/use-debunce-effect';
+} from './PropsType'
+import {
+  unitToPx,
+  preventDefault,
+  isObject,
+  extend,
+  createNamespace,
+} from '../utils'
+import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { useMemoizedFn, usePropsValue } from '../hooks'
+import Popup from '../popup'
+import { useColumnsExtend } from './columnsExtend'
+import useRefs from '../hooks/use-refs'
+import useDebounceEffect from '../hooks/use-debunce-effect'
 
-const [bem] = createNamespace('picker');
+const [bem] = createNamespace('picker')
 
 function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
-  const { locale } = useContext(ConfigProviderContext);
+  const { locale } = useContext(ConfigProviderContext)
 
-  const wrapper = useRef(null);
+  const wrapper = useRef(null)
 
-  const [refs, setRefs] = useRefs();
+  const [refs, setRefs] = useRefs()
 
   const {
     text: textKey,
@@ -47,81 +53,86 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
       value: 'value',
       children: 'children',
     },
-    props.columnsFieldNames,
-  );
+    props.columnsFieldNames
+  )
 
-  const [innerValue, setInnerValue] = useState<string[]>(props.value);
+  const [innerValue, setInnerValue] = useState<string[]>(props.value)
 
   // Sync `value` to `innerValue`
   useEffect(() => {
-    if (props.value === undefined) return; // Uncontrolled mode
-    if (JSON.stringify(innerValue) === JSON.stringify(props.value)) return;
-    setInnerValue(props.value);
-  }, [props.value]);
+    if (props.value === undefined) return // Uncontrolled mode
+    if (JSON.stringify(innerValue) === JSON.stringify(props.value)) return
+    setInnerValue(props.value)
+  }, [props.value])
 
   const formatColumns = useColumnsExtend(
     props.columns,
     { textKey, valueKey, childrenKey },
-    innerValue,
-  );
-  const { columns, items, indexes } = formatColumns;
+    innerValue
+  )
+  const { columns, items, indexes } = formatColumns
 
   useDebounceEffect(
     () => {
-      if (JSON.stringify(props.value) === JSON.stringify(innerValue)) return;
-      props.onChange?.(innerValue, items, indexes);
+      if (JSON.stringify(props.value) === JSON.stringify(innerValue)) return
+      props.onChange?.(innerValue, items, indexes)
     },
     [innerValue],
     {
       wait: 0,
       leading: false,
       trailing: true,
-    },
-  );
+    }
+  )
 
-  const itemHeight = useMemo(() => unitToPx(props.itemHeight), [props.itemHeight]);
+  const itemHeight = useMemo(
+    () => unitToPx(props.itemHeight),
+    [props.itemHeight]
+  )
 
   const handleSelect = (val: PickerColumnOption, index: number) => {
-    setInnerValue((prev) => {
-      const next = [...prev];
-      next[index] = val?.[valueKey];
-      return next;
-    });
-  };
+    setInnerValue(prev => {
+      const next = [...prev]
+      next[index] = val?.[valueKey]
+      return next
+    })
+  }
 
   const confirm = () => {
-    refs.forEach((_ref) => _ref.stopMomentum());
-    props.onConfirm?.(innerValue, items, indexes);
-  };
+    refs.forEach(_ref => _ref.stopMomentum())
+    props.onConfirm?.(innerValue, items, indexes)
+  }
 
   const cancel = () => {
-    props.onCancel?.();
-  };
+    props.onCancel?.()
+  }
 
   const renderTitle = () => {
     if (props.title) {
-      return <div className={clsx(bem('title'), 'rv-ellipsis')}>{props.title}</div>;
+      return (
+        <div className={clsx(bem('title'), 'rv-ellipsis')}>{props.title}</div>
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderCancel = () => {
-    const text = props.cancelButtonText || locale.cancel;
+    const text = props.cancelButtonText || locale.cancel
     return (
-      <button type="button" className={clsx(bem('cancel'))} onClick={cancel}>
+      <button type='button' className={clsx(bem('cancel'))} onClick={cancel}>
         {text}
       </button>
-    );
-  };
+    )
+  }
 
   const renderConfirm = () => {
-    const text = props.confirmButtonText || locale.confirm;
+    const text = props.confirmButtonText || locale.confirm
     return (
-      <button type="button" className={clsx(bem('confirm'))} onClick={confirm}>
+      <button type='button' className={clsx(bem('confirm'))} onClick={confirm}>
         {text}
       </button>
-    );
-  };
+    )
+  }
 
   const renderToolbar = () => {
     if (props.showToolbar) {
@@ -135,16 +146,16 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
             </>
           )}
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderColumnItems = () => {
     return columns.map((item, columnIndex) => {
       const placeholder = Array.isArray(props.placeholder)
         ? props.placeholder[columnIndex]
-        : props.placeholder;
+        : props.placeholder
       return (
         <Column
           textKey={textKey}
@@ -162,30 +173,33 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
           options={item}
           onSelect={handleSelect}
         />
-      );
-    });
-  };
+      )
+    })
+  }
 
   const renderColumns = () => {
-    const wrapHeight = itemHeight * props.visibleItemCount;
-    const frameStyle = { height: `${itemHeight}px` };
-    const columnsStyle = { height: `${wrapHeight}px` };
+    const wrapHeight = itemHeight * props.visibleItemCount
+    const frameStyle = { height: `${itemHeight}px` }
+    const columnsStyle = { height: `${wrapHeight}px` }
     const maskStyle = {
       backgroundSize: `100% ${(wrapHeight - itemHeight) / 2}px`,
-    };
+    }
 
     return (
       <div ref={wrapper} className={clsx(bem('columns'))} style={columnsStyle}>
         {renderColumnItems()}
         <div className={clsx(bem('mask'))} style={maskStyle} />
-        <div className={clsx(BORDER_UNSET_TOP_BOTTOM, bem('frame'))} style={frameStyle} />
+        <div
+          className={clsx(BORDER_UNSET_TOP_BOTTOM, bem('frame'))}
+          style={frameStyle}
+        />
       </div>
-    );
-  };
+    )
+  }
 
   useEventListener('touchmove', preventDefault, {
     target: wrapper.current,
-  });
+  })
 
   return (
     <div className={clsx(bem(), props.className)}>
@@ -196,52 +210,58 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
       {props.columnsBottom}
       {props.toolbarPosition === 'bottom' ? renderToolbar() : null}
     </div>
-  );
+  )
 }
 
 function PopupPicker<T = PickerColumnOption>(
   props: PickerProps<T>,
-  ref: React.ForwardedRef<PickerPopupActions & Partial<PickerPopupActions>>,
+  ref: React.ForwardedRef<PickerPopupActions & Partial<PickerPopupActions>>
 ) {
-  const { visible: outerVisible, popup, children, defaultValue = [], ...pickerProps } = props;
+  const {
+    visible: outerVisible,
+    popup,
+    children,
+    defaultValue = [],
+    ...pickerProps
+  } = props
   const [visible, setVisible] = usePropsValue({
     value: outerVisible,
     defaultValue: false,
-    onChange: (v) => {
+    onChange: v => {
       if (v === false) {
-        props.onClose?.();
+        props.onClose?.()
       }
     },
-  });
+  })
 
   const actions: PickerPopupActions = {
     toggle: () => {
-      if (popup) setVisible((v) => !v);
+      if (popup) setVisible(v => !v)
     },
     open: () => {
       if (popup) {
-        setVisible(true);
+        setVisible(true)
       }
     },
     close: () => {
       if (popup) {
-        setVisible(false);
+        setVisible(false)
       }
     },
-  };
+  }
 
-  useImperativeHandle(ref, () => actions);
+  useImperativeHandle(ref, () => actions)
 
   const formatValue = Array.isArray(props.value)
     ? props.value
     : props.value !== undefined
     ? [props.value]
-    : undefined;
+    : undefined
   const formatDefaultValue = Array.isArray(defaultValue)
     ? defaultValue
     : defaultValue !== undefined
     ? [defaultValue]
-    : [];
+    : []
 
   const {
     text: textKey,
@@ -253,69 +273,74 @@ function PopupPicker<T = PickerColumnOption>(
       value: 'value',
       children: 'children',
     },
-    props.columnsFieldNames,
-  );
+    props.columnsFieldNames
+  )
 
   const isPlainType = useMemo(() => {
-    const firstColumn = props.columns[0] || {};
+    const firstColumn = props.columns[0] || {}
 
-    if (Array.isArray(firstColumn)) return false;
+    if (Array.isArray(firstColumn)) return false
     if (typeof firstColumn === 'object') {
       // 联级
       if (childrenKey in firstColumn) {
-        return false;
+        return false
       }
     }
     // 单列
-    return true;
-  }, [props.columns, childrenKey]);
+    return true
+  }, [props.columns, childrenKey])
 
-  const parseValue = (target: any[]) => (isPlainType ? target?.[0] : target);
+  const parseValue = (target: any[]) => (isPlainType ? target?.[0] : target)
 
   const [value, setValue] = usePropsValue({
     value: formatValue,
     defaultValue: formatDefaultValue,
-  });
+  })
 
-  const formatColumns = useColumnsExtend(props.columns, { textKey, valueKey, childrenKey }, value);
+  const formatColumns = useColumnsExtend(
+    props.columns,
+    { textKey, valueKey, childrenKey },
+    value
+  )
 
-  const [innerValue, setInnerValue] = useState<string[]>(value);
+  const [innerValue, setInnerValue] = useState<string[]>(value)
 
   useEffect(() => {
     if (popup && JSON.stringify(innerValue) !== JSON.stringify(value)) {
-      setInnerValue(value);
+      setInnerValue(value)
     }
-  }, [visible]);
+  }, [visible])
 
   useEffect(() => {
     if (!popup && JSON.stringify(innerValue) !== JSON.stringify(value)) {
-      setInnerValue(value);
+      setInnerValue(value)
     }
-  }, [value]);
+  }, [value])
 
   const onConfirm = (val, items, indexes) => {
-    setValue(innerValue, true);
-    props.onConfirm?.(parseValue(val), parseValue(items), parseValue(indexes));
-    if (popup) actions.close();
-  };
+    setValue(innerValue, true)
+    props.onConfirm?.(parseValue(val), parseValue(items), parseValue(indexes))
+    if (popup) actions.close()
+  }
 
   const onCancel = () => {
-    props.onCancel?.();
-    if (popup) actions.close();
-  };
+    props.onCancel?.()
+    if (popup) actions.close()
+  }
 
   const onChange = useMemoizedFn((val, ext, indexes) => {
-    setInnerValue(val);
+    setInnerValue(val)
     if (popup) {
-      if (visible) props.onChange?.(parseValue(val), parseValue(ext), parseValue(indexes));
+      if (visible)
+        props.onChange?.(parseValue(val), parseValue(ext), parseValue(indexes))
     } else {
-      props.onChange?.(parseValue(val), parseValue(ext), parseValue(indexes));
+      props.onChange?.(parseValue(val), parseValue(ext), parseValue(indexes))
     }
-  });
+  })
 
   const popupProps = isObject(popup)
     ? { closeOnClickOverlay: true, ...popup }
-    : { closeOnClickOverlay: true };
+    : { closeOnClickOverlay: true }
   const content = (
     <PickerInner
       {...pickerProps}
@@ -324,18 +349,18 @@ function PopupPicker<T = PickerColumnOption>(
       onConfirm={onConfirm}
       onChange={onChange}
     />
-  );
-  if (!popup) return content;
+  )
+  if (!popup) return content
   return (
     <>
       <Popup
         round
-        position="bottom"
+        position='bottom'
         visible={visible}
         closeOnClickOverlay
         onClickOverlay={() => {
-          if (!popupProps?.closeOnClickOverlay) return;
-          setVisible(false);
+          if (!popupProps?.closeOnClickOverlay) return
+          setVisible(false)
         }}
         {...popupProps}
       >
@@ -343,16 +368,16 @@ function PopupPicker<T = PickerColumnOption>(
       </Popup>
       {children?.(parseValue(value), parseValue(formatColumns.items), actions)}
     </>
-  );
+  )
 }
 
 const Picker = forwardRef(PopupPicker) as <T>(
   props: PickerProps<T> & {
-    ref?: React.ForwardedRef<Partial<PickerPopupActions>>;
-  },
-) => ReturnType<typeof PopupPicker>;
+    ref?: React.ForwardedRef<Partial<PickerPopupActions>>
+  }
+) => ReturnType<typeof PopupPicker>
 
-(Picker as React.FC<PickerProps>).defaultProps = {
+;(Picker as React.FC<PickerProps>).defaultProps = {
   columns: [],
   itemHeight: 44,
   visibleItemCount: 5,
@@ -361,6 +386,6 @@ const Picker = forwardRef(PopupPicker) as <T>(
   placeholder: true,
 
   toolbarPosition: 'top',
-};
+}
 
-export default Picker;
+export default Picker

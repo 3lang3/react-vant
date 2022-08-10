@@ -1,9 +1,9 @@
-import { Context, createContext } from 'react';
+import { Context, createContext } from 'react'
 
 type PopupContextProps = {
-  visible?: boolean;
-};
+  visible?: boolean
+}
 
-const PopupContext: Context<PopupContextProps> = createContext({});
+const PopupContext: Context<PopupContextProps> = createContext({})
 
-export default PopupContext;
+export default PopupContext

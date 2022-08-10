@@ -1,25 +1,25 @@
-import React, { useContext } from 'react';
-import cls from 'clsx';
-import { CalendarHeaderProps } from './PropsType';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { createNamespace } from '../utils';
+import React, { useContext } from 'react'
+import cls from 'clsx'
+import { CalendarHeaderProps } from './PropsType'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('calendar');
+const [bem] = createNamespace('calendar')
 
-const CalenderHeader: React.FC<CalendarHeaderProps> = (props) => {
-  const { locale } = useContext(ConfigProviderContext);
+const CalenderHeader: React.FC<CalendarHeaderProps> = props => {
+  const { locale } = useContext(ConfigProviderContext)
 
   const renderTitle = () => {
     if (props.showTitle) {
-      const text = props.title || locale.vanCalendar.title;
-      return <div className={cls(bem('header-title'))}>{text}</div>;
+      const text = props.title || locale.vanCalendar.title
+      return <div className={cls(bem('header-title'))}>{text}</div>
     }
-    return null;
-  };
+    return null
+  }
 
-  const onClickSubtitle = (event) => {
-    props.onClickSubtitle?.(event);
-  };
+  const onClickSubtitle = event => {
+    props.onClickSubtitle?.(event)
+  }
 
   const renderSubtitle = () => {
     if (props.showSubtitle) {
@@ -27,21 +27,21 @@ const CalenderHeader: React.FC<CalendarHeaderProps> = (props) => {
         <div className={cls(bem('header-subtitle'))} onClick={onClickSubtitle}>
           {props.subtitle}
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderWeekDays = () => {
-    const { weekdays: customWeekdays, firstDayOfWeek } = props;
-    const defaultWeekdays = locale.vanCalendar.weekdays;
+    const { weekdays: customWeekdays, firstDayOfWeek } = props
+    const defaultWeekdays = locale.vanCalendar.weekdays
     const weekdays = customWeekdays
       ? defaultWeekdays.map((wk, i) => customWeekdays[i] || wk)
-      : defaultWeekdays;
+      : defaultWeekdays
     const renderWeekDaysContent = [
       ...weekdays.slice(firstDayOfWeek, 7),
       ...weekdays.slice(0, firstDayOfWeek),
-    ];
+    ]
 
     return (
       <div className={cls(bem('weekdays'))}>
@@ -52,8 +52,8 @@ const CalenderHeader: React.FC<CalendarHeaderProps> = (props) => {
           </span>
         ))}
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className={cls(bem('header'))}>
@@ -61,7 +61,7 @@ const CalenderHeader: React.FC<CalendarHeaderProps> = (props) => {
       {renderSubtitle()}
       {renderWeekDays()}
     </div>
-  );
-};
+  )
+}
 
-export default CalenderHeader;
+export default CalenderHeader

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Space, Badge } from 'react-vant';
-import { ChatO } from '@react-vant/icons';
+import React from 'react'
+import { Space, Badge } from 'react-vant'
+import { ChatO } from '@react-vant/icons'
 
 export default () => {
   return (
@@ -8,9 +8,9 @@ export default () => {
       <Badge dot>
         <ChatO />
       </Badge>
-      <Badge content="99+">
+      <Badge content='99+'>
         <ChatO />
       </Badge>
     </Space>
-  );
-};
+  )
+}

@@ -238,15 +238,15 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                        | 默认值                       | 描述 |
-| ------------------------------------------- | ---------------------------- | ---- |
-| --rv-image-preview-index-text-color         | _var(--rv-white)_            | -    |
-| --rv-image-preview-index-font-size          | _var(--rv-font-size-md)_     | -    |
-| --rv-image-preview-index-line-height        | _var(--rv-line-height-md)_   | -    |
-| --rv-image-preview-index-text-shadow        | _0 1px 1px var(--rv-gray-8)_ | -    |
-| --rv-image-preview-overlay-background-color | _rgba(0, 0, 0, 0.9)_         | -    |
-| --rv-image-preview-close-icon-size          | _22px_                       | -    |
-| --rv-image-preview-close-icon-color         | _var(--rv-gray-5)_           | -    |
-| --rv-image-preview-close-icon-active-color  | _var(--rv-gray-6)_           | -    |
-| --rv-image-preview-close-icon-margin        | _var(--rv-padding-md)_       | -    |
-| --rv-image-preview-close-icon-z-index       | _1_                          | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-image-preview-index-text-color | _var(--rv-white)_ | - |
+| --rv-image-preview-index-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-image-preview-index-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-image-preview-index-text-shadow | _0 1px 1px var(--rv-gray-8)_ | - |
+| --rv-image-preview-overlay-background-color | _rgba(0, 0, 0, 0.9)_ | - |
+| --rv-image-preview-close-icon-size | _22px_ | - |
+| --rv-image-preview-close-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-image-preview-close-icon-active-color | _var(--rv-gray-6)_ | - |
+| --rv-image-preview-close-icon-margin | _var(--rv-padding-md)_ | - |
+| --rv-image-preview-close-icon-z-index | _1_ | - |

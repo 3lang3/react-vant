@@ -249,4 +249,4 @@ export default {
     'photo-fail',
     'sort',
   ],
-};
+}

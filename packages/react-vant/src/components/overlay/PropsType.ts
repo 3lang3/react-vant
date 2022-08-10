@@ -1,18 +1,18 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
 export interface OverlayProps extends BaseTypeProps {
   /** 是否可见 */
-  visible?: boolean;
+  visible?: boolean
   /** 设置`z-index` */
-  zIndex?: number;
+  zIndex?: number
   /** 自定义样式 */
-  customStyle?: React.CSSProperties;
+  customStyle?: React.CSSProperties
   /** 动画时长，单位`ms`，设置为 0 可以禁用动画	， */
-  duration?: number;
+  duration?: number
   /** 是否锁定背景滚动，锁定时蒙层里的内容也将无法滚动 */
-  lockScroll?: boolean;
+  lockScroll?: boolean
   /** 点击时触发 */
-  onClick?: (e: React.MouseEvent) => void;
-  stopPropagation?: string[];
+  onClick?: (e: React.MouseEvent) => void
+  stopPropagation?: string[]
 }

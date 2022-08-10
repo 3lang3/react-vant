@@ -1,11 +1,11 @@
-import React from 'react';
-import { Cell, Dialog } from 'react-vant';
+import React from 'react'
+import { Cell, Dialog } from 'react-vant'
 
 export default () => {
   return (
     <>
       <Cell
-        title="弹窗提示"
+        title='弹窗提示'
         isLink
         onClick={() =>
           Dialog.confirm({
@@ -13,15 +13,15 @@ export default () => {
             message: '代码是写出来给人看的，附带能在机器上运行',
           })
             .then(() => {
-              console.log('confirm');
+              console.log('confirm')
             })
             .catch(() => {
-              console.log('catch');
+              console.log('catch')
             })
         }
       />
       <Cell
-        title="弹窗提示（无标题）"
+        title='弹窗提示（无标题）'
         isLink
         onClick={() =>
           Dialog.alert({
@@ -30,7 +30,7 @@ export default () => {
         }
       />
       <Cell
-        title="确认弹框"
+        title='确认弹框'
         isLink
         onClick={() =>
           Dialog.confirm({
@@ -40,5 +40,5 @@ export default () => {
         }
       />
     </>
-  );
-};
+  )
+}

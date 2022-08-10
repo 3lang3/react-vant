@@ -1,27 +1,27 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
-export type TagSize = '' | 'mini' | 'medium' | 'large';
-export type TagType = 'default' | 'primary' | 'success' | 'warning' | 'danger';
+export type TagSize = '' | 'mini' | 'medium' | 'large'
+export type TagType = 'default' | 'primary' | 'success' | 'warning' | 'danger'
 export interface TagProps extends BaseTypeProps {
   /** 大小, 可选值为 large medium	 */
-  size?: TagSize;
+  size?: TagSize
   /** 是否为标记样式	 */
-  mark?: boolean;
+  mark?: boolean
   /** 标签颜色	 */
-  color?: string;
+  color?: string
   /** 是否为空心样式	 */
-  plain?: boolean;
+  plain?: boolean
   /** 是否为圆角样式	 */
-  round?: boolean;
+  round?: boolean
   /** 文本颜色，优先级高于 color 属性	 */
-  textColor?: string;
+  textColor?: string
   /** 是否为可关闭标签	 */
-  closeable?: boolean;
+  closeable?: boolean
   /** 类型 */
-  type?: TagType;
+  type?: TagType
   /** 是否展示标签	 */
-  show?: boolean;
-  onClose?: (e: React.MouseEvent) => void;
-  onClick?: (e: React.MouseEvent) => void;
+  show?: boolean
+  onClose?: (e: React.MouseEvent) => void
+  onClick?: (e: React.MouseEvent) => void
 }

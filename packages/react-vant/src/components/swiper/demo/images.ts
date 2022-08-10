@@ -7,4 +7,4 @@ export const images = [
   'https://img.yzcdn.cn/vant/apple-6.jpg',
   'https://img.yzcdn.cn/vant/apple-7.jpg',
   'https://img.yzcdn.cn/vant/apple-8.jpg',
-];
+]

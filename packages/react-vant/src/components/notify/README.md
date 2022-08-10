@@ -149,13 +149,13 @@ import type { NotifyType, NotifyProps } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                 | 默认值                                      | 描述 |
-| ------------------------------------ | ------------------------------------------- | ---- |
-| --rv-notify-text-color               | _var(--rv-white)_                           | -    |
-| --rv-notify-padding                  | _var(--rv-padding-xs) var(--rv-padding-md)_ | -    |
-| --rv-notify-font-size                | _var(--rv-font-size-md)_                    | -    |
-| --rv-notify-line-height              | _var(--rv-line-height-md)_                  | -    |
-| --rv-notify-primary-background-color | _var(--rv-primary-color)_                   | -    |
-| --rv-notify-success-background-color | _var(--rv-success-color)_                   | -    |
-| --rv-notify-danger-background-color  | _var(--rv-danger-color)_                    | -    |
-| --rv-notify-warning-background-color | _var(--rv-warning-color)_                   | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-notify-text-color | _var(--rv-white)_ | - |
+| --rv-notify-padding | _var(--rv-padding-xs) var(--rv-padding-md)_ | - |
+| --rv-notify-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-notify-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-notify-primary-background-color | _var(--rv-primary-color)_ | - |
+| --rv-notify-success-background-color | _var(--rv-success-color)_ | - |
+| --rv-notify-danger-background-color | _var(--rv-danger-color)_ | - |
+| --rv-notify-warning-background-color | _var(--rv-warning-color)_ | - |

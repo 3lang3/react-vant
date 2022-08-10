@@ -1,36 +1,36 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
-export type StepsDirection = 'horizontal' | 'vertical';
+export type StepsDirection = 'horizontal' | 'vertical'
 
 export interface StepsProps extends BaseTypeProps {
   /** 已完成步骤对应的底部图标，优先级高于 inactive-icon，可选值见 Icon 组件	 */
-  finishIcon?: React.ReactNode;
+  finishIcon?: React.ReactNode
   /** 当前步骤和已完成步骤的颜色	 */
-  activeColor?: string;
+  activeColor?: string
   /** 非当前步骤对应的底部图标，可选值见 Icon 组件	 */
-  inactiveIcon?: React.ReactNode;
+  inactiveIcon?: React.ReactNode
   /** 未激活步骤的颜色	 */
-  inactiveColor?: string;
+  inactiveColor?: string
   /** 当前步骤对应的索引值	 */
-  active?: number;
+  active?: number
   /** 步骤条方向 */
-  direction?: StepsDirection;
+  direction?: StepsDirection
   /** 当前步骤对应的底部图标，可选值见 Icon 组件 */
-  activeIcon?: React.ReactNode;
+  activeIcon?: React.ReactNode
   /** 点击步骤的标题或图标时触发	 */
-  onClickStep?: (index: number) => void;
+  onClickStep?: (index: number) => void
 }
 
 export interface StepsItemProps extends BaseTypeProps {
   /** @private */
-  parent?: StepsProps;
+  parent?: StepsProps
   /** @private */
-  index?: number;
+  index?: number
   /** 已完成步骤对应的底部图标，优先级高于 inactiveIcon */
-  finishIcon?: React.ReactNode;
+  finishIcon?: React.ReactNode
   /** 非当前步骤对应的底部图标，可选值见 Icon 组件	 */
-  inactiveIcon?: React.ReactNode;
+  inactiveIcon?: React.ReactNode
   /** 当前步骤对应的底部图标，可选值见 Icon 组件 */
-  activeIcon?: React.ReactNode;
+  activeIcon?: React.ReactNode
 }

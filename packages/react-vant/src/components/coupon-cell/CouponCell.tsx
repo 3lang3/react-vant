@@ -1,41 +1,48 @@
-import React, { useContext } from 'react';
-import cls from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { CouponCellProps, CouponInfo } from '../coupon-list/PropsType';
-import { createNamespace, isDef } from '../utils';
-import Cell from '../cell';
-import { Locale } from '../locale/lang/base';
+import React, { useContext } from 'react'
+import cls from 'clsx'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { CouponCellProps, CouponInfo } from '../coupon-list/PropsType'
+import { createNamespace, isDef } from '../utils'
+import Cell from '../cell'
+import { Locale } from '../locale/lang/base'
 
 function formatValue(
   coupons: CouponInfo[],
   chosenCoupon: number | string,
   currency: string,
-  locale: Locale,
+  locale: Locale
 ) {
-  const coupon = coupons[+chosenCoupon];
+  const coupon = coupons[+chosenCoupon]
 
   if (coupon) {
-    let value = 0;
+    let value = 0
 
     if (isDef(coupon.value)) {
-      ({ value } = coupon);
+      ;({ value } = coupon)
     } else if (isDef(coupon.denominations)) {
-      value = coupon.denominations;
+      value = coupon.denominations
     }
 
-    return `-${currency} ${(value / 100).toFixed(2)}`;
+    return `-${currency} ${(value / 100).toFixed(2)}`
   }
 
-  return coupons.length === 0 ? locale.noCoupon : locale.vanCouponCell.count(coupons.length);
+  return coupons.length === 0
+    ? locale.noCoupon
+    : locale.vanCouponCell.count(coupons.length)
 }
 
-const [bem] = createNamespace('coupon-cell');
+const [bem] = createNamespace('coupon-cell')
 
-const CouponCell: React.FC<CouponCellProps> = (props) => {
-  const { locale } = useContext(ConfigProviderContext);
+const CouponCell: React.FC<CouponCellProps> = props => {
+  const { locale } = useContext(ConfigProviderContext)
 
-  const selected = props.coupons[+props.chosenCoupon];
-  const value = formatValue(props.coupons, props.chosenCoupon, props.currency, locale);
+  const selected = props.coupons[+props.chosenCoupon]
+  const value = formatValue(
+    props.coupons,
+    props.chosenCoupon,
+    props.currency,
+    locale
+  )
 
   return (
     <Cell
@@ -48,8 +55,8 @@ const CouponCell: React.FC<CouponCellProps> = (props) => {
       valueClass={cls(bem('value', { selected }))}
       onClick={props.onClick}
     />
-  );
-};
+  )
+}
 
 // defaultProps defined if need
 CouponCell.defaultProps = {
@@ -58,6 +65,6 @@ CouponCell.defaultProps = {
   coupons: [],
   currency: '¥',
   chosenCoupon: -1,
-};
+}
 
-export default CouponCell;
+export default CouponCell

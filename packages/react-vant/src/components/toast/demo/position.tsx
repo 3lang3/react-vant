@@ -1,11 +1,11 @@
-import React from 'react';
-import { Toast, Cell } from 'react-vant';
+import React from 'react'
+import { Toast, Cell } from 'react-vant'
 
 export default () => {
   return (
     <>
       <Cell
-        title="顶部展示"
+        title='顶部展示'
         isLink
         onClick={() =>
           Toast({
@@ -15,7 +15,7 @@ export default () => {
         }
       />
       <Cell
-        title="底部展示"
+        title='底部展示'
         isLink
         onClick={() =>
           Toast({
@@ -25,5 +25,5 @@ export default () => {
         }
       />
     </>
-  );
-};
+  )
+}

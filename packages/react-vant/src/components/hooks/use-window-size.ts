@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { inBrowser } from '../utils';
-import useEventListener from './use-event-listener';
+import { useState } from 'react'
+import { inBrowser } from '../utils'
+import useEventListener from './use-event-listener'
 
 function useWindowSize(): { width: number; height: number } {
-  const [width, setWidth] = useState(inBrowser ? window.innerWidth : 0);
-  const [height, setHeight] = useState(inBrowser ? window.innerHeight : 0);
+  const [width, setWidth] = useState(inBrowser ? window.innerWidth : 0)
+  const [height, setHeight] = useState(inBrowser ? window.innerHeight : 0)
 
   const onResize = () => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  };
+    setWidth(window.innerWidth)
+    setHeight(window.innerHeight)
+  }
 
-  useEventListener('resize', onResize);
-  useEventListener('orientationchange', onResize);
+  useEventListener('resize', onResize)
+  useEventListener('orientationchange', onResize)
 
-  return { width, height };
+  return { width, height }
 }
 
-export default useWindowSize;
+export default useWindowSize

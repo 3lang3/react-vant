@@ -13,7 +13,7 @@ export default function usePropsValue<T>(options: Options<T>) {
 
   const update = useUpdate()
 
-  const stateRef = useRef<T>(value !== undefined ? value : defaultValue);
+  const stateRef = useRef<T>(value !== undefined ? value : defaultValue)
   if (value !== undefined) {
     stateRef.current = value
   }

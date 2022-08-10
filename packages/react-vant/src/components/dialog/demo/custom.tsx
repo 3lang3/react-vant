@@ -1,10 +1,10 @@
-import React from 'react';
-import { Cell, Dialog } from 'react-vant';
+import React from 'react'
+import { Cell, Dialog } from 'react-vant'
 
 export default () => {
   return (
     <Cell
-      title="自定义内容"
+      title='自定义内容'
       isLink
       onClick={() =>
         Dialog.alert({
@@ -19,5 +19,5 @@ export default () => {
         })
       }
     />
-  );
-};
+  )
+}

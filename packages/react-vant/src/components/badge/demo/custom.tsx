@@ -1,10 +1,12 @@
-import React from 'react';
-import { Badge, Space } from 'react-vant';
-import { Success, Cross, Down } from '@react-vant/icons';
+import React from 'react'
+import { Badge, Space } from 'react-vant'
+import { Success, Cross, Down } from '@react-vant/icons'
 
 const Child = () => (
-  <div style={{ width: 40, height: 40, background: '#f2f3f5', borderRadius: 4 }} />
-);
+  <div
+    style={{ width: 40, height: 40, background: '#f2f3f5', borderRadius: 4 }}
+  />
+)
 
 export default () => {
   return (
@@ -19,5 +21,5 @@ export default () => {
         <Child />
       </Badge>
     </Space>
-  );
-};
+  )
+}

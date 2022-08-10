@@ -1,78 +1,82 @@
-import React from 'react';
-import { BaseTypeProps, TeleportType } from '../utils';
+import React from 'react'
+import { BaseTypeProps, TeleportType } from '../utils'
 
-export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | '';
+export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | ''
 
-export type PopupCloseIconPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+export type PopupCloseIconPosition =
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right'
 
-export type Position = 'center' | 'top' | 'bottom' | 'right' | 'left';
+export type Position = 'center' | 'top' | 'bottom' | 'right' | 'left'
 
 export interface SharedPopupProps {
   /** 是否显示圆角 */
-  round?: boolean;
+  round?: boolean
   /** css z-index值 */
-  zIndex?: number;
+  zIndex?: number
   /** 是否显示关闭图标	 */
-  closeable?: boolean;
+  closeable?: boolean
   /**  是否显示遮罩层	 */
-  overlay?: boolean;
+  overlay?: boolean
   /** 自定义遮罩层类名 */
-  overlayClass?: string;
+  overlayClass?: string
   /** 自定义遮罩层样式 */
-  overlayStyle?: React.CSSProperties;
+  overlayStyle?: React.CSSProperties
   /** 关闭时销毁 Popup 里的子元素 */
-  destroyOnClose?: boolean;
+  destroyOnClose?: boolean
   /** 强制渲染 Popup */
-  forceRender?: boolean;
+  forceRender?: boolean
   /** 是否锁定背景滚动	 */
-  lockScroll?: boolean;
+  lockScroll?: boolean
   /** 动画时长 */
-  duration?: number;
+  duration?: number
   /** 动画类名 @see https://reactcommunity.org/react-transition-group/ */
-  transition?: string;
+  transition?: string
   /** 是否开启底部安全区适配 */
-  safeAreaInsetBottom?: boolean;
+  safeAreaInsetBottom?: boolean
   /** 是否在点击遮罩层后关闭	 */
-  closeOnClickOverlay?: boolean;
+  closeOnClickOverlay?: boolean
   /** 是否在页面回退时自动关闭	 */
-  closeOnPopstate?: boolean;
-  stopPropagation?: string[];
+  closeOnPopstate?: boolean
+  stopPropagation?: string[]
   /** 点击遮罩层时触发 */
-  onClickOverlay?: (e: React.MouseEvent) => void;
+  onClickOverlay?: (e: React.MouseEvent) => void
   /** 打开弹出层时触发	 */
-  onOpen?: () => void;
+  onOpen?: () => void
   /** 关闭弹出层触发	*/
-  onClose?: () => void;
+  onClose?: () => void
   /** 打开弹出层且动画结束后触发 */
-  onOpened?: () => void;
+  onOpened?: () => void
   /** 关闭弹出层且动画结束后触发 */
-  onClosed?: () => void;
+  onClosed?: () => void
   /** 关闭前的回调函数，返回 false 可阻止关闭，支持返回 Promise	 */
-  beforeClose?: (action: string | number) => boolean | Promise<boolean>;
+  beforeClose?: (action: string | number) => boolean | Promise<boolean>
   /** 指定挂载的节点 */
-  teleport?: TeleportType;
+  teleport?: TeleportType
 }
 
 export interface PopupProps extends BaseTypeProps, SharedPopupProps {
   /** 自定义标题 */
-  title?: string | React.ReactNode;
+  title?: string | React.ReactNode
   /** 自定义描述 */
-  description?: string | React.ReactNode;
+  description?: string | React.ReactNode
   /** 是否显示弹出层	 */
-  visible?: boolean;
+  visible?: boolean
   /** 关闭图标 */
-  closeIcon?: React.ReactNode;
+  closeIcon?: React.ReactNode
   /** 弹出位置 */
-  position?: PopupPosition;
+  position?: PopupPosition
   /** 关闭图标位置 */
-  closeIconPosition?: string;
+  closeIconPosition?: string
   /** 点击弹出层时触发 */
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent) => void
   /** 点击关闭图标时触发	 */
-  onClickCloseIcon?: (e: React.MouseEvent) => void;
-  children?: React.ReactNode;
+  onClickCloseIcon?: (e: React.MouseEvent) => void
+  children?: React.ReactNode
 }
 
 export type PopupInstanceType = {
-  popupRef: React.MutableRefObject<HTMLDivElement>;
-};
+  popupRef: React.MutableRefObject<HTMLDivElement>
+}

@@ -1,31 +1,31 @@
-import React, { CSSProperties, isValidElement, MouseEvent, useRef } from 'react';
-import clsx from 'clsx';
-import { ArrowLeft } from '@react-vant/icons';
+import React, { CSSProperties, isValidElement, MouseEvent, useRef } from 'react'
+import clsx from 'clsx'
+import { ArrowLeft } from '@react-vant/icons'
 
-import { NavBarProps } from './PropsType';
-import { BORDER_BOTTOM } from '../utils/constant';
+import { NavBarProps } from './PropsType'
+import { BORDER_BOTTOM } from '../utils/constant'
 
-import useHeight from '../hooks/use-height';
-import { createNamespace } from '../utils';
+import useHeight from '../hooks/use-height'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('nav-bar');
+const [bem] = createNamespace('nav-bar')
 
-const NavBar: React.FC<NavBarProps> = (props) => {
-  const navBarRef = useRef(null);
+const NavBar: React.FC<NavBarProps> = props => {
+  const navBarRef = useRef(null)
 
-  const navBarHeight = useHeight(navBarRef);
+  const navBarHeight = useHeight(navBarRef)
 
   const onClickLeft = (event: MouseEvent) => {
-    if (props.onClickLeft) props.onClickLeft(event);
-  };
+    if (props.onClickLeft) props.onClickLeft(event)
+  }
 
   const onClickRight = (event: MouseEvent) => {
-    if (props.onClickRight) props.onClickRight(event);
-  };
+    if (props.onClickRight) props.onClickRight(event)
+  }
 
   const renderLeft = () => {
     if (typeof props.leftText !== 'string' && isValidElement(props.leftText)) {
-      return props.leftText;
+      return props.leftText
     }
 
     return [
@@ -35,31 +35,34 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           className: clsx(bem('arrow')),
         }),
       props.leftText && (
-        <span key="text" className={clsx(bem('text'))}>
+        <span key='text' className={clsx(bem('text'))}>
           {props.leftText}
         </span>
       ),
-    ];
-  };
+    ]
+  }
 
   const renderRight = () => {
-    if (typeof props.rightText !== 'string' && isValidElement(props.rightText)) {
-      return props.rightText;
+    if (
+      typeof props.rightText !== 'string' &&
+      isValidElement(props.rightText)
+    ) {
+      return props.rightText
     }
 
-    return <span className={clsx(bem('text'))}>{props.rightText}</span>;
-  };
+    return <span className={clsx(bem('text'))}>{props.rightText}</span>
+  }
 
   const renderNavBar = () => {
-    const { title, fixed, border, zIndex } = props;
+    const { title, fixed, border, zIndex } = props
 
     const style: CSSProperties = {
       zIndex: zIndex !== undefined ? +zIndex : undefined,
       ...props.style,
-    };
+    }
 
-    const hasLeft = props.leftArrow || props.leftText;
-    const hasRight = props.rightText;
+    const hasLeft = props.leftArrow || props.leftText
+    const hasRight = props.rightText
 
     return (
       <div
@@ -70,7 +73,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           {
             [BORDER_BOTTOM]: border,
           },
-          props.className,
+          props.className
         )}
       >
         <div className={clsx(bem('content'))}>
@@ -87,8 +90,8 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           )}
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   const renderPlaceholder = () => {
     if (props.fixed && props.placeholder) {
@@ -97,22 +100,22 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           className={clsx(bem('placeholder'))}
           style={{ height: navBarHeight ? `${navBarHeight}px` : undefined }}
         />
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <>
       {renderPlaceholder()}
       {renderNavBar()}
     </>
-  );
-};
+  )
+}
 
 NavBar.defaultProps = {
   border: true,
   leftArrow: <ArrowLeft />,
-};
+}
 
-export default NavBar;
+export default NavBar

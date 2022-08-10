@@ -1,26 +1,26 @@
-import React, { useRef } from 'react';
-import { Field, Button } from 'react-vant';
-import type { FieldInstance } from 'react-vant';
+import React, { useRef } from 'react'
+import { Field, Button } from 'react-vant'
+import type { FieldInstance } from 'react-vant'
 
 export default () => {
-  const fieldRef = useRef<FieldInstance>(null);
+  const fieldRef = useRef<FieldInstance>(null)
 
   return (
     <Field
       center
       ref={fieldRef}
-      placeholder="请输入文本"
-      label="文本"
+      placeholder='请输入文本'
+      label='文本'
       suffix={
         <Button
-          size="small"
+          size='small'
           onClick={() => {
-            fieldRef?.current?.focus();
+            fieldRef?.current?.focus()
           }}
         >
           聚焦
         </Button>
       }
     />
-  );
-};
+  )
+}

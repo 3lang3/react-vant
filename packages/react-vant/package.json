@@ -69,9 +69,9 @@
     "deploy:gh-pages": "gh-pages -d docs-dist",
     "dev": "rcdoc dev",
     "docs:build": "rcdoc docs-build",
-    "lint": "eslint --fix",
+    "lint": "eslint src --ext ts,tsx --fix",
     "lint:tsx": "eslint src --ext ts,tsx",
-    "prettier": "npx prettier --write vant.config.js src/index.ts",
+    "prettier": "npx prettier --write src",
     "preview": "rcdoc preview",
     "pub": "pnpm publish ./dist",
     "pub:dev": "pnpm publish ./dist --tag dev"

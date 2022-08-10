@@ -1,12 +1,17 @@
-import React from 'react';
-import cls from 'clsx';
-import { Checked } from '@react-vant/icons';
-import { StepsProps } from './PropsType';
-import { createNamespace } from '../utils';
+import React from 'react'
+import cls from 'clsx'
+import { Checked } from '@react-vant/icons'
+import { StepsProps } from './PropsType'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('steps');
+const [bem] = createNamespace('steps')
 
-const Steps: React.FC<StepsProps> = ({ children, className, style, ...props }) => {
+const Steps: React.FC<StepsProps> = ({
+  children,
+  className,
+  style,
+  ...props
+}) => {
   return (
     <div className={cls(className, bem([props.direction]))} style={style}>
       <div className={cls(bem('items'))}>
@@ -16,17 +21,17 @@ const Steps: React.FC<StepsProps> = ({ children, className, style, ...props }) =
             React.cloneElement(child, {
               index,
               parent: props,
-            }),
+            })
           )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 Steps.defaultProps = {
   active: 0,
   direction: 'horizontal',
   activeIcon: <Checked />,
-};
+}
 
-export default Steps;
+export default Steps

@@ -142,14 +142,14 @@ export default () => {
 
 ### SidebarItem Props
 
-| 参数             | 说明                 | 类型                        | 默认值  |
-| ---------------- | -------------------- | --------------------------- | ------- |
-| title            | 内容                 | _string \| React.ReactNode_ | `''`    |
-| dot              | 是否显示右上角小红点 | _boolean_                   | `false` |
-| badge            | 图标右上角徽标的内容 | _number \| string_          | -       |
-| disabled         | 是否禁用该项         | _boolean_                   | `false` |
-| contentClassName | 内容区域类名         | _string_                    | -       |
-| contentStyle     | 内容区域样式         | _CSSProperties_             | -       |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| title | 内容 | _string \| React.ReactNode_ | `''` |
+| dot | 是否显示右上角小红点 | _boolean_ | `false` |
+| badge | 图标右上角徽标的内容 | _number \| string_ | - |
+| disabled | 是否禁用该项 | _boolean_ | `false` |
+| contentClassName | 内容区域类名 | _string_ | - |
+| contentStyle | 内容区域样式 | _CSSProperties_ | - |
 
 ### SidebarItem Events
 

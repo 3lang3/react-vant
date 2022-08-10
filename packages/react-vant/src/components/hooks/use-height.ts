@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
-import { getRect } from './use-rect';
+import { useEffect, useState } from 'react'
+import { getRect } from './use-rect'
 
-export const useHeight = (element: { current: Element | undefined }): number => {
-  const [height, setHeight] = useState(0);
+export const useHeight = (element: {
+  current: Element | undefined
+}): number => {
+  const [height, setHeight] = useState(0)
 
   useEffect(() => {
     if (element.current) {
-      setHeight(getRect(element.current).height);
+      setHeight(getRect(element.current).height)
     }
-  }, [element.current]);
+  }, [element.current])
 
-  return height;
-};
+  return height
+}
 
-export default useHeight;
+export default useHeight

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { DatetimePicker, Field } from 'react-vant';
+import React, { useState } from 'react'
+import { DatetimePicker, Field } from 'react-vant'
 
 export default () => {
-  const [value, setValue] = useState(new Date());
+  const [value, setValue] = useState(new Date())
   return (
     <DatetimePicker
       popup={{
         round: true,
       }}
-      type="date"
-      title="选择年月日"
+      type='date'
+      title='选择年月日'
       minDate={new Date(2021, 0, 1)}
       maxDate={new Date(2025, 10, 1)}
       value={value}
@@ -20,13 +20,13 @@ export default () => {
           <Field
             readOnly
             clickable
-            label="选择年月日"
+            label='选择年月日'
             value={val.toLocaleDateString()}
-            placeholder="请选择日期"
+            placeholder='请选择日期'
             onClick={() => actions.open()}
           />
-        );
+        )
       }}
     </DatetimePicker>
-  );
-};
+  )
+}

@@ -1,16 +1,18 @@
-import React, { useMemo } from 'react';
-import clsx from 'clsx';
-import { TypographyBaseProps } from './PropsType';
-import { createNamespace, isObject } from '../utils';
-import Ellipsis from './Ellipsis';
+import React, { useMemo } from 'react'
+import clsx from 'clsx'
+import { TypographyBaseProps } from './PropsType'
+import { createNamespace, isObject } from '../utils'
+import Ellipsis from './Ellipsis'
 
-const [bem] = createNamespace('typography');
+const [bem] = createNamespace('typography')
 
 const ellipsisDefaultValue = {
   rows: 1,
-};
+}
 
-const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = ({
+const TypographyBase: React.FC<
+  TypographyBaseProps & { renderType: string }
+> = ({
   tag = 'div',
   type,
   size = 'md',
@@ -27,45 +29,51 @@ const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = (
   ...props
 }) => {
   const ellipsisNumber = useMemo(() => {
-    if (typeof ellipsis === 'boolean' && ellipsis) return 1;
-    if (typeof ellipsis === 'number') return ellipsis;
-    if (isObject(ellipsis) && ellipsis.rows) return ellipsis.rows;
-    return 0;
-  }, [ellipsis]);
+    if (typeof ellipsis === 'boolean' && ellipsis) return 1
+    if (typeof ellipsis === 'number') return ellipsis
+    if (isObject(ellipsis) && ellipsis.rows) return ellipsis.rows
+    return 0
+  }, [ellipsis])
 
-  const isEllipsis = !!ellipsis;
+  const isEllipsis = !!ellipsis
   const isCssEllipsis = useMemo(() => {
-    if (typeof ellipsis === 'boolean') return true;
-    if (typeof ellipsis === 'number') return true;
+    if (typeof ellipsis === 'boolean') return true
+    if (typeof ellipsis === 'number') return true
     if (isObject(ellipsis)) {
-      const p = { ...ellipsisDefaultValue, ...ellipsis };
-      if (!p.collapseText && !p.expandText && !p.suffixCount && !p.suffixText && !p.symbol)
-        return true;
+      const p = { ...ellipsisDefaultValue, ...ellipsis }
+      if (
+        !p.collapseText &&
+        !p.expandText &&
+        !p.suffixCount &&
+        !p.suffixText &&
+        !p.symbol
+      )
+        return true
     }
-    return false;
-  }, [ellipsis]);
+    return false
+  }, [ellipsis])
 
-  const isEnhanceEllipsis = isEllipsis && !isCssEllipsis;
+  const isEnhanceEllipsis = isEllipsis && !isCssEllipsis
 
   const TagElement = useMemo<React.ElementType>(() => {
     if (renderType === 'title') {
-      if (level === 1) return 'h1';
-      if (level === 2) return 'h2';
-      if (level === 3) return 'h3';
-      if (level === 4) return 'h4';
-      if (level === 5) return 'h5';
-      return 'h6';
+      if (level === 1) return 'h1'
+      if (level === 2) return 'h2'
+      if (level === 3) return 'h3'
+      if (level === 4) return 'h4'
+      if (level === 5) return 'h5'
+      return 'h6'
     }
-    return tag as React.ElementType;
-  }, [tag]);
+    return tag as React.ElementType
+  }, [tag])
 
   const measureStyle = useMemo(() => {
-    const propsStyle = { ...props.style, '--rv-typography-color': props.color };
+    const propsStyle = { ...props.style, '--rv-typography-color': props.color }
     if (isEllipsis && isCssEllipsis && ellipsisNumber > 1) {
-      return { ...propsStyle, '--line-clamp': ellipsisNumber };
+      return { ...propsStyle, '--line-clamp': ellipsisNumber }
     }
-    return propsStyle;
-  }, [props.style, isCssEllipsis]);
+    return propsStyle
+  }, [props.style, isCssEllipsis])
 
   const renderContent = () => {
     if (isEnhanceEllipsis)
@@ -85,7 +93,7 @@ const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = (
                 delete: del,
                 [`l${level}`]: renderType === 'title' && level,
               },
-            ]),
+            ])
           )}
           {...props}
           {...(ellipsis as Object)}
@@ -93,7 +101,7 @@ const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = (
         >
           {children as string}
         </Ellipsis>
-      );
+      )
     return (
       <TagElement
         className={clsx(
@@ -113,17 +121,18 @@ const TypographyBase: React.FC<TypographyBaseProps & { renderType: string }> = (
           ]),
           {
             'rv-ellipsis': isEllipsis && isCssEllipsis && ellipsisNumber === 1,
-            'rv-typography__ellipsis--multi': isEllipsis && isCssEllipsis && ellipsisNumber > 1,
-          },
+            'rv-typography__ellipsis--multi':
+              isEllipsis && isCssEllipsis && ellipsisNumber > 1,
+          }
         )}
         {...props}
         style={measureStyle}
       >
         {children}
       </TagElement>
-    );
-  };
-  return renderContent();
-};
+    )
+  }
+  return renderContent()
+}
 
-export default TypographyBase;
+export default TypographyBase

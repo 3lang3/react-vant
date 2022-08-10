@@ -1,9 +1,9 @@
-import { createContext, Context } from 'react';
+import { createContext, Context } from 'react'
 
 export interface FlexContextState {
-  gutter?: [number, number];
+  gutter?: [number, number]
 }
 
-const FlexContext: Context<FlexContextState> = createContext({});
+const FlexContext: Context<FlexContextState> = createContext({})
 
-export default FlexContext;
+export default FlexContext

@@ -1,10 +1,10 @@
-import { createContext, Context } from 'react';
+import { createContext, Context } from 'react'
 
 export interface CollapseContextState {
-  isExpanded?: (name: string | number) => boolean;
-  toggle?: (name: string | number, expanded: boolean) => void;
+  isExpanded?: (name: string | number) => boolean
+  toggle?: (name: string | number, expanded: boolean) => void
 }
 
-const CollapseContext: Context<CollapseContextState> = createContext({});
+const CollapseContext: Context<CollapseContextState> = createContext({})
 
-export default CollapseContext;
+export default CollapseContext

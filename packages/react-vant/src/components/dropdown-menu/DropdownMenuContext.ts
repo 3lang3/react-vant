@@ -1,14 +1,14 @@
-import React, { createContext, Context } from 'react';
-import { DropdownMenuProps } from './PropsType';
+import React, { createContext, Context } from 'react'
+import { DropdownMenuProps } from './PropsType'
 
 export interface DropdownMenuState {
-  props?: React.PropsWithChildren<DropdownMenuProps>;
-  value?: Record<string, number | string>;
-  openedMap?: Record<string, boolean>;
-  onChange?: (v) => void;
-  close?: () => void;
+  props?: React.PropsWithChildren<DropdownMenuProps>
+  value?: Record<string, number | string>
+  openedMap?: Record<string, boolean>
+  onChange?: (v) => void
+  close?: () => void
 }
 
-const DropdownMenu: Context<DropdownMenuState> = createContext({});
+const DropdownMenu: Context<DropdownMenuState> = createContext({})
 
-export default DropdownMenu;
+export default DropdownMenu

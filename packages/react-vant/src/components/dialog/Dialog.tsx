@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
-import clsx from 'clsx';
+import React, { useContext } from 'react'
+import clsx from 'clsx'
 
-import Popup from '../popup';
-import Button from '../button';
-import ActionBar from '../action-bar';
+import Popup from '../popup'
+import Button from '../button'
+import ActionBar from '../action-bar'
 
-import { DialogProps, DialogStatic } from './PropsType';
-import { addUnit, createNamespace, noop } from '../utils';
-import { BORDER_TOP, BORDER_LEFT } from '../utils/constant';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import { DialogProps, DialogStatic } from './PropsType'
+import { addUnit, createNamespace, noop } from '../utils'
+import { BORDER_TOP, BORDER_LEFT } from '../utils/constant'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 
-const [bem] = createNamespace('dialog');
+const [bem] = createNamespace('dialog')
 
-const Dialog: React.FC<DialogProps> = (props) => {
-  const { locale } = useContext(ConfigProviderContext);
+const Dialog: React.FC<DialogProps> = props => {
+  const { locale } = useContext(ConfigProviderContext)
 
   const {
     width,
@@ -26,7 +26,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
     closeOnClickOverlay,
     onClickCloseIcon,
     ...others
-  } = props;
+  } = props
 
   const renderTitle = () => {
     if (props.title) {
@@ -35,19 +35,19 @@ const Dialog: React.FC<DialogProps> = (props) => {
           className={clsx(
             bem('header', {
               isolated: !props.message && !props.children,
-            }),
+            })
           )}
         >
           {title}
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderContent = () => {
     if (props.children) {
-      return <div className={clsx(bem('content'))}>{props.children}</div>;
+      return <div className={clsx(bem('content'))}>{props.children}</div>
     }
     if (message) {
       return (
@@ -57,23 +57,23 @@ const Dialog: React.FC<DialogProps> = (props) => {
               bem('message', {
                 'has-title': title,
                 [messageAlign]: messageAlign,
-              }),
+              })
             )}
           >
             {message}
           </div>
         </div>
-      );
+      )
     }
 
-    return null;
-  };
+    return null
+  }
 
   const renderButtons = () => (
     <div className={clsx(BORDER_TOP, bem('footer'))}>
       {props.showCancelButton && (
         <Button
-          size="large"
+          size='large'
           text={props.cancelButtonText || locale.cancel}
           className={clsx(bem('cancel'))}
           style={{ color: props.cancelButtonColor }}
@@ -84,9 +84,11 @@ const Dialog: React.FC<DialogProps> = (props) => {
       )}
       {props.showConfirmButton && (
         <Button
-          size="large"
+          size='large'
           text={props.confirmButtonText || locale.confirm}
-          className={clsx(bem('confirm'), { [BORDER_LEFT]: props.showCancelButton })}
+          className={clsx(bem('confirm'), {
+            [BORDER_LEFT]: props.showCancelButton,
+          })}
           round={theme === 'round-button'}
           style={{ color: props.confirmButtonColor }}
           loading={props.confirmProps?.loading}
@@ -95,13 +97,13 @@ const Dialog: React.FC<DialogProps> = (props) => {
         />
       )}
     </div>
-  );
+  )
 
   const renderRoundButtons = () => (
     <ActionBar className={clsx(bem('footer'))}>
       {props.showCancelButton && (
         <ActionBar.Button
-          type="warning"
+          type='warning'
           text={props.cancelButtonText || locale.cancel}
           className={clsx(bem('cancel'))}
           color={props.cancelButtonColor}
@@ -112,7 +114,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       )}
       {props.showConfirmButton && (
         <ActionBar.Button
-          type="danger"
+          type='danger'
           text={props.confirmButtonText || locale.confirm}
           className={clsx(bem('confirm'))}
           color={props.confirmButtonColor}
@@ -122,12 +124,14 @@ const Dialog: React.FC<DialogProps> = (props) => {
         />
       )}
     </ActionBar>
-  );
+  )
 
   const renderFooter = () => {
-    if (props.footer) return props.footer;
-    return props.theme === 'round-button' ? renderRoundButtons() : renderButtons();
-  };
+    if (props.footer) return props.footer
+    return props.theme === 'round-button'
+      ? renderRoundButtons()
+      : renderButtons()
+  }
 
   return (
     <Popup
@@ -145,13 +149,13 @@ const Dialog: React.FC<DialogProps> = (props) => {
       {renderContent()}
       {renderFooter()}
     </Popup>
-  );
-};
+  )
+}
 
 Dialog.defaultProps = {
   transition: 'rv-dialog-bounce',
   showConfirmButton: true,
   closeOnPopstate: true,
-};
+}
 
-export default Dialog as React.FC<DialogProps> & DialogStatic;
+export default Dialog as React.FC<DialogProps> & DialogStatic

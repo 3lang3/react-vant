@@ -8,15 +8,15 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react';
-import cls from 'clsx';
-import { SkuActionType, SkuInstance, SkuProps } from './PropsType';
-import ActionBar from '../action-bar';
-import Image from '../image';
-import { useSetState } from '../hooks';
-import { BORDER_BOTTOM } from '../utils/constant';
-import ImagePreview from '../image-preview';
-import Popup from '../popup';
+} from 'react'
+import cls from 'clsx'
+import { SkuActionType, SkuInstance, SkuProps } from './PropsType'
+import ActionBar from '../action-bar'
+import Image from '../image'
+import { useSetState } from '../hooks'
+import { BORDER_BOTTOM } from '../utils/constant'
+import ImagePreview from '../image-preview'
+import Popup from '../popup'
 import {
   getSelectedProperties,
   getSelectedPropValues,
@@ -25,98 +25,107 @@ import {
   getSkuImgValue,
   isAllSelected,
   SelectedValueType,
-} from './utils';
-import { LIMIT_TYPE, UNSELECTED_SKU_VALUE_ID } from './constants';
-import SkuRow from './components/SkuRow';
-import SkuRowItem from './components/SkuRowItem';
-import SkuRowPropItem from './components/SkuRowPropItem';
-import SkuStepper from './components/SkuStepper';
-import Toast from '../toast';
-import { createNamespace } from '../utils';
+} from './utils'
+import { LIMIT_TYPE, UNSELECTED_SKU_VALUE_ID } from './constants'
+import SkuRow from './components/SkuRow'
+import SkuRowItem from './components/SkuRowItem'
+import SkuRowPropItem from './components/SkuRowPropItem'
+import SkuStepper from './components/SkuStepper'
+import Toast from '../toast'
+import { createNamespace } from '../utils'
 
-const { QUOTA_LIMIT } = LIMIT_TYPE;
+const { QUOTA_LIMIT } = LIMIT_TYPE
 
-const [bem] = createNamespace('sku');
+const [bem] = createNamespace('sku')
 
 const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
-  const stepperError = useRef<boolean>(false);
-  const [visible, setVisible] = useState(false);
+  const stepperError = useRef<boolean>(false)
+  const [visible, setVisible] = useState(false)
   const [state, updateState] = useSetState({
     selectedSku: {},
     selectedProp: {},
     selectedNum: props.startSaleNum,
-  });
+  })
 
-  const { sku, properties = [] } = props;
-  const { tree = [] } = sku;
+  const { sku, properties = [] } = props
+  const { tree = [] } = sku
 
   const bodyStyle = useMemo(() => {
-    const maxHeight = window.innerHeight - props.bodyOffsetTop;
+    const maxHeight = window.innerHeight - props.bodyOffsetTop
 
     return {
       maxHeight: `${maxHeight}px`,
-    };
-  }, [props.bodyOffsetTop]);
+    }
+  }, [props.bodyOffsetTop])
 
   const imageList = useMemo(() => {
-    const { goods } = props;
-    const rs = [goods?.picture] as string[];
+    const { goods } = props
+    const rs = [goods?.picture] as string[]
     if (sku.tree.length > 0) {
-      sku.tree.forEach((treeItem) => {
-        if (!treeItem.v) return;
-        treeItem.v.forEach((vItem) => {
-          const img = vItem.previewImgUrl || vItem.imgUrl || vItem.img_url;
+      sku.tree.forEach(treeItem => {
+        if (!treeItem.v) return
+        treeItem.v.forEach(vItem => {
+          const img = vItem.previewImgUrl || vItem.imgUrl || vItem.img_url
           if (img && rs.indexOf(img) === -1) {
-            rs.push(img);
+            rs.push(img)
           }
-        });
-      });
+        })
+      })
     }
-    return rs;
-  }, [props.goods?.picture, sku.tree]);
+    return rs
+  }, [props.goods?.picture, sku.tree])
 
-  const hasSku = useMemo(() => !sku.none_sku, [sku.none_sku]);
-  const hasSkuOrAttr = useMemo(() => hasSku || properties.length > 0, [hasSku, properties]);
+  const hasSku = useMemo(() => !sku.none_sku, [sku.none_sku])
+  const hasSkuOrAttr = useMemo(
+    () => hasSku || properties.length > 0,
+    [hasSku, properties]
+  )
 
   const isSkuCombSelected = useMemo(() => {
     // SKU 未选完
     if (hasSku && !isAllSelected(tree, state.selectedSku)) {
-      return false;
+      return false
     }
 
     // 属性未全选
     return !properties
-      .filter((i) => i.is_necessary !== false)
-      .some((i) => (state.selectedProp[i.k_id] || []).length === 0);
-  }, [hasSku, state]);
+      .filter(i => i.is_necessary !== false)
+      .some(i => (state.selectedProp[i.k_id] || []).length === 0)
+  }, [hasSku, state])
 
   const selectedSkuValues = useMemo(() => {
-    return getSelectedSkuValues(tree, state.selectedSku);
-  }, [tree, state.selectedSku]);
+    return getSelectedSkuValues(tree, state.selectedSku)
+  }, [tree, state.selectedSku])
 
   const selectedPropValues = useMemo(() => {
-    return getSelectedPropValues(properties, state.selectedProp);
-  }, [properties, state.selectedProp]);
+    return getSelectedPropValues(properties, state.selectedProp)
+  }, [properties, state.selectedProp])
 
   const selectedSkuComb = useMemo(() => {
-    let skuComb = null;
+    let skuComb = null
     if (isSkuCombSelected) {
       if (hasSku) {
-        skuComb = getSkuComb(sku.list, state.selectedSku);
+        skuComb = getSkuComb(sku.list, state.selectedSku)
       } else {
         skuComb = {
           id: sku.collection_id,
           price: Math.round(+sku.price * 100),
           stock_num: sku.stock_num,
-        };
+        }
       }
 
       if (skuComb) {
-        skuComb.properties = getSelectedProperties(properties, state.selectedProp);
-        skuComb.property_price = selectedPropValues.reduce((acc, cur) => acc + (cur.price || 0), 0);
+        skuComb.properties = getSelectedProperties(
+          properties,
+          state.selectedProp
+        )
+        skuComb.property_price = selectedPropValues.reduce(
+          (acc, cur) => acc + (cur.price || 0),
+          0
+        )
       }
     }
-    return skuComb;
+    return skuComb
   }, [
     isSkuCombSelected,
     hasSku,
@@ -124,53 +133,62 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
     JSON.stringify(state),
     properties,
     selectedPropValues,
-  ]);
+  ])
 
   const unselectedSku = useMemo(() => {
-    return tree.filter((item) => !state.selectedSku[item.k_s]).map((item) => item.k);
-  }, [tree, state.selectedSku]);
+    return tree.filter(item => !state.selectedSku[item.k_s]).map(item => item.k)
+  }, [tree, state.selectedSku])
 
   const getUnselectedProp = useCallback(
     (isNecessary?: boolean) => {
       return properties
-        .filter((item) => (isNecessary ? item.is_necessary !== false : true))
-        .filter((item) => (state.selectedProp[item.k_id] || []).length < 1)
-        .map((item) => item.k);
+        .filter(item => (isNecessary ? item.is_necessary !== false : true))
+        .filter(item => (state.selectedProp[item.k_id] || []).length < 1)
+        .map(item => item.k)
     },
-    [properties, state.selectedProp],
-  );
+    [properties, state.selectedProp]
+  )
 
   const selectedText = useMemo(() => {
     if (selectedSkuComb) {
-      const values = selectedSkuValues.concat(selectedPropValues);
-      return `已选 ${values.map((item) => item.name).join(' ')}`;
+      const values = selectedSkuValues.concat(selectedPropValues)
+      return `已选 ${values.map(item => item.name).join(' ')}`
     }
 
-    return `请选择 ${unselectedSku.concat(getUnselectedProp()).join(' ')}`;
-  }, [unselectedSku, getUnselectedProp, selectedSkuComb, selectedSkuValues, selectedPropValues]);
+    return `请选择 ${unselectedSku.concat(getUnselectedProp()).join(' ')}`
+  }, [
+    unselectedSku,
+    getUnselectedProp,
+    selectedSkuComb,
+    selectedSkuValues,
+    selectedPropValues,
+  ])
 
   const price = useMemo(() => {
     if (selectedSkuComb) {
-      return ((selectedSkuComb.price + selectedSkuComb.property_price) / 100).toFixed(2);
+      return (
+        (selectedSkuComb.price + selectedSkuComb.property_price) /
+        100
+      ).toFixed(2)
     }
     // sku.price是一个格式化好的价格区间
-    return sku.price;
-  }, [JSON.stringify(selectedSkuComb), sku.price]);
+    return sku.price
+  }, [JSON.stringify(selectedSkuComb), sku.price])
 
   const stock = useMemo(() => {
-    const { stockNum } = props.customStepperConfig;
+    const { stockNum } = props.customStepperConfig
     if (stockNum !== undefined) {
-      return stockNum;
+      return stockNum
     }
     if (selectedSkuComb) {
-      return selectedSkuComb.stock_num;
+      return selectedSkuComb.stock_num
     }
-    return sku.stock_num;
-  }, [sku.stock_num, JSON.stringify(selectedSkuComb)]);
+    return sku.stock_num
+  }, [sku.stock_num, JSON.stringify(selectedSkuComb)])
 
   const stockContent = useMemo(() => {
     if (props.stockRender) {
-      return props.stockRender(stock);
+      return props.stockRender(stock)
     }
     return (
       <>
@@ -179,17 +197,17 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
           className={cls(
             bem('stock-num', {
               highlight: stock < props.stockThreshold,
-            }),
+            })
           )}
         >
           {stock}
         </span>
         件
       </>
-    );
-  }, [stock]);
+    )
+  }, [stock])
 
-  const onSelect = (skuValue) => {
+  const onSelect = skuValue => {
     // 点击已选中的sku时则取消选中
     const selectedSku =
       state.selectedSku[skuValue.skuKeyStr] === skuValue.id
@@ -197,198 +215,202 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
             ...state.selectedSku,
             [skuValue.skuKeyStr]: UNSELECTED_SKU_VALUE_ID,
           }
-        : { ...state.selectedSku, [skuValue.skuKeyStr]: skuValue.id };
+        : { ...state.selectedSku, [skuValue.skuKeyStr]: skuValue.id }
 
-    updateState({ selectedSku });
+    updateState({ selectedSku })
     if (props.onSkuSelected) {
       props.onSkuSelected({
         skuValue,
         selectedSku: state.selectedSku,
         selectedSkuComb,
-      });
+      })
     }
-  };
+  }
 
-  const onPropSelect = (propValue) => {
-    const arr = state.selectedProp[propValue.skuKeyStr] || [];
-    const pos = arr.indexOf(propValue.id);
+  const onPropSelect = propValue => {
+    const arr = state.selectedProp[propValue.skuKeyStr] || []
+    const pos = arr.indexOf(propValue.id)
 
     if (pos > -1) {
-      arr.splice(pos, 1);
+      arr.splice(pos, 1)
     } else if (propValue.multiple) {
-      arr.push(propValue.id);
+      arr.push(propValue.id)
     } else {
-      arr.splice(0, 1, propValue.id);
+      arr.splice(0, 1, propValue.id)
     }
     const selectedProp = {
       ...state.selectedProp,
       [propValue.skuKeyStr]: arr,
-    };
+    }
 
-    updateState({ selectedProp });
+    updateState({ selectedProp })
 
     if (props.onSkuPropSelected) {
       props.onSkuPropSelected({
         propValue,
         selectedProp: state.selectedProp,
         selectedSkuComb,
-      });
+      })
     }
-  };
+  }
 
-  const onOverLimit = (data) => {
-    const { action, limitType, quota, quotaUsed } = data;
-    const { handleOverLimit } = props.customStepperConfig;
+  const onOverLimit = data => {
+    const { action, limitType, quota, quotaUsed } = data
+    const { handleOverLimit } = props.customStepperConfig
 
     if (handleOverLimit) {
-      handleOverLimit(data);
-      return;
+      handleOverLimit(data)
+      return
     }
 
     if (action === 'minus') {
       if (props.startSaleNum > 1) {
-        Toast(`${props.startSaleNum}件起售`);
+        Toast(`${props.startSaleNum}件起售`)
       } else {
-        Toast('至少选择一件');
+        Toast('至少选择一件')
       }
     } else if (action === 'plus') {
       if (limitType === QUOTA_LIMIT) {
         if (quotaUsed > 0) {
-          Toast(`每人限购${quota}件，你已购买${quotaUsed}件`);
+          Toast(`每人限购${quota}件，你已购买${quotaUsed}件`)
         } else {
-          Toast(`每人限购${quota}件`);
+          Toast(`每人限购${quota}件`)
         }
       } else {
-        Toast('库存不足');
+        Toast('库存不足')
       }
     }
-  };
+  }
 
-  const onStepperState = (data) => {
+  const onStepperState = data => {
     stepperError.current = data.valid
       ? null
       : {
           ...data,
           action: 'plus',
-        };
-  };
+        }
+  }
 
   const validateSku = () => {
     if (state.selectedNum === 0) {
-      return '商品已经无法购买啦';
+      return '商品已经无法购买啦'
     }
 
     if (isSkuCombSelected) {
-      return '';
+      return ''
     }
 
-    return `请选择 ${unselectedSku.concat(getUnselectedProp(true)).join(' ')}`;
-  };
+    return `请选择 ${unselectedSku.concat(getUnselectedProp(true)).join(' ')}`
+  }
 
   const getSkuData = () => {
     return {
       goodsId: props.goodsId,
       selectedNum: state.selectedNum,
       selectedSkuComb,
-    };
-  };
+    }
+  }
 
-  const onAddCart = (data) => {
-    props.onAddCart?.(data);
-  };
-  const onBuyClicked = (data) => {
-    props.onBuyClicked?.(data);
-  };
+  const onAddCart = data => {
+    props.onAddCart?.(data)
+  }
+  const onBuyClicked = data => {
+    props.onBuyClicked?.(data)
+  }
 
   const onBuyOrAddCart = async (type: SkuActionType) => {
     // sku 不符合购买条件
     if (stepperError.current) {
-      onOverLimit(stepperError.current);
-      return;
+      onOverLimit(stepperError.current)
+      return
     }
 
     if (props.customSkuValidator) {
       if (
-        !(await props.customSkuValidator(type, { ...state.selectedSku, ...state.selectedProp }))
+        !(await props.customSkuValidator(type, {
+          ...state.selectedSku,
+          ...state.selectedProp,
+        }))
       ) {
-        return;
+        return
       }
     } else {
-      const error = validateSku();
+      const error = validateSku()
       if (error) {
-        Toast(error);
-        return;
+        Toast(error)
+        return
       }
     }
 
-    const data = getSkuData();
+    const data = getSkuData()
     if (type === 'add-cart') {
-      onAddCart(data);
+      onAddCart(data)
     } else {
-      onBuyClicked(data);
+      onBuyClicked(data)
     }
-  };
+  }
 
   const show = (initialValue?: typeof state) => {
-    setVisible(true);
+    setVisible(true)
     if (initialValue) {
-      updateState(initialValue);
+      updateState(initialValue)
     }
-  };
+  }
 
   const reset = () => {
     updateState({
       selectedSku: {},
       selectedProp: {},
       selectedNum: props.startSaleNum,
-    });
-  };
+    })
+  }
 
   const onPopupClose = () => {
-    setVisible(false);
-    if (props.popupProps && props.popupProps.onClose) props.popupProps.onClose();
-  };
+    setVisible(false)
+    if (props.popupProps && props.popupProps.onClose) props.popupProps.onClose()
+  }
 
   const onPopupClosed = () => {
     if (props.resetOnHide) {
-      reset();
+      reset()
     }
-    if (props.popupProps && props.popupProps.onClosed) props.popupProps.onClosed();
-  };
+    if (props.popupProps && props.popupProps.onClosed)
+      props.popupProps.onClosed()
+  }
 
   const onPreviewImage = (selectedValue?: SelectedValueType) => {
-    let index = 0;
-    let indexImage = imageList[0];
+    let index = 0
+    let indexImage = imageList[0]
     if (selectedValue && selectedValue.imgUrl) {
       imageList.some((image, pos) => {
         if (image === selectedValue.imgUrl) {
-          index = pos;
-          return true;
+          index = pos
+          return true
         }
-        return false;
-      });
-      indexImage = selectedValue.imgUrl;
+        return false
+      })
+      indexImage = selectedValue.imgUrl
     }
     const params = {
       ...selectedValue,
       index,
       imageList,
       indexImage,
-    };
+    }
 
-    if (!props.previewOnClickImage) return;
+    if (!props.previewOnClickImage) return
 
     ImagePreview.open({
       images: imageList,
       startPosition: index,
       onClose: () => {
-        if (props.onClosePreview) props.onClosePreview(params);
+        if (props.onClosePreview) props.onClosePreview(params)
       },
-    });
+    })
     if (props.onOpenPreview) {
-      props.onOpenPreview(params);
+      props.onOpenPreview(params)
     }
-  };
+  }
 
   const renderHeaderInfo = () => {
     return (
@@ -397,31 +419,39 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
           <div className={cls(bem('goods-price'))}>
             <span className={cls(bem('price-symbol'))}>￥</span>
             <span className={cls(bem('price-num'))}>{price}</span>
-            {props.priceTag && <span className={cls(bem('price-tag'))}>{props.priceTag}</span>}
+            {props.priceTag && (
+              <span className={cls(bem('price-tag'))}>{props.priceTag}</span>
+            )}
           </div>
         )}
         {props.skuHeaderOriginPrice && (
-          <div className={cls(bem('header-item'))}>{props.skuHeaderOriginPrice}</div>
+          <div className={cls(bem('header-item'))}>
+            {props.skuHeaderOriginPrice}
+          </div>
         )}
         {!props.hideStock && (
           <div className={cls(bem('header-item'))}>
             <span className={cls(bem('stock'))}>{stockContent}</span>
           </div>
         )}
-        {!props.hideSelectedText && <div className={cls(bem('header-item'))}>{selectedText}</div>}
+        {!props.hideSelectedText && (
+          <div className={cls(bem('header-item'))}>{selectedText}</div>
+        )}
       </>
-    );
-  };
+    )
+  }
 
   const renderHeader = () => {
-    if (props.skuHeader) return props.skuHeader;
-    const selectedValue = getSkuImgValue(sku, state.selectedSku);
-    const imgUrl = selectedValue ? selectedValue.imgUrl : (props.goods.picture as string);
+    if (props.skuHeader) return props.skuHeader
+    const selectedValue = getSkuImgValue(sku, state.selectedSku)
+    const imgUrl = selectedValue
+      ? selectedValue.imgUrl
+      : (props.goods.picture as string)
     return (
       <div className={cls(bem('header'), BORDER_BOTTOM)}>
         {props.showHeaderImage && (
           <Image
-            fit="cover"
+            fit='cover'
             src={imgUrl}
             className={cls(bem('header__img-wrap'))}
             onClick={() => onPreviewImage(selectedValue)}
@@ -434,8 +464,8 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
           {props.skuHeaderExtra}
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   const renderGroup = () => {
     return (
@@ -445,7 +475,7 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
           className={cls(
             bem('group-container', {
               'hide-soldout': !props.showSoldoutSku,
-            }),
+            })
           )}
         >
           {tree.map((skuTreeItem, i) => (
@@ -461,7 +491,9 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
                   largeImageMode={skuTreeItem.largeImageMode}
                   previewIcon={props.previewIcon}
                   onSkuSelected={onSelect}
-                  onSkuPreviewImage={(selectedValue) => onPreviewImage(selectedValue)}
+                  onSkuPreviewImage={selectedValue =>
+                    onPreviewImage(selectedValue)
+                  }
                 />
               ))}
             </SkuRow>
@@ -483,16 +515,16 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
           ))}
         </div>
       ))
-    );
-  };
+    )
+  }
 
   const renderStepper = () =>
     props.skuStepper || (
       <SkuStepper
         currentNum={state.selectedNum}
-        onChange={(currentValue) => {
-          updateState({ selectedNum: parseInt(`${currentValue}`, 10) });
-          if (props.onStepperChange) props.onStepperChange(currentValue);
+        onChange={currentValue => {
+          updateState({ selectedNum: parseInt(`${currentValue}`, 10) })
+          if (props.onStepperChange) props.onStepperChange(currentValue)
         }}
         stock={stock}
         quota={props.quota}
@@ -505,7 +537,7 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
         onSkuStepperState={onStepperState}
         onSkuOverLimit={onOverLimit}
       />
-    );
+    )
 
   const renderBody = () => {
     return (
@@ -515,8 +547,8 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
         {props.skuGroupExtra}
         {renderStepper()}
       </div>
-    );
-  };
+    )
+  }
 
   const renderActions = () => {
     return (
@@ -525,40 +557,40 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
           <ActionBar>
             {props.showAddCartBtn && (
               <ActionBar.Button
-                type="warning"
+                type='warning'
                 text={props.addCartText || '加入购物车'}
                 onClick={() => onBuyOrAddCart('add-cart')}
               />
             )}
             <ActionBar.Button
-              type="danger"
+              type='danger'
               text={props.buyText || '立即购买'}
               onClick={() => onBuyOrAddCart('buy-clicked')}
             />
           </ActionBar>
         </div>
       )
-    );
-  };
+    )
+  }
 
   useEffect(() => {
     if (props.initialSku) {
-      updateState(props.initialSku);
+      updateState(props.initialSku)
     }
-  }, [JSON.stringify(props.initialSku)]);
+  }, [JSON.stringify(props.initialSku)])
 
   useImperativeHandle(ref, () => ({
     reset,
     getSkuData,
     show,
     update: updateState,
-  }));
+  }))
 
   return (
     <Popup
       round
       closeable
-      position="bottom"
+      position='bottom'
       {...props.popupProps}
       visible={visible}
       onClose={onPopupClose}
@@ -571,8 +603,8 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
       {renderActions()}
       {props.skuActionsBottom}
     </Popup>
-  );
-});
+  )
+})
 
 // defaultProps defined if need
 Sku.defaultProps = {
@@ -591,6 +623,6 @@ Sku.defaultProps = {
   stockThreshold: 50,
   bodyOffsetTop: 200,
   customStepperConfig: {},
-};
+}
 
-export default Sku;
+export default Sku

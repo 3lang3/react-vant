@@ -1,5 +1,5 @@
-import './style/index.less';
-import CouponCell from './CouponCell';
+import './style/index.less'
+import CouponCell from './CouponCell'
 
-export default CouponCell;
-export { CouponCell };
+export default CouponCell
+export { CouponCell }

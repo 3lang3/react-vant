@@ -1,57 +1,59 @@
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
-import cls from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { CouponListProps } from './PropsType';
-import Tabs from '../tabs';
-import { useSetState } from '../hooks';
-import Button from '../button';
-import Field from '../field';
-import Coupon from './Coupon';
-import { createNamespace } from '../utils';
+import React, { useContext, useEffect, useMemo, useRef } from 'react'
+import cls from 'clsx'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { CouponListProps } from './PropsType'
+import Tabs from '../tabs'
+import { useSetState } from '../hooks'
+import Button from '../button'
+import Field from '../field'
+import Coupon from './Coupon'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('coupon-list');
+const [bem] = createNamespace('coupon-list')
 
-const CouponList: React.FC<CouponListProps> = (props) => {
-  const { locale } = useContext(ConfigProviderContext);
+const CouponList: React.FC<CouponListProps> = props => {
+  const { locale } = useContext(ConfigProviderContext)
 
-  const innerEffect = useRef(false);
+  const innerEffect = useRef(false)
   const [state, updateState] = useSetState({
     tab: 0,
     code: props.code,
-  });
+  })
 
   const buttonDisabled = useMemo(
     () =>
       !props.exchangeButtonLoading &&
-      (props.exchangeButtonDisabled || !state.code || state.code.length < props.exchangeMinLength),
+      (props.exchangeButtonDisabled ||
+        !state.code ||
+        state.code.length < props.exchangeMinLength),
     [
       props.exchangeButtonLoading,
       props.exchangeButtonDisabled,
       state.code,
       props.exchangeMinLength,
-    ],
-  );
+    ]
+  )
 
   const innerChange = (code: string) => {
-    updateState({ code });
-    innerEffect.current = true;
-  };
+    updateState({ code })
+    innerEffect.current = true
+  }
 
   const onExchange = () => {
-    if (props.onExchange) props.onExchange(state.code);
+    if (props.onExchange) props.onExchange(state.code)
 
     // auto clear currentCode when not use v-model
     if (!props.code) {
-      innerChange('');
+      innerChange('')
     }
-  };
+  }
 
   const renderEmpty = () => (
     <div className={cls(bem('empty'))}>
-      <img alt="empty" src={props.emptyImage} />
+      <img alt='empty' src={props.emptyImage} />
       <p>{locale.noCoupon}</p>
     </div>
-  );
+  )
 
   const renderExchangeBar = () => {
     if (props.showExchangeBar) {
@@ -63,12 +65,14 @@ const CouponList: React.FC<CouponListProps> = (props) => {
             clearable
             border={false}
             className={cls(bem('field'))}
-            placeholder={props.inputPlaceholder || locale.vanCouponList.placeholder}
+            placeholder={
+              props.inputPlaceholder || locale.vanCouponList.placeholder
+            }
             maxLength={20}
           />
           <Button
             plain
-            type="primary"
+            type='primary'
             className={cls(bem('exchange'))}
             text={props.exchangeButtonText || locale.vanCouponList.exchange}
             loading={props.exchangeButtonLoading}
@@ -76,15 +80,15 @@ const CouponList: React.FC<CouponListProps> = (props) => {
             onClick={onExchange}
           />
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderCouponTab = () => {
-    const { coupons } = props;
-    const count = props.showCount ? ` (${coupons.length})` : '';
-    const title = (props.enabledTitle || locale.vanCouponList.enable) + count;
+    const { coupons } = props
+    const count = props.showCount ? ` (${coupons.length})` : ''
+    const title = (props.enabledTitle || locale.vanCouponList.enable) + count
 
     return (
       <Tabs.TabPane title={title}>
@@ -93,7 +97,7 @@ const CouponList: React.FC<CouponListProps> = (props) => {
             bem('list', {
               'with-bar': props.showExchangeBar,
               'with-bottom': props.showCloseButton,
-            }),
+            })
           )}
         >
           {coupons.map((coupon, index) => (
@@ -109,13 +113,13 @@ const CouponList: React.FC<CouponListProps> = (props) => {
           {props.listFooter}
         </div>
       </Tabs.TabPane>
-    );
-  };
+    )
+  }
 
   const renderDisabledTab = () => {
-    const { disabledCoupons } = props;
-    const count = props.showCount ? ` (${disabledCoupons.length})` : '';
-    const title = (props.disabledTitle || locale.vanCouponList.disabled) + count;
+    const { disabledCoupons } = props
+    const count = props.showCount ? ` (${disabledCoupons.length})` : ''
+    const title = (props.disabledTitle || locale.vanCouponList.disabled) + count
 
     return (
       <Tabs.TabPane title={title}>
@@ -124,26 +128,31 @@ const CouponList: React.FC<CouponListProps> = (props) => {
             bem('list', {
               'with-bar': props.showExchangeBar,
               'with-bottom': props.showCloseButton,
-            }),
+            })
           )}
         >
-          {disabledCoupons.map((coupon) => (
-            <Coupon disabled key={coupon.id} coupon={coupon} currency={props.currency} />
+          {disabledCoupons.map(coupon => (
+            <Coupon
+              disabled
+              key={coupon.id}
+              coupon={coupon}
+              currency={props.currency}
+            />
           ))}
           {!disabledCoupons.length && renderEmpty()}
           {props.disabledListFooter}
         </div>
       </Tabs.TabPane>
-    );
-  };
+    )
+  }
 
   useEffect(() => {
     if (innerEffect.current) {
-      innerEffect.current = true;
-      return;
+      innerEffect.current = true
+      return
     }
-    updateState({ code: props.code });
-  }, [props.code]);
+    updateState({ code: props.code })
+  }, [props.code])
 
   return (
     <div className={cls(bem(), props.className)} style={props.style}>
@@ -162,17 +171,17 @@ const CouponList: React.FC<CouponListProps> = (props) => {
           v-show={props.showCloseButton}
           round
           block
-          type="primary"
+          type='primary'
           className={cls(bem('close'))}
           text={props.closeButtonText || locale.vanCouponList.close}
           onClick={() => props.onChange?.(-1)}
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-const EMPTY_IMAGE = 'https://img.yzcdn.cn/vant/coupon-empty.png';
+const EMPTY_IMAGE = 'https://img.yzcdn.cn/vant/coupon-empty.png'
 
 // defaultProps defined if need
 CouponList.defaultProps = {
@@ -187,6 +196,6 @@ CouponList.defaultProps = {
   displayedCouponIndex: -1,
   currency: '¥',
   emptyImage: EMPTY_IMAGE,
-};
+}
 
-export default CouponList;
+export default CouponList

@@ -1,43 +1,43 @@
-import React from 'react';
-import { BadgeSettingProps } from '../badge/PropsType';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BadgeSettingProps } from '../badge/PropsType'
+import { BaseTypeProps } from '../utils'
 
-export type GridDirection = 'horizontal' | 'vertical';
+export type GridDirection = 'horizontal' | 'vertical'
 
 export interface GridProps extends BaseTypeProps {
   /** 是否将格子固定为正方形	 */
-  square?: boolean;
+  square?: boolean
   /** 是否将格子内容居中显示	 */
-  center?: boolean;
+  center?: boolean
   /** 是否显示边框	 */
-  border?: boolean;
+  border?: boolean
   /** 格子之间的间距，默认单位为`px` */
-  gutter?: number;
+  gutter?: number
   /** 是否调换图标和文本的位置	 */
-  reverse?: boolean;
+  reverse?: boolean
   /** 图标大小，默认单位为`px` */
-  iconSize?: number | string;
+  iconSize?: number | string
   /** 格子内容排列的方向，可选值为 `horizontal`	 */
-  direction?: GridDirection;
+  direction?: GridDirection
   /** 列数	 */
-  columnNum?: number;
-  className?: string;
-  style?: React.CSSProperties;
+  columnNum?: number
+  className?: string
+  style?: React.CSSProperties
 }
 
 export interface GridItemProps extends BaseTypeProps {
   /**  图标右上角徽标	 */
-  badge?: BadgeSettingProps;
+  badge?: BadgeSettingProps
   /** 文字 */
-  text?: string | React.ReactNode;
+  text?: string | React.ReactNode
   /** 图标 */
-  icon?: React.ReactNode;
+  icon?: React.ReactNode
   /** 图标颜色，等同于 Icon 组件的 color 属性	 */
-  iconColor?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  contentClassName?: string;
-  contentStyle?: React.CSSProperties;
-  children?: React.ReactNode;
-  onClick?: (event: React.MouseEvent) => void;
+  iconColor?: string
+  className?: string
+  style?: React.CSSProperties
+  contentClassName?: string
+  contentStyle?: React.CSSProperties
+  children?: React.ReactNode
+  onClick?: (event: React.MouseEvent) => void
 }

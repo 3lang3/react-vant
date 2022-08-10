@@ -149,7 +149,7 @@ export function getSkuData(largeImageMode = false) {
         ],
       },
     ],
-  };
+  }
 }
 
 export const initialSku = {
@@ -161,4 +161,4 @@ export const initialSku = {
   selectedProp: {
     124: [1225, 1226],
   },
-};
+}
