@@ -31,22 +31,22 @@ import { FloatingBall } from 'react-vant';
 
 ### MenuProps
 
-| 参数           | 说明                    | 类型                               | 默认值   |
-| -------------- | ----------------------- | ---------------------------------- | -------- |
-| items          | 菜单元素，最多支持 5 个 | _ReactNode[]_                      | -        |
-| active         | 菜单激活状态            | _boolean_                          | -        |
-| defaultActive  | 默认的菜单激活状态      | _boolean_                          | -        |
-| direction      | 菜单展开方向            | _around \| vertical \| horizontal_ | `around` |
-| itemClickClose | 点击菜单项关闭菜单      | _boolean_                          | `true`   |
-| onChange       | 菜单状态变化的回调      | _(active: boolean) => void_        | -        |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| items | 菜单元素，最多支持 5 个 | _ReactNode[]_ | - |
+| active | 菜单激活状态 | _boolean_ | - |
+| defaultActive | 默认的菜单激活状态 | _boolean_ | - |
+| direction | 菜单展开方向 | _around \| vertical \| horizontal_ | `around` |
+| itemClickClose | 点击菜单项关闭菜单 | _boolean_ | `true` |
+| onChange | 菜单状态变化的回调 | _(active: boolean) => void_ | - |
 
 ### AdsorbProps
 
-| 参数            | 说明                                | 类型                | 默认值 |
-| --------------- | ----------------------------------- | ------------------- | ------ |
-| indent          | 滚动时元素缩进比率，支持 0-1 的数字 | _boolean \| number_ | `0.5`  |
-| indentClassName | 缩进时的 class                      | _string_            | -      |
-| distance        | 近边停靠距离                        | _number_            | `0`    |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| indent | 滚动时元素缩进比率，支持 0-1 的数字 | _boolean \| number_ | `0.5` |
+| indentClassName | 缩进时的 class | _string_ | - |
+| distance | 近边停靠距离 | _number_ | `0` |
 
 ### OffsetProps
 

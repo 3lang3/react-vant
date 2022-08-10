@@ -1,5 +1,5 @@
-import './style/index.less';
-import Divider from './Divider';
+import './style/index.less'
+import Divider from './Divider'
 
-export { Divider };
-export type { DividerProps } from './PropsType';
+export { Divider }
+export type { DividerProps } from './PropsType'

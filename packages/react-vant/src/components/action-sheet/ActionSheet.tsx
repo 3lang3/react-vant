@@ -1,23 +1,22 @@
-import React from 'react';
-import { Cross } from '@react-vant/icons';
-import clsx from 'clsx';
-import { ActionSheetProps, ActionSheetAction } from './PropsType';
-import { createNamespace, pick } from '../utils';
-import Loading from '../loading';
-import Popup from '../popup';
-import { sharedPopupProps } from '../popup/Popup';
+import React from 'react'
+import { Cross } from '@react-vant/icons'
+import clsx from 'clsx'
+import { ActionSheetProps, ActionSheetAction } from './PropsType'
+import { createNamespace, pick } from '../utils'
+import Loading from '../loading'
+import Popup from '../popup'
+import { sharedPopupProps } from '../popup/Popup'
 
-const [bem] = createNamespace('action-sheet');
+const [bem] = createNamespace('action-sheet')
 
-const ActionSheet: React.FC<ActionSheetProps> = (props) => {
-
+const ActionSheet: React.FC<ActionSheetProps> = props => {
   const onCancel = () => {
-    props.onClose?.();
-    props.onCancel?.();
-  };
+    props.onClose?.()
+    props.onCancel?.()
+  }
 
   const renderHeader = () => {
-    if (!props.title) return null;
+    if (!props.title) return null
     return (
       <div className={clsx(bem('header'))}>
         {props.title}
@@ -27,21 +26,35 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
             onClick: onCancel,
           })}
       </div>
-    );
-  };
+    )
+  }
 
   const renderCancel = () => {
-    if (!props.cancelText) return null;
+    if (!props.cancelText) return null
     return [
-      <div key="cancel-gap" className={clsx(bem('gap'))} />,
-      <button key="cancel-btn" type="button" className={clsx(bem('cancel'))} onClick={onCancel}>
+      <div key='cancel-gap' className={clsx(bem('gap'))} />,
+      <button
+        key='cancel-btn'
+        type='button'
+        className={clsx(bem('cancel'))}
+        onClick={onCancel}
+      >
         {props.cancelText}
       </button>,
-    ];
-  };
+    ]
+  }
 
   const renderOption = (item: ActionSheetAction, index: number) => {
-    const { name, color, subname, loading, callback, disabled, className, style } = item;
+    const {
+      name,
+      color,
+      subname,
+      loading,
+      callback,
+      disabled,
+      className,
+      style,
+    } = item
 
     const Content = loading ? (
       <Loading className={clsx(bem('loading-icon'))} />
@@ -56,57 +69,57 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
           </div>
         ),
       ]
-    );
+    )
 
     const onClick = () => {
       if (disabled || loading) {
-        return;
+        return
       }
 
       if (callback) {
-        callback(item);
+        callback(item)
       }
 
       if (props.closeOnClickAction) {
-        onCancel();
+        onCancel()
       }
       setTimeout(() => {
-        props.onSelect?.(item, index);
-      }, 0);
-    };
+        props.onSelect?.(item, index)
+      }, 0)
+    }
 
     return (
       <button
         key={index}
-        type="button"
+        type='button'
         style={{ color, ...style }}
         className={clsx(bem('item', { loading, disabled }), className)}
         onClick={onClick}
       >
         {Content}
       </button>
-    );
-  };
+    )
+  }
 
   const renderDescription = () => {
     if (props.description) {
-      return <div className={clsx(bem('description'))}>{props.description}</div>;
+      return <div className={clsx(bem('description'))}>{props.description}</div>
     }
-    return null;
-  };
+    return null
+  }
 
   const renderOptions = () => {
     if (props.actions) {
-      return props.actions.map(renderOption);
+      return props.actions.map(renderOption)
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <Popup
       visible={props.visible}
       className={clsx(bem('wrapper'))}
-      position="bottom"
+      position='bottom'
       {...pick(props, sharedPopupProps)}
       onClose={onCancel}
       closeable={false}
@@ -121,8 +134,8 @@ const ActionSheet: React.FC<ActionSheetProps> = (props) => {
         {renderCancel()}
       </div>
     </Popup>
-  );
-};
+  )
+}
 
 ActionSheet.defaultProps = {
   closeable: true,
@@ -132,6 +145,6 @@ ActionSheet.defaultProps = {
   overlay: true,
   closeOnClickOverlay: true,
   closeIcon: <Cross />,
-};
+}
 
-export default ActionSheet;
+export default ActionSheet

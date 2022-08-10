@@ -1,12 +1,12 @@
-import React from 'react';
-import { Picker } from 'react-vant';
-import { fieldNamesData } from './data';
+import React from 'react'
+import { Picker } from 'react-vant'
+import { fieldNamesData } from './data'
 
 export default () => {
-  const [value, setValue] = React.useState(['福建', '福州', '台江区']);
+  const [value, setValue] = React.useState(['福建', '福州', '台江区'])
   return (
     <Picker
-      title="标题"
+      title='标题'
       value={value}
       onChange={setValue}
       columns={fieldNamesData}
@@ -15,5 +15,5 @@ export default () => {
         children: 'cities',
       }}
     />
-  );
-};
+  )
+}

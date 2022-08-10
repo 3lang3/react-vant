@@ -1,21 +1,21 @@
 function isWindow(val: unknown): val is Window {
-  return val === window;
+  return val === window
 }
 interface Rect {
-  top: number;
-  left: number;
-  right: number;
-  bottom: number;
-  width: number;
-  height: number;
+  top: number
+  left: number
+  right: number
+  bottom: number
+  width: number
+  height: number
 }
 
 const useRect = (elementRef: Element | Window): Rect => {
-  const element = elementRef;
+  const element = elementRef
 
   if (isWindow(element)) {
-    const width = element.innerWidth;
-    const height = element.innerHeight;
+    const width = element.innerWidth
+    const height = element.innerHeight
 
     return {
       top: 0,
@@ -24,11 +24,11 @@ const useRect = (elementRef: Element | Window): Rect => {
       bottom: height,
       width,
       height,
-    };
+    }
   }
 
   if (element && element.getBoundingClientRect) {
-    return element.getBoundingClientRect();
+    return element.getBoundingClientRect()
   }
 
   return {
@@ -38,9 +38,9 @@ const useRect = (elementRef: Element | Window): Rect => {
     bottom: 0,
     width: 0,
     height: 0,
-  };
-};
+  }
+}
 
-export { useRect as getRect };
+export { useRect as getRect }
 
-export default useRect;
+export default useRect

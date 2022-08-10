@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react';
-import cls from 'clsx';
-import { StepsItemProps } from './PropsType';
-import { BORDER } from '../utils/constant';
-import { createNamespace } from '../utils';
-import { devWarning } from '../utils/dev-log';
+import React, { useMemo } from 'react'
+import cls from 'clsx'
+import { StepsItemProps } from './PropsType'
+import { BORDER } from '../utils/constant'
+import { createNamespace } from '../utils'
+import { devWarning } from '../utils/dev-log'
 
-const [bem] = createNamespace('step');
+const [bem] = createNamespace('step')
 
 const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
-  const { index, parent: parentProps } = props;
+  const { index, parent: parentProps } = props
 
   if (!parentProps) {
     if (process.env.NODE_ENV !== 'production') {
@@ -17,42 +17,55 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
   }
 
   const getStatus = () => {
-    const active = +parentProps.active;
+    const active = +parentProps.active
     if (index < active) {
-      return 'finish';
+      return 'finish'
     }
-    return index === active ? 'process' : 'waiting';
-  };
+    return index === active ? 'process' : 'waiting'
+  }
 
-  const isActive = () => getStatus() === 'process';
+  const isActive = () => getStatus() === 'process'
 
   const lineStyle = useMemo(
     () => ({
-      background: getStatus() === 'finish' ? parentProps.activeColor : parentProps.inactiveColor,
+      background:
+        getStatus() === 'finish'
+          ? parentProps.activeColor
+          : parentProps.inactiveColor,
     }),
-    [index, parentProps.active, parentProps.activeColor, parentProps.inactiveColor],
-  );
+    [
+      index,
+      parentProps.active,
+      parentProps.activeColor,
+      parentProps.inactiveColor,
+    ]
+  )
 
   const titleStyle = useMemo(() => {
     if (isActive()) {
-      return { color: parentProps.activeColor };
+      return { color: parentProps.activeColor }
     }
     if (!getStatus()) {
-      return { color: parentProps.inactiveColor };
+      return { color: parentProps.inactiveColor }
     }
-    return {};
-  }, [index, parentProps.active, parentProps.activeColor, parentProps.inactiveColor]);
+    return {}
+  }, [
+    index,
+    parentProps.active,
+    parentProps.activeColor,
+    parentProps.inactiveColor,
+  ])
 
   const onClickStep = () => {
-    if (parentProps.onClickStep) parentProps.onClickStep(index);
-  };
+    if (parentProps.onClickStep) parentProps.onClickStep(index)
+  }
 
   const renderCircle = () => {
-    const { activeColor } = parentProps;
+    const { activeColor } = parentProps
 
-    const finishIcon = props.finishIcon ?? parentProps.finishIcon;
-    const activeIcon = props.activeIcon ?? parentProps.activeIcon;
-    const inactiveIcon = props.inactiveIcon ?? parentProps.inactiveIcon;
+    const finishIcon = props.finishIcon ?? parentProps.finishIcon
+    const activeIcon = props.activeIcon ?? parentProps.activeIcon
+    const inactiveIcon = props.inactiveIcon ?? parentProps.inactiveIcon
 
     if (isActive()) {
       if (activeIcon) {
@@ -62,7 +75,7 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
           style: {
             color: activeColor,
           },
-        });
+        })
       }
     }
 
@@ -73,7 +86,7 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
         style: {
           color: activeColor,
         },
-      });
+      })
     }
 
     if (inactiveIcon) {
@@ -83,18 +96,22 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
         style: {
           color: activeColor,
         },
-      });
+      })
     }
 
-    return <i className={cls(bem('circle'))} style={lineStyle} />;
-  };
+    return <i className={cls(bem('circle'))} style={lineStyle} />
+  }
 
-  const status = getStatus();
+  const status = getStatus()
 
   return (
     <div
       style={props.style}
-      className={cls(props.className, BORDER, bem([parentProps.direction, { [status]: status }]))}
+      className={cls(
+        props.className,
+        BORDER,
+        bem([parentProps.direction, { [status]: status }])
+      )}
     >
       <div
         className={cls(bem('title', { active: isActive() }))}
@@ -108,7 +125,7 @@ const StepsItem: React.FC<StepsItemProps> = ({ children, ...props }) => {
       </div>
       <div className={cls(bem('line'))} style={lineStyle} />
     </div>
-  );
-};
+  )
+}
 
-export default StepsItem;
+export default StepsItem

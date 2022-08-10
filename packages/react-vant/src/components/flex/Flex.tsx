@@ -1,18 +1,28 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, {  useMemo } from 'react';
-import clsx from 'clsx';
-import FlexContext from './FlexContext';
-import { FlexProps } from './PropsType';
-import { createNamespace } from '../utils';
+import React, { useMemo } from 'react'
+import clsx from 'clsx'
+import FlexContext from './FlexContext'
+import { FlexProps } from './PropsType'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('flexbox');
+const [bem] = createNamespace('flexbox')
 
-const Flex: React.FC<FlexProps> = (props) => {
-  const { direction, wrap, justify, align, gutter, style, className, children, ...rest } = props;
+const Flex: React.FC<FlexProps> = props => {
+  const {
+    direction,
+    wrap,
+    justify,
+    align,
+    gutter,
+    style,
+    className,
+    children,
+    ...rest
+  } = props
   const getGutter: [number, number] = useMemo(
     () => (Array.isArray(gutter) ? gutter : [gutter, 0]),
-    [gutter],
-  );
+    [gutter]
+  )
 
   const rowStyle = {
     ...(getGutter[0]! > 0
@@ -28,7 +38,7 @@ const Flex: React.FC<FlexProps> = (props) => {
         }
       : {}),
     ...style,
-  };
+  }
 
   const wrapCls = clsx(
     className,
@@ -37,8 +47,8 @@ const Flex: React.FC<FlexProps> = (props) => {
       wrap,
       justify ? `justify-${justify}` : false,
       align ? `align-${align}` : false,
-    ]),
-  );
+    ])
+  )
 
   return (
     <FlexContext.Provider value={{ gutter: getGutter }}>
@@ -46,11 +56,11 @@ const Flex: React.FC<FlexProps> = (props) => {
         {children}
       </div>
     </FlexContext.Provider>
-  );
-};
+  )
+}
 
 Flex.defaultProps = {
   gutter: 0,
-};
+}
 
-export default Flex;
+export default Flex

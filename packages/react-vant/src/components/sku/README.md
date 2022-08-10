@@ -279,15 +279,15 @@ export default () => {
 
 ### Events
 
-| 事件名            | 说明                   | 回调参数                                     |
-| ----------------- | ---------------------- | -------------------------------------------- |
-| onAddCart         | 点击添加购物车回调     | skuData: object                              |
-| onBuyClicked      | 点击购买回调           | skuData: object                              |
-| onStepperChange   | 购买数量变化时触发     | value: number                                |
-| onSkuSelected     | 切换规格类目时触发     | { skuValue, selectedSku, selectedSkuComb }   |
-| onSkuPropSelected | 切换商品属性时触发     | { propValue, selectedProp, selectedSkuComb } |
-| onOpenPreview     | 打开商品图片预览时触发 | data: object                                 |
-| onClosePreview    | 关闭商品图片预览时触发 | data: object                                 |
+| 事件名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| onAddCart | 点击添加购物车回调 | skuData: object |
+| onBuyClicked | 点击购买回调 | skuData: object |
+| onStepperChange | 购买数量变化时触发 | value: number |
+| onSkuSelected | 切换规格类目时触发 | { skuValue, selectedSku, selectedSkuComb } |
+| onSkuPropSelected | 切换商品属性时触发 | { propValue, selectedProp, selectedSkuComb } |
+| onOpenPreview | 打开商品图片预览时触发 | data: object |
+| onClosePreview | 关闭商品图片预览时触发 | data: object |
 
 ### 方法
 

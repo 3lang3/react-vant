@@ -1,17 +1,20 @@
-import React, { ReactElement, TouchEvent } from 'react';
+import React, { ReactElement, TouchEvent } from 'react'
 
 export function stopPropagation(event): void {
-  event.stopPropagation();
+  event.stopPropagation()
 }
 
-export function preventDefault(event: TouchEvent | Event, isStopPropagation?: boolean): void {
+export function preventDefault(
+  event: TouchEvent | Event,
+  isStopPropagation?: boolean
+): void {
   /* istanbul ignore else */
   if (typeof event.cancelable !== 'boolean' || event.cancelable) {
-    event.preventDefault();
+    event.preventDefault()
   }
 
   if (isStopPropagation) {
-    stopPropagation(event as Event);
+    stopPropagation(event as Event)
   }
 }
 
@@ -22,10 +25,7 @@ const eventToPropRecord: Record<PropagationEvent, string> = {
 }
 
 // https://github.com/ant-design/ant-design-mobile/blob/master/src/utils/with-stop-propagation.tsx
-export function withStopPropagation(
-  events: string[],
-  element: ReactElement
-) {
+export function withStopPropagation(events: string[], element: ReactElement) {
   const props: Record<string, any> = { ...element.props }
   for (const key of events) {
     const prop = eventToPropRecord[key]

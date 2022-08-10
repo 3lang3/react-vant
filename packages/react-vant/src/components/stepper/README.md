@@ -22,29 +22,29 @@ import { Stepper } from 'react-vant';
 
 ### Props
 
-| 参数          | 说明                                       | 类型               | 默认值  |
-| ------------- | ------------------------------------------ | ------------------ | ------- |
-| value         | 当前输入的值                               | _number\|null_   | -       |
-| defaultValue  | 默认值	                | _number\|null_   | `0`     |
-| min           | 最小值                                     | _number_ | -     |
-| max           | 最大值                                     | _number_ | -       |
-| step          | 步长，每次点击时改变的值                   | _number_ | `1`     |
-| name          | 标识符，可以在 `change` 事件回调参数中获取 | _string_ | -       |
-| inputWidth    | 输入框宽度，默认单位为 `px`                | _number \| string_ | `32px`  |
-| buttonSize    | 按钮大小以及输入框高度，默认单位为 `px`    | _number \| string_ | `28px`  |
-| decimalLength | 固定显示的小数位数                         | _number \| string_ | -       |
-| theme         | 样式风格，可选值为 `round`                 | _string_           | -       |
-| placeholder   | 输入框占位提示文字                         | _string_           | -       |
-| integer       | 是否只允许输入整数                         | _boolean_          | `false` |
-| disabled      | 是否禁用步进器                             | _boolean_          | `false` |
-| disablePlus   | 是否禁用增加按钮                           | _boolean_          | `false` |
-| disableMinus  | 是否禁用减少按钮                           | _boolean_          | `false` |
-| disableInput  | 是否禁用输入框                             | _boolean_          | `false` |
-| showPlus      | 是否显示增加按钮                           | _boolean_          | `true`  |
-| showMinus     | 是否显示减少按钮                           | _boolean_          | `true`  |
-| showInput     | 是否显示输入框                             | _boolean_          | `true`  |
-| longPress     | 是否开启长按手势                           | _boolean_          | `true`  |
-| allowEmpty    | 是否允许输入的值为空                       | _boolean_          | `false` |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 当前输入的值 | _number\|null_ | - |
+| defaultValue | 默认值 | _number\|null_ | `0` |
+| min | 最小值 | _number_ | - |
+| max | 最大值 | _number_ | - |
+| step | 步长，每次点击时改变的值 | _number_ | `1` |
+| name | 标识符，可以在 `change` 事件回调参数中获取 | _string_ | - |
+| inputWidth | 输入框宽度，默认单位为 `px` | _number \| string_ | `32px` |
+| buttonSize | 按钮大小以及输入框高度，默认单位为 `px` | _number \| string_ | `28px` |
+| decimalLength | 固定显示的小数位数 | _number \| string_ | - |
+| theme | 样式风格，可选值为 `round` | _string_ | - |
+| placeholder | 输入框占位提示文字 | _string_ | - |
+| integer | 是否只允许输入整数 | _boolean_ | `false` |
+| disabled | 是否禁用步进器 | _boolean_ | `false` |
+| disablePlus | 是否禁用增加按钮 | _boolean_ | `false` |
+| disableMinus | 是否禁用减少按钮 | _boolean_ | `false` |
+| disableInput | 是否禁用输入框 | _boolean_ | `false` |
+| showPlus | 是否显示增加按钮 | _boolean_ | `true` |
+| showMinus | 是否显示减少按钮 | _boolean_ | `true` |
+| showInput | 是否显示输入框 | _boolean_ | `true` |
+| longPress | 是否开启长按手势 | _boolean_ | `true` |
+| allowEmpty | 是否允许输入的值为空 | _boolean_ | `false` |
 
 ### Events
 
@@ -72,19 +72,19 @@ import type { StepperTheme } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                         | 默认值                       | 描述 |
-| -------------------------------------------- | ---------------------------- | ---- |
-| --rv-stepper-active-color                    | _#e8e8e8_                    | -    |
-| --rv-stepper-background-color                | _var(--rv-active-color)_     | -    |
-| --rv-stepper-button-icon-color               | _var(--rv-text-color)_       | -    |
-| --rv-stepper-button-disabled-color           | _var(--rv-background-color)_ | -    |
-| --rv-stepper-button-disabled-icon-color      | _var(--rv-gray-5)_           | -    |
-| --rv-stepper-button-round-theme-color        | _var(--rv-danger-color)_     | -    |
-| --rv-stepper-input-width                     | _32px_                       | -    |
-| --rv-stepper-input-height                    | _28px_                       | -    |
-| --rv-stepper-input-font-size                 | _var(--rv-font-size-md)_     | -    |
-| --rv-stepper-input-line-height               | _normal_                     | -    |
-| --rv-stepper-input-text-color                | _var(--rv-text-color)_       | -    |
-| --rv-stepper-input-disabled-text-color       | _var(--rv-gray-5)_           | -    |
-| --rv-stepper-input-disabled-background-color | _var(--rv-active-color)_     | -    |
-| --rv-stepper-border-radius                   | _var(--rv-border-radius-md)_ | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-stepper-active-color | _#e8e8e8_ | - |
+| --rv-stepper-background-color | _var(--rv-active-color)_ | - |
+| --rv-stepper-button-icon-color | _var(--rv-text-color)_ | - |
+| --rv-stepper-button-disabled-color | _var(--rv-background-color)_ | - |
+| --rv-stepper-button-disabled-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-stepper-button-round-theme-color | _var(--rv-danger-color)_ | - |
+| --rv-stepper-input-width | _32px_ | - |
+| --rv-stepper-input-height | _28px_ | - |
+| --rv-stepper-input-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-stepper-input-line-height | _normal_ | - |
+| --rv-stepper-input-text-color | _var(--rv-text-color)_ | - |
+| --rv-stepper-input-disabled-text-color | _var(--rv-gray-5)_ | - |
+| --rv-stepper-input-disabled-background-color | _var(--rv-active-color)_ | - |
+| --rv-stepper-border-radius | _var(--rv-border-radius-md)_ | - |

@@ -1,69 +1,73 @@
-import React, { useEffect } from 'react';
-import clsx from 'clsx';
-import { Cross, Success } from '@react-vant/icons';
+import React, { useEffect } from 'react'
+import clsx from 'clsx'
+import { Cross, Success } from '@react-vant/icons'
 
-import Popup from '../popup';
-import Loading from '../loading';
+import Popup from '../popup'
+import Loading from '../loading'
 
-import { lockClick } from './lock-click';
-import { createNamespace, isDef } from '../utils';
-import type { ToastPrivateProps, ToastProps } from './PropsType';
-const [bem] = createNamespace('toast');
+import { lockClick } from './lock-click'
+import { createNamespace, isDef } from '../utils'
+import type { ToastPrivateProps, ToastProps } from './PropsType'
+const [bem] = createNamespace('toast')
 
-
-const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = (props) => {
-  let clickable = false;
+const Toast: React.FC<
+  ToastProps & ToastPrivateProps & { visible?: boolean }
+> = props => {
+  let clickable = false
   const toggleClickable = () => {
-    const newValue = props.visible && props.forbidClick;
+    const newValue = props.visible && props.forbidClick
     if (clickable !== newValue) {
-      clickable = newValue;
-      lockClick(clickable);
+      clickable = newValue
+      lockClick(clickable)
     }
     if (!props.visible) {
-      lockClick(false);
+      lockClick(false)
     }
-  };
+  }
 
   const onClick = () => {
     if (props.closeOnClick) {
-      props.onClose();
+      props.onClose()
     }
-  };
+  }
 
   useEffect(() => {
-    toggleClickable();
+    toggleClickable()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.visible, props.forbidClick]);
+  }, [props.visible, props.forbidClick])
 
   const renderIcon = () => {
-    const { icon, type, iconSize, loadingType } = props;
-    const hasIcon = icon || type === 'success' || type === 'fail';
+    const { icon, type, iconSize, loadingType } = props
+    const hasIcon = icon || type === 'success' || type === 'fail'
     if (hasIcon) {
-      const buildInIcon = type === 'fail' ? <Cross /> : <Success />;
+      const buildInIcon = type === 'fail' ? <Cross /> : <Success />
       return React.cloneElement((icon || buildInIcon) as React.ReactElement, {
         className: clsx(bem('icon')),
         fontSize: iconSize,
-      });
+      })
     }
 
     if (type === 'loading') {
-      return <Loading className={clsx(bem('loading'))} type={loadingType} />;
+      return <Loading className={clsx(bem('loading'))} type={loadingType} />
     }
 
-    return null;
-  };
+    return null
+  }
 
   const renderMessage = () => {
-    const { message } = props;
+    const { message } = props
     if (isDef(message) && message !== '') {
-      return <div className={clsx(bem('info'))}>{message}</div>;
+      return <div className={clsx(bem('info'))}>{message}</div>
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <Popup
-      className={clsx([bem([props.position, { [props.type]: !props.icon }]), props.className])}
+      className={clsx([
+        bem([props.position, { [props.type]: !props.icon }]),
+        props.className,
+      ])}
       visible={props.visible}
       overlay={props.overlay}
       transition={props.transition}
@@ -80,8 +84,8 @@ const Toast: React.FC<ToastProps & ToastPrivateProps & { visible?: boolean }> = 
       {renderIcon()}
       {renderMessage()}
     </Popup>
-  );
-};
+  )
+}
 
 Toast.defaultProps = {
   type: 'info',
@@ -90,6 +94,6 @@ Toast.defaultProps = {
   transition: 'rv-fade',
   loadingType: 'circular',
   overlay: false,
-};
+}
 
-export default Toast;
+export default Toast

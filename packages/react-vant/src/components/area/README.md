@@ -66,7 +66,6 @@ const areaList = {
 
 > 启用 `popup` 属性后，一般使用 `onConfirm` 事件代替 `onChange` 更新外部值
 
-
 ## API
 
 ### Props
@@ -94,11 +93,11 @@ const areaList = {
 
 ### Events
 
-| 事件      | 说明             | 回调参数                                       |
-| --------- | ---------------- | ---------------------------------------------- |
-| onChange  | 选项改变触发     | _(val: string[], options: AreaColumnOption[])_ |
-| onConfirm | 点击完成按钮触发 | _(val: string[], options: AreaColumnOption[]_  |
-| onCancel  | 点击取消按钮触发 | -                                              |
+| 事件 | 说明 | 回调参数 |
+| --- | --- | --- |
+| onChange | 选项改变触发 | _(val: string[], options: AreaColumnOption[])_ |
+| onConfirm | 点击完成按钮触发 | _(val: string[], options: AreaColumnOption[]_ |
+| onCancel | 点击取消按钮触发 | - |
 
 ### AreaColumnOption 格式
 

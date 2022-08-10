@@ -1,7 +1,7 @@
-import React from 'react';
-import { Toast, Calendar } from 'react-vant';
+import React from 'react'
+import { Toast, Calendar } from 'react-vant'
 
-const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}`;
+const formatDate = date => `${date.getMonth() + 1}/${date.getDate()}`
 
 export default () => {
   return (
@@ -9,9 +9,9 @@ export default () => {
       style={{ height: 500 }}
       showConfirm={false}
       poppable={false}
-      onConfirm={(v) => {
-        Toast.info(formatDate(v));
+      onConfirm={v => {
+        Toast.info(formatDate(v))
       }}
     />
-  );
-};
+  )
+}

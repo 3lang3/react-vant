@@ -1,5 +1,5 @@
-import React from 'react';
-import { Picker } from 'react-vant';
+import React from 'react'
+import { Picker } from 'react-vant'
 
 export default () => {
   return (
@@ -10,5 +10,5 @@ export default () => {
         ['上午', '下午', '晚上'],
       ]}
     />
-  );
-};
+  )
+}

@@ -1,37 +1,37 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { isPromise, noop } from '.';
+import { isPromise, noop } from '.'
 
-export type Interceptor = (...args: any[]) => Promise<boolean> | boolean;
+export type Interceptor = (...args: any[]) => Promise<boolean> | boolean
 
 export function callInterceptor(options: {
-  interceptor?: Function;
-  args: any[];
-  done: () => void;
-  canceled?: () => void;
+  interceptor?: Function
+  args: any[]
+  done: () => void
+  canceled?: () => void
 }) {
-  const { interceptor, args, done, canceled } = options;
+  const { interceptor, args, done, canceled } = options
 
   if (interceptor) {
     // eslint-disable-next-line prefer-spread
-    const returnVal = interceptor.apply(null, args || []);
+    const returnVal = interceptor.apply(null, args || [])
 
     if (isPromise(returnVal)) {
       returnVal
-        .then((value) => {
+        .then(value => {
           if (value) {
-            done();
+            done()
           } else if (canceled) {
-            canceled();
+            canceled()
           }
         })
-        .catch(noop);
+        .catch(noop)
     } else if (returnVal) {
-      done();
+      done()
     } else if (canceled) {
-      canceled();
+      canceled()
     }
   } else {
-    done();
+    done()
   }
 }

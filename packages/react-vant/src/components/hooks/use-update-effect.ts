@@ -1,16 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 
 const useUpdateEffect: typeof useEffect = (effect, deps) => {
-  const isMounted = useRef(false);
+  const isMounted = useRef(false)
 
   useEffect(() => {
     if (!isMounted.current) {
-      isMounted.current = true;
+      isMounted.current = true
     } else {
-      return effect();
+      return effect()
     }
-    return undefined;
-  }, deps);
-};
+    return undefined
+  }, deps)
+}
 
-export default useUpdateEffect;
+export default useUpdateEffect

@@ -60,18 +60,18 @@ import { Grid } from 'react-vant';
 
 ### Grid Props
 
-| 参数      | 说明                                      | 类型                  | 默认值  |
-| --------- | ----------------------------------------- | --------------------- | ------- |
-| columnNum | 列数                                      | _number_              | `4`     |
-| iconSize  | 图标大小，默认单位为`px`                  | _number \| string_    | `28px`  |
-| gutter    | 格子之间的间距，默认单位为`px`            | _number_              | `0`     |
-| border    | 是否显示边框                              | _boolean_             | `true`  |
-| center    | 是否将格子内容居中显示                    | _boolean_             | `true`  |
-| square    | 是否将格子固定为正方形                    | _boolean_             | `false` |
-| direction | 格子内容排列的方向，可选值为 `horizontal` | `vertical`            |
-| reverse   | 是否调换图标和文本的位置                  | _boolean_             | `false` |
-| className | 类名                                      | _string_              | -       |
-| style     | style                                     | _React.CSSProperties_ | -       |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| columnNum | 列数 | _number_ | `4` |
+| iconSize | 图标大小，默认单位为`px` | _number \| string_ | `28px` |
+| gutter | 格子之间的间距，默认单位为`px` | _number_ | `0` |
+| border | 是否显示边框 | _boolean_ | `true` |
+| center | 是否将格子内容居中显示 | _boolean_ | `true` |
+| square | 是否将格子固定为正方形 | _boolean_ | `false` |
+| direction | 格子内容排列的方向，可选值为 `horizontal` | `vertical` |
+| reverse | 是否调换图标和文本的位置 | _boolean_ | `false` |
+| className | 类名 | _string_ | - |
+| style | style | _React.CSSProperties_ | - |
 
 ### GridItem Props
 
@@ -106,11 +106,11 @@ import type { GridDirection } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                    | 默认值                                      | 描述 |
-| --------------------------------------- | ------------------------------------------- | ---- |
-| --rv-grid-item-content-padding          | _var(--rv-padding-md) var(--rv-padding-xs)_ | -    |
-| --rv-grid-item-content-background-color | _var(--rv-white)_                           | -    |
-| --rv-grid-item-content-active-color     | _var(--rv-active-color)_                    | -    |
-| --rv-grid-item-icon-size                | _28px_                                      | -    |
-| --rv-grid-item-text-color               | _var(--rv-gray-7)_                          | -    |
-| --rv-grid-item-text-font-size           | _var(--rv-font-size-sm)_                    | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-grid-item-content-padding | _var(--rv-padding-md) var(--rv-padding-xs)_ | - |
+| --rv-grid-item-content-background-color | _var(--rv-white)_ | - |
+| --rv-grid-item-content-active-color | _var(--rv-active-color)_ | - |
+| --rv-grid-item-icon-size | _28px_ | - |
+| --rv-grid-item-text-color | _var(--rv-gray-7)_ | - |
+| --rv-grid-item-text-font-size | _var(--rv-font-size-sm)_ | - |

@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const useNextTick = (fn?: () => void) => {
@@ -12,10 +12,10 @@ const useNextTick = (fn?: () => void) => {
     if (fn) {
       nextTick(fn)
     }
-    return () => { }
+    return () => {}
   }, [fn, nextTick])
 
   return fn ?? nextTick
 }
 
-export default useNextTick;
+export default useNextTick

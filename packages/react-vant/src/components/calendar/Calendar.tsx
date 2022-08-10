@@ -5,10 +5,10 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
-} from 'react';
-import cls from 'clsx';
-import { CalendarDayItem, CalendarInstance, CalendarProps } from './PropsType';
-import { createNamespace, getScrollTop, pick } from '../utils';
+} from 'react'
+import cls from 'clsx'
+import { CalendarDayItem, CalendarInstance, CalendarProps } from './PropsType'
+import { createNamespace, getScrollTop, pick } from '../utils'
 import {
   calcDateNum,
   cloneDate,
@@ -19,272 +19,284 @@ import {
   getNextDay,
   getPrevDay,
   getToday,
-} from './utils';
-import useRefs from '../hooks/use-refs';
-import { raf } from '../utils/raf';
-import { getRect } from '../hooks/use-rect';
-import Toast from '../toast';
-import CalendarMonth from './CalendarMonth';
-import Button from '../button';
-import CalendarHeader from './CalendarHeader';
-import Popup from '../popup';
-import useSetState from '../hooks/use-set-state';
-import useUpdateEffect from '../hooks/use-update-effect';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { usePropsValue } from '../hooks';
-import { PickerPopupActions } from '../picker/PropsType';
+} from './utils'
+import useRefs from '../hooks/use-refs'
+import { raf } from '../utils/raf'
+import { getRect } from '../hooks/use-rect'
+import Toast from '../toast'
+import CalendarMonth from './CalendarMonth'
+import Button from '../button'
+import CalendarHeader from './CalendarHeader'
+import Popup from '../popup'
+import useSetState from '../hooks/use-set-state'
+import useUpdateEffect from '../hooks/use-update-effect'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { usePropsValue } from '../hooks'
+import { PickerPopupActions } from '../picker/PropsType'
 
-const [bem] = createNamespace('calendar');
+const [bem] = createNamespace('calendar')
 
 const Calendar = forwardRef<CalendarInstance, CalendarProps>(
   ({ className, style, ...props }, ref) => {
-    const { locale } = useContext(ConfigProviderContext);
+    const { locale } = useContext(ConfigProviderContext)
 
     const [visible, setVisible] = usePropsValue({
       value: props.visible,
       defaultValue: false,
-      onChange: (v) => {
+      onChange: v => {
         if (v === false) {
-          props.onClose?.();
+          props.onClose?.()
         }
       },
-    });
+    })
 
-    const limitDateRange = (date: Date, minDate = props.minDate, maxDate = props.maxDate) => {
+    const limitDateRange = (
+      date: Date,
+      minDate = props.minDate,
+      maxDate = props.maxDate
+    ) => {
       if (compareDay(date, minDate) === -1) {
-        return minDate;
+        return minDate
       }
       if (compareDay(date, maxDate) === 1) {
-        return maxDate;
+        return maxDate
       }
-      return date;
-    };
+      return date
+    }
 
     const getInitialDate = (defaultDate = props.defaultValue) => {
-      const { type, minDate, maxDate } = props;
+      const { type, minDate, maxDate } = props
 
       if (defaultDate === null) {
-        return defaultDate;
+        return defaultDate
       }
 
-      const now = getToday();
+      const now = getToday()
 
       if (type === 'range') {
         if (!Array.isArray(defaultDate)) {
-          defaultDate = [];
+          defaultDate = []
         }
-        const start = limitDateRange(defaultDate[0] || now, minDate, getPrevDay(maxDate));
-        const end = limitDateRange(defaultDate[1] || now, getNextDay(minDate));
-        return [start, end];
+        const start = limitDateRange(
+          defaultDate[0] || now,
+          minDate,
+          getPrevDay(maxDate)
+        )
+        const end = limitDateRange(defaultDate[1] || now, getNextDay(minDate))
+        return [start, end]
       }
 
       if (type === 'multiple') {
         if (Array.isArray(defaultDate)) {
-          return defaultDate.map((date) => limitDateRange(date));
+          return defaultDate.map(date => limitDateRange(date))
         }
-        return [limitDateRange(now)];
+        return [limitDateRange(now)]
       }
       if (!defaultDate || Array.isArray(defaultDate)) {
-        defaultDate = now;
+        defaultDate = now
       }
-      return limitDateRange(defaultDate);
-    };
+      return limitDateRange(defaultDate)
+    }
 
-    const bodyRef = useRef<HTMLDivElement>();
-    const bodyHeightRef = useRef<number>(0);
+    const bodyRef = useRef<HTMLDivElement>()
+    const bodyHeightRef = useRef<number>(0)
 
     const [value, setValue] = React.useState(
-      getInitialDate(props.value === undefined ? props.defaultValue : props.value),
-    );
+      getInitialDate(
+        props.value === undefined ? props.defaultValue : props.value
+      )
+    )
 
     const [state, updateState] = useSetState({
       subtitle: '',
       currentDate: value,
-    });
+    })
 
     // sync props.value to inner value
     useUpdateEffect(() => {
-      if (props.value === undefined) return; // uncontroll mode
+      if (props.value === undefined) return // uncontroll mode
       if (JSON.stringify(value) !== JSON.stringify(props.value)) {
-        setValue(props.value);
+        setValue(props.value)
       }
-    }, [props.value]);
+    }, [props.value])
 
     // sync value to cascader value
     useEffect(() => {
       if (JSON.stringify(state.currentDate) !== JSON.stringify(value)) {
-        updateState({ currentDate: value });
+        updateState({ currentDate: value })
       }
-    }, [value]);
+    }, [value])
 
-    const [monthRefs, setMonthRefs] = useRefs();
+    const [monthRefs, setMonthRefs] = useRefs()
 
     const dayOffset = useMemo(
       () => (props.firstDayOfWeek ? +props.firstDayOfWeek % 7 : 0),
-      [props.firstDayOfWeek, props.firstDayOfWeek],
-    );
+      [props.firstDayOfWeek, props.firstDayOfWeek]
+    )
 
     const months = useMemo(() => {
-      const internalMonths = [];
-      const cursor = new Date(props.minDate);
+      const internalMonths = []
+      const cursor = new Date(props.minDate)
 
-      cursor.setDate(1);
+      cursor.setDate(1)
 
       do {
-        internalMonths.push(new Date(cursor));
-        cursor.setMonth(cursor.getMonth() + 1);
-      } while (compareMonth(cursor, props.maxDate) !== 1);
+        internalMonths.push(new Date(cursor))
+        cursor.setMonth(cursor.getMonth() + 1)
+      } while (compareMonth(cursor, props.maxDate) !== 1)
 
-      return internalMonths;
-    }, [props.minDate, props.maxDate]);
+      return internalMonths
+    }, [props.minDate, props.maxDate])
 
     const buttonDisabled = useMemo(() => {
-      const { currentDate } = state;
+      const { currentDate } = state
 
       if (currentDate) {
         if (props.type === 'range') {
-          return !(currentDate as Date[])[0] || !(currentDate as Date[])[1];
+          return !(currentDate as Date[])[0] || !(currentDate as Date[])[1]
         }
         if (props.type === 'multiple') {
-          return !(currentDate as Date[]).length;
+          return !(currentDate as Date[]).length
         }
       }
 
-      return !currentDate;
-    }, [props.type, state.currentDate]);
+      return !currentDate
+    }, [props.type, state.currentDate])
 
     // calculate the position of the elements
     // and find the elements that needs to be rendered
     const onScroll = () => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const top = getScrollTop(bodyRef.current!);
-      const bottom = top + bodyHeightRef.current;
+      const top = getScrollTop(bodyRef.current!)
+      const bottom = top + bodyHeightRef.current
 
-      const heights = months.map((item, index) => monthRefs[index].getHeight());
-      const heightSum = heights.reduce((a, b) => a + b, 0);
+      const heights = months.map((item, index) => monthRefs[index].getHeight())
+      const heightSum = heights.reduce((a, b) => a + b, 0)
 
       // iOS scroll bounce may exceed the range
       if (bottom > heightSum && top > 0) {
-        return;
+        return
       }
 
-      let height = 0;
-      let currentMonth;
-      const visibleRange = [-1, -1];
+      let height = 0
+      let currentMonth
+      const visibleRange = [-1, -1]
 
       for (let i = 0; i < months.length; i++) {
-        const month = monthRefs[i];
-        const visible = height <= bottom && height + heights[i] >= top;
+        const month = monthRefs[i]
+        const visible = height <= bottom && height + heights[i] >= top
 
         if (visible) {
-          visibleRange[1] = i;
+          visibleRange[1] = i
 
           if (!currentMonth) {
-            currentMonth = month;
-            visibleRange[0] = i;
+            currentMonth = month
+            visibleRange[0] = i
           }
 
           if (!monthRefs[i].showed) {
-            monthRefs[i].showed = true;
+            monthRefs[i].showed = true
             props.onMonthShow?.({
               date: month.date,
               title: month.getTitle(),
-            });
+            })
           }
         }
 
-        height += heights[i];
+        height += heights[i]
       }
 
       months.forEach((_, index) => {
-        const visible = index >= visibleRange[0] - 1 && index <= visibleRange[1] + 1;
-        monthRefs[index].setVisible(visible);
-      });
+        const visible =
+          index >= visibleRange[0] - 1 && index <= visibleRange[1] + 1
+        monthRefs[index].setVisible(visible)
+      })
 
       /* istanbul ignore else */
       if (currentMonth && currentMonth.getTitle() !== state.subtitle) {
-        updateState({ subtitle: currentMonth.getTitle() });
+        updateState({ subtitle: currentMonth.getTitle() })
       }
-    };
+    }
 
     const scrollToDate = (targetDate: Date) => {
       raf(() => {
         months.some((month, index) => {
           if (compareMonth(month, targetDate) === 0) {
             if (bodyRef.current) {
-              monthRefs[index].scrollIntoView(bodyRef.current);
+              monthRefs[index].scrollIntoView(bodyRef.current)
             }
-            return true;
+            return true
           }
 
-          return false;
-        });
+          return false
+        })
 
-        onScroll();
-      });
-    };
+        onScroll()
+      })
+    }
 
     // scroll to current month
     const scrollIntoView = () => {
       if (props.poppable && !visible) {
-        return;
+        return
       }
 
-      const { currentDate } = state;
+      const { currentDate } = state
       if (currentDate) {
-        const targetDate = props.type === 'single' ? currentDate : (currentDate as Date[])[0];
-        scrollToDate(targetDate);
+        const targetDate =
+          props.type === 'single' ? currentDate : (currentDate as Date[])[0]
+        scrollToDate(targetDate)
       } else {
-        raf(onScroll);
+        raf(onScroll)
       }
-    };
+    }
 
     const init = () => {
       raf(() => {
         // add Math.floor to avoid decimal height issues
         // https://github.com/youzan/vant/issues/5640
-        bodyHeightRef.current = Math.floor(getRect(bodyRef.current).height);
-        scrollIntoView();
-      });
-    };
+        bodyHeightRef.current = Math.floor(getRect(bodyRef.current).height)
+        scrollIntoView()
+      })
+    }
 
     const reset = (date = getInitialDate()) => {
-      updateState({ currentDate: date });
-      scrollIntoView();
-    };
+      updateState({ currentDate: date })
+      scrollIntoView()
+    }
 
     const checkRange = (date: [Date, Date]) => {
-      const { maxRange, rangePrompt, showRangePrompt } = props;
+      const { maxRange, rangePrompt, showRangePrompt } = props
 
       if (maxRange && calcDateNum(date) > maxRange) {
         if (showRangePrompt) {
-          Toast.info(rangePrompt || locale.vanCalendar.rangePrompt(+maxRange));
+          Toast.info(rangePrompt || locale.vanCalendar.rangePrompt(+maxRange))
         }
-        props.onOverRange?.();
-        return false;
+        props.onOverRange?.()
+        return false
       }
 
-      return true;
-    };
+      return true
+    }
 
     const onConfirm = () => {
-      const nextCurrentDate = cloneDates(state.currentDate);
+      const nextCurrentDate = cloneDates(state.currentDate)
       if (props.poppable) {
-        setValue(nextCurrentDate);
+        setValue(nextCurrentDate)
       }
-      props.onConfirm?.(nextCurrentDate);
-      actions.close();
-    };
+      props.onConfirm?.(nextCurrentDate)
+      actions.close()
+    }
 
     const select = (date: Date | Date[], complete?: boolean) => {
       const setCurrentDate = (current: Date | Date[]) => {
-        state.currentDate = current;
-        updateState({ currentDate: current });
-        props.onSelect?.(cloneDates(state.currentDate));
-      };
+        state.currentDate = current
+        updateState({ currentDate: current })
+        props.onSelect?.(cloneDates(state.currentDate))
+      }
 
       if (complete && props.type === 'range') {
-        const valid = checkRange(date as [Date, Date]);
+        const valid = checkRange(date as [Date, Date])
 
         if (!valid) {
           // auto selected to max range if showConfirm
@@ -292,82 +304,84 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
             setCurrentDate([
               (date as Date[])[0],
               getDayByOffset((date as Date[])[0], +props.maxRange - 1),
-            ]);
+            ])
           } else {
-            setCurrentDate(date);
+            setCurrentDate(date)
           }
-          return;
+          return
         }
       }
 
-      setCurrentDate(date);
+      setCurrentDate(date)
 
       if (complete && !props.showConfirm) {
-        onConfirm();
+        onConfirm()
       }
-    };
+    }
 
     const onClickDay = (item: CalendarDayItem) => {
       if (props.readOnly || !item.date) {
-        return;
+        return
       }
 
-      const { date } = item;
-      const { type } = props;
-      const { currentDate } = state;
+      const { date } = item
+      const { type } = props
+      const { currentDate } = state
 
       if (type === 'range') {
         if (!currentDate) {
-          select([date]);
-          return;
+          select([date])
+          return
         }
 
-        const [startDay, endDay] = currentDate;
+        const [startDay, endDay] = currentDate
 
         if (startDay && !endDay) {
-          const compareToStart = compareDay(date, startDay);
+          const compareToStart = compareDay(date, startDay)
 
           if (compareToStart === 1) {
-            select([startDay, date], true);
+            select([startDay, date], true)
           } else if (compareToStart === -1) {
-            select([date]);
+            select([date])
           } else if (props.allowSameDay) {
-            select([date, date], true);
+            select([date, date], true)
           }
         } else {
-          select([date]);
+          select([date])
         }
       } else if (type === 'multiple') {
         if (!currentDate) {
-          select([date]);
-          return;
+          select([date])
+          return
         }
 
-        let selectedIndex;
-        const selected = state.currentDate.some((dateItem: Date, index: number) => {
-          const equal = compareDay(dateItem, date) === 0;
-          if (equal) {
-            selectedIndex = index;
+        let selectedIndex
+        const selected = state.currentDate.some(
+          (dateItem: Date, index: number) => {
+            const equal = compareDay(dateItem, date) === 0
+            if (equal) {
+              selectedIndex = index
+            }
+            return equal
           }
-          return equal;
-        });
+        )
 
         if (selected) {
-          const [unselectedDate] = currentDate.splice(selectedIndex, 1);
-          props.onUnselect?.(cloneDate(unselectedDate));
-          select([...currentDate]);
+          const [unselectedDate] = currentDate.splice(selectedIndex, 1)
+          props.onUnselect?.(cloneDate(unselectedDate))
+          select([...currentDate])
         } else if (props.maxRange && currentDate.length >= props.maxRange) {
-          Toast(props.rangePrompt || `选择天数不能超过 ${props.maxRange} 天`);
+          Toast(props.rangePrompt || `选择天数不能超过 ${props.maxRange} 天`)
         } else {
-          select([...currentDate, date]);
+          select([...currentDate, date])
         }
       } else {
-        select(date, true);
+        select(date, true)
       }
-    };
+    }
 
     const renderMonth = (date: Date, index: number) => {
-      const showMonthTitle = index !== 0 || !props.showSubtitle;
+      const showMonthTitle = index !== 0 || !props.showSubtitle
       return (
         <CalendarMonth
           key={index}
@@ -393,40 +407,46 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
           ])}
           onClick={onClickDay}
         />
-      );
-    };
+      )
+    }
 
     const renderFooterButton = () => {
       if (props.footer) {
-        return props.footer;
+        return props.footer
       }
 
       if (props.showConfirm) {
-        const text = buttonDisabled ? props.confirmDisabledText : props.confirmText;
+        const text = buttonDisabled
+          ? props.confirmDisabledText
+          : props.confirmText
 
         return (
           <Button
             round
             block
-            type="danger"
+            type='danger'
             color={props.color}
             className={cls(bem('confirm'))}
             disabled={buttonDisabled}
-            nativeType="button"
+            nativeType='button'
             onClick={onConfirm}
           >
             {text || locale.vanCalendar.confirm}
           </Button>
-        );
+        )
       }
-      return null;
-    };
+      return null
+    }
 
     const renderFooter = () => (
-      <div className={cls(bem('footer'), { 'rv-safe-area-bottom': props.safeAreaInsetBottom })}>
+      <div
+        className={cls(bem('footer'), {
+          'rv-safe-area-bottom': props.safeAreaInsetBottom,
+        })}
+      >
         {renderFooterButton()}
       </div>
-    );
+    )
 
     const renderCalendar = () => (
       <div className={cls(className, bem())} style={style}>
@@ -437,8 +457,8 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
           showTitle={props.showTitle}
           showSubtitle={props.showSubtitle}
           firstDayOfWeek={dayOffset}
-          onClickSubtitle={(event) => {
-            props.onClickSubtitle?.(event);
+          onClickSubtitle={event => {
+            props.onClickSubtitle?.(event)
           }}
         />
         <div ref={bodyRef} className={cls(bem('body'))} onScroll={onScroll}>
@@ -446,45 +466,45 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
         </div>
         {renderFooter()}
       </div>
-    );
+    )
 
     const actions: PickerPopupActions = {
       toggle: () => {
-        if (props.poppable) setVisible((v) => !v);
+        if (props.poppable) setVisible(v => !v)
       },
       open: () => {
         if (props.poppable) {
-          setVisible(true);
+          setVisible(true)
         }
       },
       close: () => {
         if (props.poppable) {
-          setVisible(false);
+          setVisible(false)
         }
       },
-    };
+    }
 
     useEffect(() => {
       if (!props.poppable) {
-        init();
+        init()
       }
-    }, []);
+    }, [])
 
     useEffect(() => {
       if (props.poppable && visible) {
-        init();
+        init()
       }
-    }, [visible]);
+    }, [visible])
 
     useUpdateEffect(() => {
-      reset(getInitialDate(state.currentDate));
-    }, [props.type, props.minDate, props.maxDate]);
+      reset(getInitialDate(state.currentDate))
+    }, [props.type, props.minDate, props.maxDate])
 
     useImperativeHandle(ref, () => ({
       reset,
       scrollToDate,
       ...actions,
-    }));
+    }))
 
     if (props.poppable) {
       return (
@@ -499,22 +519,25 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
             closeOnClickOverlay={props.closeOnClickOverlay}
             onClose={actions.close}
             onClosed={() => {
-              if (props.poppable && JSON.stringify(state.currentDate) !== JSON.stringify(value)) {
-                updateState({ currentDate: value });
+              if (
+                props.poppable &&
+                JSON.stringify(state.currentDate) !== JSON.stringify(value)
+              ) {
+                updateState({ currentDate: value })
               }
-              props.onClosed?.();
+              props.onClosed?.()
             }}
           >
             {renderCalendar()}
           </Popup>
           {props.children?.(value, actions)}
         </>
-      );
+      )
     }
 
-    return renderCalendar();
-  },
-);
+    return renderCalendar()
+  }
+)
 
 Calendar.defaultProps = {
   round: true,
@@ -532,11 +555,11 @@ Calendar.defaultProps = {
   maxRange: null,
   minDate: getToday(),
   maxDate: (() => {
-    const now = getToday();
-    return new Date(now.getFullYear(), now.getMonth() + 6, now.getDate());
+    const now = getToday()
+    return new Date(now.getFullYear(), now.getMonth() + 6, now.getDate())
   })(),
   firstDayOfWeek: 0,
   showRangePrompt: true,
-};
+}
 
-export default Calendar;
+export default Calendar

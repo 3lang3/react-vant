@@ -1,5 +1,5 @@
-import './style/index.less';
-import Slider from './Slider';
+import './style/index.less'
+import Slider from './Slider'
 
-export { Slider };
-export type { SliderProps } from './PropsType';
+export { Slider }
+export type { SliderProps } from './PropsType'

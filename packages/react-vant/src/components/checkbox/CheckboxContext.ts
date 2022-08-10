@@ -1,12 +1,12 @@
-import { createContext, Context } from 'react';
-import { CheckboxGroupProps } from './PropsType';
+import { createContext, Context } from 'react'
+import { CheckboxGroupProps } from './PropsType'
 
 export interface CheckboxContextState {
-  parent?: { props: CheckboxGroupProps };
-  toggle?: (names: Array<string | number>) => void;
-  checked?: (string | number)[];
+  parent?: { props: CheckboxGroupProps }
+  toggle?: (names: Array<string | number>) => void
+  checked?: (string | number)[]
 }
 
-const CheckboxContext: Context<CheckboxContextState> = createContext({});
+const CheckboxContext: Context<CheckboxContextState> = createContext({})
 
-export default CheckboxContext;
+export default CheckboxContext

@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
-import clsx from 'clsx';
-import { addUnit, createNamespace, getSizeStyle } from '../utils';
-import { LoadingProps } from './PropsType';
+import React, { useMemo } from 'react'
+import clsx from 'clsx'
+import { addUnit, createNamespace, getSizeStyle } from '../utils'
+import { LoadingProps } from './PropsType'
 
 const SpinIcon = ({ bem }) => (
   <>
@@ -12,13 +12,13 @@ const SpinIcon = ({ bem }) => (
         <i key={index} className={clsx(bem('line', String(index + 1)))} />
       ))}
   </>
-);
+)
 
 const CircularIcon = ({ bem }) => (
-  <svg className={clsx(bem('circular'))} viewBox="25 25 50 50">
-    <circle cx="50" cy="50" r="20" fill="none" />
+  <svg className={clsx(bem('circular'))} viewBox='25 25 50 50'>
+    <circle cx='50' cy='50' r='20' fill='none' />
   </svg>
-);
+)
 
 const BallIcon = ({ bem }) => (
   <div className={clsx(bem('ball'))}>
@@ -26,26 +26,35 @@ const BallIcon = ({ bem }) => (
     <div />
     <div />
   </div>
-);
+)
 
-const Icon = (bem) => ({
+const Icon = bem => ({
   spinner: <SpinIcon bem={bem} />,
   circular: <CircularIcon bem={bem} />,
   ball: <BallIcon bem={bem} />,
-});
+})
 
-const [bem] = createNamespace('loading');
+const [bem] = createNamespace('loading')
 
-const Loading: React.FC<LoadingProps> = (props) => {
-  const { className, type, vertical, color, size, textColor, children, textSize } = props;
+const Loading: React.FC<LoadingProps> = props => {
+  const {
+    className,
+    type,
+    vertical,
+    color,
+    size,
+    textColor,
+    children,
+    textSize,
+  } = props
 
   const spinnerStyle = useMemo(
     () => ({
       color,
       ...getSizeStyle(size),
     }),
-    [color, size],
-  );
+    [color, size]
+  )
 
   const renderText = () => {
     if (children) {
@@ -59,23 +68,26 @@ const Loading: React.FC<LoadingProps> = (props) => {
         >
           {children}
         </span>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
-    <div className={clsx(className, bem([type, { vertical }]))} style={props.style}>
+    <div
+      className={clsx(className, bem([type, { vertical }]))}
+      style={props.style}
+    >
       <span className={clsx(bem('spinner', type))} style={spinnerStyle}>
         {Icon(bem)[type]}
       </span>
       {renderText()}
     </div>
-  );
-};
+  )
+}
 
 Loading.defaultProps = {
   type: 'circular',
-};
+}
 
-export default Loading;
+export default Loading

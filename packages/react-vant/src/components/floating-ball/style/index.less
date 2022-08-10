@@ -107,7 +107,8 @@
           }
         });
       }
-      &.@{rv-prefix}-floating-ball__menu--top .@{rv-prefix}-floating-ball__menu__item {
+      &.@{rv-prefix}-floating-ball__menu--top
+        .@{rv-prefix}-floating-ball__menu__item {
         each(range(120%, 600%, 120), {
           &:nth-child(@{index}) {
             transform: translateY(@value);
@@ -149,7 +150,8 @@
           }
         });
       }
-      &.@{rv-prefix}-floating-ball__menu--left .@{rv-prefix}-floating-ball__menu__item {
+      &.@{rv-prefix}-floating-ball__menu--left
+        .@{rv-prefix}-floating-ball__menu__item {
         each(range(120%, 600%, 120), {
           &:nth-child(@{index}) {
             transform: translateX(@value);

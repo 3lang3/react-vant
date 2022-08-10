@@ -74,31 +74,31 @@ import { Checkbox } from 'react-vant';
 
 ### Checkbox Props
 
-| 参数           | 说明                      | 类型                                   | 默认值    |
-| -------------- | ------------------------- | -------------------------------------- | --------- |
-| checked        | 是否为选中状态            | _boolean_                              | `false`   |
-| defaultChecked | 默认选中项的标识符        | _any[]_                                | -         |
-| name           | 标识符                    | _any_                                  | -         |
-| shape          | 形状，可选值为 `square`   | _string_                               | `round`   |
-| disabled       | 是否禁用复选框            | _boolean_                              | `false`   |
-| labelDisabled  | 是否禁用复选框文本点击    | _boolean_                              | `false`   |
-| labelPosition  | 文本位置，可选值为 `left` | _string_                               | `right`   |
-| iconSize       | 图标大小，默认单位为 `px` | _number \| string_                     | `20px`    |
-| iconRender     | 自定义图标                | _({ checked, disabled }) => ReactNode_ | -         |
-| checkedColor   | 选中状态颜色              | _string_                               | `#3f45ff` |
-| bindGroup      | 是否与复选框组绑定        | _boolean_                              | `true`    |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| checked | 是否为选中状态 | _boolean_ | `false` |
+| defaultChecked | 默认选中项的标识符 | _any[]_ | - |
+| name | 标识符 | _any_ | - |
+| shape | 形状，可选值为 `square` | _string_ | `round` |
+| disabled | 是否禁用复选框 | _boolean_ | `false` |
+| labelDisabled | 是否禁用复选框文本点击 | _boolean_ | `false` |
+| labelPosition | 文本位置，可选值为 `left` | _string_ | `right` |
+| iconSize | 图标大小，默认单位为 `px` | _number \| string_ | `20px` |
+| iconRender | 自定义图标 | _({ checked, disabled }) => ReactNode_ | - |
+| checkedColor | 选中状态颜色 | _string_ | `#3f45ff` |
+| bindGroup | 是否与复选框组绑定 | _boolean_ | `true` |
 
 ### CheckboxGroup Props
 
-| 参数           | 说明                                  | 类型               | 默认值     |
-| -------------- | ------------------------------------- | ------------------ | ---------- |
-| value          | 所有选中项的标识符                    | _any[]_            | -          |
-| defaultChecked | 默认选中项的标识符                    | _any[]_            | -          |
-| disabled       | 是否禁用所有复选框                    | _boolean_          | `false`    |
-| max            | 最大可选数                            | _number \| string_ | -        |
-| direction      | 排列方向，可选值为 `horizontal`       | _string_           | `vertical` |
-| iconSize       | 所有复选框的图标大小，默认单位为 `px` | _number \| string_ | `20px`     |
-| checkedColor   | 所有复选框的选中状态颜色              | _string_           | `#3f45ff`  |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 所有选中项的标识符 | _any[]_ | - |
+| defaultChecked | 默认选中项的标识符 | _any[]_ | - |
+| disabled | 是否禁用所有复选框 | _boolean_ | `false` |
+| max | 最大可选数 | _number \| string_ | - |
+| direction | 排列方向，可选值为 `horizontal` | _string_ | `vertical` |
+| iconSize | 所有复选框的图标大小，默认单位为 `px` | _number \| string_ | `20px` |
+| checkedColor | 所有复选框的选中状态颜色 | _string_ | `#3f45ff` |
 
 ### Checkbox Events
 
@@ -150,14 +150,14 @@ checkboxGroupRef.current?.toggleAll();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                    | 默认值                              | 描述 |
-| --------------------------------------- | ----------------------------------- | ---- |
-| --rv-checkbox-size                      | _20px_                              | -    |
-| --rv-checkbox-border-color              | _var(--rv-gray-5)_                  | -    |
-| --rv-checkbox-transition-duration       | _var(--rv-animation-duration-fast)_ | -    |
-| --rv-checkbox-label-margin              | _var(--rv-padding-xs)_              | -    |
-| --rv-checkbox-label-color               | _var(--rv-text-color)_              | -    |
-| --rv-checkbox-checked-icon-color        | _var(--rv-primary-color)_           | -    |
-| --rv-checkbox-disabled-icon-color       | _var(--rv-gray-5)_                  | -    |
-| --rv-checkbox-disabled-label-color      | _var(--rv-gray-5)_                  | -    |
-| --rv-checkbox-disabled-background-color | _var(--rv-border-color)_            | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-checkbox-size | _20px_ | - |
+| --rv-checkbox-border-color | _var(--rv-gray-5)_ | - |
+| --rv-checkbox-transition-duration | _var(--rv-animation-duration-fast)_ | - |
+| --rv-checkbox-label-margin | _var(--rv-padding-xs)_ | - |
+| --rv-checkbox-label-color | _var(--rv-text-color)_ | - |
+| --rv-checkbox-checked-icon-color | _var(--rv-primary-color)_ | - |
+| --rv-checkbox-disabled-icon-color | _var(--rv-gray-5)_ | - |
+| --rv-checkbox-disabled-label-color | _var(--rv-gray-5)_ | - |
+| --rv-checkbox-disabled-background-color | _var(--rv-border-color)_ | - |

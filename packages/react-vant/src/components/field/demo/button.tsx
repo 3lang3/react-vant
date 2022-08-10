@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { Field, Flex, Popup, Picker, Button } from 'react-vant';
-import { ArrowDown } from '@react-vant/icons';
+import React, { useState } from 'react'
+import { Field, Flex, Popup, Picker, Button } from 'react-vant'
+import { ArrowDown } from '@react-vant/icons'
 
-const columns = ['86 🇨🇳', '87 🇺🇸', '88 🏳️‍🌈', '89 🏳️‍⚧️', '90 🇴🇲', '91 🇵🇪', '92 🇩🇪'];
+const columns = ['86 🇨🇳', '87 🇺🇸', '88 🏳️‍🌈', '89 🏳️‍⚧️', '90 🇴🇲', '91 🇵🇪', '92 🇩🇪']
 
 export default () => {
-  const [sms, setSms] = useState('');
-  const [visible, setVisible] = useState(false);
-  const [field, setVield] = useState(columns[0]);
+  const [sms, setSms] = useState('')
+  const [visible, setVisible] = useState(false)
+  const [field, setVield] = useState(columns[0])
 
   return (
     <>
       <Field
         value={sms}
         center
-        label="短信验证码"
-        placeholder="手机号"
+        label='短信验证码'
+        placeholder='手机号'
         onChange={setSms}
         prefix={
           <Flex align='center' onClick={() => setVisible(true)}>
@@ -23,21 +23,26 @@ export default () => {
           </Flex>
         }
         suffix={
-          <Button size="small" type="primary">
+          <Button size='small' type='primary'>
             发送
           </Button>
         }
       />
-      <Popup round visible={visible} position="bottom" onClose={() => setVisible(false)}>
+      <Popup
+        round
+        visible={visible}
+        position='bottom'
+        onClose={() => setVisible(false)}
+      >
         <Picker
-          title="标题"
+          title='标题'
           onConfirm={(value: string) => {
-            setVield(value);
-            setVisible(false);
+            setVield(value)
+            setVisible(false)
           }}
           columns={columns}
         />
       </Popup>
     </>
-  );
-};
+  )
+}

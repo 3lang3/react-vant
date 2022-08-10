@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
-import { WaterMarkProps } from './PropsType';
-import { createNamespace } from '../utils';
+import React from 'react'
+import clsx from 'clsx'
+import { WaterMarkProps } from './PropsType'
+import { createNamespace } from '../utils'
 
 const DEFAULT_FONT = {
   style: 'normal',
@@ -9,80 +9,81 @@ const DEFAULT_FONT = {
   color: 'rgba(0,0,0,.15)',
   size: 14,
   family: 'sans-serif',
-};
+}
 
-const [bem] = createNamespace('water-mark');
+const [bem] = createNamespace('water-mark')
 
 // 移植自antd mobile: https://github.com/ant-design/ant-design-mobile/blob/master/src/components/water-mark/water-mark.tsx
-const WaterMark: React.FC<WaterMarkProps> = (props) => {
-  const { zIndex, gapX, gapY, width, height, rotate, image, content, font } = props;
+const WaterMark: React.FC<WaterMarkProps> = props => {
+  const { zIndex, gapX, gapY, width, height, rotate, image, content, font } =
+    props
 
-  const [base64Url, setBase64Url] = React.useState('');
+  const [base64Url, setBase64Url] = React.useState('')
 
   React.useEffect(() => {
-    const canvas = document.createElement('canvas');
-    const ratio = window.devicePixelRatio;
+    const canvas = document.createElement('canvas')
+    const ratio = window.devicePixelRatio
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d')
 
-    const canvasWidth = `${(gapX + width) * ratio}px`;
-    const canvasHeight = `${(gapY + height) * ratio}px`;
+    const canvasWidth = `${(gapX + width) * ratio}px`
+    const canvasHeight = `${(gapY + height) * ratio}px`
 
-    const markWidth = width * ratio;
-    const markHeight = height * ratio;
+    const markWidth = width * ratio
+    const markHeight = height * ratio
 
-    canvas.setAttribute('width', canvasWidth);
-    canvas.setAttribute('height', canvasHeight);
+    canvas.setAttribute('width', canvasWidth)
+    canvas.setAttribute('height', canvasHeight)
 
     if (ctx) {
       if (image) {
-        const { width, height, src } = image;
-        ctx.translate(markWidth / 2, markHeight / 2);
-        ctx.rotate((Math.PI / 180) * Number(rotate));
+        const { width, height, src } = image
+        ctx.translate(markWidth / 2, markHeight / 2)
+        ctx.rotate((Math.PI / 180) * Number(rotate))
 
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.referrerPolicy = 'no-referrer';
-        img.src = src;
+        const img = new Image()
+        img.crossOrigin = 'anonymous'
+        img.referrerPolicy = 'no-referrer'
+        img.src = src
         img.onload = () => {
           ctx.drawImage(
             img,
             (-width * ratio) / 2,
             (-height * ratio) / 2,
             width * ratio,
-            height * ratio,
-          );
-          ctx.restore();
-          setBase64Url(canvas.toDataURL());
-        };
+            height * ratio
+          )
+          ctx.restore()
+          setBase64Url(canvas.toDataURL())
+        }
       } else if (content) {
-        const frontProps = { ...font, ...DEFAULT_FONT };
-        const { size, family, style, weight, color } = frontProps;
-        ctx.textBaseline = 'middle';
-        ctx.textAlign = 'center';
+        const frontProps = { ...font, ...DEFAULT_FONT }
+        const { size, family, style, weight, color } = frontProps
+        ctx.textBaseline = 'middle'
+        ctx.textAlign = 'center'
         // 文字绕中间旋转
-        ctx.translate(markWidth / 2, markHeight / 2);
-        ctx.rotate((Math.PI / 180) * Number(rotate));
+        ctx.translate(markWidth / 2, markHeight / 2)
+        ctx.rotate((Math.PI / 180) * Number(rotate))
 
-        const markSize = Number(size) * ratio;
-        ctx.font = `${style} normal ${weight} ${markSize}px/${markHeight}px ${family}`;
-        ctx.fillStyle = color;
+        const markSize = Number(size) * ratio
+        ctx.font = `${style} normal ${weight} ${markSize}px/${markHeight}px ${family}`
+        ctx.fillStyle = color
 
-        ctx.fillText(content, 0, 0);
-        ctx.restore();
-        setBase64Url(canvas.toDataURL());
+        ctx.fillText(content, 0, 0)
+        ctx.restore()
+        setBase64Url(canvas.toDataURL())
       }
     } else {
-      throw new Error('当前环境不支持Canvas');
+      throw new Error('当前环境不支持Canvas')
     }
-  }, [gapX, gapY, rotate, width, height, image, content, font]);
+  }, [gapX, gapY, rotate, width, height, image, content, font])
 
   return (
     <div
       className={clsx(
         bem({
           full: props.fullPage,
-        }),
+        })
       )}
       style={{
         zIndex,
@@ -90,8 +91,8 @@ const WaterMark: React.FC<WaterMarkProps> = (props) => {
         backgroundImage: `url('${base64Url}')`,
       }}
     />
-  );
-};
+  )
+}
 
 WaterMark.defaultProps = {
   zIndex: 2000,
@@ -102,6 +103,6 @@ WaterMark.defaultProps = {
   rotate: -22,
   font: DEFAULT_FONT,
   fullPage: true,
-};
+}
 
-export default WaterMark;
+export default WaterMark

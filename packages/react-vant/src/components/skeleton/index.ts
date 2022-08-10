@@ -1,6 +1,6 @@
-import './style/index.less';
-import Skeleton from './Skeleton';
+import './style/index.less'
+import Skeleton from './Skeleton'
 
-export default Skeleton;
-export { Skeleton };
-export type { SkeletonProps } from './PropsType';
+export default Skeleton
+export { Skeleton }
+export type { SkeletonProps } from './PropsType'

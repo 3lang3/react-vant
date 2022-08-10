@@ -1,5 +1,5 @@
-import React from 'react';
-import { Cascader, Field } from 'react-vant';
+import React from 'react'
+import { Cascader, Field } from 'react-vant'
 
 export default () => {
   return (
@@ -10,7 +10,7 @@ export default () => {
         value: 'code',
         children: 'items',
       }}
-      title="请选择所在地区"
+      title='请选择所在地区'
       options={[
         {
           name: '浙江省',
@@ -27,13 +27,13 @@ export default () => {
       {(value, selectedRows, actions) => (
         <Field
           isLink
-          value={selectedRows.map((el) => el.name).join(',')}
+          value={selectedRows.map(el => el.name).join(',')}
           readOnly
-          label="地区"
-          placeholder="请选择所在地区"
+          label='地区'
+          placeholder='请选择所在地区'
           onClick={() => actions.open()}
         />
       )}
     </Cascader>
-  );
-};
+  )
+}

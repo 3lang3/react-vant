@@ -1,77 +1,82 @@
-import React, { useRef, CSSProperties, forwardRef, useImperativeHandle } from 'react';
-import { Clear, QuestionO } from '@react-vant/icons';
-import clsx from 'clsx';
-import Cell from '../cell';
-import Dialog from '../dialog';
-import Input, { InputInstance } from '../input';
-import { TextAreaInstance } from '../text-area/PropsType';
-import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType';
-import { isDef, addUnit, createNamespace } from '../utils';
-import { COMPONENT_TYPE_KEY } from '../utils/constant';
+import React, {
+  useRef,
+  CSSProperties,
+  forwardRef,
+  useImperativeHandle,
+} from 'react'
+import { Clear, QuestionO } from '@react-vant/icons'
+import clsx from 'clsx'
+import Cell from '../cell'
+import Dialog from '../dialog'
+import Input, { InputInstance } from '../input'
+import { TextAreaInstance } from '../text-area/PropsType'
+import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType'
+import { isDef, addUnit, createNamespace } from '../utils'
+import { COMPONENT_TYPE_KEY } from '../utils/constant'
 
-const [bem] = createNamespace('field');
+const [bem] = createNamespace('field')
 
 const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
-  const inputRef = useRef<InputInstance>(null);
-  const textareaRef = useRef<TextAreaInstance>(null);
+  const inputRef = useRef<InputInstance>(null)
+  const textareaRef = useRef<TextAreaInstance>(null)
 
-  const elementRef = props.type === 'textarea' ? textareaRef : inputRef;
+  const elementRef = props.type === 'textarea' ? textareaRef : inputRef
 
   const focus = () => {
     if (elementRef.current) {
-      elementRef.current.focus();
+      elementRef.current.focus()
     }
-  };
+  }
 
   const blur = () => {
     if (elementRef.current) {
-      elementRef.current.blur();
+      elementRef.current.blur()
     }
-  };
+  }
 
   const clear = () => {
     if (elementRef.current) {
-      elementRef.current.clear();
+      elementRef.current.clear()
     }
-  };
+  }
 
   useImperativeHandle(ref, () => ({
     focus,
     blur,
     clear,
     get nativeElement() {
-      return elementRef.current.nativeElement;
+      return elementRef.current.nativeElement
     },
-  }));
+  }))
 
-  const getProp = (key) => {
+  const getProp = key => {
     if (isDef(props[key])) {
-      return props[key];
+      return props[key]
     }
-    return null;
-  };
+    return null
+  }
 
   const labelStyle = (): CSSProperties => {
-    const labelW = getProp('labelWidth');
+    const labelW = getProp('labelWidth')
     if (labelW) {
-      return { width: addUnit(labelW) };
+      return { width: addUnit(labelW) }
     }
 
-    return {};
-  };
+    return {}
+  }
 
   const formatValue = (inputValue, trigger = 'onChange') => {
-    const { formatTrigger, formatter } = props;
+    const { formatTrigger, formatter } = props
     if (formatter && trigger === formatTrigger) {
-      return formatter(inputValue);
+      return formatter(inputValue)
     }
 
-    return inputValue;
-  };
+    return inputValue
+  }
 
   const onChange = (val: string) => {
-    props.onChange?.(formatValue(val));
-  };
+    props.onChange?.(formatValue(val))
+  }
 
   const renderInput = () => {
     const {
@@ -93,10 +98,10 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       onFocus,
       onKeyPress,
       onOverlimit,
-    } = props;
+    } = props
 
     if (props.children) {
-      return <div className={clsx(bem('children'))}>{props.children}</div>;
+      return <div className={clsx(bem('children'))}>{props.children}</div>
     }
 
     const commonProps = {
@@ -118,7 +123,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       readOnly,
       maxLength,
       onClick: props.onClickInput,
-    };
+    }
 
     if (type === 'textarea') {
       return (
@@ -129,70 +134,74 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           rows={props.rows}
           {...commonProps}
         />
-      );
+      )
     }
 
-    return <Input ref={inputRef} type={type} align={align} {...commonProps} />;
-  };
+    return <Input ref={inputRef} type={type} align={align} {...commonProps} />
+  }
 
   const renderLeftIcon = () => {
-    const { leftIcon, onClickLeftIcon } = props;
-    if (!leftIcon) return null;
+    const { leftIcon, onClickLeftIcon } = props
+    if (!leftIcon) return null
     return (
       <div className={clsx(bem('left-icon'))} onClick={onClickLeftIcon}>
         {leftIcon}
       </div>
-    );
-  };
+    )
+  }
 
   const renderRightIcon = () => {
-    const { rightIcon, onClickRightIcon } = props;
-    if (!rightIcon) return null;
+    const { rightIcon, onClickRightIcon } = props
+    if (!rightIcon) return null
     return (
       <div className={clsx(bem('right-icon'))} onClick={onClickRightIcon}>
         {rightIcon}
       </div>
-    );
-  };
+    )
+  }
 
   const renderMessage = () => {
-    const message = props.errorMessage;
+    const message = props.errorMessage
 
     if (message) {
-      return <div className={clsx(bem('error-message'))}>{message}</div>;
+      return <div className={clsx(bem('error-message'))}>{message}</div>
     }
-    return null;
-  };
+    return null
+  }
 
   const renderIntro = () => {
     if (props.intro) {
-      return <div className={clsx(bem('intro'))}>{props.intro}</div>;
+      return <div className={clsx(bem('intro'))}>{props.intro}</div>
     }
-    return null;
-  };
+    return null
+  }
 
   const renderTooltip = () => {
-    const { tooltip } = props;
+    const { tooltip } = props
     if (tooltip) {
-      let icon = (<QuestionO />) as React.ReactNode;
-      let dialogProps = { message: tooltip as React.ReactNode };
+      let icon = (<QuestionO />) as React.ReactNode
+      let dialogProps = { message: tooltip as React.ReactNode }
       if (!(React.isValidElement(tooltip) || typeof tooltip === 'string')) {
-        const { icon: customIcon, ...customDialogProps } = tooltip as FieldTooltipProps;
-        icon = customIcon || icon;
-        dialogProps = customDialogProps as typeof dialogProps;
+        const { icon: customIcon, ...customDialogProps } =
+          tooltip as FieldTooltipProps
+        icon = customIcon || icon
+        dialogProps = customDialogProps as typeof dialogProps
       }
 
       return (
-        <div className={clsx(bem('tooltip'))} onClick={() => Dialog.show(dialogProps)}>
+        <div
+          className={clsx(bem('tooltip'))}
+          onClick={() => Dialog.show(dialogProps)}
+        >
           {icon}
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderLabel = () => {
-    const { label, colon } = props;
+    const { label, colon } = props
     if (label) {
       return (
         <>
@@ -200,10 +209,10 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           {!!colon && ':'}
           {renderTooltip()}
         </>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const {
     size,
@@ -221,9 +230,9 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     disabled,
     titleStyle,
     error,
-  } = props;
+  } = props
 
-  const suffix = props.suffix ?? props.button;
+  const suffix = props.suffix ?? props.button
 
   return (
     <Cell
@@ -248,11 +257,13 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
           disabled,
           [`label-${labelAlign}`]: labelAlign,
         }),
-        className,
+        className
       )}
     >
       <div className={clsx(bem('body'))}>
-        {props.prefix && <div className={clsx(bem('prefix'))}>{props.prefix}</div>}
+        {props.prefix && (
+          <div className={clsx(bem('prefix'))}>{props.prefix}</div>
+        )}
         <div className={clsx(bem('control-wrapper'))}>{renderInput()}</div>
         {renderRightIcon()}
         {suffix && <div className={clsx(bem('suffix'))}>{suffix}</div>}
@@ -260,18 +271,18 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
       {renderMessage()}
       {renderIntro()}
     </Cell>
-  );
-});
+  )
+})
 
 Field.defaultProps = {
   clearIcon: <Clear />,
   clearTrigger: 'focus',
   formatTrigger: 'onChange',
   defaultValue: '',
-};
+}
 
-export const FIELD_KEY = Symbol('field');
+export const FIELD_KEY = Symbol('field')
 
-const FieldNamespace = Object.assign(Field, { [COMPONENT_TYPE_KEY]: FIELD_KEY });
+const FieldNamespace = Object.assign(Field, { [COMPONENT_TYPE_KEY]: FIELD_KEY })
 
-export default FieldNamespace;
+export default FieldNamespace

@@ -1,11 +1,11 @@
-import React from 'react';
-import clsx from 'clsx';
-import { ButtonGroupProps } from './PropsType';
-import ButtonContext from './ButtonContext';
-import { SHADOW } from '../utils/constant';
-import { createNamespace } from '../utils';
+import React from 'react'
+import clsx from 'clsx'
+import { ButtonGroupProps } from './PropsType'
+import ButtonContext from './ButtonContext'
+import { SHADOW } from '../utils/constant'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('button-group');
+const [bem] = createNamespace('button-group')
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   className,
@@ -14,11 +14,10 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   onClick,
   ...props
 }) => {
-
-  const internalClick = (e) => {
-    if (props.disabled) return;
-    onClick?.(e);
-  };
+  const internalClick = e => {
+    if (props.disabled) return
+    onClick?.(e)
+  }
 
   return (
     <div
@@ -34,12 +33,14 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
             disabled: props.disabled,
           },
         ]),
-        props.shadow && `${SHADOW}--${+props.shadow}`,
+        props.shadow && `${SHADOW}--${+props.shadow}`
       )}
     >
-      <ButtonContext.Provider value={{ parent: props }}>{children}</ButtonContext.Provider>
+      <ButtonContext.Provider value={{ parent: props }}>
+        {children}
+      </ButtonContext.Provider>
     </div>
-  );
-};
+  )
+}
 
-export default ButtonGroup;
+export default ButtonGroup

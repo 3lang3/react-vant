@@ -9,7 +9,7 @@ export const data = {
   endAt: 1514592000,
   valueDesc: '1.5',
   unitDesc: '元',
-};
+}
 
 export const discountCoupon = {
   ...data,
@@ -17,13 +17,13 @@ export const discountCoupon = {
   value: 12,
   valueDesc: '8.8',
   unitDesc: '折',
-};
+}
 
 export const disabledCoupon = {
   ...data,
   id: 3,
   reason: '优惠券不可用原因',
-};
+}
 
 export const disabledDiscountCoupon = {
   ...discountCoupon,
@@ -31,4 +31,4 @@ export const disabledDiscountCoupon = {
   unitDesc: '折',
   id: 4,
   reason: '优惠券不可用原因',
-};
+}

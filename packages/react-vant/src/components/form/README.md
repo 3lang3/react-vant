@@ -63,7 +63,6 @@ Form.List 为字段提供数组化管理。
 
 <code title="动态增减表单项" src="./demo/list.tsx" />
 
-
 ## Form Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -83,7 +82,7 @@ Form.List 为字段提供数组化管理。
 Form.Item 的布局是基于 `Field` 实现的，所以它支持 [Field](./field#props) 的部分属性
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | dependencies | 设置依赖字段，说明见下 | `string | number | (string | number)[]` | - |
 | disabled | 是否禁用 | `boolean` | 父级 Form 的 `disabled` |
 | initialValue | 设置子元素默认值，如果与 Form 的 `initialValues` 冲突则以 Form 为准 | `any` | - |
@@ -160,7 +159,6 @@ Form.Item 的布局是基于 `Field` 实现的，所以它支持 [Field](./field
 ## FAQ
 
 - 摘自 [antd-mobile](https://mobile.ant.design/zh/components/form#formitem-%E5%A6%82%E4%BD%95%E9%85%8D%E5%90%88-picker--datepicker--cascadepicker-%E4%BD%BF%E7%94%A8)
-
 
 被设置了 `name` 属性的 `Form.Item` 包装的控件，表单控件会**自动添加** `value`（或 `valuePropName` 指定的其他属性） `onChange`（或 `trigger` 指定的其他属性），数据同步将被 Form 接管，因此，如果你给 `Form.Item` 设置了 `name` 属性，**那么请确保它的 `children` 是一个有效的 `ReactElement` 控件** ，并且能够接受上文中提到的 `value` 和 `onChange` 属性（或指定的其他属性），例如：
 

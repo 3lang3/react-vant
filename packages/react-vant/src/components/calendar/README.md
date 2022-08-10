@@ -74,19 +74,18 @@ import { Calendar } from 'react-vant';
 | firstDayOfWeek | 设置周起始日 | _0-6_ | `0` |
 | children | 渲染函数 | _(val: Date\|Date[], actions: PickerActions) => ReactNode_ | - |
 
-
 ### Calendar Poppable Props
 
 当 Calendar 的 `poppable` 为 `true` 时，支持以下 props:
 
-| 参数                | 说明                                            | 类型      | 默认值   |
-| ------------------- | ----------------------------------------------- | --------- | -------- |
-| visible             | 是否显示日历弹窗                                | _boolean_ | `false`  |
-| position            | 弹出位置，可选值为 `top` `right` `left`         | _string_  | `bottom` |
-| round               | 是否显示圆角弹窗                                | _boolean_ | `true`   |
-| closeOnPopstate     | 是否在页面回退时自动关闭                        | _boolean_ | `true`   |
-| closeOnClickOverlay | 是否在点击遮罩层后关闭                          | _boolean_ | `true`   |
-| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true`   |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| visible | 是否显示日历弹窗 | _boolean_ | `false` |
+| position | 弹出位置，可选值为 `top` `right` `left` | _string_ | `bottom` |
+| round | 是否显示圆角弹窗 | _boolean_ | `true` |
+| closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `true` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
+| safeAreaInsetBottom | 是否开启[底部安全区适配](/guide/advanced-usage) | _boolean_ | `true` |
 
 ### Calendar Range Props
 
@@ -103,23 +102,23 @@ import { Calendar } from 'react-vant';
 
 当 Calendar 的 `type` 为 `multiple` 时，支持以下 props:
 
-| 参数        | 说明                             | 类型               | 默认值                   |
-| ----------- | -------------------------------- | ------------------ | ------------------------ |
-| maxRange    | 日期最多可选天数                 | _number \| string_ | 无限制                   |
-| rangePrompt | 选择超过最多可选天数时的提示文案 | _string_           | `选择天数不能超过 xx 天` |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| maxRange | 日期最多可选天数 | _number \| string_ | 无限制 |
+| rangePrompt | 选择超过最多可选天数时的提示文案 | _string_ | `选择天数不能超过 xx 天` |
 
 ### Day 数据结构
 
 日历中的每个日期都对应一个 Day 对象，通过`formatter`属性可以自定义 Day 对象的内容
 
-| 键名       | 说明                                                                | 类型     |
-| ---------- | ------------------------------------------------------------------- | -------- |
-| date       | 日期对应的 Date 对象                                                | _Date_   |
-| type       | 日期类型，可选值为 `selected`、`start`、`middle`、`end`、`disabled` | _string_ |
-| text       | 中间显示的文字                                                      | _string_ |
-| topInfo    | 上方的提示信息                                                      | _string_ |
-| bottomInfo | 下方的提示信息                                                      | _string_ |
-| className  | 额外类名                                                            | _string_ |
+| 键名 | 说明 | 类型 |
+| --- | --- | --- |
+| date | 日期对应的 Date 对象 | _Date_ |
+| type | 日期类型，可选值为 `selected`、`start`、`middle`、`end`、`disabled` | _string_ |
+| text | 中间显示的文字 | _string_ |
+| topInfo | 上方的提示信息 | _string_ |
+| bottomInfo | 下方的提示信息 | _string_ |
+| className | 额外类名 | _string_ |
 
 ### Events
 
@@ -165,33 +164,33 @@ calendarRef.value?.reset();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                          | 默认值                                 | 描述 |
-| --------------------------------------------- | -------------------------------------- | ---- |
-| --rv-calendar-background-color                | _var(--rv-white)_                      | -    |
-| --rv-calendar-popup-height                    | _80%_                                  | -    |
-| --rv-calendar-header-box-shadow               | _0 2px 10px rgba(125, 126, 128, 0.16)_ | -    |
-| --rv-calendar-header-title-height             | _44px_                                 | -    |
-| --rv-calendar-header-title-font-size          | _var(--rv-font-size-lg)_               | -    |
-| --rv-calendar-header-subtitle-font-size       | _var(--rv-font-size-md)_               | -    |
-| --rv-calendar-weekdays-height                 | _30px_                                 | -    |
-| --rv-calendar-weekdays-font-size              | _var(--rv-font-size-sm)_               | -    |
-| --rv-calendar-month-title-font-size           | _var(--rv-font-size-md)_               | -    |
-| --rv-calendar-month-mark-color                | _fade(var(--rv-gray-2), 80%)_          | -    |
-| --rv-calendar-month-mark-font-size            | _160px_                                | -    |
-| --rv-calendar-day-height                      | _64px_                                 | -    |
-| --rv-calendar-day-font-size                   | _var(--rv-font-size-lg)_               | -    |
-| --rv-calendar-range-edge-color                | _var(--rv-white)_                      | -    |
-| --rv-calendar-range-edge-background-color     | _var(--rv-danger-color)_               | -    |
-| --rv-calendar-range-middle-color              | _var(--rv-danger-color)_               | -    |
-| --rv-calendar-range-middle-background-opacity | _0.1_                                  | -    |
-| --rv-calendar-selected-day-size               | _54px_                                 | -    |
-| --rv-calendar-selected-day-color              | _var(--rv-white)_                      | -    |
-| --rv-calendar-info-font-size                  | _var(--rv-font-size-xs)_               | -    |
-| --rv-calendar-info-line-height                | _var(--rv-line-height-xs)_             | -    |
-| --rv-calendar-selected-day-background-color   | _var(--rv-danger-color)_               | -    |
-| --rv-calendar-day-disabled-color              | _var(--rv-gray-5)_                     | -    |
-| --rv-calendar-confirm-button-height           | _36px_                                 | -    |
-| --rv-calendar-confirm-button-margin           | _7px 0_                                | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-calendar-background-color | _var(--rv-white)_ | - |
+| --rv-calendar-popup-height | _80%_ | - |
+| --rv-calendar-header-box-shadow | _0 2px 10px rgba(125, 126, 128, 0.16)_ | - |
+| --rv-calendar-header-title-height | _44px_ | - |
+| --rv-calendar-header-title-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-calendar-header-subtitle-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-calendar-weekdays-height | _30px_ | - |
+| --rv-calendar-weekdays-font-size | _var(--rv-font-size-sm)_ | - |
+| --rv-calendar-month-title-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-calendar-month-mark-color | _fade(var(--rv-gray-2), 80%)_ | - |
+| --rv-calendar-month-mark-font-size | _160px_ | - |
+| --rv-calendar-day-height | _64px_ | - |
+| --rv-calendar-day-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-calendar-range-edge-color | _var(--rv-white)_ | - |
+| --rv-calendar-range-edge-background-color | _var(--rv-danger-color)_ | - |
+| --rv-calendar-range-middle-color | _var(--rv-danger-color)_ | - |
+| --rv-calendar-range-middle-background-opacity | _0.1_ | - |
+| --rv-calendar-selected-day-size | _54px_ | - |
+| --rv-calendar-selected-day-color | _var(--rv-white)_ | - |
+| --rv-calendar-info-font-size | _var(--rv-font-size-xs)_ | - |
+| --rv-calendar-info-line-height | _var(--rv-line-height-xs)_ | - |
+| --rv-calendar-selected-day-background-color | _var(--rv-danger-color)_ | - |
+| --rv-calendar-day-disabled-color | _var(--rv-gray-5)_ | - |
+| --rv-calendar-confirm-button-height | _36px_ | - |
+| --rv-calendar-confirm-button-margin | _7px 0_ | - |
 
 ## 常见问题
 

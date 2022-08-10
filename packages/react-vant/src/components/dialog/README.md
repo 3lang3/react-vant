@@ -94,7 +94,6 @@ export default function App() {
 
 > 如果你需要在 `Dialog` 中包含很多复杂的状态和逻辑，那么可以使用**声明式**的语法，或者考虑自己将内部状态和逻辑单独封装一个组件出来([demo](https://stackblitz.com/edit/react-ubsjro-tbmdt8?file=src%2FApp.tsx))
 
-
 ### Props
 
 通过函数调用 `Dialog` 时，支持传入以下选项：
@@ -135,24 +134,24 @@ export default function App() {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                      | 默认值                              | 描述 |
-| ----------------------------------------- | ----------------------------------- | ---- |
-| --rv-dialog-width                         | _320px_                             | -    |
-| --rv-dialog-small-screen-width            | _90%_                               | -    |
-| --rv-dialog-font-size                     | _var(--rv-font-size-lg)_            | -    |
-| --rv-dialog-transition                    | _var(--rv-animation-duration-base)_ | -    |
-| --rv-dialog-border-radius                 | _16px_                              | -    |
-| --rv-dialog-background-color              | _var(--rv-white)_                   | -    |
-| --rv-dialog-header-font-weight            | _var(--rv-font-weight-bold)_        | -    |
-| --rv-dialog-header-line-height            | _24px_                              | -    |
-| --rv-dialog-header-padding-top            | _26px_                              | -    |
-| --rv-dialog-header-isolated-padding       | _var(--rv-padding-lg) 0_            | -    |
-| --rv-dialog-message-padding               | _var(--rv-padding-lg)_              | -    |
-| --rv-dialog-message-font-size             | _var(--rv-font-size-md)_            | -    |
-| --rv-dialog-message-line-height           | _var(--rv-line-height-md)_          | -    |
-| --rv-dialog-message-max-height            | _60vh_                              | -    |
-| --rv-dialog-has-title-message-text-color  | _var(--rv-gray-7)_                  | -    |
-| --rv-dialog-has-title-message-padding-top | _var(--rv-padding-xs)_              | -    |
-| --rv-dialog-button-height                 | _48px_                              | -    |
-| --rv-dialog-round-button-height           | _36px_                              | -    |
-| --rv-dialog-confirm-button-text-color     | _var(--rv-danger-color)_            | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-dialog-width | _320px_ | - |
+| --rv-dialog-small-screen-width | _90%_ | - |
+| --rv-dialog-font-size | _var(--rv-font-size-lg)_ | - |
+| --rv-dialog-transition | _var(--rv-animation-duration-base)_ | - |
+| --rv-dialog-border-radius | _16px_ | - |
+| --rv-dialog-background-color | _var(--rv-white)_ | - |
+| --rv-dialog-header-font-weight | _var(--rv-font-weight-bold)_ | - |
+| --rv-dialog-header-line-height | _24px_ | - |
+| --rv-dialog-header-padding-top | _26px_ | - |
+| --rv-dialog-header-isolated-padding | _var(--rv-padding-lg) 0_ | - |
+| --rv-dialog-message-padding | _var(--rv-padding-lg)_ | - |
+| --rv-dialog-message-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-dialog-message-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-dialog-message-max-height | _60vh_ | - |
+| --rv-dialog-has-title-message-text-color | _var(--rv-gray-7)_ | - |
+| --rv-dialog-has-title-message-padding-top | _var(--rv-padding-xs)_ | - |
+| --rv-dialog-button-height | _48px_ | - |
+| --rv-dialog-round-button-height | _36px_ | - |
+| --rv-dialog-confirm-button-text-color | _var(--rv-danger-color)_ | - |

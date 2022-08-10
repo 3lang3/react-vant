@@ -36,30 +36,30 @@ import { DropdownMenu } from 'react-vant';
 
 ### DropdownMenu Props
 
-| 参数                | 说明                         | 类型               | 默认值    |
-| ------------------- | ---------------------------- | ------------------ | --------- |
-| value               | 下拉菜单值                   | _Record<any, any>_ | -         |
-| defaultValue        | 下拉菜单默认值               | _Record<any, any>_ | -         |
-| disabled            | 是否禁用菜单                 | _boolean_          | false     |
-| activeColor         | 菜单标题和选项的选中态颜色   | _string_           | `#ee0a24` |
-| direction           | 菜单展开方向，可选值为`up`   | _string_           | `down`    |
-| zIndex              | 菜单栏 z-index 层级          | _number \| string_ | `10`      |
-| duration            | 动画时长，单位秒             | _number \| string_ | `0.2`     |
-| overlay             | 是否显示遮罩层               | _boolean_          | `true`    |
-| closeOnClickOverlay | 是否在点击遮罩层后关闭菜单   | _boolean_          | `true`    |
-| closeOnClickOutside | 是否在点击外部元素后关闭菜单 | _boolean_          | `true`    |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 下拉菜单值 | _Record<any, any>_ | - |
+| defaultValue | 下拉菜单默认值 | _Record<any, any>_ | - |
+| disabled | 是否禁用菜单 | _boolean_ | false |
+| activeColor | 菜单标题和选项的选中态颜色 | _string_ | `#ee0a24` |
+| direction | 菜单展开方向，可选值为`up` | _string_ | `down` |
+| zIndex | 菜单栏 z-index 层级 | _number \| string_ | `10` |
+| duration | 动画时长，单位秒 | _number \| string_ | `0.2` |
+| overlay | 是否显示遮罩层 | _boolean_ | `true` |
+| closeOnClickOverlay | 是否在点击遮罩层后关闭菜单 | _boolean_ | `true` |
+| closeOnClickOutside | 是否在点击外部元素后关闭菜单 | _boolean_ | `true` |
 
 ### DropdownItem Props
 
-| 参数        | 说明                       | 类型                           | 默认值         |
-| ----------- | -------------------------- | ------------------------------ | -------------- |
-| name        | 当前选中项对应的 value key | _number \| string_             | -              |
-| title       | 菜单项标题                 | _ReactNode_                    | 当前选中项文字 |
-| placeholder | 占位文本                   | _string_                       | `请选择`       |
-| options     | 选项数组                   | _Option[]_                     | `[]`           |
-| disabled    | 是否禁用菜单               | _boolean_                      | `false`        |
-| titleClass  | 标题额外类名               | _string_                       | -              |
-| teleport    | 指定挂载的节点             | _HTMLElment () => HTMLElement_ | -              |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| name | 当前选中项对应的 value key | _number \| string_ | - |
+| title | 菜单项标题 | _ReactNode_ | 当前选中项文字 |
+| placeholder | 占位文本 | _string_ | `请选择` |
+| options | 选项数组 | _Option[]_ | `[]` |
+| disabled | 是否禁用菜单 | _boolean_ | `false` |
+| titleClass | 标题额外类名 | _string_ | - |
+| teleport | 指定挂载的节点 | _HTMLElment () => HTMLElement_ | - |
 
 ### DropdownMenu Events
 
@@ -111,11 +111,11 @@ dropdownRef.current?.toggleItem(0);
 
 ### Option 数据结构
 
-| 键名  | 说明                                   | 类型               |
-| ----- | -------------------------------------- | ------------------ |
-| text  | 文字                                   | _ReactNode_           |
-| value | 标识符                                 | _number \| string_ |
-| icon  | 左侧图标 | _ReactNode_           |
+| 键名  | 说明     | 类型               |
+| ----- | -------- | ------------------ |
+| text  | 文字     | _ReactNode_        |
+| value | 标识符   | _number \| string_ |
+| icon  | 左侧图标 | _ReactNode_        |
 
 ## 主题定制
 
@@ -123,17 +123,17 @@ dropdownRef.current?.toggleItem(0);
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                         | 默认值                                  | 描述 |
-| -------------------------------------------- | --------------------------------------- | ---- |
-| --rv-dropdown-menu-height                    | _48px_                                  | -    |
-| --rv-dropdown-menu-background-color          | _var(--rv-white)_                       | -    |
-| --rv-dropdown-menu-box-shadow                | _0 2px 12px fade(var(--rv-gray-7), 12)_ | -    |
-| --rv-dropdown-menu-title-font-size           | _15px_                                  | -    |
-| --rv-dropdown-menu-title-text-color          | _var(--rv-text-color)_                  | -    |
-| --rv-dropdown-menu-title-active-text-color   | _var(--rv-danger-color)_                | -    |
-| --rv-dropdown-menu-title-disabled-text-color | _var(--rv-gray-6)_                      | -    |
-| --rv-dropdown-menu-title-padding             | _0 var(--rv-padding-xs)_                | -    |
-| --rv-dropdown-menu-title-line-height         | _var(--rv-line-height-lg)_              | -    |
-| --rv-dropdown-menu-option-active-color       | _var(--rv-danger-color)_                | -    |
-| --rv-dropdown-menu-content-max-height        | _80%_                                   | -    |
-| --rv-dropdown-item-z-index                   | _10_                                    | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-dropdown-menu-height | _48px_ | - |
+| --rv-dropdown-menu-background-color | _var(--rv-white)_ | - |
+| --rv-dropdown-menu-box-shadow | _0 2px 12px fade(var(--rv-gray-7), 12)_ | - |
+| --rv-dropdown-menu-title-font-size | _15px_ | - |
+| --rv-dropdown-menu-title-text-color | _var(--rv-text-color)_ | - |
+| --rv-dropdown-menu-title-active-text-color | _var(--rv-danger-color)_ | - |
+| --rv-dropdown-menu-title-disabled-text-color | _var(--rv-gray-6)_ | - |
+| --rv-dropdown-menu-title-padding | _0 var(--rv-padding-xs)_ | - |
+| --rv-dropdown-menu-title-line-height | _var(--rv-line-height-lg)_ | - |
+| --rv-dropdown-menu-option-active-color | _var(--rv-danger-color)_ | - |
+| --rv-dropdown-menu-content-max-height | _80%_ | - |
+| --rv-dropdown-item-z-index | _10_ | - |

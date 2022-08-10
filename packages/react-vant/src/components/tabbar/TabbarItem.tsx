@@ -1,43 +1,46 @@
-import React, { useContext, useMemo } from 'react';
-import clsx from 'clsx';
-import { TabbarItemProps } from './PropsType';
-import TabbarContext from './TabbarContext';
-import Badge from '../badge';
-import { createNamespace } from '../utils';
-import { devWarning } from '../utils/dev-log';
+import React, { useContext, useMemo } from 'react'
+import clsx from 'clsx'
+import { TabbarItemProps } from './PropsType'
+import TabbarContext from './TabbarContext'
+import Badge from '../badge'
+import { createNamespace } from '../utils'
+import { devWarning } from '../utils/dev-log'
 
-const [bem] = createNamespace('tabbar-item');
+const [bem] = createNamespace('tabbar-item')
 
-const TabbarItem: React.FC<TabbarItemProps> = (props) => {
-  const { setActive, index } = props;
-  const { parent } = useContext(TabbarContext);
-  const { activeColor, inactiveColor } = parent;
+const TabbarItem: React.FC<TabbarItemProps> = props => {
+  const { setActive, index } = props
+  const { parent } = useContext(TabbarContext)
+  const { activeColor, inactiveColor } = parent
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {
-      devWarning('Tabbar.Item', '<TabbarItem> must be a child component of <Tabbar>.');
+      devWarning(
+        'Tabbar.Item',
+        '<TabbarItem> must be a child component of <Tabbar>.'
+      )
     }
   }
 
   const active = useMemo(() => {
-    return (props.name || index) === parent.value;
-  }, [props.name, index, parent.value]);
+    return (props.name || index) === parent.value
+  }, [props.name, index, parent.value])
 
   const onClick = (event: React.MouseEvent) => {
-    setActive(props.name ?? index);
-    props.onClick?.(event);
-  };
+    setActive(props.name ?? index)
+    props.onClick?.(event)
+  }
 
   const renderIcon = () => {
     if (typeof props.icon === 'function') {
-      return props.icon(active);
+      return props.icon(active)
     }
     if (props.icon) {
-      return props.icon;
+      return props.icon
     }
-    return null;
-  };
+    return null
+  }
 
-  const color = active ? activeColor : inactiveColor;
+  const color = active ? activeColor : inactiveColor
 
   return (
     <div
@@ -54,7 +57,7 @@ const TabbarItem: React.FC<TabbarItemProps> = (props) => {
           : props.children}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TabbarItem;
+export default TabbarItem

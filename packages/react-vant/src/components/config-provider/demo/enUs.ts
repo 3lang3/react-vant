@@ -50,4 +50,4 @@ export default {
     disabled: 'Unavailable',
     placeholder: 'Coupon code',
   },
-};
+}

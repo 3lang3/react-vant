@@ -1,12 +1,12 @@
-import React from 'react';
-import { Cell, Dialog } from 'react-vant';
-import { Close } from '@react-vant/icons';
+import React from 'react'
+import { Cell, Dialog } from 'react-vant'
+import { Close } from '@react-vant/icons'
 
 export default () => {
   return (
     <>
       <Cell
-        title="关闭按钮"
+        title='关闭按钮'
         isLink
         onClick={() =>
           Dialog.alert({
@@ -18,7 +18,7 @@ export default () => {
         }
       />
       <Cell
-        title="自定义关闭按钮"
+        title='自定义关闭按钮'
         isLink
         onClick={() =>
           Dialog.alert({
@@ -31,5 +31,5 @@ export default () => {
         }
       />
     </>
-  );
-};
+  )
+}

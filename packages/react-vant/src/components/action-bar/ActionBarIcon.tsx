@@ -1,28 +1,27 @@
-import React from 'react';
-import clsx from 'clsx';
-import { ActionBarIconProps } from './PropsType';
-import Badge from '../badge';
-import { createNamespace } from '../utils';
+import React from 'react'
+import clsx from 'clsx'
+import { ActionBarIconProps } from './PropsType'
+import Badge from '../badge'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('action-bar-icon');
+const [bem] = createNamespace('action-bar-icon')
 
-const ActionBarIcon: React.FC<ActionBarIconProps> = (props) => {
-
+const ActionBarIcon: React.FC<ActionBarIconProps> = props => {
   const renderIcon = () => {
-    const { badge, icon } = props;
+    const { badge, icon } = props
     if (icon) {
       return (
         <Badge {...badge} className={clsx(bem('icon'))}>
           {icon}
         </Badge>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <div
-      role="button"
+      role='button'
       className={clsx(props.className, bem())}
       style={props.style}
       tabIndex={0}
@@ -31,7 +30,7 @@ const ActionBarIcon: React.FC<ActionBarIconProps> = (props) => {
       {renderIcon()}
       {props.children || props.text}
     </div>
-  );
-};
+  )
+}
 
-export default ActionBarIcon;
+export default ActionBarIcon

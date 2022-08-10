@@ -2,6 +2,7 @@
 simulator:
   compact: false
 ---
+
 # Card 卡片
 
 ## 介绍
@@ -204,14 +205,14 @@ export default () => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                       | 默认值                                      | 描述 |
-| -------------------------- | ------------------------------------------- | ---- |
-| --rv-card-size             | _var(--rv-font-size-md)_                    | -    |
-| --rv-card-color            | _var(--rv-text-color)_                      | -    |
-| --rv-card-background-color | _var(--rv-white)_                           | -    |
-| --rv-card-radius           | _var(--rv-border-radius-lg)_                | -    |
-| --rv-card-body-padding     | _0 var(--rv-padding-md)_                    | -    |
-| --rv-card-header-padding   | _var(--rv-padding-sm) var(--rv-padding-md)_ | -    |
-| --rv-card-header-size      | _var(--rv-font-size-lg)_                    | -    |
-| --rv-card-header-color     | _var(--rv-black)_                           | -    |
-| --rv-card-footer-padding   | _var(--rv-padding-sm) var(--rv-padding-md)_ | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-card-size | _var(--rv-font-size-md)_ | - |
+| --rv-card-color | _var(--rv-text-color)_ | - |
+| --rv-card-background-color | _var(--rv-white)_ | - |
+| --rv-card-radius | _var(--rv-border-radius-lg)_ | - |
+| --rv-card-body-padding | _0 var(--rv-padding-md)_ | - |
+| --rv-card-header-padding | _var(--rv-padding-sm) var(--rv-padding-md)_ | - |
+| --rv-card-header-size | _var(--rv-font-size-lg)_ | - |
+| --rv-card-header-color | _var(--rv-black)_ | - |
+| --rv-card-footer-padding | _var(--rv-padding-sm) var(--rv-padding-md)_ | - |

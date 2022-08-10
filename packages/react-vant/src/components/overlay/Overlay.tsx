@@ -1,20 +1,25 @@
-import React, { CSSProperties, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import clsx from 'clsx';
-import { OverlayProps } from './PropsType';
-import { createNamespace, isDef, preventDefault, withStopPropagation } from '../utils';
-import { useEventListener } from '../hooks';
+import React, { CSSProperties, useRef } from 'react'
+import { CSSTransition } from 'react-transition-group'
+import clsx from 'clsx'
+import { OverlayProps } from './PropsType'
+import {
+  createNamespace,
+  isDef,
+  preventDefault,
+  withStopPropagation,
+} from '../utils'
+import { useEventListener } from '../hooks'
 
-const [bem] = createNamespace('overlay');
+const [bem] = createNamespace('overlay')
 
-const Overlay: React.FC<OverlayProps> = (props) => {
-  const nodeRef = useRef(null);
-  const { visible, duration } = props;
+const Overlay: React.FC<OverlayProps> = props => {
+  const nodeRef = useRef(null)
+  const { visible, duration } = props
 
   const preventTouchMove = (event: TouchEvent) => {
-    if (!props.lockScroll) return;
-    preventDefault(event, true);
-  };
+    if (!props.lockScroll) return
+    preventDefault(event, true)
+  }
 
   const renderOverlay = () => {
     const style: CSSProperties = {
@@ -22,10 +27,10 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       touchAction: props.lockScroll && 'none',
       ...props.style,
       ...props.customStyle,
-    };
+    }
 
     if (isDef(duration)) {
-      style.animationDuration = `${duration}ms`;
+      style.animationDuration = `${duration}ms`
     }
 
     return withStopPropagation(
@@ -33,19 +38,19 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       <div
         ref={nodeRef}
         style={style}
-        onClick={(e) => {
+        onClick={e => {
           if (e.target === e.currentTarget) {
-            props.onClick?.(e);
+            props.onClick?.(e)
           }
         }}
         className={clsx(bem(), props.className)}
       >
         {props.children}
-      </div>,
-    );
-  };
+      </div>
+    )
+  }
 
-  useEventListener('touchmove', preventTouchMove, { target: nodeRef });
+  useEventListener('touchmove', preventTouchMove, { target: nodeRef })
 
   return (
     <CSSTransition
@@ -54,17 +59,17 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       unmountOnExit
       in={visible}
       timeout={duration}
-      classNames="rv-fade"
+      classNames='rv-fade'
     >
       {renderOverlay()}
     </CSSTransition>
-  );
-};
+  )
+}
 
 Overlay.defaultProps = {
   stopPropagation: ['click'],
   lockScroll: true,
   duration: 300,
-};
+}
 
-export default Overlay;
+export default Overlay

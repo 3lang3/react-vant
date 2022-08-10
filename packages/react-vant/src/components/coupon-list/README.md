@@ -82,30 +82,30 @@ import { CouponCell, CouponList } from 'react-vant';
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                    | 默认值                                        | 描述 |
-| --------------------------------------- | --------------------------------------------- | ---- |
-| --rv-coupon-margin                      | _0 var(--rv-padding-sm) var(--rv-padding-sm)_ | -    |
-| --rv-coupon-content-height              | _84px_                                        | -    |
-| --rv-coupon-content-padding             | _14px 0_                                      | -    |
-| --rv-coupon-background-color            | _var(--rv-white)_                             | -    |
-| --rv-coupon-active-background-color     | _var(--rv-active-color)_                      | -    |
-| --rv-coupon-border-radius               | _var(--rv-border-radius-lg)_                  | -    |
-| --rv-coupon-box-shadow                  | _0 0 4px rgba(0, 0, 0, 0.1)_                  | -    |
-| --rv-coupon-head-width                  | _96px_                                        | -    |
-| --rv-coupon-amount-color                | _var(--rv-primary-color)_                     | -    |
-| --rv-coupon-amount-font-size            | _30px_                                        | -    |
-| --rv-coupon-currency-font-size          | _40%_                                         | -    |
-| --rv-coupon-name-font-size              | _var(--rv-font-size-md)_                      | -    |
-| --rv-coupon-disabled-text-color         | _var(--rv-gray-6)_                            | -    |
-| --rv-coupon-description-padding         | _var(--rv-padding-xs) var(--rv-padding-md)_   | -    |
-| --rv-coupon-description-border-color    | _var(--rv-border-color)_                      | -    |
-| --rv-coupon-corner-checkbox-icon-color  | _var(--rv-primary-color)_                     | -    |
-| --rv-coupon-list-background-color       | _var(--rv-background-color)_                  | -    |
-| --rv-coupon-list-field-padding          | _5px 0 5px var(--rv-padding-md)_              | -    |
-| --rv-coupon-list-exchange-button-height | _32px_                                        | -    |
-| --rv-coupon-list-close-button-height    | _40px_                                        | -    |
-| --rv-coupon-list-empty-image-size       | _200px_                                       | -    |
-| --rv-coupon-list-empty-tip-color        | _var(--rv-gray-6)_                            | -    |
-| --rv-coupon-list-empty-tip-font-size    | _var(--rv-font-size-md)_                      | -    |
-| --rv-coupon-list-empty-tip-line-height  | _var(--rv-line-height-md)_                    | -    |
-| --rv-coupon-cell-selected-text-color    | _var(--rv-text-color)_                        | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-coupon-margin | _0 var(--rv-padding-sm) var(--rv-padding-sm)_ | - |
+| --rv-coupon-content-height | _84px_ | - |
+| --rv-coupon-content-padding | _14px 0_ | - |
+| --rv-coupon-background-color | _var(--rv-white)_ | - |
+| --rv-coupon-active-background-color | _var(--rv-active-color)_ | - |
+| --rv-coupon-border-radius | _var(--rv-border-radius-lg)_ | - |
+| --rv-coupon-box-shadow | _0 0 4px rgba(0, 0, 0, 0.1)_ | - |
+| --rv-coupon-head-width | _96px_ | - |
+| --rv-coupon-amount-color | _var(--rv-primary-color)_ | - |
+| --rv-coupon-amount-font-size | _30px_ | - |
+| --rv-coupon-currency-font-size | _40%_ | - |
+| --rv-coupon-name-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-coupon-disabled-text-color | _var(--rv-gray-6)_ | - |
+| --rv-coupon-description-padding | _var(--rv-padding-xs) var(--rv-padding-md)_ | - |
+| --rv-coupon-description-border-color | _var(--rv-border-color)_ | - |
+| --rv-coupon-corner-checkbox-icon-color | _var(--rv-primary-color)_ | - |
+| --rv-coupon-list-background-color | _var(--rv-background-color)_ | - |
+| --rv-coupon-list-field-padding | _5px 0 5px var(--rv-padding-md)_ | - |
+| --rv-coupon-list-exchange-button-height | _32px_ | - |
+| --rv-coupon-list-close-button-height | _40px_ | - |
+| --rv-coupon-list-empty-image-size | _200px_ | - |
+| --rv-coupon-list-empty-tip-color | _var(--rv-gray-6)_ | - |
+| --rv-coupon-list-empty-tip-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-coupon-list-empty-tip-line-height | _var(--rv-line-height-md)_ | - |
+| --rv-coupon-cell-selected-text-color | _var(--rv-text-color)_ | - |

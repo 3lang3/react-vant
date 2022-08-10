@@ -1,14 +1,16 @@
-import React, { useMemo } from 'react';
-import clsx from 'clsx';
-import { ActionBarProps } from './PropsType';
-import ActionBarContext from './ActionBarContext';
-import { createNamespace } from '../utils';
+import React, { useMemo } from 'react'
+import clsx from 'clsx'
+import { ActionBarProps } from './PropsType'
+import ActionBarContext from './ActionBarContext'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('action-bar');
+const [bem] = createNamespace('action-bar')
 
-const ActionBar: React.FC<ActionBarProps> = (props) => {
-
-  const children = useMemo(() => React.Children.toArray(props.children), [props.children]);
+const ActionBar: React.FC<ActionBarProps> = props => {
+  const children = useMemo(
+    () => React.Children.toArray(props.children),
+    [props.children]
+  )
 
   return (
     <ActionBarContext.Provider value={{ parent: { children } }}>
@@ -23,15 +25,15 @@ const ActionBar: React.FC<ActionBarProps> = (props) => {
           .map((child: React.ReactElement, index: number) =>
             React.cloneElement(child, {
               index,
-            }),
+            })
           )}
       </div>
     </ActionBarContext.Provider>
-  );
-};
+  )
+}
 
 ActionBar.defaultProps = {
   safeAreaInsetBottom: true,
-};
+}
 
-export default ActionBar;
+export default ActionBar

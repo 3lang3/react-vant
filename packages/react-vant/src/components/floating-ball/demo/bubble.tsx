@@ -1,11 +1,11 @@
-import React from 'react';
-import { Flex, FloatingBall } from 'react-vant';
-import { Chat } from '@react-vant/icons';
+import React from 'react'
+import { Flex, FloatingBall } from 'react-vant'
+import { Chat } from '@react-vant/icons'
 
-export default (props) => {
+export default props => {
   return (
     <FloatingBall
-      className="demo-floating-box-bubble"
+      className='demo-floating-box-bubble'
       offset={{
         right: 20,
         bottom: 20,
@@ -21,9 +21,9 @@ export default (props) => {
       }}
       {...props}
     >
-      <Flex align="center" justify="center" className="main-button">
+      <Flex align='center' justify='center' className='main-button'>
         <Chat />
       </Flex>
     </FloatingBall>
-  );
-};
+  )
+}

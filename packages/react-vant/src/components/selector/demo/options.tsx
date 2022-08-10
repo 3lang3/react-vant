@@ -10,5 +10,5 @@ export const options = [
   {
     label: '选项三',
     value: '3',
-  }
+  },
 ]

@@ -106,7 +106,7 @@ export default () => {
 | initExpanded | 当前展开面板的 name | 手风琴模式：_number \| string_<br>非手风琴模式：_(number \| string)[]_ | - |
 | accordion | 是否开启手风琴模式 | _boolean_ | `false` |
 | border | 是否显示外边框 | _boolean_ | `true` |
-| nativeRef | 组件根部DOM元素引用 | _Ref_ | - |
+| nativeRef | 组件根部 DOM 元素引用 | _Ref_ | - |
 
 ### Collapse Events
 
@@ -116,20 +116,20 @@ export default () => {
 
 ### CollapseItem Props
 
-| 参数       | 说明                                 | 类型                | 默认值  |
-| ---------- | ------------------------------------ | ------------------- | ------- |
-| name       | 唯一标识符，默认为索引值             | _number \| string_  | `index` |
-| icon       | 标题栏左侧图标                       | _string\|ReactNode_ | -       |
-| size       | 标题栏大小，可选值为 `large`         | _string_            | -       |
-| title      | 标题栏左侧内容                       | _ReactNode_         | -       |
-| value      | 标题栏右侧内容                       | _ReactNode_         | -       |
-| label      | 标题栏描述信息                       | _ReactNode_         | -       |
-| border     | 是否显示内边框                       | _boolean_           | `true`  |
-| isLink     | 是否展示标题栏右侧箭头并开启点击反馈 | _boolean_           | `true`  |
-| disabled   | 是否禁用面板                         | _boolean_           | `false` |
-| titleClass | 左侧标题额外类名                     | _string_            | -       |
-| valueClass | 右侧内容额外类名                     | _string_            | -       |
-| labelClass | 描述信息额外类名                     | _string_            | -       |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| name | 唯一标识符，默认为索引值 | _number \| string_ | `index` |
+| icon | 标题栏左侧图标 | _string\|ReactNode_ | - |
+| size | 标题栏大小，可选值为 `large` | _string_ | - |
+| title | 标题栏左侧内容 | _ReactNode_ | - |
+| value | 标题栏右侧内容 | _ReactNode_ | - |
+| label | 标题栏描述信息 | _ReactNode_ | - |
+| border | 是否显示内边框 | _boolean_ | `true` |
+| isLink | 是否展示标题栏右侧箭头并开启点击反馈 | _boolean_ | `true` |
+| disabled | 是否禁用面板 | _boolean_ | `false` |
+| titleClass | 左侧标题额外类名 | _string_ | - |
+| valueClass | 右侧内容额外类名 | _string_ | - |
+| labelClass | 描述信息额外类名 | _string_ | - |
 
 ### CollapseItem 方法
 
@@ -164,12 +164,12 @@ collapseItemRef.current?.toggle();
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                                        | 默认值                                      | 描述 |
-| ------------------------------------------- | ------------------------------------------- | ---- |
-| --rv-collapse-item-transition-duration      | _var(--rv-animation-duration-base)_         | -    |
-| --rv-collapse-item-content-padding          | _var(--rv-padding-sm) var(--rv-padding-md)_ | -    |
-| --rv-collapse-item-content-font-size        | _var(--rv-font-size-md)_                    | -    |
-| --rv-collapse-item-content-line-height      | _1.5_                                       | -    |
-| --rv-collapse-item-content-text-color       | _var(--rv-gray-6)_                          | -    |
-| --rv-collapse-item-content-background-color | _var(--rv-white)_                           | -    |
-| --rv-collapse-item-title-disabled-color     | _var(--rv-gray-5)_                          | -    |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-collapse-item-transition-duration | _var(--rv-animation-duration-base)_ | - |
+| --rv-collapse-item-content-padding | _var(--rv-padding-sm) var(--rv-padding-md)_ | - |
+| --rv-collapse-item-content-font-size | _var(--rv-font-size-md)_ | - |
+| --rv-collapse-item-content-line-height | _1.5_ | - |
+| --rv-collapse-item-content-text-color | _var(--rv-gray-6)_ | - |
+| --rv-collapse-item-content-background-color | _var(--rv-white)_ | - |
+| --rv-collapse-item-title-disabled-color | _var(--rv-gray-5)_ | - |

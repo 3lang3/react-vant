@@ -1,48 +1,50 @@
-import React, { useMemo, MouseEvent, useRef } from 'react';
-import clsx from 'clsx';
-import { CSSTransition } from 'react-transition-group';
-import { Cross } from '@react-vant/icons';
-import { TagProps } from './PropsType';
-import { createNamespace } from '../utils';
+import React, { useMemo, MouseEvent, useRef } from 'react'
+import clsx from 'clsx'
+import { CSSTransition } from 'react-transition-group'
+import { Cross } from '@react-vant/icons'
+import { TagProps } from './PropsType'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('tag');
+const [bem] = createNamespace('tag')
 
-const Tag: React.FC<TagProps> = (props) => {
-  const nodeRef = useRef(null);
+const Tag: React.FC<TagProps> = props => {
+  const nodeRef = useRef(null)
 
   const onClose = (event: MouseEvent) => {
-    event.stopPropagation();
+    event.stopPropagation()
     if (props.onClose) {
-      props.onClose(event);
+      props.onClose(event)
     }
-  };
+  }
 
   const getStyle = useMemo(() => {
     if (props.plain) {
       return {
         color: props.textColor || props.color,
         borderColor: props.color,
-      };
+      }
     }
     return {
       color: props.textColor,
       background: props.color,
-    };
-  }, [props.textColor, props.color, props.plain]);
+    }
+  }, [props.textColor, props.color, props.plain])
 
   const renderTag = () => {
-    const { type, mark, plain, round, size, closeable } = props;
+    const { type, mark, plain, round, size, closeable } = props
 
     const classes: Record<string, unknown> = {
       mark,
       plain,
       round,
-    };
+    }
     if (size) {
-      classes[size] = size;
+      classes[size] = size
     }
 
-    const CloseIcon = closeable && <Cross className={clsx(bem('close'))} onClick={onClose} />;
+    const CloseIcon = closeable && (
+      <Cross className={clsx(bem('close'))} onClick={onClose} />
+    )
 
     return (
       <span
@@ -54,25 +56,25 @@ const Tag: React.FC<TagProps> = (props) => {
         {props.children}
         {CloseIcon}
       </span>
-    );
-  };
+    )
+  }
 
   return (
     <CSSTransition
       nodeRef={nodeRef}
-      classNames="rv-fade"
+      classNames='rv-fade'
       in={props.show}
       timeout={300}
       unmountOnExit
     >
       {renderTag()}
     </CSSTransition>
-  );
-};
+  )
+}
 
 Tag.defaultProps = {
   show: true,
   type: 'default',
-};
+}
 
-export default Tag;
+export default Tag

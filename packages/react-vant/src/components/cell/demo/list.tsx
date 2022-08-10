@@ -1,5 +1,5 @@
-import React from 'react';
-import { Cell, Image } from 'react-vant';
+import React from 'react'
+import { Cell, Image } from 'react-vant'
 
 export default () => {
   return (
@@ -9,18 +9,11 @@ export default () => {
           center
           key={idx}
           title={`Avatar ${idx}`}
-          label="Deserunt dolor ea eaque eos"
-          icon={
-            <Image
-              width={44}
-              height={44}
-              src="/demo_1.jpg"
-              round
-            />
-          }
+          label='Deserunt dolor ea eaque eos'
+          icon={<Image width={44} height={44} src='/demo_1.jpg' round />}
           isLink
         />
       ))}
     </>
-  );
-};
+  )
+}

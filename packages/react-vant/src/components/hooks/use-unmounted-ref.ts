@@ -1,16 +1,16 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const useUnmountedRef = () => {
-  const unmountedRef = useRef(false);
+  const unmountedRef = useRef(false)
   useEffect(() => {
-    unmountedRef.current = false;
+    unmountedRef.current = false
 
     return () => {
-      unmountedRef.current = true;
-    };
-  }, []);
-  return unmountedRef;
-};
+      unmountedRef.current = true
+    }
+  }, [])
+  return unmountedRef
+}
 
-export default useUnmountedRef;
+export default useUnmountedRef

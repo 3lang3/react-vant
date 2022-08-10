@@ -74,14 +74,14 @@ type SelectorValue = string | number;
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/config-provider)。
 
-| 名称                             | 默认值                                        | 描述       |
-| -------------------------------- | --------------------------------------------- | ---------- |
-| --rv-selector-color              | var(--rv-gray-2)                              | 背景色     |
-| --rv-selector-checked-color      | #efefff                                       | 选中背景色 |
-| --rv-selector-text-color         | var(--rv-text-color)                          | 文本色     |
-| --rv-selector-checked-text-color | var(--rv-primary-color)                       | 选中文本色 |
-| --rv-selector-border             | none                                          | 边框       |
-| --rv-selector-checkedborder      | none                                          | 选中边框   |
-| --rv-selector-border-radius      | var(--rv-border-radius-sm)                    | 圆角       |
-| --rv-selector-padding            | var(--rv-padding-xs) var(--rv-padding-md)     | 内边距     |
-| --rv-selector-margin             | 0 var(--rv-padding-xs) var(--rv-padding-xs) 0 | 间距       |
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| --rv-selector-color | var(--rv-gray-2) | 背景色 |
+| --rv-selector-checked-color | #efefff | 选中背景色 |
+| --rv-selector-text-color | var(--rv-text-color) | 文本色 |
+| --rv-selector-checked-text-color | var(--rv-primary-color) | 选中文本色 |
+| --rv-selector-border | none | 边框 |
+| --rv-selector-checkedborder | none | 选中边框 |
+| --rv-selector-border-radius | var(--rv-border-radius-sm) | 圆角 |
+| --rv-selector-padding | var(--rv-padding-xs) var(--rv-padding-md) | 内边距 |
+| --rv-selector-margin | 0 var(--rv-padding-xs) var(--rv-padding-xs) 0 | 间距 |

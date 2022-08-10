@@ -1,11 +1,11 @@
-import React from 'react';
-import { Cell, Dialog, Toast } from 'react-vant';
+import React from 'react'
+import { Cell, Dialog, Toast } from 'react-vant'
 
 export default () => {
   return (
     <>
       <Cell
-        title="完全关闭后的回调"
+        title='完全关闭后的回调'
         isLink
         onClick={() =>
           Dialog.alert({
@@ -16,7 +16,7 @@ export default () => {
         }
       />
       <Cell
-        title="异步关闭"
+        title='异步关闭'
         isLink
         onClick={() =>
           Dialog.show({
@@ -24,24 +24,24 @@ export default () => {
             message: '弹窗内容',
             showCancelButton: true,
             onCancel: () => {
-              return new Promise((res) => {
+              return new Promise(res => {
                 setTimeout(() => {
-                  res(true);
-                  Toast.success({ message: '取消按钮异步' });
-                }, 3000);
-              });
+                  res(true)
+                  Toast.success({ message: '取消按钮异步' })
+                }, 3000)
+              })
             },
             onConfirm: () => {
-              return new Promise((res) => {
+              return new Promise(res => {
                 setTimeout(() => {
-                  res(true);
-                  Toast.success({ message: '确认按钮异步' });
-                }, 3000);
-              });
+                  res(true)
+                  Toast.success({ message: '确认按钮异步' })
+                }, 3000)
+              })
             },
           })
         }
       />
     </>
-  );
-};
+  )
+}

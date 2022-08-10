@@ -71,4 +71,4 @@ export default {
   vanAddressList: {
     add: '住所を追加',
   },
-};
+}

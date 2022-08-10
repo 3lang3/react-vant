@@ -1,40 +1,40 @@
-import { BaseTypeProps } from '../utils';
+import { BaseTypeProps } from '../utils'
 
 export interface WaterMarkProps extends BaseTypeProps {
   /** 水印的宽度 */
-  width?: number;
+  width?: number
   /** 水印的高度 */
-  height?: number;
+  height?: number
   /** 水印旋转的角度，单位 °	 */
-  rotate?: number;
+  rotate?: number
   /** 设置图片水印 */
   image?: {
     /** 图片地址 */
-    src: string;
+    src: string
     /** 图片宽度 */
-    width: number;
+    width: number
     /** 图片高度 */
     height: number
-  };
-  zIndex?: number;
+  }
+  zIndex?: number
   /** 水印文字内容 */
-  content?: string;
+  content?: string
   font?: {
     /** 文字颜色	 */
-    color?: string;
+    color?: string
     /** 文字大小	 */
-    size?: number | string;
+    size?: number | string
     /** 文字style属性 */
-    style?: string;
+    style?: string
     /** 文字family */
-    family?: string;
+    family?: string
     /** 文字weight属性 */
-    weight?: string;
+    weight?: string
   }
   /** 水印之间的水平间距	 */
-  gapX?: number;
+  gapX?: number
   /** 水印之间的垂直间距	 */
-  gapY?: number;
+  gapY?: number
   /** 是否覆盖整个页面	 */
-  fullPage?: boolean;
+  fullPage?: boolean
 }

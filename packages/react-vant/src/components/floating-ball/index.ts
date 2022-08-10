@@ -1,5 +1,5 @@
-import './style/index.less';
-import FloatingBall from './FloatingBall';
+import './style/index.less'
+import FloatingBall from './FloatingBall'
 
-export { FloatingBall };
-export type { FloatingBallInstance, FloatingBallProps } from './PropsType';
+export { FloatingBall }
+export type { FloatingBallInstance, FloatingBallProps } from './PropsType'

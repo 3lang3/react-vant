@@ -1,11 +1,11 @@
-import React from 'react';
-import { Cell, Dialog } from 'react-vant';
+import React from 'react'
+import { Cell, Dialog } from 'react-vant'
 
 export default () => {
   return (
     <>
       <Cell
-        title="圆角按钮弹窗"
+        title='圆角按钮弹窗'
         isLink
         onClick={() =>
           Dialog.alert({
@@ -17,7 +17,7 @@ export default () => {
         }
       />
       <Cell
-        title="圆角按钮弹窗（无标题）"
+        title='圆角按钮弹窗（无标题）'
         isLink
         onClick={() =>
           Dialog.alert({
@@ -27,5 +27,5 @@ export default () => {
         }
       />
     </>
-  );
-};
+  )
+}

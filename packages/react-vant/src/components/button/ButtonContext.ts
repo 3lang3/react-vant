@@ -1,10 +1,10 @@
-import React from 'react';
-import { ButtonGroupProps } from './PropsType';
+import React from 'react'
+import { ButtonGroupProps } from './PropsType'
 
 type ButtonContextType = {
-  parent?: ButtonGroupProps;
-};
+  parent?: ButtonGroupProps
+}
 
-const ButtonContext = React.createContext<ButtonContextType>({});
+const ButtonContext = React.createContext<ButtonContextType>({})
 
-export default ButtonContext;
+export default ButtonContext

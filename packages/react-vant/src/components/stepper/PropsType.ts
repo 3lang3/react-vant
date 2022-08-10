@@ -1,62 +1,62 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
-export type StepperTheme = 'default' | 'round';
+export type StepperTheme = 'default' | 'round'
 
 export interface StepperProps extends BaseTypeProps {
-  theme?: StepperTheme;
+  theme?: StepperTheme
   /** 是否只允许输入整数	 */
-  integer?: boolean;
+  integer?: boolean
   /** 是否禁用步进器	 */
-  disabled?: boolean;
+  disabled?: boolean
   /** 是否允许输入的值为空	 */
-  allowEmpty?: boolean;
+  allowEmpty?: boolean
   /** 输入框宽度，默认单位为 px	 */
-  inputWidth?: number | string;
+  inputWidth?: number | string
   /** 按钮大小以及输入框高度，默认单位为 px	 */
-  buttonSize?: number | string;
+  buttonSize?: number | string
   /** 输入框占位提示文字	 */
-  placeholder?: string;
+  placeholder?: string
   /** 是否禁用增加按钮	 */
-  disablePlus?: boolean;
+  disablePlus?: boolean
   /** 是否禁用减少按钮	 */
-  disableMinus?: boolean;
+  disableMinus?: boolean
   /** 是否禁用输入框	 */
-  disableInput?: boolean;
+  disableInput?: boolean
   /** 固定显示的小数位数	 */
-  decimalLength?: number;
+  decimalLength?: number
   /** 标识符，可以在 onChange 事件回调参数中获取	 */
-  name?: string;
+  name?: string
   /** 最小值	 */
-  min?: number;
+  min?: number
   /** 最大值	 */
-  max?: number;
+  max?: number
   /** 步长，每次点击时改变的值	 */
-  step?: number;
+  step?: number
   /** 是否显示增加按钮	 */
-  showPlus?: boolean;
+  showPlus?: boolean
   /** 是否显示减少按钮	 */
-  showMinus?: boolean;
+  showMinus?: boolean
   /** 是否显示输入框	 */
-  showInput?: boolean;
+  showInput?: boolean
   /** 是否开启长按手势	 */
-  longPress?: boolean;
+  longPress?: boolean
   /** 输入框点击事件 */
-  onClick?: (event: React.MouseEvent) => void;
+  onClick?: (event: React.MouseEvent) => void
   /** 当前输入的值	 */
-  value?: number | null;
+  value?: number | null
   /** 默认值 */
-  defaultValue?: number | null;
+  defaultValue?: number | null
   /** 当绑定值变化时触发的事件	 */
-  onChange?: (val: number | null, detail?: { name: string }) => void;
+  onChange?: (val: number | null, detail?: { name: string }) => void
   /** 点击增加按钮时触发	 */
-  onPlus?: (event: React.MouseEvent, val: number | null) => void;
+  onPlus?: (event: React.MouseEvent, val: number | null) => void
   /** 点击减少按钮时触发	 */
-  onMinus?: (event: React.MouseEvent, val: number | null) => void;
+  onMinus?: (event: React.MouseEvent, val: number | null) => void
   /** 输入框聚焦时触发	 */
-  onFocus?: (event: React.FormEvent) => void;
+  onFocus?: (event: React.FormEvent) => void
   /** 输入框失焦时触发	 */
-  onBlur?: (event: React.FormEvent) => void;
+  onBlur?: (event: React.FormEvent) => void
   /** 点击不可用的按钮时触发	 */
-  onOverlimit?: (actinType: string) => void;
+  onOverlimit?: (actinType: string) => void
 }

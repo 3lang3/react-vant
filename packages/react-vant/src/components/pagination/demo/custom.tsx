@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Arrow, ArrowLeft } from '@react-vant/icons';
-import { Pagination } from 'react-vant';
+import React, { useState } from 'react'
+import { Arrow, ArrowLeft } from '@react-vant/icons'
+import { Pagination } from 'react-vant'
 
 export default () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1)
   return (
     <Pagination
       value={page}
@@ -14,5 +14,5 @@ export default () => {
       nextText={<Arrow />}
       pageRender={({ text }) => `${text} 😀`}
     />
-  );
-};
+  )
+}

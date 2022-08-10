@@ -1,8 +1,8 @@
-import './style/index.less';
-import Picker from './Picker';
+import './style/index.less'
+import Picker from './Picker'
 
-export default Picker;
-export { Picker };
+export default Picker
+export { Picker }
 export type {
   PickerProps,
   PickerColumn,
@@ -10,4 +10,4 @@ export type {
   PickerFieldNames,
   PickerPopupActions,
   PickerToolbarPosition,
-} from './PropsType';
+} from './PropsType'

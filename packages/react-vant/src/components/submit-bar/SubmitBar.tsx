@@ -1,21 +1,22 @@
-import React, { useContext } from 'react';
-import cls from 'clsx';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
-import { SubmitBarProps } from './PropsType';
-import Button from '../button';
-import { createNamespace } from '../utils';
+import React, { useContext } from 'react'
+import cls from 'clsx'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { SubmitBarProps } from './PropsType'
+import Button from '../button'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('submit-bar');
+const [bem] = createNamespace('submit-bar')
 
-const SubmitBar: React.FC<SubmitBarProps> = (props) => {
-  const { locale } = useContext(ConfigProviderContext);
+const SubmitBar: React.FC<SubmitBarProps> = props => {
+  const { locale } = useContext(ConfigProviderContext)
 
   const renderText = () => {
-    const { price, label, currency, textAlign, suffixLabel, decimalLength } = props;
+    const { price, label, currency, textAlign, suffixLabel, decimalLength } =
+      props
 
     if (typeof +price === 'number') {
-      const pricePair = (+price / 100).toFixed(+decimalLength).split('.');
-      const decimal = decimalLength ? `.${pricePair[1]}` : '';
+      const pricePair = (+price / 100).toFixed(+decimalLength).split('.')
+      const decimal = decimalLength ? `.${pricePair[1]}` : ''
 
       return (
         <div className={cls(bem('text'))} style={{ textAlign }}>
@@ -25,15 +26,17 @@ const SubmitBar: React.FC<SubmitBarProps> = (props) => {
             <span className={cls(bem('price-integer'))}>{pricePair[0]}</span>
             {decimal}
           </span>
-          {suffixLabel && <span className={cls(bem('suffix-label'))}>{suffixLabel}</span>}
+          {suffixLabel && (
+            <span className={cls(bem('suffix-label'))}>{suffixLabel}</span>
+          )}
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderTip = () => {
-    const { tip, tipIcon } = props;
+    const { tip, tipIcon } = props
     if (tip) {
       return (
         <div className={cls(bem('tip'))}>
@@ -43,16 +46,16 @@ const SubmitBar: React.FC<SubmitBarProps> = (props) => {
             })}
           {tip && <span className={cls(bem('tip-text'))}>{tip}</span>}
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
-  const onClickButton = () => props?.onSubmit();
+  const onClickButton = () => props?.onSubmit()
 
   const renderButton = () => {
     if (props.button) {
-      return props.button;
+      return props.button
     }
 
     return (
@@ -66,12 +69,14 @@ const SubmitBar: React.FC<SubmitBarProps> = (props) => {
         disabled={props.disabled}
         onClick={onClickButton}
       />
-    );
-  };
+    )
+  }
 
   return (
     <div
-      className={cls(props.className, bem(), { 'rv-safe-area-bottom': props.safeAreaInsetBottom })}
+      className={cls(props.className, bem(), {
+        'rv-safe-area-bottom': props.safeAreaInsetBottom,
+      })}
       style={props.style}
     >
       {props.top}
@@ -82,8 +87,8 @@ const SubmitBar: React.FC<SubmitBarProps> = (props) => {
         {renderButton()}
       </div>
     </div>
-  );
-};
+  )
+}
 
 // defaultProps defined if need
 SubmitBar.defaultProps = {
@@ -91,6 +96,6 @@ SubmitBar.defaultProps = {
   decimalLength: 2,
   currency: '¥',
   safeAreaInsetBottom: true,
-};
+}
 
-export default SubmitBar;
+export default SubmitBar

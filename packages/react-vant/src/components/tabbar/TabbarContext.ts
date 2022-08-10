@@ -1,10 +1,10 @@
-import { createContext, Context } from 'react';
-import { TabbarProps } from './PropsType';
+import { createContext, Context } from 'react'
+import { TabbarProps } from './PropsType'
 
 export interface TabbarState {
-  parent?: TabbarProps;
+  parent?: TabbarProps
 }
 
-const TabbarContext: Context<TabbarState> = createContext({});
+const TabbarContext: Context<TabbarState> = createContext({})
 
-export default TabbarContext;
+export default TabbarContext

@@ -1,50 +1,59 @@
-import React, { useContext } from 'react';
-import clsx from 'clsx';
-import Loading from '../loading';
-import { ButtonProps } from './PropsType';
-import { BORDER_SURROUND, SHADOW, WHITE } from '../utils/constant';
-import ButtonContext from './ButtonContext';
-import { createNamespace } from '../utils';
+import React, { useContext } from 'react'
+import clsx from 'clsx'
+import Loading from '../loading'
+import { ButtonProps } from './PropsType'
+import { BORDER_SURROUND, SHADOW, WHITE } from '../utils/constant'
+import ButtonContext from './ButtonContext'
+import { createNamespace } from '../utils'
 
-const [bem] = createNamespace('button');
+const [bem] = createNamespace('button')
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const { color, loading, className, hairline, loadingText } = props;
+const Button: React.FC<ButtonProps> = props => {
+  const { color, loading, className, hairline, loadingText } = props
 
-  const { parent } = useContext(ButtonContext);
+  const { parent } = useContext(ButtonContext)
 
   const size = React.useMemo(
     () => props.size || parent?.size || 'normal',
-    [parent?.size, props.size],
-  );
+    [parent?.size, props.size]
+  )
 
   const type = React.useMemo(
     () => props.type || parent?.type || 'default',
-    [parent?.type, props.type],
-  );
+    [parent?.type, props.type]
+  )
 
-  const plain = React.useMemo(() => props.plain ?? parent?.plain, [parent?.plain, props.plain]);
+  const plain = React.useMemo(
+    () => props.plain ?? parent?.plain,
+    [parent?.plain, props.plain]
+  )
 
-  const block = React.useMemo(() => props.block ?? parent?.block, [parent?.block, props.block]);
+  const block = React.useMemo(
+    () => props.block ?? parent?.block,
+    [parent?.block, props.block]
+  )
 
   const iconPosition = React.useMemo(
     () => props.iconPosition || parent?.iconPosition || 'left',
-    [parent?.iconPosition, props.iconPosition],
-  );
+    [parent?.iconPosition, props.iconPosition]
+  )
 
   const disabled = React.useMemo(
     () => props.disabled ?? parent?.disabled,
-    [parent?.disabled, props.disabled],
-  );
+    [parent?.disabled, props.disabled]
+  )
 
   const nativeType = React.useMemo(
     () => props.nativeType || parent?.nativeType || 'button',
-    [parent?.nativeType, props.nativeType],
-  );
+    [parent?.nativeType, props.nativeType]
+  )
 
-  const tag = React.useMemo(() => props.tag || parent?.tag || 'button', [parent?.tag, props.tag]);
+  const tag = React.useMemo(
+    () => props.tag || parent?.tag || 'button',
+    [parent?.tag, props.tag]
+  )
 
-  const TagElement = tag as React.ElementType;
+  const TagElement = tag as React.ElementType
 
   const classes = clsx(
     className,
@@ -62,36 +71,36 @@ const Button: React.FC<ButtonProps> = (props) => {
       },
     ]),
     { [BORDER_SURROUND]: hairline },
-    props.shadow && `${SHADOW}--${+props.shadow}`,
-  );
+    props.shadow && `${SHADOW}--${+props.shadow}`
+  )
 
-  const style: Record<string, string | number> = { ...props.style };
+  const style: Record<string, string | number> = { ...props.style }
 
   if (color) {
-    style.color = plain ? color : WHITE;
+    style.color = plain ? color : WHITE
 
     if (!plain) {
       // Use background instead of backgroundColor to make linear-gradient work
-      style.background = color;
+      style.background = color
     }
 
     // hide border when color is linear-gradient
     if (color.indexOf('gradient') !== -1) {
-      style.border = 0;
+      style.border = 0
     } else {
-      style.borderColor = color;
+      style.borderColor = color
     }
   }
 
-  const onClick = (event) => {
+  const onClick = event => {
     if (!loading && !disabled && props.onClick) {
-      props.onClick(event);
+      props.onClick(event)
     }
-  };
+  }
 
   const renderLoadingIcon = () => {
     if (loading) {
-      const { loadingSize = '20px', loadingType } = props;
+      const { loadingSize = '20px', loadingType } = props
       return (
         <Loading
           className={clsx(bem('loading'))}
@@ -99,42 +108,42 @@ const Button: React.FC<ButtonProps> = (props) => {
           type={loadingType}
           color={type === 'default' ? undefined : ''}
         />
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderIcon = () => {
     if (props.loading) {
-      return renderLoadingIcon();
+      return renderLoadingIcon()
     }
 
     if (props.icon) {
       return React.cloneElement(props.icon as React.ReactElement, {
         className: clsx(bem('icon')),
-      });
+      })
     }
 
-    return null;
-  };
+    return null
+  }
 
   const renderText = () => {
-    let text;
+    let text
     if (loading) {
-      text = loadingText;
+      text = loadingText
     } else {
-      text = props.children || props.text;
+      text = props.children || props.text
     }
 
     if (text) {
       return (
-        <span key="text" className={clsx(bem('text'))}>
+        <span key='text' className={clsx(bem('text'))}>
           {text}
         </span>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   const renderContent = () => (
     <div className={clsx(bem('content'))}>
@@ -142,7 +151,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       {renderText()}
       {iconPosition === 'right' && renderIcon()}
     </div>
-  );
+  )
 
   return (
     <TagElement
@@ -154,7 +163,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     >
       {renderContent()}
     </TagElement>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

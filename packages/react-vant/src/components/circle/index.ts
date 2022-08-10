@@ -1,6 +1,6 @@
-import './style/index.less';
-import Circle from './Circle';
+import './style/index.less'
+import Circle from './Circle'
 
-export default Circle;
-export { Circle };
-export type { CircleProps, CircleStartPosition } from './PropsType';
+export default Circle
+export { Circle }
+export type { CircleProps, CircleStartPosition } from './PropsType'

@@ -1,39 +1,39 @@
-import React from 'react';
-import { BaseTypeProps } from '../utils';
+import React from 'react'
+import { BaseTypeProps } from '../utils'
 
 export interface CardProps extends BaseTypeProps {
   /** 圆角卡片 */
-  round?: boolean;
+  round?: boolean
   /** 是否显示边框 */
-  border?: boolean;
-  children?: React.ReactNode;
-  onClick?: (event: React.MouseEvent) => void;
+  border?: boolean
+  children?: React.ReactNode
+  onClick?: (event: React.MouseEvent) => void
 }
 
 export interface CardHeaderProps extends BaseTypeProps {
   /** 头部额外内容 */
-  extra?: React.ReactNode;
-  children?: React.ReactNode;
+  extra?: React.ReactNode
+  children?: React.ReactNode
   /** 显示下边框 */
-  border?: boolean;
-  onClick?: (event: React.MouseEvent) => void;
+  border?: boolean
+  onClick?: (event: React.MouseEvent) => void
 }
 
 export interface CardBodyProps extends BaseTypeProps {
-  children?: React.ReactNode;
-  onClick?: (event: React.MouseEvent) => void;
+  children?: React.ReactNode
+  onClick?: (event: React.MouseEvent) => void
 }
 
 export interface CardFooterProps extends BaseTypeProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode
   /** 显示上边框 */
-  border?: boolean;
+  border?: boolean
   /** 不需要内边距 */
-  compact?: boolean;
-  onClick?: (event: React.MouseEvent) => void;
+  compact?: boolean
+  onClick?: (event: React.MouseEvent) => void
 }
 
 export interface CardCoverProps extends BaseTypeProps {
-  children?: React.ReactNode;
-  onClick?: (event: React.MouseEvent) => void;
+  children?: React.ReactNode
+  onClick?: (event: React.MouseEvent) => void
 }

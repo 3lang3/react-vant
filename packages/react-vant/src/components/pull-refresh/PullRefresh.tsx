@@ -1,158 +1,162 @@
-import React, { useCallback, useContext, useMemo, useRef } from 'react';
-import clsx from 'clsx';
-import { PullRefreshProps, PullRefreshStatus } from './PropsType';
-import { createNamespace, getScrollTop, preventDefault } from '../utils';
+import React, { useCallback, useContext, useMemo, useRef } from 'react'
+import clsx from 'clsx'
+import { PullRefreshProps, PullRefreshStatus } from './PropsType'
+import { createNamespace, getScrollTop, preventDefault } from '../utils'
 
-import { getScrollParent } from '../hooks/use-scroll-parent';
-import useEventListener from '../hooks/use-event-listener';
+import { getScrollParent } from '../hooks/use-scroll-parent'
+import useEventListener from '../hooks/use-event-listener'
 
-import Loading from '../loading';
-import { useSetState, useTouch, useUpdateEffect } from '../hooks';
-import ConfigProviderContext from '../config-provider/ConfigProviderContext';
+import Loading from '../loading'
+import { useSetState, useTouch, useUpdateEffect } from '../hooks'
+import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 
-const DEFAULT_HEAD_HEIGHT = 50;
-const TEXT_STATUS = ['pulling', 'loosing', 'success'];
+const DEFAULT_HEAD_HEIGHT = 50
+const TEXT_STATUS = ['pulling', 'loosing', 'success']
 
-const [bem] = createNamespace('pull-refresh');
+const [bem] = createNamespace('pull-refresh')
 
-const PullRefresh: React.FC<PullRefreshProps> = (props) => {
-  const { locale } = useContext(ConfigProviderContext);
+const PullRefresh: React.FC<PullRefreshProps> = props => {
+  const { locale } = useContext(ConfigProviderContext)
 
-  const { disabled, animationDuration } = props;
+  const { disabled, animationDuration } = props
 
-  const root = useRef<HTMLDivElement>();
+  const root = useRef<HTMLDivElement>()
   const [state, updateState] = useSetState({
     refreshing: false,
     status: 'normal' as PullRefreshStatus,
     distance: 0,
     duration: 0,
-  });
+  })
 
-  const track = useRef<HTMLDivElement>();
-  const reachTop = useRef(null);
+  const track = useRef<HTMLDivElement>()
+  const reachTop = useRef(null)
 
-  const touch = useTouch();
+  const touch = useTouch()
 
   const getHeadStyle = () => {
     if (props.headHeight !== DEFAULT_HEAD_HEIGHT) {
       return {
         height: `${props.headHeight}px`,
-      };
+      }
     }
-    return null;
-  };
+    return null
+  }
 
   const isTouchable = useCallback(() => {
-    return state.status !== 'loading' && state.status !== 'success' && !disabled;
-  }, [state.status, disabled]);
+    return state.status !== 'loading' && state.status !== 'success' && !disabled
+  }, [state.status, disabled])
 
   const ease = (distance: number) => {
-    const pullDistance = +(props.pullDistance || props.headHeight);
+    const pullDistance = +(props.pullDistance || props.headHeight)
 
     if (distance > pullDistance) {
       if (distance < pullDistance * 2) {
-        distance = pullDistance + (distance - pullDistance) / 2;
+        distance = pullDistance + (distance - pullDistance) / 2
       } else {
-        distance = pullDistance * 1.5 + (distance - pullDistance * 2) / 4;
+        distance = pullDistance * 1.5 + (distance - pullDistance * 2) / 4
       }
     }
 
-    return Math.round(distance);
-  };
+    return Math.round(distance)
+  }
 
   const setStatus = (distance: number, isLoading?: boolean) => {
-    const pullDistance = +(props.pullDistance || props.headHeight);
-    const newState = { distance } as typeof state;
+    const pullDistance = +(props.pullDistance || props.headHeight)
+    const newState = { distance } as typeof state
 
     if (isLoading) {
-      newState.status = 'loading';
+      newState.status = 'loading'
     } else if (distance === 0) {
-      newState.status = 'normal';
+      newState.status = 'normal'
     } else if (distance < pullDistance) {
-      newState.status = 'pulling';
+      newState.status = 'pulling'
     } else {
-      newState.status = 'loosing';
+      newState.status = 'loosing'
     }
-    updateState(newState);
-  };
+    updateState(newState)
+  }
 
   const getStatusText = () => {
     if (state.status === 'normal') {
-      return '';
+      return ''
     }
-    return props[`${state.status}Text`] || locale.vanPullRefresh[state.status];
-  };
+    return props[`${state.status}Text`] || locale.vanPullRefresh[state.status]
+  }
 
   const renderStatus = () => {
-    const { status, distance } = state;
+    const { status, distance } = state
 
     if (typeof props[`${state.status}Text`] === 'function') {
-      return props[`${state.status}Text`]?.({ distance });
+      return props[`${state.status}Text`]?.({ distance })
     }
 
-    const nodes: React.ReactNode[] = [];
+    const nodes: React.ReactNode[] = []
 
     if (TEXT_STATUS.includes(status)) {
       nodes.push(
-        <div key="text" className={clsx(bem('text'))}>
+        <div key='text' className={clsx(bem('text'))}>
           {getStatusText()}
-        </div>,
-      );
+        </div>
+      )
     }
     if (status === 'loading') {
       nodes.push(
-        <Loading key="loading" className={clsx(bem('loading'))}>
+        <Loading key='loading' className={clsx(bem('loading'))}>
           {getStatusText()}
-        </Loading>,
-      );
+        </Loading>
+      )
     }
 
-    return nodes;
-  };
+    return nodes
+  }
 
   const showSuccessTip = () => {
-    updateState({ status: 'success' });
+    updateState({ status: 'success' })
     setTimeout(() => {
-      setStatus(0);
-    }, +props.successDuration);
-  };
+      setStatus(0)
+    }, +props.successDuration)
+  }
 
   const onRefresh = async () => {
     try {
-      updateState({ refreshing: true });
-      await props.onRefresh();
-      updateState({ refreshing: false });
+      updateState({ refreshing: true })
+      await props.onRefresh()
+      updateState({ refreshing: false })
     } catch (error) {
-      updateState({ refreshing: false });
+      updateState({ refreshing: false })
     }
-  };
+  }
 
   const checkPosition = (event: TouchEvent) => {
-    const scrollTarget = getScrollParent(event.target as HTMLElement);
-    reachTop.current = getScrollTop(scrollTarget) === 0;
+    const scrollTarget = getScrollParent(event.target as HTMLElement)
+    reachTop.current = getScrollTop(scrollTarget) === 0
     if (reachTop.current) {
-      updateState({ duration: 0 });
-      touch.start(event);
+      updateState({ duration: 0 })
+      touch.start(event)
     }
-  };
+  }
 
-  const onTouchStart = (event) => {
+  const onTouchStart = event => {
     if (isTouchable()) {
-      checkPosition(event.nativeEvent);
+      checkPosition(event.nativeEvent)
     }
-  };
+  }
 
   const onTouchMove = useCallback(
     (event: TouchEvent) => {
       if (isTouchable()) {
         if (!reachTop.current) {
-          checkPosition(event);
+          checkPosition(event)
         }
 
-        touch.move(event);
-        if (reachTop.current && touch.deltaY.current >= 0 && touch.isVertical()) {
-          setStatus(ease(touch.deltaY.current));
-          preventDefault(event);
+        touch.move(event)
+        if (
+          reachTop.current &&
+          touch.deltaY.current >= 0 &&
+          touch.isVertical()
+        ) {
+          setStatus(ease(touch.deltaY.current))
+          preventDefault(event)
         } else {
           /**
            * IN THIS CASE:
@@ -160,53 +164,57 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
            * ios will hold `preventDefault` behavior when touchmoving
            * it will cause window unscrollable
            */
-          setStatus(0);
+          setStatus(0)
         }
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [reachTop.current, touch.deltaY.current, isTouchable],
-  );
+    [reachTop.current, touch.deltaY.current, isTouchable]
+  )
 
   const onTouchEnd = async () => {
     if (reachTop.current && touch.deltaY && isTouchable()) {
-      updateState({ duration: +animationDuration });
+      updateState({ duration: +animationDuration })
       if (state.status === 'loosing') {
-        setStatus(+props.headHeight, true);
-        await onRefresh();
+        setStatus(+props.headHeight, true)
+        await onRefresh()
         setTimeout(() => props.onRefreshEnd?.())
       } else {
-        setStatus(0);
+        setStatus(0)
       }
     }
-  };
+  }
 
   useEventListener('touchmove', onTouchMove as EventListener, {
     target: track.current,
     depends: [reachTop.current, isTouchable(), touch.deltaY],
-  });
+  })
 
   useUpdateEffect(() => {
-    updateState({ duration: +animationDuration });
+    updateState({ duration: +animationDuration })
     if (state.refreshing) {
-      setStatus(+props.headHeight, true);
+      setStatus(+props.headHeight, true)
     } else if (props.successText) {
-      showSuccessTip();
+      showSuccessTip()
     } else {
-      setStatus(0, false);
+      setStatus(0, false)
     }
-  }, [state.refreshing]);
+  }, [state.refreshing])
 
   const trackStyle = useMemo(
     () => ({
       transitionDuration: `${state.duration}ms`,
       transform: state.distance ? `translate3d(0,${state.distance}px, 0)` : '',
     }),
-    [state.duration, state.distance],
-  );
+    [state.duration, state.distance]
+  )
 
   return (
-    <div ref={root} className={clsx(props.className, bem())} style={props.style}>
+    <div
+      ref={root}
+      className={clsx(props.className, bem())}
+      style={props.style}
+    >
       <div
         ref={track}
         className={clsx(bem('track'))}
@@ -221,13 +229,13 @@ const PullRefresh: React.FC<PullRefreshProps> = (props) => {
         {props.children}
       </div>
     </div>
-  );
-};
+  )
+}
 
 PullRefresh.defaultProps = {
   headHeight: 50,
   animationDuration: 300,
   successDuration: 500,
-};
+}
 
-export default PullRefresh;
+export default PullRefresh
