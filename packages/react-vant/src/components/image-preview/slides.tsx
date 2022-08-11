@@ -5,6 +5,7 @@ import { Slide } from './slide'
 import { bound } from '../utils/bound'
 import { createNamespace, unitToPx } from '../utils'
 import clsx from 'clsx'
+import { useUpdateEffect } from '../hooks'
 
 export type SlidesType = {
   images: string[]
@@ -28,6 +29,10 @@ export const Slides = forwardRef<SlidesRef, SlidesType>((props, ref) => {
   }))
 
   const count = props.images.length
+
+  useUpdateEffect(() => {
+    swipeTo(props.defaultIndex, true)
+  }, [props.defaultIndex])
 
   function swipeTo(index: number, immediate = false) {
     const i = bound(index, 0, count - 1)
