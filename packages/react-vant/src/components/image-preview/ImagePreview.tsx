@@ -37,7 +37,7 @@ const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>(
         {props.images && (
           <Slides
             ref={slidesRef}
-            defaultIndex={active}
+            defaultIndex={props.startPosition}
             onIndexChange={onSwipeChange}
             images={props.images}
             onTap={() => {
