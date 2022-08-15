@@ -82,7 +82,7 @@ Form.List 为字段提供数组化管理。
 Form.Item 的布局是基于 `Field` 实现的，所以它支持 [Field](./field#props) 的部分属性
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | 
 | dependencies | 设置依赖字段，说明见下 | `string | number | (string | number)[]` | - |
 | disabled | 是否禁用 | `boolean` | 父级 Form 的 `disabled` |
 | initialValue | 设置子元素默认值，如果与 Form 的 `initialValues` 冲突则以 Form 为准 | `any` | - |
