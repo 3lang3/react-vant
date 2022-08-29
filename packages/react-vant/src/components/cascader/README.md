@@ -16,9 +16,9 @@ import { Cascader } from 'react-vant';
 
 <code title="基础用法" src="./demo/base.tsx" />
 
-### Form 用法
+### Form中使用
 
-<code title="Form 用法" src="./demo/form.tsx" />
+<code title="Form中使用" src="./demo/form.tsx" />
 
 ### 异步加载选项
 
