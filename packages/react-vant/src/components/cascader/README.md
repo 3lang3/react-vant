@@ -16,6 +16,10 @@ import { Cascader } from 'react-vant';
 
 <code title="基础用法" src="./demo/base.tsx" />
 
+### Form 用法
+
+<code title="Form 用法" src="./demo/form.tsx" />
+
 ### 异步加载选项
 
 可以监听 `onChange` 事件并动态设置 `options`，实现异步加载选项。
