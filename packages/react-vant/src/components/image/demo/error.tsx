@@ -7,13 +7,13 @@ export default () => {
     <div className='demo-image'>
       <Flex wrap='wrap' gutter={20}>
         <Flex.Item span={8}>
-          <Image width='100%' height='27vw' src='x.jpg' />
+          <Image width='100%' height='24vw' src='x.jpg' />
           <div className='text'>默认提示</div>
         </Flex.Item>
         <Flex.Item span={8}>
           <Image
             width='100%'
-            height='27vw'
+            height='24vw'
             src='x.jpg'
             errorIcon={<div style={{ fontSize: 14 }}>加载失败</div>}
           />
