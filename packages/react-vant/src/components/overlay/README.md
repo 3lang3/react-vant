@@ -58,17 +58,14 @@ export default () => {
       <Button type="primary" onClick={() => setVisible(true)}>
         嵌入内容
       </Button>
-      <Overlay visible={visible} onClick={() => setVisible(false)}>
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: 120, height: 120, backgroundColor: '#fff', borderRadius: 4 }} />
-        </div>
+      <Overlay visible={visible} onClick={() => setVisible(false)}
+        style={{
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <div style={{ width: 120, height: 120, backgroundColor: '#fff', borderRadius: 4 }} />
       </Overlay>
     </>
   );
