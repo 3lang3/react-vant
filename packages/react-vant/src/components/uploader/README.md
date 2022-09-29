@@ -64,6 +64,7 @@ import { Uploader } from 'react-vant';
 | defaultValue | 默认上传的文件列表 | _UploaderValueItem[]_ | `[]` |
 | accept | 允许上传的文件类型，[doc](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file#%E9%99%90%E5%88%B6%E5%85%81%E8%AE%B8%E7%9A%84%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B) | _string_ | `image/*` |
 | name | 标识符，可以在回调函数的第二项参数中获取 | _number \| string_ | - |
+| isImageUrl | 手动指定是否为图片，使用 `<img />` 标签进行显示 | _(file: UploaderValueItem) => void_ | - |
 | previewSize | 预览图和上传区域的尺寸，默认单位为 `px` | _number \| string_ | `80px` |
 | previewImage | 是否在上传完成后展示预览图 | _boolean_ | `true` |
 | previewFullImage | 是否在点击预览图后展示全屏图片预览 | _boolean_ | `true` |

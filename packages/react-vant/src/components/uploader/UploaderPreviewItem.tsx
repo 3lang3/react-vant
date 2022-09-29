@@ -14,7 +14,10 @@ const [bem] = createNamespace('uploader')
 export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = props => {
   const { onPreview, statusTextRender, status, file, url } = props
 
-  const isImage = useMemo(() => isImageFile({ file, url }), [file, url])
+  const isImage = useMemo(
+    () => props.isImage || isImageFile({ file, url }),
+    [file, url, props.isImage]
+  )
   const imageSrc = useMemo(() => {
     if (isImage) {
       if (url) return url

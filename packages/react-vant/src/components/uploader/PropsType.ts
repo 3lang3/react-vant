@@ -55,6 +55,7 @@ export interface UploaderPrviewItemProps
   previewCoverRender?: () => React.ReactNode
   file?: File
   url?: string
+  isImage?: boolean
 }
 
 export interface UploaderProps extends BaseTypeProps {
@@ -72,6 +73,7 @@ export interface UploaderProps extends BaseTypeProps {
   deletable?: boolean
   /** 是否展示上传区域	 */
   showUpload?: boolean
+  isImageUrl?: (file: UploaderValueItem) => boolean
   /** 文件读取前的回调函数，返回 false 可终止文件读取，支持返回 Promise */
   beforeRead?: (
     file: File,
