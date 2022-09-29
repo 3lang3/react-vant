@@ -68,6 +68,7 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
   }
 
   const renderAction = () => {
+    if (props.action) return props.action
     if (props.showAction) {
       return (
         <div

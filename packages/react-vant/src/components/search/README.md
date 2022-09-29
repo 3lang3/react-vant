@@ -172,6 +172,7 @@ export default () => {
 | autoFocus | 是否自动聚焦，iOS 系统不支持该属性 | _boolean_ | `false` |
 | showAction | 是否在搜索框右侧显示取消按钮 | _boolean_ | `false` |
 | actionText | 取消按钮文字 | _ReactNode_ | `取消` |
+| action | 自定义右侧操作内容，会覆盖 `showAction` 和 `actionText` 行为 | _ReactNode_ | - |
 | disabled | 是否禁用输入框 | _boolean_ | `false` |
 | readOnly | 是否将输入框设为只读状态，只读状态下无法输入内容 | _boolean_ | `false` |
 | error | 是否将输入内容标红 | _boolean_ | `false` |
