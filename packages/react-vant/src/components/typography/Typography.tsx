@@ -26,8 +26,15 @@ const TypographyBase: React.FC<
   disabled,
   renderType,
   delete: del,
+  onClick,
   ...props
 }) => {
+  const internalClick = (e: React.MouseEvent) => {
+    if (disabled) {
+      e.stopPropagation()
+    }
+    onClick?.(e)
+  }
   const ellipsisNumber = useMemo(() => {
     if (typeof ellipsis === 'boolean' && ellipsis) return 1
     if (typeof ellipsis === 'number') return ellipsis
@@ -79,6 +86,7 @@ const TypographyBase: React.FC<
     if (isEnhanceEllipsis)
       return (
         <Ellipsis
+          onContentClick={internalClick}
           className={clsx(
             className,
             `rv-typography__${renderType}`,
@@ -126,6 +134,7 @@ const TypographyBase: React.FC<
           }
         )}
         {...props}
+        onClick={internalClick}
         style={measureStyle}
       >
         {children}
