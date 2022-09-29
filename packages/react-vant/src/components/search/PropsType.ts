@@ -11,6 +11,7 @@ export interface SearchProps extends FieldCommonProps {
   /** 是否在搜索框右侧显示取消按钮	 */
   showAction?: Boolean
   /** 搜索框形状，可选值为 round	 */
+  action?: React.ReactNode
   shape?: 'square' | 'round'
   /**  确定搜索时触发	 */
   onSearch?: (val: string) => void
