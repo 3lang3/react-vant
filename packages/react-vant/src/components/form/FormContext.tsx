@@ -5,6 +5,7 @@ export type FormContextType = {
   layout?: FormLayout
   colon?: boolean
   border?: boolean
+  required?: boolean
   showValidateMessage?: boolean
 } & Pick<FormItemProps, 'labelAlign' | 'controlAlign' | 'border'>
 

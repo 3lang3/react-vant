@@ -43,6 +43,8 @@ export type FormProps = {
   footer?: React.ReactNode
   /** 是否显示验证信息 */
   showValidateMessage?: boolean
+  /** 统一配置required显示 */
+  required?: boolean
 } & Omit<RcFormProps, 'style'> &
   BaseTypeProps &
   Pick<FieldProps, 'labelAlign' | 'controlAlign' | 'border'>
