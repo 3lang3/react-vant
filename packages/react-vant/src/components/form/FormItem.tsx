@@ -66,6 +66,8 @@ const FormItemLayout: React.FC<FormItemLayoutProps> = props => {
 
 // 移植自antd mobile: https://github.com/ant-design/ant-design-mobile/blob/master/src/components/form/form-item.tsx
 const FormItem: FC<FormItemProps> = props => {
+  const formContext = React.useContext(FormContext)
+
   const {
     // RcFiled props
     name,
@@ -176,10 +178,11 @@ const FormItem: FC<FormItemProps> = props => {
         const isRequired =
           required !== undefined
             ? required
-            : rules &&
-              rules.some(
-                rule => !!(rule && typeof rule === 'object' && rule.required)
-              )
+            : formContext.required ??
+              (rules &&
+                rules.some(
+                  rule => !!(rule && typeof rule === 'object' && rule.required)
+                ))
 
         const fieldId = (toArray(name).length && meta ? meta.name : []).join(
           '_'

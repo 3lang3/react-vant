@@ -69,7 +69,8 @@ Form.List 为字段提供数组化管理。
 | --- | --- | --- | --- |
 | layout | 表单布局 | _horizontal \| vertical_ | `horizontal` |
 | border | 统一设置表单项底部边框显示 | _boolean_ | `true` |
-| colon | 配置 Form.Item 的 colon 的默认值。表示是否显示 label 后面的冒号 | _boolean_ | `false` |
+| colon | 配置 Form.Item 的 `colon` 的默认值。表示是否显示 label 后面的冒号 | _boolean_ | `false` |
+| required | 配置 Form.Item 的 `required` 的默认值 | _boolean_ | - |
 | showValidateMessage | 是否显示验证错误信息 | _boolean_ | `true` |
 | labelAlign | 统一设置左侧文本对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | controlAlign | 统一设置右侧内容对齐方式，可选值为 `center` `right` | _string_ | `left` |
