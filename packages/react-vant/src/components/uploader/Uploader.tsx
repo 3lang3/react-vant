@@ -147,7 +147,9 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
 
   const previewImage = (item: UploaderValueItem) => {
     if (props.previewFullImage) {
-      const imageFiles = value.filter(v => isImageFile(v))
+      const imageFiles = value.filter(v =>
+        isImageFile(v, props.isImageUrl?.(v))
+      )
       const images = imageFiles
         .map(image => image.url || image.thumbnail)
         .filter(Boolean) as string[]
@@ -176,6 +178,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
         file={item.file}
         key={item.key ?? `-${index}`}
         name={props.name}
+        isImage={props.isImageUrl?.(item)}
         url={item.thumbnail ?? item.url}
         imageFit={props.imageFit}
         deletable={props.deletable}
