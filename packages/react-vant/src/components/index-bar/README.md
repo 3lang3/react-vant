@@ -24,6 +24,7 @@ import { IndexBar } from 'react-vant';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | indexList | 索引字符列表 | _string[] \| number[]_ | `A-Z` |
+| itemRender | 自定义字符渲染| _(item: string\|number, active: boolean) => ReactNode_ | - |
 | zIndex | z-index 层级 | _number \| string_ | `1` |
 | sticky | 是否开启锚点自动吸顶 | _boolean_ | `true` |
 | stickyOffsetTop | 锚点自动吸顶时与顶部的距离 | _number_ | `0` |
