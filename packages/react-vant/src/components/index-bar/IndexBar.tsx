@@ -85,7 +85,9 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
   const getActiveAnchor = (scrollTop: number, rects) => {
     for (let i = rects.length - 1; i >= 0; i -= 1) {
       const prevHeight = i > 0 ? rects[i - 1].height : 0
-      const reachTop = props.sticky ? prevHeight + props.stickyOffsetTop : 0
+      const reachTop = props.sticky
+        ? prevHeight + props.stickyOffsetTop
+        : props.stickyOffsetTop
 
       if (scrollTop + reachTop >= rects[i].top) {
         return i
@@ -152,7 +154,7 @@ const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
           style={active ? highlightStyle : null}
           data-index={index}
         >
-          {index}
+          {props.itemRender ? props.itemRender(index, active) : index}
         </span>
       )
     })

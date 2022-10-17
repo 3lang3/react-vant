@@ -18,6 +18,7 @@ export interface IndexBarProps extends BaseTypeProps {
    * @default `A-Z[]`
    */
   indexList?: Array<number | string>
+  itemRender?: (item: number | string, active: boolean) => React.ReactNode
   /** 当前高亮的索引字符变化时触发	 */
   onChange?: (value: number | string) => void
   /** 点击索引栏的字符时触发	 */
