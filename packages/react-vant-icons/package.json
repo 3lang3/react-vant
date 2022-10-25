@@ -22,21 +22,21 @@
     "prepare": "pnpm build"
   },
   "devDependencies": {
-    "@babel/cli": "^7.15.7",
-    "@babel/core": "^7.15.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
-    "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.19.6",
+    "@babel/plugin-transform-modules-commonjs": "7.19.6",
+    "@svgr/babel-plugin-remove-jsx-attribute": "6.5.0",
     "@types/react": "18.0.17",
     "del": "6.1.1",
-    "fast-glob": "^3.2.2",
+    "fast-glob": "3.2.12",
     "fs-extra": "10.1.0",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "node-sketch": "^0.14.1",
-    "shelljs": "^0.8.4",
+    "gulp": "4.0.2",
+    "gulp-babel": "8.0.0",
+    "gulp-typescript": "6.0.0-alpha.1",
+    "node-sketch": "0.14.1",
+    "shelljs": "0.8.5",
     "svgo": "2.8.0",
-    "typescript": "^4.5.2"
+    "typescript": "4.8.4"
   },
   "peerDependencies": {
     "react": ">=16.14.0"
