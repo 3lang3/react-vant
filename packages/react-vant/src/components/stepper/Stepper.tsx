@@ -280,7 +280,7 @@ function convertTextToValue(text: string) {
 }
 
 Stepper.defaultProps = {
-  theme: 'default',
+  theme: 'default' as const,
   max: Number.MAX_VALUE,
   step: 1,
   showPlus: true,
