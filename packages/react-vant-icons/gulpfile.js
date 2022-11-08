@@ -12,8 +12,8 @@ function buildES() {
     .src('src/icons/*.tsx')
     .pipe(
       ts({
-        moduleResolution: 'node',
-        target: 'es2016',
+        // moduleResolution: 'node',
+        target: 'ES5',
         jsx: 'react',
         declaration: true,
         skipLibCheck: true,
