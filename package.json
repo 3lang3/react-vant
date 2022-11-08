@@ -13,6 +13,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,less}": "prettier --write",
+    "*.{ts,tsx}": "npm run react-vant:lint",
     "package.json": "yarn sort-package-json"
   },
   "devDependencies": {
