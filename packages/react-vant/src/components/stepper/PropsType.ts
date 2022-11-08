@@ -54,9 +54,14 @@ export interface StepperProps extends BaseTypeProps {
   /** 点击减少按钮时触发	 */
   onMinus?: (event: React.MouseEvent, val: number | null) => void
   /** 输入框聚焦时触发	 */
-  onFocus?: (event: React.FormEvent) => void
+  onFocus?: React.FocusEventHandler<HTMLInputElement>
   /** 输入框失焦时触发	 */
-  onBlur?: (event: React.FormEvent) => void
+  onBlur?: React.FocusEventHandler<HTMLInputElement>
   /** 点击不可用的按钮时触发	 */
   onOverlimit?: (actinType: string) => void
+}
+
+export type StepperInstance = {
+  focus: () => void
+  blur: () => void
 }
