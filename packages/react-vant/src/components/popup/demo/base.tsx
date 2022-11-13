@@ -7,12 +7,7 @@ export default () => {
   return (
     <>
       <Cell title='展示弹出层' isLink onClick={() => setVisible(true)} />
-      <Popup
-        visible={visible}
-        onClose={() => {
-          setVisible(false)
-        }}
-      >
+      <Popup visible={visible} onClose={() => setVisible(false)}>
         <div style={{ padding: '30px 50px' }}>内容</div>
       </Popup>
     </>
