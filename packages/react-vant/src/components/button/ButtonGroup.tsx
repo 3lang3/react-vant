@@ -14,7 +14,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   onClick,
   ...props
 }) => {
-  const internalClick = e => {
+  const internalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (props.disabled) return
     onClick?.(e)
   }
