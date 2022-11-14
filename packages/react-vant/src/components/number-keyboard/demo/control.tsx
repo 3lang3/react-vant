@@ -18,12 +18,8 @@ export default () => {
         value={state.value}
         visible={state.visible}
         maxlength={6}
-        onChange={v => {
-          set({ value: v })
-        }}
-        onBlur={() => {
-          set({ visible: false })
-        }}
+        onChange={v => set({ value: v })}
+        onBlur={() => set({ visible: false })}
       />
     </>
   )
