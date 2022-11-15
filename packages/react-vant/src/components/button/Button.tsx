@@ -92,7 +92,7 @@ const Button: React.FC<ButtonProps> = props => {
     }
   }
 
-  const onClick = event => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!loading && !disabled && props.onClick) {
       props.onClick(event)
     }
