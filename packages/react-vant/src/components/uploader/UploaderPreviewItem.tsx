@@ -20,10 +20,7 @@ export const UploaderPreviewItem: React.FC<UploaderPrviewItemProps> = props => {
   )
   const imageSrc = useMemo(() => {
     if (isImage) {
-      if (url) return url
-      if (file) {
-        return URL.createObjectURL(file)
-      }
+      return url ? url : URL.createObjectURL(file)
     }
     return ''
   }, [isImage, file, url])
