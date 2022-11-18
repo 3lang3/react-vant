@@ -1,9 +1,11 @@
 {
   "name": "@react-vant/icons",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "react vant icons",
   "license": "MIT",
-  "sideEffects": [],
+  "sideEffects": [
+    "./es/index.js"
+  ],
   "main": "./lib/index.js",
   "jsdelivr": "./lib/index.js",
   "unpkg": "./lib/index.js",
