@@ -119,7 +119,15 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
       const showPopup = showPopupIndex === index
       const { titleClass } = item
       const disabled = props.disabled || item.disabled
-
+      const childRenderTitle = (itemValue, itemProps) => {
+        if (itemProps.title) {
+          return itemProps.title
+        }
+        const match = itemProps.options.find(
+          option => option.value === itemValue
+        )
+        return match ? match.text : itemProps.placeholder
+      }
       return (
         <div
           key={index}
@@ -143,7 +151,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
             style={{ color: showPopup ? props.activeColor : '' }}
           >
             <div className='rv-ellipsis'>
-              {item.renderTitle(innerValue[item.name])}
+              {childRenderTitle(innerValue[item.name], item)}
             </div>
           </span>
         </div>
@@ -200,7 +208,11 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
             style={barStyle()}
             className={clsx(bem('bar', { opened }))}
           >
-            {childrenRefs.map(renderTitle)}
+            {Children.toArray(props.children)
+              .filter(Boolean)
+              .map((child: ReactElement, index: number) => {
+                return renderTitle(child.props, index)
+              })}
           </div>
           {Children.toArray(props.children)
             .filter(Boolean)
