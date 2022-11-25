@@ -92,7 +92,7 @@ const DropdownMenuItem = forwardRef<
   }
 
   const renderOption = (option: DropdownMenuItemOption) => {
-    const { activeColor } = parent.props
+    const { activeColor, activeIcon } = parent.props
     const active = option.value === currentValue
 
     const onClick = () => {
@@ -112,9 +112,10 @@ const DropdownMenuItem = forwardRef<
         style={{ color: active ? activeColor : '' }}
         onClick={onClick}
       >
-        {active && (
-          <Success className={clsx(bem('icon'))} color={activeColor} />
-        )}
+        {active &&
+          (activeIcon || (
+            <Success className={clsx(bem('icon'))} color={activeColor} />
+          ))}
       </Cell>
     )
   }
