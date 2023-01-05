@@ -24,7 +24,6 @@ const LoadMore = React.forwardRef<LoadMoreInstance, LoadMoreProps>(
         await props.onLoad(isRetry)
       } catch (e) {
         setFailed(true)
-        throw e
       }
     })
 
