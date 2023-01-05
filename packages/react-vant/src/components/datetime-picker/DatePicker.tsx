@@ -166,7 +166,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>(
 
     const pickerValue = useMemo(() => {
       const value = props.popup
-        ? formatValue(props.value)
+        ? formatValue(currentDateRef.current)
         : currentDateRef.current
       const values = originColumns.map(column => {
         switch (column.type) {
@@ -264,7 +264,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>(
         onCancel={props.onCancel}
       >
         {(_, selectRows, actions) =>
-          props.children?.(value, selectRows, actions)
+          props.children?.(value || defaultValue, selectRows, actions)
         }
       </Picker>
     )
