@@ -213,7 +213,11 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
       })
 
       /* istanbul ignore else */
-      if (currentMonth && currentMonth.getTitle() !== state.subtitle) {
+      if (
+        currentMonth &&
+        currentMonth.getTitle() !== state.subtitle &&
+        !props.horizontal
+      ) {
         updateState({ subtitle: currentMonth.getTitle() })
       }
     }
