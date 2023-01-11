@@ -48,6 +48,8 @@ export interface DropdownMenuProps extends DropdownMenuCommonProps {
   closeOnClickOverlay?: boolean
   /** 菜单标题和选项的选中态颜色	 */
   activeColor?: string
+  /** 自定义选项的选中态勾选icon */
+  activeIcon?: React.ReactNode
   /** 菜单栏 z-index 层级	 */
   zIndex?: number | string
   /** 菜单展开方向 */

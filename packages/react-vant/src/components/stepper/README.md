@@ -58,12 +58,33 @@ import { Stepper } from 'react-vant';
 | onFocus | 输入框聚焦时触发 | _event: Event_ |
 | onBlur | 输入框失焦时触发 | _event: Event_ |
 
+### Stepper 方法
+
+通过 ref 可以获取到 Swiper 实例并调用实例方法。
+
+| 方法名 | 说明                | 参数 | 返回值 |
+| ------ | ------------------- | ---- | ------ |
+| focus  | 输入框 `focus` 事件 | -    | -      |
+| blur   | 输入框 `blur` 事件  | -    | -      |
+
 ### 类型定义
 
 组件导出以下类型定义：
 
 ```ts
-import type { StepperTheme } from 'react-vant';
+import type { StepperTheme, StepperInstance } from 'react-vant';
+```
+
+`StepperInstance` 是组件实例的类型，用法如下：
+
+```ts
+import { useRef } from 'react';
+import type { StepperInstance } from 'react-vant';
+
+const stepperRef = useRef<StepperInstance>(null);
+
+swipeRef.current?.focus();
+swipeRef.current?.blur();
 ```
 
 ## 主题定制

@@ -364,7 +364,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   return (
     <TabsContext.Provider value={{ props, currentName, scrollIntoView }}>
-      <div ref={root} className={clsx(props.className, bem([props.type]))}>
+      <div ref={root} className={clsx(props.className, bem([props.type]))} style={ props.style }>
         {props.sticky ? (
           <Sticky
             container={root}
