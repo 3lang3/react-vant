@@ -62,6 +62,7 @@ import { Calendar } from 'react-vant';
 | maxDate | 可选择的最大日期 | _Date_ | 当前日期的六个月后 |
 | rowHeight | 日期行高 | _number \| string_ | `64` |
 | formatter | 日期格式化函数 | _(day: Day) => Day_ | - |
+| horizontal | 水平滑动 | _boolean_ | - |
 | poppable | 是否以弹层的形式展示日历 | _boolean_ | `true` |
 | lazyRender | 是否只渲染可视区域的内容 | _boolean_ | `false` |
 | showMark | 是否显示月份背景水印 | _boolean_ | `true` |
