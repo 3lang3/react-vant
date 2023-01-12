@@ -33,6 +33,7 @@ import useUpdateEffect from '../hooks/use-update-effect'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 import { usePropsValue } from '../hooks'
 import { PickerPopupActions } from '../picker/PropsType'
+import Swiper from '../swiper'
 
 const [bem] = createNamespace('calendar')
 
@@ -128,7 +129,6 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     }, [value])
 
     const [monthRefs, setMonthRefs] = useRefs()
-
     const dayOffset = useMemo(
       () => (props.firstDayOfWeek ? +props.firstDayOfWeek % 7 : 0),
       [props.firstDayOfWeek, props.firstDayOfWeek]
@@ -213,7 +213,11 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
       })
 
       /* istanbul ignore else */
-      if (currentMonth && currentMonth.getTitle() !== state.subtitle) {
+      if (
+        currentMonth &&
+        currentMonth.getTitle() !== state.subtitle &&
+        !props.horizontal
+      ) {
         updateState({ subtitle: currentMonth.getTitle() })
       }
     }
@@ -381,7 +385,8 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     }
 
     const renderMonth = (date: Date, index: number) => {
-      const showMonthTitle = index !== 0 || !props.showSubtitle
+      const showMonthTitle =
+        !props.horizontal && (index !== 0 || !props.showSubtitle)
       return (
         <CalendarMonth
           key={index}
@@ -461,9 +466,27 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
             props.onClickSubtitle?.(event)
           }}
         />
-        <div ref={bodyRef} className={cls(bem('body'))} onScroll={onScroll}>
-          {months.map(renderMonth)}
-        </div>
+        {props.horizontal ? (
+          <div ref={bodyRef} className={cls(bem('horizontal-body'))}>
+            <Swiper
+              indicator={() => null}
+              onChange={index => {
+                updateState({ subtitle: monthRefs[index].getTitle() })
+              }}
+            >
+              {months.map((month, index) => (
+                <Swiper.Item key={month}>
+                  {renderMonth(month, index)}
+                </Swiper.Item>
+              ))}
+            </Swiper>
+          </div>
+        ) : (
+          <div ref={bodyRef} className={cls(bem('body'))} onScroll={onScroll}>
+            {months.map(renderMonth)}
+          </div>
+        )}
+
         {renderFooter()}
       </div>
     )

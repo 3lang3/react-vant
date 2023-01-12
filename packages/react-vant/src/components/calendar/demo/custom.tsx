@@ -116,6 +116,16 @@ export default () => {
           />
         )}
       </Calendar>
+      <Calendar horizontal>
+        {(val: Date, actions) => (
+          <Cell
+            isLink
+            title='水平滑动'
+            value={val ? val.toLocaleDateString() : '请选择日期'}
+            onClick={() => actions.open()}
+          />
+        )}
+      </Calendar>
     </>
   )
 }

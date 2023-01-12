@@ -121,6 +121,7 @@ export interface CalendarProps extends Omit<BaseTypeProps, 'children'> {
   firstDayOfWeek?: number | string
   showRangePrompt?: boolean
   footer?: React.ReactNode
+  horizontal?: boolean
   topInfoRender?: (day: CalendarDayItem) => React.ReactNode
   bottomInfoRender?: (day: CalendarDayItem) => React.ReactNode
   onSelect?: (value: CalendarValue) => void
