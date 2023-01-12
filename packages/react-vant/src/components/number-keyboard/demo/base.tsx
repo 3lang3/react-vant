@@ -36,9 +36,7 @@ export default () => {
       {/* 弹出默认键盘 */}
       <NumberKeyboard
         visible={state.v1}
-        onBlur={() => {
-          set({ v1: false })
-        }}
+        onBlur={() => set({ v1: false })}
         onInput={onInput}
         onDelete={onDelete}
       />
@@ -48,9 +46,7 @@ export default () => {
         extraKey='.'
         closeButtonText='完成'
         visible={state.v2}
-        onBlur={() => {
-          set({ v2: false })
-        }}
+        onBlur={() => set({ v2: false })}
         onInput={onInput}
         onDelete={onDelete}
       />
@@ -59,9 +55,7 @@ export default () => {
         extraKey='X'
         closeButtonText='完成'
         visible={state.v3}
-        onBlur={() => {
-          set({ v3: false })
-        }}
+        onBlur={() => set({ v3: false })}
         onInput={onInput}
         onDelete={onDelete}
       />
@@ -71,9 +65,7 @@ export default () => {
         extraKey='.'
         closeButtonText='完成'
         visible={state.v4}
-        onBlur={() => {
-          set({ v4: false })
-        }}
+        onBlur={() => set({ v4: false })}
         onInput={onInput}
         onDelete={onDelete}
       />
@@ -83,9 +75,7 @@ export default () => {
         extraKey={['00', '.']}
         closeButtonText='完成'
         visible={state.v5}
-        onBlur={() => {
-          set({ v5: false })
-        }}
+        onBlur={() => set({ v5: false })}
         onInput={onInput}
         onDelete={onDelete}
       />
@@ -93,9 +83,7 @@ export default () => {
       <NumberKeyboard
         randomKeyOrder
         visible={state.v6}
-        onBlur={() => {
-          set({ v6: false })
-        }}
+        onBlur={() => set({ v6: false })}
         onInput={onInput}
         onDelete={onDelete}
       />

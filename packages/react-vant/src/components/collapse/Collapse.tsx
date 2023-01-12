@@ -28,10 +28,11 @@ const [bem] = createNamespace('collapse')
 
 const Collapse: React.FC<CollapseProps> = props => {
   const { accordion } = props
-  const initExpandedDefault = accordion ? '' : []
-  const { initExpanded = initExpandedDefault } = props
+  const { initExpanded = accordion ? '' : [] } = props
   const innerEffect = useRef(false)
-  const [expanded, setExpanded] = useState(() => props.value ?? initExpanded)
+  const [expanded, setExpanded] = useState<
+    string | number | Array<number | string>
+  >(() => props.value ?? initExpanded)
   const updateName = (name: number | string | Array<number | string>) => {
     innerEffect.current = true
     setExpanded(name)
@@ -69,6 +70,7 @@ const Collapse: React.FC<CollapseProps> = props => {
       innerEffect.current = false
       return
     }
+    if (props.value === undefined) return
     setExpanded(props.value)
   }, [props.value])
 
