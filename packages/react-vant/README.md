@@ -93,6 +93,7 @@ ReactDOM.render(<App />, mountNode);
 - [Umi](https://github.com/3lang3/react-vant-template/tree/main/next/umijs)
 - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs)
 - [Remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)
+- [Astro](https://github.com/3lang3/react-vant-template/tree/main/next/astro)
 - [Vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
 
 For more information, please refer to [QuickStart](https://react-vant.3lang.dev/guide/quickstart).

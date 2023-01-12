@@ -106,6 +106,7 @@ ReactDOM.render(<App />, mountNode);
 - [Umi](https://github.com/3lang3/react-vant-template/tree/main/next/umijs)
 - [Next.js](https://github.com/3lang3/react-vant-template/tree/main/next/nextjs)
 - [Remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)
+- [Astro](https://github.com/3lang3/react-vant-template/tree/main/next/astro)
 - [Vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
 
 更多信息请参考[快速开始](https://react-vant.3lang.dev/guide/quickstart).

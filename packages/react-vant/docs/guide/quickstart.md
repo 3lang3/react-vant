@@ -40,6 +40,11 @@ import { Button } from 'react-vant';
 
 参考[react-vant-remix](https://github.com/3lang3/react-vant-template/tree/main/next/remix)
 
+#### 在 astro 使用
+
+参考[react-vant-astro](https://github.com/3lang3/react-vant-template/tree/main/next/astro)
+
+
 #### vite 集成
 
 参考[react-vant-vite](https://github.com/3lang3/react-vant-template/tree/main/next/vite)
