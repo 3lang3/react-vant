@@ -4,6 +4,7 @@ import React, {
   useEffect,
   forwardRef,
   useImperativeHandle,
+  useState,
 } from 'react'
 import clsx from 'clsx'
 
@@ -105,13 +106,14 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
   )
 
   // 下划线偏移量
-  const lineTranslateLeft = useMemo(() => {
+  const [lineTranslateLeft, setLineTranslateLeft] = useState<number>(0)
+  useUpdateEffect(() => {
     const hidden = isHidden(root.current)
     const title = titleRefs?.[index]
     if (!title || hidden || props.type !== 'line') {
       return
     }
-    return title.offsetLeft + title.offsetWidth / 2
+    setLineTranslateLeft(title.offsetLeft + title.offsetWidth / 2)
   }, [root.current, titleRefs, props.type, index])
 
   // 下划线样式
@@ -364,7 +366,11 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   return (
     <TabsContext.Provider value={{ props, currentName, scrollIntoView }}>
-      <div ref={root} className={clsx(props.className, bem([props.type]))} style={ props.style }>
+      <div
+        ref={root}
+        className={clsx(props.className, bem([props.type]))}
+        style={props.style}
+      >
         {props.sticky ? (
           <Sticky
             container={root}
