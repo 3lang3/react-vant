@@ -86,6 +86,7 @@ const Checker: React.FC<CheckerProps<{}>> = (props) => {
         ]),
         props.className,
       )}
+      style={props.style}
       tabIndex={disabled ? -1 : 0}
       aria-checked={props.checked}
       onClick={onClick}
