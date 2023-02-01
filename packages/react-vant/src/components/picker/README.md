@@ -118,13 +118,13 @@ export type PickerColumn<T = PickerColumnOption> = (string | T)[];
 
 ### 类型定义
 
-通过 `PickerInstance` 获取 Picker 实例的类型定义。
+通过 `PickerPopupActions` 获取 Picker 实例的类型定义。
 
 ```ts
 import { useRef } from 'react';
-import type { PickerInstance } from 'react-vant';
+import type { PickerPopupActions } from 'react-vant';
 
-const pickerRef = useRef<PickerInstance>();
+const pickerRef = useRef<PickerPopupActions>();
 
 pickerRef.current?.open();
 ```
