@@ -28,7 +28,7 @@
     "@babel/core": "7.19.6",
     "@babel/plugin-transform-modules-commonjs": "7.19.6",
     "@svgr/babel-plugin-remove-jsx-attribute": "6.5.0",
-    "@types/react": "18.0.17",
+    "@types/react": "18.0.28",
     "del": "6.1.1",
     "fast-glob": "3.2.12",
     "fs-extra": "10.1.0",
