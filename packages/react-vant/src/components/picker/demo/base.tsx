@@ -11,6 +11,7 @@ const columns = [
   { text: '宿迁', value: 6 },
   { text: '泰州', value: 7 },
   { text: '无锡', value: 8 },
+  { text: '长沙', value: 9 },
 ]
 
 export default () => {
