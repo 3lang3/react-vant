@@ -18,6 +18,17 @@
   --rv-toast-position-bottom-distance: @toast-position-bottom-distance;
 }
 
+.@{rv-prefix}-toast--unclickable {
+  // lock scroll
+  overflow: hidden;
+  cursor: not-allowed;
+
+  // should not add pointer-events: none directly to body tag
+  // that will cause unexpected tap-highlight-color in mobile safari
+  * {
+    pointer-events: none;
+  }
+}
 .@{rv-prefix}-toast {
   &.@{rv-prefix}-popup {
     display: flex;
@@ -42,17 +53,6 @@
     background-color: var(--rv-toast-background-color);
     border-radius: var(--rv-toast-border-radius);
     transition: all var(--rv-animation-duration-fast);
-  }
-  &&--unclickable {
-    // lock scroll
-    overflow: hidden;
-    cursor: not-allowed;
-
-    // should not add pointer-events: none directly to body tag
-    // that will cause unexpected tap-highlight-color in mobile safari
-    * {
-      pointer-events: none;
-    }
   }
 
   &&--info,

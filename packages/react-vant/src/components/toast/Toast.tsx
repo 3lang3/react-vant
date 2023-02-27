@@ -13,18 +13,6 @@ const [bem] = createNamespace('toast')
 const Toast: React.FC<
   ToastProps & ToastPrivateProps & { visible?: boolean }
 > = props => {
-  let clickable = false
-  const toggleClickable = () => {
-    const newValue = props.visible && props.forbidClick
-    if (clickable !== newValue) {
-      clickable = newValue
-      lockClick(clickable)
-    }
-    if (!props.visible) {
-      lockClick(false)
-    }
-  }
-
   const onClick = () => {
     if (props.closeOnClick) {
       props.onClose()
@@ -32,8 +20,16 @@ const Toast: React.FC<
   }
 
   useEffect(() => {
-    toggleClickable()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!props.visible) {
+      lockClick(false)
+      return
+    }
+    let clickable = false
+    const newValue = props.visible && props.forbidClick
+    if (clickable !== newValue) {
+      clickable = newValue
+      lockClick(clickable)
+    }
   }, [props.visible, props.forbidClick])
 
   const renderIcon = () => {
