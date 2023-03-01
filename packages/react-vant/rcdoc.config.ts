@@ -155,6 +155,7 @@ export default defineConfig({
           '/components/swiper',
           '/components/tag',
           '/components/water-mark',
+          '/components/floating-panel',
         ],
       },
       {
