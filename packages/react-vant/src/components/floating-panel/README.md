@@ -22,7 +22,7 @@ import { FloatingPanel } from 'react-vant';
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| anchors | 是否显示动作面板 | _number[]_ | `[100]` |
+| anchors | 可拖拽至哪些高度，单位为 `px`	 | _number[]_ | `[100]` |
 | onHeightChange | 面板高度变化时触发 | _(height: number) => void_ | - |
 
 ### 方法
