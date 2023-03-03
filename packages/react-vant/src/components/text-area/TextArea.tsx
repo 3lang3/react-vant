@@ -92,12 +92,14 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
     ])
   }, [props.autoSize])
 
-  const handleChange = e => {
-    const inputValue = e?.currentTarget?.value
+  const handleValueChange = (inputValue?: string) => {
     let finalValue = inputValue
 
-    if (isDef(maxLength) && finalValue.length > +maxLength) {
-      finalValue = finalValue.slice(0, maxLength)
+    if (!compositionStartRef.current) {
+      if (isDef(maxLength) && finalValue.length > +maxLength) {
+        finalValue = finalValue.slice(0, maxLength)
+        props.onOverlimit?.()
+      }
     }
 
     setValue(finalValue)
@@ -170,7 +172,7 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
         placeholder={placeholder || ''}
         onBlur={handleBulr}
         onFocus={handleFocus}
-        onChange={handleChange}
+        onChange={e => handleValueChange(e?.currentTarget?.value)}
         onKeyPress={props.onKeyPress}
         onKeyDown={props.onKeyDown}
         onKeyUp={props.onKeyUp}
@@ -182,6 +184,7 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
         onCompositionEnd={e => {
           compositionStartRef.current = false
           props.onCompositionEnd?.(e as any)
+          handleValueChange(e?.currentTarget?.value)
         }}
         onClick={
           props.onClick as unknown as React.HTMLAttributes<HTMLTextAreaElement>['onClick']

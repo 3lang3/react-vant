@@ -73,18 +73,19 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
     return false
   }, [value, props.clearTrigger, inputFocus])
 
-  const handleChange = e => {
-    const inputValue = e?.currentTarget?.value
+  const handleValueChange = (inputValue?: string) => {
     let finalValue = inputValue
 
-    if (isDef(maxLength) && finalValue.length > +maxLength) {
-      finalValue = finalValue.slice(0, maxLength)
-      props.onOverlimit?.()
-    }
+    if (!compositionStartRef.current) {
+      if (isDef(maxLength) && finalValue.length > +maxLength) {
+        finalValue = finalValue.slice(0, maxLength)
+        props.onOverlimit?.()
+      }
 
-    if (type === 'number' || type === 'digit') {
-      const isNumber = type === 'number'
-      finalValue = formatNumber(finalValue, isNumber, isNumber)
+      if (type === 'number' || type === 'digit') {
+        const isNumber = type === 'number'
+        finalValue = formatNumber(finalValue, isNumber, isNumber)
+      }
     }
 
     setValue(finalValue)
@@ -147,7 +148,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         placeholder={placeholder || ''}
         onBlur={handleBulr}
         onFocus={handleFocus}
-        onChange={handleChange}
+        onChange={e => handleValueChange(e?.currentTarget?.value)}
         onKeyPress={handleKeyPress}
         autoCapitalize={props.autoCapitalize}
         autoCorrect={props.autoCorrect}
@@ -160,6 +161,7 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
         onCompositionEnd={e => {
           compositionStartRef.current = false
           props.onCompositionEnd?.(e)
+          handleValueChange(e?.currentTarget?.value)
         }}
         onClick={props.onClick}
       />
