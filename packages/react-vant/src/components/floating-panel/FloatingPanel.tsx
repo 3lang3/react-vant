@@ -46,8 +46,7 @@ const FloatingPanel = forwardRef<FloatingPanelInstance, FloatingPanelProps>(
     const onTouchMove: EventListener = event => {
       if (!body.current || !header.current) return
       touch.move(event)
-      if (touch.firstMove.current) {
-        dragging.current = touch.isVertical()
+      if (touch.firstMove.current && touch.isVertical()) {
         const bodyEL = body.current
         if (
           // attempt scroll at max anchor
