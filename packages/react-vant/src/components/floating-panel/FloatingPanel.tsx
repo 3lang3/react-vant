@@ -46,6 +46,7 @@ const FloatingPanel = forwardRef<FloatingPanelInstance, FloatingPanelProps>(
     const onTouchMove: EventListener = event => {
       if (!body.current || !header.current) return
       touch.move(event)
+      if (!touch.direction.current) return
       if (touch.firstMove.current && touch.isVertical()) {
         const bodyEL = body.current
         if (
