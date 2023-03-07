@@ -6,6 +6,7 @@
 .now
 .env
 .env.*
+.vscode
 
 # npm
 node_modules
