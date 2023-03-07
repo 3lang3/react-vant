@@ -1,6 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
 import clsx from 'clsx'
-import { createNamespace, preventDefault } from '../utils'
+import {
+  createNamespace,
+  getScrollTop,
+  getVisibleHeight,
+  preventDefault,
+} from '../utils'
 import useEventListener from '../hooks/use-event-listener'
 import { useTouch } from '../hooks'
 import { FloatingPanelInstance, FloatingPanelProps } from './PropsType'
@@ -53,8 +58,11 @@ const FloatingPanel = forwardRef<FloatingPanelInstance, FloatingPanelProps>(
           // attempt scroll at max anchor
           (touch.deltaY.current < 0 &&
             visibleH.goal >= maxAnchor &&
-            bodyEL.offsetHeight < bodyEL.scrollHeight &&
-            !(bodyEL.scrollTop + bodyEL.offsetHeight >= bodyEL.scrollHeight)) ||
+            getVisibleHeight(bodyEL) < bodyEL.scrollHeight &&
+            !(
+              getScrollTop(bodyEL) + getVisibleHeight(bodyEL) >=
+              bodyEL.scrollHeight
+            )) ||
           // attempt scroll back to top at max anchor
           (touch.deltaY.current > 0 && bodyEL.scrollTop > 0)
         ) {
