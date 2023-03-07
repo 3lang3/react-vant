@@ -253,7 +253,6 @@ export default () => {
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| resize | 外层元素大小或组件显示状态变化时，可以调用此方法来触发重绘 | - | - |
 | scrollTo | 滚动到指定的标签页，在滚动导航模式下可用 | _name: string \| number_ | - |
 | swiper.disable | 开启 `swipeable`后获得， 禁用 Swiper 能力（如果已启用） | - | - |
 | swiper.enable | 开启 `swipeable`后获得， 动态启用 Swiper 能力（如果已经禁用） | - | - |
