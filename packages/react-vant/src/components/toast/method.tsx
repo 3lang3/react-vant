@@ -68,10 +68,14 @@ const ToastObj = (p: ToastProps): unknown => {
       if (state.forbidClick) {
         lockClick(false)
       }
-      const unmountResult = unmount(container)
-      if (unmountResult && container.parentNode) {
-        container.parentNode.removeChild(container)
-      }
+      setVisible(false)
+      window.setTimeout(() => {
+        const unmountResult = unmount(container)
+        if (unmountResult && container.parentNode) {
+          container.parentNode.removeChild(container)
+        }
+      }, +state.duration || +defaultOptions.duration)
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [container])
 
