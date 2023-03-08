@@ -49,7 +49,11 @@ export default function useTouch() {
     deltaY.current = touch.clientY - startY.current
     offsetX.current = Math.abs(deltaX.current)
     offsetY.current = Math.abs(deltaY.current)
-    firstMove.current = !direction.current
+    if (firstMove.current === null) {
+      firstMove.current = true
+    } else {
+      firstMove.current = false
+    }
 
     if (!direction.current) {
       direction.current = getDirection(offsetX.current, offsetY.current)
