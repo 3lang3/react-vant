@@ -22,7 +22,7 @@ export default function useTouch() {
   const offsetX = useRef(0)
   const offsetY = useRef(0)
   const direction = useRef<Direction>('')
-  const firstMove = useRef(false)
+  const firstMove = useRef<boolean>(null)
 
   const isVertical = () => direction.current === 'vertical'
   const isHorizontal = () => direction.current === 'horizontal'
@@ -33,7 +33,7 @@ export default function useTouch() {
     offsetX.current = 0
     offsetY.current = 0
     direction.current = ''
-    firstMove.current = false
+    firstMove.current = null
   }
 
   const start = ((event: TouchEvent) => {
@@ -49,7 +49,11 @@ export default function useTouch() {
     deltaY.current = touch.clientY - startY.current
     offsetX.current = Math.abs(deltaX.current)
     offsetY.current = Math.abs(deltaY.current)
-    firstMove.current = !direction.current
+    if (firstMove.current === null) {
+      firstMove.current = true
+    } else {
+      firstMove.current = false
+    }
 
     if (!direction.current) {
       direction.current = getDirection(offsetX.current, offsetY.current)

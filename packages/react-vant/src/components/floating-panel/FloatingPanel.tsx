@@ -1,6 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
 import clsx from 'clsx'
-import { createNamespace, preventDefault } from '../utils'
+import {
+  createNamespace,
+  getScrollTop,
+  getVisibleHeight,
+  preventDefault,
+} from '../utils'
 import useEventListener from '../hooks/use-event-listener'
 import { useTouch } from '../hooks'
 import { FloatingPanelInstance, FloatingPanelProps } from './PropsType'
@@ -8,6 +13,12 @@ import { useSpring, animated } from '@react-spring/web'
 import { bound } from '../utils/bound'
 
 const [bem] = createNamespace('floating-panel')
+
+/** Check if EL is scrolling reach its bottom */
+function scrollReachBottom(el: Element) {
+  const scrollTop = getScrollTop(el)
+  return scrollTop >= el.scrollHeight - getVisibleHeight(el)
+}
 
 const FloatingPanel = forwardRef<FloatingPanelInstance, FloatingPanelProps>(
   (props, ref) => {
@@ -44,24 +55,22 @@ const FloatingPanel = forwardRef<FloatingPanelInstance, FloatingPanelProps>(
     }
 
     const onTouchMove: EventListener = event => {
-      if (!body.current || !header.current) return
+      const [headerEL, bodyEL] = [header.current, body.current]
       touch.move(event)
-      if (touch.firstMove.current && touch.isVertical()) {
-        const bodyEL = body.current
+      if (visibleH.goal >= maxAnchor && bodyEL) {
         if (
-          // attempt scroll at max anchor
-          (touch.deltaY.current < 0 &&
-            visibleH.goal >= maxAnchor &&
-            bodyEL.offsetHeight < bodyEL.scrollHeight &&
-            !(bodyEL.scrollTop + bodyEL.offsetHeight >= bodyEL.scrollHeight)) ||
-          // attempt scroll back to top at max anchor
-          (touch.deltaY.current > 0 && bodyEL.scrollTop > 0)
+          touch.firstMove.current &&
+          // try going up to body top
+          ((touch.deltaY.current > 0 && getScrollTop(bodyEL) > 0) ||
+            // try going down to body bottom
+            (touch.deltaY.current < 0 && !scrollReachBottom(bodyEL)))
         ) {
           dragging.current = false
-          return
         }
       }
-      if (event.target === header.current) dragging.current = true
+      if (headerEL && headerEL.contains(event.target as Element)) {
+        dragging.current = true
+      }
       if (!dragging.current) return
       preventDefault(event, true)
       api.start({
@@ -87,9 +96,12 @@ const FloatingPanel = forwardRef<FloatingPanelInstance, FloatingPanelProps>(
       }
     }
 
-    useEventListener('touchstart', onTouchStart, { target: root })
-    useEventListener('touchmove', onTouchMove, { target: root })
-    useEventListener('touchend', onTouchEnd, { target: root })
+    useEventListener('touchstart', onTouchStart, {
+      target: root,
+      passive: false,
+    })
+    useEventListener('touchmove', onTouchMove, { target: root, passive: false })
+    useEventListener('touchend', onTouchEnd, { target: root, passive: false })
 
     return (
       <animated.div
