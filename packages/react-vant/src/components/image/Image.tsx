@@ -29,7 +29,7 @@ const Image: React.FC<ImageProps> = props => {
     }
 
     return internalStyle
-  }, [props.style])
+  }, [props.style,props.width,props.height,props.radius])
 
   useEffect(() => {
     const payload = { error: false, loading: true } as typeof status
