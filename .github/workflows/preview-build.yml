@@ -14,11 +14,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16.9.1'
+          node-version: '14'
       - name: Run Npm Scripts
         run: |
           node -v
-          npm install pnpm -g
+          npm install pnpm@^7 -g
           pnpm -v
           pnpm i
           yarn docs:build
