@@ -40,7 +40,7 @@ const LoadMore = React.forwardRef<LoadMoreInstance, LoadMoreProps>(
     const { run: check } = useThrottleFn(
       async () => {
         if (nextFlagRef.current !== flag) return
-        if (props.finished) return
+        if (props.finished || failed) return
         const element = elementRef.current
         if (!element) return
         if (!element.offsetParent) return

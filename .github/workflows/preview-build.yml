@@ -18,7 +18,7 @@ jobs:
       - name: Run Npm Scripts
         run: |
           node -v
-          npm install pnpm -g
+          npm install pnpm@^7 -g
           pnpm -v
           pnpm i
           yarn docs:build
