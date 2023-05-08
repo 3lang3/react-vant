@@ -9,7 +9,8 @@ import { createNamespace } from '../utils'
 const [bem] = createNamespace('button')
 
 const Button: React.FC<ButtonProps> = props => {
-  const { color, loading, className, hairline, loadingText } = props
+  const { color, loading, className, hairline, loadingText, ...restProps } =
+    props
 
   const { parent } = useContext(ButtonContext)
 
@@ -155,6 +156,7 @@ const Button: React.FC<ButtonProps> = props => {
 
   return (
     <TagElement
+      {...restProps}
       disabled={disabled}
       className={classes}
       style={style}

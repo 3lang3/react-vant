@@ -6,7 +6,9 @@ export type ButtonType = 'default' | 'primary' | 'info' | 'warning' | 'danger'
 export type ButtonSize = 'large' | 'normal' | 'small' | 'mini'
 export type ButtonIconPosition = 'right' | 'left'
 
-export interface ButtonProps extends BaseTypeProps {
+export interface ButtonProps
+  extends BaseTypeProps,
+    Omit<React.HTMLAttributes<HTMLButtonElement>, 'style'> {
   /**
    * 指定渲染的dom标签
    * @default 'button'
