@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef, useMemo } from 'react'
+import React, { CSSProperties, useRef, useMemo, useCallback } from 'react'
 import clsx from 'clsx'
 
 import useScrollParent from '../hooks/use-scroll-parent'
@@ -80,7 +80,7 @@ const Sticky: React.FC<StickyProps> = props => {
     }
   }
 
-  const onScroll = () => {
+  const onScroll = useCallback(() => {
     if (!root.current || isHidden(root.current)) {
       return
     }
@@ -119,9 +119,12 @@ const Sticky: React.FC<StickyProps> = props => {
     }
     updateState(newState)
     emitScroll(scrollTop, newState.fixed)
-  }
+  }, [offset])
 
-  useEventListener('scroll', onScroll, { target: scrollParent })
+  useEventListener('scroll', onScroll, {
+    target: scrollParent,
+    depends: [offset],
+  })
   useVisibilityChange(root, onScroll)
   useUpdateEffect(() => {
     props.onChange?.(state.fixed)
