@@ -97,6 +97,6 @@ import { Cascader } from 'react-vant';
 | --rv-cascader-tabs-height             | _48px_                   | -    |
 | --rv-cascader-active-color            | _var(--rv-danger-color)_ | -    |
 | --rv-cascader-options-height          | _384px_                  | -    |
-| --rv-cascader-option-disabled-color   | _van(--rv-gray-5)_       | -    |
+| --rv-cascader-option-disabled-color   | _var(--rv-gray-5)_       | -    |
 | --rv-cascader-tab-color               | _var(--rv-text-color)_   | -    |
 | --rv-cascader-unselected-tab-color    | _var(--rv-gray-6)_       | -    |
