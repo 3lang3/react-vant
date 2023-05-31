@@ -107,12 +107,14 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   // 下划线偏移量
   const [lineTranslateLeft, setLineTranslateLeft] = useState<number>(0)
+  const [showLine, setShowLine] = useState<boolean>(false)
   useUpdateEffect(() => {
     const hidden = isHidden(root.current)
     const title = titleRefs?.[index]
     if (!title || hidden || props.type !== 'line') {
       return
     }
+    setShowLine(true)
     setLineTranslateLeft(title.offsetLeft + title.offsetWidth / 2)
   }, [root.current, titleRefs, props.type, index])
 
@@ -123,6 +125,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
       width: addUnit(lineWidth),
       backgroundColor: color,
       transitionDuration: `${immediateRef.current ? 0 : props.duration}ms`,
+      display: showLine ? 'inherit' : 'none',
     } as React.CSSProperties
 
     if (lineTranslateLeft) {
@@ -141,6 +144,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     props.lineWidth,
     lineTranslateLeft,
     immediateRef.current,
+    showLine,
   ])
 
   const getAvailableTab = (targetIndex: number) => {
