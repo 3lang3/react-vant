@@ -3,6 +3,7 @@ import cls from 'clsx'
 import { LIMIT_TYPE } from '../constants'
 import Stepper from '../../stepper'
 import { createNamespace } from '../../utils'
+import { mergeProps } from '../../utils/get-default-props'
 
 type SkuStepperProps = {
   currentNum: number
@@ -23,7 +24,13 @@ const { QUOTA_LIMIT, STOCK_LIMIT } = LIMIT_TYPE
 
 const [bem] = createNamespace('sku')
 
-const SkuStepper: React.FC<SkuStepperProps> = props => {
+const SkuStepper: React.FC<SkuStepperProps> = p => {
+  const props = mergeProps(p, {
+    quota: 0,
+    quotaUsed: 0,
+    startSaleNum: 1,
+    customStepperConfig: {},
+  })
   const [limitType, setLimitType] = useState(STOCK_LIMIT)
 
   const stepperLimit = useMemo(() => {
@@ -134,13 +141,6 @@ const SkuStepper: React.FC<SkuStepperProps> = props => {
       )}
     </div>
   )
-}
-
-SkuStepper.defaultProps = {
-  quota: 0,
-  quotaUsed: 0,
-  startSaleNum: 1,
-  customStepperConfig: {},
 }
 
 export default SkuStepper

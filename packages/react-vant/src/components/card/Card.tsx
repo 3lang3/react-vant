@@ -81,7 +81,4 @@ const Card: React.FC<CardProps> = props => {
   )
 }
 
-// defaultProps defined if need
-Card.defaultProps = {}
-
 export default Card

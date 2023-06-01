@@ -8,10 +8,24 @@ import Button from '../button'
 import Field from '../field'
 import Coupon from './Coupon'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('coupon-list')
 
-const CouponList: React.FC<CouponListProps> = props => {
+const CouponList: React.FC<CouponListProps> = p => {
+  const props = mergeProps(p, {
+    showCount: true,
+    showExchangeBar: true,
+    showCloseButton: true,
+    code: '',
+    exchangeMinLength: 1,
+    chosenCoupon: -1,
+    coupons: [],
+    disabledCoupons: [],
+    displayedCouponIndex: -1,
+    currency: '¥',
+    emptyImage: EMPTY_IMAGE,
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const innerEffect = useRef(false)
@@ -182,20 +196,5 @@ const CouponList: React.FC<CouponListProps> = props => {
 }
 
 const EMPTY_IMAGE = 'https://img.yzcdn.cn/vant/coupon-empty.png'
-
-// defaultProps defined if need
-CouponList.defaultProps = {
-  showCount: true,
-  showExchangeBar: true,
-  showCloseButton: true,
-  code: '',
-  exchangeMinLength: 1,
-  chosenCoupon: -1,
-  coupons: [],
-  disabledCoupons: [],
-  displayedCouponIndex: -1,
-  currency: '¥',
-  emptyImage: EMPTY_IMAGE,
-}
 
 export default CouponList

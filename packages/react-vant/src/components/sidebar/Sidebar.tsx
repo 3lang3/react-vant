@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const [active, updateActive] = useMergedState({
     value: props.value,
-    defaultValue: props.defaultValue,
+    defaultValue: props.defaultValue || 0,
   })
 
   const getActive = () => active
@@ -81,7 +81,5 @@ const Sidebar: React.FC<SidebarProps> = ({
     </div>
   )
 }
-Sidebar.defaultProps = {
-  defaultValue: 0,
-}
+
 export default Sidebar

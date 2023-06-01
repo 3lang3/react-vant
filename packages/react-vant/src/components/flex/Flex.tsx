@@ -13,7 +13,7 @@ const Flex: React.FC<FlexProps> = props => {
     wrap,
     justify,
     align,
-    gutter,
+    gutter = 0,
     style,
     className,
     children,
@@ -57,10 +57,6 @@ const Flex: React.FC<FlexProps> = props => {
       </div>
     </FlexContext.Provider>
   )
-}
-
-Flex.defaultProps = {
-  gutter: 0,
 }
 
 export default Flex

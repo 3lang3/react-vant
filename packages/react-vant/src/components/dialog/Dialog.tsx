@@ -9,12 +9,17 @@ import { DialogProps, DialogStatic } from './PropsType'
 import { addUnit, createNamespace, noop } from '../utils'
 import { BORDER_TOP, BORDER_LEFT } from '../utils/constant'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('dialog')
 
-const Dialog: React.FC<DialogProps> = props => {
+const Dialog: React.FC<DialogProps> = p => {
   const { locale } = useContext(ConfigProviderContext)
-
+  const props = mergeProps(p, {
+    transition: 'rv-dialog-bounce',
+    showConfirmButton: true,
+    closeOnPopstate: true,
+  })
   const {
     width,
     title,
@@ -150,12 +155,6 @@ const Dialog: React.FC<DialogProps> = props => {
       {renderFooter()}
     </Popup>
   )
-}
-
-Dialog.defaultProps = {
-  transition: 'rv-dialog-bounce',
-  showConfirmButton: true,
-  closeOnPopstate: true,
 }
 
 export default Dialog as React.FC<DialogProps> & DialogStatic

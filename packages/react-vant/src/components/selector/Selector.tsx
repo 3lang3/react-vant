@@ -4,19 +4,18 @@ import { usePropsValue } from '../hooks'
 import { CheckMark } from './CheckMark'
 import { createNamespace } from '../utils'
 import { SelectorProps, SelectorValue } from './PropsType'
+import { mergeProps } from '../utils/get-default-props'
 
 // https://mobile.ant.design/zh/components/selector
 
 const [bem] = createNamespace('selector')
 
-const defaultProps = {
-  multiple: false,
-  defaultValue: [],
-  showCheckMark: true,
-}
-
 export const Selector = <V extends SelectorValue>(p: SelectorProps<V>) => {
-  const props = { ...defaultProps, ...p }
+  const props = mergeProps(p, {
+    multiple: false,
+    defaultValue: [],
+    showCheckMark: true,
+  })
   const [value, setValue] = usePropsValue({
     value: props.value,
     defaultValue: props.defaultValue,

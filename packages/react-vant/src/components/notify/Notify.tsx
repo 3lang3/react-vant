@@ -3,13 +3,20 @@ import cls from 'clsx'
 import Popup from '../popup'
 import { NotifyPrivateProps, NotifyProps } from './PropsType'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('notify')
 
 const Notify: React.FC<NotifyProps & NotifyPrivateProps> = ({
   children,
-  ...props
+  ...p
 }) => {
+  const props = mergeProps(p, {
+    type: 'danger',
+    duration: 3000,
+    color: 'white',
+    lockScroll: false,
+  })
   const style = {
     color: props.color,
     background: props.background,
@@ -32,13 +39,6 @@ const Notify: React.FC<NotifyProps & NotifyPrivateProps> = ({
       </div>
     </Popup>
   )
-}
-
-Notify.defaultProps = {
-  type: 'danger',
-  duration: 3000,
-  color: 'white',
-  lockScroll: false,
 }
 
 export default Notify

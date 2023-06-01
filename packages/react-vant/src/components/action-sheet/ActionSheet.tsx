@@ -6,10 +6,20 @@ import { createNamespace, pick } from '../utils'
 import Loading from '../loading'
 import Popup from '../popup'
 import { sharedPopupProps } from '../popup/Popup'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('action-sheet')
 
-const ActionSheet: React.FC<ActionSheetProps> = props => {
+const ActionSheet: React.FC<ActionSheetProps> = p => {
+  const props = mergeProps(p, {
+    closeable: true,
+    safeAreaInsetBottom: true,
+    round: true,
+    lockScroll: true,
+    overlay: true,
+    closeOnClickOverlay: true,
+    closeIcon: <Cross />,
+  })
   const onCancel = () => {
     props.onClose?.()
     props.onCancel?.()
@@ -135,16 +145,6 @@ const ActionSheet: React.FC<ActionSheetProps> = props => {
       </div>
     </Popup>
   )
-}
-
-ActionSheet.defaultProps = {
-  closeable: true,
-  safeAreaInsetBottom: true,
-  round: true,
-  lockScroll: true,
-  overlay: true,
-  closeOnClickOverlay: true,
-  closeIcon: <Cross />,
 }
 
 export default ActionSheet

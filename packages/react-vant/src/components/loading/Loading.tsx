@@ -39,7 +39,7 @@ const [bem] = createNamespace('loading')
 const Loading: React.FC<LoadingProps> = props => {
   const {
     className,
-    type,
+    type = 'circular',
     vertical,
     color,
     size,
@@ -84,10 +84,6 @@ const Loading: React.FC<LoadingProps> = props => {
       {renderText()}
     </div>
   )
-}
-
-Loading.defaultProps = {
-  type: 'circular',
 }
 
 export default Loading

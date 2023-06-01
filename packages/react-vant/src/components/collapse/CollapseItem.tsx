@@ -16,11 +16,16 @@ import { CollapseItemInstance, CollapseItemProps } from './PropsType'
 import { raf, doubleRaf } from '../utils/raf'
 import { useUpdateEffect } from '../hooks'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('collapse-item')
 
 const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
-  ({ className, style, ...props }, ref) => {
+  ({ className, style, ...p }, ref) => {
+    const props = mergeProps(p, {
+      isLink: true,
+      border: true,
+    })
     const { index } = props
     const parent = useContext(CollapseContext)
 
@@ -130,10 +135,5 @@ const CollapseItem = forwardRef<CollapseItemInstance, CollapseItemProps>(
     )
   }
 )
-
-CollapseItem.defaultProps = {
-  isLink: true,
-  border: true,
-}
 
 export default CollapseItem

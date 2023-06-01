@@ -20,6 +20,7 @@ import { renderToContainer } from '../utils/dom/renderToContainer'
 import PopupContext from './PopupContext'
 import { useLockScroll } from '../hooks/use-lock-scroll'
 import { useIsomorphicLayoutEffect } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 export const sharedPopupProps = [
   'round',
@@ -48,7 +49,18 @@ let globalZIndex = 2000
 
 const [bem] = createNamespace('popup')
 
-const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
+const Popup = forwardRef<PopupInstanceType, PopupProps>((p, ref) => {
+  const props = mergeProps(p, {
+    duration: 300,
+    overlay: true,
+    lockScroll: true,
+    position: 'center',
+    closeIcon: <Cross />,
+    closeIconPosition: 'top-right',
+    closeOnClickOverlay: true,
+    stopPropagation: ['click'],
+    teleport: () => document.body,
+  })
   const {
     round,
     closeable,
@@ -251,17 +263,5 @@ const Popup = forwardRef<PopupInstanceType, PopupProps>((props, ref) => {
     </PopupContext.Provider>
   )
 })
-
-Popup.defaultProps = {
-  duration: 300,
-  overlay: true,
-  lockScroll: true,
-  position: 'center',
-  closeIcon: <Cross />,
-  closeIconPosition: 'top-right',
-  closeOnClickOverlay: true,
-  stopPropagation: ['click'],
-  teleport: () => document.body,
-}
 
 export default Popup

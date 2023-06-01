@@ -33,6 +33,7 @@ import Popup from '../popup'
 import { useColumnsExtend } from './columnsExtend'
 import useRefs from '../hooks/use-refs'
 import useDebounceEffect from '../hooks/use-debunce-effect'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('picker')
 
@@ -214,9 +215,18 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
 }
 
 function PopupPicker<T = PickerColumnOption>(
-  props: PickerProps<T>,
+  p: PickerProps<T>,
   ref: React.ForwardedRef<PickerPopupActions & Partial<PickerPopupActions>>
 ) {
+  const props = mergeProps(p, {
+    columns: [],
+    itemHeight: 44,
+    visibleItemCount: 5,
+    swipeDuration: 300,
+    showToolbar: true,
+    placeholder: true,
+    toolbarPosition: 'top',
+  })
   const {
     visible: outerVisible,
     popup,
@@ -376,16 +386,5 @@ const Picker = forwardRef(PopupPicker) as <T>(
     ref?: React.ForwardedRef<Partial<PickerPopupActions>>
   }
 ) => ReturnType<typeof PopupPicker>
-
-;(Picker as React.FC<PickerProps>).defaultProps = {
-  columns: [],
-  itemHeight: 44,
-  visibleItemCount: 5,
-  swipeDuration: 300,
-  showToolbar: true,
-  placeholder: true,
-
-  toolbarPosition: 'top',
-}
 
 export default Picker

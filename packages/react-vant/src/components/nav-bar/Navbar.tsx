@@ -7,10 +7,15 @@ import { BORDER_BOTTOM } from '../utils/constant'
 
 import useHeight from '../hooks/use-height'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('nav-bar')
 
-const NavBar: React.FC<NavBarProps> = props => {
+const NavBar: React.FC<NavBarProps> = p => {
+  const props = mergeProps(p, {
+    border: true,
+    leftArrow: <ArrowLeft />,
+  })
   const navBarRef = useRef(null)
 
   const navBarHeight = useHeight(navBarRef)
@@ -111,11 +116,6 @@ const NavBar: React.FC<NavBarProps> = props => {
       {renderNavBar()}
     </>
   )
-}
-
-NavBar.defaultProps = {
-  border: true,
-  leftArrow: <ArrowLeft />,
 }
 
 export default NavBar

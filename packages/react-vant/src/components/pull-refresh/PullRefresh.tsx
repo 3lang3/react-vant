@@ -9,13 +9,19 @@ import useEventListener from '../hooks/use-event-listener'
 import Loading from '../loading'
 import { useSetState, useTouch, useUpdateEffect } from '../hooks'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { mergeProps } from '../utils/get-default-props'
 
 const DEFAULT_HEAD_HEIGHT = 50
 const TEXT_STATUS = ['pulling', 'loosing', 'success']
 
 const [bem] = createNamespace('pull-refresh')
 
-const PullRefresh: React.FC<PullRefreshProps> = props => {
+const PullRefresh: React.FC<PullRefreshProps> = p => {
+  const props = mergeProps(p, {
+    headHeight: 50,
+    animationDuration: 300,
+    successDuration: 500,
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const { disabled, animationDuration } = props
@@ -230,12 +236,6 @@ const PullRefresh: React.FC<PullRefreshProps> = props => {
       </div>
     </div>
   )
-}
-
-PullRefresh.defaultProps = {
-  headHeight: 50,
-  animationDuration: 300,
-  successDuration: 500,
 }
 
 export default PullRefresh

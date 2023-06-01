@@ -3,6 +3,7 @@ import React, { FC, useMemo, useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from '../hooks'
 import { useResizeEffect } from '../hooks/use-resize-effect'
 import { withStopPropagation } from '../utils/dom/event'
+import { mergeProps } from '../utils/get-default-props'
 import { EllipsisProps } from './PropsType'
 
 type EllipsisedValue = {
@@ -10,7 +11,15 @@ type EllipsisedValue = {
   tailing?: string
 }
 
-const Ellipsis: FC<EllipsisProps> = props => {
+const Ellipsis: FC<EllipsisProps> = p => {
+  const props = mergeProps(p, {
+    rows: 1,
+    expandText: '',
+    collapseText: '',
+    suffixText: '',
+    symbol: '...',
+    stopPropagationForActionButtons: [],
+  })
   const rootRef = useRef<HTMLDivElement>(null)
 
   const [ellipsised, setEllipsised] = useState<EllipsisedValue>({})
@@ -168,15 +177,6 @@ function pxToNumber(value: string | null): number {
   if (!value) return 0
   const match = value.match(/^\d*(\.\d*)?/)
   return match ? Number(match[0]) : 0
-}
-
-Ellipsis.defaultProps = {
-  rows: 1,
-  expandText: '',
-  collapseText: '',
-  suffixText: '',
-  symbol: '...',
-  stopPropagationForActionButtons: [],
 }
 
 export default Ellipsis

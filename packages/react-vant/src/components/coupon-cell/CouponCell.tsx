@@ -5,6 +5,7 @@ import { CouponCellProps, CouponInfo } from '../coupon-list/PropsType'
 import { createNamespace, isDef } from '../utils'
 import Cell from '../cell'
 import { Locale } from '../locale/lang/base'
+import { mergeProps } from '../utils/get-default-props'
 
 function formatValue(
   coupons: CouponInfo[],
@@ -33,7 +34,14 @@ function formatValue(
 
 const [bem] = createNamespace('coupon-cell')
 
-const CouponCell: React.FC<CouponCellProps> = props => {
+const CouponCell: React.FC<CouponCellProps> = p => {
+  const props = mergeProps(p, {
+    border: true,
+    editable: true,
+    coupons: [],
+    currency: '¥',
+    chosenCoupon: -1,
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const selected = props.coupons[+props.chosenCoupon]
@@ -56,15 +64,6 @@ const CouponCell: React.FC<CouponCellProps> = props => {
       onClick={props.onClick}
     />
   )
-}
-
-// defaultProps defined if need
-CouponCell.defaultProps = {
-  border: true,
-  editable: true,
-  coupons: [],
-  currency: '¥',
-  chosenCoupon: -1,
 }
 
 export default CouponCell

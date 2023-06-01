@@ -17,6 +17,7 @@ import {
   DropdownMenuItemOption,
   DropdownItemInstance,
 } from './PropsType'
+import { mergeProps } from '../utils/get-default-props'
 
 const inheritPropsKey = [
   'overlay',
@@ -40,7 +41,11 @@ const [bem] = createNamespace('dropdown-item')
 const DropdownMenuItem = forwardRef<
   DropdownItemInstance,
   DropdownMenuItemProps
->((props, ref) => {
+>((p, ref) => {
+  const props = mergeProps(p, {
+    placeholder: '请选择',
+    options: [],
+  })
   const [state, setState] = useSetState({
     transition: true,
     showWrapper: false,
@@ -169,10 +174,5 @@ const DropdownMenuItem = forwardRef<
   if (props.teleport) return renderToContainer(props.teleport, renderContent())
   return renderContent()
 })
-
-DropdownMenuItem.defaultProps = {
-  placeholder: '请选择',
-  options: [],
-}
 
 export default DropdownMenuItem

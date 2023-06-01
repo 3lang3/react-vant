@@ -7,6 +7,7 @@ import { LazyImageProps } from './PropsType'
 import { COMPONENT_TYPE_KEY } from '../utils/constant'
 import { BEM } from '../utils/create/bem'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 export const getLazyImagePlaceholder = (bem: BEM): React.ReactNode => (
   <div className={clsx(bem('loading'))}>
@@ -16,7 +17,15 @@ export const getLazyImagePlaceholder = (bem: BEM): React.ReactNode => (
 
 const [bem] = createNamespace('image')
 
-const LazyImage: React.FC<LazyImageProps> = props => {
+const LazyImage: React.FC<LazyImageProps> = p => {
+  const props = mergeProps(p, {
+    fit: 'fill',
+    errorIcon: <PhotoFail />,
+    loadingIcon: <Photo />,
+    showError: true,
+    showLoading: true,
+    block: true,
+  })
   const { lazyload, ...imageProps } = props
   const renderPlaceholder = () => {
     if (typeof lazyload === 'boolean') return getLazyImagePlaceholder(bem)
@@ -36,15 +45,6 @@ const LazyImage: React.FC<LazyImageProps> = props => {
     )
   }
   return <Image {...imageProps} />
-}
-
-LazyImage.defaultProps = {
-  fit: 'fill',
-  errorIcon: <PhotoFail />,
-  loadingIcon: <Photo />,
-  showError: true,
-  showLoading: true,
-  block: true,
 }
 
 export const IMAGE_KEY = Symbol('image')

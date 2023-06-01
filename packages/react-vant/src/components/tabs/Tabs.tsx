@@ -38,13 +38,25 @@ import useEventListener from '../hooks/use-event-listener'
 import { isReachBottom } from './utils'
 import type { SwiperInstance } from '../swiper/PropsType'
 import useRefState from '../hooks/use-ref-state'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('tabs')
 
 const getTabName = (tab: TabPaneProps, index: number): string | number =>
   tab?.name ?? index
 
-const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
+const Tabs = forwardRef<TabsInstance, TabsProps>((p, ref) => {
+  const props = mergeProps(p, {
+    type: 'line',
+    duration: 300,
+    swipeThreshold: 5,
+    offsetTop: 0,
+    ellipsis: true,
+    lazyRender: true,
+    stickyInitScrollbar: true,
+    defaultActive: 0,
+    align: 'center',
+  })
   const { children, color, align, background } = props
 
   const root = useRef<HTMLDivElement>(null)
@@ -413,17 +425,5 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     </TabsContext.Provider>
   )
 })
-
-Tabs.defaultProps = {
-  type: 'line',
-  duration: 300,
-  swipeThreshold: 5,
-  offsetTop: 0,
-  ellipsis: true,
-  lazyRender: true,
-  stickyInitScrollbar: true,
-  defaultActive: 0,
-  align: 'center',
-}
 
 export default Tabs

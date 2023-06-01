@@ -19,7 +19,7 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     border,
     labelAlign,
     controlAlign,
-    showValidateMessage,
+    showValidateMessage = true,
     ...formProps
   } = props
 
@@ -47,9 +47,5 @@ const Form = forwardRef<FormInstance, FormProps>((props, ref) => {
     </RcForm>
   )
 })
-
-Form.defaultProps = {
-  showValidateMessage: true,
-}
 
 export default Form
