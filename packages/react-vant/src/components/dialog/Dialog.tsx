@@ -89,7 +89,7 @@ const Dialog: React.FC<DialogProps> = props => {
           className={clsx(bem('confirm'), {
             [BORDER_LEFT]: props.showCancelButton,
           })}
-          round={theme === 'round-button'}
+          round={theme === 'round-button' || undefined}
           style={{ color: props.confirmButtonColor }}
           loading={props.confirmProps?.loading}
           disabled={props.confirmProps?.disabled}
