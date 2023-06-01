@@ -8,6 +8,7 @@ import useRefs from '../hooks/use-refs'
 import useMergedState from '../hooks/use-merged-state'
 import useEventListener from '../hooks/use-event-listener'
 import { useTouch } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 type RateStatus = 'full' | 'half' | 'void'
 
@@ -44,11 +45,17 @@ function getRateStatus(
 const [bem] = createNamespace('rate')
 
 const Rate: React.FC<RateProps> = ({
-  count,
-  touchable,
+  count = 5,
+  touchable = true,
   onChange,
-  ...props
+  ...p
 }) => {
+  const props = mergeProps(p, {
+    size: 20,
+    gutter: 4,
+    icon: <Star />,
+    voidIcon: <StarO />,
+  })
   const [value, setValue] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,
@@ -219,15 +226,6 @@ const Rate: React.FC<RateProps> = ({
       {list.map(renderStar)}
     </div>
   )
-}
-
-Rate.defaultProps = {
-  size: 20,
-  count: 5,
-  gutter: 4,
-  icon: <Star />,
-  voidIcon: <StarO />,
-  touchable: true,
 }
 
 export default Rate

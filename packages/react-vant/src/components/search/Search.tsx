@@ -15,10 +15,15 @@ import { createNamespace, preventDefault } from '../utils'
 import Field from '../field'
 import type { FieldInstance } from '../field'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('search')
 
-const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
+const Search = forwardRef<SearchInstance, SearchProps>((p, ref) => {
+  const props = mergeProps(p, {
+    shape: 'square',
+    leftIcon: <SearchIco />,
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const filedRef = useRef<FieldInstance>()
@@ -169,10 +174,5 @@ const Search = forwardRef<SearchInstance, SearchProps>((props, ref) => {
     </div>
   )
 })
-
-Search.defaultProps = {
-  shape: 'square',
-  leftIcon: <SearchIco />,
-} as const
 
 export default Search

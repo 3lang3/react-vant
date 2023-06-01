@@ -9,11 +9,17 @@ import {
   withStopPropagation,
 } from '../utils'
 import { useEventListener } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('overlay')
 
-const Overlay: React.FC<OverlayProps> = props => {
+const Overlay: React.FC<OverlayProps> = p => {
   const nodeRef = useRef(null)
+  const props = mergeProps(p, {
+    stopPropagation: ['click'],
+    lockScroll: true,
+    duration: 300,
+  })
   const { visible, duration } = props
 
   const preventTouchMove = (event: TouchEvent) => {
@@ -64,12 +70,6 @@ const Overlay: React.FC<OverlayProps> = props => {
       {renderOverlay()}
     </CSSTransition>
   )
-}
-
-Overlay.defaultProps = {
-  stopPropagation: ['click'],
-  lockScroll: true,
-  duration: 300,
 }
 
 export default Overlay

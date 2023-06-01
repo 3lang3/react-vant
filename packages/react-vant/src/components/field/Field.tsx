@@ -13,10 +13,17 @@ import { TextAreaInstance } from '../text-area/PropsType'
 import { FieldInstance, FieldProps, FieldTooltipProps } from './PropsType'
 import { isDef, addUnit, createNamespace } from '../utils'
 import { COMPONENT_TYPE_KEY } from '../utils/constant'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('field')
 
-const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
+const Field = forwardRef<FieldInstance, FieldProps>((p, ref) => {
+  const props = mergeProps(p, {
+    clearIcon: <Clear />,
+    clearTrigger: 'focus',
+    formatTrigger: 'onChange',
+    defaultValue: '',
+  })
   const inputRef = useRef<InputInstance>(null)
   const textareaRef = useRef<TextAreaInstance>(null)
 
@@ -273,13 +280,6 @@ const Field = forwardRef<FieldInstance, FieldProps>((props, ref) => {
     </Cell>
   )
 })
-
-Field.defaultProps = {
-  clearIcon: <Clear />,
-  clearTrigger: 'focus',
-  formatTrigger: 'onChange',
-  defaultValue: '',
-}
 
 export const FIELD_KEY = Symbol('field')
 

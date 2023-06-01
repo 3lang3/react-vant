@@ -2,8 +2,12 @@ import React, { forwardRef } from 'react'
 import clsx from 'clsx'
 import { ListInstance, ListProps } from './PropsType'
 import LoadMore from './LoadMore'
+import { mergeProps } from '../utils/get-default-props'
 
-const List = forwardRef<ListInstance, ListProps>((props, ref) => {
+const List = forwardRef<ListInstance, ListProps>((p, ref) => {
+  const props = mergeProps(p, {
+    offset: 300,
+  })
   return (
     <LoadMore
       ref={ref}
@@ -20,9 +24,5 @@ const List = forwardRef<ListInstance, ListProps>((props, ref) => {
     </LoadMore>
   )
 })
-
-List.defaultProps = {
-  offset: 300,
-}
 
 export default List

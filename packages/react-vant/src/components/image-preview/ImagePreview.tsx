@@ -6,13 +6,25 @@ import Popup from '../popup'
 import { Slides } from './slides'
 import type { SlidesRef } from './slides'
 import SwiperPagIndicator from '../swiper/SwiperPagIndicator'
+import { mergeProps } from '../utils/get-default-props'
 
 export type ImagePreviewRef = SlidesRef
 
 const [bem] = createNamespace('image-preview')
 
 const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>(
-  (props, ref) => {
+  (p, ref) => {
+    const props = mergeProps(p, {
+      overlay: true,
+      showIndex: true,
+      images: [],
+      swipeDuration: 300,
+      startPosition: 0,
+      closeIconPosition: 'top-right' as const,
+      showIndicators: false,
+      closeOnlyClickCloseIcon: false,
+      maxZoom: 3,
+    })
     const slidesRef = useRef<SlidesRef>(null)
     const [active, setActive] = useState(() => props.startPosition)
 
@@ -113,17 +125,5 @@ const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>(
     )
   }
 )
-
-ImagePreview.defaultProps = {
-  overlay: true,
-  showIndex: true,
-  images: [],
-  swipeDuration: 300,
-  startPosition: 0,
-  closeIconPosition: 'top-right' as const,
-  showIndicators: false,
-  closeOnlyClickCloseIcon: false,
-  maxZoom: 3,
-}
 
 export default ImagePreview

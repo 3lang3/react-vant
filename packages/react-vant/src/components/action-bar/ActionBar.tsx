@@ -3,10 +3,14 @@ import clsx from 'clsx'
 import { ActionBarProps } from './PropsType'
 import ActionBarContext from './ActionBarContext'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('action-bar')
 
-const ActionBar: React.FC<ActionBarProps> = props => {
+const ActionBar: React.FC<ActionBarProps> = p => {
+  const props = mergeProps(p, {
+    safeAreaInsetBottom: true,
+  })
   const children = useMemo(
     () => React.Children.toArray(props.children),
     [props.children]
@@ -30,10 +34,6 @@ const ActionBar: React.FC<ActionBarProps> = props => {
       </div>
     </ActionBarContext.Provider>
   )
-}
-
-ActionBar.defaultProps = {
-  safeAreaInsetBottom: true,
 }
 
 export default ActionBar

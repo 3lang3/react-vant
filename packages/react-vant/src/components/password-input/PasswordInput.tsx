@@ -16,6 +16,7 @@ import {
 import { PasswordInputInstance, PasswordInputProps } from './PropsType'
 import { useSetState, useUpdateEffect } from '../hooks'
 import { BORDER_LEFT, BORDER_SURROUND } from '../utils/constant'
+import { mergeProps } from '../utils/get-default-props'
 
 type InputMode =
   | 'text'
@@ -30,7 +31,13 @@ type InputMode =
 const [bem] = createNamespace('password-input')
 
 const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>(
-  (props, ref) => {
+  (p, ref) => {
+    const props = mergeProps(p, {
+      length: 6,
+      gutter: 0,
+      mask: true,
+      type: 'text',
+    })
     const innerEffect = useRef<boolean>(false)
     const inputRef = useRef<HTMLInputElement>(null)
     const [state, updateState] = useSetState({
@@ -199,12 +206,5 @@ const PasswordInput = forwardRef<PasswordInputInstance, PasswordInputProps>(
     )
   }
 )
-
-PasswordInput.defaultProps = {
-  length: 6,
-  gutter: 0,
-  mask: true,
-  type: 'text',
-}
 
 export default PasswordInput

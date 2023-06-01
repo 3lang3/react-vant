@@ -33,12 +33,30 @@ import SkuRowPropItem from './components/SkuRowPropItem'
 import SkuStepper from './components/SkuStepper'
 import Toast from '../toast'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const { QUOTA_LIMIT } = LIMIT_TYPE
 
 const [bem] = createNamespace('sku')
 
-const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
+const Sku = forwardRef<SkuInstance, SkuProps>((p, ref) => {
+  const props = mergeProps(p, {
+    stepperTitle: '购买数量',
+    properties: [],
+    showAddCartBtn: true,
+    disableSoldoutSku: true,
+    showHeaderImage: true,
+    previewOnClickImage: true,
+    showSoldoutSku: true,
+    resetOnHide: true,
+    safeAreaInsetBottom: true,
+    quota: 0,
+    quotaUsed: 0,
+    startSaleNum: 1,
+    stockThreshold: 50,
+    bodyOffsetTop: 200,
+    customStepperConfig: {},
+  })
   const stepperError = useRef<boolean>(false)
   const [visible, setVisible] = useState(false)
   const [state, updateState] = useSetState({
@@ -605,24 +623,5 @@ const Sku = forwardRef<SkuInstance, SkuProps>((props, ref) => {
     </Popup>
   )
 })
-
-// defaultProps defined if need
-Sku.defaultProps = {
-  stepperTitle: '购买数量',
-  properties: [],
-  showAddCartBtn: true,
-  disableSoldoutSku: true,
-  showHeaderImage: true,
-  previewOnClickImage: true,
-  showSoldoutSku: true,
-  resetOnHide: true,
-  safeAreaInsetBottom: true,
-  quota: 0,
-  quotaUsed: 0,
-  startSaleNum: 1,
-  stockThreshold: 50,
-  bodyOffsetTop: 200,
-  customStepperConfig: {},
-}
 
 export default Sku

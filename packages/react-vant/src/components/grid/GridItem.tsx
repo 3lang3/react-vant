@@ -19,7 +19,7 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
   style,
   ...props
 }) => {
-  const { index, parent } = props
+  const { index = 0, parent = {} } = props
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {
       devWarning('GridItem', ' <GridItem> must be a child component of <Grid>.')
@@ -130,11 +130,6 @@ const GridItem: React.FC<GridItemProps & InternalProps> = ({
       </div>
     </div>
   )
-}
-
-GridItem.defaultProps = {
-  index: 0,
-  parent: {},
 }
 
 export default GridItem

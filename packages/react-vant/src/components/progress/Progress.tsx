@@ -2,10 +2,15 @@ import React, { useMemo } from 'react'
 import clsx from 'clsx'
 import { ProgressProps } from './PropsType'
 import { addUnit, createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('progress')
 
-const Progress: React.FC<ProgressProps> = props => {
+const Progress: React.FC<ProgressProps> = p => {
+  const props = mergeProps(p, {
+    showPivot: true,
+    percentage: 0,
+  })
   const background = useMemo(
     () => (props.inactive ? '#cacaca' : props.color),
     [props.inactive, props.color]
@@ -49,11 +54,6 @@ const Progress: React.FC<ProgressProps> = props => {
       {renderPivot()}
     </div>
   )
-}
-
-Progress.defaultProps = {
-  showPivot: true,
-  percentage: 0,
 }
 
 export default Progress

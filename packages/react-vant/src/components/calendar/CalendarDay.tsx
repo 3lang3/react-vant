@@ -2,10 +2,14 @@ import React, { CSSProperties, useMemo } from 'react'
 import cls from 'clsx'
 import { CalendarDayProps } from './PropsType'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('calendar')
 
-const CalenderDay: React.FC<CalendarDayProps> = props => {
+const CalenderDay: React.FC<CalendarDayProps> = p => {
+  const props = mergeProps(p, {
+    offset: 0,
+  })
   const style = useMemo(() => {
     const { item, index, color, offset, rowHeight } = props
     const iternalStyle: CSSProperties = {
@@ -122,10 +126,6 @@ const CalenderDay: React.FC<CalendarDayProps> = props => {
       {renderContent()}
     </div>
   )
-}
-
-CalenderDay.defaultProps = {
-  offset: 0,
 }
 
 export default CalenderDay

@@ -7,10 +7,15 @@ import Loading from '../loading'
 
 import { SwitchProps } from './PropsType'
 import { addUnit, createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('switch')
 
-const Swtich: React.FC<SwitchProps> = props => {
+const Swtich: React.FC<SwitchProps> = p => {
+  const props = mergeProps(p, {
+    activeValue: true,
+    inactiveValue: false,
+  })
   const { loading, disabled, size, activeColor, inactiveColor } = props
 
   const [checked, setChecked] = useMergedState({
@@ -68,11 +73,6 @@ const Swtich: React.FC<SwitchProps> = props => {
       <div className={clsx(bem('node'))}>{renderLoading()}</div>
     </div>
   )
-}
-
-Swtich.defaultProps = {
-  activeValue: true,
-  inactiveValue: false,
 }
 
 export default Swtich

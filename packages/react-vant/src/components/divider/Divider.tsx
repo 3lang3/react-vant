@@ -8,10 +8,10 @@ const [bem] = createNamespace('divider')
 const Divider: React.FC<DividerProps> = ({
   children,
   className,
-  hairline,
+  hairline = true,
   dashed,
-  type,
-  contentPosition,
+  type = 'horizontal',
+  contentPosition = 'center',
   ...props
 }) => {
   return (
@@ -31,12 +31,6 @@ const Divider: React.FC<DividerProps> = ({
       {children}
     </div>
   )
-}
-
-Divider.defaultProps = {
-  hairline: true,
-  type: 'horizontal',
-  contentPosition: 'center',
 }
 
 export default Divider

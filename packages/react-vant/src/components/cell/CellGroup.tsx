@@ -3,10 +3,14 @@ import clsx from 'clsx'
 import { CellGroupProps } from './PropsType'
 import { BORDER_TOP_BOTTOM } from '../utils/constant'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('cell-group')
 
-const CellGroup: React.FC<CellGroupProps> = props => {
+const CellGroup: React.FC<CellGroupProps> = p => {
+  const props = mergeProps(p, {
+    border: true,
+  })
   const { title, border, inset: insetP, card } = props
   const inset = card || insetP
 
@@ -31,10 +35,6 @@ const CellGroup: React.FC<CellGroupProps> = props => {
       {renderGroup()}
     </div>
   )
-}
-
-CellGroup.defaultProps = {
-  border: true,
 }
 
 export default CellGroup

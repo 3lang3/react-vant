@@ -11,10 +11,17 @@ import clsx from 'clsx'
 import { TextAreaInstance, TextAreaProps } from './PropsType'
 import { createNamespace, isDef, isObject, resetScroll } from '../utils'
 import { usePropsValue } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('textarea')
 
-const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
+const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((p, ref) => {
+  const props = mergeProps(p, {
+    rows: 2,
+    clearIcon: <Clear />,
+    clearTrigger: 'focus',
+    defaultValue: '',
+  })
   const [hasFocus, setHasFocus] = useState(false)
   const nativeTextAreaRef = useRef<HTMLTextAreaElement>()
   const compositionStartRef = useRef(false)
@@ -199,12 +206,5 @@ const TextArea = forwardRef<TextAreaInstance, TextAreaProps>((props, ref) => {
     </div>
   )
 })
-
-TextArea.defaultProps = {
-  rows: 2,
-  clearIcon: <Clear />,
-  clearTrigger: 'focus',
-  defaultValue: '',
-}
 
 export default TextArea

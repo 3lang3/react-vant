@@ -3,11 +3,15 @@ import clsx from 'clsx'
 import { EmptyProps } from './PropsType'
 import { createNamespace, getSizeStyle } from '../utils'
 import { Network } from './Network'
+import { mergeProps } from '../utils/get-default-props'
 
 const PRESET_IMAGES = ['error', 'search', 'default']
 const [bem] = createNamespace('empty')
 
-const Empty: React.FC<EmptyProps> = props => {
+const Empty: React.FC<EmptyProps> = p => {
+  const props = mergeProps(p, {
+    image: 'default',
+  })
   const renderImage = () => {
     let { image } = props
 
@@ -49,10 +53,6 @@ const Empty: React.FC<EmptyProps> = props => {
       {renderBottom()}
     </div>
   )
-}
-
-Empty.defaultProps = {
-  image: 'default',
 }
 
 export default Empty

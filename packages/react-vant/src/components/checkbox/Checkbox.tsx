@@ -9,10 +9,14 @@ import CheckBoxContext from './CheckboxContext'
 import useMergedState from '../hooks/use-merged-state'
 import { CheckboxInstance, CheckboxProps } from './PropsType'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('checkbox')
 
-const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((props, ref) => {
+const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((p, ref) => {
+  const props = mergeProps(p, {
+    bindGroup: true,
+  })
   const { parent, ...context } = useContext(CheckBoxContext)
   const [checked, setChecked] = useMergedState<boolean>({
     value: props.checked,
@@ -83,8 +87,5 @@ const CheckBox = forwardRef<CheckboxInstance, CheckboxProps>((props, ref) => {
 })
 
 CheckBox.displayName = 'Checkbox'
-CheckBox.defaultProps = {
-  bindGroup: true,
-}
 
 export default CheckBox

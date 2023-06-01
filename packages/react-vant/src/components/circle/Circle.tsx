@@ -4,6 +4,7 @@ import { CircleProps, CircleStartPosition } from './PropsType'
 import { isObject, getSizeStyle, createNamespace } from '../utils'
 import { cancelRaf, raf } from '../utils/raf'
 import useMergedState from '../hooks/use-merged-state'
+import { mergeProps } from '../utils/get-default-props'
 
 let uid = 0
 
@@ -27,7 +28,14 @@ const ROTATE_ANGLE_MAP: Record<CircleStartPosition, number> = {
 
 const [bem] = createNamespace('circle')
 
-const Circle: React.FC<CircleProps> = props => {
+const Circle: React.FC<CircleProps> = p => {
+  const props = mergeProps(p, {
+    clockwise: true,
+    speed: 100,
+    fill: 'none',
+    strokeWidth: 40,
+    startPosition: 'top',
+  })
   // eslint-disable-next-line no-plusplus
   const id = `van-circle-${uid++}`
 
@@ -165,14 +173,6 @@ const Circle: React.FC<CircleProps> = props => {
       {renderText()}
     </div>
   )
-}
-
-Circle.defaultProps = {
-  clockwise: true,
-  speed: 100,
-  fill: 'none',
-  strokeWidth: 40,
-  startPosition: 'top',
 }
 
 export default Circle

@@ -4,10 +4,15 @@ import { CSSTransition } from 'react-transition-group'
 import { Cross } from '@react-vant/icons'
 import { TagProps } from './PropsType'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('tag')
 
-const Tag: React.FC<TagProps> = props => {
+const Tag: React.FC<TagProps> = p => {
+  const props = mergeProps(p, {
+    show: true,
+    type: 'default',
+  })
   const nodeRef = useRef(null)
 
   const onClose = (event: MouseEvent) => {
@@ -70,11 +75,6 @@ const Tag: React.FC<TagProps> = props => {
       {renderTag()}
     </CSSTransition>
   )
-}
-
-Tag.defaultProps = {
-  show: true,
-  type: 'default',
 }
 
 export default Tag

@@ -4,6 +4,7 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 import { CouponProps } from './PropsType'
 import { createNamespace, padZero } from '../utils'
 import Checkbox from '../checkbox'
+import { mergeProps } from '../utils/get-default-props'
 
 function getDate(timeStamp: number) {
   const date = new Date(timeStamp * 1000)
@@ -25,7 +26,10 @@ function formatAmount(amount: number) {
 
 const [bem] = createNamespace('coupon')
 
-const Coupon: React.FC<CouponProps> = props => {
+const Coupon: React.FC<CouponProps> = p => {
+  const props = mergeProps(p, {
+    currency: '¥',
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const validPeriod = useMemo(() => {
@@ -94,11 +98,6 @@ const Coupon: React.FC<CouponProps> = props => {
       {description && <p className={cls(bem('description'))}>{description}</p>}
     </div>
   )
-}
-
-// defaultProps defined if need
-Coupon.defaultProps = {
-  currency: '¥',
 }
 
 export default Coupon

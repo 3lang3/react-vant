@@ -9,7 +9,7 @@ const formatGap = (gap: string | number) =>
 const [bem] = createNamespace('space')
 
 const Space: React.FC<SpaceProps> = props => {
-  const { wrap, block, direction, align, justify } = props
+  const { wrap, block, direction = 'horizontal', align, justify } = props
   const style = React.useMemo(() => {
     if (props.gap) {
       if (Array.isArray(props.gap)) {
@@ -62,10 +62,6 @@ const Space: React.FC<SpaceProps> = props => {
       })}
     </div>
   )
-}
-
-Space.defaultProps = {
-  direction: 'horizontal',
 }
 
 export default Space

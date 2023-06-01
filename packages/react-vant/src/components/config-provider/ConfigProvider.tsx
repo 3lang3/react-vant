@@ -21,7 +21,7 @@ function mapThemeVarsToCSSVars(
 const ConfigProvider: React.FC<ConfigProviderProps> = ({
   className,
   style,
-  themeVars,
+  themeVars = {},
   tag = 'div',
   children,
   ...props
@@ -41,10 +41,6 @@ const ConfigProvider: React.FC<ConfigProviderProps> = ({
       </TagElement>
     </ConfigProviderContext.Provider>
   )
-}
-
-ConfigProvider.defaultProps = {
-  themeVars: {},
 }
 
 export default ConfigProvider

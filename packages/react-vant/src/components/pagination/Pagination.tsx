@@ -4,6 +4,7 @@ import { PageItem, PaginationProps } from './PropsType'
 import { BORDER } from '../utils/constant'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 function makePage(
   number: number,
@@ -15,7 +16,14 @@ function makePage(
 
 const [bem] = createNamespace('pagination')
 
-const Pagination: React.FC<PaginationProps> = props => {
+const Pagination: React.FC<PaginationProps> = p => {
+  const props = mergeProps(p, {
+    mode: 'multi',
+    pageCount: 0,
+    totalItems: 0,
+    itemsPerPage: 10,
+    showPageSize: 5,
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const count = useMemo(() => {
@@ -146,14 +154,6 @@ const Pagination: React.FC<PaginationProps> = props => {
       </li>
     </ul>
   )
-}
-
-Pagination.defaultProps = {
-  mode: 'multi',
-  pageCount: 0,
-  totalItems: 0,
-  itemsPerPage: 10,
-  showPageSize: 5,
 }
 
 export default Pagination

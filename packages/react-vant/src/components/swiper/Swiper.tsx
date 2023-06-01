@@ -18,10 +18,23 @@ import { devWarning } from '../utils/dev-log'
 import { createNamespace, noop } from '../utils'
 import SwiperPagIndicator from './SwiperPagIndicator'
 import { useIsomorphicLayoutEffect, useUpdateEffect } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('swiper')
 
-const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
+const Swiper = forwardRef<SwiperInstance, SwiperProps>((p, ref) => {
+  const props = mergeProps(p, {
+    initialSwipe: 0,
+    loop: true,
+    touchable: true,
+    enabled: true,
+    rubberband: true,
+    autoplay: false,
+    slideSize: 100,
+    trackOffset: 0,
+    stuckAtBoundary: false,
+    preventScroll: true,
+  })
   const { loop: outerLoop, autoplay, vertical, duration, autoHeight } = props
 
   const axis = vertical ? 'y' : 'x'
@@ -336,20 +349,6 @@ const Swiper = forwardRef<SwiperInstance, SwiperProps>((props, ref) => {
     </div>
   )
 })
-
-// defaultProps defined if need
-Swiper.defaultProps = {
-  initialSwipe: 0,
-  loop: true,
-  touchable: true,
-  enabled: true,
-  rubberband: true,
-  autoplay: false,
-  slideSize: 100,
-  trackOffset: 0,
-  stuckAtBoundary: false,
-  preventScroll: true,
-}
 
 export default Swiper
 
