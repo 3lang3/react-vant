@@ -98,7 +98,7 @@ const PickerColumn = memo<
       index = adjustIndex(index) || 0
       const offset = -index * props.itemHeight
       const trigger = () => {
-        if (options[index][valueKey] !== value) {
+        if (options[index]?.[valueKey] !== value) {
           onSelect(options[index])
         }
       }

@@ -16,6 +16,10 @@ type KeysProps = {
 function useColumnsFn(options: PickerProps['columns'], keys: KeysProps) {
   const { textKey, valueKey, childrenKey } = keys
   const dataType = useMemo(() => {
+    const isCascade = options.some(
+      el => typeof el === 'object' && childrenKey in el
+    )
+    if (isCascade) return 'cascade'
     const firstColumn = options[0] || {}
 
     if (typeof firstColumn === 'object') {
