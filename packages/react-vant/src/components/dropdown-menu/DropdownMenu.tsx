@@ -135,7 +135,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
         const match = itemProps.options.find(
           option => option.value === itemValue
         )
-        return match ? match.text : itemProps.placeholder
+        return match ? match.text : itemProps.placeholder || '请选择'
       }
       return (
         <div
