@@ -6,7 +6,8 @@ export function mergeProps(...items: any[]) {
   items.forEach(item => {
     for (const key in item) {
       const val = item[key]
-      result[key] = result[key] ?? val
+      // eslint-disable-next-line no-prototype-builtins
+      result[key] = result.hasOwnProperty(key) ? result[key] : val
     }
   })
   return result
