@@ -37,7 +37,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>(
 
     const formatValue = date => {
       if (!isDate(date)) {
-        date = minDate
+        date = new Date()
       }
 
       date = Math.max(date, minDate.getTime())
