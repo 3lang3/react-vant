@@ -37,14 +37,14 @@ const Cell: React.FC<CellProps> = props => {
 
   const renderValue = () => {
     const hasTitle = isDef(props.title)
-    const hasValue = props.children || isDef(props.value)
+    const hasValue = isDef(props.children) || isDef(props.value)
 
     if (hasValue) {
       return (
         <div
           className={clsx(bem('value', { alone: !hasTitle }), props.valueClass)}
         >
-          {props.children ? props.children : <span>{props.value}</span>}
+          {isDef(props.children) ? props.children : <span>{props.value}</span>}
         </div>
       )
     }

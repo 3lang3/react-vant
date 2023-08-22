@@ -107,7 +107,7 @@ const Field = forwardRef<FieldInstance, FieldProps>((p, ref) => {
       onOverlimit,
     } = props
 
-    if (props.children) {
+    if (isDef(props.children)) {
       return <div className={clsx(bem('children'))}>{props.children}</div>
     }
 
