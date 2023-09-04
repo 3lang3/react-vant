@@ -128,7 +128,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((p, ref) => {
     }
     setShowLine(true)
     setLineTranslateLeft(title.offsetLeft + title.offsetWidth / 2)
-  }, [root.current, titleRefs, props.type, index])
+  }, [root.current, titleRefs, props.type, index, childrenList])
 
   // 下划线样式
   const lineStyle = useMemo(() => {
