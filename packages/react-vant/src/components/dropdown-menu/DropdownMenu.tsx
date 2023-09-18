@@ -37,6 +37,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
       closeOnClickOverlay: true,
       direction: 'down' as const,
       defaultValue: {},
+      teleport: () => document.body,
     })
     const [innerValue = {}, setInnerValue] = useMergedState({
       value: props.value,

@@ -141,7 +141,6 @@ const DropdownMenuItem = forwardRef<
       >
         <Popup
           {...attrs}
-          teleport={null}
           visible={props.showPopup}
           className={clsx(bem('content'))}
           position={direction === 'down' ? 'top' : 'bottom'}

@@ -25,7 +25,7 @@ import { Search } from 'react-vant';
 
 export default () => {
   const [value, setValue] = useState('');
-  return <Search value={value} onChange={setValue} placeholder="请输入搜索关键词" />;
+  return <Search value={value} onChange={setValue} clearable placeholder="请输入搜索关键词" />;
 };
 ```
 

@@ -22,6 +22,7 @@ const [bem] = createNamespace('search')
 const Search = forwardRef<SearchInstance, SearchProps>((p, ref) => {
   const props = mergeProps(p, {
     shape: 'square',
+    clearTrigger: 'focus',
     leftIcon: <SearchIco />,
   })
   const { locale } = useContext(ConfigProviderContext)

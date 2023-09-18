@@ -16,6 +16,7 @@ export default () => {
           value={state.text}
           onChange={text => updateState({ text })}
           placeholder='请输入文本'
+          clearable
         />
       </Cell>
       <Cell>

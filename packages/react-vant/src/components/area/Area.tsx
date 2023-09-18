@@ -84,6 +84,12 @@ const Area = forwardRef<AreaInstance, AreaProps<AreaColumnOption>>((p, ref) => {
   const props = mergeProps(p, {
     areaList: {},
     columnsNum: 3,
+    itemHeight: 44,
+    visibleItemCount: 5,
+    swipeDuration: 300,
+    showToolbar: true,
+    placeholder: true,
+    toolbarPosition: 'top',
   })
   const columns = useMemo(
     () => props.columns ?? parseVanAreaList(props.areaList, +props.columnsNum),

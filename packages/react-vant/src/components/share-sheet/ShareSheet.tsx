@@ -32,6 +32,7 @@ const ShareSheet: React.FC<ShareSheetProps> = p => {
     closeOnPopstate: true,
     safeAreaInsetBottom: true,
     closeOnClickOverlay: true,
+    duration: 300,
   })
   const { locale } = useContext(ConfigProviderContext)
 

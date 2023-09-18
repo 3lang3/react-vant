@@ -101,7 +101,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((p, ref) => {
 
   const navStyle = useMemo(
     () => ({
-      borderColor: props.type === 'card' && color,
+      borderColor: props.type === 'card' ? color : undefined,
       background,
     }),
     [color, background]

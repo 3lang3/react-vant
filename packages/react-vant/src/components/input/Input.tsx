@@ -73,7 +73,6 @@ const Input = forwardRef<InputInstance, InputProps>((p, ref) => {
       const trigger =
         props.clearTrigger === 'always' ||
         (props.clearTrigger === 'focus' && inputFocus)
-
       return hasValue && trigger
     }
     return false
@@ -186,10 +185,13 @@ const Input = forwardRef<InputInstance, InputProps>((p, ref) => {
       )}
       {renderInput()}
       {showClear &&
-        React.cloneElement(props.clearIcon as React.ReactElement, {
-          className: clsx(bem('clear')),
-          onTouchStart: handleClear,
-        })}
+        React.cloneElement(
+          (props.clearIcon || <Clear />) as React.ReactElement,
+          {
+            className: clsx(bem('clear')),
+            onTouchStart: handleClear,
+          }
+        )}
       {props.suffix && (
         <div className={clsx(bem('suffix'))}>{props.suffix}</div>
       )}
