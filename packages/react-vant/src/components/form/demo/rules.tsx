@@ -20,7 +20,7 @@ export default () => {
       <Form.Item
         name='text1'
         label='正则校验'
-        rules={[{ pattern: /\d{6}/, message: '请输入6位数字' }]}
+        rules={[{ pattern: /^\d{6}$/, message: '请输入6位数字' }]}
       >
         <Input placeholder='正则校验' />
       </Form.Item>
@@ -30,7 +30,7 @@ export default () => {
         rules={[
           {
             validator: (_, value) => {
-              if (/1\d{10}/.test(value)) {
+              if (/^1\d{10}$/.test(value)) {
                 return Promise.resolve(true)
               }
               return Promise.reject(new Error('请输入正确的手机号码'))
@@ -50,7 +50,7 @@ export default () => {
                 Toast.loading('验证中...')
 
                 setTimeout(() => {
-                  if (/\d{6}/.test(value)) {
+                  if (/^\d{6}$/.test(value)) {
                     resolve(true)
                   } else {
                     reject(new Error('请输入正确内容'))
