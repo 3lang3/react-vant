@@ -52,7 +52,8 @@
     "./2x": "./2x/es/index.js",
     "./2x/": "./2x/",
     "./package.json": "./package.json",
-    "./*": "./*"
+    "./*": "./*",
+    "./es/locale":"./es/locale/index.js"
   },
   "main": "./lib/index.js",
   "jsdelivr": "./bundle/react-vant.min.js",
