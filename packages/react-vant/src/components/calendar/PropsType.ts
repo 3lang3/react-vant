@@ -105,7 +105,7 @@ export interface CalendarProps extends Omit<BaseTypeProps, 'children'> {
   rangePrompt?: string
   showConfirm?: boolean
   lazyRender?: boolean
-  value?: CalendarValue
+  value?: CalendarValue | null
   defaultValue?: any
   allowSameDay?: boolean
   showSubtitle?: boolean
