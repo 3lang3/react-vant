@@ -3,10 +3,15 @@ import clsx from 'clsx'
 import { BadgeProps } from './PropsType'
 import { isDef, addUnit, createNamespace } from '../utils'
 import { isNumeric } from '../utils/validate/number'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('badge')
 
-const Badge: React.FC<BadgeProps> = props => {
+const Badge: React.FC<BadgeProps> = p => {
+  const props = mergeProps(p, {
+    tag: 'div',
+    showZero: true,
+  })
   const { content, max, dot, showZero, tag = 'div' } = props
 
   const TagElement = tag as React.ElementType
@@ -82,11 +87,6 @@ const Badge: React.FC<BadgeProps> = props => {
   }
 
   return renderBadge()
-}
-
-Badge.defaultProps = {
-  tag: 'div',
-  showZero: true,
 }
 
 export default Badge

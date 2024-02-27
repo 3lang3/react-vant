@@ -4,10 +4,17 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 import { SubmitBarProps } from './PropsType'
 import Button from '../button'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('submit-bar')
 
-const SubmitBar: React.FC<SubmitBarProps> = props => {
+const SubmitBar: React.FC<SubmitBarProps> = p => {
+  const props = mergeProps(p, {
+    buttonType: 'danger',
+    decimalLength: 2,
+    currency: '¥',
+    safeAreaInsetBottom: true,
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const renderText = () => {
@@ -88,14 +95,6 @@ const SubmitBar: React.FC<SubmitBarProps> = props => {
       </div>
     </div>
   )
-}
-
-// defaultProps defined if need
-SubmitBar.defaultProps = {
-  buttonType: 'danger',
-  decimalLength: 2,
-  currency: '¥',
-  safeAreaInsetBottom: true,
 }
 
 export default SubmitBar

@@ -11,14 +11,26 @@ import { KeyType, KeyConfig, NumberKeyboardProps } from './PropsType'
 import NumberKeyboardKey from './NumberKeyboardKey'
 import { useUpdateEffect } from '../hooks'
 import useClickAway from '../hooks/use-click-away'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('number-keyboard')
 
 const NumberKeyboard: React.FC<NumberKeyboardProps> = ({
   className,
   style,
-  ...props
+  ...p
 }) => {
+  const props = mergeProps(p, {
+    transition: true,
+    blurOnClose: true,
+    showDeleteKey: true,
+    hideOnClickOutside: true,
+    safeAreaInsetBottom: true,
+    theme: 'default',
+    value: '',
+    extraKey: '',
+    maxlength: Number.MAX_VALUE,
+  })
   const root = useRef<HTMLDivElement>()
 
   const genBasicKeys = () => {
@@ -220,18 +232,6 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({
   )
 
   return Content
-}
-
-NumberKeyboard.defaultProps = {
-  transition: true,
-  blurOnClose: true,
-  showDeleteKey: true,
-  hideOnClickOutside: true,
-  safeAreaInsetBottom: true,
-  theme: 'default',
-  value: '',
-  extraKey: '',
-  maxlength: Number.MAX_VALUE,
 }
 
 export default NumberKeyboard

@@ -9,7 +9,21 @@ import { createNamespace } from '../utils'
 const [bem] = createNamespace('button')
 
 const Button: React.FC<ButtonProps> = props => {
-  const { color, loading, className, hairline, loadingText } = props
+  const {
+    color,
+    loading,
+    className,
+    hairline,
+    loadingText,
+    round,
+    square,
+    plain: _plain,
+    block: _block,
+    loadingType,
+    nativeType: _nativeType,
+    iconPosition: _iconPosition,
+    ...restProps
+  } = props
 
   const { parent } = useContext(ButtonContext)
 
@@ -24,18 +38,18 @@ const Button: React.FC<ButtonProps> = props => {
   )
 
   const plain = React.useMemo(
-    () => props.plain ?? parent?.plain,
-    [parent?.plain, props.plain]
+    () => _plain ?? parent?.plain,
+    [parent?.plain, _plain]
   )
 
   const block = React.useMemo(
-    () => props.block ?? parent?.block,
-    [parent?.block, props.block]
+    () => _block ?? parent?.block,
+    [parent?.block, _block]
   )
 
   const iconPosition = React.useMemo(
-    () => props.iconPosition || parent?.iconPosition || 'left',
-    [parent?.iconPosition, props.iconPosition]
+    () => _iconPosition || parent?.iconPosition || 'left',
+    [parent?.iconPosition, _iconPosition]
   )
 
   const disabled = React.useMemo(
@@ -44,8 +58,8 @@ const Button: React.FC<ButtonProps> = props => {
   )
 
   const nativeType = React.useMemo(
-    () => props.nativeType || parent?.nativeType || 'button',
-    [parent?.nativeType, props.nativeType]
+    () => _nativeType || parent?.nativeType || 'button',
+    [parent?.nativeType, _nativeType]
   )
 
   const tag = React.useMemo(
@@ -66,8 +80,8 @@ const Button: React.FC<ButtonProps> = props => {
         disabled,
         hairline,
         block,
-        round: props.round,
-        square: props.square,
+        round,
+        square,
       },
     ]),
     { [BORDER_SURROUND]: hairline },
@@ -100,7 +114,7 @@ const Button: React.FC<ButtonProps> = props => {
 
   const renderLoadingIcon = () => {
     if (loading) {
-      const { loadingSize = '20px', loadingType } = props
+      const { loadingSize = '20px' } = props
       return (
         <Loading
           className={clsx(bem('loading'))}
@@ -155,6 +169,7 @@ const Button: React.FC<ButtonProps> = props => {
 
   return (
     <TagElement
+      {...restProps}
       disabled={disabled}
       className={classes}
       style={style}

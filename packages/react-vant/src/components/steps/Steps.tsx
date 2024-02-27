@@ -3,15 +3,16 @@ import cls from 'clsx'
 import { Checked } from '@react-vant/icons'
 import { StepsProps } from './PropsType'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('steps')
 
-const Steps: React.FC<StepsProps> = ({
-  children,
-  className,
-  style,
-  ...props
-}) => {
+const Steps: React.FC<StepsProps> = ({ children, className, style, ...p }) => {
+  const props = mergeProps(p, {
+    active: 0,
+    direction: 'horizontal',
+    activeIcon: <Checked />,
+  })
   return (
     <div className={cls(className, bem([props.direction]))} style={style}>
       <div className={cls(bem('items'))}>
@@ -26,12 +27,6 @@ const Steps: React.FC<StepsProps> = ({
       </div>
     </div>
   )
-}
-
-Steps.defaultProps = {
-  active: 0,
-  direction: 'horizontal',
-  activeIcon: <Checked />,
 }
 
 export default Steps

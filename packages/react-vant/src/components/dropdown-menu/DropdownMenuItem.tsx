@@ -40,7 +40,7 @@ const [bem] = createNamespace('dropdown-item')
 const DropdownMenuItem = forwardRef<
   DropdownItemInstance,
   DropdownMenuItemProps
->((props, ref) => {
+>(({ options = [], placeholder = '请选择', ...props }, ref) => {
   const [state, setState] = useSetState({
     transition: true,
     showWrapper: false,
@@ -87,8 +87,8 @@ const DropdownMenuItem = forwardRef<
     if (props.title) {
       return props.title
     }
-    const match = props.options.find(option => option.value === itemValue)
-    return match ? match.text : props.placeholder
+    const match = options.find(option => option.value === itemValue)
+    return match ? match.text : placeholder
   }
 
   const renderOption = (option: DropdownMenuItemOption) => {
@@ -132,6 +132,7 @@ const DropdownMenuItem = forwardRef<
     }
 
     const attrs = pick(inheritProps(parent.props, props), inheritPropsKey)
+
     return (
       <div
         style={{ ...style, display: state.showWrapper ? 'block' : 'none' }}
@@ -140,7 +141,6 @@ const DropdownMenuItem = forwardRef<
       >
         <Popup
           {...attrs}
-          teleport={null}
           visible={props.showPopup}
           className={clsx(bem('content'))}
           position={direction === 'down' ? 'top' : 'bottom'}
@@ -149,7 +149,7 @@ const DropdownMenuItem = forwardRef<
           onClose={onClose}
           onClosed={onClosed}
         >
-          {props.options?.map(renderOption)}
+          {options?.map(renderOption)}
           {props.children}
         </Popup>
       </div>
@@ -163,16 +163,11 @@ const DropdownMenuItem = forwardRef<
     titleClass: props.titleClass,
     disabled: props.disabled,
     name: props.name,
-    options: props.options,
+    options,
   }))
 
   if (props.teleport) return renderToContainer(props.teleport, renderContent())
   return renderContent()
 })
-
-DropdownMenuItem.defaultProps = {
-  placeholder: '请选择',
-  options: [],
-}
 
 export default DropdownMenuItem

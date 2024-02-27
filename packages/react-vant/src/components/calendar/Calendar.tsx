@@ -34,11 +34,37 @@ import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 import { usePropsValue } from '../hooks'
 import { PickerPopupActions } from '../picker/PropsType'
 import Swiper from '../swiper'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('calendar')
 
+const defaultMinDate = getToday()
+const defaultMaxDate = (() => {
+  const now = getToday()
+  return new Date(now.getFullYear(), now.getMonth() + 6, now.getDate())
+})()
+
 const Calendar = forwardRef<CalendarInstance, CalendarProps>(
-  ({ className, style, ...props }, ref) => {
+  ({ className, style, ...p }, ref) => {
+    const props = mergeProps(p, {
+      round: true,
+      poppable: true,
+      showMark: true,
+      showTitle: true,
+      showConfirm: true,
+      showSubtitle: true,
+      closeOnPopstate: true,
+      closeOnClickOverlay: true,
+      safeAreaInsetBottom: true,
+      defaultValue: null,
+      type: 'single',
+      position: 'bottom',
+      maxRange: null,
+      minDate: defaultMinDate,
+      maxDate: defaultMaxDate,
+      firstDayOfWeek: 0,
+      showRangePrompt: true,
+    })
     const { locale } = useContext(ConfigProviderContext)
 
     const [visible, setVisible] = usePropsValue({
@@ -561,28 +587,5 @@ const Calendar = forwardRef<CalendarInstance, CalendarProps>(
     return renderCalendar()
   }
 )
-
-Calendar.defaultProps = {
-  round: true,
-  poppable: true,
-  showMark: true,
-  showTitle: true,
-  showConfirm: true,
-  showSubtitle: true,
-  closeOnPopstate: true,
-  closeOnClickOverlay: true,
-  safeAreaInsetBottom: true,
-  defaultValue: null,
-  type: 'single',
-  position: 'bottom',
-  maxRange: null,
-  minDate: getToday(),
-  maxDate: (() => {
-    const now = getToday()
-    return new Date(now.getFullYear(), now.getMonth() + 6, now.getDate())
-  })(),
-  firstDayOfWeek: 0,
-  showRangePrompt: true,
-}
 
 export default Calendar

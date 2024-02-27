@@ -8,11 +8,20 @@ import Loading from '../loading'
 import { lockClick } from './lock-click'
 import { createNamespace, isDef } from '../utils'
 import type { ToastPrivateProps, ToastProps } from './PropsType'
+import { mergeProps } from '../utils/get-default-props'
 const [bem] = createNamespace('toast')
 
 const Toast: React.FC<
   ToastProps & ToastPrivateProps & { visible?: boolean }
-> = props => {
+> = p => {
+  const props = mergeProps(p, {
+    type: 'info',
+    duration: 2000,
+    position: 'middle',
+    transition: 'rv-fade',
+    loadingType: 'circular',
+    overlay: false,
+  })
   const onClick = () => {
     if (props.closeOnClick) {
       props.onClose()
@@ -81,15 +90,6 @@ const Toast: React.FC<
       {renderMessage()}
     </Popup>
   )
-}
-
-Toast.defaultProps = {
-  type: 'info',
-  duration: 2000,
-  position: 'middle',
-  transition: 'rv-fade',
-  loadingType: 'circular',
-  overlay: false,
 }
 
 export default Toast

@@ -7,9 +7,19 @@ import { times } from './utils'
 
 import { range, padZero } from '../utils'
 import { useUpdateEffect } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>(
-  (props, ref) => {
+  (p, ref) => {
+    const props = mergeProps(p, {
+      minHour: 0,
+      maxHour: 23,
+      minMinute: 0,
+      maxMinute: 59,
+      placeholder: false,
+      defaultValue: '',
+      formatter: (type: string, value: string) => value,
+    })
     const {
       value,
       defaultValue,
@@ -129,15 +139,5 @@ const TimePicker = forwardRef<DateTimePickerInstance, TimePickerProps>(
     )
   }
 )
-
-TimePicker.defaultProps = {
-  minHour: 0,
-  maxHour: 23,
-  minMinute: 0,
-  maxMinute: 59,
-  placeholder: false,
-  defaultValue: '',
-  formatter: (type: string, value: string) => value,
-}
 
 export default TimePicker

@@ -2,6 +2,7 @@ import React from 'react'
 import cls from 'clsx'
 import { SkeletonProps } from './PropsType'
 import { addUnit, createNamespace, getSizeStyle } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const DEFAULT_ROW_WIDTH = '100%'
 const DEFAULT_LAST_ROW_WIDTH = '60%'
@@ -12,8 +13,16 @@ const Skeleton: React.FC<SkeletonProps> = ({
   children,
   className,
   style,
-  ...props
+  ...p
 }) => {
+  const props = mergeProps(p, {
+    loading: true,
+    animate: true,
+    round: true,
+    row: 3,
+    avatarShape: 'round',
+    rowWidth: DEFAULT_ROW_WIDTH,
+  })
   const getRowWidth = (index: number) => {
     const { rowWidth } = props
 
@@ -90,15 +99,6 @@ const Skeleton: React.FC<SkeletonProps> = ({
       </div>
     </div>
   )
-}
-
-Skeleton.defaultProps = {
-  loading: true,
-  animate: true,
-  round: true,
-  row: 3,
-  avatarShape: 'round',
-  rowWidth: DEFAULT_ROW_WIDTH,
 }
 
 export default Skeleton

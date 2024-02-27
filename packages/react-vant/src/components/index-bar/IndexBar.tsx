@@ -37,10 +37,16 @@ import { useMount, useTouch } from '../hooks'
 import { renderToContainer } from '../utils/dom/renderToContainer'
 import { INDEX_ANCHORE_KEY } from './IndexAnchor'
 import { COMPONENT_TYPE_KEY } from '../utils/constant'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('index-bar')
 
-const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((props, ref) => {
+const IndexBar = forwardRef<IndexBarInstance, IndexBarProps>((p, ref) => {
+  const props = mergeProps(p, {
+    sticky: true,
+    stickyOffsetTop: 0,
+    indexList: genAlphabet(),
+  })
   const popupContext = useContext(PopupContext)
   const { children, sticky, zIndex, highlightColor } = props
 
@@ -292,12 +298,6 @@ function genAlphabet() {
   }
 
   return indexList
-}
-
-IndexBar.defaultProps = {
-  sticky: true,
-  stickyOffsetTop: 0,
-  indexList: genAlphabet(),
 }
 
 export default IndexBar

@@ -4,8 +4,13 @@ import clsx from 'clsx'
 import { Success } from '@react-vant/icons'
 import { CheckerProps } from './PropsType'
 import { addUnit } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
-const Checker: React.FC<CheckerProps<{}>> = props => {
+const Checker: React.FC<CheckerProps<{}>> = p => {
+  const props = mergeProps(p, {
+    shape: 'round',
+    bindGroup: true,
+  })
   const iconRef = useRef(null)
 
   const getParentProp = (name: string) => {
@@ -105,11 +110,6 @@ const Checker: React.FC<CheckerProps<{}>> = props => {
       {props.labelPosition !== 'left' && renderLabel()}
     </div>
   )
-}
-
-Checker.defaultProps = {
-  shape: 'round',
-  bindGroup: true,
 }
 
 export default Checker

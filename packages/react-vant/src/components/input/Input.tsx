@@ -16,10 +16,16 @@ import {
   createNamespace,
 } from '../utils'
 import { usePropsValue } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('input')
 
-const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
+const Input = forwardRef<InputInstance, InputProps>((p, ref) => {
+  const props = mergeProps(p, {
+    clearIcon: <Clear />,
+    clearTrigger: 'focus',
+    defaultValue: '',
+  })
   const inputRef = useRef<HTMLInputElement>()
   const [inputFocus, setInputFocus] = useState(false)
   const compositionStartRef = useRef(false)
@@ -67,7 +73,6 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
       const trigger =
         props.clearTrigger === 'always' ||
         (props.clearTrigger === 'focus' && inputFocus)
-
       return hasValue && trigger
     }
     return false
@@ -180,21 +185,18 @@ const Input = forwardRef<InputInstance, InputProps>((props, ref) => {
       )}
       {renderInput()}
       {showClear &&
-        React.cloneElement(props.clearIcon as React.ReactElement, {
-          className: clsx(bem('clear')),
-          onTouchStart: handleClear,
-        })}
+        React.cloneElement(
+          (props.clearIcon || <Clear />) as React.ReactElement,
+          {
+            className: clsx(bem('clear')),
+            onTouchStart: handleClear,
+          }
+        )}
       {props.suffix && (
         <div className={clsx(bem('suffix'))}>{props.suffix}</div>
       )}
     </div>
   )
 })
-
-Input.defaultProps = {
-  clearIcon: <Clear />,
-  clearTrigger: 'focus',
-  defaultValue: '',
-}
 
 export default Input

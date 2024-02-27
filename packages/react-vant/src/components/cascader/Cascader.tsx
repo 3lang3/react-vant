@@ -22,6 +22,7 @@ import type { PickerPopupActions } from '../picker'
 import Popup from '../popup'
 import { useCascaderExtend } from './useCascaderExtend'
 import useDebounceEffect from '../hooks/use-debunce-effect'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('cascader')
 
@@ -213,7 +214,13 @@ const Cascader: React.FC<CascaderProps> = props => {
 }
 
 const CascaderPopup = React.forwardRef<PickerPopupActions, PopupCascaderProps>(
-  (props, ref) => {
+  (p, ref) => {
+    const props = mergeProps(p, {
+      closeable: true,
+      swipeable: false,
+      defaultValue: [],
+      options: [],
+    })
     const { visible: outerVisible, popup, ...cascaderProps } = props
 
     const [visible, setVisible] = usePropsValue({
@@ -341,12 +348,5 @@ const CascaderPopup = React.forwardRef<PickerPopupActions, PopupCascaderProps>(
     )
   }
 )
-
-CascaderPopup.defaultProps = {
-  closeable: true,
-  swipeable: false,
-  defaultValue: [],
-  options: [],
-}
 
 export default CascaderPopup

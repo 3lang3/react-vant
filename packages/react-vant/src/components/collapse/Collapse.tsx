@@ -8,6 +8,7 @@ import { BORDER_TOP_BOTTOM } from '../utils/constant'
 import { useUpdateEffect } from '../hooks'
 import { createNamespace } from '../utils'
 import { devWarning } from '../utils/dev-log'
+import { mergeProps } from '../utils/get-default-props'
 
 function validateModelValue(
   modelValue: string | number | Array<string | number>,
@@ -26,7 +27,10 @@ function validateModelValue(
 
 const [bem] = createNamespace('collapse')
 
-const Collapse: React.FC<CollapseProps> = props => {
+const Collapse: React.FC<CollapseProps> = p => {
+  const props = mergeProps(p, {
+    border: true,
+  })
   const { accordion } = props
   const { initExpanded = accordion ? '' : [] } = props
   const innerEffect = useRef(false)
@@ -93,10 +97,6 @@ const Collapse: React.FC<CollapseProps> = props => {
       </div>
     </CollapseContext.Provider>
   )
-}
-
-Collapse.defaultProps = {
-  border: true,
 }
 
 export default Collapse

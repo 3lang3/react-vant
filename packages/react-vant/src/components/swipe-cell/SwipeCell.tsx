@@ -19,11 +19,15 @@ import { callInterceptor } from '../utils/interceptor'
 import useClickAway from '../hooks/use-click-away'
 import useEventListener from '../hooks/use-event-listener'
 import { useTouch } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('swipe-cell')
 
 const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>(
-  (props, instanceRef) => {
+  (p, instanceRef) => {
+    const props = mergeProps(p, {
+      name: '',
+    })
     const opened = useRef(false)
     const lockClick = useRef(false)
     const startOffset = useRef(0)
@@ -212,9 +216,5 @@ const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>(
     )
   }
 )
-
-SwipeCell.defaultProps = {
-  name: '',
-}
 
 export default SwipeCell

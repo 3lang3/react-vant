@@ -14,6 +14,7 @@ import { BORDER_BOTTOM } from '../utils/constant'
 import useClickAway from '../hooks/use-click-away'
 import Popup from '../popup'
 import useLazyEffect from '../hooks/use-lazy-effect'
+import { mergeProps } from '../utils/get-default-props'
 
 const popupProps = [
   'overlay',
@@ -32,7 +33,19 @@ const popupProps = [
 const [bem] = createNamespace('popover')
 
 const Popover = forwardRef<PopoverInstance, PopoverProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, className, ...p }, ref) => {
+    const props = mergeProps(p, {
+      overlay: false,
+      duration: 300,
+      closeOnClickAction: true,
+      closeOnClickOverlay: true,
+      closeOnClickOutside: true,
+      offset: [0, 8] as [number, number],
+      theme: 'light',
+      trigger: 'click',
+      actions: [],
+      placement: 'bottom',
+    })
     const [visible, updateShow] = useState(false)
     const popper = useRef<Instance>(null)
     const wrapperRef = useRef<HTMLElement>()
@@ -187,18 +200,5 @@ const Popover = forwardRef<PopoverInstance, PopoverProps>(
     )
   }
 )
-
-Popover.defaultProps = {
-  overlay: false,
-  duration: 300,
-  closeOnClickAction: true,
-  closeOnClickOverlay: true,
-  closeOnClickOutside: true,
-  offset: [0, 8] as [number, number],
-  theme: 'light',
-  trigger: 'click',
-  actions: [],
-  placement: 'bottom',
-}
 
 export default Popover

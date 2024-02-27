@@ -24,11 +24,21 @@ import DropdownMenuContext from './DropdownMenuContext'
 import { useUpdateEffect } from '../hooks'
 import useClickAway from '../hooks/use-click-away'
 import useMergedState from '../hooks/use-merged-state'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('dropdown-menu')
 
 const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
-  (props, ref) => {
+  (p, ref) => {
+    const props = mergeProps(p, {
+      duration: 200,
+      overlay: true,
+      closeOnClickOutside: true,
+      closeOnClickOverlay: true,
+      direction: 'down' as const,
+      defaultValue: {},
+      teleport: () => document.body,
+    })
     const [innerValue = {}, setInnerValue] = useMergedState({
       value: props.value,
       defaultValue: props.defaultValue,
@@ -126,7 +136,7 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
         const match = itemProps.options.find(
           option => option.value === itemValue
         )
-        return match ? match.text : itemProps.placeholder
+        return match ? match.text : itemProps.placeholder || '请选择'
       }
       return (
         <div
@@ -228,14 +238,5 @@ const DropdownMenu = forwardRef<DropdownMenuInstance, DropdownMenuProps>(
     )
   }
 )
-
-DropdownMenu.defaultProps = {
-  duration: 200,
-  overlay: true,
-  closeOnClickOutside: true,
-  closeOnClickOverlay: true,
-  direction: 'down' as const,
-  defaultValue: {},
-}
 
 export default DropdownMenu

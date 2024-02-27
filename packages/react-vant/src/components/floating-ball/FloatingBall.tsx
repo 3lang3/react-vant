@@ -18,6 +18,7 @@ import useFloatingTouch from './useFloatingTouch'
 import useMergedState from '../hooks/use-merged-state'
 import { raf } from '../utils/raf'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const TOUCH_DURATION = 0
 const TRANSITION_DURATION = 300
@@ -26,7 +27,16 @@ const DEFAULT_ADSORB = { indent: 0.5, distance: 0 }
 const [bem] = createNamespace('floating-ball')
 
 const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>(
-  (props, ref) => {
+  (p, ref) => {
+    const props = mergeProps(p, {
+      adsorb: DEFAULT_ADSORB,
+      draggable: true,
+      menu: {},
+      offset: {
+        right: 0,
+        bottom: '30vh',
+      },
+    })
     const timer = React.useRef(null)
     const [position, setPosition] = useState('bottom right')
     const [container, setContainer] = React.useState<HTMLDivElement>()
@@ -291,15 +301,5 @@ const FloatingBall = forwardRef<FloatingBallInstance, FloatingBallProps>(
     )
   }
 )
-
-FloatingBall.defaultProps = {
-  adsorb: DEFAULT_ADSORB,
-  draggable: true,
-  menu: {},
-  offset: {
-    right: 0,
-    bottom: '30vh',
-  },
-}
 
 export default FloatingBall

@@ -15,10 +15,24 @@ import { UploaderPreviewItem } from './UploaderPreviewItem'
 // Components
 import ImagePreview from '../image-preview'
 import { useIsomorphicLayoutEffect, usePropsValue } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('uploader')
 
-const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
+const Uploader = forwardRef<UploaderInstance, UploaderProps>((p, ref) => {
+  const props = mergeProps(p, {
+    maxSize: Number.MAX_VALUE,
+    maxCount: Number.MAX_VALUE,
+    deletable: true,
+    showUpload: true,
+    previewImage: true,
+    previewFullImage: true,
+    name: '',
+    accept: 'image/*',
+    imageFit: 'cover',
+    resultType: 'dataUrl',
+    uploadIcon: <Photograph />,
+  })
   const [value, setValue] = usePropsValue<UploaderValueItem[]>({
     ...props,
     defaultValue: props.defaultValue ?? [],
@@ -301,19 +315,5 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
     </div>
   )
 })
-
-Uploader.defaultProps = {
-  maxSize: Number.MAX_VALUE,
-  maxCount: Number.MAX_VALUE,
-  deletable: true,
-  showUpload: true,
-  previewImage: true,
-  previewFullImage: true,
-  name: '',
-  accept: 'image/*',
-  imageFit: 'cover',
-  resultType: 'dataUrl',
-  uploadIcon: <Photograph />,
-}
 
 export default Uploader

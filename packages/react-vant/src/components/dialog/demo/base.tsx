@@ -11,13 +11,9 @@ export default () => {
           Dialog.confirm({
             title: '标题',
             message: '代码是写出来给人看的，附带能在机器上运行',
+            onCancel: () => console.log('cancel'),
+            onConfirm: () => console.log('confirm'),
           })
-            .then(() => {
-              console.log('confirm')
-            })
-            .catch(() => {
-              console.log('catch')
-            })
         }
       />
       <Cell

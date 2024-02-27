@@ -4,15 +4,16 @@ import { addUnit, createNamespace } from '../utils'
 
 import { GridProps } from './PropsType'
 import { BORDER_TOP } from '../utils/constant'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('grid')
 
-const Grid: React.FC<GridProps> = ({
-  children,
-  className,
-  style,
-  ...props
-}) => {
+const Grid: React.FC<GridProps> = ({ children, className, style, ...p }) => {
+  const props = mergeProps(p, {
+    center: true,
+    border: true,
+    columnNum: 4,
+  })
   return (
     <div
       style={{ paddingLeft: addUnit(props.gutter), ...style }}
@@ -30,12 +31,6 @@ const Grid: React.FC<GridProps> = ({
         )}
     </div>
   )
-}
-
-Grid.defaultProps = {
-  center: true,
-  border: true,
-  columnNum: 4,
 }
 
 export default Grid

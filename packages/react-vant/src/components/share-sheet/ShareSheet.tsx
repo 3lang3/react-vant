@@ -4,6 +4,7 @@ import { ShareSheetOption, ShareSheetProps } from './PropsType'
 import { createNamespace, pick } from '../utils'
 import Popup from '../popup'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
+import { mergeProps } from '../utils/get-default-props'
 
 const PRESET_ICONS = [
   'qq',
@@ -25,7 +26,14 @@ function getIconURL(icon: string) {
 
 const [bem] = createNamespace('share-sheet')
 
-const ShareSheet: React.FC<ShareSheetProps> = props => {
+const ShareSheet: React.FC<ShareSheetProps> = p => {
+  const props = mergeProps(p, {
+    options: [],
+    closeOnPopstate: true,
+    safeAreaInsetBottom: true,
+    closeOnClickOverlay: true,
+    duration: 300,
+  })
   const { locale } = useContext(ConfigProviderContext)
 
   const onCancel = () => {
@@ -132,13 +140,6 @@ const ShareSheet: React.FC<ShareSheetProps> = props => {
       {renderCancelButton()}
     </Popup>
   )
-}
-
-ShareSheet.defaultProps = {
-  options: [],
-  closeOnPopstate: true,
-  safeAreaInsetBottom: true,
-  closeOnClickOverlay: true,
 }
 
 export default ShareSheet

@@ -2,6 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { WaterMarkProps } from './PropsType'
 import { createNamespace } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 const DEFAULT_FONT = {
   style: 'normal',
@@ -14,7 +15,17 @@ const DEFAULT_FONT = {
 const [bem] = createNamespace('water-mark')
 
 // 移植自antd mobile: https://github.com/ant-design/ant-design-mobile/blob/master/src/components/water-mark/water-mark.tsx
-const WaterMark: React.FC<WaterMarkProps> = props => {
+const WaterMark: React.FC<WaterMarkProps> = p => {
+  const props = mergeProps(p, {
+    zIndex: 2000,
+    gapX: 24,
+    gapY: 48,
+    width: 100,
+    height: 64,
+    rotate: -22,
+    font: DEFAULT_FONT,
+    fullPage: true,
+  })
   const { zIndex, gapX, gapY, width, height, rotate, image, content, font } =
     props
 
@@ -92,17 +103,6 @@ const WaterMark: React.FC<WaterMarkProps> = props => {
       }}
     />
   )
-}
-
-WaterMark.defaultProps = {
-  zIndex: 2000,
-  gapX: 24,
-  gapY: 48,
-  width: 100,
-  height: 64,
-  rotate: -22,
-  font: DEFAULT_FONT,
-  fullPage: true,
 }
 
 export default WaterMark

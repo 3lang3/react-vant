@@ -13,14 +13,14 @@ const Flex: React.FC<FlexProps> = props => {
     wrap,
     justify,
     align,
-    gutter,
+    gutter = 0,
     style,
     className,
     children,
     ...rest
   } = props
   const getGutter: [number, number] = useMemo(
-    () => (Array.isArray(gutter) ? gutter : [gutter, 0]),
+    () => (Array.isArray(gutter) ? gutter : [gutter, gutter]),
     [gutter]
   )
 
@@ -34,7 +34,7 @@ const Flex: React.FC<FlexProps> = props => {
     ...(getGutter[1]! > 0
       ? {
           marginTop: getGutter[1]! / -2,
-          marginBottom: getGutter[1]! / 2,
+          marginBottom: getGutter[1]! / -2,
         }
       : {}),
     ...style,
@@ -57,10 +57,6 @@ const Flex: React.FC<FlexProps> = props => {
       </div>
     </FlexContext.Provider>
   )
-}
-
-Flex.defaultProps = {
-  gutter: 0,
 }
 
 export default Flex

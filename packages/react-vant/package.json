@@ -1,6 +1,6 @@
 {
   "name": "react-vant",
-  "version": "3.2.1",
+  "version": "3.3.3",
   "description": "React Mobile UI Components base on Vant UI",
   "keywords": [
     "ui",
@@ -52,7 +52,8 @@
     "./2x": "./2x/es/index.js",
     "./2x/": "./2x/",
     "./package.json": "./package.json",
-    "./*": "./*"
+    "./*": "./*",
+    "./es/locale":"./es/locale/index.js"
   },
   "main": "./lib/index.js",
   "jsdelivr": "./bundle/react-vant.min.js",

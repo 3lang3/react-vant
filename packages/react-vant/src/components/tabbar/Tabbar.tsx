@@ -6,10 +6,16 @@ import { BORDER_TOP_BOTTOM } from '../utils/constant'
 import useHeight from '../hooks/use-height'
 import TabbarContext from './TabbarContext'
 import useMergedState from '../hooks/use-merged-state'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('tabbar')
 
-const Tabbar: React.FC<TabbarProps> = props => {
+const Tabbar: React.FC<TabbarProps> = p => {
+  const props = mergeProps(p, {
+    fixed: true,
+    border: true,
+    defaultValue: 0,
+  })
   const [current, setCurrent] = useMergedState({
     value: props.value,
     defaultValue: props.defaultValue,
@@ -64,12 +70,6 @@ const Tabbar: React.FC<TabbarProps> = props => {
     return renderPlaceholder(renderTabbar)
   }
   return renderTabbar()
-}
-
-Tabbar.defaultProps = {
-  fixed: true,
-  border: true,
-  defaultValue: 0,
 }
 
 export default Tabbar

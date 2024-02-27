@@ -13,12 +13,18 @@ import {
 import { getRect } from '../hooks/use-rect'
 import useEventListener from '../hooks/use-event-listener'
 import { useTouch } from '../hooks'
+import { mergeProps } from '../utils/get-default-props'
 
 type NumberRange = [number, number]
 
 const [bem] = createNamespace('slider')
 
-const Slider: React.FC<SliderProps> = props => {
+const Slider: React.FC<SliderProps> = p => {
+  const props = mergeProps(p, {
+    min: 0,
+    max: 100,
+    step: 1,
+  })
   const [buttonRef1, setButtonRef1] = useState<HTMLDivElement>(null)
   const [buttonRef2, setButtonRef2] = useState<HTMLDivElement>(null)
   const buttonIndex = useRef<0 | 1>()
@@ -334,12 +340,6 @@ const Slider: React.FC<SliderProps> = props => {
       </div>
     </div>
   )
-}
-
-Slider.defaultProps = {
-  min: 0,
-  max: 100,
-  step: 1,
 }
 
 export default Slider

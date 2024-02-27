@@ -4,6 +4,7 @@ import { ProductCardProps } from './PropsType'
 import Tag from '../tag'
 import Image from '../image'
 import { createNamespace, isDef } from '../utils'
+import { mergeProps } from '../utils/get-default-props'
 
 function isStringOrNumber(target) {
   return typeof target === 'string' || typeof target === 'number'
@@ -11,7 +12,11 @@ function isStringOrNumber(target) {
 
 const [bem] = createNamespace('product-card')
 
-const ProductCard: React.FC<ProductCardProps> = props => {
+const ProductCard: React.FC<ProductCardProps> = p => {
+  const props = mergeProps(p, {
+    currency: '¥',
+    decimal: true,
+  })
   const renderTitle = () => {
     if (props.title) {
       return (
@@ -160,12 +165,6 @@ const ProductCard: React.FC<ProductCardProps> = props => {
       {Footer}
     </div>
   )
-}
-
-// defaultProps defined if need
-ProductCard.defaultProps = {
-  currency: '¥',
-  decimal: true,
 }
 
 export default ProductCard

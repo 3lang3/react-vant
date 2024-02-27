@@ -38,13 +38,25 @@ import useEventListener from '../hooks/use-event-listener'
 import { isReachBottom } from './utils'
 import type { SwiperInstance } from '../swiper/PropsType'
 import useRefState from '../hooks/use-ref-state'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('tabs')
 
 const getTabName = (tab: TabPaneProps, index: number): string | number =>
   tab?.name ?? index
 
-const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
+const Tabs = forwardRef<TabsInstance, TabsProps>((p, ref) => {
+  const props = mergeProps(p, {
+    type: 'line',
+    duration: 300,
+    swipeThreshold: 5,
+    offsetTop: 0,
+    ellipsis: true,
+    lazyRender: true,
+    stickyInitScrollbar: true,
+    defaultActive: 0,
+    align: 'center',
+  })
   const { children, color, align, background } = props
 
   const root = useRef<HTMLDivElement>(null)
@@ -89,7 +101,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   const navStyle = useMemo(
     () => ({
-      borderColor: props.type === 'card' && color,
+      borderColor: props.type === 'card' ? color : undefined,
       background,
     }),
     [color, background]
@@ -107,14 +119,16 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
 
   // 下划线偏移量
   const [lineTranslateLeft, setLineTranslateLeft] = useState<number>(0)
+  const [showLine, setShowLine] = useState<boolean>(false)
   useUpdateEffect(() => {
     const hidden = isHidden(root.current)
     const title = titleRefs?.[index]
     if (!title || hidden || props.type !== 'line') {
       return
     }
+    setShowLine(true)
     setLineTranslateLeft(title.offsetLeft + title.offsetWidth / 2)
-  }, [root.current, titleRefs, props.type, index])
+  }, [root.current, titleRefs, props.type, index, childrenList])
 
   // 下划线样式
   const lineStyle = useMemo(() => {
@@ -123,6 +137,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
       width: addUnit(lineWidth),
       backgroundColor: color,
       transitionDuration: `${immediateRef.current ? 0 : props.duration}ms`,
+      display: showLine ? 'inherit' : 'none',
     } as React.CSSProperties
 
     if (lineTranslateLeft) {
@@ -141,6 +156,7 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     props.lineWidth,
     lineTranslateLeft,
     immediateRef.current,
+    showLine,
   ])
 
   const getAvailableTab = (targetIndex: number) => {
@@ -409,17 +425,5 @@ const Tabs = forwardRef<TabsInstance, TabsProps>((props, ref) => {
     </TabsContext.Provider>
   )
 })
-
-Tabs.defaultProps = {
-  type: 'line',
-  duration: 300,
-  swipeThreshold: 5,
-  offsetTop: 0,
-  ellipsis: true,
-  lazyRender: true,
-  stickyInitScrollbar: true,
-  defaultActive: 0,
-  align: 'center',
-}
 
 export default Tabs

@@ -9,6 +9,7 @@ import {
 import Picker from '../picker'
 import { createNamespace, pick } from '../utils'
 import { PickerColumn } from '../picker/PropsType'
+import { mergeProps } from '../utils/get-default-props'
 
 const INHERIT_PROPS = [
   'title',
@@ -79,29 +80,31 @@ function parseVanAreaList(
 
 const [bem] = createNamespace('area')
 
-const Area = forwardRef<AreaInstance, AreaProps<AreaColumnOption>>(
-  (props, ref) => {
-    const columns = useMemo(
-      () =>
-        props.columns ?? parseVanAreaList(props.areaList, +props.columnsNum),
-      [props.columnsNum, props.areaList, props.columns]
-    )
+const Area = forwardRef<AreaInstance, AreaProps<AreaColumnOption>>((p, ref) => {
+  const props = mergeProps(p, {
+    areaList: {},
+    columnsNum: 3,
+    itemHeight: 44,
+    visibleItemCount: 5,
+    swipeDuration: 300,
+    showToolbar: true,
+    placeholder: true,
+    toolbarPosition: 'top',
+  })
+  const columns = useMemo(
+    () => props.columns ?? parseVanAreaList(props.areaList, +props.columnsNum),
+    [props.columnsNum, props.areaList, props.columns]
+  )
 
-    return (
-      <Picker<AreaColumnOption>
-        ref={ref}
-        style={props.style}
-        className={clsx(bem(), props.className)}
-        columns={columns}
-        {...pick(props, INHERIT_PROPS)}
-      />
-    )
-  }
-)
-
-Area.defaultProps = {
-  areaList: {},
-  columnsNum: 3,
-}
+  return (
+    <Picker<AreaColumnOption>
+      ref={ref}
+      style={props.style}
+      className={clsx(bem(), props.className)}
+      columns={columns}
+      {...pick(props, INHERIT_PROPS)}
+    />
+  )
+})
 
 export default Area

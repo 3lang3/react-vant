@@ -12,9 +12,17 @@ import { isDate } from '../utils/validate/date'
 import { padZero } from '../utils'
 import { useUpdateEffect } from '../hooks'
 import useRefState from '../hooks/use-ref-state'
+import { mergeProps } from '../utils/get-default-props'
 
 const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>(
-  (props, ref) => {
+  (p, ref) => {
+    const props = mergeProps(p, {
+      type: 'datetime',
+      placeholder: false,
+      minDate: DefaultMinDate,
+      maxDate: DefaultMaxDate,
+      formatter: (type: string, value: string) => value,
+    })
     const {
       value,
       defaultValue,
@@ -29,7 +37,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>(
 
     const formatValue = date => {
       if (!isDate(date)) {
-        date = minDate
+        date = new Date()
       }
 
       date = Math.max(date, minDate.getTime())
@@ -272,13 +280,7 @@ const DatePicker = forwardRef<DateTimePickerInstance, DatePickerProps>(
 )
 
 const currentYear = new Date().getFullYear()
-
-DatePicker.defaultProps = {
-  type: 'datetime',
-  placeholder: false,
-  minDate: new Date(currentYear - 10, 0, 1),
-  maxDate: new Date(currentYear + 10, 11, 31),
-  formatter: (type: string, value: string) => value,
-} as const
+const DefaultMinDate = new Date(currentYear - 10, 0, 1)
+const DefaultMaxDate = new Date(currentYear + 10, 11, 31)
 
 export default DatePicker

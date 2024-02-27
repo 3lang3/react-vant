@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef, useMemo } from 'react'
+import React, { CSSProperties, useRef, useMemo, useCallback } from 'react'
 import clsx from 'clsx'
 
 import useScrollParent from '../hooks/use-scroll-parent'
@@ -15,10 +15,16 @@ import {
 import { StickyProps } from './PropsType'
 import { useSetState, useUpdateEffect, useVisibilityChange } from '../hooks'
 import { getRect } from '../hooks/use-rect'
+import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('sticky')
 
-const Sticky: React.FC<StickyProps> = props => {
+const Sticky: React.FC<StickyProps> = p => {
+  const props = mergeProps(p, {
+    offsetTop: 0,
+    offsetBottom: 0,
+    position: 'top',
+  })
   const [state, updateState] = useSetState({
     fixed: false,
     width: 0, // root width
@@ -80,7 +86,7 @@ const Sticky: React.FC<StickyProps> = props => {
     }
   }
 
-  const onScroll = () => {
+  const onScroll = useCallback(() => {
     if (!root.current || isHidden(root.current)) {
       return
     }
@@ -119,9 +125,12 @@ const Sticky: React.FC<StickyProps> = props => {
     }
     updateState(newState)
     emitScroll(scrollTop, newState.fixed)
-  }
+  }, [offset])
 
-  useEventListener('scroll', onScroll, { target: scrollParent })
+  useEventListener('scroll', onScroll, {
+    target: scrollParent,
+    depends: [offset],
+  })
   useVisibilityChange(root, onScroll)
   useUpdateEffect(() => {
     props.onChange?.(state.fixed)
@@ -134,12 +143,6 @@ const Sticky: React.FC<StickyProps> = props => {
       </div>
     </div>
   )
-}
-
-Sticky.defaultProps = {
-  offsetTop: 0,
-  offsetBottom: 0,
-  position: 'top',
 }
 
 export default Sticky
