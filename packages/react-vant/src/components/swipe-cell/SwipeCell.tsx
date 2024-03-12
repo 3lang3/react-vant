@@ -114,7 +114,8 @@ const SwipeCell = forwardRef<SwipeCellInstance, SwipeCellProps>(
       if (touch.isHorizontal()) {
         lockClick.current = true
         const newState = { ...state, dragging: true }
-        const isEdge = !opened || touch.deltaX.current * startOffset.current < 0
+        const isEdge =
+          !opened.current || touch.deltaX.current * startOffset.current < 0
         if (isEdge) {
           preventDefault(event, props.stopPropagation)
         }
