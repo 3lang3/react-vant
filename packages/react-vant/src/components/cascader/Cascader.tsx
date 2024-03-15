@@ -83,7 +83,7 @@ const Cascader: React.FC<CascaderProps> = props => {
     },
     [value],
     {
-      wait: 0,
+      wait: 100,
       leading: false,
       trailing: true,
     }

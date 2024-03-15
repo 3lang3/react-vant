@@ -80,7 +80,7 @@ function PickerInner<T = PickerColumnOption>(props: PickerMultipleProps<T>) {
     },
     [innerValue],
     {
-      wait: 50,
+      wait: 100,
       leading: false,
       trailing: true,
     }
