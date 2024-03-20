@@ -7,7 +7,7 @@ importers:
       '@commitlint/config-conventional': 17.0.3
       '@typescript-eslint/eslint-plugin': 5.41.0
       '@typescript-eslint/parser': 5.41.0
-      all-contributors-cli: 6.24.0
+      all-contributors-cli: 6.26.1
       commitlint: 17.0.3
       eslint: 8.21.0
       eslint-config-prettier: 8.5.0
@@ -23,7 +23,7 @@ importers:
       '@commitlint/config-conventional': 17.0.3
       '@typescript-eslint/eslint-plugin': 5.41.0_uciw6jpqntzezhcll6zajfarty
       '@typescript-eslint/parser': 5.41.0_n6o7c4j52sqif4e7zyvkw23cty
-      all-contributors-cli: 6.24.0
+      all-contributors-cli: 6.26.1
       commitlint: 17.0.3
       eslint: 8.21.0
       eslint-config-prettier: 8.5.0_eslint@8.21.0
@@ -4003,8 +4003,8 @@ packages:
       '@algolia/transporter': 4.13.1
     dev: true
 
-  /all-contributors-cli/6.24.0:
-    resolution: {integrity: sha512-7oSKr2PnqxsOotuSwciltcFTS1eVRdjR0cn99hbElfff7gRQBShVhsf/XBprY41sLcgqTk0l0MKgKv6QNgZdMg==}
+  /all-contributors-cli/6.26.1:
+    resolution: {integrity: sha512-Ymgo3FJACRBEd1eE653FD1J/+uD0kqpUNYfr9zNC1Qby0LgbhDBzB3EF6uvkAbYpycStkk41J+0oo37Lc02yEw==}
     engines: {node: '>=4'}
     hasBin: true
     dependencies:
@@ -4018,6 +4018,8 @@ packages:
       node-fetch: 2.6.7
       pify: 5.0.0
       yargs: 15.4.1
+    optionalDependencies:
+      prettier: 2.7.1
     transitivePeerDependencies:
       - encoding
     dev: true
