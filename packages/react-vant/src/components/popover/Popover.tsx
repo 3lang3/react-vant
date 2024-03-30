@@ -3,7 +3,6 @@ import React, {
   useEffect,
   useImperativeHandle,
   useRef,
-  useState,
 } from 'react'
 import cls from 'clsx'
 import { Instance, createPopper, offsetModifier } from '@vant/popperjs'
@@ -15,6 +14,7 @@ import useClickAway from '../hooks/use-click-away'
 import Popup from '../popup'
 import useLazyEffect from '../hooks/use-lazy-effect'
 import { mergeProps } from '../utils/get-default-props'
+import { usePropsValue } from '../hooks'
 
 const popupProps = [
   'overlay',
@@ -23,8 +23,6 @@ const popupProps = [
   'overlayClass',
   'closeOnClickOverlay',
   'teleport',
-  'onClose',
-  'onOpen',
   'onClosed',
   'onOpened',
   'onClickOverlay',
@@ -46,10 +44,24 @@ const Popover = forwardRef<PopoverInstance, PopoverProps>(
       actions: [],
       placement: 'bottom',
     })
-    const [visible, updateShow] = useState(false)
     const popper = useRef<Instance>(null)
     const wrapperRef = useRef<HTMLElement>()
     const popoverRef = useRef<PopupInstanceType>()
+
+    const onVisibleChange = (visible: boolean) => {
+      if (visible) {
+        props.onOpen?.()
+      } else {
+        props.onClose?.()
+      }
+    }
+    const [visible, updateShow] = usePropsValue({
+      value: props.visible,
+      defaultValue: false,
+      onChange: onVisibleChange,
+    })
+    const onInternalOpen = () => updateShow(true)
+    const onInternalClose = () => updateShow(false)
 
     const createPopperInstance = () =>
       createPopper(wrapperRef.current, popoverRef.current.popupRef.current, {
@@ -189,6 +201,8 @@ const Popover = forwardRef<PopoverInstance, PopoverProps>(
           position=''
           transition='rv-zoom'
           lockScroll={false}
+          onOpen={onInternalOpen}
+          onClose={onInternalClose}
           {...pick(props, popupProps)}
         >
           <div className={cls(bem('arrow'))} />

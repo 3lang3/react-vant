@@ -62,6 +62,8 @@ export interface PopoverProps extends BaseTypeProps {
   reference?: string | React.ReactNode
   /** 指定挂载的节点 */
   teleport?: TeleportType
+  /** 受控的显示状态 */
+  visible?: boolean
   children?: React.ReactNode
   /** 点击选项时触发	 */
   onSelect?: (action: PopoverAction, index: number) => void

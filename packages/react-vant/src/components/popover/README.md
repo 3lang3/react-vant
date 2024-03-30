@@ -157,6 +157,7 @@ bottom-end    # 底部右侧位置
 | theme | 主题风格，可选值为 `dark` | _string_ | `light` |
 | trigger | 触发方式，可选值为 `manual` | _string_ | `click` |
 | duration | 动画时长，单位秒，设置为 0 可以禁用动画 | _number \| string_ | `0.3` |
+| visible | 受控的是否显示菜单 | _boolean_ | - |
 | offset | 出现位置的偏移量 | _[number, number]_ | `[0, 8]` |
 | overlay | 是否显示遮罩层 | _boolean_ | `false` |
 | overlayClass | 自定义遮罩层类名 | _string_ | - |
