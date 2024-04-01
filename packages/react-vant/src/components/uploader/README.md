@@ -91,7 +91,7 @@ import { Uploader } from 'react-vant';
 ### Events
 
 | 事件名 | 说明 | 回调参数 |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | upload | 上传方法 | _(file: File) => Promise\<UploaderValueItem\>_ |
 | onChange | 组件值更新时调用 | _UploaderValueItem[]_ |
 | onOversize | 文件大小超过限制时触发 | _(files: File[]) => void_ |
