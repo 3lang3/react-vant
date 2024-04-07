@@ -52,6 +52,7 @@ const ImagePreview = React.forwardRef<ImagePreviewRef, ImagePreviewProps>(
             defaultIndex={props.startPosition}
             onIndexChange={onSwipeChange}
             images={props.images}
+            lazyload={props.lazyload}
             onTap={() => {
               if (!props.closeOnlyClickCloseIcon) {
                 onClose()

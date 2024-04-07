@@ -5,10 +5,14 @@ import { bound } from '../utils/bound'
 import { rubberbandIfOutOfBounds } from '../utils/rubberband'
 import clsx from 'clsx'
 import { createNamespace } from '../utils'
+import { LazyImageType } from '../image/PropsType'
+import Lazyload from '../lazyload'
+import { getLazyImagePlaceholder } from '../image/LazyImage'
 
 type Props = {
   image: string
   maxZoom: number
+  lazyload?: LazyImageType
   onTap: () => void
   onZoomChange?: (zoom: number) => void
   dragLockRef?: MutableRefObject<boolean>
@@ -26,6 +30,13 @@ export const Slide: FC<Props> = props => {
     y: 0,
     config: { tension: 200 },
   }))
+
+  const { lazyload } = props
+
+  const renderPlaceholder = () => {
+    if (typeof lazyload === 'boolean') return getLazyImagePlaceholder(bem)
+    return lazyload.placeholder || getLazyImagePlaceholder(bem)
+  }
 
   const pinchLockRef = useRef(false)
 
@@ -163,12 +174,23 @@ export const Slide: FC<Props> = props => {
             scale: zoom,
           }}
         >
-          <img
-            ref={imgRef}
-            src={props.image}
-            draggable={false}
-            alt={props.image}
-          />
+          {props.lazyload ? (
+            <Lazyload placeholder={renderPlaceholder()}>
+              <img
+                ref={imgRef}
+                src={props.image}
+                draggable={false}
+                alt={props.image}
+              />
+            </Lazyload>
+          ) : (
+            <img
+              ref={imgRef}
+              src={props.image}
+              draggable={false}
+              alt={props.image}
+            />
+          )}
         </animated.div>
       </div>
     </div>
