@@ -6,14 +6,12 @@ import { bound } from '../utils/bound'
 import { createNamespace, unitToPx } from '../utils'
 import clsx from 'clsx'
 import { useUpdateEffect } from '../hooks'
-import { LazyImageType } from '../image/PropsType'
 
 export type SlidesType = {
   images: string[]
   onTap: () => void
   maxZoom: number
   defaultIndex: number
-  lazyload?: LazyImageType
   onIndexChange?: (index: number) => void
 }
 
@@ -109,7 +107,6 @@ export const Slides = forwardRef<SlidesRef, SlidesType>((props, ref) => {
               }
             }}
             dragLockRef={dragLockRef}
-            lazyload={props.lazyload}
           />
         ))}
       </animated.div>
