@@ -48,7 +48,7 @@ export interface PickerCommonProps<T> extends Omit<BaseTypeProps, 'children'> {
   /**  是否显示顶部栏 */
   showToolbar?: boolean
   /** 选项高度，支持 px vw vh rem 单位，默认 px */
-  itemHeight?: number
+  itemHeight?: number | string
   /** 可见的选项个数 */
   visibleItemCount?: number
   /** 快速滑动时惯性滚动的时长，单位 ms */
@@ -103,7 +103,7 @@ export interface PickerColumnProps extends BaseTypeProps {
   /** column 列索引 */
   index?: number
   readOnly?: boolean
-  itemHeight: number
+  itemHeight: number | string
   value?: string
   valueKey: string
   textKey: string
