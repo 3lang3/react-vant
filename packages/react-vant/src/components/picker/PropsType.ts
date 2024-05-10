@@ -7,7 +7,7 @@ export type PickerToolbarPosition = 'top' | 'bottom'
 /** 列选项 */
 export type PickerColumnOption = {
   text?: React.ReactNode
-  value?: string
+  value?: string | number
   children?: PickerColumnOption[]
   disabled?: boolean
 } & Record<string, any>
