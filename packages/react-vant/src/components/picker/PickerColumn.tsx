@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import clsx from 'clsx'
 import { PickerColumnOption, PickerColumnProps } from './PropsType'
-import { createNamespace, range } from '../utils'
+import { createNamespace, range, unitToPx } from '../utils'
 import { useIsomorphicLayoutEffect, useSetState, useTouch } from '../hooks'
 import ConfigProviderContext from '../config-provider/ConfigProviderContext'
 
@@ -39,11 +39,13 @@ const PickerColumn = memo<
     const {
       valueKey,
       textKey,
-      itemHeight,
+      itemHeight: _itemHeight,
       visibleItemCount,
       placeholder,
       value,
     } = props
+
+    const itemHeight = useMemo(() => unitToPx(_itemHeight), [_itemHeight])
 
     const options = useMemo(() => {
       if (Array.isArray(props.options) && !props.options.length) return []
@@ -96,7 +98,7 @@ const PickerColumn = memo<
 
     const setIndex = (index: number) => {
       index = adjustIndex(index) || 0
-      const offset = -index * props.itemHeight
+      const offset = -index * itemHeight
       const trigger = () => {
         if (options[index]?.[valueKey] !== value) {
           onSelect(options[index])
@@ -114,7 +116,7 @@ const PickerColumn = memo<
 
     const animate = (index: number) => {
       index = adjustIndex(index) || 0
-      const offset = -index * props.itemHeight
+      const offset = -index * itemHeight
       updateState({ offset })
     }
 
@@ -143,7 +145,7 @@ const PickerColumn = memo<
     }
 
     const getIndexByOffset = (offset: number) =>
-      range(Math.round(-offset / props.itemHeight), 0, options.length - 1)
+      range(Math.round(-offset / itemHeight), 0, options.length - 1)
 
     const momentum = (distance: number, _duration: number) => {
       const speed = Math.abs(distance / _duration)
@@ -201,8 +203,8 @@ const PickerColumn = memo<
 
       const offset = range(
         startOffset.current + touch.deltaY.current,
-        -(options.length * props.itemHeight),
-        props.itemHeight
+        -(options.length * itemHeight),
+        itemHeight
       )
 
       updateState({
