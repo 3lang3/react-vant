@@ -22,7 +22,7 @@ jobs:
           node -v
           npm install pnpm@^7 -g
           pnpm -v
-          pnpm i
+          pnpm install --no-frozen-lockfile
           yarn docs:build
       - name: Generator 404 file
         run: |
