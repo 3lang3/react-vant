@@ -33,6 +33,10 @@ English | [简体中文](https://github.com/3lang3/react-vant/blob/main/packages
   🌈 <a href="https://react-vant.3lang.dev">Documentation（GitHub）</a>
 </p>
 
+## 🧑‍💻 Project Status
+
+Due to personal reasons and limited energy, the project entered maintenance mode and no longer accepted new functions, only accepted PRs that fixed bugs.
+
 ## ✨ Feature
 
 - 🚀 The average component size is less than 1KB（min+gzip）.
@@ -104,10 +108,6 @@ Read our contributing guide and let's build a better react-vant together.
 
 We welcome all contributions. Please read our [CONTRIBUTING.md](https://react-vant.3lang.dev/guide/contribution) first. You can submit any ideas as pull requests or as GitHub issues. :)
 
-## 💭 Discuss
-
-<img src="https://user-images.githubusercontent.com/7098719/143408499-6e838945-9fc3-4b4d-bf8f-f262f4937c33.jpg" width="200"  />
-
 ## 👥 Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -172,13 +172,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-
-## ☕ Coffee
-
-Buy me a coffee or beer 🍺
-
-<img width="200" alt="wechat_pay" src="https://user-images.githubusercontent.com/7098719/183117353-fe7ae07d-cabd-4886-8a11-2f2411d16586.png">
 
 ## 🙏 Thanks
 

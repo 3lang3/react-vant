@@ -33,6 +33,10 @@
   🌈 <a href="https://react-vant.3lang.dev">文档网站（GitHub）</a>
 </p>
 
+## 🧑‍💻 项目状态
+
+由于个人原因和精力有限，项目进入维护模式，不再接受新功能，只接受修复错误的 PR。
+
 ## ✨ 特性
 
 - 🚀 组件平均体积小于 1KB（min+gzip）.
@@ -117,14 +121,9 @@ ReactDOM.render(<App />, mountNode);
 
 我们欢迎所有贡献。 请先阅读我们的 [CONTRIBUTING.md](https://react-vant.3lang.dev/guide/contribution)。 您可以将任何想法作为拉取请求或作为 GitHub 问题提交 😃。
 
-## 💭 讨论
-
-<img alt="WechatIMG21.jpeg" src="https://user-images.githubusercontent.com/7098719/143408499-6e838945-9fc3-4b4d-bf8f-f262f4937c33.jpg" width="200"  />
-
 ## 👥 贡献者
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -179,12 +178,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## ☕ 赞助
-
-一起喝杯咖啡吗？你买单 😘 
-
-<img width="200" alt="wechat_pay" src="https://user-images.githubusercontent.com/7098719/183117353-fe7ae07d-cabd-4886-8a11-2f2411d16586.png">
 
 ## 🙏 鸣谢
 
