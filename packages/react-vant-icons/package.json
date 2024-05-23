@@ -1,6 +1,6 @@
 {
   "name": "@react-vant/icons",
-  "version": "0.0.11",
+  "version": "0.1.0",
   "description": "react vant icons",
   "license": "MIT",
   "sideEffects": [
