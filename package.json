@@ -16,11 +16,11 @@
     "*.{ts,tsx}": "npm run react-vant:lint"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "17.0.3",
+    "@commitlint/config-conventional": "17.8.1",
     "@typescript-eslint/eslint-plugin": "5.41.0",
     "@typescript-eslint/parser": "5.41.0",
     "all-contributors-cli": "6.24.0",
-    "commitlint": "17.0.3",
+    "commitlint": "17.8.1",
     "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-react": "7.31.10",
