@@ -100,8 +100,8 @@ importers:
         specifier: 18.0.7
         version: 18.0.7
       '@vant/area-data':
-        specifier: 1.3.1
-        version: 1.3.1
+        specifier: 1.5.1
+        version: 1.5.1
       gulp:
         specifier: 4.0.2
         version: 4.0.2
@@ -3949,8 +3949,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@vant/area-data@1.3.1:
-    resolution: {integrity: sha512-xji2kfVBXzFYmHAJNbhYjiRJ4GnN+enbTmtx6FnpTyxs9sUcFtS11BZ23hYCGuj4s02gXyrzUBTXGqhX5IKHIw==}
+  /@vant/area-data@1.5.1:
+    resolution: {integrity: sha512-gR5TPEzTbxN1cTK1aDhCoyikSCLX7DAacxyXoKyI4SAsYYTZrDl/nLgQFIm9vLsvWzlPIda8xV8/U3x7M9k6ww==}
     dev: true
 
   /@vant/popperjs@1.2.0:
