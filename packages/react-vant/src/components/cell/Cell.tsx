@@ -54,7 +54,7 @@ const Cell: React.FC<CellProps> = props => {
   const renderLeftIcon = () => {
     if (props.icon) {
       return React.cloneElement(props.icon as React.ReactElement, {
-        className: clsx(bem('left-icon')),
+        className: clsx(props.icon?.props?.className ?? '', bem('left-icon')),
       })
     }
     return null
