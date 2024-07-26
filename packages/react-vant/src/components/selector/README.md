@@ -81,7 +81,7 @@ type SelectorValue = string | number;
 | --rv-selector-text-color | var(--rv-text-color) | 文本色 |
 | --rv-selector-checked-text-color | var(--rv-primary-color) | 选中文本色 |
 | --rv-selector-border | none | 边框 |
-| --rv-selector-checkedborder | none | 选中边框 |
+| --rv-selector-checked-border | none | 选中边框 |
 | --rv-selector-border-radius | var(--rv-border-radius-sm) | 圆角 |
 | --rv-selector-padding | var(--rv-padding-xs) var(--rv-padding-md) | 内边距 |
 | --rv-selector-margin | 0 var(--rv-padding-xs) var(--rv-padding-xs) 0 | 间距 |
