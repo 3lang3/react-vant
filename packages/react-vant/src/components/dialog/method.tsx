@@ -9,6 +9,9 @@ import canUseDom from '../utils/dom/canUseDom'
 
 const Dialog = BaseDialog as DialogStatic
 
+// 用于存储弹窗的销毁方法
+const dialogCloseMap = new Map<string, VoidFunction>()
+
 // 可返回用于销毁此弹窗的方法
 Dialog.show = (props: DialogProps) => {
   if (!canUseDom()) return null
@@ -35,7 +38,8 @@ Dialog.show = (props: DialogProps) => {
   const userContainer = resolveContainer(props.teleport)
   const container = document.createElement('div')
   userContainer.appendChild(container)
-  let destroy = noop
+
+  const id = `rv-dialog-root--${Date.now()}`
 
   const TempDialog = () => {
     const [visible, setVisible] = useState(false)
@@ -46,10 +50,13 @@ Dialog.show = (props: DialogProps) => {
       setVisible(true)
     }, [])
 
-    destroy = () => {
+    const destroy = () => {
       setVisible(false)
       if (onClose) onClose()
     }
+
+    dialogCloseMap[id] = destroy
+
     const _afterClose = () => {
       if (onClosed) {
         onClosed()
@@ -102,7 +109,15 @@ Dialog.show = (props: DialogProps) => {
   }
   render(<TempDialog />, container)
 
-  return destroy
+  const close = () => {
+    if (!dialogCloseMap.has(id)) {
+      return;
+    }
+    dialogCloseMap.get(id)?.();
+    dialogCloseMap.delete(id);
+  }
+
+  return close
 }
 
 // 可使用 async/await 的方式
