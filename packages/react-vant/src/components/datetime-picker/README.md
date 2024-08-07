@@ -75,7 +75,7 @@ DatetimePicker 通过 type 属性来定义需要选择的时间类型，type 为
 | type | 时间类型，可选值为 `date` `time` <br> `year-month` `month-day` `datehour` | _string_ | `datetime` |
 | title | 顶部栏标题 | _ReactNode_ | `''` |
 | confirmButtonText | 确认按钮文字 | _ReactNode_ | `确认` |
-| cancelButtonText | 取消按钮文字 | _string_ | `取消` |
+| cancelButtonText | 取消按钮文字 | _ReactNode_ | `取消` |
 | showToolbar | 是否显示顶部栏 | _boolean_ | `true` |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
 | readOnly | 是否为只读状态，只读状态下无法切换选项 | _boolean_ | `false` |
