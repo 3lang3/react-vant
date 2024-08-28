@@ -68,7 +68,7 @@ const WaterMark: React.FC<WaterMarkProps> = p => {
           setBase64Url(canvas.toDataURL())
         }
       } else if (content) {
-        const frontProps = { ...font, ...DEFAULT_FONT }
+        const frontProps = { ...DEFAULT_FONT, ...font }
         const { size, family, style, weight, color } = frontProps
         ctx.textBaseline = 'middle'
         ctx.textAlign = 'center'
