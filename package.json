@@ -19,7 +19,7 @@
     "@commitlint/config-conventional": "17.0.3",
     "@typescript-eslint/eslint-plugin": "5.41.0",
     "@typescript-eslint/parser": "5.41.0",
-    "all-contributors-cli": "6.24.0",
+    "all-contributors-cli": "6.26.1",
     "commitlint": "17.0.3",
     "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
