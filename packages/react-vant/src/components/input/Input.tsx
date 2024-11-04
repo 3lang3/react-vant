@@ -106,7 +106,7 @@ const Input = forwardRef<InputInstance, InputProps>((p, ref) => {
     }
   }
 
-  const handleBulr = e => {
+  const handleBlur = e => {
     setInputFocus(false)
     props.onBlur?.(e)
     resetScroll()
@@ -151,7 +151,7 @@ const Input = forwardRef<InputInstance, InputProps>((p, ref) => {
         autoFocus={autoFocus}
         readOnly={readOnly}
         placeholder={placeholder || ''}
-        onBlur={handleBulr}
+        onBlur={handleBlur}
         onFocus={handleFocus}
         onChange={e => handleValueChange(e?.currentTarget?.value)}
         onKeyPress={handleKeyPress}
