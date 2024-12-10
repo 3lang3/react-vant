@@ -65,12 +65,12 @@ const Cascader: React.FC<CascaderProps> = props => {
   // update active tab index from value
   useEffect(() => {
     let tabIndex = 0
-    if (Array.isArray(value) && value.length > 0) tabIndex = value.length
+    if (Array.isArray(value) && value.length > 0 && tabs.length>value.length ) tabIndex = value.length
     if (tabIndex >= depth) tabIndex = depth - 1
     if (tabIndex === activeTab) return
 
     updateActiveTab(tabIndex)
-  }, [value])
+  }, [value,tabs])
 
   useDebounceEffect(
     () => {
