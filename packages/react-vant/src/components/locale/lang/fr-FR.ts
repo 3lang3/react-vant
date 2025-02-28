@@ -13,6 +13,7 @@ export default {
     end: 'Fin',
     start: 'Début',
     title: 'Calendrier',
+    confirm: 'Confirmer',
     startEnd: 'Début/Fin',
     weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
     monthTitle: (year: number, month: number) => `${year}/${month}`,
