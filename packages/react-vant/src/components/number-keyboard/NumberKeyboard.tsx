@@ -73,7 +73,7 @@ const NumberKeyboard: React.FC<NumberKeyboardProps> = ({
 
   const keys = useMemo(
     () => (props.theme === 'custom' ? genCustomKeys() : genDefaultKeys()),
-    [props.theme]
+    [props.theme, props.extraKey, props.deleteButtonText, props.showDeleteKey]
   )
 
   const onBlur = () => {
