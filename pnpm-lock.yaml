@@ -78,8 +78,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-transition-group:
-        specifier: 4.4.2
-        version: 4.4.2(react-dom@18.2.0)(react@18.2.0)
+        specifier: 4.4.5
+        version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
       tslib:
         specifier: ^2.4.0
         version: 2.4.0
@@ -6859,7 +6859,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
+    deprecated: Upgrade to fsevents v2 to mitigate potential security issues
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
@@ -11190,8 +11190,8 @@ packages:
       react: 18.2.0
     dev: true
 
-  /react-transition-group@4.4.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==}
+  /react-transition-group@4.4.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
     peerDependencies:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'

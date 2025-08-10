@@ -89,7 +89,7 @@
     "clsx": "1.2.1",
     "rc-field-form": "^1.26.4",
     "react-is": "^18.2.0",
-    "react-transition-group": "4.4.2",
+    "react-transition-group": "4.4.5",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
