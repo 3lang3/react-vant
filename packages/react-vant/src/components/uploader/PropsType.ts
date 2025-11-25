@@ -16,16 +16,10 @@ export type UploaderValueItem = {
   thumbnail?: string
   /** 原始文件 */
   file?: File
+  status?: TaskStatus
 } & Record<string, any>
 
 type TaskStatus = 'pending' | 'failed'
-
-export type UploaderTask = {
-  id: number
-  url?: string
-  status: TaskStatus
-  file: File
-}
 
 export type UploaderMaxSize = number | string | ((file: File) => boolean)
 

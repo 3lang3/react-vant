@@ -1,20 +1,15 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import cls from 'clsx'
 import { Photograph } from '@react-vant/icons'
 // Utils
 import { getSizeStyle, extend, createNamespace } from '../utils'
 import { isOversize, filterFiles, readFileContent, isImageFile } from './utils'
 // Types
-import {
-  UploaderInstance,
-  UploaderProps,
-  UploaderTask,
-  UploaderValueItem,
-} from './PropsType'
+import { UploaderInstance, UploaderProps, UploaderValueItem } from './PropsType'
 import { UploaderPreviewItem } from './UploaderPreviewItem'
 // Components
 import ImagePreview from '../image-preview'
-import { useIsomorphicLayoutEffect, usePropsValue } from '../hooks'
+import { usePropsValue } from '../hooks'
 import { mergeProps } from '../utils/get-default-props'
 
 const [bem] = createNamespace('uploader')
@@ -40,19 +35,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((p, ref) => {
   const imagePreview = useRef(null)
   const inputRef = useRef<HTMLInputElement>()
 
-  const [tasks, setTasks] = useState<UploaderTask[]>([])
-
   const idCountRef = useRef(0)
-
-  useIsomorphicLayoutEffect(() => {
-    if (!Array.isArray(value)) return
-    setTasks(prev =>
-      prev.filter(task => {
-        if (task.url === undefined) return true
-        return !value.some(fileItem => fileItem.url === task.url)
-      })
-    )
-  }, [value])
 
   const { maxCount, maxSize, resultType, beforeRead } = props
 
@@ -100,51 +83,60 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((p, ref) => {
       }
     }
 
-    const newTasks = files.map(
+    const newFiles = files.map(
       file =>
         ({
-          id: idCountRef.current++,
+          key: `${idCountRef.current++}`,
           status: 'pending',
           file,
-        } as UploaderTask)
+        } as UploaderValueItem)
     )
 
-    setTasks(prev => [...prev, ...newTasks])
+    setValue(prev => [...prev, ...newFiles])
 
     await Promise.all(
-      newTasks.map(async currentTask => {
+      newFiles.map(async currentTask => {
         try {
-          let result = {} as UploaderValueItem
-          if (props.upload) {
-            result = await props.upload(currentTask.file)
-          } else {
-            const dataUrl = (await readFileContent(
-              currentTask.file,
-              resultType
-            )) as string
-            result.url = dataUrl
-            result.file = currentTask.file
-            result.key = currentTask.id
-          }
-          setTasks(prev => {
+          let result = { ...currentTask } as UploaderValueItem
+          const dataUrl = (await readFileContent(
+            currentTask.file,
+            resultType
+          )) as string
+          result.url = dataUrl
+          result.file = currentTask.file
+          result.key = currentTask.key
+
+          setValue(prev => {
             return prev.map(task => {
-              if (task.id === currentTask.id) {
+              if (task.key === currentTask.key) {
                 return {
                   ...task,
-                  url: result.url,
+                  ...result,
                 }
               }
               return task
             })
           })
+
+          if (props.upload) {
+            result = await props.upload(currentTask.file)
+          }
           setValue(prev => {
-            const newVal = { ...result, file: currentTask.file }
-            return [...prev, newVal]
+            return prev.map(task => {
+              if (task.key === currentTask.key) {
+                return {
+                  ...task,
+                  ...result,
+                  status: undefined,
+                }
+              }
+              return task
+            })
           })
         } catch (e) {
-          setTasks(prev => {
+          setValue(prev => {
             return prev.map(task => {
-              if (task.id === currentTask.id) {
+              if (task.key === currentTask.key) {
                 return {
                   ...task,
                   status: 'failed',
@@ -195,9 +187,11 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((p, ref) => {
         isImage={props.isImageUrl?.(item)}
         url={item.thumbnail ?? item.url}
         imageFit={props.imageFit}
-        deletable={props.deletable}
-        previewSize={props.previewSize}
+        status={item.status}
+        statusTextRender={props.statusTextRender}
+        deletable={item.status !== 'pending' ? props.deletable : false}
         deleteRender={props.deleteRender}
+        previewSize={props.previewSize}
         previewCoverRender={() => props.previewCoverRender?.(item)}
         onClick={() => props.onClickPreview?.(item, index)}
         onDelete={async () => {
@@ -212,28 +206,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((p, ref) => {
 
   const renderPreviewList = () => {
     if (props.previewImage) {
-      return (
-        <>
-          {value.map(renderPreviewItem)}
-          {tasks.map(task => {
-            if (task.status === 'failed') return null
-            return (
-              <UploaderPreviewItem
-                key={task.id}
-                file={task.file}
-                status={task.status}
-                statusTextRender={props.statusTextRender}
-                deletable={task.status !== 'pending'}
-                deleteRender={props.deleteRender}
-                imageFit={props.imageFit}
-                onDelete={() => {
-                  setTasks(tasks.filter(x => x.id !== task.id))
-                }}
-              />
-            )
-          })}
-        </>
-      )
+      return <>{value.map(renderPreviewItem)}</>
     }
     return null
   }
@@ -249,10 +222,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((p, ref) => {
   }
 
   const renderUpload = () => {
-    if (
-      props.showUpload &&
-      (maxCount === 0 || value.length + tasks.length < maxCount)
-    ) {
+    if (props.showUpload && (maxCount === 0 || value.length < maxCount)) {
       const Input = props.readOnly ? null : (
         <input
           ref={inputRef}
