@@ -37,7 +37,7 @@
     "gulp-typescript": "6.0.0-alpha.1",
     "node-sketch": "0.14.1",
     "shelljs": "0.8.5",
-    "svgo": "2.8.0",
+    "svgo": "2.8.2",
     "typescript": "4.8.4"
   },
   "peerDependencies": {
